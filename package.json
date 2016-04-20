@@ -5,6 +5,11 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
+  "metadata": {
+    "graphql": {
+      "schema": "./graphql/schema.json"
+    }
+  },
   "dependencies": {
     "babel-cli": "^6.5.5",
     "babel-core": "^6.7.2",
