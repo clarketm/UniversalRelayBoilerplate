@@ -2,6 +2,11 @@
 #
 .DS_Store
 
+# Server
+#
+.env
+public/assets
+
 # Xcode
 #
 build/
