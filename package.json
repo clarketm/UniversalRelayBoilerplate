@@ -1,9 +1,44 @@
 {
   "name": "UniversalRelayBoilerplate",
-  "version": "0.0.1",
+  "description": "Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra",
+  "version": "3.0.0",
   "private": true,
+  "license": "MIT",
+  "homepage": "http://codefoundries.com/products/starter-kit.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codefoundries/UniversalRelayBoilerplate.git"
+  },
+  "engines": {
+    "node": ">=4",
+    "npm": ">=3"
+  },
   "scripts": {
+    "postinstall": "npm run build-schema && npm run build-webpack",
+    "setup-local": "cp ./doc/Example.env ./.env",
+    "setup-cassandra-init": "cqlsh -f ./scripts/cassandra-init.cql",
+    "build-schema": "./node_modules/.bin/babel-node ./scripts/build-schema.js",
+    "build-webpack": "./node_modules/.bin/webpack -p --output-filename app.js",
+    "build-mui-icon-list": "./node_modules/.bin/babel-node ./scripts/build-mui-icon-list.js",
+    "config-da-memory": "./node_modules/.bin/replace OBJECT_PERSISTENCE=cassandra OBJECT_PERSISTENCE=memory ./.env",
+    "config-da-cassandra": "./node_modules/.bin/replace OBJECT_PERSISTENCE=memory OBJECT_PERSISTENCE=cassandra ./.env",
+    "start-webpack": "better-npm-run start-webpack",
+    "start-dev": "better-npm-run start-dev",
+    "update-ip": "./node_modules/.bin/babel-node ./scripts/update-local-ip-for-app.js",
+    "dev": "concurrently --kill-others \"npm run start-webpack\" \"npm run start-dev\"",
+    "prod": "export NODE_ENV=production && ./node_modules/.bin/babel-node ./server/server.js",
     "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "betterScripts": {
+    "start-dev": {
+      "command": "nodemon --exec ./node_modules/.bin/babel-node -- ./server/server.js",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "start-webpack": {
+      "command": "./node_modules/.bin/webpack-dev-server --hot --inline --no-info --colors"
+    }
   },
   "metadata": {
     "graphql": {
