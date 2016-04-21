@@ -20,7 +20,7 @@ if( addresses.length >= 0 )
     '  jsCodeLocation = [NSURL URLWithString:@"http://' +  addresses[ 0 ] + ':8081/index.ios.bundle?platform=ios&dev=true"];'
   );
   updateIPInFile(
-    './app.js',
+    './app/app.js',
     'let graphQLServerURL = "http://',
     'let graphQLServerURL = "http://' +  addresses[ 0 ] + ':4444/graphql";'
   );
