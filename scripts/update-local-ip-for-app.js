@@ -15,12 +15,12 @@ for (var k in interfaces)
 if( addresses.length >= 0 )
 {
   updateIPInFile(
-    './app/ios/CodeFoundriesApp/AppDelegate.m',
+    './ios/UniversalRelayBoilerplate/AppDelegate.m',
     'jsCodeLocation = [NSURL URLWithString:@"http:',
     '  jsCodeLocation = [NSURL URLWithString:@"http://' +  addresses[ 0 ] + ':8081/index.ios.bundle?platform=ios&dev=true"];'
   );
   updateIPInFile(
-    './app/app.js',
+    './app.js',
     'let graphQLServerURL = "http://',
     'let graphQLServerURL = "http://' +  addresses[ 0 ] + ':4444/graphql";'
   );

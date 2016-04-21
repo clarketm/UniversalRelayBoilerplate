@@ -6,8 +6,8 @@ import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAll
 import Relay from 'react-relay';
 import ToDo_deleteMutation from '../../relay/ToDo_deleteMutation';
 import Swipeout from 'react-native-swipeout';
-import ToDo from './ToDo.jsx';
-import TodoTextInput from './TodoTextInput.jsx';
+import ToDo from './ToDo';
+import TodoTextInput from './ToDoTextInput';
 import React, {
   Component,
   ListView,
@@ -45,10 +45,10 @@ class TodoList extends Component {
   _handleMarkAllPress() {
     const numTodos = this.props.Viewer.ToDo_TotalCount;
     const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount;
-    const complete = numTodos !== numCompletedTodos;
+    const ToDo_Complete = numTodos !== numCompletedTodos;
     Relay.Store.commitUpdate(
       new ToDo_list_updateMarkAllMutation({
-        complete,
+        ToDo_Complete,
         ToDos: this.props.Viewer.ToDos,
         Viewer: this.props.Viewer,
       })
@@ -71,13 +71,13 @@ class TodoList extends Component {
     );
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.Viewer.ToDos.edges !== nextProps.viewer.ToDos.edges) {
+    if (this.props.Viewer.ToDos.edges !== nextProps.Viewer.ToDos.edges) {
       const {
         ToDosDataSource,
       } = this.state;
       this.setState({
         ToDosDataSource:
-          _ToDosDataSource.cloneWithRows(nextProps.viewer.ToDos.edges),
+          _ToDosDataSource.cloneWithRows(nextProps.Viewer.ToDos.edges),
       });
     }
   }
@@ -96,7 +96,7 @@ class TodoList extends Component {
           onDestroy={destroyHandler}
           style={styles.ToDo}
           ToDo={todoEdge.node}
-          viewer={this.props.Viewer}
+          Viewer={this.props.Viewer}
         />
       </Swipeout>
     );

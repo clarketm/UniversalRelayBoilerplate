@@ -2,9 +2,9 @@
 'use strict';
 
 import Relay from 'react-relay';
-import StatusButton from './StatusButton.jsx';
-import TodoList from './TodoList.jsx';
-import TodoListFooter from './TodoListFooter.jsx';
+import StatusButton from './StatusButton';
+import TodoList from './ToDoList';
+import TodoListFooter from './ToDoListFooter';
 import React, {
   Component,
   Platform,
@@ -45,12 +45,12 @@ class TodoApp extends Component {
         <TodoList
           status={this.props.relay.variables.status}
           style={styles.list}
-          viewer={this.props.Viewer}
+          Viewer={this.props.Viewer}
         />
         <TodoListFooter
           status={this.props.relay.variables.status}
           style={styles.footer}
-          viewer={this.props.Viewer}
+          Viewer={this.props.Viewer}
         />
       </View>
     );
@@ -65,8 +65,8 @@ export default Relay.createContainer(TodoApp, {
     Viewer: variables => Relay.QL`
       fragment on Viewer {
         ToDo_TotalCount
-        ${TodoList.getFragment('viewer', {status: variables.status})}
-        ${TodoListFooter.getFragment('viewer', {status: variables.status})}
+        ${TodoList.getFragment('Viewer', {status: variables.status})}
+        ${TodoListFooter.getFragment('Viewer', {status: variables.status})}
       }
     `,
   },

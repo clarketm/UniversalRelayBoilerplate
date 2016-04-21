@@ -4,7 +4,7 @@
 import ToDo_updateStatusMutation from '../../relay/ToDo_updateStatusMutation';
 import ToDo_updateRenameMutation from '../../relay/ToDo_updateRenameMutation';
 import Relay from 'react-relay';
-import TodoTextInput from './TodoTextInput.jsx';
+import TodoTextInput from './ToDoTextInput';
 import React, {
   Component,
   Image,
@@ -34,10 +34,10 @@ class ToDo extends Component {
     this._setEditMode = this._setEditMode.bind(this);
   }
   _handleCompletePress() {
-    var complete = !this.props.ToDo.complete;
+    var ToDo_Complete = !this.props.ToDo.ToDo_Complete;
     Relay.Store.commitUpdate(
       new ToDo_updateStatusMutation({
-        complete,
+        ToDo_Complete,
         ToDo: this.props.ToDo,
         Viewer: this.props.Viewer,
       })
@@ -63,7 +63,7 @@ class ToDo extends Component {
     this.setState({isEditing: shouldEdit});
   }
   renderCompleteCheckbox() {
-    const imageModule = this.props.ToDo.complete ?
+    const imageModule = this.props.ToDo.ToDo_Complete ?
       require('../images/todo_checkbox-active.png') :
       require('../images/todo_checkbox.png');
     return (
@@ -110,7 +110,7 @@ export default Relay.createContainer(ToDo, {
   fragments: {
     ToDo: () => Relay.QL`
       fragment on ToDo {
-        complete
+        ToDo_Complete
         id
         ToDo_Text
         ${ToDo_updateStatusMutation.getFragment('ToDo')}
