@@ -1,9 +1,9 @@
-DROP KEYSPACE IF EXISTS starter_kit;
+DROP KEYSPACE IF EXISTS urb;
 
-CREATE KEYSPACE starter_kit
+CREATE KEYSPACE urb
 WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 1};
 
-USE starter_kit;
+USE urb;
 
 
 
