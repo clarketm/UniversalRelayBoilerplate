@@ -49,7 +49,7 @@ export default mutationWithClientMutationId( {
     Compendium_LikedSunset_Green,
     Compendium_LikedSunset_Other,
     Compendium_LikedSunset_OtherText,
-  }, { rootValue: objectManager } ) => {
+  }, context, { rootValue: objectManager } ) => {
     var local_id = fromGlobalId( id ).id;
     return objectManager.update( 'Compendium', {
       id: local_id,

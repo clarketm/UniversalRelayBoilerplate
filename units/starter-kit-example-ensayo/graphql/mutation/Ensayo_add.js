@@ -39,7 +39,7 @@ export default mutationWithClientMutationId( {
       resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   },
-  mutateAndGetPayload: ( { Ensayo_Content, Ensayo_Title, Ensayo_Description }, { rootValue: objectManager } ) =>
+  mutateAndGetPayload: ( { Ensayo_Content, Ensayo_Title, Ensayo_Description }, context, { rootValue: objectManager } ) =>
     objectManager.add( 'Ensayo', {
       Ensayo_User_id: objectManager.getViewerUserId( ),
       Ensayo_Content,

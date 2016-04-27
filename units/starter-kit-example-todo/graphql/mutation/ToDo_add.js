@@ -37,7 +37,7 @@ export default mutationWithClientMutationId( {
       resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   },
-  mutateAndGetPayload: ( {ToDo_Text}, { rootValue: objectManager } ) =>
+  mutateAndGetPayload: ( {ToDo_Text}, context, { rootValue: objectManager } ) =>
     objectManager.add( 'ToDo', {
       ToDo_User_id: objectManager.getViewerUserId( ),
       ToDo_Text,

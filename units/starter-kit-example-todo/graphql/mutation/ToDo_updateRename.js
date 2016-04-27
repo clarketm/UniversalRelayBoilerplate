@@ -17,7 +17,7 @@ export default mutationWithClientMutationId( {
       resolve: ( {local_id}, { ...args }, context, { rootValue: objectManager } ) => objectManager.getOneById( 'ToDo', local_id )
     }
   },
-  mutateAndGetPayload: ( {id, ToDo_Text}, { rootValue: objectManager } ) => {
+  mutateAndGetPayload: ( {id, ToDo_Text}, context, { rootValue: objectManager } ) => {
     var local_id = fromGlobalId(id).id;
     return objectManager.update( 'ToDo', {
       id: local_id,

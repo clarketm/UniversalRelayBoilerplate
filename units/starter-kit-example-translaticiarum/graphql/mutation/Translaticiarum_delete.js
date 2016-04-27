@@ -21,7 +21,7 @@ export default mutationWithClientMutationId( {
       resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   },
-  mutateAndGetPayload: ( {id}, { rootValue: objectManager } ) =>
+  mutateAndGetPayload: ( {id}, context, { rootValue: objectManager } ) =>
   {
     var local_id = fromGlobalId(id).id;
     return objectManager.remove( 'Translaticiarum', { id: local_id} )

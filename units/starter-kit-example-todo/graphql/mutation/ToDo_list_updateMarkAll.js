@@ -23,7 +23,7 @@ export default mutationWithClientMutationId( {
       resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   },
-  mutateAndGetPayload: ( {ToDo_Complete}, { rootValue: objectManager } ) =>
+  mutateAndGetPayload: ( {ToDo_Complete}, context, { rootValue: objectManager } ) =>
   {
     return ToDo_list_updateMarkAll( objectManager, ToDo_Complete )
     .then( ( arr_local_ids_Changed_ToDos ) => ( {arr_local_ids_Changed_ToDos} ) )

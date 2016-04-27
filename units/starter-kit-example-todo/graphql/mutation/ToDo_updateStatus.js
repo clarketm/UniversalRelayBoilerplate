@@ -23,7 +23,7 @@ export default mutationWithClientMutationId( {
       resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   },
-  mutateAndGetPayload: ( { id, ToDo_Complete }, { rootValue: objectManager } ) => {
+  mutateAndGetPayload: ( { id, ToDo_Complete }, context, { rootValue: objectManager } ) => {
     var local_id = fromGlobalId(id).id;
     return objectManager.update( 'ToDo', {
       id: local_id,

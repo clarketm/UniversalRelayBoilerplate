@@ -19,7 +19,7 @@ export default mutationWithClientMutationId( {
       resolve: ( {local_id}, { ...args }, context, { rootValue: objectManager } ) => objectManager.getOneById( 'Ensayo', local_id ),
     }
   },
-  mutateAndGetPayload: ( {id, Ensayo_Content, Ensayo_Title, Ensayo_Description }, { rootValue: objectManager } ) => {
+  mutateAndGetPayload: ( {id, Ensayo_Content, Ensayo_Title, Ensayo_Description }, context, { rootValue: objectManager } ) => {
     var local_id = fromGlobalId(id).id;
     return objectManager.update( 'Ensayo', {
       id: local_id,

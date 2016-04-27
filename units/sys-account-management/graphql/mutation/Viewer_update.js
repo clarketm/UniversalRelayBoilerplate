@@ -27,7 +27,7 @@ export default mutationWithClientMutationId( {
     User_ProfilePhoto,
     User_Email,
     User_Locale,
-  }, { rootValue: objectManager } ) => {
+  }, context, { rootValue: objectManager } ) => {
     var local_id = fromGlobalId( id ).id;
     return objectManager.update( 'User', {
       id: local_id,

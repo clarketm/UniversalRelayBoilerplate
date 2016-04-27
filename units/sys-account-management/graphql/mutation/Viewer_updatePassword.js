@@ -26,7 +26,7 @@ export default mutationWithClientMutationId( {
       resolve: ( parent ) => parent.ErrorMessage,
     }
   },
-  mutateAndGetPayload: ( { id, User_AccountPassword_Current, User_AccountPassword }, { rootValue: objectManager } ) =>
+  mutateAndGetPayload: ( { id, User_AccountPassword_Current, User_AccountPassword }, context, { rootValue: objectManager } ) =>
   {
     let local_id = fromGlobalId( id ).id;
     let ErrorMessage = ""; // No error if empty
