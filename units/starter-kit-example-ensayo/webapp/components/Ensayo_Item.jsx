@@ -19,16 +19,20 @@ import Ensayo_Properties from './Ensayo_Properties.jsx';
 
 class Ensayo_Item extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   _handle_updateHandler_Ensayo = ( Ensayo_properties ) =>
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new Ensayo_updateMutation( { Ensayo: this.props.Ensayo, ...Ensayo_properties } )
     );
   };
 
   _Ensayo_delete( )
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new Ensayo_deleteMutation( { Ensayo: this.props.Ensayo, Viewer: this.props.Viewer } )
     );
   }

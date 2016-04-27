@@ -79,6 +79,7 @@ class Chrome extends React.Component
 
     return (
       <AppCanvas>
+
         <Helmet
           title="Universal Relay Starter Kit"
           meta={ [

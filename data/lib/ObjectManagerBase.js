@@ -30,12 +30,12 @@ const ObjectPersister = (process.env.OBJECT_PERSISTENCE == 'memory') ? ObjectPer
 export default class ObjectManagerBase
 {
   entityDefinitions: any;
-  Viewer_User_id: Uuid;
+  Viewer_User_id: string;
 
-  constructor( Viewer_User_id: Uuid )
+  constructor( )
   {
-    this.entityDefinitions = { };
-    this.Viewer_User_id = Viewer_User_id;
+    this.entityDefinitions = { }
+    this.Viewer_User_id = null
   }
 
   registerEntity( entityName: string, EntityType : any )
@@ -43,7 +43,20 @@ export default class ObjectManagerBase
     this.entityDefinitions[ entityName ] = {
       EntityType: EntityType,
       loaders: { loadersSingle: { }, loadersMultiple: { } }
-    };
+    }
+  }
+
+  setViewerUserId( Viewer_User_id: string )
+  {
+    this.Viewer_User_id = Viewer_User_id
+  }
+
+  getViewerUserId( )
+  {
+    if( this.Viewer_User_id == null )
+      throw new Error( "Object Manager: viewer user id has not been set" )
+
+    return this.Viewer_User_id
   }
 
   getLoader( entityName: string, fieldName: string, multipleResults: boolean )
@@ -69,7 +82,7 @@ export default class ObjectManagerBase
   getOneById( entityName: string, id: Uuid )
   {
     // Special hack for anonymous users
-    if( entityName === 'User' && id == '00000000-0000-0000-0000-000000000000' )
+    if( entityName == 'User' && id == '00000000-0000-0000-0000-000000000000' )
       return Promise.resolve( User_0 );
     // For all non-user, non 0 ids, load from data loader
     else

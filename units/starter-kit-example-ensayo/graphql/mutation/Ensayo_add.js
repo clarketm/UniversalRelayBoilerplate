@@ -19,14 +19,14 @@ export default mutationWithClientMutationId( {
   outputFields: {
     EnsayosEdge: {
       type: EnsayosConnection.edgeType,
-      resolve: ( {local_id}, args, { rootValue: {user_id, objectManager} } ) =>
+      resolve: ( {local_id}, { ...args }, context, { rootValue: objectManager } ) =>
       {
         let an_Object;
         return objectManager.getOneById( 'Ensayo', local_id )
         .then( ( retrieved_Object ) => {
           an_Object = retrieved_Object;
         } )
-        .then( ( ) => objectManager.getListBy( 'Ensayo', 'Ensayo_User_id', user_id.toString( ) ) )
+        .then( ( ) => objectManager.getListBy( 'Ensayo', 'Ensayo_User_id', objectManager.getViewerUserId( ) ) )
         .then( ( arr ) => ( {
           cursor: cursorForObjectInConnectionWithUuidComparison( arr, an_Object ),
           node: an_Object,
@@ -36,12 +36,12 @@ export default mutationWithClientMutationId( {
     },
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, { rootValue: {user_id, objectManager} } ) => objectManager.getOneById( 'User', user_id )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   },
-  mutateAndGetPayload: ( { Ensayo_Content, Ensayo_Title, Ensayo_Description }, { rootValue: {user_id, objectManager} } ) =>
+  mutateAndGetPayload: ( { Ensayo_Content, Ensayo_Title, Ensayo_Description }, { rootValue: objectManager } ) =>
     objectManager.add( 'Ensayo', {
-      Ensayo_User_id: user_id,
+      Ensayo_User_id: objectManager.getViewerUserId( ),
       Ensayo_Content,
       Ensayo_Title,
       Ensayo_Description,

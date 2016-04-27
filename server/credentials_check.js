@@ -19,6 +19,8 @@ export function getUserByCookie( objectManager, req, res )
       if( req.cookies.auth_token.length > 10 )
       {
         var decoded = jwt.decode( req.cookies.auth_token, process.env.JWT_SECRET );
+        console.log( 'PRE DECODING!: ' );
+        console.log( 'DECODING!: ' + decoded );
         user_id = decoded.user_id;
       }
   }
@@ -30,7 +32,10 @@ export function getUserByCookie( objectManager, req, res )
   return objectManager.getOneById( 'User', user_id )
   .then( ( a_User ) => {
     if( a_User )
-      return a_User;
+    {
+      objectManager.setViewerUserId( user_id )
+      return a_User
+    }
     else
       return Promise.reject( "User not found" );
   } )

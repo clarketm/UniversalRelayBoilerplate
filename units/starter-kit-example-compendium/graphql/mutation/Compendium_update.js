@@ -29,7 +29,7 @@ export default mutationWithClientMutationId( {
   outputFields: {
     Compendium: {
       type: CompendiumType,
-      resolve: ( {local_id}, { ...args }, { rootValue: {user_id, objectManager} } ) => objectManager.getOneById( 'Compendium', local_id ),
+      resolve: ( {local_id}, { ...args }, context, { rootValue: objectManager } ) => objectManager.getOneById( 'Compendium', local_id ),
     },
   },
   mutateAndGetPayload: ( {
@@ -49,7 +49,7 @@ export default mutationWithClientMutationId( {
     Compendium_LikedSunset_Green,
     Compendium_LikedSunset_Other,
     Compendium_LikedSunset_OtherText,
-  }, { rootValue: {objectManager} } ) => {
+  }, { rootValue: objectManager } ) => {
     var local_id = fromGlobalId( id ).id;
     return objectManager.update( 'Compendium', {
       id: local_id,

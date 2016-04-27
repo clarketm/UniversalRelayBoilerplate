@@ -20,7 +20,7 @@ router.use( '/', ( req, res, next ) =>
     graphQLHTTP( request => {
       return( {
         schema: schema,
-        rootValue: { user_id, objectManager },
+        rootValue: objectManager,
         pretty: true,
         graphiql: true,
       } )

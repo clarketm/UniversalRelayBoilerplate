@@ -16,14 +16,14 @@ export default mutationWithClientMutationId( {
   outputFields: {
     ToDo: {
       type: ToDoType,
-      resolve: ( {local_id}, { ...args }, { rootValue: {objectManager} } ) => objectManager.getOneById( 'ToDo', local_id ),
+      resolve: ( {local_id}, { ...args }, context, { rootValue: objectManager } ) => objectManager.getOneById( 'ToDo', local_id ),
     },
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, { rootValue: {user_id, objectManager} } ) => objectManager.getOneById( 'User', user_id )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   },
-  mutateAndGetPayload: ( { id, ToDo_Complete }, { rootValue: {objectManager} } ) => {
+  mutateAndGetPayload: ( { id, ToDo_Complete }, { rootValue: objectManager } ) => {
     var local_id = fromGlobalId(id).id;
     return objectManager.update( 'ToDo', {
       id: local_id,

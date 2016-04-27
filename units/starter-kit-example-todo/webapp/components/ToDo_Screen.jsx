@@ -12,6 +12,10 @@ import ToDo_addMutation from '../../relay/ToDo_addMutation';
 
 class ToDo_Screen extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   constructor( props )
   {
      super( props );
@@ -26,7 +30,7 @@ class ToDo_Screen extends React.Component
   {
     if( e.keyCode === 13 )
     {
-      Relay.Store.commitUpdate(
+      this.context.relay.commitUpdate(
         new ToDo_addMutation( {
           ToDo_Text: this.state.ToDo_Text_New,
           Viewer: this.props.Viewer

@@ -23,7 +23,12 @@ const _ToDosDataSource = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.__dataID__ !== r2.__dataID__,
 });
 
-class TodoList extends Component {
+class TodoList extends Component
+{
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   static propTypes = {
     status: PropTypes.oneOf(['active', 'any', 'completed']).isRequired,
     style: View.propTypes.style,
@@ -46,7 +51,7 @@ class TodoList extends Component {
     const numTodos = this.props.Viewer.ToDo_TotalCount;
     const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount;
     const ToDo_Complete = numTodos !== numCompletedTodos;
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new ToDo_list_updateMarkAllMutation({
         ToDo_Complete,
         ToDos: this.props.Viewer.ToDos,
@@ -58,12 +63,12 @@ class TodoList extends Component {
     this.setState({listScrollEnabled: swipeInactive});
   }
   _handleTextInputSave(ToDo_Text) {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new ToDo_addMutation({ToDo_Text, Viewer: this.props.Viewer})
     );
   }
   _handleTodoDestroy(ToDo) {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new ToDo_deleteMutation({
         ToDo,
         Viewer: this.props.Viewer,

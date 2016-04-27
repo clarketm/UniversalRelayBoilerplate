@@ -1,9 +1,9 @@
 import ToDo from '../model/ToDo'
 import ObjectManager from '../../../../data/ObjectManager'
 
-export default function ToDo_list_updateMarkAll( user_id, objectManager, ToDo_CompleteNew )
+export default function ToDo_list_updateMarkAll( objectManager, ToDo_CompleteNew )
 {
-  return objectManager.getListBy( 'ToDo', 'ToDo_User_id', user_id.toString( ) )
+  return objectManager.getListBy( 'ToDo', 'ToDo_User_id', objectManager.getViewerUserId( ) )
   .then( ( arr ) => {
     const arr_filtered = arr.filter( a_ToDo => a_ToDo.ToDo_Complete != ToDo_CompleteNew );
 

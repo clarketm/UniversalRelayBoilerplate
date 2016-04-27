@@ -18,10 +18,10 @@ export default mutationWithClientMutationId( {
     },
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, { rootValue: {user_id, objectManager} } ) => objectManager.getOneById( 'User', user_id )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   },
-  mutateAndGetPayload: ( {id}, { rootValue: {objectManager} } ) =>
+  mutateAndGetPayload: ( {id}, { rootValue: objectManager } ) =>
   {
     var local_id = fromGlobalId(id).id;
     return objectManager.remove( 'ToDo', { id: local_id} )

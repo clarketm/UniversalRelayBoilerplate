@@ -18,7 +18,7 @@ export default mutationWithClientMutationId( {
   outputFields: {
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, { rootValue: {user_id, objectManager} } ) => objectManager.getOneById( 'User', user_id )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   },
   mutateAndGetPayload: ( {
@@ -27,7 +27,7 @@ export default mutationWithClientMutationId( {
     User_ProfilePhoto,
     User_Email,
     User_Locale,
-  }, { rootValue: {user_id, objectManager} } ) => {
+  }, { rootValue: objectManager } ) => {
     var local_id = fromGlobalId( id ).id;
     return objectManager.update( 'User', {
       id: local_id,

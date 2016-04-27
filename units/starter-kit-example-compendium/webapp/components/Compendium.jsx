@@ -18,6 +18,10 @@ import Compendium_updateMutation from '../../relay/Compendium_updateMutation';
 
 class Compendium extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   constructor( props )
   {
     super( props );
@@ -46,7 +50,7 @@ class Compendium extends React.Component
 
   _handleUpdate = ( Compendium ) =>
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new Compendium_updateMutation( {
         Compendium:                         Compendium,
         Compendium_FirstTextInput:          this.state.Compendium_FirstTextInput,

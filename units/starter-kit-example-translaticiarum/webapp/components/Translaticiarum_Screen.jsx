@@ -17,9 +17,13 @@ import Translaticiarum_Properties from './Translaticiarum_Properties.jsx';
 
 class Translaticiarum_Screen extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   _handle_updateHandler_Translaticiarum_Add = ( Translaticiarum_properties ) =>
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new Translaticiarum_addMutation( { ...Translaticiarum_properties, Viewer: this.props.Viewer } )
     );
   };

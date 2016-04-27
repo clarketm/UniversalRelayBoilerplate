@@ -1,15 +1,10 @@
 /* @flow weak */
 
-import { browserHistory } from 'react-router';
-
-// First load isomorphic-relay:
-import IsomorphicRelay from 'isomorphic-relay';
-// And only then load react-relay:
-import Relay from 'react-relay';
-
 import IsomorphicRouter from 'isomorphic-relay-router';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { browserHistory, match, Router } from 'react-router';
+import Relay from 'react-relay';
 
 import isomorphicVars from './scripts/isomorphicVars';
 import routes from './routes';
@@ -25,6 +20,7 @@ var isoVars = isomorphicVars( );
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin( );
 
+
 // Retrieve prepared data
 const data = JSON.parse( document.getElementById( 'preloadedData' ).textContent );
 
@@ -34,7 +30,7 @@ const data = JSON.parse( document.getElementById( 'preloadedData' ).textContent 
 let User_AuthToken = "";
 for( let fragment of data )
 {
-  const authTokenInThisFragment = fragment.result.Viewer.User_AuthToken;
+  const authTokenInThisFragment = fragment.response.Viewer.User_AuthToken;
   if( authTokenInThisFragment != null )
   {
     User_AuthToken = authTokenInThisFragment;
@@ -45,9 +41,13 @@ for( let fragment of data )
 if( User_AuthToken.length == 0 )
   alert( 'Authentication token retrieval failed' );
 
+
 // Ensure that on the client Relay is passing the HttpOnly cookie with auth, and the user auth token
 let GraphQL_URL = ( isoVars.PUBLIC_URL == null ) ? '/graphql' : isoVars.PUBLIC_URL + '/graphql';
-Relay.injectNetworkLayer( new Relay.DefaultNetworkLayer(
+
+// Create Relay environment
+const environment = new Relay.Environment( );
+environment.injectNetworkLayer( new Relay.DefaultNetworkLayer(
   GraphQL_URL,
   {
     credentials: 'same-origin',
@@ -57,12 +57,10 @@ Relay.injectNetworkLayer( new Relay.DefaultNetworkLayer(
   }
 ) );
 
-// Pass prepared data to relay
-IsomorphicRelay.injectPreparedData( data );
-
 const rootElement = document.getElementById('root');
 
-ReactDOM.render(
-    <IsomorphicRouter.Router routes={routes} history={browserHistory} />,
-    rootElement
-);
+match( { routes, history: browserHistory }, ( error, redirectLocation, renderProps ) => {
+  IsomorphicRouter.injectPreparedData( environment, renderProps, data ).then( props => {
+    ReactDOM.render( <Router {...props} />, rootElement );
+  } );
+} );

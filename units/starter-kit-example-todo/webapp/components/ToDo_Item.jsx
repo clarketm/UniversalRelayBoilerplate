@@ -19,16 +19,20 @@ import ToDo_Properties from './ToDo_Properties.jsx';
 
 class ToDo_Item extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   _handle_updateHandler_ToDo = ( ToDo_properties ) =>
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new ToDo_updateRenameMutation( { ToDo: this.props.ToDo, ...ToDo_properties } )
     );
   };
 
   _handle_onCheck_Completed = ( event, ToDo_Complete ) =>
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new ToDo_updateStatusMutation({
         ToDo_Complete,
         ToDo: this.props.ToDo,
@@ -39,14 +43,14 @@ class ToDo_Item extends React.Component
 
   _handleTextInputSave( ToDo_Text )
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new ToDo_updateRenameMutation({ToDo: this.props.ToDo, ToDo_Text})
     );
   }
 
   _ToDo_delete( )
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new ToDo_deleteMutation({ToDo: this.props.ToDo, Viewer: this.props.Viewer})
     );
   }

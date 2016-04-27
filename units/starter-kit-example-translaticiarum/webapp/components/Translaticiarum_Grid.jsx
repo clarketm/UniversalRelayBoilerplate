@@ -26,6 +26,10 @@ const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ];
 //@Dimensions( )
 class Translaticiarum_Grid extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   constructor( props )
   {
     super( props );
@@ -50,7 +54,7 @@ class Translaticiarum_Grid extends React.Component
 
   _handle_updateHandler_Translaticiarum_Add = ( Translaticiarum_properties ) =>
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new Translaticiarum_addMutation( { ...Translaticiarum_properties, Viewer: this.props.Viewer } )
     );
   };

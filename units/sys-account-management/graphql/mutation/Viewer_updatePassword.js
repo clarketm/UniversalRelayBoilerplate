@@ -19,14 +19,14 @@ export default mutationWithClientMutationId( {
   outputFields: {
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, { rootValue: {user_id, objectManager} } ) => objectManager.getOneById( 'User', user_id )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
     ErrorMessage: {
       type: GraphQLString,
       resolve: ( parent ) => parent.ErrorMessage,
     }
   },
-  mutateAndGetPayload: ( { id, User_AccountPassword_Current, User_AccountPassword }, { rootValue: {user_id, objectManager} } ) =>
+  mutateAndGetPayload: ( { id, User_AccountPassword_Current, User_AccountPassword }, { rootValue: objectManager } ) =>
   {
     let local_id = fromGlobalId( id ).id;
     let ErrorMessage = ""; // No error if empty

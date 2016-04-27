@@ -17,14 +17,14 @@ export default mutationWithClientMutationId( {
   outputFields: {
     ToDosEdge: {
       type: ToDosConnection.edgeType,
-      resolve: ( {local_id}, args, { rootValue: {user_id, objectManager} } ) =>
+      resolve: ( {local_id}, { ...args }, context, { rootValue: objectManager } ) =>
       {
         let an_Object;
         return objectManager.getOneById( 'ToDo', local_id )
         .then( ( retrieved_Object ) => {
           an_Object = retrieved_Object;
         } )
-        .then( ( ) => objectManager.getListBy( 'ToDo', 'ToDo_User_id', user_id.toString( ) ) )
+        .then( ( ) => objectManager.getListBy( 'ToDo', 'ToDo_User_id', objectManager.getViewerUserId( ) ) )
         .then( ( arr ) => ( {
           cursor: cursorForObjectInConnectionWithUuidComparison( arr, an_Object ),
           node: an_Object,
@@ -34,12 +34,12 @@ export default mutationWithClientMutationId( {
     },
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, { rootValue: {user_id, objectManager} } ) => objectManager.getOneById( 'User', user_id )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   },
-  mutateAndGetPayload: ( {ToDo_Text}, { rootValue: {user_id, objectManager} } ) =>
+  mutateAndGetPayload: ( {ToDo_Text}, { rootValue: objectManager } ) =>
     objectManager.add( 'ToDo', {
-      ToDo_User_id: user_id,
+      ToDo_User_id: objectManager.getViewerUserId( ),
       ToDo_Text,
       ToDo_Complete: false
     } )

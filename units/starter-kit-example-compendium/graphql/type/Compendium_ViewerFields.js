@@ -11,6 +11,6 @@ export default {
   compendiums: {
     type: CompendiumsConnection.connectionType,
     args: { ...connectionArgs },
-    resolve: ( obj, { ...args }, { rootValue: {user_id, objectManager} } ) => Compendium_getListOrCreate( user_id, objectManager ).then( ( arr ) => connectionFromArray( arr, args ) )
+    resolve: ( obj, { ...args }, context, { rootValue: objectManager } ) => Compendium_getListOrCreate( objectManager ).then( ( arr ) => connectionFromArray( arr, args ) )
   },
 }

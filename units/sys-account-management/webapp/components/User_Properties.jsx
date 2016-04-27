@@ -19,6 +19,10 @@ import Viewer_updateMutation from '../../relay/Viewer_updateMutation';
 
 class User_Properties extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   constructor( props )
   {
     super( props );
@@ -37,7 +41,7 @@ class User_Properties extends React.Component
 
   _handleUpdate = ( ) =>
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new Viewer_updateMutation( {
         Viewer:             this.props.Viewer,
         User_DisplayName:   this.refs.User_DisplayName.getValue( ),

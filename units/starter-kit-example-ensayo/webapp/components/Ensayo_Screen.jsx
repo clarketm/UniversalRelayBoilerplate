@@ -17,9 +17,13 @@ import Ensayo_Properties from './Ensayo_Properties.jsx';
 
 class Ensayo_Screen extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   _handle_updateHandler_Ensayo = ( Ensayo_properties ) =>
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new Ensayo_addMutation( { ...Ensayo_properties, Viewer: this.props.Viewer } )
     );
   };

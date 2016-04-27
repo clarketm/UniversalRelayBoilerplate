@@ -21,16 +21,20 @@ import Translaticiarum_Properties from './Translaticiarum_Properties.jsx';
 
 class Translaticiarum_Item extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   _handle_updateHandler_Translaticiarum_Properties = ( Translaticiarum_properties ) =>
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new Translaticiarum_updateMutation( { Translaticiarum: this.props.Translaticiarum, ...Translaticiarum_properties } )
     );
   };
 
   _Translaticiarum_delete( )
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new Translaticiarum_deleteMutation( { Translaticiarum: this.props.Translaticiarum, Viewer: this.props.Viewer } )
     );
   }

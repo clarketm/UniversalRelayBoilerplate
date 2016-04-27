@@ -6,7 +6,7 @@ import { GraphQLID, GraphQLNonNull, GraphQLObjectType } from "graphql";
 import ViewerType from "./ViewerType";
 import NodeInterface from "../NodeInterface";
 
-function resolveNodeField( source, args, { rootValue: {user_id, objectManager} } )
+function resolveNodeField( source, args, context, { rootValue: objectManager } )
 {
   // the node field will receive a globally
   // unique id, and here we convert that back
@@ -35,7 +35,7 @@ export default new GraphQLObjectType({
     },
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, { rootValue: {user_id, objectManager} } ) => objectManager.getOneById( 'User', user_id )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
     },
   })
 });

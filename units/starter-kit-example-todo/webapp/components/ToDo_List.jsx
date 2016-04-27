@@ -14,9 +14,13 @@ import ToDo_Item from './ToDo_Item.jsx';
 
 class ToDo_List extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   _handle_onCheck_MarkAll = ( event, checked ) =>
   {
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new ToDo_list_updateMarkAllMutation( {
         ToDo_Complete: checked,
         ToDos: this.props.Viewer.ToDos,

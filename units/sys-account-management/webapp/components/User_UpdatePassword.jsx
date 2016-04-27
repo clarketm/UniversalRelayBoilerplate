@@ -20,6 +20,10 @@ import Viewer_updatePasswordMutation from '../../relay/Viewer_updatePasswordMuta
 
 class User_Properties extends React.Component
 {
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   constructor( props )
   {
     super( props );
@@ -125,7 +129,7 @@ class User_Properties extends React.Component
       } );
     };
 
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new Viewer_updatePasswordMutation( {
         Viewer:                       this.props.Viewer,
         User_AccountPassword_Current: this.state.User_AccountPassword_Current,

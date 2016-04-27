@@ -16,7 +16,12 @@ import React, {
   View,
 } from 'react-native';
 
-class ToDo extends Component {
+class ToDo extends Component
+{
+  static contextTypes = {
+    relay: Relay.PropTypes.Environment,
+  };
+
   static propTypes = {
     onDestroy: PropTypes.func.isRequired,
     style: View.propTypes.style,
@@ -35,7 +40,7 @@ class ToDo extends Component {
   }
   _handleCompletePress() {
     var ToDo_Complete = !this.props.ToDo.ToDo_Complete;
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new ToDo_updateStatusMutation({
         ToDo_Complete,
         ToDo: this.props.ToDo,
@@ -55,7 +60,7 @@ class ToDo extends Component {
   }
   _handleTextInputSave(ToDo_Text) {
     this._setEditMode(false);
-    Relay.Store.commitUpdate(
+    this.context.relay.commitUpdate(
       new ToDo_updateRenameMutation({ToDo: this.props.ToDo, ToDo_Text})
     );
   }

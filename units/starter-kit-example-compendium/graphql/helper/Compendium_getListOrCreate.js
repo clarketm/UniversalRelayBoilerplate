@@ -1,16 +1,16 @@
 import Compendium from '../model/Compendium'
 import ObjectManager from '../../../../data/ObjectManager'
 
-export default function Compendium_getListOrCreate( user_id, objectManager )
+export default function Compendium_getListOrCreate( objectManager )
 {
-  return objectManager.getListBy( 'Compendium', 'Compendium_User_id', user_id.toString( ) )
+  return objectManager.getListBy( 'Compendium', 'Compendium_User_id', objectManager.getViewerUserId( ) )
   .then( ( arr ) => {
     if( arr.length > 0 )
       return arr;
     else
     {
       const compendium = new Compendium( {
-        Compendium_User_id: user_id,
+        Compendium_User_id: objectManager.getViewerUserId( ),
         Compendium_FirstTextInput: "",
         Compendium_RangedNumber: 0,
         Compendium_Excitement: 0,
