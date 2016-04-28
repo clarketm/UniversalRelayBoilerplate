@@ -76,7 +76,7 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
           const helmet = Helmet.rewind( );
 
           res.render( path.resolve( __dirname, 'renderOnServer.ejs' ), {
-              preloadedData: JSON.stringify(data),
+              preloadedData: JSON.stringify(data).replace(/\//g, '\\/'),
               assetsPath: assetsPath,
               reactOutput,
               title: helmet.title,
