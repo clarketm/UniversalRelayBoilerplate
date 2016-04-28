@@ -19,8 +19,6 @@ export function getUserByCookie( objectManager, req, res )
       if( req.cookies.auth_token.length > 10 )
       {
         var decoded = jwt.decode( req.cookies.auth_token, process.env.JWT_SECRET );
-        console.log( 'PRE DECODING!: ' );
-        console.log( 'DECODING!: ' + decoded );
         user_id = decoded.user_id;
       }
   }
