@@ -14,6 +14,7 @@ import IconSocialPersonOutline from 'material-ui/svg-icons/social/person-outline
 import LinearProgress from 'material-ui/LinearProgress';
 import {List, ListItem} from 'material-ui/List';
 import Popover from 'material-ui/Popover';
+import Subheader from 'material-ui/Subheader';
 import TextField from 'material-ui/TextField';
 
 import { registerAuthenticationRequiredCallback } from './RequiresAuthentication.js';
@@ -519,13 +520,16 @@ class AppBar_Auth extends React.Component
           <FlatButton key="LogOut" label="Log Out" primary={true} onTouchTap={ this._handle_onTouchTap_LogOutConfirmation_LogOut } />,
         ] }
       >
-      <List subheader="You are currently logged in as">
+      <List>
+        <Subheader>You are currently logged in as</Subheader>
         <ListItem
           primaryText={ this.props.Viewer.User_DisplayName }
           leftAvatar={<Avatar src={ this.props.Viewer.User_ProfilePhoto } />}
         />
       </List>
-      <List subheader="Are you sure you want to log out?" />
+      <List>
+        <Subheader>Are you sure you want to log out?</Subheader>
+      </List>
       </Dialog>
     );
   }
@@ -596,13 +600,16 @@ class AppBar_Auth extends React.Component
           <FlatButton key="OK" label="OK" primary={true} onTouchTap={ this._handle_onTouchTap_LogOutFailed_OK } />,
         ] }
       >
-        <List subheader=" You are still logged in as">
+        <List>
+          <Subheader>You are still logged in as</Subheader>
           <ListItem
             primaryText={ this.props.Viewer.User_DisplayName }
             leftAvatar={<Avatar src={ this.props.Viewer.User_ProfilePhoto } />}
           />
         </List>
-        <List subheader={ this.state.Dialog_LogOutFailed_Message } />
+        <List>
+          <Subheader>{ this.state.Dialog_LogOutFailed_Message }</Subheader>
+        </List>
       </Dialog>
     );
   }
@@ -629,7 +636,8 @@ class AppBar_Auth extends React.Component
         onRequestClose={this._handle_Popover_AuthorizedUser_Close}
       >
         <div style={styles.popover}>
-          <List subheader="Logged In as">
+          <List>
+            <Subheader>Logged In as</Subheader>
             <ListItem
               primaryText={ this.props.Viewer.User_DisplayName }
               leftAvatar={<Avatar src={ this.props.Viewer.User_ProfilePhoto } />}
