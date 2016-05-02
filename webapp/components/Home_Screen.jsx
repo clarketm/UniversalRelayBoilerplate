@@ -17,7 +17,7 @@ class Home_Screen extends React.Component
     return ( <div>
       <Card>
         <CardHeader
-          title="Isomorphic Material-UI Relay starter kit"
+          title="Universal Relay Boilerplate"
           subtitle={ "Version " + isoVars.npm_package_version }
         />
         <CardText>
@@ -60,17 +60,7 @@ class Home_Screen extends React.Component
               <b>Translaticiarums</b> : Simple per-user list of timed events. Allows for list view and daily agenda-like view.
             </li>
           </ul>
-          Links to some of the major technologies used:
-          <ul>
-            <li><a href="https://facebook.github.io/react/">React JS</a></li>
-            <li><a href="https://facebook.github.io/relay/">Relay / GrpahQL</a></li>
-            <li><a href="https://github.com/denvned/isomorphic-relay">Isomorphic Relay</a></li>
-            <li><a href="http://www.material-ui.com/">Material-UI</a></li>
-            <li><a href="https://jwt.io/">JSON Web Tokens</a></li>
-            <li><a href="https://nodejs.org/">Node Js</a></li>
-            <li><a href="http://cassandra.apache.org/">Apache Cassandra</a></li>
-          </ul>
-          The project source is <a href="https://github.com/codefoundries/isomorphic-material-relay-starter-kit">available on GitHub</a>.
+          <a href="http://codefoundries.com/products/UniversalRelayBoilerplate.html">Project Home</a>.
           <br/>
         </CardText>
       </Card>
@@ -100,15 +90,6 @@ class Home_Screen extends React.Component
           npm_package_version: { isoVars.npm_package_version }
         </CardText>
       </Card>
-      <Card>
-        <CardHeader
-          title="User_AuthToken"
-          subtitle="For testing only! This token serves to protect against CSRF"
-        />
-        <CardText>
-          { this.props.Viewer.User_AuthToken }
-        </CardText>
-      </Card>
     </div> );
   }
 }
@@ -117,8 +98,7 @@ export default Relay.createContainer( Home_Screen, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
-        User_IsAnonymous,
-        User_AuthToken
+        User_IsAnonymous
       }
     `,
   },

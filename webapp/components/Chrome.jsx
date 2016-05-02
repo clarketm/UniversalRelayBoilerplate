@@ -6,10 +6,8 @@ import React from 'react';
 import Relay from 'react-relay';
 
 import AppBar from 'material-ui/AppBar';
-import AppCanvas from 'material-ui/internal/AppCanvas';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import spacing from 'material-ui/styles/spacing';
-//import withWidth, {LARGE, MEDIUM} from 'material-ui/utils/withWidth';
 
 import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 
@@ -27,15 +25,17 @@ class Chrome extends React.Component
     this.state = {
       navDrawerOpen: false,
     };
+
+    this.muiTheme = getMuiTheme(
+      muiTheme,
+      { userAgent: navigator.userAgent }
+    )
   }
 
   getChildContext( )
   {
     return ( {
-      muiTheme: getMuiTheme(
-        muiTheme,
-        { userAgent: navigator.userAgent }
-      ),
+      muiTheme: this.muiTheme
     } );
   }
 
@@ -45,9 +45,9 @@ class Chrome extends React.Component
   };
 
   _handle_RequestChangeNavDrawer = (open) => {
-    this.setState({
+    this.setState( {
       navDrawerOpen: open,
-    });
+    } );
   };
 
   handleChangeList = (event, value) => {
@@ -63,9 +63,7 @@ class Chrome extends React.Component
     const styles = {
       appBar: {
         position: 'fixed',
-        // Needed to overlap the examples
-        // TODO: This can not be found:
-        //zIndex: this.state.muiTheme.zIndex.appBar + 1,
+        zIndex: this.muiTheme.zIndex.appBar + 1,
         top: 0,
       },
       root: {
@@ -106,15 +104,19 @@ class Chrome extends React.Component
   {
     const styles = this.getStyles();
 
-      let {
+    let {
       navDrawerOpen,
     } = this.state;
+
+    const {
+      prepareStyles,
+    } = this.muiTheme;
 
     let docked = false;
     let showMenuIconButton = true;
 
     return (
-      <AppCanvas>
+      <div>
         <Helmet
           title="Universal Relay Starter Kit"
           meta={ [
@@ -129,6 +131,11 @@ class Chrome extends React.Component
           style={styles.appBar}
           showMenuIconButton={showMenuIconButton}
         />
+        <div style={prepareStyles(styles.root)}>
+          <div style={prepareStyles(styles.content)}>
+            { this.props.children }
+          </div>
+        </div>
         <AppNavDrawer
           style={styles.navDrawer}
           location={location}
@@ -137,12 +144,7 @@ class Chrome extends React.Component
           onChangeList={this.handleChangeList}
           open={navDrawerOpen}
         />
-
-        <div style={ { paddingTop: 60, paddingLeft: 4, paddingRight: 4 } }>
-          {this.props.children}
-        </div>
-
-      </AppCanvas>
+      </div>
     )
   }
 }
