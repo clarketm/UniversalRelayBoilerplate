@@ -2,7 +2,6 @@ import React, {createClass, PropTypes} from 'react';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem, MakeSelectable} from 'material-ui/List';
 import {spacing, typography, zIndex} from 'material-ui/styles';
-import {cyan500} from 'material-ui/styles/colors';
 
 const SelectableList = MakeSelectable(List);
 
@@ -30,19 +29,6 @@ const AppNavDrawer = createClass({
   handleTouchTapHeader() {
     this.context.router.push('/');
     this.props.onRequestChangeNavDrawer(false);
-  },
-
-  styles: {
-    logo: {
-      cursor: 'pointer',
-      fontSize: 24,
-      color: typography.textFullWhite,
-      lineHeight: `${spacing.desktopKeylineIncrement}px`,
-      fontWeight: typography.fontWeightLight,
-      backgroundColor: cyan500,
-      paddingLeft: spacing.desktopGutter,
-      marginBottom: 8,
-    },
   },
 
   render() {
@@ -75,8 +61,18 @@ const AppNavDrawer = createClass({
         onRequestChange={onRequestChangeNavDrawer}
         containerStyle={{zIndex: zIndex.navDrawer - 100}}
       >
-        <div style={this.styles.logo} onTouchTap={this.handleTouchTapHeader}>
-          Material-UI
+        <div style={ {
+            cursor: 'pointer',
+            fontSize: 24,
+            color: typography.textFullWhite,
+            lineHeight: `${spacing.desktopKeylineIncrement}px`,
+            fontWeight: typography.fontWeightLight,
+            backgroundColor: this.context.muiTheme.palette.primary1Color,
+            paddingLeft: spacing.desktopGutter,
+            marginBottom: 8,
+          } } onTouchTap={this.handleTouchTapHeader}
+        >
+          Relay
         </div>
         <SelectableList
           value={location.pathname}
