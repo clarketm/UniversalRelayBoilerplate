@@ -4,10 +4,9 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Card from 'material-ui/lib/card/card';
-import List from 'material-ui/lib/lists/list';
-import Divider from 'material-ui/lib/divider';
-import ListItem from 'material-ui/lib/lists/list-item';
+import {Card} from 'material-ui/Card';
+import {List, ListItem} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 
 import {
   Icon_Flag_AU,

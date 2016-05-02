@@ -4,13 +4,11 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Card from 'material-ui/lib/card/card';
-import CardHeader from 'material-ui/lib/card/card-header';
-import CardText from 'material-ui/lib/card/card-text';
-import LinearProgress from 'material-ui/lib/linear-progress';
-import RaisedButton from 'material-ui/lib/raised-button';
-import Snackbar from 'material-ui/lib/snackbar';
-import TextField from 'material-ui/lib/text-field';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
+import LinearProgress from 'material-ui/LinearProgress';
+import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/snackbar';
+import TextField from 'material-ui/TextField';
 
 import { RequiresAuthenticationNotice } from './RequiresAuthentication.js';
 import scorePassword from '../../scripts/scorePassword';

@@ -4,13 +4,11 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Card from 'material-ui/lib/card/card';
-import CardHeader from 'material-ui/lib/card/card-header';
-import CardText from 'material-ui/lib/card/card-text';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import RaisedButton from 'material-ui/lib/raised-button';
-import SelectField from 'material-ui/lib/select-field';
-import TextField from 'material-ui/lib/text-field';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+import SelectField from 'material-ui/SelectField';
+import TextField from 'material-ui/TextField';
 
 import { RequiresAuthenticationNotice } from './RequiresAuthentication.js';
 

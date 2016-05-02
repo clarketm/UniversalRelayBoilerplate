@@ -6,7 +6,7 @@ var version = require('./package.json').version;
 
 let config = {
   entry: {
-    app: path.resolve('webapp/app.js')
+    client: path.resolve('webapp/client.js')
   },
   output: {
     path: path.resolve(`public/assets/${version}`),

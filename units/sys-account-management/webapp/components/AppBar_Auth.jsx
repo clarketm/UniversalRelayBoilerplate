@@ -4,18 +4,17 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Avatar from 'material-ui/lib/avatar';
-import Dialog from 'material-ui/lib/dialog';
-import Divider from 'material-ui/lib/divider';
-import FlatButton from 'material-ui/lib/flat-button';
-import IconButton from 'material-ui/lib/icon-button';
-import IconSocialPerson from 'material-ui/lib/svg-icons/social/person';
-import IconSocialPersonOutline from 'material-ui/lib/svg-icons/social/person-outline';
-import LinearProgress from 'material-ui/lib/linear-progress';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import Popover from 'material-ui/lib/popover/popover';
-import TextField from 'material-ui/lib/text-field';
+import Avatar from 'material-ui/Avatar';
+import Dialog from 'material-ui/Dialog';
+import Divider from 'material-ui/Divider';
+import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
+import IconSocialPerson from 'material-ui/svg-icons/social/person';
+import IconSocialPersonOutline from 'material-ui/svg-icons/social/person-outline';
+import LinearProgress from 'material-ui/LinearProgress';
+import {List, ListItem} from 'material-ui/List';
+import Popover from 'material-ui/Popover';
+import TextField from 'material-ui/TextField';
 
 import { registerAuthenticationRequiredCallback } from './RequiresAuthentication.js';
 

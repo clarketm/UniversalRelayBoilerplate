@@ -5,25 +5,17 @@ import Helmet from "react-helmet";
 import React from 'react';
 import Relay from 'react-relay';
 
-import AppCanvas from 'material-ui/lib/app-canvas';
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import IconButton from 'material-ui/lib/icon-button';
-import LeftNav from 'material-ui/lib/left-nav';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import NavigationMoreVert from 'material-ui/lib/svg-icons/navigation/more-vert';
-import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
-import ToolBar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
-import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
+import AppBar from 'material-ui/AppBar';
+import AppCanvas from 'material-ui/internal/AppCanvas';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import spacing from 'material-ui/styles/spacing';
+//import withWidth, {LARGE, MEDIUM} from 'material-ui/utils/withWidth';
 
-const SelectableList = SelectableContainerEnhance(List);
+import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 
 import AppBar_Auth from '../../units/sys-account-management/webapp/components/AppBar_Auth.jsx';
-import AppBar_Language from './AppBar_Language.jsx';
-import AppBar_ToDo_OpenIndicator from '../../units/starter-kit-example-todo/webapp/components/AppBar_ToDo_OpenIndicator.jsx';
-import ActiveTheme from '../mui-themes/active-theme.js';
+import AppNavDrawer from './AppNavDrawer.jsx';
+import muiTheme from '../mui-themes/active-theme.js';
 
 
 class Chrome extends React.Component
@@ -33,7 +25,7 @@ class Chrome extends React.Component
     super( props );
 
     this.state = {
-      leftNavOpen: false,
+      navDrawerOpen: false,
     };
   }
 
@@ -41,7 +33,7 @@ class Chrome extends React.Component
   {
     return ( {
       muiTheme: getMuiTheme(
-        ActiveTheme,
+        muiTheme,
         { userAgent: navigator.userAgent }
       ),
     } );
@@ -49,97 +41,102 @@ class Chrome extends React.Component
 
   _handle_onTouchTap_NavigationToggle = ( ) =>
   {
-    this._handle_onRequestChange( ! this.state.leftNavOpen );
+    this._handle_RequestChangeNavDrawer( ! this.state.navDrawerOpen );
   };
 
-  _handle_onRequestChange = ( open ) =>
-  {
-    this.setState( {
-      leftNavOpen: open,
-    } );
+  _handle_RequestChangeNavDrawer = (open) => {
+    this.setState({
+      navDrawerOpen: open,
+    });
   };
 
-  _handle_onRequestChangeList = ( event, value ) =>
-  {
-    this.context.router.push( value );
-    this._handle_onTouchTap_NavigationToggle( );
+  handleChangeList = (event, value) => {
+    this.context.router.push(value);
+    this.setState({
+      navDrawerOpen: false,
+    });
   };
+
+
+  getStyles()
+  {
+    const styles = {
+      appBar: {
+        position: 'fixed',
+        // Needed to overlap the examples
+        // TODO: This can not be found:
+        //zIndex: this.state.muiTheme.zIndex.appBar + 1,
+        top: 0,
+      },
+      root: {
+        paddingTop: spacing.desktopKeylineIncrement,
+        minHeight: 400,
+      },
+      content: {
+        margin: spacing.desktopGutter,
+      },
+      contentWhenMedium: {
+        margin: `${spacing.desktopGutter * 2}px ${spacing.desktopGutter * 3}px`,
+      },
+      footer: {
+        backgroundColor: grey900,
+        textAlign: 'center',
+      },
+      a: {
+        color: darkWhite,
+      },
+      p: {
+        margin: '0 auto',
+        padding: 0,
+        color: lightWhite,
+        maxWidth: 356,
+      },
+      iconButton: {
+        color: darkWhite,
+      },
+    };
+
+    // if ( this.props.width === MEDIUM || this.props.width === LARGE )
+    //   styles.content = Object.assign(styles.content, styles.contentWhenMedium);
+
+    return styles;
+  }
 
   render( )
   {
-    // TODO Temporary example how to modify the menu depending on whether the user has logged in or not.
-    // Later integrate with example of requesting login and
-    // https://github.com/codefoundries/isomorphic-material-relay-starter-kit/issues/36
-    let systemMenuContents = [
-      <ListItem primaryText="Home" value="/" />,
-    ];
+    const styles = this.getStyles();
 
-    if( ! this.props.Viewer.User_IsAnonymous )
-      systemMenuContents.push( <ListItem primaryText="User Profile" value="/User" /> );
+      let {
+      navDrawerOpen,
+    } = this.state;
+
+    let docked = false;
+    let showMenuIconButton = true;
 
     return (
       <AppCanvas>
-
         <Helmet
           title="Universal Relay Starter Kit"
           meta={ [
             { name : "description", content: "Starter kit featuring Cassandra, Relay, React, Material-UI" },
           ] }
         />
-        <LeftNav
-          open={ this.state.leftNavOpen }
-          style={ { marginTop: 56 } }
-          onRequestChange={ this._handle_onRequestChange }
-        >
-          <SelectableList
-            valueLink={ { value: location.pathname, requestChange: this._handle_onRequestChangeList } }
-          >
-            <ListItem
-              primaryText="System"
-              primaryTogglesNestedList={true}
-              nestedItems={ systemMenuContents }
-            />
-            <ListItem
-              primaryText="Examples"
-              primaryTogglesNestedList={true}
-              nestedItems={ [
-                <ListItem primaryText="Compendium" value="/compendiums" />,
-                <ListItem primaryText="Ensayo" value="/Ensayos" />,
-                <ListItem primaryText="Ensayo Public" value="/Ensayo_PublicListing" />,
-                <ListItem primaryText="Force Login" value="/ForceLogin" />,
-                <ListItem primaryText="MUI" value="/mui" />,
-                <ListItem primaryText="MUI Icons" value="/mui/icons" />,
-                <ListItem primaryText="Country Flags" value="/mui/icons_country_flags" />,
-                <ListItem primaryText="Credit Cards" value="/mui/icons_credit_cards" />,
-                <ListItem primaryText="To Do" value="/ToDos" />,
-                <ListItem primaryText="Translaticiarum" value="/Translaticiarums" />,
-                <ListItem primaryText="Translaticiarums Grid" value="/TranslaticiarumsGrid" />,
-              ] }
-            />
-          </SelectableList>
-        </LeftNav>
-        <ToolBar
-          style={ {
-            zIndex: 2,
-            position: 'fixed',
-            backgroundColor: ActiveTheme.palette.accent2Color,
-          } }
-        >
-          <ToolbarGroup firstChild={true} float="left">
-            <IconButton key="top-menu" onTouchTap={ this._handle_onTouchTap_NavigationToggle }>
-              <NavigationMoreVert />
-            </IconButton>
-          </ToolbarGroup>
-          <ToolbarGroup float="left">
-            <ToolbarTitle text="Starter Kit" />
-          </ToolbarGroup>
-          <ToolbarGroup float="right">
-            <AppBar_ToDo_OpenIndicator Viewer={this.props.Viewer} />
-            <ToolbarSeparator />
-            <AppBar_Auth Viewer={this.props.Viewer} />
-            <AppBar_Language Viewer={this.props.Viewer} />
-          </ToolbarGroup>
-        </ToolBar>
+        <AppBar
+          onLeftIconButtonTouchTap={ this._handle_onTouchTap_NavigationToggle }
+          title="Starter Kit"
+          zDepth={0}
+          iconElementRight={ <AppBar_Auth Viewer={this.props.Viewer} /> }
+          style={styles.appBar}
+          showMenuIconButton={showMenuIconButton}
+        />
+        <AppNavDrawer
+          style={styles.navDrawer}
+          location={location}
+          docked={docked}
+          onRequestChangeNavDrawer={this._handle_RequestChangeNavDrawer}
+          onChangeList={this.handleChangeList}
+          open={navDrawerOpen}
+        />
 
         <div style={ { paddingTop: 60, paddingLeft: 4, paddingRight: 4 } }>
           {this.props.children}
@@ -162,7 +159,8 @@ Chrome.childContextTypes = {
 
 //
 
-// It is important to retrieve User_AuthToken, since it is used in app.js
+// It is important to retrieve User_AuthToken, since it is used in client.js
+//export default Relay.createContainer( withWidth( )( Chrome ), {
 export default Relay.createContainer( Chrome, {
   fragments: {
     Viewer: () => Relay.QL`
@@ -170,7 +168,6 @@ export default Relay.createContainer( Chrome, {
         User_IsAnonymous,
         User_AuthToken,
         ${AppBar_Auth.getFragment('Viewer')},
-        ${AppBar_ToDo_OpenIndicator.getFragment('Viewer')},
       }
     `,
   },

@@ -11,7 +11,7 @@
   <%- meta %>
 
   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="<%- assetsPath %>/app.css">
+  <link rel="stylesheet" href="<%- assetsPath %>/client.css">
 
   <%- link %>
 
@@ -21,6 +21,6 @@
   <script>window.process = { env: { NODE_ENV: '<%- NODE_ENV %>' } }</script>
   <div id="root"><%- reactOutput %></div>
   <script id="preloadedData" type="application/json"><%- preloadedData %></script>
-  <script src="<%- assetsPath %>/app.js"></script>
+  <script src="<%- assetsPath %>/client.js"></script>
 </body>
 </html>

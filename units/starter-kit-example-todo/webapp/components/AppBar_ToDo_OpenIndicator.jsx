@@ -4,9 +4,9 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Badge from 'material-ui/lib/badge';
-import IconButton from 'material-ui/lib/icon-button';
-import IconNotificationsEventAvailable from 'material-ui/lib/svg-icons/notification/event-available';
+import Badge from 'material-ui/badge';
+import IconButton from 'material-ui/IconButton';
+import IconNotificationsEventAvailable from 'material-ui/svg-icons/notification/event-available';
 
 
 class AppBar_ToDo_OpenIndicator extends React.Component

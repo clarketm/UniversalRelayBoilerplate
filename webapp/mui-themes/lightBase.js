@@ -14,8 +14,8 @@ import {
   fullBlack,
   pinkA200,
   white
-} from 'material-ui/lib/styles/colors';
-import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
+} from 'material-ui/styles/colors';
+import ColorManipulator from 'material-ui/utils/colorManipulator';
 
 export default {
   spacing: {

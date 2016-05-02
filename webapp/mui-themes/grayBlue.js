@@ -10,8 +10,8 @@ import {
   lightBlack,
   purpleA200,
   white
-} from 'material-ui/lib/styles/colors';
-import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
+} from 'material-ui/styles/colors';
+import {fade} from 'material-ui/utils/colorManipulator';
 
 export default {
   spacing: {
@@ -39,7 +39,7 @@ export default {
     alternateTextColor: white,
     canvasColor: white,
     borderColor: grey300,
-    disabledColor: ColorManipulator.fade( darkBlack, 0.3 ),
+    disabledColor: fade( darkBlack, 0.3 ),
     pickerHeaderColor: blue500,
   },
   avatar: {

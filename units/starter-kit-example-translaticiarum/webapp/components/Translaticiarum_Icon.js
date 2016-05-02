@@ -2,13 +2,13 @@
 
 import React from 'react';
 
-import ActionAccountBalance from 'material-ui/lib/svg-icons/action/account-balance'; // Speak in senate
-import ActionAccessibility from 'material-ui/lib/svg-icons/action/accessibility'; // Exercise
-import ActionDoneAll from 'material-ui/lib/svg-icons/action/done-all'; // Get things done
-import ActionTrendingUp from 'material-ui/lib/svg-icons/action/trending-up'; // Play the stock market
-import ContentCreate from 'material-ui/lib/svg-icons/content/create'; // Write poems
-import HardwareHeadset from 'material-ui/lib/svg-icons/hardware/headset'; // Listen to music
-import ImageLandscape from 'material-ui/lib/svg-icons/image/landscape'; // Hike
+import ActionAccountBalance from 'material-ui/svg-icons/action/account-balance'; // Speak in senate
+import ActionAccessibility from 'material-ui/svg-icons/action/accessibility'; // Exercise
+import ActionDoneAll from 'material-ui/svg-icons/action/done-all'; // Get things done
+import ActionTrendingUp from 'material-ui/svg-icons/action/trending-up'; // Play the stock market
+import ContentCreate from 'material-ui/svg-icons/content/create'; // Write poems
+import HardwareHeadset from 'material-ui/svg-icons/hardware/headset'; // Listen to music
+import ImageLandscape from 'material-ui/svg-icons/image/landscape'; // Hike
 
 export default function( theType: number )
 {

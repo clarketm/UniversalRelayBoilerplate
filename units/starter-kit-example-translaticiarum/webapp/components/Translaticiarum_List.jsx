@@ -4,7 +4,7 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import List from 'material-ui/lib/lists/list';
+import {List} from 'material-ui/List';
 
 import Translaticiarum_Item from './Translaticiarum_Item.jsx';
 

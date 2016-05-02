@@ -8,7 +8,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Relay from 'react-relay';
 import RelayLocalSchema from 'relay-local-schema';
-import { match, Router } from 'react-router';
+import { match } from 'react-router';
 
 import { getUserByCookie, serveAuthenticationFailed } from '../server/credentials_check.js';
 import isomorphicVars from './scripts/isomorphicVars';
@@ -72,7 +72,7 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
           // Setting up static, global location for the leftNav
           GLOBAL.location = { pathname: req.originalUrl };
 
-          const reactOutput = ReactDOMServer.renderToString( <Router {...props} /> );
+          const reactOutput = ReactDOMServer.renderToString( IsomorphicRouter.render(props) );
           const helmet = Helmet.rewind( );
 
           res.render( path.resolve( __dirname, 'renderOnServer.ejs' ), {

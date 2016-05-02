@@ -4,12 +4,12 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Checkbox from 'material-ui/lib/checkbox';
-import IconButton from 'material-ui/lib/icon-button';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import ListItem from 'material-ui/lib/lists/list-item';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import NavigationMoreVert from 'material-ui/lib/svg-icons/navigation/more-vert';
+import Checkbox from 'material-ui/Checkbox';
+import IconButton from 'material-ui/IconButton';
+import IconMenu from 'material-ui/IconMenu';
+import {ListItem} from 'material-ui/List';
+import MenuItem from 'material-ui/MenuItem';
+import NavigationMoreVert from 'material-ui/svg-icons/navigation/more-vert';
 
 import ToDo_updateStatusMutation from '../../relay/ToDo_updateStatusMutation';
 import ToDo_deleteMutation from '../../relay/ToDo_deleteMutation';

@@ -4,10 +4,10 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Checkbox from 'material-ui/lib/checkbox';
-import List from 'material-ui/lib/lists/list';
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import Checkbox from 'material-ui/Checkbox';
+import {List} from 'material-ui/List';
+import Tabs from 'material-ui/tabs/tabs';
+import Tab from 'material-ui/tabs/tab';
 
 import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation';
 import ToDo_Item from './ToDo_Item.jsx';

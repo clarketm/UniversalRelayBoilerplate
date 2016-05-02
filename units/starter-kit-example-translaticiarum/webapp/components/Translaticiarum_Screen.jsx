@@ -4,11 +4,9 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Card from 'material-ui/lib/card/card';
-import CardHeader from 'material-ui/lib/card/card-header';
-import CardActions from 'material-ui/lib/card/card-actions';
-import ContentAdd from 'material-ui/lib/svg-icons/content/add';
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
+import {Card, CardActions, CardHeader} from 'material-ui/Card';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import Translaticiarum_addMutation from '../../relay/Translaticiarum_addMutation';
 

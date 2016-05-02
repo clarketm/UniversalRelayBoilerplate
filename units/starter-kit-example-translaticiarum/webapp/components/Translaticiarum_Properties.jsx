@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-import DatePicker from 'material-ui/lib/date-picker/date-picker';
-import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
-import TextField from 'material-ui/lib/text-field';
-import TimePicker from 'material-ui/lib/time-picker/time-picker';
+import {DatePicker} from 'material-ui/DatePicker';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
+import {TimePicker} from 'material-ui/TimePicker';
 
 import { dateFromUTCString, dateUTCToLocal, dateLocalToUTC } from '../../../../webapp/scripts/DateTimeHelpers'
 

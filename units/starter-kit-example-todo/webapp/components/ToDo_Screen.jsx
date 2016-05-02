@@ -4,9 +4,8 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Card from 'material-ui/lib/card/card';
-import CardHeader from 'material-ui/lib/card/card-header';
-import TextField from 'material-ui/lib/text-field';
+import {Card, CardHeader} from 'material-ui/Card';
+import TextField from 'material-ui/TextField';
 
 import ToDo_addMutation from '../../relay/ToDo_addMutation';
 

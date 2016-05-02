@@ -5,9 +5,7 @@ import Helmet from "react-helmet";
 import React from 'react';
 import Relay from 'react-relay';
 
-import Card from 'material-ui/lib/card/card';
-import CardHeader from 'material-ui/lib/card/card-header';
-import CardText from 'material-ui/lib/card/card-text';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 
 class Ensayo_PublicItem extends React.Component
 {

@@ -4,13 +4,12 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Card from 'material-ui/lib/card/card';
-import Divider from 'material-ui/lib/divider';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import IconButton from 'material-ui/lib/icon-button';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import SelectField from 'material-ui/lib/select-field';
+import {Card} from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
+import {List, ListItem} from 'material-ui/List';
+import IconButton from 'material-ui/IconButton';
+import MenuItem from 'material-ui/MenuItem';
+import SelectField from 'material-ui/SelectField';
 
 
 import {
