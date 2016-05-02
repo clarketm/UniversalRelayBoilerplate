@@ -97,15 +97,10 @@ const AppNavDrawer = createClass({
               <ListItem primaryText="Ensayo Public" value="/Ensayo_PublicListing" />,
               <ListItem primaryText="Force Login" value="/ForceLogin" />,
 
-              <ListItem primaryText="ExhibitionItem" value="/ExhibitionItems" />,
-              <ListItem primaryText="ExhibitionItem Public" value="/ExhibitionItem_PublicListing" />,
-
               <ListItem primaryText="MUI" value="/mui" />,
               <ListItem primaryText="MUI Icons" value="/mui/icons" />,
               <ListItem primaryText="Country Flags" value="/mui/icons_country_flags" />,
               <ListItem primaryText="Credit Cards" value="/mui/icons_credit_cards" />,
-
-              <ListItem primaryText="Payment Methods" value="/PaymentMethods" />,
 
               <ListItem primaryText="To Do" value="/ToDos" />,
 
