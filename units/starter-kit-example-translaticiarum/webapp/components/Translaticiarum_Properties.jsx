@@ -2,14 +2,13 @@
 
 import React from 'react';
 
-import {DatePicker} from 'material-ui/DatePicker';
+import DatePicker from 'material-ui/DatePicker/DatePicker';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import {TimePicker} from 'material-ui/TimePicker';
+import TimePicker from 'material-ui/TimePicker/TimePicker';
 
 import { dateFromUTCString, dateUTCToLocal, dateLocalToUTC } from '../../../../webapp/scripts/DateTimeHelpers'
-
 
 export default class Translaticiarum_Properties extends React.Component
 {

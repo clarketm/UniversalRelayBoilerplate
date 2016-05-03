@@ -7,7 +7,7 @@ import Relay from 'react-relay';
 
 import {Card, CardActions, CardHeader} from 'material-ui/Card';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import {DatePicker} from 'material-ui/DatePicker';
+import DatePicker from 'material-ui/DatePicker/DatePicker';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import { dateLocalToUTC, dateUTCToLocal, dateFormat } from '../../../../webapp/scripts/DateTimeHelpers'

@@ -10,7 +10,6 @@ import { cursorForObjectInConnectionWithUuidComparison } from '../../../../graph
 import TranslaticiarumsConnection from '../type/TranslaticiarumsConnection';
 import ViewerType from '../../../../graphql/type/ViewerType';
 
-
 export default mutationWithClientMutationId( {
   name: 'Translaticiarum_add',
   inputFields: {
