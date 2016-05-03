@@ -13,7 +13,7 @@ import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 
 import AppBar_Auth from '../../units/sys-account-management/webapp/components/AppBar_Auth.jsx';
 import AppNavDrawer from './AppNavDrawer.jsx';
-import muiTheme from '../mui-themes/active-theme.js';
+import muiTheme from '../../configuration/webapp/muiTheme.js';
 
 
 class Chrome extends React.Component

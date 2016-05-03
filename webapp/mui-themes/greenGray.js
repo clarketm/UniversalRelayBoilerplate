@@ -5,14 +5,12 @@
 
 import {
   cyan500,
-  cyan700,
   darkBlack,
+  green500,
   grey100,
   grey300,
-  grey400,
   grey500,
-  fullBlack,
-  pinkA200,
+  grey800,
   white
 } from 'material-ui/styles/colors';
 import {fade} from 'material-ui/utils/colorManipulator';
@@ -33,20 +31,18 @@ export default {
   },
   fontFamily: 'Roboto, sans-serif',
   palette: {
-    primary1Color: cyan500,
-    primary2Color: cyan700,
-    primary3Color: grey400,
-    accent1Color: pinkA200,
+    primary1Color: green500,
+    primary2Color: grey800,
+    primary3Color: white,
+    accent1Color: green500,
     accent2Color: grey100,
     accent3Color: grey500,
-    textColor: darkBlack,
+    textColor: grey800,
     alternateTextColor: white,
     canvasColor: white,
     borderColor: grey300,
     disabledColor: fade( darkBlack, 0.3 ),
     pickerHeaderColor: cyan500,
-    clockCircleColor: fade( darkBlack, 0.07 ),
-    shadowColor: fullBlack,
   },
   avatar: { borderColor: null },
 };

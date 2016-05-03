@@ -16,7 +16,7 @@ import {List, ListItem} from 'material-ui/List';
 import Popover from 'material-ui/Popover';
 import Subheader from 'material-ui/Subheader';
 import TextField from 'material-ui/TextField';
-
+import {white} from 'material-ui/styles/colors';
 import { registerAuthenticationRequiredCallback } from './RequiresAuthentication.js';
 
 import { postXHR } from '../../../../webapp/scripts/XHR';
@@ -706,7 +706,7 @@ class AppBar_Auth extends React.Component
     if( this.props.Viewer.User_IsAnonymous )
       return(
         <IconButton key='login' tooltip="Log In" onTouchTap={ this.Dialog_AuthenticationChallenge_Open }>
-          <IconSocialPersonOutline />
+          <IconSocialPersonOutline color={ white } />
           { this.Dialog_AuthenticationChallenge( ) }
           { this.Dialog_AuthenticationInProgress( ) }
           { this.Dialog_AuthenticationFailed( ) }
@@ -719,7 +719,7 @@ class AppBar_Auth extends React.Component
       // User has already logged in
       return(
         <IconButton key='authenticated' tooltip="User menu" onTouchTap={ this._handle_AuthorizedUserIcon_TouchTap }>
-          <IconSocialPerson />
+          <IconSocialPerson color={ white } />
           { this.Popover_AuthorizedUser( ) }
           { this.Dialog_AuthenticationChallenge( ) }
           { this.Dialog_AuthenticationInProgress( ) }
