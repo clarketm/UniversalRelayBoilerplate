@@ -159,6 +159,18 @@ class Translaticiarum_Grid extends React.Component
 
         <CardHeader initiallyExpanded={true} title="Translaticiarum" subtitle="This means routine in Latin" />
 
+        <div style={ {float: 'right', marginTop: -58, marginRight: 20 } }>
+          <FloatingActionButton
+            secondary={true}
+            linkButton={true}
+            mini={true}
+            actAsExpander={true}
+            onTouchTap={ this._handle_onTouchTap_Add }
+          >
+            <ContentAdd />
+          </FloatingActionButton>
+        </div>
+
         <table>
           <tbody>
             { translaticiarumTypes.map( ( translaticiarumType ) =>
@@ -177,16 +189,6 @@ class Translaticiarum_Grid extends React.Component
             value={ this.state.Date_Start }
             onChange={ this._handle_onChange_Date_Start }
           />
-          <FloatingActionButton
-						secondary={true}
-						linkButton={true}
-						mini={true}
-						style={ {float: 'right', marginBottom: 15, marginRight: 15 } }
-            actAsExpander={true}
-            onTouchTap={ this._handle_onTouchTap_Add }
-          >
-            <ContentAdd />
-          </FloatingActionButton>
         </CardActions>
 
         <Translaticiarum_Properties

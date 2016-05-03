@@ -4,7 +4,7 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import {Card, CardActions, CardHeader} from 'material-ui/Card';
+import {Card, CardHeader} from 'material-ui/Card';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
@@ -38,20 +38,19 @@ class Ensayo_Screen extends React.Component
 
         <CardHeader initiallyExpanded={true} title="Ensayo" subtitle="This means Essay in Spanish" />
 
-        { this.props.children }
-
-        <CardActions initiallyExpanded={true}>
+        <div style={ {float: 'right', marginTop: -58, marginRight: 20 } }>
           <FloatingActionButton
-						secondary={true}
-						linkButton={true}
-						mini={true}
-						style={ {float: 'right', marginBottom: 15, marginRight: 15 } }
+            secondary={true}
+            linkButton={true}
+            mini={true}
             actAsExpander={true}
             onTouchTap={ this._handle_onTouchTap_Add }
           >
             <ContentAdd />
           </FloatingActionButton>
-        </CardActions>
+        </div>
+
+        { this.props.children }
 
         <Ensayo_Properties
           ref="Ensayo_Properties"
