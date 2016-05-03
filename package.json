@@ -1,7 +1,7 @@
 {
   "name": "UniversalRelayBoilerplate",
   "description": "Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "private": true,
   "license": "MIT",
   "homepage": "http://codefoundries.com/products/starter-kit.html",
