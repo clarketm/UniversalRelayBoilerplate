@@ -6,8 +6,7 @@ import Relay from 'react-relay';
 
 import Checkbox from 'material-ui/Checkbox';
 import {List} from 'material-ui/List';
-import Tabs from 'material-ui/tabs/tabs';
-import Tab from 'material-ui/tabs/tab';
+import {Tabs, Tab} from 'material-ui/Tabs';
 
 import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation';
 import ToDo_Item from './ToDo_Item.jsx';

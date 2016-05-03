@@ -7,7 +7,7 @@ import Relay from 'react-relay';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import LinearProgress from 'material-ui/LinearProgress';
 import RaisedButton from 'material-ui/RaisedButton';
-import Snackbar from 'material-ui/snackbar';
+import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
 
 import { RequiresAuthenticationNotice } from './RequiresAuthentication.js';
