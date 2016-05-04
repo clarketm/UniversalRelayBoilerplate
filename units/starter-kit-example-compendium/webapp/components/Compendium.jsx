@@ -177,116 +177,118 @@ class Compendium extends React.Component
           subtitle="One to one properties for a user retrieved from an edge"
         />
         <CardText>
-          <TextField
-            value={ this.state.Compendium_FirstTextInput }
-            floatingLabelText="When we do a Haiku"
-            fullWidth={ true }
-            onChange={ this._handle_onChange_Compendium_FirstTextInput }
-          />
-          <TextField
-            value={ this.state.Compendium_RangedNumber }
-            floatingLabelText="A number between eighteen and sixty"
-            fullWidth={ true }
-            errorText={ this.state.Compendium_RangedNumber_error }
-            onChange={ this._handle_onChange_Compendium_RangedNumber }
-          />
-          <SelectField
-            value={ this.state.Compendium_FavoriteMammal }
-            floatingLabelText="Which one is your favorite water mammal?"
-            fullWidth={ true }
-            onChange={ this._handle_onChange_Compendium_FavoriteMammal }
-          >
-            <MenuItem value={1} primaryText="Dolphin"/>
-            <MenuItem value={2} primaryText="Whale"/>
-            <MenuItem value={3} primaryText="Manatee"/>
-            <MenuItem value={4} primaryText="Other"/>
-          </SelectField>
-          { ( this.state.Compendium_FavoriteMammal != 4 ) ||
-            <TextField
-              value={ this.state.Compendium_FavoriteMammalOtherText }
-              fullWidth={ true }
-              onChange={ this._handle_onChange_Compendium_FavoriteMammalOtherText }
-            />
-          }
-          <TextField
-            value={ this.state.Compendium_FollowUpQuestion }
-            floatingLabelText="The middle has"
-            fullWidth={ true }
-            onChange={ this._handle_onChange_Compendium_FollowUpQuestion }
-          />
-          <SelectField
-            value={ this.state.Compendium_Excitement }
-            floatingLabelText="How excited are you about Relay?"
-            fullWidth={ true }
-            onChange={ this._handle_onChange_Compendium_Excitement }
-          >
-            <MenuItem value={1} primaryText="Ambivalent, just meh" label="Ambivalent"/>
-            <MenuItem value={2} primaryText="Cautious, been burnt before" label="Cautious"/>
-            <MenuItem value={3} primaryText="Optimistic, Facebook made it!" label="Optimistic"/>
-            <MenuItem value={4} primaryText="Excited, I can do so much with it" label="Excited"/>
-            <MenuItem value={5} primaryText="Enthusiastic, great productivity" label="Enthusiastic"/>
-            <MenuItem value={6} primaryText="Ecstatic, death to REST!" label="Ecstatic"/>
-            <MenuItem value={7} primaryText="Riled Up, can't wait for 1.0" label="Riled Up"/>
-            <MenuItem value={8} primaryText="Mind = Blown, I will become a contributor" label="Mind = Blown"/>
-          </SelectField>
-          <TextField
-            value={ this.state.Compendium_LastText }
-            floatingLabelText="More than both the beginning and the end"
-            fullWidth={ true }
-            onChange={ this._handle_onChange_Compendium_LastText }
-          />
           <div>
-            What kind of sunsets do you like?
-          </div>
-          <Checkbox
-            label="Over the ocean"
-            defaultChecked={ this.state.Compendium_LikedSunset_Ocean }
-            onCheck={ this._handle_onChange_Compendium_LikedSunset_Ocean }
-          />
-          <Checkbox
-            label="Over a lake"
-            defaultChecked={ this.state.Compendium_LikedSunset_Lake }
-            onCheck={ this._handle_onChange_Compendium_LikedSunset }
-          />
-          <Checkbox
-            label="From a mountain top"
-            defaultChecked={ this.state.Compendium_LikedSunset_Mountains }
-            onCheck={ this._handle_onChange_Compendium_LikedSunset_Mountains }
-          />
-          <Checkbox
-            label="Over plains"
-            defaultChecked={ this.state.Compendium_LikedSunset_Plains }
-            onCheck={ this._handle_onChange_Compendium_LikedSunset_Plains }
-          />
-          <Checkbox
-            label="Purple"
-            defaultChecked={ this.state.Compendium_LikedSunset_Purple }
-            onCheck={ this._handle_onChange_Compendium_LikedSunset_Purple }
-          />
-          <Checkbox
-            label="Green"
-            defaultChecked={ this.state.Compendium_LikedSunset_Green }
-            onCheck={ this._handle_onChange_Compendium_LikedSunset_Green }
-          />
-          <Checkbox
-            label="Other"
-            defaultChecked={ this.state.Compendium_LikedSunset_Other }
-            onCheck={ this._handle_onChange_Compendium_LikedSunset_Other }
-          />
-          { ( ! this.state.Compendium_LikedSunset_Other ) ||
             <TextField
-              value={ this.state.Compendium_LikedSunset_OtherText }
+              value={ this.state.Compendium_FirstTextInput }
+              floatingLabelText="When we do a Haiku"
               fullWidth={ true }
-              onChange={ this._handle_onChange_Compendium_LikedSunset_OtherText }
+              onChange={ this._handle_onChange_Compendium_FirstTextInput }
             />
-          }
-          <div>
-            <RaisedButton
-              label="Update"
-              secondary={true}
-              disabled={ formErrorText != "" }
-              onTouchTap={ ( ) => this._handleUpdate( edge.node ) }
+            <TextField
+              value={ this.state.Compendium_RangedNumber }
+              floatingLabelText="A number between eighteen and sixty"
+              fullWidth={ true }
+              errorText={ this.state.Compendium_RangedNumber_error }
+              onChange={ this._handle_onChange_Compendium_RangedNumber }
             />
+            <SelectField
+              value={ this.state.Compendium_FavoriteMammal }
+              floatingLabelText="Which one is your favorite water mammal?"
+              fullWidth={ true }
+              onChange={ this._handle_onChange_Compendium_FavoriteMammal }
+            >
+              <MenuItem value={1} primaryText="Dolphin"/>
+              <MenuItem value={2} primaryText="Whale"/>
+              <MenuItem value={3} primaryText="Manatee"/>
+              <MenuItem value={4} primaryText="Other"/>
+            </SelectField>
+            { ( this.state.Compendium_FavoriteMammal != 4 ) ||
+              <TextField
+                value={ this.state.Compendium_FavoriteMammalOtherText }
+                fullWidth={ true }
+                onChange={ this._handle_onChange_Compendium_FavoriteMammalOtherText }
+              />
+            }
+            <TextField
+              value={ this.state.Compendium_FollowUpQuestion }
+              floatingLabelText="The middle has"
+              fullWidth={ true }
+              onChange={ this._handle_onChange_Compendium_FollowUpQuestion }
+            />
+            <SelectField
+              value={ this.state.Compendium_Excitement }
+              floatingLabelText="How excited are you about Relay?"
+              fullWidth={ true }
+              onChange={ this._handle_onChange_Compendium_Excitement }
+            >
+              <MenuItem value={1} primaryText="Ambivalent, just meh" label="Ambivalent"/>
+              <MenuItem value={2} primaryText="Cautious, been burnt before" label="Cautious"/>
+              <MenuItem value={3} primaryText="Optimistic, Facebook made it!" label="Optimistic"/>
+              <MenuItem value={4} primaryText="Excited, I can do so much with it" label="Excited"/>
+              <MenuItem value={5} primaryText="Enthusiastic, great productivity" label="Enthusiastic"/>
+              <MenuItem value={6} primaryText="Ecstatic, death to REST!" label="Ecstatic"/>
+              <MenuItem value={7} primaryText="Riled Up, can't wait for 1.0" label="Riled Up"/>
+              <MenuItem value={8} primaryText="Mind = Blown, I will become a contributor" label="Mind = Blown"/>
+            </SelectField>
+            <TextField
+              value={ this.state.Compendium_LastText }
+              floatingLabelText="More than both the beginning and the end"
+              fullWidth={ true }
+              onChange={ this._handle_onChange_Compendium_LastText }
+            />
+            <div>
+              What kind of sunsets do you like?
+            </div>
+            <Checkbox
+              label="Over the ocean"
+              defaultChecked={ this.state.Compendium_LikedSunset_Ocean }
+              onCheck={ this._handle_onChange_Compendium_LikedSunset_Ocean }
+            />
+            <Checkbox
+              label="Over a lake"
+              defaultChecked={ this.state.Compendium_LikedSunset_Lake }
+              onCheck={ this._handle_onChange_Compendium_LikedSunset }
+            />
+            <Checkbox
+              label="From a mountain top"
+              defaultChecked={ this.state.Compendium_LikedSunset_Mountains }
+              onCheck={ this._handle_onChange_Compendium_LikedSunset_Mountains }
+            />
+            <Checkbox
+              label="Over plains"
+              defaultChecked={ this.state.Compendium_LikedSunset_Plains }
+              onCheck={ this._handle_onChange_Compendium_LikedSunset_Plains }
+            />
+            <Checkbox
+              label="Purple"
+              defaultChecked={ this.state.Compendium_LikedSunset_Purple }
+              onCheck={ this._handle_onChange_Compendium_LikedSunset_Purple }
+            />
+            <Checkbox
+              label="Green"
+              defaultChecked={ this.state.Compendium_LikedSunset_Green }
+              onCheck={ this._handle_onChange_Compendium_LikedSunset_Green }
+            />
+            <Checkbox
+              label="Other"
+              defaultChecked={ this.state.Compendium_LikedSunset_Other }
+              onCheck={ this._handle_onChange_Compendium_LikedSunset_Other }
+            />
+            { ( ! this.state.Compendium_LikedSunset_Other ) ||
+              <TextField
+                value={ this.state.Compendium_LikedSunset_OtherText }
+                fullWidth={ true }
+                onChange={ this._handle_onChange_Compendium_LikedSunset_OtherText }
+              />
+            }
+            <div>
+              <RaisedButton
+                label="Update"
+                secondary={true}
+                disabled={ formErrorText != "" }
+                onTouchTap={ ( ) => this._handleUpdate( edge.node ) }
+              />
+            </div>
           </div>
         </CardText>
       </Card>
