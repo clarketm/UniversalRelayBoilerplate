@@ -1332,7 +1332,7 @@
         {
           "kind": "SCALAR",
           "name": "DateTime",
-          "description": null,
+          "description": "Scalar type for storing date-time information",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
