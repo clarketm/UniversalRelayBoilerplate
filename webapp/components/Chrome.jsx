@@ -9,10 +9,9 @@ import AppBar from 'material-ui/AppBar';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import spacing from 'material-ui/styles/spacing';
 
-import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
-
 import AppNavDrawer from './AppNavDrawer.jsx';
 import ChromeRightIcon from '../../configuration/webapp/components/ChromeRightIcon.jsx';
+import Footer from '../../configuration/webapp/components/Footer.jsx';
 import muiTheme from '../../configuration/webapp/muiTheme.js';
 
 
@@ -76,22 +75,6 @@ class Chrome extends React.Component
       contentWhenMedium: {
         margin: `${spacing.desktopGutter * 2}px ${spacing.desktopGutter * 3}px`,
       },
-      footer: {
-        backgroundColor: grey900,
-        textAlign: 'center',
-      },
-      a: {
-        color: darkWhite,
-      },
-      p: {
-        margin: '0 auto',
-        padding: 0,
-        color: lightWhite,
-        maxWidth: 356,
-      },
-      iconButton: {
-        color: darkWhite,
-      },
     };
 
     // if ( this.props.width === MEDIUM || this.props.width === LARGE )
@@ -145,6 +128,9 @@ class Chrome extends React.Component
           onChangeList={ this._handle_onChangeList_AppNavDrawer }
           open={navDrawerOpen}
         />
+        <Footer
+          Viewer={ this.props.Viewer }
+        />
       </div>
     )
   }
@@ -172,6 +158,7 @@ export default Relay.createContainer( Chrome, {
         User_AuthToken,
         ${ ChromeRightIcon.getFragment( 'Viewer' ) },
         ${ AppNavDrawer.getFragment( 'Viewer' ) },
+        ${ Footer.getFragment( 'Viewer' ) },
       }
     `,
   },
