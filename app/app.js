@@ -9,7 +9,7 @@ import Relay, {
   RootContainer,
 } from 'react-relay';
 
-let graphQLServerURL = "http://192.168.0.16:4444/graphql";
+let graphQLServerURL = "http://192.168.7.130:4444/graphql";
 
 // Uncomment for connection to server in the cloud. Smarter way to do this will be needed.
 // graphQLServerURL = 'http://isomorphic-material-relay.herokuapp.com/graphql';
@@ -25,12 +25,10 @@ Relay.injectNetworkLayer( new DefaultNetworkLayer(
 export default class UniversalRelayBoilerplate extends React.Component {
   render(): void {
     return (
-      <View style={ { flex: 1 } }/>
+      <RootContainer
+        Component={TodoApp}
+        route={new TodoAppRoute({status: 'any'})}
+      />
     );
   }
 }
-
-<RootContainer
-  Component={TodoApp}
-  route={new TodoAppRoute({status: 'any'})}
-/>

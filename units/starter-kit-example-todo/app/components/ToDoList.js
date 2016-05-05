@@ -5,7 +5,7 @@ import ToDo_addMutation from '../../relay/ToDo_addMutation';
 import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation';
 import Relay from 'react-relay';
 import ToDo_deleteMutation from '../../relay/ToDo_deleteMutation';
-import Swipeout from 'react-native-swipeout';
+//import Swipeout from 'react-native-swipeout';
 import ToDo from './ToDo';
 import TodoTextInput from './ToDoTextInput';
 import React, {
@@ -90,6 +90,20 @@ class TodoList extends React.Component
   renderTodoEdge(todoEdge) {
     const destroyHandler = this._handleTodoDestroy.bind(null, todoEdge.node);
     return (
+      <ToDo
+        onDestroy={destroyHandler}
+        style={styles.ToDo}
+        ToDo={todoEdge.node}
+        Viewer={this.props.Viewer}
+      />
+    );
+  }
+  /*
+  // Upgrade to react-native-swipeout that supports React Native 0.26
+  // https://github.com/codefoundries/UniversalRelayBoilerplate/issues/34
+  renderTodoEdge(todoEdge) {
+    const destroyHandler = this._handleTodoDestroy.bind(null, todoEdge.node);
+    return (
       <Swipeout
         key={todoEdge.node.id}
         right={[{
@@ -107,6 +121,7 @@ class TodoList extends React.Component
       </Swipeout>
     );
   }
+  */
   renderSeparator(sectionId, rowId) {
     return <View key={`sep_${sectionId}_${rowId}`} style={styles.separator} />;
   }
