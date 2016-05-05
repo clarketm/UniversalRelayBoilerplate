@@ -9,10 +9,11 @@ import Swipeout from 'react-native-swipeout';
 import ToDo from './ToDo';
 import TodoTextInput from './ToDoTextInput';
 import React, {
-  Component,
+  PropTypes,
+} from 'react';
+import {
   ListView,
   Platform,
-  PropTypes,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -23,7 +24,7 @@ const _ToDosDataSource = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.__dataID__ !== r2.__dataID__,
 });
 
-class TodoList extends Component
+class TodoList extends React.Component
 {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,

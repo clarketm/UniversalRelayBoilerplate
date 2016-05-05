@@ -3,15 +3,16 @@
 
 import Relay from 'react-relay';
 import React, {
-  Component,
   PropTypes,
+} from 'react';
+import {
   StyleSheet,
   Text,
   TouchableHighlight,
   View,
 } from 'react-native';
 
-class TodoListFooter extends Component {
+class TodoListFooter extends React.Component {
   static propTypes = {
     status: PropTypes.oneOf(['active', 'any', 'completed']).isRequired,
     style: View.propTypes.style,

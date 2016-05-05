@@ -1,8 +1,6 @@
 'use strict';
 
-import {
-  Route,
-} from 'react-relay';
+import { Route } from 'react-relay';
 
 export default class TodoAppRoute extends Route {
   static paramDefinitions = {

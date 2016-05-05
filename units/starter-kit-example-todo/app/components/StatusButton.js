@@ -3,14 +3,15 @@
 
 import Relay from 'react-relay';
 import React, {
-  Component,
   PropTypes,
+} from 'react';
+import {
   StyleSheet,
   Text,
   TouchableHighlight,
 } from 'react-native';
 
-export default class StatusButton extends Component {
+export default class StatusButton extends React.Component {
   static propTypes = {
     active: PropTypes.bool.isRequired,
     children: PropTypes.oneOfType([

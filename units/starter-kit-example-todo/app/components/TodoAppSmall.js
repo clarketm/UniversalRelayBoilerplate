@@ -1,15 +1,15 @@
 'use strict';
 
 import Relay from 'react-relay';
-import React, {
-  Component,
+import React from 'react';
+import {
   Platform,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 
-class TodoApp extends Component {
+class TodoApp extends React.Component {
   render() {
     return (
       <View style={styles.container}>

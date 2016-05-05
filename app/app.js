@@ -2,9 +2,8 @@
 
 import TodoApp from '../units/starter-kit-example-todo/app/components/ToDoApp';
 import TodoAppRoute from './TodoAppRoute';
-import React, {
-  Component,
-} from 'react-native';
+import React from 'react'
+import { View } from 'react-native';
 import Relay, {
   DefaultNetworkLayer,
   RootContainer,
@@ -14,7 +13,6 @@ let graphQLServerURL = "http://192.168.0.16:4444/graphql";
 
 // Uncomment for connection to server in the cloud. Smarter way to do this will be needed.
 // graphQLServerURL = 'http://isomorphic-material-relay.herokuapp.com/graphql';
-
 Relay.injectNetworkLayer( new DefaultNetworkLayer(
   graphQLServerURL,
   {
@@ -24,13 +22,15 @@ Relay.injectNetworkLayer( new DefaultNetworkLayer(
   }
 ) );
 
-export default class UniversalRelayBoilerplate extends Component {
+export default class UniversalRelayBoilerplate extends React.Component {
   render(): void {
     return (
-      <RootContainer
-        Component={TodoApp}
-        route={new TodoAppRoute({status: 'any'})}
-      />
+      <View style={ { flex: 1 } }/>
     );
   }
 }
+
+<RootContainer
+  Component={TodoApp}
+  route={new TodoAppRoute({status: 'any'})}
+/>

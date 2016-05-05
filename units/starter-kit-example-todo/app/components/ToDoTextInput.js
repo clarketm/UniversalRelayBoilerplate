@@ -2,12 +2,13 @@
 'use strict';
 
 import React, {
-  Component,
   PropTypes,
+} from 'react';
+import {
   TextInput,
 } from 'react-native';
 
-export default class TodoTextInput extends Component {
+export default class TodoTextInput extends React.Component {
   static defaultProps = {
     commitOnBlur: false,
   };

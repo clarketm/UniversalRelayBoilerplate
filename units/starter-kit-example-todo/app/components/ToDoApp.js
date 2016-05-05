@@ -5,15 +5,15 @@ import Relay from 'react-relay';
 import StatusButton from './StatusButton';
 import TodoList from './ToDoList';
 import TodoListFooter from './ToDoListFooter';
-import React, {
-  Component,
+import React from 'react';
+import {
   Platform,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 
-class TodoApp extends Component {
+class TodoApp extends React.Component {
   constructor(props, context) {
     super(props, context);
     this._handleStatusChange = this._handleStatusChange.bind(this);

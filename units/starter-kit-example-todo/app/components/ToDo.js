@@ -6,17 +6,18 @@ import ToDo_updateRenameMutation from '../../relay/ToDo_updateRenameMutation';
 import Relay from 'react-relay';
 import TodoTextInput from './ToDoTextInput';
 import React, {
-  Component,
+  PropTypes,
+} from 'react';
+import {
   Image,
   Platform,
-  PropTypes,
   StyleSheet,
   Text,
   TouchableHighlight,
   View,
 } from 'react-native';
 
-class ToDo extends Component
+class ToDo extends React.Component
 {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
