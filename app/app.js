@@ -9,7 +9,7 @@ import Relay, {
   RootContainer,
 } from 'react-relay';
 
-let graphQLServerURL = "http://192.168.7.130:4444/graphql";
+let graphQLServerURL = "http://localhost:4444/graphql";
 
 // Uncomment for connection to server in the cloud. Smarter way to do this will be needed.
 // graphQLServerURL = 'http://isomorphic-material-relay.herokuapp.com/graphql';
