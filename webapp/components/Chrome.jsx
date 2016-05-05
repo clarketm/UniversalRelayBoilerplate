@@ -1,7 +1,6 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import Helmet from "react-helmet";
 import React from 'react';
 import Relay from 'react-relay';
 
@@ -10,8 +9,10 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import spacing from 'material-ui/styles/spacing';
 
 import AppNavDrawer from './AppNavDrawer.jsx';
+import ChromeHelmet from '../../configuration/webapp/components/ChromeHelmet.jsx';
 import ChromeRightIcon from '../../configuration/webapp/components/ChromeRightIcon.jsx';
 import Footer from '../../configuration/webapp/components/Footer.jsx';
+import { MainScreenTitle } from '../../configuration/webapp/components/ChromeSettings';
 import muiTheme from '../../configuration/webapp/muiTheme.js';
 
 
@@ -100,15 +101,10 @@ class Chrome extends React.Component
 
     return (
       <div>
-        <Helmet
-          title="Universal Relay Starter Kit"
-          meta={ [
-            { name : "description", content: "Starter kit featuring Cassandra, Relay, React, Material-UI" },
-          ] }
-        />
+        <ChromeHelmet />
         <AppBar
           onLeftIconButtonTouchTap={ this._handle_onTouchTap_NavigationToggle }
-          title="Starter Kit"
+          title={ MainScreenTitle }
           zDepth={0}
           iconElementRight={ <ChromeRightIcon Viewer={this.props.Viewer} /> }
           style={styles.appBar}
