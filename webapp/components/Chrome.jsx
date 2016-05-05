@@ -11,8 +11,8 @@ import spacing from 'material-ui/styles/spacing';
 
 import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 
-import AppBar_Auth from '../../units/sys-account-management/webapp/components/AppBar_Auth.jsx';
 import AppNavDrawer from './AppNavDrawer.jsx';
+import ChromeRightIcon from '../../configuration/webapp/components/ChromeRightIcon.jsx';
 import muiTheme from '../../configuration/webapp/muiTheme.js';
 
 
@@ -50,7 +50,7 @@ class Chrome extends React.Component
     } );
   };
 
-  handleChangeList = (event, value) => {
+  _handle_onChangeList_AppNavDrawer = (event, value) => {
     this.context.router.push(value);
     this.setState({
       navDrawerOpen: false,
@@ -127,7 +127,7 @@ class Chrome extends React.Component
           onLeftIconButtonTouchTap={ this._handle_onTouchTap_NavigationToggle }
           title="Starter Kit"
           zDepth={0}
-          iconElementRight={ <AppBar_Auth Viewer={this.props.Viewer} /> }
+          iconElementRight={ <ChromeRightIcon Viewer={this.props.Viewer} /> }
           style={styles.appBar}
           showMenuIconButton={showMenuIconButton}
         />
@@ -137,11 +137,12 @@ class Chrome extends React.Component
           </div>
         </div>
         <AppNavDrawer
+          Viewer={ this.props.Viewer }
           style={styles.navDrawer}
           location={location}
           docked={docked}
           onRequestChangeNavDrawer={this._handle_RequestChangeNavDrawer}
-          onChangeList={this.handleChangeList}
+          onChangeList={ this._handle_onChangeList_AppNavDrawer }
           open={navDrawerOpen}
         />
       </div>
@@ -169,7 +170,8 @@ export default Relay.createContainer( Chrome, {
       fragment on Viewer {
         User_IsAnonymous,
         User_AuthToken,
-        ${AppBar_Auth.getFragment('Viewer')},
+        ${ ChromeRightIcon.getFragment( 'Viewer' ) },
+        ${ AppNavDrawer.getFragment( 'Viewer' ) },
       }
     `,
   },

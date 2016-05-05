@@ -1,49 +1,26 @@
-import React, {createClass, PropTypes} from 'react';
+/* @flow weak */
+/* eslint react/prop-types: 0 */
+
+import React from 'react';
+import Relay from 'react-relay';
+
 import Drawer from 'material-ui/Drawer';
-import {List, ListItem, MakeSelectable} from 'material-ui/List';
 import {spacing, typography, zIndex} from 'material-ui/styles';
 
-const SelectableList = MakeSelectable(List);
+import { NavMenuTitle } from '../../configuration/webapp/components/ChromeSettings';
+import NavMenu from '../../configuration/webapp/components/NavMenu.jsx';
 
-const AppNavDrawer = createClass({
 
-  propTypes: {
-    docked: PropTypes.bool.isRequired,
-    location: PropTypes.object.isRequired,
-    onChangeList: PropTypes.func.isRequired,
-    onRequestChangeNavDrawer: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
-    style: PropTypes.object,
-  },
-
-  contextTypes: {
-    muiTheme: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
-  },
-
-  handleRequestChangeLink(event, value) {
-    console.log( value )
-    //window.location = value;
-  },
-
-  handleTouchTapHeader() {
+class AppNavDrawer extends React.Component
+{
+  _handle_onTouchTap_Drawer = ( ) =>
+  {
     this.context.router.push('/');
     this.props.onRequestChangeNavDrawer(false);
-  },
+  }
 
-  render() {
-
-    // // TODO Temporary example how to modify the menu depending on whether the user has logged in or not.
-    // // Later integrate with example of requesting login and
-    // // https://github.com/codefoundries/isomorphic-material-relay-starter-kit/issues/36
-    let systemMenuContents = [
-      <ListItem primaryText="Home" value="/" />,
-    ];
-
-
-    // if( ! this.props.Viewer.User_IsAnonymous )
-    //   systemMenuContents.push( <ListItem primaryText="User Profile" value="/User" /> );
-
+  render( )
+  {
     const {
       location,
       docked,
@@ -61,7 +38,8 @@ const AppNavDrawer = createClass({
         onRequestChange={onRequestChangeNavDrawer}
         containerStyle={{zIndex: zIndex.navDrawer - 100}}
       >
-        <div style={ {
+        <div
+          style={ {
             cursor: 'pointer',
             fontSize: 24,
             color: typography.textFullWhite,
@@ -70,44 +48,32 @@ const AppNavDrawer = createClass({
             backgroundColor: this.context.muiTheme.palette.primary1Color,
             paddingLeft: spacing.desktopGutter,
             marginBottom: 8,
-          } } onTouchTap={this.handleTouchTapHeader}
+          } }
+          onTouchTap={ this._handle_onTouchTap_Drawer }
         >
-          Relay
+          { NavMenuTitle }
         </div>
-        <SelectableList
-          value={location.pathname}
-          onChange={onChangeList}
-        >
-          <ListItem
-            primaryText="System"
-            primaryTogglesNestedList={true}
-            nestedItems={ systemMenuContents }
-          />
-          <ListItem
-            primaryText="Examples"
-            primaryTogglesNestedList={true}
-            nestedItems={ [
-              <ListItem primaryText="Compendium" value="/compendiums" />,
-
-              <ListItem primaryText="Ensayo" value="/Ensayos" />,
-              <ListItem primaryText="Ensayo Public" value="/Ensayo_PublicListing" />,
-              <ListItem primaryText="Force Login" value="/ForceLogin" />,
-
-              <ListItem primaryText="MUI" value="/mui" />,
-              <ListItem primaryText="MUI Icons" value="/mui/icons" />,
-              <ListItem primaryText="Country Flags" value="/mui/icons_country_flags" />,
-              <ListItem primaryText="Credit Cards" value="/mui/icons_credit_cards" />,
-
-              <ListItem primaryText="To Do" value="/ToDos" />,
-
-              <ListItem primaryText="Translaticiarum" value="/Translaticiarums" />,
-              <ListItem primaryText="Translaticiarums Grid" value="/TranslaticiarumsGrid" />,
-            ] }
-          />
-        </SelectableList>
+        <NavMenu
+          Viewer={ this.props.Viewer }
+          value={ location.pathname }
+          onChange={ onChangeList }
+        />
       </Drawer>
     );
-  },
-});
+  }
+}
 
-export default AppNavDrawer;
+AppNavDrawer.contextTypes = {
+  muiTheme: React.PropTypes.object.isRequired,
+  router: React.PropTypes.object.isRequired
+};
+
+export default Relay.createContainer( AppNavDrawer, {
+  fragments: {
+    Viewer: () => Relay.QL`
+      fragment on Viewer {
+        ${ NavMenu.getFragment( 'Viewer' ) },
+      }
+    `,
+  },
+} )
