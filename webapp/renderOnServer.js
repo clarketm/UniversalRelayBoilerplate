@@ -11,9 +11,9 @@ import RelayLocalSchema from 'relay-local-schema';
 import { match } from 'react-router';
 
 import { getUserByCookie, serveAuthenticationFailed } from '../server/credentials_check.js';
-import isomorphicVars from './scripts/isomorphicVars';
+import isomorphicVars from '../configuration/webapp/scripts/isomorphicVars';
 import ObjectManager from '../data/ObjectManager';
-import routes from './routes';
+import routes from '../configuration/webapp/routes';
 import schema from '../graphql/schema'; // Schema for GraphQL server
 
 // Read environment

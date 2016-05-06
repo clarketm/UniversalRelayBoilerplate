@@ -8,7 +8,7 @@ import {Card, CardHeader, CardText} from 'material-ui/Card';
 
 import isomorphicVars from '../scripts/isomorphicVars';
 
-class Home_Screen extends React.Component
+class HomeScreen extends React.Component
 {
   render( )
   {
@@ -80,7 +80,7 @@ class Home_Screen extends React.Component
 </Card>
 */
 
-export default Relay.createContainer( Home_Screen, {
+export default Relay.createContainer( HomeScreen, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
