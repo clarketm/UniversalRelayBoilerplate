@@ -1,12 +1,13 @@
 /* @flow weak */
 
-import bcrypt from 'bcrypt';
-import bodyParser from 'body-parser';
-import express from 'express';
-import jwt from 'jwt-simple';
+import bcrypt from 'bcrypt'
+import bodyParser from 'body-parser'
+import express from 'express'
+import jwt from 'jwt-simple'
 
-import delayPromise from '../scripts/delayPromise';
-import ObjectManager from '../data/ObjectManager';
+import authExtensions from '../configuration/server/authExtensions'
+import delayPromise from '../scripts/delayPromise'
+import ObjectManager from '../data/ObjectManager'
 
 // Read environment
 require( 'dotenv' ).load( );
@@ -52,7 +53,7 @@ auth.post('/login', (req, res, next) =>
     res.status( 401 ).json( { error: reason } );
   } )
   ;
-} );
+} )
 
 auth.post('/createuser', (req, res, next) =>
 {
@@ -95,14 +96,18 @@ auth.post('/createuser', (req, res, next) =>
     res.status( 401 ).json( { error: "" + reason } );
   } )
   ;
-} );
+} )
 
 
 auth.post('/logout', (req, res, next) =>
 {
   res.cookie( 'auth_token', '', { httpOnly: true, expires: new Date( 1 ) } );
   res.json( { success : true } );
-} );
+} )
+
+
+// Add extensions - custom configurations
+authExtensions( auth )
 
 
 export default auth;
