@@ -1,30 +1,25 @@
-import React, {createClass, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import ClearFix from 'material-ui/internal/ClearFix';
 import spacing from 'material-ui/styles/spacing';
-import styleResizable from 'material-ui/utils/styleResizable';
+import withWidth, {SMALL, LARGE} from 'material-ui/utils/withWidth';
+
 const desktopGutter = spacing.desktopGutter;
 
+class FullWidthSection extends Component {
 
-const FullWidthSection = createClass({
-
-  propTypes: {
+  static propTypes = {
     children: PropTypes.node,
     contentStyle: PropTypes.object,
     contentType: PropTypes.string,
     style: PropTypes.object,
     useContent: PropTypes.bool,
-  },
+    width: PropTypes.number.isRequired,
+  };
 
-  mixins: [
-    styleResizable,
-  ],
-
-  getDefaultProps() {
-    return {
-      useContent: false,
-      contentType: 'div',
-    };
-  },
+  static defaultProps = {
+    useContent: false,
+    contentType: 'div',
+  };
 
   getStyles() {
     return {
@@ -45,7 +40,7 @@ const FullWidthSection = createClass({
         paddingBottom: desktopGutter * 3,
       },
     };
-  },
+  }
 
   render() {
     const {
@@ -53,6 +48,7 @@ const FullWidthSection = createClass({
       useContent,
       contentType,
       contentStyle,
+      width,
       ...other,
     } = this.props;
 
@@ -76,13 +72,13 @@ const FullWidthSection = createClass({
         style={Object.assign(
           styles.root,
           style,
-          this.isDeviceSize(styleResizable.statics.Sizes.SMALL) && styles.rootWhenSmall,
-          this.isDeviceSize(styleResizable.statics.Sizes.LARGE) && styles.rootWhenLarge)}
+          width === SMALL && styles.rootWhenSmall,
+          width === LARGE && styles.rootWhenLarge)}
       >
         {content}
       </ClearFix>
     );
-  },
-});
+  }
+}
 
-export default FullWidthSection;
+export default withWidth()(FullWidthSection);

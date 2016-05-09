@@ -7,6 +7,7 @@ import Relay from 'react-relay';
 import AppBar from 'material-ui/AppBar';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import spacing from 'material-ui/styles/spacing';
+import withWidth, {LARGE, MEDIUM}  from 'material-ui/utils/withWidth';
 
 import AppNavDrawer from './AppNavDrawer.jsx';
 import ChromeHelmet from '../../configuration/webapp/components/ChromeHelmet.jsx';
@@ -78,8 +79,8 @@ class Chrome extends React.Component
       },
     };
 
-    // if ( this.props.width === MEDIUM || this.props.width === LARGE )
-    //   styles.content = Object.assign(styles.content, styles.contentWhenMedium);
+    if ( this.props.width === MEDIUM || this.props.width === LARGE )
+      styles.content = Object.assign(styles.content, styles.contentWhenMedium);
 
     return styles;
   }
@@ -145,8 +146,8 @@ Chrome.childContextTypes = {
 //
 
 // It is important to retrieve User_AuthToken, since it is used in client.js
-//export default Relay.createContainer( withWidth( )( Chrome ), {
-export default Relay.createContainer( Chrome, {
+export default Relay.createContainer( withWidth( )( Chrome ), {
+//export default Relay.createContainer( Chrome, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
