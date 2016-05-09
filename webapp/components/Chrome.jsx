@@ -87,18 +87,31 @@ class Chrome extends React.Component
 
   render( )
   {
-    const styles = this.getStyles();
+    const styles = this.getStyles( )
 
     let {
       navDrawerOpen,
-    } = this.state;
+    } = this.state
 
     const {
       prepareStyles,
-    } = this.muiTheme;
+    } = this.muiTheme
 
-    let docked = false;
-    let showMenuIconButton = true;
+    let docked = false
+    let showMenuIconButton = true
+
+    if( this.props.width === LARGE )
+    {
+      docked = true
+      navDrawerOpen = true
+      showMenuIconButton = false
+
+      styles.navDrawer = {
+        zIndex: styles.appBar.zIndex - 1,
+      }
+      styles.appBar.paddingLeft = 276
+      styles.root.paddingLeft = 256
+    }
 
     return (
       <div>
@@ -127,6 +140,7 @@ class Chrome extends React.Component
         />
         <Footer
           Viewer={ this.props.Viewer }
+          width={ this.props.width }
         />
       </div>
     )
