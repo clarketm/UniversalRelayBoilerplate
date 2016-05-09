@@ -19,6 +19,7 @@ import TextField from 'material-ui/TextField';
 import {white} from 'material-ui/styles/colors';
 import { registerAuthenticationRequiredCallback } from './RequiresAuthentication.js';
 
+import {ExtensionsForLogIn, ExtensionsForCreateUser} from '../../../../configuration/webapp/components/AccountManagementExtensions.jsx'
 import { postXHR } from '../../../../webapp/scripts/XHR';
 import scorePassword from '../../scripts/scorePassword';
 
@@ -213,7 +214,7 @@ class AppBar_Auth extends React.Component
           onChange={ this._handle_onChange_AuthenticationChallenge_User_AccountPassword }
           ref="User_AccountPassword"
         />
-        If you are running the in-memory implementation, your users accounts will be lost upon app restart / heroku sleep.
+        <ExtensionsForLogIn/>
       </Dialog>
     );
   }
@@ -387,6 +388,7 @@ class AppBar_Auth extends React.Component
           value={ this.state.Dialog_CreateUser_AccountPasswordStrength }
           color={ this.state.Dialog_CreateUser_AccountPasswordStrength < 60 ? "#ff0000" : ( this.state.Dialog_CreateUser_AccountPasswordStrength < 80 ? "#c0c000" : "#00d000" ) }
         />
+        <ExtensionsForCreateUser/>
       </Dialog>
     );
   }
