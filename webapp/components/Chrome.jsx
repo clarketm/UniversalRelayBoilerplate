@@ -7,7 +7,7 @@ import Relay from 'react-relay';
 import AppBar from 'material-ui/AppBar';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import spacing from 'material-ui/styles/spacing';
-import withWidth, {LARGE, MEDIUM}  from 'material-ui/utils/withWidth';
+import withWidth, {LARGE, MEDIUM}  from '../scripts/withWidth';
 
 import AppNavDrawer from './AppNavDrawer.jsx';
 import ChromeHelmet from '../../configuration/webapp/components/ChromeHelmet.jsx';

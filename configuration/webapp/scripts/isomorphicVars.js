@@ -2,7 +2,7 @@
 
 export default function( )
 {
-  if( typeof( window ) == 'undefined' )
+  if( typeof( window ) == 'undefined' || typeof( window.isomorphicVars ) == 'undefined' )
   {
     // Running on server.
     return {

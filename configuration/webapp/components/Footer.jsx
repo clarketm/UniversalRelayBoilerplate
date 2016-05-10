@@ -5,7 +5,7 @@ import React from 'react'
 import Relay from 'react-relay'
 
 import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
-import {LARGE}  from 'material-ui/utils/withWidth';
+import {LARGE}  from '../../../webapp/scripts/withWidth';
 
 import FullWidthSection from '../../../webapp/components/FullWidthSection.jsx'
 

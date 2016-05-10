@@ -3,6 +3,7 @@
 import Helmet from 'react-helmet';
 import IsomorphicRouter from 'isomorphic-relay-router';
 import log from '../server/log.js';
+import MobileDetect from 'mobile-detect'
 import path from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -64,14 +65,27 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
       {
         try
         {
-          // Setting up static, global navigator object to pass user agent to material-ui. Previously
-          // this was protected by the queue but is this legal now? Consult with new MUI
-          // documentation.
-          GLOBAL.navigator = { userAgent: req.headers[ 'user-agent' ] };
+          // Setting up static, global navigator object to pass user agent to material-ui. Since the function is synchronous,
+          // it is OK to do so.
+          GLOBAL.navigator = { userAgent: req.headers[ 'user-agent' ] }
 
-          // Setting up static, global location for the leftNav
+          // Also, set width to emulate phone, tablet or desktop
+          const md = new MobileDetect( req.headers[ 'user-agent' ] )
+
+          let innerWidth
+          if( md.phone( ) )
+            innerWidth = 700 // Will qualify as SMALL
+          else if( md.tablet( ) )
+            innerWidth = 900 // Will qualify as MEDIUM
+          else
+            innerWidth = 1100 // Will qualify as LARGE
+
+          GLOBAL.window = { innerWidth: innerWidth }
+
+          // Also set global location for the leftNav
           GLOBAL.location = { pathname: req.originalUrl };
 
+          // Get the react output HTML
           const reactOutput = ReactDOMServer.renderToString( IsomorphicRouter.render(props) );
           const helmet = Helmet.rewind( );
 
