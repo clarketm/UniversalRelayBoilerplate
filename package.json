@@ -25,7 +25,8 @@
     "start-webpack": "better-npm-run start-webpack",
     "start-dev": "better-npm-run start-dev",
     "update-ip": "./node_modules/.bin/babel-node ./scripts/update-local-ip-for-app.js",
-    "dev": "concurrently --kill-others \"npm run start-webpack\" \"npm run start-dev\"",
+    "dev": "concurrently --kill-others \"npm run start-webpack\" \"npm run start-dev",
+    "lint": "eslint app configuration data graphql scripts server units webapp",
     "prod": "export NODE_ENV=production && ./node_modules/.bin/babel-node ./server/server.js",
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
