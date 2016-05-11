@@ -1,5 +1,4 @@
 import Compendium from '../model/Compendium'
-import ObjectManager from '../../../../data/ObjectManager'
 
 export default function Compendium_getListOrCreate( objectManager )
 {

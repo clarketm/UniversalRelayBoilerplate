@@ -1,7 +1,7 @@
 /* @flow weak */
 
-import { fromGlobalId, mutationWithClientMutationId } from "graphql-relay";
-import { GraphQLBoolean, GraphQLID, GraphQLList, GraphQLNonNull } from "graphql";
+import { mutationWithClientMutationId } from "graphql-relay";
+import { GraphQLBoolean, GraphQLList, GraphQLNonNull } from "graphql";
 
 import ToDo_list_updateMarkAll from '../helper/ToDo_list_updateMarkAll';
 import ToDoType from '../type/ToDoType';

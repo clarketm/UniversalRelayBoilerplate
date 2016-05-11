@@ -1,6 +1,3 @@
-import ToDo from '../model/ToDo'
-import ObjectManager from '../../../../data/ObjectManager'
-
 export default function ToDo_list_updateMarkAll( objectManager, ToDo_CompleteNew )
 {
   return objectManager.getListBy( 'ToDo', 'ToDo_User_id', objectManager.getViewerUserId( ) )

@@ -8,9 +8,8 @@ import log from './log.js';
 // Read environment
 require( 'dotenv' ).load( );
 
-export function getUserByCookie( objectManager, req, res )
+export function getUserByCookie( objectManager, req)
 {
-  let authenticationFailed = false;
   let user_id = '00000000-0000-0000-0000-000000000000'; // Anonymous, unless cookie is passed
 
   try
@@ -40,7 +39,7 @@ export function getUserByCookie( objectManager, req, res )
   ;
 }
 
-export function verifyUserAuthToken( a_User, req, res )
+export function verifyUserAuthToken( a_User, req )
 {
   if ( ! a_User )
     return Promise.reject( "User not found" );

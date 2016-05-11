@@ -24,6 +24,7 @@ function ObjectPersister_getList( entityName: string, ObjectType: any, fieldName
   return Promise.all( resultPromises );
 }
 
+/*eslint no-unused-vars: ["error", { "args": "none" }]*/
 function ObjectPersister_add( entityName: string, fields: any, ObjectType: any )
 {
   const id = Uuid.random( );

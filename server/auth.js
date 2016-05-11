@@ -16,7 +16,7 @@ require( 'dotenv' ).load( );
 let auth = express( );
 auth.use( bodyParser.json( ) );
 
-auth.post('/login', (req, res, next) =>
+auth.post('/login', (req, res) =>
 {
   const objectManager = new ObjectManager( );
 
@@ -55,7 +55,7 @@ auth.post('/login', (req, res, next) =>
   ;
 } )
 
-auth.post('/createuser', (req, res, next) =>
+auth.post('/createuser', (req, res) =>
 {
   const objectManager = new ObjectManager( );
 
@@ -99,7 +99,7 @@ auth.post('/createuser', (req, res, next) =>
 } )
 
 
-auth.post('/logout', (req, res, next) =>
+auth.post('/logout', (req, res) =>
 {
   res.cookie( 'auth_token', '', { httpOnly: true, expires: new Date( 1 ) } );
   res.json( { success : true } );

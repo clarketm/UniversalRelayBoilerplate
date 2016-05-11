@@ -1,7 +1,7 @@
 /* @flow weak */
 
-import { GraphQLID, GraphQLBoolean, GraphQLInt, GraphQLString, GraphQLObjectType } from "graphql";
-import { globalIdField, fromGlobalId, connectionArgs, connectionFromArray } from "graphql-relay";
+import { GraphQLBoolean, GraphQLString, GraphQLObjectType } from "graphql";
+import { globalIdField } from "graphql-relay";
 
 import _ViewerFields from "../../units/_all/_ViewerFields";
 import NodeInterface from "../NodeInterface";

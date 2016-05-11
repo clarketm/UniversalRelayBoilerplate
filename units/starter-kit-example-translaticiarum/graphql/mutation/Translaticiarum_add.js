@@ -1,7 +1,7 @@
 /* @flow weak */
 
-import { fromGlobalId, mutationWithClientMutationId, cursorForObjectInConnection } from "graphql-relay";
-import { GraphQLInt, GraphQLID, GraphQLNonNull } from "graphql";
+import { mutationWithClientMutationId } from "graphql-relay";
+import { GraphQLInt, GraphQLNonNull } from "graphql";
 
 import GraphQLDateTime from "../../../../graphql/scalar/GraphQLDateTime";
 

@@ -8,7 +8,6 @@ import React, {
 import {
   StyleSheet,
   Text,
-  TouchableHighlight,
   View,
 } from 'react-native';
 
