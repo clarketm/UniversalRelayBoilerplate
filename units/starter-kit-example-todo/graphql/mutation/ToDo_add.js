@@ -1,7 +1,7 @@
 /* @flow weak */
 
-import { fromGlobalId, mutationWithClientMutationId, cursorForObjectInConnection } from "graphql-relay";
-import { GraphQLString, GraphQLID, GraphQLNonNull } from "graphql";
+import { mutationWithClientMutationId } from "graphql-relay";
+import { GraphQLString, GraphQLNonNull } from "graphql";
 
 import { cursorForObjectInConnectionWithUuidComparison } from '../../../../graphql/helper/mutation_helper';
 

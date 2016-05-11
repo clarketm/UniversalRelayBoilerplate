@@ -1,6 +1,5 @@
 /* @flow weak */
 
-import { GraphQLID } from "graphql";
 import { connectionArgs, connectionFromArray } from "graphql-relay";
 
 import CompendiumsConnection from "./CompendiumsConnection";

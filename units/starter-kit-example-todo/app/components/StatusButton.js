@@ -1,7 +1,6 @@
 /* @flow weak */
 'use strict';
 
-import Relay from 'react-relay';
 import React, {
   PropTypes,
 } from 'react';

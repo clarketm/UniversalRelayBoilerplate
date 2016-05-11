@@ -34,7 +34,7 @@ export default mutationWithClientMutationId( {
     return delayPromise( 1000 ) // Wait for a second to slow down a possible potential force attack
     .then( ( ) => objectManager.getOneById( 'User', local_id ) )
     .then( ( a_User ) =>
-      new Promise( (resolve, reject) =>
+      new Promise( (resolve) =>
         bcrypt.compare( User_AccountPassword_Current, a_User.User_AccountPassword, ( err, User_AccountPasswordIsCorrect ) =>
         {
           if( User_AccountPasswordIsCorrect )

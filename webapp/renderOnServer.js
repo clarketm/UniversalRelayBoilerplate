@@ -5,9 +5,7 @@ import IsomorphicRouter from 'isomorphic-relay-router';
 import log from '../server/log.js';
 import MobileDetect from 'mobile-detect'
 import path from 'path';
-import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import Relay from 'react-relay';
 import RelayLocalSchema from 'relay-local-schema';
 import { match } from 'react-router';
 
@@ -50,10 +48,9 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
   const objectManager = new ObjectManager( );
 
   getUserByCookie( objectManager, req, res )
-  .then( ( a_User ) => {
+  .then( ( ) => {
     try
     {
-      const user_id = a_User.id;
 
       const networkLayer = new RelayLocalSchema.NetworkLayer( {
         schema,

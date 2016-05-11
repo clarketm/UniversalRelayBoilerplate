@@ -16,8 +16,8 @@ router.use( '/', ( req, res, next ) =>
 
   getUserByCookie( objectManager, req, res )
   .then( ( a_User ) => verifyUserAuthToken( a_User, req, res ) )
-  .then( ( user_id ) => {
-    graphQLHTTP( request => {
+  .then( () => {
+    graphQLHTTP( () => {
       return( {
         schema: schema,
         rootValue: objectManager,

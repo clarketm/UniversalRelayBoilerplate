@@ -3,7 +3,6 @@
 import TodoApp from '../units/starter-kit-example-todo/app/components/ToDoApp';
 import TodoAppRoute from './TodoAppRoute';
 import React from 'react'
-import { View } from 'react-native';
 import Relay, {
   DefaultNetworkLayer,
   RootContainer,

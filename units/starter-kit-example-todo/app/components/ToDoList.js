@@ -78,9 +78,6 @@ class TodoList extends React.Component
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.Viewer.ToDos.edges !== nextProps.Viewer.ToDos.edges) {
-      const {
-        ToDosDataSource,
-      } = this.state;
       this.setState({
         ToDosDataSource:
           _ToDosDataSource.cloneWithRows(nextProps.Viewer.ToDos.edges),

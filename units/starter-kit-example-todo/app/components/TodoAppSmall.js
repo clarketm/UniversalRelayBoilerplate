@@ -21,7 +21,7 @@ class TodoApp extends React.Component {
 
 export default Relay.createContainer(TodoApp, {
   fragments: {
-    Viewer: variables => Relay.QL`
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         ToDo_TotalCount
       }
