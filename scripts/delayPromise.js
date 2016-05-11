@@ -1,6 +1,6 @@
 export default function( duration )
 {
-	return new Promise( function( resolve, reject )
+	return new Promise( function( resolve )
   {
 		setTimeout( function( )
     {

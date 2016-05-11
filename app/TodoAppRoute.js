@@ -1,8 +1,8 @@
 'use strict';
 
-import { Route } from 'react-relay';
+import Relay from 'react-relay';
 
-export default class TodoAppRoute extends Route {
+export default class TodoAppRoute extends Relay.Route {
   static paramDefinitions = {
     status: {required: false},
   };
