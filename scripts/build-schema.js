@@ -22,7 +22,7 @@ async function createJson( )
     fs.writeFileSync( file_schema_json, JSON.stringify(result, null, 2) );
     console.log( 'Written: ' + file_schema_json );
   }
-};
+}
 
 // Save user readable type system shorthand of schema
 fs.writeFileSync( file_schema_graphql, printSchema( schema ) );

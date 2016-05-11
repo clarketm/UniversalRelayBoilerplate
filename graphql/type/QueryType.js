@@ -19,7 +19,7 @@ function resolveNodeField( source, args, context, { rootValue: objectManager } )
     return objectManager.getOneById( 'User', local_id );
   else
     return objectManager.getOneById( type, local_id );
-};
+}
 
 export default new GraphQLObjectType({
   name: "Query",
