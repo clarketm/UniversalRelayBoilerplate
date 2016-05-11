@@ -7,4 +7,4 @@ export default function( duration )
 			resolve( );
 		}, duration )
 	} );
-};
+}
