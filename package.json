@@ -43,7 +43,7 @@
   },
   "metadata": {
     "graphql": {
-      "schema": "./graphql/schema.json"
+      "schema": "./configuration/graphql/schema.json"
     }
   },
   "dependencies": {

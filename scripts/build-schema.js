@@ -5,8 +5,8 @@ import { introspectionQuery, printSchema } from 'graphql/utilities';
 
 import schema from '../graphql/schema';
 
-let file_schema_json = path.join(__dirname, '../graphql/schema.json');
-let file_schema_graphql = path.join(__dirname, '../graphql/schema.graphql');
+let file_schema_json = path.join(__dirname, '../configuration/graphql/schema.json');
+let file_schema_graphql = path.join(__dirname, '../configuration/graphql/schema.graphql');
 
 // Save JSON of full schema introspection for Babel Relay Plugin to use
 async function createJson( )
