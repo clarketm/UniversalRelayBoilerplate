@@ -1,7 +1,7 @@
 {
   "name": "UniversalRelayBoilerplate",
   "description": "Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "private": true,
   "license": "MIT",
   "homepage": "http://codefoundries.com/products/starter-kit.html",
@@ -15,8 +15,8 @@
   },
   "scripts": {
     "postinstall": "npm run build-schema && npm run build-webpack",
-    "setup-local": "cp ./scripts/default.env ./.env",
-    "setup-cassandra-init": "cqlsh -f ./scripts/cassandra-init.cql",
+    "setup-local": "cp ./configuration/scripts/default.env ./.env",
+    "setup-cassandra-init": "cqlsh -f ./configuration/scripts/cassandra-init.cql",
     "build-schema": "./node_modules/.bin/babel-node ./scripts/build-schema.js",
     "build-webpack": "./node_modules/.bin/webpack -p --output-filename client.js",
     "build-mui-icon-list": "./node_modules/.bin/babel-node ./scripts/build-mui-icon-list.js",
