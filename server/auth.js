@@ -7,7 +7,7 @@ import jwt from 'jwt-simple'
 
 import authExtensions from '../configuration/server/authExtensions'
 import delayPromise from '../scripts/delayPromise'
-import ObjectManager from '../data/ObjectManager'
+import ObjectManager from '../configuration/graphql/ObjectManager'
 
 // Read environment
 require( 'dotenv' ).load( );

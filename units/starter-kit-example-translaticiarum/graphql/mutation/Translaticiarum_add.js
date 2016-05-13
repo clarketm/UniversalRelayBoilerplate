@@ -3,9 +3,9 @@
 import { mutationWithClientMutationId } from "graphql-relay";
 import { GraphQLInt, GraphQLNonNull } from "graphql";
 
-import GraphQLDateTime from "../../../../graphql/scalar/GraphQLDateTime";
+import GraphQLDateTime from "../../../../graphql/type/GraphQLDateTime";
 
-import { cursorForObjectInConnectionWithUuidComparison } from '../../../../graphql/helper/mutation_helper';
+import { cursorForObjectInConnectionWithUuidComparison } from '../../../../graphql/mutation_helper';
 
 import TranslaticiarumsConnection from '../type/TranslaticiarumsConnection';
 import ViewerType from '../../../../graphql/type/ViewerType';

@@ -3,10 +3,10 @@
 import { GraphQLBoolean, GraphQLString, GraphQLObjectType } from "graphql";
 import { globalIdField } from "graphql-relay";
 
-import _ViewerFields from "../../units/_all/_ViewerFields";
+import _ViewerFields from "../../configuration/graphql/_ViewerFields";
 import NodeInterface from "../NodeInterface";
-import User from '../../data/model/User';
-import { Uuid } from '../../data/lib/CassandraClient.js';
+import User from '../../configuration/graphql/model/User';
+import { Uuid } from '../../graphql/CassandraClient.js';
 
 
 const Uuid_0 = Uuid.fromString( '00000000-0000-0000-0000-000000000000' );

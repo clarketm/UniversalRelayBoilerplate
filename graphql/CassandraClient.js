@@ -2,7 +2,7 @@
 
 import cassandraDriver from 'cassandra-driver';
 
-import log from '../../server/log.js';
+import log from '../server/log.js';
 import options from './CassandraOptions.js';
 
 

@@ -3,7 +3,7 @@
 import { fromGlobalId, mutationWithClientMutationId } from "graphql-relay";
 import { GraphQLInt, GraphQLID, GraphQLNonNull } from "graphql";
 
-import GraphQLDateTime from "../../../../graphql/scalar/GraphQLDateTime";
+import GraphQLDateTime from "../../../../graphql/type/GraphQLDateTime";
 
 import TranslaticiarumType from '../type/TranslaticiarumType';
 

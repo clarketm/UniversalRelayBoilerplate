@@ -3,7 +3,7 @@
 import { mutationWithClientMutationId } from "graphql-relay";
 import { GraphQLString, GraphQLNonNull } from "graphql";
 
-import { cursorForObjectInConnectionWithUuidComparison } from '../../../../graphql/helper/mutation_helper';
+import { cursorForObjectInConnectionWithUuidComparison } from '../../../../graphql/mutation_helper';
 
 import ToDosConnection from '../type/ToDosConnection';
 import ViewerType from '../../../../graphql/type/ViewerType';

@@ -5,8 +5,8 @@ import DataLoader from 'dataloader';
 import ObjectPersisterCassandra from './ObjectPersisterCassandra.js';
 import ObjectPersisterMemory from './ObjectPersisterMemory.js';
 
-import User from '../model/User';
-import { Uuid } from '../lib/CassandraClient.js';
+import User from '../configuration/graphql/model/User';
+import { Uuid } from './CassandraClient.js';
 
 
 // Read environment

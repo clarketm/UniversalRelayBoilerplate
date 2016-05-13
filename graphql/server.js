@@ -2,7 +2,7 @@
 
 import express from 'express';
 import graphQLHTTP from 'express-graphql';
-import ObjectManager from '../data/ObjectManager';
+import ObjectManager from '../configuration/graphql/ObjectManager';
 
 import { getUserByCookie, verifyUserAuthToken, serveAuthenticationFailed } from '../server/credentials_check.js';
 import schema from './schema'; // Schema for GraphQL server

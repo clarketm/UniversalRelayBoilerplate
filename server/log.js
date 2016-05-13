@@ -6,7 +6,7 @@ import winstonCassandra from 'winston-cassandra';
 // Read environment
 require( 'dotenv' ).load( );
 
-import options from '../data/lib/CassandraOptions.js';
+import options from '../graphql/CassandraOptions.js';
 
 // Transports for Winston
 const transports = [ ];

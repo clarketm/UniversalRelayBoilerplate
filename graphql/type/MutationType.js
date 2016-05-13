@@ -2,7 +2,7 @@
 
 import {GraphQLObjectType} from "graphql";
 
-import _mutations from "../../units/_all/_mutations";
+import _mutations from "../../configuration/graphql/_mutations";
 
 
 export default new GraphQLObjectType( {
