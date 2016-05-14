@@ -1,6 +1,8 @@
 /* @flow weak */
 'use strict';
 
+import Button from 'react-native-button';
+import { Actions } from 'react-native-router-flux';
 import Relay from 'react-relay';
 import StatusButton from './StatusButton';
 import TodoList from './ToDoList';
@@ -13,6 +15,9 @@ import {
   View,
 } from 'react-native';
 
+
+
+
 class TodoApp extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -24,7 +29,7 @@ class TodoApp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>ToDos</Text>
+        <Button onPress={Actions.launch}>Launch screen</Button>
         <View style={styles.actionList}>
           <StatusButton
             active={this.props.relay.variables.status === 'any'}
@@ -87,13 +92,6 @@ const styles = StyleSheet.create({
   footer: {
     height: 10,
     paddingHorizontal: 15,
-  },
-  header: {
-    alignSelf: 'center',
-    color: 'rgba(175, 47, 47, 0.15)',
-    fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined,
-    fontSize: 100,
-    fontWeight: '100',
   },
   list: {
     borderTopColor: 'rgba(0,0,0,0.1)',
