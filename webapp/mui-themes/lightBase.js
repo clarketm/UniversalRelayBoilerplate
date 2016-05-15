@@ -48,5 +48,7 @@ export default {
     clockCircleColor: fade( darkBlack, 0.07 ),
     shadowColor: fullBlack,
   },
-  avatar: { borderColor: null },
+  avatar: {
+    borderColor: white,
+  },
 };

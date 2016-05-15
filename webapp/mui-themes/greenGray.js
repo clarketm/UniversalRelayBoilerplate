@@ -44,5 +44,7 @@ export default {
     disabledColor: fade( darkBlack, 0.3 ),
     pickerHeaderColor: cyan500,
   },
-  avatar: { borderColor: null },
+  avatar: {
+    borderColor: white,
+  },
 };

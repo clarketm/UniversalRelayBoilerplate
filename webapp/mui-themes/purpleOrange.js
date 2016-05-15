@@ -43,5 +43,7 @@ export default {
     borderColor: grey300,
     disabledColor: fade( darkBlack, 0.3 ),
   },
-  avatar: { borderColor: null },
+  avatar: {
+    borderColor: white,
+  },
 };

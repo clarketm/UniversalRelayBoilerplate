@@ -43,6 +43,6 @@ export default {
     pickerHeaderColor: blue500,
   },
   avatar: {
-    borderColor: null,
+    borderColor: white,
   },
 };
