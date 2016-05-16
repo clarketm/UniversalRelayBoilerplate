@@ -4,8 +4,8 @@ import Relay, {
   DefaultNetworkLayer,
 } from 'react-relay';
 
-import Launch from './Launch'
-import Register from './Register'
+import Home from './Home'
+import Login from './Login'
 import ToDoScreen from './ToDoScreen'
 
 let graphQLServerURL = "http://localhost:4444/graphql";
@@ -22,7 +22,8 @@ Relay.injectNetworkLayer( new DefaultNetworkLayer(
 ) );
 
 
-const reducerCreate = params=>{
+const reducerCreate = params =>
+{
     const defaultReducer = Reducer(params);
     return (state, action)=>{
         console.log("ACTION:", action);
@@ -30,16 +31,20 @@ const reducerCreate = params=>{
     }
 };
 
-export default class Example extends React.Component {
-    render() {
-        return <Router createReducer={reducerCreate}>
-            <Scene key="modal" component={Modal} >
-                <Scene key="root" hideNavBar={true}>
-                  <Scene key="launch" component={Launch} title="Launch" initial={true} />
-                  <Scene key="register" component={Register} title="Register"/>
-                  <Scene key="ToDo" component={ToDoScreen} title="To Do" />
-                </Scene>
-            </Scene>
-        </Router>;
-    }
+export default class Example extends React.Component
+{
+  render( )
+  {
+    return(
+      <Router createReducer={ reducerCreate }>
+        <Scene key="modal" component={ Modal }>
+          <Scene key="root">
+            <Scene key="launch" component={ Home } title="Home" initial={true} />
+            <Scene key="register" component={ Login } title="Login" />
+            <Scene key="ToDo" component={ ToDoScreen } title="To Do" />
+          </Scene>
+        </Scene>
+      </Router>
+    )
+  }
 }

@@ -29,8 +29,7 @@ class TodoApp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button onPress={Actions.launch}>Launch screen</Button>
-        <View style={styles.actionList}>
+          <View style={styles.actionList}>
           <StatusButton
             active={this.props.relay.variables.status === 'any'}
             onPress={this._handleStatusChange.bind(null, 'any')}>

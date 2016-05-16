@@ -12,16 +12,16 @@ const styles = StyleSheet.create({
     }
 });
 
-class Launch extends React.Component {
+class Home extends React.Component {
     render(){
         return (
             <View {...this.props}  style={styles.container}>
-                <Text>Launch page</Text>
-                <Button onPress={Actions.register}>Go to Register page</Button>
-                <Button onPress={Actions.ToDo}>Go to To Do screen</Button>
+                <Text>Home page</Text>
+                <Button onPress={Actions.register}>Login</Button>
+                <Button onPress={Actions.ToDo}>To Do</Button>
             </View>
         );
     }
 }
 
-module.exports = Launch;
+module.exports = Home;
