@@ -1,16 +1,20 @@
-import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
-import Button from 'react-native-button';
-import { Actions } from 'react-native-router-flux';
+import React from 'react'
+import { View, Text, TextInput, StyleSheet } from 'react-native'
+import Button from 'react-native-button'
+import { Actions } from 'react-native-router-flux'
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-});
+} )
+
+const mode_challenge = 1
+const mode_login_in_progress = 2
+const mode_login_failed = 3
 
 export default class Login extends React.Component
 {
@@ -18,25 +22,25 @@ export default class Login extends React.Component
   {
     super( props )
 
+    this.loginAttempt = 0
+
     this.state = {
+      mode: mode_challenge,
       User_AccountName: "",
       User_AccountPassword: "",
+      ErrorMessage: "",
     }
   }
 
   handle_onPress_Login = ( ) =>
   {
-    console.log( "Login was pressed" )
-    // try {
-    //   let response = await fetch('https://mywebsite.com/endpoint/');
-    //   let responseJson = await response.json();
-    //   console.log( responseJson )
-    // } catch(error) {
-    //   // Handle error
-    //   console.error(error);
-    // }
+    this.setState( {
+      mode: mode_login_in_progress,
+    } )
 
-    let authCookie;
+    const currentLoginAttempt = ++(this.loginAttempt)
+
+    let user_token_1
 
     fetch("http://localhost:4444/auth/login", {
       method: "POST",
@@ -52,44 +56,96 @@ export default class Login extends React.Component
       } )
     } )
     .then( ( response ) => {
-      // if( response.headers )
-      // if( response.headers.map )
       if( 'set-cookie' in response.headers.map )
         for( let cookie of response.headers.map[ 'set-cookie' ] )
-          if( cookie.startsWith( 'auth_token=' ) )
+          if( cookie.startsWith( 'user_token_1=' ) )
           {
             console.log( 'cookie=' + cookie )
-            authCookie = cookie.substring( 11, cookie.indexOf( ';' ) )
-            console.log( 'authCookie=' + authCookie )
+            user_token_1 = cookie.substring( 11, cookie.indexOf( ';' ) )
+            console.log( 'user_token_1=' + user_token_1 )
           }
       return response.json( )
     } )
-    .then( (responseData) => {
-      console.log( authCookie )
-      console.log( responseData )
+    .then( (responseData ) => {
+      if( currentLoginAttempt == this.loginAttempt )
+      {
+        if( responseData.success )
+        {
+          console.log( user_token_1 )
+          console.log( responseData )
+          Actions.pop(  )
+        }
+
+        let errorMessage
+        if( responseData.error )
+          errorMessage = responseData.error
+        else
+          errorMessage = "Login failed"
+
+        this.setState( {
+          mode: mode_login_failed,
+          ErrorMessage: errorMessage,
+        } )
+      }
+      else
+        console.log( "Expired login event" )
     } )
     // TODO: Error handling here
     .done()
   }
 
+  handle_onPress_Cancel = ( ) =>
+  {
+    this.loginAttempt++; // So that when the call back comes it is rejected
+
+    this.setState( {
+      mode: mode_challenge,
+      User_AccountPassword: "",
+    } )
+  }
+
+  handle_onPress_Retry = ( ) =>
+  {
+    this.setState( {
+      mode: mode_challenge,
+      User_AccountPassword: "",
+    } )
+  }
+
   render( )
   {
-    return (
-      <View style={styles.container}>
-        <Text>Account name:</Text>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({User_AccountName: text})}
-          value={this.state.User_AccountName}
-        />
-        <Text>Account secret:</Text>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({User_AccountPassword: text})}
-          value={this.state.User_AccountPassword}
-        />
-        <Button onPress={ this.handle_onPress_Login }>Login</Button>
-      </View>
-    )
+    if( this.state.mode == mode_challenge )
+      return (
+        <View style={styles.container}>
+          <Text>Account name</Text>
+          <TextInput
+            style={ { height: 44, borderColor: '#c0c0c0', borderWidth: 1, margin: 6, padding: 4 } }
+            onChangeText={(text) => this.setState({User_AccountName: text})}
+            value={this.state.User_AccountName}
+          />
+          <Text>Account secret</Text>
+          <TextInput
+            style={ { height: 44, borderColor: '#c0c0c0', borderWidth: 1, margin: 6, padding: 4 } }
+            onChangeText={(text) => this.setState({User_AccountPassword: text})}
+            value={this.state.User_AccountPassword}
+          />
+          <Button onPress={ this.handle_onPress_Login }>Login</Button>
+        </View>
+      )
+    else if( this.state.mode == mode_login_in_progress )
+      return (
+        <View style={styles.container}>
+          <Text>Logging in as { this.state.User_AccountName }</Text>
+          <Button onPress={ this.handle_onPress_Cancel }>Cancel</Button>
+        </View>
+      )
+    else if( this.state.mode == mode_login_failed )
+      return (
+        <View style={styles.container}>
+          <Text>Logging in as { this.state.User_AccountName } failed</Text>
+          <Text>{ this.state.ErrorMessage }</Text>
+          <Button onPress={ this.handle_onPress_Retry }>Retry</Button>
+        </View>
+      )
   }
-};
+}

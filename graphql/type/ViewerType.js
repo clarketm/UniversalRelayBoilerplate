@@ -24,7 +24,7 @@ export default new GraphQLObjectType( {
     User_ProfilePhoto: { type: GraphQLString,  resolve: (obj) => obj.User_ProfilePhoto },
     User_Email:        { type: GraphQLString,  resolve: (obj) => obj.User_Email },
     User_Locale:       { type: GraphQLString,  resolve: (obj) => obj.User_Locale },
-    User_AuthToken:    { type: GraphQLString,  resolve: (obj) => obj.User_AuthToken },
+    User_Token2:    { type: GraphQLString,  resolve: (obj) => obj.User_Token2 },
 
     ..._ViewerFields,
 

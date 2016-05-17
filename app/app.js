@@ -16,7 +16,7 @@ Relay.injectNetworkLayer( new DefaultNetworkLayer(
   graphQLServerURL,
   {
     headers: {
-      user_auth_token: 'Hello. My name is React Native and I want access to your wonderful GraphQL server. kthx.',
+      user_token_2: 'Hello. My name is React Native and I want access to your wonderful GraphQL server. kthx.',
     },
   }
 ) );

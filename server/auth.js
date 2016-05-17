@@ -40,8 +40,11 @@ auth.post('/login', (req, res) =>
           // User has authenticated correctly thus we create a JWT token
           var token = jwt.encode( { user_id: a_User.id }, process.env.JWT_SECRET );
 
-          res.cookie( 'auth_token', token, { httpOnly: true } );
-          res.json( { success : true } );
+          res.cookie( 'user_token_1', token, { httpOnly: true } );
+          res.json( {
+            success: true,
+            User_Token2: a_User.User_Token2
+          } );
         }
         else
           res.status( 401 ).json( { error: 'Incorrect password' } );
@@ -78,7 +81,7 @@ auth.post('/createuser', (req, res) =>
         User_ProfilePhoto: '',
         User_Email: '',
         User_Locale: '',
-        User_AuthToken: Math.random( ).toString( 36 )
+        User_Token2: Math.random( ).toString( 36 )
       } ) )
       ;
   } )
@@ -88,7 +91,7 @@ auth.post('/createuser', (req, res) =>
     // User has been created thus we create a JWT token
     var token = jwt.encode( { user_id: a_User.id }, process.env.JWT_SECRET );
 
-    res.cookie( 'auth_token', token, { httpOnly: true } );
+    res.cookie( 'user_token_1', token, { httpOnly: true } );
     res.json( { success : true } );
   } )
   .catch( ( reason ) =>
@@ -101,7 +104,7 @@ auth.post('/createuser', (req, res) =>
 
 auth.post('/logout', (req, res) =>
 {
-  res.cookie( 'auth_token', '', { httpOnly: true, expires: new Date( 1 ) } );
+  res.cookie( 'user_token_1', '', { httpOnly: true, expires: new Date( 1 ) } );
   res.json( { success : true } );
 } )
 

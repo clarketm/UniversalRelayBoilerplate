@@ -14,10 +14,10 @@ export function getUserByCookie( objectManager, req)
 
   try
   {
-    if( req.cookies.auth_token )
-      if( req.cookies.auth_token.length > 10 )
+    if( req.cookies.user_token_1 )
+      if( req.cookies.user_token_1.length > 10 )
       {
-        var decoded = jwt.decode( req.cookies.auth_token, process.env.JWT_SECRET );
+        var decoded = jwt.decode( req.cookies.user_token_1, process.env.JWT_SECRET );
         user_id = decoded.user_id;
       }
   }
@@ -45,12 +45,12 @@ export function verifyUserAuthToken( a_User, req )
     return Promise.reject( "User not found" );
   else
   {
-    const request_User_AuthToken = req.get( 'user_auth_token' );
-    if( request_User_AuthToken == a_User.User_AuthToken || request_User_AuthToken == 'Hello. My name is React Native and I want access to your wonderful GraphQL server. kthx.' )
+    const request_User_Token2 = req.get( 'user_token_2' );
+    if( request_User_Token2 == a_User.User_Token2 || request_User_Token2 == 'Hello. My name is React Native and I want access to your wonderful GraphQL server. kthx.' )
       return Promise.resolve( a_User.id );
     else
     {
-      return Promise.reject( "Authentication token expected: " + a_User.User_AuthToken + ", provided:" + request_User_AuthToken );
+      return Promise.reject( "Authentication token expected: " + a_User.User_Token2 + ", provided:" + request_User_Token2 );
     }
   }
 }
@@ -59,6 +59,6 @@ export function serveAuthenticationFailed( res, message )
 {
   log.log( 'warn', 'Checking credentials failed: ' + message );
 
-  res.cookie( 'auth_token', '', { httpOnly: true, expires: new Date( 1 ) } ); // Expire cookie. Only way to 'delete'
+  res.cookie( 'user_token_1', '', { httpOnly: true, expires: new Date( 1 ) } ); // Expire cookie. Only way to 'delete'
   res.status( 403 ).send( 'Authentication failed' );
 }

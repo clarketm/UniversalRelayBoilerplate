@@ -21,7 +21,7 @@ const User_0 = new User( {
   "User_ProfilePhoto": '',
   User_Email: '',
   User_Locale: '',
-  User_AuthToken: process.env.ANONYMOUS_USER_AUTH_TOKEN
+  User_Token2: process.env.ANONYMOUS_USER_TOKEN_2
 } );
 
 // Set persistence

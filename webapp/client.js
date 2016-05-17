@@ -27,19 +27,19 @@ const data = JSON.parse( document.getElementById( 'preloadedData' ).textContent 
 
 // Retrieve the auth token. We know it will be on viewer, but we do not know which fragment.
 // Go through them all.
-// It is important that User_AuthToken is requested in Chrome.jsx
-let User_AuthToken = "";
+// It is important that User_Token2 is requested in Chrome.jsx
+let User_Token2 = "";
 for( let fragment of data )
 {
-  const authTokenInThisFragment = fragment.response.Viewer.User_AuthToken;
+  const authTokenInThisFragment = fragment.response.Viewer.User_Token2;
   if( authTokenInThisFragment != null )
   {
-    User_AuthToken = authTokenInThisFragment;
+    User_Token2 = authTokenInThisFragment;
     break;
   }
 }
 
-if( User_AuthToken.length == 0 )
+if( User_Token2.length == 0 )
   alert( 'Authentication token retrieval failed' );
 
 
@@ -53,7 +53,7 @@ environment.injectNetworkLayer( new Relay.DefaultNetworkLayer(
   {
     credentials: 'same-origin',
     headers: {
-      user_auth_token: User_AuthToken,
+      user_token_2: User_Token2,
     },
   }
 ) );
