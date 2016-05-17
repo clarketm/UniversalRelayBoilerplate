@@ -3,6 +3,8 @@ import { View, Text, TextInput, StyleSheet } from 'react-native'
 import Button from 'react-native-button'
 import { Actions } from 'react-native-router-flux'
 
+import NetworkLayer from './NetworkLayer'
+
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
@@ -61,7 +63,7 @@ export default class Login extends React.Component
           if( cookie.startsWith( 'user_token_1=' ) )
           {
             console.log( 'cookie=' + cookie )
-            user_token_1 = cookie.substring( 11, cookie.indexOf( ';' ) )
+            user_token_1 = cookie.substring( 13, cookie.indexOf( ';' ) )
             console.log( 'user_token_1=' + user_token_1 )
           }
       return response.json( )
@@ -71,8 +73,11 @@ export default class Login extends React.Component
       {
         if( responseData.success )
         {
-          console.log( user_token_1 )
-          console.log( responseData )
+          console.log( 'user_token_1=' + user_token_1 )
+          console.log( 'user_token_2=' + responseData.User_Token2 )
+
+          NetworkLayer.setUserTokens( user_token_1, responseData.User_Token2 )
+          NetworkLayer.injectNetworkLayer( )
           Actions.pop(  )
         }
 
