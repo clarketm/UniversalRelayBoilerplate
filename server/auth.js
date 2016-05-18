@@ -12,6 +12,12 @@ import ObjectManager from '../configuration/graphql/ObjectManager'
 // Read environment
 require( 'dotenv' ).load( );
 
+function validateEmail( email )
+{
+    const re = /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/
+    return re.test( email )
+}
+
 
 let auth = express( );
 auth.use( bodyParser.json( ) );
@@ -74,16 +80,23 @@ auth.post('/createuser', (req, res) =>
       return new Promise( ( resolve ) => {
         bcrypt.hash( User_AccountPassword, 8, ( err, User_AccountPassword ) => resolve( User_AccountPassword ) );
       } )
-      .then( ( User_AccountPassword ) => objectManager.add( 'User', {
-        User_AccountName: User_AccountName,
-        User_AccountPassword: User_AccountPassword,
-        User_DisplayName: 'New User',
-        User_ProfilePhoto: '',
-        User_Email: '',
-        User_Locale: '',
-        User_Token2: Math.random( ).toString( 36 )
-      } ) )
-      ;
+      .then( ( User_AccountPassword ) =>
+      {
+        // If account name looks like email address, use it as email
+        const accountNameIsValidEmail = validateEmail( User_AccountName )
+        const User_Email = accountNameIsValidEmail ? User_AccountName : ''
+
+        return objectManager.add( 'User', {
+          User_AccountName: User_AccountName,
+          User_AccountPassword: User_AccountPassword,
+          User_DisplayName: User_AccountName,
+          User_ProfilePhoto: '',
+          User_Email: User_Email,
+          User_Locale: '',
+          User_Token2: Math.random( ).toString( 36 ) + Math.random( ).toString( 36 )
+        } )
+
+      } )
   } )
   .then( ( user_id ) => objectManager.getOneById( 'User', user_id ) )
   .then( ( a_User ) =>
