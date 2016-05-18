@@ -23,6 +23,7 @@ const User_0 = new User( {
   User_DisplayName: 'Anonymous',
   "User_ProfilePhoto": '',
   User_Email: '',
+  User_PhoneNumberMobile: '',
   User_Locale: '',
   User_Token2: AnonymousUserToken2
 } );

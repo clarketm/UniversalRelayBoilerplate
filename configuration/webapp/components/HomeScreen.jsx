@@ -61,10 +61,12 @@ class HomeScreen extends React.Component
       <Card>
         <CardHeader
           title="GraphiQL"
-          subtitle="Explore the GraphQL server, anonymously. All links open in a new window."
+          subtitle="Explore the GraphQL server"
         />
         <CardText>
           Please notice that the links below will work only when you set the <b>USER_TOKEN_2_BYPASS_IP</b> to be your browser's IP address. All other IPs will not be able to authenticate for security reasons. Use that option with caution. It is best if it is set to 127.0.0.1 as by default.
+          <br/>
+          Server as queries as the currently logged in user. All links open in a new window.
           <br/>
           <a href="/graphql" target="_blank">GraphiQL browser</a>
           <br/>

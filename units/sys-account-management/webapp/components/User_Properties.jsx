@@ -41,11 +41,12 @@ class User_Properties extends React.Component
   {
     this.context.relay.commitUpdate(
       new Viewer_updateMutation( {
-        Viewer:             this.props.Viewer,
-        User_DisplayName:   this.refs.User_DisplayName.getValue( ),
-        User_ProfilePhoto:  this.state.User_ProfilePhoto,
-        User_Email:         this.refs.User_Email.getValue( ),
-        User_Locale:        this.refs.User_Locale.getValue( ),
+        Viewer:                 this.props.Viewer,
+        User_DisplayName:       this.refs.User_DisplayName.getValue( ),
+        User_ProfilePhoto:      this.state.User_ProfilePhoto,
+        User_Email:             this.refs.User_Email.getValue( ),
+        User_PhoneNumberMobile: this.refs.User_PhoneNumberMobile.getValue( ),
+        User_Locale:            this.refs.User_Locale.getValue( ),
       } )
     );
   };
@@ -76,6 +77,12 @@ class User_Properties extends React.Component
               ref="User_Email"
               defaultValue={ this.props.Viewer.User_Email }
               floatingLabelText="Email"
+              fullWidth={ true }
+            />
+            <TextField
+              ref="User_PhoneNumberMobile"
+              defaultValue={ this.props.Viewer.User_PhoneNumberMobile }
+              floatingLabelText="Mobile Phone #"
               fullWidth={ true }
             />
             <SelectField
@@ -120,6 +127,7 @@ export default Relay.createContainer( User_Properties, {
         User_DisplayName,
         User_ProfilePhoto,
         User_Email,
+        User_PhoneNumberMobile,
         User_Locale,
         ${Viewer_updateMutation.getFragment('Viewer')},
       }

@@ -9,11 +9,12 @@ import ViewerType from '../../../../graphql/type/ViewerType';
 export default mutationWithClientMutationId( {
   name: 'Viewer_update',
   inputFields: {
-    id:                 { type: new GraphQLNonNull( GraphQLID ) },
-    User_DisplayName:   { type: new GraphQLNonNull( GraphQLString ) },
-    User_ProfilePhoto:  { type: new GraphQLNonNull( GraphQLString ) },
-    User_Email:         { type: new GraphQLNonNull( GraphQLString ) },
-    User_Locale:        { type: new GraphQLNonNull( GraphQLString ) },
+    id:                      { type: new GraphQLNonNull( GraphQLID ) },
+    User_DisplayName:        { type: new GraphQLNonNull( GraphQLString ) },
+    User_ProfilePhoto:       { type: new GraphQLNonNull( GraphQLString ) },
+    User_Email:              { type: new GraphQLNonNull( GraphQLString ) },
+    User_PhoneNumberMobile:  { type: new GraphQLNonNull( GraphQLString ) },
+    User_Locale:             { type: new GraphQLNonNull( GraphQLString ) },
   },
   outputFields: {
     Viewer: {
@@ -26,6 +27,7 @@ export default mutationWithClientMutationId( {
     User_DisplayName,
     User_ProfilePhoto,
     User_Email,
+    User_PhoneNumberMobile,
     User_Locale,
   }, context, { rootValue: objectManager } ) => {
     var local_id = fromGlobalId( id ).id;
@@ -33,6 +35,7 @@ export default mutationWithClientMutationId( {
       id: local_id,
       User_DisplayName,
       User_ProfilePhoto,
+      User_PhoneNumberMobile,
       User_Email,
       User_Locale,
     } )

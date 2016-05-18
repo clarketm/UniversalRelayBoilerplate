@@ -279,6 +279,7 @@ type Viewer implements Node {
   User_DisplayName: String
   User_ProfilePhoto: String
   User_Email: String
+  User_PhoneNumberMobile: String
   User_Locale: String
   User_Token2: String
   compendiums(after: String, first: Int, before: String, last: Int): CompendiumsConnection
@@ -295,6 +296,7 @@ input Viewer_updateInput {
   User_DisplayName: String!
   User_ProfilePhoto: String!
   User_Email: String!
+  User_PhoneNumberMobile: String!
   User_Locale: String!
   clientMutationId: String!
 }
