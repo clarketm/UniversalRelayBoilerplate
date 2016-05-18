@@ -62,6 +62,11 @@ class User_Properties extends React.Component
           />
           <CardText>
             <TextField
+              value={ this.props.Viewer.User_AccountName }
+              floatingLabelText="Account Name (read only)"
+              fullWidth={ true }
+            />
+            <TextField
               ref="User_DisplayName"
               defaultValue={ this.props.Viewer.User_DisplayName }
               floatingLabelText="Display Name"
@@ -111,6 +116,7 @@ export default Relay.createContainer( User_Properties, {
     Viewer: ( ) => Relay.QL`
       fragment on Viewer{
         User_IsAnonymous,
+        User_AccountName,
         User_DisplayName,
         User_ProfilePhoto,
         User_Email,

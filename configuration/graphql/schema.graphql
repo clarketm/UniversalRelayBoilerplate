@@ -275,6 +275,7 @@ type TranslaticiarumsEdge {
 type Viewer implements Node {
   id: ID!
   User_IsAnonymous: Boolean
+  User_AccountName: String
   User_DisplayName: String
   User_ProfilePhoto: String
   User_Email: String
