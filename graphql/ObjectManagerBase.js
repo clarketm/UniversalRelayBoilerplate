@@ -9,6 +9,9 @@ import User from '../configuration/graphql/model/User';
 import { Uuid } from './CassandraClient.js';
 
 
+import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
+
+
 // Read environment
 require( 'dotenv' ).load( );
 
@@ -21,7 +24,7 @@ const User_0 = new User( {
   "User_ProfilePhoto": '',
   User_Email: '',
   User_Locale: '',
-  User_Token2: process.env.ANONYMOUS_USER_TOKEN_2
+  User_Token2: AnonymousUserToken2
 } );
 
 // Set persistence

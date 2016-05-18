@@ -3,8 +3,11 @@ import Relay, {
   RelayContext
 } from 'react-relay';
 
+import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
+
+
 let user_token_1 = null
-let user_token_2 = 'Hello. My name is React Native and I want access to your wonderful GraphQL server. kthx.'
+let user_token_2 = AnonymousUserToken2
 
 export default class NetworkLayer
 {

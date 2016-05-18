@@ -46,7 +46,7 @@ export function verifyUserAuthToken( a_User, req )
   else
   {
     const request_User_Token2 = req.get( 'user_token_2' );
-    if( request_User_Token2 == a_User.User_Token2 || request_User_Token2 == 'Hello. My name is React Native and I want access to your wonderful GraphQL server. kthx.' )
+    if( request_User_Token2 == a_User.User_Token2 )
       return Promise.resolve( a_User.id );
     else
     {
