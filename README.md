@@ -10,6 +10,7 @@ Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Mater
 [Live demo](http://universal-relay-boilerplate.herokuapp.com/)
 
 
+
 # Technologies used in Rebar and Universal Relay Boilerplate
 
 For the most up to date list of technologies used please go to [CodeFoundries.com](http://codefoundries.com/developer/rebar/technologies-used.html).
@@ -32,7 +33,6 @@ For the most up to date list of technologies used please go to [CodeFoundries.co
 | **Technology** | **Description**|
 |----------------|----------------|
 | [Node.js](/stack/node-js.html)                                  | Event-driven, non-blocking I/O runtime based on JavaScript that is lightweight and efficient. |
-| [Passport](http://passportjs.org/)                              | [Rebar](../../products/rebar.html) only. Simple, unobtrusive authentication for Node.js. |
 | [GraphQL](/stack/graph-ql.html)                                 | A query language created by Facebook in 2012 for describing the capabilities and requirements of data models for client‐server applications. |
 | [Express GraphQL](https://github.com/graphql/express-graphql)   | A Node.js express library that allows the creation of GraphQL servers. |
 | [Isomorphic Relay](https://github.com/denvned/isomorphic-relay) | Adds server side rendering support to React Relay. IMRSK fully utilizes this library, while waiting for [https://github.com/facebook/relay/issues/589](https://github.com/facebook/relay/issues/589). The eventual goal is to have full isomorphism with authentication. |
@@ -52,10 +52,10 @@ For the most up to date list of technologies used please go to [CodeFoundries.co
 | [NPM Scripts](https://docs.npmjs.com/misc/scripts)              | Glues all this together in a handy automated build. |
 
 
+
 # Development Setup
 
 For the most up to date setup instructions please go to [CodeFoundries.com](http://codefoundries.com/developer/rebar/technologies-used.html).
-
 
 ## Initial Development Machine Setup
 
@@ -66,7 +66,6 @@ The setup is for OS X only. Prerequisites:
 * **Install [Apache Cassandra](/developer/cassandra/cassandra-installation-mac.html)**.
 * **Make sure** that Node.js is at least version 5.0 and NPM is at least version 3.
 * **In order to speed up NPM** run `npm set progress=false`. This [speeds up NPM significantly](https://twitter.com/gavinjoyce/status/691773956144119808).
-
 
 ## Initial Project setup on local machine
 
@@ -79,7 +78,6 @@ In order to set up the project locally, perform the following steps:
 * **Start the server.** `npm run prod` or `npm run dev`.
 * **The application is available at:** `http://localhost:4444`.
 
-
 ## Running in development mode
 
 Two separate servers need to be started. The first one is the actual application in development mode. The second server is the webpack server which is to be run at all times for hot replace. This can be done with one command.
@@ -90,10 +88,43 @@ To open the app:
 
 * Navigate to `http://localhost:4444`, unless you specified a different IP and/or port either manually or by using `npm run update-ip`.
 
-
 ## Configuring to use Cassandra
 
 * Install and configure Cassandra following the steps in [Cassandra Installation on Mac](http://codefoundries.com/developer/cassandra/cassandra-installation-mac.html).
 * Verify that the name of the database in `\.env` is the name of the database you want.
 * Create the database with `npm run setup-cassandra-init`.
 * Configure to use Cassandra with `npm run config-da-cassandra`.
+
+
+
+# Further Details
+
+We keep the information about the Universal Relay Boilerplate and Rebar updated on our website:
+
+## Additional Information About the Boilerplate
+
+* [Environment Variables Configuration](http://codefoundries.com/developer/rebar/configuration-environment-variables.html).
+* [Customizing Material-UI Look and Feel](http://codefoundries.com/developer/rebar/configuration-material-ui.html).
+* [Configuration Folder](http://codefoundries.com/developer/rebar/configuration-folder.html).
+* [NPM Tasks](http://codefoundries.com/developer/rebar/npm-tasks.html).
+* [Project Structure](http://codefoundries.com/developer/rebar/project-structure.html).
+* [Troubleshooting](http://codefoundries.com/developer/rebar/troubleshooting.html).
+
+## Architecture Details
+
+The following documents explain in detail certain aspects of the architecture in depth:
+
+* [Cassandra, meet Relay. Relay, meet Cassandra](http://codefoundries.com/developer/cassandra/cassandra-meet-relay.html). Explanation of how Cassandra and Express GraphQL work together.
+* [Isomorphic React Relay](http://codefoundries.com/developer/single-page-application/isomorphic-react-relay.html). Explains the approach to isomorphism taken in implementing the starter kit.
+* [Isomorphic Server Variables](http://codefoundries.com/developer/single-page-application/isomorphic-server-variables.html). Using variables and settings in an isomorphic application - client rendering, server rendering.
+* [SEO Using Isomorphic Application With Relay and Helmet](http://codefoundries.com/developer/single-page-application/seo-isomorphic-react-helmet.html). How to make SEO-friendly pages with React, Relay and Helmet.
+
+## Additional resources
+
+The following documents, while not explicitly related to the boilerplate, can be useful while running and modifying the kit:
+
+* [Cassandra Cheatsheet](http://codefoundries.com/developer/cassandra/cassandra-cheatsheet.html). List of common commands in CQL.
+* [Cassandra Installation on Mac](http://codefoundries.com/developer/cassandra/cassandra-installation-mac.html). Simple steps for setting up an instance of Cassandra for development.
+* [Git Cheatsheet](http://codefoundries.com/developer/git/git-cheatsheet.html). Some useful git commands.
+* [React Cheatsheet](http://codefoundries.com/developer/react/react-cheatsheet.html). Techniques for working with React used in the starter kit.
+* [Where to Store Your JWTs - Cookies vs HTML5 Web Storage](https://stormpath.com/blog/where-to-store-your-jwts-cookies-vs-html5-web-storage/). Explains the advantages of using HTTP only cookies.
