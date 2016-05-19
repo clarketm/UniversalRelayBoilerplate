@@ -1,13 +1,19 @@
 # Universal Relay Boilerplate
-Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra
+Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra.
 
 [![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/code-foundries/code-foundries)
 
-[Project Overview](http://codefoundries.com/products/UniversalRelayBoilerplate.html)
+[Project Overview](http://codefoundries.com/products/UniversalRelayBoilerplate.html).
 
-[Project Details](http://codefoundries.com/developer/rebar/)
+[Project Details](http://codefoundries.com/developer/rebar/).
 
-[Live demo](http://universal-relay-boilerplate.herokuapp.com/)
+[Live demo](http://universal-relay-boilerplate.herokuapp.com/).
+
+
+
+# Updates and Announcements
+
+Please follow [@CodeFoundries](https://twitter.com/CodeFoundries) and [our blog](http://codefoundries.com/blog/) if you are interested in news about the boilerplate.
 
 
 
@@ -26,7 +32,7 @@ For the most up to date list of technologies used please go to [CodeFoundries.co
 | [Relay](/stack/relay.html)                                      | A Javascript framework for building data-driven react applications. |
 | [Material UI](http://www.material-ui.com/)                      | Library for implementing [Material Design](https://www.google.com/design/spec/material-design/introduction.html) in React. All user interface in this kit is built exclusively with Material UI components. |
 | [material-ui-country-flags](https://github.com/codefoundries/material-ui-country-flags) | Library with flag icons for Material-UI, used for the language selector. |
-| [material-ui-credit-card-icons](https://github.com/codefoundries/material-ui-credit-card-icons) | Library with icons for all major credit cards, used in the Stripe payment functionality. |
+| [material-ui-credit-card-icons](https://github.com/codefoundries/material-ui-credit-card-icons) | Library with icons for all major credit cards. |
 
 ## Server side
 
