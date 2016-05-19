@@ -40,6 +40,7 @@ For the most up to date list of technologies used please go to [CodeFoundries.co
 |----------------|----------------|
 | [Node.js](/stack/node-js.html)                                  | Event-driven, non-blocking I/O runtime based on JavaScript that is lightweight and efficient. |
 | [GraphQL](/stack/graph-ql.html)                                 | A query language created by Facebook in 2012 for describing the capabilities and requirements of data models for client‐server applications. |
+| [GraphiQL](https://github.com/graphql/graphiql)                 | An graphical interactive in-browser GraphQL IDE. It allows to test the entire schema provided by GraphQL and can be an excellent tool for exploring the boilerplate, as well as a part of applications built on top of it. |
 | [Express GraphQL](https://github.com/graphql/express-graphql)   | A Node.js express library that allows the creation of GraphQL servers. |
 | [Isomorphic Relay](https://github.com/denvned/isomorphic-relay) | Adds server side rendering support to React Relay. IMRSK fully utilizes this library, while waiting for [https://github.com/facebook/relay/issues/589](https://github.com/facebook/relay/issues/589). The eventual goal is to have full isomorphism with authentication. |
 | [Data Loader](https://github.com/facebook/dataloader)           | Generic utility to be used as part of your application's data fetching layer to provide a consistent API over various backends and reduce requests to those backends via batching and caching. |
