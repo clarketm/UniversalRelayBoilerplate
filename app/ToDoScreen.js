@@ -1,6 +1,6 @@
 'use strict';
 
-import TodoApp from '../units/starter-kit-example-todo/app/components/ToDoApp';
+import TodoApp from '../units/urb-example-todo/app/components/ToDoApp';
 import TodoAppRoute from './TodoAppRoute';
 import React from 'react'
 import { View, StyleSheet } from 'react-native'

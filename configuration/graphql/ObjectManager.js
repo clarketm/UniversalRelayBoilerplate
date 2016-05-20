@@ -2,10 +2,10 @@
 
 import ObjectManagerBase from '../../graphql/ObjectManagerBase';
 
-import Compendium from '../../units/starter-kit-example-compendium/graphql/model/Compendium';
-import Ensayo from '../../units/starter-kit-example-ensayo/graphql/model/Ensayo';
-import ToDo from '../../units/starter-kit-example-todo/graphql/model/ToDo';
-import Translaticiarum from '../../units/starter-kit-example-translaticiarum/graphql/model/Translaticiarum';
+import Compendium from '../../units/urb-example-compendium/graphql/model/Compendium';
+import Ensayo from '../../units/urb-example-ensayo/graphql/model/Ensayo';
+import ToDo from '../../units/urb-example-todo/graphql/model/ToDo';
+import Translaticiarum from '../../units/urb-example-translaticiarum/graphql/model/Translaticiarum';
 import User from '../../configuration/graphql/model/User';
 
 export default class ObjectManager extends ObjectManagerBase
