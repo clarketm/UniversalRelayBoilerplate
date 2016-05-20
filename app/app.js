@@ -26,9 +26,9 @@ export default class Example extends React.Component
       <Router createReducer={ reducerCreate }>
         <Scene key="modal" component={ Modal }>
           <Scene key="root">
-            <Scene key="launch" component={ Home } title="Home" initial={ true } />
-            <Scene key="register" component={ Login } title="Login" />
-            <Scene key="ToDo" component={ ToDoScreen } title="To Do" />
+            <Scene key="home" component={ Home } title="Home" initial={ true } />
+            <Scene key="home_login" component={ Login } title="Login" />
+            <Scene key="home_ToDo" component={ ToDoScreen } title="To Do" />
           </Scene>
         </Scene>
       </Router>

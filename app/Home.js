@@ -17,8 +17,8 @@ class Home extends React.Component {
         return (
             <View {...this.props}  style={styles.container}>
                 <Text>Home page</Text>
-                <Button onPress={Actions.register}>Login</Button>
-                <Button onPress={Actions.ToDo}>To Do</Button>
+                <Button onPress={Actions.home_login}>Login</Button>
+                <Button onPress={Actions.home_ToDo}>To Do</Button>
             </View>
         );
     }

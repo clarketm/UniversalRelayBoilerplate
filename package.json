@@ -97,7 +97,7 @@
     "react-native": "0.26.0",
     "react-native-button": "1.6.0",
     "react-native-listitem": "1.0.5",
-    "react-native-router-flux": "git+https://github.com/aksonov/react-native-router-flux.git",
+    "react-native-router-flux": "3.26.1",
     "react-native-swipeout": "2.0.12",
     "react-relay": "0.8.1",
     "react-router": "2.4.0",
