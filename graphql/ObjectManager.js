@@ -87,13 +87,6 @@ export default class ObjectManager
   static RegisterTriggerForRemove( entityName: string, handler: any )
   {
     entityDefinitions[ entityName ].TriggersForRemove.push( handler )
-    // const entityDefinition = entityDefinitions[ entityName ]
-    //
-    // let foundTrigger = entityDefinition.TriggersForRemove[ entityName ]
-    // if( foundTrigger == null )
-    //   foundTrigger = entityDefinition.TriggersForRemove[ entityName ] = [ ]
-    //
-    // foundTrigger.push( handler )
   }
 
   setViewerUserId( Viewer_User_id: string )
@@ -195,7 +188,7 @@ export default class ObjectManager
     const entityDefinition = entityDefinitions[ entityName ]
 
     return executeTriggers( entityDefinition.TriggersForAdd, fields )
-    .then( ObjectPersister.ObjectPersister_add( entityName, fields, entityDefinition.ObjectType ) )
+    .then( ( ) => ObjectPersister.ObjectPersister_add( entityName, fields, entityDefinition.ObjectType ) )
     .then( id => {
       fields.id = id
       this.invalidateLoaderCache( entityName, fields )
