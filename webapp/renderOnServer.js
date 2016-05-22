@@ -64,7 +64,7 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
         {
           // Setting up static, global navigator object to pass user agent to material-ui. Since the function is synchronous,
           // it is OK to do so.
-          GLOBAL.navigator = { userAgent: req.headers[ 'user-agent' ] }
+          global.navigator = { userAgent: req.headers[ 'user-agent' ] }
 
           // Also, set width to emulate phone, tablet or desktop
           const md = new MobileDetect( req.headers[ 'user-agent' ] )
@@ -77,10 +77,10 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
           else
             innerWidth = 1100 // Will qualify as LARGE
 
-          GLOBAL.window = { innerWidth: innerWidth }
+          global.window = { innerWidth: innerWidth }
 
           // Also set global location for the leftNav
-          GLOBAL.location = { pathname: req.originalUrl };
+          global.location = { pathname: req.originalUrl };
 
           // Get the react output HTML
           const reactOutput = ReactDOMServer.renderToString( IsomorphicRouter.render(props) );
