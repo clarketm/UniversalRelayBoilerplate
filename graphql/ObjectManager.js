@@ -2,18 +2,16 @@
 
 import DataLoader from 'dataloader'
 
+import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
 import ObjectPersisterCassandra from './ObjectPersisterCassandra.js'
 import ObjectPersisterMemory from './ObjectPersisterMemory.js'
-
 import User from '../configuration/graphql/model/User'
 import { Uuid } from './CassandraClient.js'
 
 
-import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
-
-
 // Read environment
 require( 'dotenv' ).load( )
+
 
 // Anonymous user
 const User_0 = new User( {
@@ -34,6 +32,17 @@ const ObjectPersister = (process.env.OBJECT_PERSISTENCE == 'memory') ? ObjectPer
 // Static set of entity definitions
 const entityDefinitions = { }
 
+function executeTriggers( arrTriggers, fields )
+{
+  const arrPromises = [ ]
+  for( let trigger of arrTriggers )
+  {
+    arrPromises.push( trigger( fields ) )
+  }
+
+  return Promise.all( arrPromises )
+}
+
 export default class ObjectManager
 {
   Viewer_User_id: string
@@ -50,7 +59,41 @@ export default class ObjectManager
     if( entityName in entityDefinitions )
       throw new Error( "Entity already registered: " + entityName )
 
-    entityDefinitions[ entityName ] = { EntityType: EntityType }
+    entityDefinitions[ entityName ] = {
+      EntityName: entityName,
+      EntityType: EntityType,
+      TriggersForAdd: [ ],
+      TriggersForUpdate: [ ],
+      TriggersForRemove: [ ]
+    }
+  }
+
+  static RegisterTriggerForAdd( entityName: string, handler: any )
+  {
+    entityDefinitions[ entityName ].TriggersForAdd.push( handler )
+  }
+
+  static RegisterTriggerForUpdate( entityName: string, handler: any )
+  {
+    entityDefinitions[ entityName ].TriggersForUpdate.push( handler )
+  }
+
+  static RegisterTriggerForAddAndUpdate( entityName: string, handler: any )
+  {
+    ObjectManager.RegisterTriggerForAdd( entityName, handler )
+    ObjectManager.RegisterTriggerForUpdate( entityName, handler )
+  }
+
+  static RegisterTriggerForRemove( entityName: string, handler: any )
+  {
+    entityDefinitions[ entityName ].TriggersForRemove.push( handler )
+    // const entityDefinition = entityDefinitions[ entityName ]
+    //
+    // let foundTrigger = entityDefinition.TriggersForRemove[ entityName ]
+    // if( foundTrigger == null )
+    //   foundTrigger = entityDefinition.TriggersForRemove[ entityName ] = [ ]
+    //
+    // foundTrigger.push( handler )
   }
 
   setViewerUserId( Viewer_User_id: string )
@@ -149,9 +192,10 @@ export default class ObjectManager
 
   add( entityName: string, fields: any )
   {
-    const ObjectType = entityDefinitions[ entityName ].EntityType
+    const entityDefinition = entityDefinitions[ entityName ]
 
-    return ObjectPersister.ObjectPersister_add( entityName, fields, ObjectType )
+    return executeTriggers( entityDefinition.TriggersForAdd, fields )
+    .then( ObjectPersister.ObjectPersister_add( entityName, fields, entityDefinition.ObjectType ) )
     .then( id => {
       fields.id = id
       this.invalidateLoaderCache( entityName, fields )
@@ -161,7 +205,10 @@ export default class ObjectManager
 
   update( entityName: string, fields: any )
   {
-    return ObjectPersister.ObjectPersister_update( entityName, fields )
+    const entityDefinition = entityDefinitions[ entityName ]
+
+    return executeTriggers( entityDefinition.TriggersForUpdate, fields )
+    .then( ObjectPersister.ObjectPersister_update( entityName, fields ) )
     .then( ( ) => {
       this.invalidateLoaderCache( entityName, fields )
     } )
@@ -170,7 +217,10 @@ export default class ObjectManager
 
   remove( entityName: string, fields: any )
   {
-    return ObjectPersister.ObjectPersister_remove( entityName, fields )
+    const entityDefinition = entityDefinitions[ entityName ]
+
+    return executeTriggers( entityDefinition.TriggersForRemove, fields )
+    .then( ObjectPersister.ObjectPersister_remove( entityName, fields ) )
     .then( ( ) => {
       this.invalidateLoaderCache( entityName, fields )
     } )

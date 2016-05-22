@@ -8,8 +8,10 @@ import path from 'path';
 import process from 'process';
 
 import auth from './auth'; // Authentication server
-import webapp from '../webapp/server'; // Isomorphic React server
 import graphql from '../graphql/server'; // GraphQL server
+import serverExtensions from '../configuration/server/serverExtensions'
+import webapp from '../webapp/server'; // Isomorphic React server
+
 
 // Read environment
 require( 'dotenv' ).load( );
@@ -65,6 +67,9 @@ router.use( express.static( path.resolve( __dirname + '/../public/' ), { maxAge:
 
 // Application with routes
 router.use( '/*', webapp );
+
+// Add extensions - custom configurations
+serverExtensions( router )
 
 let server = router.listen( process.env.PORT, process.env.HOST );
 
