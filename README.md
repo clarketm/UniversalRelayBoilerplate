@@ -1,7 +1,12 @@
+[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&maxAge=2592000)](https://twitter.com/CodeFoundries)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/code-foundries/code-foundries)
+[![GitHub issues](https://img.shields.io/github/issues/codefoundries/UniversalRelayBoilerplate.svg)](https://github.com/codefoundries/UniversalRelayBoilerplate/issues)
+
+
 # Universal Relay Boilerplate (URB)
 Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra.
 
-[![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/code-foundries/code-foundries)
 
 [Project Overview](http://codefoundries.com/products/UniversalRelayBoilerplate.html).
 
