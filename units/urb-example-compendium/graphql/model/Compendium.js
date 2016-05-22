@@ -1,3 +1,5 @@
+import ObjectManager from '../../../../graphql/ObjectManager'
+
 // Class used by GraphQL Server
 export default class Compendium
 {
@@ -22,3 +24,5 @@ export default class Compendium
     this.Compendium_LikedSunset_OtherText = fields.Compendium_LikedSunset_OtherText;
   }
 }
+
+ObjectManager.registerEntity( 'Compendium', Compendium )

@@ -1,3 +1,5 @@
+import ObjectManager from '../../../../graphql/ObjectManager'
+
 // Class used by GraphQL Server
 export default class Translaticiarum
 {
@@ -10,3 +12,5 @@ export default class Translaticiarum
     this.Translaticiarum_Type = fields.Translaticiarum_Type;
   }
 }
+
+ObjectManager.registerEntity( 'Translaticiarum', Translaticiarum )

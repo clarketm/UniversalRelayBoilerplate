@@ -1,3 +1,5 @@
+import ObjectManager from '../../../../graphql/ObjectManager'
+
 // Class used by GraphQL Server
 export default class ToDo
 {
@@ -9,3 +11,5 @@ export default class ToDo
     this.ToDo_Complete = fields.ToDo_Complete;
   }
 }
+
+ObjectManager.registerEntity( 'ToDo', ToDo )

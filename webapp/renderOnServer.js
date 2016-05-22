@@ -11,7 +11,7 @@ import { match } from 'react-router';
 
 import { getUserByCookie, serveAuthenticationFailed } from '../server/credentials_check.js';
 import isomorphicVars from '../configuration/webapp/scripts/isomorphicVars';
-import ObjectManager from '../configuration/graphql/ObjectManager';
+import ObjectManager from '../graphql/ObjectManager';
 import routes from '../configuration/webapp/routes';
 import schema from '../graphql/schema'; // Schema for GraphQL server
 

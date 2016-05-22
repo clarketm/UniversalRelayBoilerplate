@@ -1,3 +1,5 @@
+import ObjectManager from '../../../../graphql/ObjectManager'
+
 // Class used by GraphQL Server
 export default class Ensayo
 {
@@ -10,3 +12,5 @@ export default class Ensayo
     this.Ensayo_Content = fields.Ensayo_Content;
   }
 }
+
+ObjectManager.registerEntity( 'Ensayo', Ensayo )
