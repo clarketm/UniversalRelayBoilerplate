@@ -48,6 +48,9 @@ export default class ObjectManager
     if( entityName in entityDefinitions )
       throw new Error( "Entity already registered: " + entityName )
 
+    // In order to be able to access the name as a static property of the type
+    EntityType.entityName = entityName
+
     entityDefinitions[ entityName ] = {
       EntityName: entityName,
       EntityType: EntityType,
