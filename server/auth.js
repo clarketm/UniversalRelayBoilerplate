@@ -89,7 +89,7 @@ auth.post('/createuser', (req, res) =>
           User_Email: User_Email,
           User_PhoneNumberMobile: '',
           User_Locale: '',
-          User_Token2: Math.random( ).toString( 36 ) + Math.random( ).toString( 36 )
+          User_Token2: Math.random( ).toString( 36 ).substring( 2 ) + Math.random( ).toString( 36 ).substring( 2 )
         } )
       } )
   } )
