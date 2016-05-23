@@ -8,15 +8,11 @@ import jwt from 'jwt-simple'
 import authExtensions from '../configuration/server/authExtensions'
 import delayPromise from '../scripts/delayPromise'
 import ObjectManager from '../graphql/ObjectManager'
+import { validateEmail } from '../scripts/validation'
+
 
 // Read environment
 require( 'dotenv' ).load( );
-
-function validateEmail( email )
-{
-    const re = /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/
-    return re.test( email )
-}
 
 
 let auth = express( );
@@ -70,7 +66,6 @@ auth.post('/createuser', (req, res) =>
 
   let User_AccountName = req.body.User_AccountName.toLowerCase( );
   let User_AccountPassword = req.body.User_AccountPassword;
-
   objectManager.getListBy( 'User', 'User_AccountName', User_AccountName )
   .then( ( arr_Users ) =>
   {
@@ -96,9 +91,9 @@ auth.post('/createuser', (req, res) =>
           User_Locale: '',
           User_Token2: Math.random( ).toString( 36 ) + Math.random( ).toString( 36 )
         } )
-
       } )
   } )
+  // Question - why are we loading the user? It might not yet be in DB ....
   .then( ( user_id ) => objectManager.getOneById( 'User', user_id ) )
   .then( ( a_User ) =>
   {

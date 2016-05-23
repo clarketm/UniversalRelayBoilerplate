@@ -32,17 +32,6 @@ const ObjectPersister = (process.env.OBJECT_PERSISTENCE == 'memory') ? ObjectPer
 // Static set of entity definitions
 const entityDefinitions = { }
 
-function executeTriggers( arrTriggers, fields )
-{
-  const arrPromises = [ ]
-  for( let trigger of arrTriggers )
-  {
-    arrPromises.push( trigger( fields ) )
-  }
-
-  return Promise.all( arrPromises )
-}
-
 export default class ObjectManager
 {
   Viewer_User_id: string
@@ -127,16 +116,16 @@ export default class ObjectManager
 
   getLoader( entityName: string, fieldName: string, multipleResults: boolean )
   {
-    const ObjectType = entityDefinitions[ entityName ].EntityType
+    const EntityType = entityDefinitions[ entityName ].EntityType
 
     let loadersList = multipleResults ? this.getLoadersMultiple( entityName ) : this.getLoadersSingle( entityName )
     let loader = loadersList[ fieldName ]
     if( loader == null )
     {
       if( multipleResults )
-        loader = new DataLoader( values => ObjectPersister.ObjectPersister_getList( entityName, ObjectType, fieldName, values ) )
+        loader = new DataLoader( values => ObjectPersister.ObjectPersister_getList( entityName, EntityType, fieldName, values ) )
       else
-        loader = new DataLoader( values => ObjectPersister.ObjectPersister_get( entityName, ObjectType, fieldName, values ) )
+        loader = new DataLoader( values => ObjectPersister.ObjectPersister_get( entityName, EntityType, fieldName, values ) )
 
       loadersList[ fieldName ] = loader
     }
@@ -183,16 +172,35 @@ export default class ObjectManager
     }
   }
 
+  executeTriggers( arrTriggers, fields )
+  {
+    const arrPromises = [ ]
+    for( let trigger of arrTriggers )
+    {
+      arrPromises.push( trigger( this, fields ) )
+    }
+
+    return Promise.all( arrPromises )
+  }
+
   add( entityName: string, fields: any )
   {
     const entityDefinition = entityDefinitions[ entityName ]
 
-    return executeTriggers( entityDefinition.TriggersForAdd, fields )
-    .then( ( ) => ObjectPersister.ObjectPersister_add( entityName, fields, entityDefinition.ObjectType ) )
-    .then( id => {
-      fields.id = id
+    if( entityDefinition == null ) console.log( 'Cound not find entity'+ entityName )
+
+    // Generate primary key
+    fields.id = Uuid.random( )
+
+    // If this is a user ID
+    if( entityName == 'User' )
+      this.setViewerUserId( fields.id.toString( ) )
+
+    return this.executeTriggers( entityDefinition.TriggersForAdd, fields )
+    .then( ( ) => ObjectPersister.ObjectPersister_add( entityName, fields, entityDefinition.EntityType ) )
+    .then( ( ) => {
       this.invalidateLoaderCache( entityName, fields )
-      return id
+      return fields.id
     } )
   }
 
@@ -200,7 +208,9 @@ export default class ObjectManager
   {
     const entityDefinition = entityDefinitions[ entityName ]
 
-    return executeTriggers( entityDefinition.TriggersForUpdate, fields )
+    if( entityDefinition == null ) console.log( 'Cound not find entity'+ entityName )
+
+    return this.executeTriggers( entityDefinition.TriggersForUpdate, fields )
     .then( ObjectPersister.ObjectPersister_update( entityName, fields ) )
     .then( ( ) => {
       this.invalidateLoaderCache( entityName, fields )
@@ -212,7 +222,7 @@ export default class ObjectManager
   {
     const entityDefinition = entityDefinitions[ entityName ]
 
-    return executeTriggers( entityDefinition.TriggersForRemove, fields )
+    return this.executeTriggers( entityDefinition.TriggersForRemove, fields )
     .then( ObjectPersister.ObjectPersister_remove( entityName, fields ) )
     .then( ( ) => {
       this.invalidateLoaderCache( entityName, fields )
