@@ -65,11 +65,11 @@ router.use( '/auth', auth );
 let oneYear = 365*86400000;
 router.use( express.static( path.resolve( __dirname + '/../public/' ), { maxAge: oneYear } ) );
 
-// Application with routes
-router.use( '/*', webapp );
-
 // Add extensions - custom configurations
 serverExtensions( router )
+
+// Application with routes
+router.use( '/*', webapp );
 
 let server = router.listen( process.env.PORT, process.env.HOST );
 
