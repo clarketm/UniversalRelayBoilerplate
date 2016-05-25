@@ -1,12 +1,4 @@
 {
-  "name": "UniversalRelayBoilerplate",
-  "description": "Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra",
-  "version": "6.1.0",
-  "homepage": "http://codefoundries.com/products/starter-kit.html",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/codefoundries/UniversalRelayBoilerplate.git"
-  },
   "engines": {
     "node": ">=4",
     "npm": ">=3"
@@ -116,6 +108,14 @@
     "rnpm-plugin-upgrade": "^0.26.0",
     "webpack-dev-server": "1.14.1"
   },
+  "name": "UniversalRelayBoilerplate",
+  "description": "Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra",
+  "homepage": "http://codefoundries.com/products/starter-kit.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codefoundries/UniversalRelayBoilerplate.git"
+  },
+  "version": "6.1.0",
   "private": false,
   "license": "MIT"
 }
