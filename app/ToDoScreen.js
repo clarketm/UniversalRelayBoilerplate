@@ -9,7 +9,6 @@ import { RootContainer } from 'react-relay';
 const styles = StyleSheet.create( {
     container: {
         flex: 1,
-        marginTop: 44,
     },
 } )
 
