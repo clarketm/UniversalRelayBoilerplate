@@ -4,12 +4,10 @@ import { DefaultRenderer } from 'react-native-router-flux';
 
 import DrawerView from './DrawerView';
 
-const propTypes = {
-  navigationState: PropTypes.object,
-};
-
-class NavigationDrawer extends React.Component {
-  render() {
+class NavigationDrawer extends React.Component
+{
+  render( )
+  {
     const children = this.props.navigationState.children;
     return (
       <Drawer
@@ -30,6 +28,8 @@ class NavigationDrawer extends React.Component {
   }
 }
 
-NavigationDrawer.propTypes = propTypes;
+NavigationDrawer.propTypes = {
+  navigationState: PropTypes.object,
+}
 
-export default NavigationDrawer;
+export default NavigationDrawer

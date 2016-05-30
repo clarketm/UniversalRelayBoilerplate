@@ -14,7 +14,7 @@ const styles = StyleSheet.create( {
 
 
 
-export default class UniversalRelayBoilerplate extends React.Component
+export default class ToDoScreen extends React.Component
 {
   render( ) : void
   {
