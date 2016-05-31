@@ -2,12 +2,12 @@
 
 import Relay from 'react-relay';
 
-export default class TodoAppRoute extends Relay.Route {
+export default class ToDoScreenRoute extends Relay.Route {
   static paramDefinitions = {
     status: {required: false},
   };
   static queries = {
     Viewer: () => Relay.QL`query { Viewer }`,
   };
-  static routeName = 'TodoAppRoute';
+  static routeName = 'ToDoScreenRoute';
 }

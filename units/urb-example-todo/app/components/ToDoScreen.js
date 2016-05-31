@@ -18,7 +18,7 @@ import {
 
 
 
-class TodoApp extends React.Component {
+class ToDoScreen extends React.Component {
   constructor(props, context) {
     super(props, context);
     this._handleStatusChange = this._handleStatusChange.bind(this);
@@ -61,7 +61,7 @@ class TodoApp extends React.Component {
   }
 }
 
-export default Relay.createContainer(TodoApp, {
+export default Relay.createContainer(ToDoScreen, {
   initialVariables: {
     status: 'any',
   },
