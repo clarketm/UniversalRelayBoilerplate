@@ -2,7 +2,7 @@ import React from 'react'
 import { Scene } from 'react-native-router-flux'
 
 
-import TabIcon from '../../app/TabIcon'
+import TabIcon from '../../app/components/TabIcon'
 
 import ToDoScene from '../../units/urb-example-todo/app/components/ToDoScene'
 import Login from '../../units/urb-account-management/app/components/Login'

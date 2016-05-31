@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Image } from 'react-native'
 import { Scene, Reducer, Router, Modal } from 'react-native-router-flux'
 
 import NavigationDrawer from './NavigationDrawer'
-import routes from '../configuration/app/routes'
+import routes from '../../configuration/app/routes'
 
 const styles = StyleSheet.create( {
   container: {
@@ -43,7 +43,7 @@ class MenuButton extends React.Component {
 				onPress={() => drawer.open()}
 			>
 				<Image
-					source={require('../configuration/app/images/drawer_open.png')}
+					source={require('../../configuration/app/images/drawer_open.png')}
 					style={{marginTop:20, height: 44, width: 44}}
 				/>
 			</TouchableOpacity>
@@ -56,7 +56,7 @@ MenuButton.contextTypes = {
 }
 
 
-export default class Example extends React.Component
+export default class ApplicationMain extends React.Component
 {
   render( )
   {
