@@ -15,7 +15,7 @@ const styles = StyleSheet.create( {
   button: {
     height: 44,
     marginLeft: 15,
-    width: 285,
+    alignSelf: 'stretch',
     alignItems: 'flex-start',
     justifyContent: 'center',
     borderBottomColor: '#606060',
