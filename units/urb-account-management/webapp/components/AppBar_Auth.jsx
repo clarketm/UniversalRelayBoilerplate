@@ -24,6 +24,8 @@ import {
   AccountPasswordLengthMin,
   AccountPasswordStrengthMin,
   AccountPasswordStrengthGood,
+  AccountNameAlias,
+  AccountNameAdditionalValidation,
 } from '../../../../configuration/units/urb-account-management/accountNameAndPasswordRequirements';
 import {ExtensionsForLogIn, ExtensionsForCreateUser} from '../../../../configuration/units/urb-account-management/webapp/components/AccountManagementExtensions.jsx'
 import { postXHR } from '../../../../webapp/scripts/XHR';
@@ -35,6 +37,13 @@ const styles = {
   },
 };
 
+function isAccountNameAcceptable( AccountName )
+{
+  if( AccountName.length <  AccountNameLengthMin )
+    return false
+
+  return AccountNameAdditionalValidation( AccountName )
+}
 
 class AppBar_Auth extends React.Component
 {
@@ -205,7 +214,7 @@ class AppBar_Auth extends React.Component
         ] }
       >
         <TextField
-          floatingLabelText="E-Mail"
+          floatingLabelText={ AccountNameAlias }
           fullWidth={ true }
           value={ this.state.User_AccountName }
           onKeyDown={ this._handle_onKeyDown_AuthenticationChallenge_User_AccountName }
@@ -258,7 +267,7 @@ class AppBar_Auth extends React.Component
 
   _handle_onChange_AuthenticationChallenge_User_AccountName_or_Password = ( AccountName, AccountPassword ) =>
   {
-    this.setState( { Account_information_Supplied: AccountName.length >= AccountNameLengthMin && AccountPassword.length >= AccountPasswordLengthMin } );
+    this.setState( { Account_information_Supplied: isAccountNameAcceptable( AccountName ) && AccountPassword.length >= AccountPasswordLengthMin } );
   };
 
   _handle_onTouchTap_AuthenticationChallenge_LogIn = ( ) =>
@@ -370,13 +379,13 @@ class AppBar_Auth extends React.Component
             onTouchTap={ this._handle_onTouchTap_CreateUser_Create }
             disabled={
               this.state.Dialog_CreateUser_AccountPasswordStrength < AccountPasswordStrengthMin
-              || this.state.User_AccountName.length < AccountNameLengthMin
+              || ( ! isAccountNameAcceptable( this.state.User_AccountName ) )
             }
           />,
         ] }
       >
         <TextField
-          floatingLabelText="E-Mail"
+          floatingLabelText={ AccountNameAlias }
           fullWidth={ true }
           value={ this.state.User_AccountName }
           onKeyDown={ this._handle_onKeyDown_CreateUser_User_AccountName }
@@ -436,7 +445,7 @@ class AppBar_Auth extends React.Component
   {
     const passwordScore = scorePassword( AccountPassword );
     this.setState( {
-      Account_information_Supplied: AccountName.length >= AccountNameLengthMin && AccountPassword.length >= AccountPasswordLengthMin,
+      Account_information_Supplied: isAccountNameAcceptable( AccountName ) && AccountPassword.length >= AccountPasswordLengthMin,
       Dialog_CreateUser_AccountPasswordStrength: passwordScore,
     } );
   };
