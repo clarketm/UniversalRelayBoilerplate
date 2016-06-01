@@ -25,7 +25,7 @@ import {
   AccountPasswordStrengthMin,
   AccountPasswordStrengthGood,
 } from '../../../../configuration/units/urb-account-management/accountNameAndPasswordRequirements';
-import {ExtensionsForLogIn, ExtensionsForCreateUser} from '../../../../configuration/webapp/components/AccountManagementExtensions.jsx'
+import {ExtensionsForLogIn, ExtensionsForCreateUser} from '../../../../configuration/units/urb-account-management/webapp/components/AccountManagementExtensions.jsx'
 import { postXHR } from '../../../../webapp/scripts/XHR';
 import scorePassword from '../../../../configuration/units/urb-account-management/scripts/scorePassword';
 
