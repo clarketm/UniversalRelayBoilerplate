@@ -21,12 +21,16 @@ require( 'dotenv' ).load( );
 // Load up isomorphic vars here, for server rendering
 const isoVars = JSON.stringify( isomorphicVars( ) );
 
+const httpError500FileName = path.resolve( __dirname, '../configuration/server/httpError/500.html' )
+
 export function serveFailure( type, res, message, err )
 {
   log.log( type, 'Server error: ' + message, err );
 
-  res.status( 500 ).send( 'Server error' );
+  res.status( 500 ).sendFile( httpError500FileName );
 }
+
+const httpError404FileName = path.resolve( __dirname, '../configuration/server/httpError/404.html' )
 
 export default ( req, res, next, assetsPath ) =>
 {
@@ -38,7 +42,7 @@ export default ( req, res, next, assetsPath ) =>
     else if( renderProps )
       reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps );
     else
-        res.status( 404 ).send( 'Not Found' );
+        res.status( 404 ).sendFile( httpError404FileName );
   } );
 };
 

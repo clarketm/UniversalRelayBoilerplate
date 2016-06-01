@@ -1,6 +1,7 @@
 /* @flow weak */
 
 import jwt from 'jwt-simple'
+import path from 'path';
 
 import log from './log.js'
 
@@ -55,10 +56,12 @@ export function verifyUserAuthToken( a_User, req )
   }
 }
 
+const httpError403FileName = path.resolve( __dirname, '../configuration/server/httpError/403.html' )
+
 export function serveAuthenticationFailed( res, message )
 {
   log.log( 'warn', 'Checking credentials failed: ' + message )
 
   res.cookie( 'user_token_1', '', { httpOnly: true, expires: new Date( 1 ) } ) // Expire cookie. Only way to 'delete'
-  res.status( 403 ).send( 'Authentication failed' )
+  res.status( 403 ).sendFile( httpError403FileName )
 }
