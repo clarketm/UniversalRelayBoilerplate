@@ -10,9 +10,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
 
+import {
+  AccountPasswordStrengthMin,
+  AccountPasswordStrengthGood,
+} from '../../../../configuration/units/urb-account-management/accountNameAndPasswordRequirements';
 import { RequiresAuthenticationNotice } from './RequiresAuthentication.js';
-import scorePassword from '../../scripts/scorePassword';
-
+import scorePassword from '../../../../configuration/units/urb-account-management/scripts/scorePassword';
 import Viewer_updatePasswordMutation from '../../relay/Viewer_updatePasswordMutation';
 
 
@@ -179,7 +182,12 @@ class User_Properties extends React.Component
             <LinearProgress
               mode="determinate"
               value={ this.state.User_AccountPasswordStrength }
-              color={ this.state.User_AccountPasswordStrength < 60 ? "#ff0000" : ( this.state.User_AccountPasswordStrength < 80 ? "#c0c000" : "#00d000" ) }
+              color={ this.state.User_AccountPasswordStrength < AccountPasswordStrengthMin ?
+                "#ff0000"
+                : ( this.state.User_AccountPasswordStrength < AccountPasswordStrengthGood ?
+                  "#c0c000"
+                  : "#00d000" )
+              }
             />
             <br/>
             <div>

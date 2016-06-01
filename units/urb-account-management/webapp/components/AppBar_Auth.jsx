@@ -19,9 +19,15 @@ import TextField from 'material-ui/TextField';
 import {white} from 'material-ui/styles/colors';
 import { registerAuthenticationRequiredCallback } from './RequiresAuthentication.js';
 
+import {
+  AccountNameLengthMin,
+  AccountPasswordLengthMin,
+  AccountPasswordStrengthMin,
+  AccountPasswordStrengthGood,
+} from '../../../../configuration/units/urb-account-management/accountNameAndPasswordRequirements';
 import {ExtensionsForLogIn, ExtensionsForCreateUser} from '../../../../configuration/webapp/components/AccountManagementExtensions.jsx'
 import { postXHR } from '../../../../webapp/scripts/XHR';
-import scorePassword from '../../scripts/scorePassword';
+import scorePassword from '../../../../configuration/units/urb-account-management/scripts/scorePassword';
 
 const styles = {
   popover: {
@@ -234,7 +240,7 @@ class AppBar_Auth extends React.Component
 
   _handle_onKeyDown_AuthenticationChallenge_User_AccountName = ( e ) =>
   {
-    if (e.keyCode === 13)
+    if( e.keyCode === 13 )
       this.refs.User_AccountPassword.focus( );
   };
 
@@ -246,13 +252,13 @@ class AppBar_Auth extends React.Component
 
   _handle_onKeyDown_AuthenticationChallenge_User_AccountPassword = ( e ) =>
   {
-    if (e.keyCode === 13)
+    if( e.keyCode === 13 )
       this._handle_onTouchTap_AuthenticationChallenge_LogIn( );
   };
 
   _handle_onChange_AuthenticationChallenge_User_AccountName_or_Password = ( AccountName, AccountPassword ) =>
   {
-    this.setState( { Account_information_Supplied: AccountName.length > 3 && AccountPassword.length > 3 } );
+    this.setState( { Account_information_Supplied: AccountName.length >= AccountNameLengthMin && AccountPassword.length >= AccountPasswordLengthMin } );
   };
 
   _handle_onTouchTap_AuthenticationChallenge_LogIn = ( ) =>
@@ -362,7 +368,10 @@ class AppBar_Auth extends React.Component
           <FlatButton key="Cancel" label="Cancel" onTouchTap={ this._handle_onTouchTap_CreateUser_Cancel } />,
           <FlatButton key="Create" label="Create" primary={true}
             onTouchTap={ this._handle_onTouchTap_CreateUser_Create }
-            disabled={ this.state.Dialog_CreateUser_AccountPasswordStrength < 60 || this.state.User_AccountName.length < 4 }
+            disabled={
+              this.state.Dialog_CreateUser_AccountPasswordStrength < AccountPasswordStrengthMin
+              || this.state.User_AccountName.length < AccountNameLengthMin
+            }
           />,
         ] }
       >
@@ -386,7 +395,13 @@ class AppBar_Auth extends React.Component
         <LinearProgress
           mode="determinate"
           value={ this.state.Dialog_CreateUser_AccountPasswordStrength }
-          color={ this.state.Dialog_CreateUser_AccountPasswordStrength < 60 ? "#ff0000" : ( this.state.Dialog_CreateUser_AccountPasswordStrength < 80 ? "#c0c000" : "#00d000" ) }
+          color={
+            this.state.Dialog_CreateUser_AccountPasswordStrength < AccountPasswordStrengthMin ?
+              "#ff0000"
+              : ( this.state.Dialog_CreateUser_AccountPasswordStrength < AccountPasswordStrengthGood ?
+                "#c0c000"
+                : "#00d000" )
+          }
         />
         <ExtensionsForCreateUser/>
       </Dialog>
@@ -401,7 +416,7 @@ class AppBar_Auth extends React.Component
 
   _handle_onKeyDown_CreateUser_User_AccountName = ( e ) =>
   {
-    if (e.keyCode === 13)
+    if( e.keyCode === 13 )
       this.refs.User_AccountPassword.focus( );
   };
 
@@ -413,7 +428,7 @@ class AppBar_Auth extends React.Component
 
   _handle_onKeyDown_CreateUser_User_AccountPassword = ( e ) =>
   {
-    if (e.keyCode === 13)
+    if( e.keyCode === 13 )
       this._handle_onTouchTap_CreateUser_Create( );
   };
 
@@ -421,7 +436,7 @@ class AppBar_Auth extends React.Component
   {
     const passwordScore = scorePassword( AccountPassword );
     this.setState( {
-      Account_information_Supplied: AccountName.length > 3 && AccountPassword.length > 3,
+      Account_information_Supplied: AccountName.length >= AccountNameLengthMin && AccountPassword.length >= AccountPasswordLengthMin,
       Dialog_CreateUser_AccountPasswordStrength: passwordScore,
     } );
   };
