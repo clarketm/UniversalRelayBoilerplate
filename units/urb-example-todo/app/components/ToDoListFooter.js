@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 
-class TodoListFooter extends React.Component {
+class ToDoListFooter extends React.Component {
   static propTypes = {
     status: PropTypes.oneOf(['active', 'any', 'completed']).isRequired,
     style: View.propTypes.style,
@@ -35,7 +35,7 @@ class TodoListFooter extends React.Component {
   }
 }
 
-export default Relay.createContainer(TodoListFooter, {
+export default Relay.createContainer(ToDoListFooter, {
   initialVariables: {
     status: 'any',
   },

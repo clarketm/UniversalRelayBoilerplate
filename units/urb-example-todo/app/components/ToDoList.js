@@ -24,7 +24,7 @@ const _ToDosDataSource = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.__dataID__ !== r2.__dataID__,
 });
 
-class TodoList extends React.Component
+class ToDoList extends React.Component
 {
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
@@ -158,11 +158,14 @@ class TodoList extends React.Component
   }
 }
 
-export default Relay.createContainer(TodoList, {
+export default Relay.createContainer(ToDoList, {
   initialVariables: {
     status: 'any',
+    limit: 2147483647,
   },
-  prepareVariables({status}) {
+
+  prepareVariables( { status } )
+  {
     var nextStatus;
     if (status === 'active' || status === 'completed') {
       nextStatus = status;
@@ -176,6 +179,7 @@ export default Relay.createContainer(TodoList, {
       limit: 2147483647,  // GraphQLInt
     };
   },
+
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {

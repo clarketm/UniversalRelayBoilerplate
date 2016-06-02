@@ -5,8 +5,8 @@ import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 import Relay from 'react-relay';
 import StatusButton from './StatusButton';
-import TodoList from './ToDoList';
-import TodoListFooter from './ToDoListFooter';
+import ToDoList from './ToDoList';
+import ToDoListFooter from './ToDoListFooter';
 import React from 'react';
 import {
   Platform,
@@ -18,40 +18,46 @@ import {
 
 
 
-class ToDoScreen extends React.Component {
-  constructor(props, context) {
+class ToDoScreen extends React.Component
+{
+  constructor(props, context)
+  {
     super(props, context);
-    this._handleStatusChange = this._handleStatusChange.bind(this);
   }
-  _handleStatusChange(status) {
-    this.props.relay.setVariables({status});
-  }
-  render() {
+
+  _handleStatusChange = ( status ) =>
+  {
+    console.log( 'status=' + status )
+    this.props.relay.setVariables( { status } )
+  };
+
+  render()
+  {
     return (
       <View style={styles.container}>
           <View style={styles.actionList}>
           <StatusButton
             active={this.props.relay.variables.status === 'any'}
-            onPress={this._handleStatusChange.bind(null, 'any')}>
+            onPress={ ( ) => this._handleStatusChange( 'any' ) }>
             All
           </StatusButton>
           <StatusButton
             active={this.props.relay.variables.status === 'active'}
-            onPress={this._handleStatusChange.bind(null, 'active')}>
+            onPress={ ( ) => this._handleStatusChange( 'active' ) }>
             Active
           </StatusButton>
           <StatusButton
             active={this.props.relay.variables.status === 'completed'}
-            onPress={this._handleStatusChange.bind(null, 'completed')}>
+            onPress={ ( ) => this._handleStatusChange( 'completed' ) }>
             Completed
           </StatusButton>
         </View>
-        <TodoList
+        <ToDoList
           status={this.props.relay.variables.status}
           style={styles.list}
           Viewer={this.props.Viewer}
         />
-        <TodoListFooter
+        <ToDoListFooter
           status={this.props.relay.variables.status}
           style={styles.footer}
           Viewer={this.props.Viewer}
@@ -69,8 +75,8 @@ export default Relay.createContainer(ToDoScreen, {
     Viewer: variables => Relay.QL`
       fragment on Viewer {
         ToDo_TotalCount
-        ${TodoList.getFragment('Viewer', {status: variables.status})}
-        ${TodoListFooter.getFragment('Viewer', {status: variables.status})}
+        ${ToDoList.getFragment('Viewer', {status: variables.status})}
+        ${ToDoListFooter.getFragment('Viewer', {status: variables.status})}
       }
     `,
   },

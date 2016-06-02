@@ -82,7 +82,8 @@ ToDo_List.contextTypes = {
 export default Relay.createContainer( ToDo_List, {
   initialVariables:
   {
-    status: null,
+    status: 'any',
+    limit: 2147483647,
   },
 
   prepareVariables( { status } )
