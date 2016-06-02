@@ -99,8 +99,7 @@
     "replace": "0.3.0",
     "style-loader": "0.13.1",
     "webpack": "1.13.1",
-    "winston": "2.2.0",
-    "winston-cassandra": "0.4.0"
+    "winston": "2.2.0"
   },
   "devDependencies": {
     "babel-plugin-transform-runtime": "6.9.0",
