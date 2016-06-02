@@ -1,25 +1,12 @@
-const os = require('os');
-const fs = require('fs');
+import fs from 'fs'
+
+import getLocalIP from './getLocalIP'
 
 
 let IPAddress = process.argv[ 2 ]
 
 if( IPAddress == undefined )
-{
-  // Find out IP address
-  const interfaces = os.networkInterfaces();
-  const addresses = [];
-  for (var k in interfaces)
-      for (var k2 in interfaces[k])
-      {
-          const address = interfaces[ k ][ k2 ];
-          if ( address.family === 'IPv4' && !address.internal )
-              addresses.push(address.address);
-      }
-
-  if( addresses.length >= 0 )
-    IPAddress = addresses[ 0 ]
-}
+  IPAddress = getLocalIP( )
 
 if( IPAddress != undefined )
 {
@@ -30,9 +17,9 @@ if( IPAddress != undefined )
     '  jsCodeLocation = [NSURL URLWithString:@"http://' +  IPAddress + ':8081/index.ios.bundle?platform=ios&dev=true"];'
   )
   updateIPInFile(
-    './app/app.js',
-    'let graphQLServerURL = "http://',
-    'let graphQLServerURL = "http://' +  IPAddress + ':4444/graphql";'
+    './app/NetworkLayer.js',
+    'const graphQLServerURL = "http://',
+    'const graphQLServerURL = "http://' +  IPAddress + ':4444/graphql";'
   )
   updateIPInFile(
     './.env',
@@ -56,7 +43,7 @@ function updateIPInFile( fileName, searchString, newContentOfLine )
         console.log( '[' + fileName + '] is already up to date' )
       else
       {
-        fileLines[ index ] = newContentOfLine;
+        fileLines[ index ] = newContentOfLine
         fs.writeFileSync( fileName, fileLines.join( '\n' ) )
 
         console.log( '[' + fileName + '] has been updated with local IP ' + IPAddress )

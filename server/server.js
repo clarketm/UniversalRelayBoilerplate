@@ -8,6 +8,7 @@ import path from 'path';
 import process from 'process';
 
 import auth from './auth'; // Authentication server
+import getLocalIP from '../scripts/getLocalIP'
 import graphql from '../graphql/server'; // GraphQL server
 import serverExtensions from '../configuration/server/serverExtensions'
 import webapp from '../webapp/server'; // Isomorphic React server
@@ -43,6 +44,7 @@ log.log( 'info', 'Starting application', {
   process_title: process.title,
   process_pid: process.pid,
   objectPersistence: objectPersistence,
+  IP: getLocalIP( ),
   ...persistenceInformation
 } );
 

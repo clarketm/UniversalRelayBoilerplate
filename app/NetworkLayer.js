@@ -19,7 +19,7 @@ export default class NetworkLayer
 
   static injectNetworkLayer( )
   {
-    const graphQLServerURL = "http://localhost:4444/graphql";
+const graphQLServerURL = "http://localhost:4444/graphql";
 
     let headers = { }
 
