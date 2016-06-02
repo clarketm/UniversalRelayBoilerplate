@@ -36,7 +36,6 @@ class MenuButton extends React.Component {
     const drawer = this.context.drawer
 		return (
 			<TouchableOpacity
-				style={styles.leftButtonContainer}
 				onPress={() => drawer.open()}
 			>
 				<Image
@@ -68,8 +67,3 @@ export default class ApplicationMain extends React.Component
     </View>
   }
 }
-
-/*
-<Scene key="root" hideNavBar={true} hideTabBar={true}>
-</Scene>
-*/
