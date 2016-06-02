@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import Button from 'react-native-button'
 import { Actions } from 'react-native-router-flux'
 
+import FloatingLabelTextInput from '../../../../app/components/FloatingLabelTextInput'
 import NetworkLayer from '../../../../app/NetworkLayer'
 
 const styles = StyleSheet.create( {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create( {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#f0f0f0',
   },
 } )
 
@@ -124,17 +125,18 @@ export default class Login extends React.Component
     if( this.state.mode == mode_challenge )
       return (
         <View style={styles.container}>
-          <Text>Account name</Text>
-          <TextInput
-            style={ { height: 44, borderColor: '#c0c0c0', borderWidth: 1, margin: 6, padding: 4 } }
-            onChangeText={(text) => this.setState({User_AccountName: text})}
+          <FloatingLabelTextInput
+            zstyle={ { height: 44, borderColor: '#c0c0c0', borderWidth: 1, margin: 6, padding: 4 } }
+            placeholder={"Account Name"}
             value={this.state.User_AccountName}
+            onChangeTextValue={(text) => this.setState({User_AccountName: text})}
           />
-          <Text>Account secret</Text>
-          <TextInput
-            style={ { height: 44, borderColor: '#c0c0c0', borderWidth: 1, margin: 6, padding: 4 } }
-            onChangeText={(text) => this.setState({User_AccountPassword: text})}
+          <FloatingLabelTextInput
+            zstyle={ { height: 44, borderColor: '#c0c0c0', borderWidth: 1, margin: 6, padding: 4 } }
+            placeholder={"Password"}
+            secureTextEntry
             value={this.state.User_AccountPassword}
+            onChangeTextValue={(text) => this.setState({User_AccountPassword: text})}
           />
           <Button onPress={ this.handle_onPress_Login }>Login</Button>
         </View>
