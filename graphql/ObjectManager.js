@@ -119,6 +119,9 @@ export default class ObjectManager
 
   getLoader( entityName: string, fieldName: string, multipleResults: boolean )
   {
+    if( ! ( entityName in entityDefinitions ) )
+      throw new Error( "Can not find entity type named " + entityName )
+
     const EntityType = entityDefinitions[ entityName ].EntityType
 
     let loadersList = multipleResults ? this.getLoadersMultiple( entityName ) : this.getLoadersSingle( entityName )
