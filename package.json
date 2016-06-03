@@ -7,16 +7,20 @@
     "postinstall": "npm run build-schema && npm run build-webpack",
     "setup-local": "cp ./configuration/scripts/default.env ./.env && cp ./configuration/scripts/default.publicURL.js ./configuration/scripts/publicURL.js",
     "setup-cassandra-init": "cqlsh -f ./configuration/scripts/cassandra-init.cql",
+
     "config-da-memory": "./node_modules/.bin/replace OBJECT_PERSISTENCE=cassandra OBJECT_PERSISTENCE=memory ./.env",
     "config-da-cassandra": "./node_modules/.bin/replace OBJECT_PERSISTENCE=memory OBJECT_PERSISTENCE=cassandra ./.env",
     "update-ip": "./node_modules/.bin/babel-node ./scripts/update-ip.js",
+
     "build-schema": "./node_modules/.bin/babel-node ./scripts/build-schema.js",
     "build-webpack": "export NODE_ENV=production && ./node_modules/.bin/webpack -p --output-filename client.js",
     "build-mui-icon-list": "./node_modules/.bin/babel-node ./scripts/build-mui-icon-list.js",
+    "build-bundle-ios": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=true",
+    "lint": "eslint app configuration data graphql scripts server units webapp",
+
     "start-webpack": "better-npm-run start-webpack",
     "start-dev": "better-npm-run start-dev",
     "dev": "concurrently --kill-others \"npm run start-webpack\" \"npm run start-dev\" \"npm run start\" ",
-    "lint": "eslint app configuration data graphql scripts server units webapp",
     "prod": "export NODE_ENV=production && ./node_modules/.bin/babel-node ./server/server.js",
     "start": "export BABEL_ENV=native && node node_modules/react-native/local-cli/cli.js start"
   },
@@ -116,7 +120,7 @@
     "type": "git",
     "url": "git+https://github.com/codefoundries/UniversalRelayBoilerplate.git"
   },
-  "version": "7.1.0",
+  "version": "7.1.1",
   "private": false,
   "license": "MIT"
 }
