@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux'
 
 import FloatingLabelTextInput from '../../../../app/components/FloatingLabelTextInput'
 import NetworkLayer from '../../../../app/NetworkLayer'
+import publicURL from '../../../../configuration/scripts/publicURL'
 
 const styles = StyleSheet.create( {
   container: {
@@ -45,13 +46,13 @@ export default class Login extends React.Component
 
     let user_token_1
 
-    fetch("http://localhost:4444/auth/login", {
+    fetch( publicURL + '/auth/login', {
       method: "POST",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Origin': '',
-        'Host': 'localhost'
+        // TODO ZZZ do I need the host? I hope I can live without that Host': 'localhost'
       },
       body: JSON.stringify( {
         User_AccountName: this.state.User_AccountName,
@@ -79,7 +80,6 @@ export default class Login extends React.Component
 
           NetworkLayer.setUserTokens( user_token_1, responseData.User_Token2 )
           NetworkLayer.injectNetworkLayer( )
-          //Actions.pop(  )
         }
         else
         {

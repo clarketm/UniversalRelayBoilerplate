@@ -54,7 +54,6 @@ class HomeScreen extends React.Component
         <CardText>
           <p>npm_package_version: { isoVars.npm_package_version }</p>
           <p>OBJECT_PERSISTENCE: { isoVars.OBJECT_PERSISTENCE }</p>
-          <p>PUBLIC_URL: { isoVars.PUBLIC_URL }</p>
         </CardText>
       </Card>
       <br/>

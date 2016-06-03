@@ -17,9 +17,9 @@ if( IPAddress != undefined )
     '  jsCodeLocation = [NSURL URLWithString:@"http://' +  IPAddress + ':8081/index.ios.bundle?platform=ios&dev=true"];'
   )
   updateIPInFile(
-    './app/NetworkLayer.js',
-    'const graphQLServerURL = "http://',
-    'const graphQLServerURL = "http://' +  IPAddress + ':4444/graphql";'
+    './configuration/scripts/settings.js',
+    'const publicURL',
+    'const publicURL = \'http://' +  IPAddress + ':4444\''
   )
   updateIPInFile(
     './.env',

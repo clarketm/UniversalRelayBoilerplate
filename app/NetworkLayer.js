@@ -4,6 +4,7 @@ import Relay, {
 } from 'react-relay';
 
 import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
+import publicURL from '../configuration/scripts/publicURL'
 
 
 let user_token_1 = null
@@ -19,7 +20,7 @@ export default class NetworkLayer
 
   static injectNetworkLayer( )
   {
-const graphQLServerURL = "http://localhost:4444/graphql";
+    const graphQLServerURL = publicURL + '/graphql';
 
     let headers = { }
 

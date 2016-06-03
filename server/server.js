@@ -10,6 +10,7 @@ import process from 'process';
 import auth from './auth'; // Authentication server
 import getLocalIP from '../scripts/getLocalIP'
 import graphql from '../graphql/server'; // GraphQL server
+import publicURL from '../configuration/scripts/publicURL'
 import serverExtensions from '../configuration/server/serverExtensions'
 import webapp from '../webapp/server'; // Isomorphic React server
 
@@ -40,7 +41,7 @@ log.log( 'info', 'Starting application', {
   NODE_ENV: process.env.NODE_ENV,
   HOST: process.env.HOST,
   PORT: process.env.PORT,
-  PUBLIC_URL: process.env.PUBLIC_URL,
+  publicURL: publicURL,
   process_title: process.title,
   process_pid: process.pid,
   objectPersistence: objectPersistence,
