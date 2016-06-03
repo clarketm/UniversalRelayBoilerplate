@@ -1,5 +1,6 @@
 import fs from 'fs'
 
+import AppRegistryName from '../configuration/app/AppRegistryName'
 import getLocalIP from './getLocalIP'
 
 
@@ -12,7 +13,7 @@ if( IPAddress != undefined )
 {
   console.log( "IP Address:" + IPAddress )
   updateIPInFile(
-    './ios/UniversalRelayBoilerplate/AppDelegate.m',
+    './ios/' + AppRegistryName + '/AppDelegate.m',
     'jsCodeLocation = [NSURL URLWithString:@"http:',
     '  jsCodeLocation = [NSURL URLWithString:@"http://' +  IPAddress + ':8081/index.ios.bundle?platform=ios&dev=true"];'
   )
