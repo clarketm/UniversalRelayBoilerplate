@@ -5,7 +5,7 @@
   },
   "scripts": {
     "postinstall": "npm run build-schema && npm run build-webpack",
-    "setup-local": "cp ./configuration/scripts/default.env ./.env",
+    "setup-local": "cp ./configuration/scripts/default.env ./.env && cp ./configuration/scripts/default.publicURL.js ./configuration/scripts/publicURL.js",
     "setup-cassandra-init": "cqlsh -f ./configuration/scripts/cassandra-init.cql",
     "config-da-memory": "./node_modules/.bin/replace OBJECT_PERSISTENCE=cassandra OBJECT_PERSISTENCE=memory ./.env",
     "config-da-cassandra": "./node_modules/.bin/replace OBJECT_PERSISTENCE=memory OBJECT_PERSISTENCE=cassandra ./.env",

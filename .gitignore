@@ -42,4 +42,5 @@ android/keystores/debug.keystore
 # Server
 #
 .env
+configuration/scripts/publicURL.js
 public/assets
