@@ -7,7 +7,6 @@ import ReactDOM from 'react-dom';
 import { browserHistory, match, Router } from 'react-router';
 import Relay from 'react-relay';
 
-import isomorphicVars from '../configuration/webapp/scripts/isomorphicVars';
 import publicURL from '../configuration/scripts/publicURL'
 import routes from '../configuration/webapp/routes';
 
