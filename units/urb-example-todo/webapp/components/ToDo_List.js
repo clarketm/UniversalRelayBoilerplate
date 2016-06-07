@@ -9,7 +9,7 @@ import {List} from 'material-ui/List';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation';
-import ToDo_Item from './ToDo_Item.jsx';
+import ToDo_Item from './ToDo_Item';
 
 class ToDo_List extends React.Component
 {

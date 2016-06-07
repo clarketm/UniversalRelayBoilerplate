@@ -8,7 +8,7 @@ import Drawer from 'material-ui/Drawer';
 import {spacing, typography, zIndex} from 'material-ui/styles';
 
 import { NavMenuTitle } from '../../configuration/webapp/components/ChromeSettings';
-import NavMenu from '../../configuration/webapp/components/NavMenu.jsx';
+import NavMenu from '../../configuration/webapp/components/NavMenu';
 
 
 class AppNavDrawer extends React.Component

@@ -6,7 +6,7 @@ import Relay from 'react-relay';
 
 import {List} from 'material-ui/List';
 
-import Translaticiarum_Item from './Translaticiarum_Item.jsx';
+import Translaticiarum_Item from './Translaticiarum_Item';
 
 class Translaticiarum_List extends React.Component
 {

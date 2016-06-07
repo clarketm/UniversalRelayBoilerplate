@@ -16,7 +16,7 @@ import Translaticiarum_deleteMutation from '../../relay/Translaticiarum_deleteMu
 import Translaticiarum_updateMutation from '../../relay/Translaticiarum_updateMutation';
 
 import Translaticiarum_Icon from './Translaticiarum_Icon';
-import Translaticiarum_Properties from './Translaticiarum_Properties.jsx';
+import Translaticiarum_Properties from './Translaticiarum_Properties';
 
 
 class Translaticiarum_Item extends React.Component

@@ -6,7 +6,7 @@ import Relay from 'react-relay';
 
 import {List} from 'material-ui/List';
 
-import Ensayo_Item from './Ensayo_Item.jsx';
+import Ensayo_Item from './Ensayo_Item';
 
 class Ensayo_List extends React.Component
 {

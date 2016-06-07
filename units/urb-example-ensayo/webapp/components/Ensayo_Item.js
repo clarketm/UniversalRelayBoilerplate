@@ -14,7 +14,7 @@ import NavigationMoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import Ensayo_deleteMutation from '../../relay/Ensayo_deleteMutation';
 import Ensayo_updateMutation from '../../relay/Ensayo_updateMutation';
 
-import Ensayo_Properties from './Ensayo_Properties.jsx';
+import Ensayo_Properties from './Ensayo_Properties';
 
 
 class Ensayo_Item extends React.Component

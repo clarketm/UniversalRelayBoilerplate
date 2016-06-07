@@ -15,7 +15,7 @@ import ToDo_updateStatusMutation from '../../relay/ToDo_updateStatusMutation';
 import ToDo_deleteMutation from '../../relay/ToDo_deleteMutation';
 import ToDo_updateRenameMutation from '../../relay/ToDo_updateRenameMutation';
 
-import ToDo_Properties from './ToDo_Properties.jsx';
+import ToDo_Properties from './ToDo_Properties';
 
 class ToDo_Item extends React.Component
 {

@@ -10,7 +10,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import Translaticiarum_addMutation from '../../relay/Translaticiarum_addMutation';
 
-import Translaticiarum_Properties from './Translaticiarum_Properties.jsx';
+import Translaticiarum_Properties from './Translaticiarum_Properties';
 
 
 class Translaticiarum_Screen extends React.Component

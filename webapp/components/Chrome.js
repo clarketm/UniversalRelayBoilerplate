@@ -9,10 +9,10 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import spacing from 'material-ui/styles/spacing';
 import withWidth, {LARGE, MEDIUM}  from '../scripts/withWidth';
 
-import AppNavDrawer from './AppNavDrawer.jsx';
-import ChromeHelmet from '../../configuration/webapp/components/ChromeHelmet.jsx';
-import ChromeRightIcon from '../../configuration/webapp/components/ChromeRightIcon.jsx';
-import Footer from '../../configuration/webapp/components/Footer.jsx';
+import AppNavDrawer from './AppNavDrawer';
+import ChromeHelmet from '../../configuration/webapp/components/ChromeHelmet';
+import ChromeRightIcon from '../../configuration/webapp/components/ChromeRightIcon';
+import Footer from '../../configuration/webapp/components/Footer';
 import { MainScreenTitle } from '../../configuration/webapp/components/ChromeSettings';
 import muiTheme from '../../configuration/webapp/muiTheme.js';
 

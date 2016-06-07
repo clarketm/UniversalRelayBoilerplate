@@ -27,7 +27,7 @@ import {
   AccountNameAlias,
   AccountNameAdditionalValidation,
 } from '../../../../configuration/units/urb-account-management/accountNameAndPasswordRequirements';
-import {ExtensionsForLogIn, ExtensionsForCreateUser} from '../../../../configuration/units/urb-account-management/webapp/components/AccountManagementExtensions.jsx'
+import {ExtensionsForLogIn, ExtensionsForCreateUser} from '../../../../configuration/units/urb-account-management/webapp/components/AccountManagementExtensions'
 import { postXHR } from '../../../../webapp/scripts/XHR';
 import scorePassword from '../../../../configuration/units/urb-account-management/scripts/scorePassword';
 

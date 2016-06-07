@@ -10,7 +10,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import Ensayo_addMutation from '../../relay/Ensayo_addMutation';
 
-import Ensayo_Properties from './Ensayo_Properties.jsx';
+import Ensayo_Properties from './Ensayo_Properties';
 
 
 class Ensayo_Screen extends React.Component
