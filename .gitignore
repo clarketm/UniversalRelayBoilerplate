@@ -45,3 +45,4 @@ android/keystores/debug.keystore
 configuration/scripts/publicURL.js
 ios/main.jsbundle
 public/assets
+build
