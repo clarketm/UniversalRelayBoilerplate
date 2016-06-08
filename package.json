@@ -15,7 +15,7 @@
     "build-schema": "./node_modules/.bin/babel-node ./scripts/build-schema.js",
     "build-bump-version": "./node_modules/.bin/babel-node ./scripts/build-bump-version.js",
     "build-webpack": "export NODE_ENV=production && rm -rf public/assets && mkdir public/assets &&  ./node_modules/.bin/webpack -p --output-filename client.js",
-    "build-babel": "export NODE_ENV=production && rm -rf build && mkdir build && cp -r configuration ./build/configuration && cp -r public ./build/public  && cp -r webapp ./build/webapp && ./node_modules/.bin/babel -d ./build/server/ ./server -s  && ./node_modules/.bin/babel -d ./build/configuration/ ./configuration -s && ./node_modules/.bin/babel -d ./build/graphql/ ./graphql -s && ./node_modules/.bin/babel -d ./build/scripts/ ./scripts -s && ./node_modules/.bin/babel -d ./build/server/ ./server -s && ./node_modules/.bin/babel -d ./build/units/ ./units -s && ./node_modules/.bin/babel -d ./build/webapp/ ./webapp -s && ./node_modules/.bin/babel -d ./build/server/ ./server -s && cp ./package.json ./build && cp ./Procfile ./build",
+    "build-babel": "export NODE_ENV=production && rm -rf build && mkdir build && cp -r configuration ./build/configuration && cp -r public ./build/public  && cp -r webapp ./build/webapp && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines  && ./node_modules/.bin/babel -d ./build/configuration/ ./configuration -s --retain-lines && ./node_modules/.bin/babel -d ./build/graphql/ ./graphql -s --retain-lines && ./node_modules/.bin/babel -d ./build/scripts/ ./scripts -s --retain-lines && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines && ./node_modules/.bin/babel -d ./build/units/ ./units -s --retain-lines && ./node_modules/.bin/babel -d ./build/webapp/ ./webapp -s --retain-lines && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines && cp ./package.json ./build && cp ./Procfile ./build",
     "build-server": "rm -rf build && npm run build-bump-version && npm run build-schema && npm run build-webpack",
     "build-bundle-ios": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=false",
     "build-bundle-ios-dev": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=true",
@@ -123,7 +123,7 @@
     "type": "git",
     "url": "git+https://github.com/codefoundries/UniversalRelayBoilerplate.git"
   },
-  "version": "7.1.3",
+  "version": "8.0.0",
   "private": false,
   "license": "MIT"
 }
