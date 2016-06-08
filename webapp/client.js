@@ -12,6 +12,7 @@ import routes from '../configuration/webapp/routes';
 
 import './styles/main.css';
 
+
 //Needed for onTouchTap
 //Can go away when react 1.0 release
 //Check this repo:
@@ -19,9 +20,7 @@ import './styles/main.css';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin( );
 
-
 const isoVars = isomorphicVars( );
-
 
 // Retrieve prepared data
 const data = JSON.parse( document.getElementById( 'preloadedData' ).textContent );
