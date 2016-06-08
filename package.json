@@ -1,7 +1,7 @@
 {
   "engines": {
-    "node": ">=5",
-    "npm": ">=3"
+    "node": "^6.0.0",
+    "npm": "^3.0.0"
   },
   "scripts": {
     "postinstall-for-heroku-not-for-buld-server": "npm run build-schema && npm run build-webpack",
