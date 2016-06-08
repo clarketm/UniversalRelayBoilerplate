@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import { browserHistory, match, Router } from 'react-router';
 import Relay from 'react-relay';
 
-import isomorphicVars from './scripts/isomorphicVars';
+import isomorphicVars from '../configuration/webapp/scripts/isomorphicVars';
 import routes from '../configuration/webapp/routes';
 
 import './styles/main.css';
