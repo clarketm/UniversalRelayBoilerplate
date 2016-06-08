@@ -24,6 +24,11 @@ if( IPAddress != undefined )
   )
   updateIPInFile(
     './.env',
+    'PUBLIC_URL=',
+    'PUBLIC_URL=http://' +  IPAddress + ':4444'
+  )
+  updateIPInFile(
+    './.env',
     'HOST=',
     'HOST=' +  IPAddress
   )

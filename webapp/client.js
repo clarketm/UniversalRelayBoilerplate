@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import { browserHistory, match, Router } from 'react-router';
 import Relay from 'react-relay';
 
-import publicURL from '../configuration/scripts/publicURL'
+import isomorphicVars from './scripts/isomorphicVars';
 import routes from '../configuration/webapp/routes';
 
 import './styles/main.css';
@@ -18,6 +18,9 @@ import './styles/main.css';
 //https://github.com/zilverline/react-tap-event-plugin
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin( );
+
+
+const isoVars = isomorphicVars( );
 
 
 // Retrieve prepared data
@@ -42,7 +45,7 @@ if( UserToken2.length == 0 )
 
 
 // Where is the GraphQL server?
-const graphQLServerURL = publicURL + '/graphql';
+const graphQLServerURL = isoVars.PUBLIC_URL + '/graphql';
 
 // Create Relay environment
 // Ensure that on the client Relay is passing the HttpOnly cookie with auth, and the user auth token
