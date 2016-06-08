@@ -7,15 +7,15 @@ import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
 import publicURL from '../configuration/scripts/publicURL'
 
 
-let user_token_1 = null
-let user_token_2 = AnonymousUserToken2
+let UserToken1 = null
+let UserToken2 = AnonymousUserToken2
 
 export default class NetworkLayer
 {
-  static setUserTokens( _user_token_1, _user_token_2 )
+  static setUserTokens( _UserToken1, _UserToken2 )
   {
-    user_token_1 = _user_token_1
-    user_token_2 = _user_token_2
+    UserToken1 = _UserToken1
+    UserToken2 = _UserToken2
   }
 
   static injectNetworkLayer( )
@@ -24,11 +24,11 @@ export default class NetworkLayer
 
     let headers = { }
 
-    if( user_token_1 != null )
-      headers.Cookie = 'user_token_1=' + user_token_1
+    if( UserToken1 != null )
+      headers.Cookie = 'UserToken1=' + UserToken1
 
-    if( user_token_2 != null )
-      headers.user_token_2 = user_token_2
+    if( UserToken2 != null )
+      headers.UserToken2 = UserToken2
 
     // TODO: equivalent of RelayContext.reset( )
 

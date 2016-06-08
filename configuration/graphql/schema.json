@@ -228,7 +228,7 @@
               "deprecationReason": null
             },
             {
-              "name": "User_Token2",
+              "name": "UserToken2",
               "description": null,
               "args": [],
               "type": {

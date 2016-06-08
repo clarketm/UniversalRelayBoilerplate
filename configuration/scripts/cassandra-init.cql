@@ -32,7 +32,7 @@ CREATE TABLE "User"(
   "User_Email" varchar,
   "User_PhoneNumberMobile" varchar,
   "User_Locale" varchar,
-  "User_Token2" varchar
+  "UserToken2" varchar
 );
 
 CREATE INDEX "User_User_AccountName_ix"

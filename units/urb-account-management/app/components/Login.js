@@ -44,7 +44,7 @@ export default class Login extends React.Component
 
     const currentLoginAttempt = ++(this.loginAttempt)
 
-    let user_token_1
+    let UserToken1
 
     fetch( publicURL + '/auth/login', {
       method: "POST",
@@ -62,11 +62,11 @@ export default class Login extends React.Component
     .then( ( response ) => {
       if( 'set-cookie' in response.headers.map )
         for( let cookie of response.headers.map[ 'set-cookie' ] )
-          if( cookie.startsWith( 'user_token_1=' ) )
+          if( cookie.startsWith( 'UserToken1=' ) )
           {
             console.log( 'cookie=' + cookie )
-            user_token_1 = cookie.substring( 13, cookie.indexOf( ';' ) )
-            console.log( 'user_token_1=' + user_token_1 )
+            UserToken1 = cookie.substring( 13, cookie.indexOf( ';' ) )
+            console.log( 'UserToken1=' + UserToken1 )
           }
       return response.json( )
     } )
@@ -75,10 +75,10 @@ export default class Login extends React.Component
       {
         if( responseData.success )
         {
-          console.log( 'user_token_1=' + user_token_1 )
-          console.log( 'user_token_2=' + responseData.User_Token2 )
+          console.log( 'UserToken1=' + UserToken1 )
+          console.log( 'UserToken2=' + responseData.UserToken2 )
 
-          NetworkLayer.setUserTokens( user_token_1, responseData.User_Token2 )
+          NetworkLayer.setUserTokens( UserToken1, responseData.UserToken2 )
           NetworkLayer.injectNetworkLayer( )
         }
         else

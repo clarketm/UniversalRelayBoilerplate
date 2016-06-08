@@ -159,14 +159,14 @@ Chrome.childContextTypes = {
 
 //
 
-// It is important to retrieve User_Token2, since it is used in client.js
+// It is important to retrieve UserToken2, since it is used in client.js
 export default Relay.createContainer( withWidth( )( Chrome ), {
 //export default Relay.createContainer( Chrome, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
         User_IsAnonymous,
-        User_Token2,
+        UserToken2,
         ${ ChromeRightIcon.getFragment( 'Viewer' ) },
         ${ AppNavDrawer.getFragment( 'Viewer' ) },
         ${ Footer.getFragment( 'Viewer' ) },
