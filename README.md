@@ -104,7 +104,7 @@ To open the app:
 * Install and configure Cassandra following the steps in [Cassandra Installation on Mac](http://codefoundries.com/developer/cassandra/cassandra-installation-mac.html).
 * Verify that the name of the database in `\.env` is the name of the database you want.
 * Create the database with `npm run setup-cassandra-init`.
-* Configure to use Cassandra with `npm run config-da-cassandra`.
+* Configure to use Cassandra with `npm run update-da-cassandra`.
 
 
 
