@@ -6,11 +6,9 @@
   "scripts": {
     "setup-local": "cp ./configuration/scripts/default.env ./.env && cp ./configuration/scripts/default.publicURL.js ./configuration/scripts/publicURL.js",
     "setup-cassandra-init": "cqlsh -f ./configuration/scripts/cassandra-init.cql",
-
     "update-da-memory": "./node_modules/.bin/replace OBJECT_PERSISTENCE=cassandra OBJECT_PERSISTENCE=memory ./.env",
     "update-da-cassandra": "./node_modules/.bin/replace OBJECT_PERSISTENCE=memory OBJECT_PERSISTENCE=cassandra ./.env",
     "update-ip": "./node_modules/.bin/babel-node ./scripts/update-ip.js",
-
     "build-babel": "export NODE_ENV=production && rm -rf build && mkdir build && cp -r configuration ./build/configuration && cp -r webapp ./build/webapp && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines  && ./node_modules/.bin/babel -d ./build/configuration/ ./configuration -s --retain-lines && ./node_modules/.bin/babel -d ./build/graphql/ ./graphql -s --retain-lines && ./node_modules/.bin/babel -d ./build/scripts/ ./scripts -s --retain-lines && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines && ./node_modules/.bin/babel -d ./build/units/ ./units -s --retain-lines && ./node_modules/.bin/babel -d ./build/webapp/ ./webapp -s --retain-lines && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines && cp -r public ./build/public && cp ./package.json ./build",
     "build-bump-version": "./node_modules/.bin/babel-node ./scripts/build-bump-version.js",
     "build-bundle-ios": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=false",
@@ -19,12 +17,12 @@
     "build-schema": "./node_modules/.bin/babel-node ./scripts/build-schema.js",
     "build-server": "rm -rf build && npm run build-bump-version && npm run build-schema && npm run build-webpack && npm run build-babel",
     "build-webpack": "export NODE_ENV=production && rm -rf public/assets && mkdir public/assets &&  ./node_modules/.bin/webpack -p --output-filename client.js",
-
+    "dev-reset": "sudo chmod -R a+w * && watchman watch-del-all && rm -rf ~/Library/Developer/Xcode/DerivedData/*",
     "dev-prod": "export NODE_ENV=production && ./node_modules/.bin/babel-node ./server/server.js",
     "dev-server": "better-npm-run dev-server",
     "dev-webpack": "rm -rf build && better-npm-run dev-webpack",
     "dev": "rm -rf build && concurrently --kill-others \"npm run dev-webpack\" \"npm run dev-server\" \"npm run start\" ",
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache"
   },
   "betterScripts": {
     "dev-server": {
@@ -44,7 +42,7 @@
   },
   "dependencies": {
     "bcrypt": "0.8.7",
-    "body-parser": "1.15.1",
+    "body-parser": "1.15.2",
     "cassandra-driver": "3.0.2",
     "classnames": "2.2.5",
     "compression": "1.6.2",
@@ -52,9 +50,6 @@
     "dataloader": "1.2.0",
     "dotenv": "2.0.0",
     "ejs": "2.4.2",
-    "eslint": "2.13.0",
-    "eslint-loader": "1.3.0",
-    "eslint-plugin-react": "5.2.2",
     "express": "4.14.0",
     "express-graphql": "0.5.3",
     "graphql": "0.6.0",
@@ -62,7 +57,7 @@
     "isomorphic-relay": "0.7.0",
     "isomorphic-relay-router": "0.8.0",
     "jwt-simple": "0.5.0",
-    "material-ui": "0.15.0",
+    "material-ui": "0.15.1",
     "material-ui-country-flags": "3.0.1",
     "material-ui-credit-card-icons": "3.0.1",
     "mobile-detect": "1.3.2",
@@ -83,15 +78,15 @@
   },
   "devDependencies": {
     "babel-cli": "6.10.1",
-    "babel-core": "6.9.1",
-    "babel-eslint": "6.0.4",
+    "babel-core": "6.10.4",
+    "babel-eslint": "6.0.5",
     "babel-loader": "6.2.4",
     "babel-plugin-react-transform": "2.0.2",
-    "babel-plugin-transform-async-to-generator": "6.8.0",
     "babel-plugin-transform-runtime": "6.9.0",
     "babel-polyfill": "6.9.1",
     "babel-preset-es2015": "6.9.0",
     "babel-preset-react": "6.5.0",
+    "babel-preset-react-native-stage-0": "1.0.1",
     "babel-preset-stage-0": "6.5.0",
     "babel-relay-plugin": "0.9.0",
     "babel-relay-plugin-loader": "0.9.0",
@@ -99,6 +94,9 @@
     "better-npm-run": "0.0.8",
     "concurrently": "2.1.0",
     "css-loader": "0.23.1",
+    "eslint": "2.13.1",
+    "eslint-loader": "1.3.0",
+    "eslint-plugin-react": "5.2.2",
     "extract-text-webpack-plugin": "1.0.1",
     "react-hot-loader": "1.3.0",
     "react-native": "0.27.2",
