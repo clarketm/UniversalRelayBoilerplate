@@ -65,7 +65,7 @@ export default class Login extends React.Component
           if( cookie.startsWith( 'UserToken1=' ) )
           {
             console.log( 'cookie=' + cookie )
-            UserToken1 = cookie.substring( 13, cookie.indexOf( ';' ) )
+            UserToken1 = cookie.substring( 11, cookie.indexOf( ';' ) )
             console.log( 'UserToken1=' + UserToken1 )
           }
       return response.json( )
