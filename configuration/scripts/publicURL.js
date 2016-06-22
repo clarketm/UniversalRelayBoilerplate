@@ -1,3 +1,3 @@
-const publicURL = 'http://192.168.0.72:4444'
+const publicURL = 'http://localhost:4444'
 
 export default publicURL
