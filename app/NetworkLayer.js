@@ -22,8 +22,6 @@ export default class NetworkLayer
   {
     const graphQLServerURL = publicURL + '/graphql';
 
-    console.log( graphQLServerURL )
-
     let headers = { }
 
     if( UserToken1 != null )
