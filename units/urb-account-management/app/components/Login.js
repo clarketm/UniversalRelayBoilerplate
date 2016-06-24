@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import Button from 'react-native-button'
-import { Actions } from 'react-native-router-flux'
 
 import FloatingLabelTextInput from '../../../../app/components/FloatingLabelTextInput'
 import NetworkLayer from '../../../../app/NetworkLayer'

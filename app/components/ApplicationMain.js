@@ -18,7 +18,7 @@ const reducerCreate = params=>
   return ( state, action ) => defaultReducer( state, action )
 }
 
-function getSceneStyle ( props )
+function getSceneStyle ( )
 {
   return {
     flex: 1,
@@ -32,7 +32,7 @@ function getSceneStyle ( props )
 }
 
 class MenuButton extends React.Component {
-  render = ( props ) => {
+  render = ( ) => {
     const drawer = this.context.drawer
 		return (
 			<TouchableOpacity

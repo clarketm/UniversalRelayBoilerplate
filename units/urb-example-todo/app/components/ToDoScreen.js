@@ -1,8 +1,6 @@
 /* @flow weak */
 'use strict';
 
-import Button from 'react-native-button';
-import { Actions } from 'react-native-router-flux';
 import Relay from 'react-relay';
 import StatusButton from './StatusButton';
 import ToDoList from './ToDoList';
@@ -11,7 +9,6 @@ import React from 'react';
 import {
   Platform,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 

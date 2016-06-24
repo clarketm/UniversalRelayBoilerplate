@@ -1,3 +1,3 @@
-const publicURL = 'http://universal-relay-boilerplate.herokuapp.com'
+const publicURL = 'http://your.server.here.com'
 
 export default publicURL

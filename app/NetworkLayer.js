@@ -1,6 +1,5 @@
 import Relay, {
   DefaultNetworkLayer,
-  RelayContext
 } from 'react-relay';
 
 import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
