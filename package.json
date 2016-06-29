@@ -17,7 +17,7 @@
     "build-schema": "./node_modules/.bin/babel-node ./scripts/build-schema.js",
     "build-server": "rm -rf build && npm run build-bump-version && npm run build-schema && npm run build-webpack && npm run build-babel",
     "build-webpack": "export NODE_ENV=production && rm -rf public/assets && mkdir public/assets &&  ./node_modules/.bin/webpack -p --output-filename client.js",
-    "dev-reset": "sudo chmod -R a+w * && watchman watch-del-all && rm -rf ~/Library/Developer/Xcode/DerivedData/* && rm -fr $TMPDIR/react-*",
+    "dev-reset": "sudo chmod -R a+w * && watchman watch-del-all && rm -rf ~/Library/Developer/Xcode/DerivedData/* && rm -rf $TMPDIR/react-* && rm -rf ~/.node-gyp",
     "dev-prod": "export NODE_ENV=production && ./node_modules/.bin/babel-node ./server/server.js",
     "dev-server": "better-npm-run dev-server",
     "dev-webpack": "rm -rf build && better-npm-run dev-webpack",
