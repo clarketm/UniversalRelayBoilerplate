@@ -1,0 +1,3 @@
+rootProject.name = 'UniversalRelayBoilerplate'
+
+include ':app'
