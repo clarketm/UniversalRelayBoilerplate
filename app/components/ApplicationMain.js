@@ -2,7 +2,6 @@ import React from 'react'
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native'
 import { Scene, Reducer, Router, Modal } from 'react-native-router-flux'
 
-import NavigationDrawer from './NavigationDrawer'
 import routes from '../../configuration/app/routes'
 
 const styles = StyleSheet.create( {
@@ -58,11 +57,7 @@ export default class ApplicationMain extends React.Component
   {
     return <View style={styles.container}>
       <Router createReducer={reducerCreate} getSceneStyle={getSceneStyle}>
-        <Scene key="modal" component={Modal} >
-            <Scene key="tabbar" component={NavigationDrawer} initial={true}>
-              { routes( MenuButton ) }
-            </Scene>
-        </Scene>
+        { routes( MenuButton ) }
       </Router>
     </View>
   }

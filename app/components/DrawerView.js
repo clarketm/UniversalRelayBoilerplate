@@ -25,13 +25,11 @@ const styles = StyleSheet.create( {
 
 class DrawerView extends React.Component
 {
-  openRoute = ( route ) =>
+  openRoute = ( route, options ) =>
   {
-    const drawer = this.context.drawer
+    this.context.drawer.close( )
 
-    drawer.close( )
-
-    Actions[ route ]( )
+    Actions[ route ]( options )
   }
 
   render( )
