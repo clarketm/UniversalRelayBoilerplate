@@ -6,9 +6,11 @@
   "scripts": {
     "setup-local": "cp ./configuration/scripts/default.env ./.env && cp ./configuration/scripts/default.publicURL.js ./configuration/scripts/publicURL.js",
     "setup-cassandra-init": "cqlsh -f ./configuration/scripts/cassandra-init.cql",
+
     "update-da-memory": "./node_modules/.bin/replace OBJECT_PERSISTENCE=cassandra OBJECT_PERSISTENCE=memory ./.env",
     "update-da-cassandra": "./node_modules/.bin/replace OBJECT_PERSISTENCE=memory OBJECT_PERSISTENCE=cassandra ./.env",
     "update-ip": "./node_modules/.bin/babel-node ./scripts/update-ip.js",
+
     "build-babel": "export NODE_ENV=production && rm -rf build && mkdir build && cp -r configuration ./build/configuration && cp -r webapp ./build/webapp && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines  && ./node_modules/.bin/babel -d ./build/configuration/ ./configuration -s --retain-lines && ./node_modules/.bin/babel -d ./build/graphql/ ./graphql -s --retain-lines && ./node_modules/.bin/babel -d ./build/scripts/ ./scripts -s --retain-lines && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines && ./node_modules/.bin/babel -d ./build/units/ ./units -s --retain-lines && ./node_modules/.bin/babel -d ./build/webapp/ ./webapp -s --retain-lines && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines && cp -r public ./build/public && cp ./package.json ./build",
     "build-bump-version": "./node_modules/.bin/babel-node ./scripts/build-bump-version.js",
     "build-bundle-ios": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=false",
@@ -17,6 +19,7 @@
     "build-schema": "./node_modules/.bin/babel-node ./scripts/build-schema.js",
     "build-server": "rm -rf build && npm run build-bump-version && npm run build-schema && npm run build-webpack && npm run build-babel",
     "build-webpack": "export NODE_ENV=production && rm -rf public/assets && mkdir public/assets &&  ./node_modules/.bin/webpack -p --output-filename client.js",
+
     "dev-reset": "sudo chmod -R a+w * && watchman watch-del-all && rm -rf ~/Library/Developer/Xcode/DerivedData/* && rm -rf $TMPDIR/react-* && rm -rf ~/.node-gyp",
     "dev-prod": "export NODE_ENV=production && ./node_modules/.bin/babel-node ./server/server.js",
     "dev-server": "better-npm-run dev-server",
@@ -78,7 +81,7 @@
   "devDependencies": {
     "babel-cli": "6.10.1",
     "babel-core": "6.10.4",
-    "babel-eslint": "6.1.0",
+    "babel-eslint": "6.1.1",
     "babel-loader": "6.2.4",
     "babel-plugin-react-transform": "2.0.2",
     "babel-plugin-transform-runtime": "6.9.0",
@@ -101,7 +104,7 @@
     "react-native-drawer": "2.2.6",
     "react-native-listitem": "1.0.5",
     "react-native-modalbox": "1.3.4",
-    "react-native-router-flux": "3.30.6",
+    "react-native-router-flux": "3.31.0",
     "react-native-swipeout": "2.0.12",
     "recursive-readdir-sync": "1.0.6",
     "replace": "0.3.0",
