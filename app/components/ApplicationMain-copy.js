@@ -1,5 +1,4 @@
 import React from 'react'
-import RelayRenderer from 'rnrf-relay-renderer'
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native'
 import { Scene, Reducer, Router, Modal } from 'react-native-router-flux'
 
@@ -68,7 +67,7 @@ export default class ApplicationMain extends React.Component
   render( )
   {
     return <View style={styles.container}>
-      <Router createReducer={ reducerCreate } getSceneStyle={ getSceneStyle } wrapBy={ RelayRenderer( ) }>
+      <Router createReducer={reducerCreate} getSceneStyle={getSceneStyle}>
         { routes( MenuButton ) }
       </Router>
     </View>
