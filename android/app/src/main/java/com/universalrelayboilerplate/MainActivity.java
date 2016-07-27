@@ -1,6 +1,7 @@
 package com.universalrelayboilerplate;
 
 import com.facebook.react.ReactActivity;
+import com.oblador.keychain.KeychainPackage;
 
 public class MainActivity extends ReactActivity {
 

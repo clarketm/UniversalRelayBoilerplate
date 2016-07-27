@@ -1,3 +1,4 @@
+import { Actions } from 'react-native-router-flux'
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import Button from 'react-native-button'
@@ -5,6 +6,7 @@ import Button from 'react-native-button'
 import FloatingLabelTextInput from '../../../../app/components/FloatingLabelTextInput'
 import NetworkLayer from '../../../../app/NetworkLayer'
 import publicURL from '../../../../configuration/scripts/publicURL'
+import { SuccessfulLoginRouteName, SuccessfulLoginRouteOptions } from '../../../../configuration/units/urb-account-management/app/SuccessfulLoginRoute'
 
 const styles = StyleSheet.create( {
   container: {
@@ -51,7 +53,7 @@ export default class Login extends React.Component
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Origin': '',
-        // TODO Do we need the host? Can we go without that Host': 'localhost'?
+        // TODO x5000 Test if the following is needed when posting to /auth/login: Host: 'localhost'?
       },
       body: JSON.stringify( {
         User_AccountName: this.state.User_AccountName,
@@ -74,10 +76,12 @@ export default class Login extends React.Component
       {
         if( responseData.success )
         {
-          console.log( 'UserToken1=' + UserToken1 )
-          console.log( 'UserToken2=' + responseData.UserToken2 )
+          console.log( 'XXX UserToken1=' + UserToken1 )
+          console.log( 'XXX UserToken2=' + responseData.UserToken2 )
 
           NetworkLayer.setUserTokens( UserToken1, responseData.UserToken2 )
+
+          Actions[ SuccessfulLoginRouteName ]( SuccessfulLoginRouteOptions )
         }
         else
         {
@@ -94,9 +98,9 @@ export default class Login extends React.Component
         }
       }
       else
-        console.log( "Expired login event" )
+        console.log( "XXX Expired login event" )
     } )
-    // TODO: Error handling here
+    // TODO x5000 Error handling for failed login
     .done()
   }
 
