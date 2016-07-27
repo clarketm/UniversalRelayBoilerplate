@@ -8,7 +8,6 @@ import Relay from 'react-relay'
 
 import NetworkLayer from '../NetworkLayer'
 
-//export default
 class RelayComponentRenderer extends Component
 {
   static propTypes = {
@@ -20,32 +19,33 @@ class RelayComponentRenderer extends Component
 
   renderLoading( )
   {
-    return (<View>
+    return <View>
       <Text>Loading...</Text>
-    </View>)
+    </View>
   }
 
   renderError( error, retry )
   {
-    return (<View style={{padding: 30}}>
+    return <View style={{padding: 30}}>
       <Text>Error while fetching data from the server</Text>
       <TouchableHighlight onPress={retry}>
         <Text>Retry?</Text>
       </TouchableHighlight>
-    </View>)
+    </View>
   }
 
   render( )
   {
-    return (<Relay.Renderer
+    return <Relay.Renderer
       Container={this.props.component}
       queryConfig={{
         queries: this.props.navigationState.queries,
-        params: this.props.navigationState, // TODO: not sure if it is correct to pass all the data, find the way extract only needed variables
+        params: this.props.navigationState, // TODO x7000 not sure if it is correct to pass all the data, find the way extract only needed variables
         name: `rnrf-relay-renderer_${this.props.navigationState.key}_route`, // construct route name based on navState key
       }}
       environment={ this.context.environment }
-      render={({done, error, props, retry, stale}) => {
+      render={ ( {done, error, props, retry, stale} ) =>
+      {
         if (error) {
           return (this.props.renderError || this.renderError)(error, retry);
         }
@@ -57,8 +57,8 @@ class RelayComponentRenderer extends Component
 
         // render loading
         return (this.props.renderLoading || this.renderLoading)(this.props.navigationState)
-      }}
-    />)
+      } }
+    />
   }
 }
 

@@ -1,3 +1,4 @@
+import Keychain from 'react-native-keychain'
 import Relay, {
   DefaultNetworkLayer,
 } from 'react-relay';
@@ -7,13 +8,26 @@ import publicURL from '../configuration/scripts/publicURL'
 
 
 let UserToken1 = null
-let UserToken2 = AnonymousUserToken2
+let UserToken2 = null
 let currentEnvironment = null
 let listeningComponent = null
 
 export default class NetworkLayer
 {
-  static setUserTokens( _UserToken1, _UserToken2 )
+  static loadPersistedCredentials( )
+  {
+    Keychain
+      .getGenericPassword( )
+      .then( (credentials) => {
+        const credentialsJSON = JSON.parse( credentials.password, true )
+        NetworkLayer.setUserTokens( credentialsJSON.UserToken1, credentialsJSON.UserToken2 )
+      } )
+      .catch( ( error ) => {
+        NetworkLayer.setUserTokens( null, AnonymousUserToken2, true )
+      } )
+  }
+
+  static setUserTokens( _UserToken1, _UserToken2, doNotPersist )
   {
     UserToken1 = _UserToken1
     UserToken2 = _UserToken2
@@ -22,6 +36,12 @@ export default class NetworkLayer
     if( listeningComponent )
     {
       listeningComponent.updateEnvironment( )
+    }
+
+    if( ! doNotPersist )
+    {
+      const tokensAsJSON = JSON.stringify( { UserToken1, UserToken2 } )
+      Keychain.setGenericPassword( 'user', tokensAsJSON )
     }
   }
 
@@ -45,7 +65,8 @@ export default class NetworkLayer
 
   static getCurrentEnvironment( )
   {
-    if( currentEnvironment == null )
+    // UserToken2 will be null before persistent credentials are retrieved, or anonymous credentials are set
+    if( currentEnvironment == null && UserToken2 != null )
     {
       currentEnvironment = new Relay.Environment( )
       currentEnvironment.injectNetworkLayer( NetworkLayer.createNetworkLayer( ) )

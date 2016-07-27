@@ -55,6 +55,8 @@ MenuButton.contextTypes = {
   drawer: React.PropTypes.object,
 }
 
+// Will start the process of loading credentials. Notice that the function returns before the loading is complete
+NetworkLayer.loadPersistedCredentials( )
 
 class ApplicationMain extends React.Component
 {
@@ -83,11 +85,17 @@ class ApplicationMain extends React.Component
 
   render( )
   {
-    return <View style={styles.container}>
-      <Router createReducer={ reducerCreate } getSceneStyle={ getSceneStyle } wrapBy={ RelayRenderer( ) }>
-        { routes( MenuButton ) }
-      </Router>
-    </View>
+    // If the persisted credentials have not been loaded yet
+    if( this.state.environment == null )
+      // Return an empty view. Once the credentials are loaded, updateEnvironment will be called and it will cause re-render
+      return <View />
+    else
+      // Credentials are available, proceed to render UI
+      return <View style={styles.container}>
+        <Router createReducer={ reducerCreate } getSceneStyle={ getSceneStyle } wrapBy={ RelayRenderer( ) }>
+          { routes( MenuButton ) }
+        </Router>
+      </View>
   }
 }
 
