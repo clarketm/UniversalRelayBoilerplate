@@ -51,7 +51,7 @@ export default class Login extends React.Component
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Origin': '',
-        // TODO ZZZ do I need the host? I hope I can live without that Host': 'localhost'
+        // TODO Do we need the host? Can we go without that Host': 'localhost'?
       },
       body: JSON.stringify( {
         User_AccountName: this.state.User_AccountName,
@@ -78,7 +78,6 @@ export default class Login extends React.Component
           console.log( 'UserToken2=' + responseData.UserToken2 )
 
           NetworkLayer.setUserTokens( UserToken1, responseData.UserToken2 )
-          NetworkLayer.injectNetworkLayer( )
         }
         else
         {

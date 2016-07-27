@@ -1,2 +1,2 @@
 export const name = 'urb'
-export const version = '7.6.4.40'
+export const version = '7.7.0.41'

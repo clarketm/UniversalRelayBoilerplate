@@ -1,20 +1,13 @@
 import React from 'react'
-import RelayRenderer from 'rnrf-relay-renderer'
+import Relay from 'react-relay';
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native'
-import { Scene, Reducer, Router, Modal } from 'react-native-router-flux'
+import { Reducer, Router } from 'react-native-router-flux'
+
+import NetworkLayer from '../NetworkLayer'
+import RelayRenderer from './RelayComponentRenderer'
 
 import routes from '../../configuration/app/routes'
 
-
-///
-import NetworkLayer from '../NetworkLayer'
-
-NetworkLayer.injectNetworkLayer( )
-
-
-
-
-///
 
 const styles = StyleSheet.create( {
   container: {
@@ -63,8 +56,31 @@ MenuButton.contextTypes = {
 }
 
 
-export default class ApplicationMain extends React.Component
+class ApplicationMain extends React.Component
 {
+  constructor(props)
+  {
+    super( props )
+    this.state = {
+      environment: NetworkLayer.getCurrentEnvironment( )
+    }
+    NetworkLayer.RegisterListeningComponent( this )
+  }
+
+  updateEnvironment( )
+  {
+    this.setState( {
+      environment: NetworkLayer.getCurrentEnvironment( )
+    } )
+  }
+
+  getChildContext ()
+  {
+    return {
+      environment: this.state.environment
+    }
+  }
+
   render( )
   {
     return <View style={styles.container}>
@@ -74,3 +90,9 @@ export default class ApplicationMain extends React.Component
     </View>
   }
 }
+
+ApplicationMain.childContextTypes = {
+  environment: Relay.PropTypes.Environment
+}
+
+export default ApplicationMain

@@ -8,6 +8,8 @@ import publicURL from '../configuration/scripts/publicURL'
 
 let UserToken1 = null
 let UserToken2 = AnonymousUserToken2
+let currentEnvironment = null
+let listeningComponent = null
 
 export default class NetworkLayer
 {
@@ -15,9 +17,15 @@ export default class NetworkLayer
   {
     UserToken1 = _UserToken1
     UserToken2 = _UserToken2
+    currentEnvironment = null // In order to force the creation of new environment
+
+    if( listeningComponent )
+    {
+      listeningComponent.updateEnvironment( )
+    }
   }
 
-  static injectNetworkLayer( )
+  static createNetworkLayer( )
   {
     const graphQLServerURL = publicURL + '/graphql';
 
@@ -29,14 +37,25 @@ export default class NetworkLayer
     if( UserToken2 != null )
       headers.UserToken2 = UserToken2
 
-    // TODO: equivalent of RelayContext.reset( )
-
-    // Uncomment for connection to server in the cloud. Smarter way to do this will be needed.
-    // graphQLServerURL = 'http://universal-relay-boilerplate.herokuapp.com/graphql';
-    Relay.injectNetworkLayer( new DefaultNetworkLayer(
+    return new DefaultNetworkLayer(
       graphQLServerURL,
       { headers: headers }
-    ) );
+    )
+  }
 
+  static getCurrentEnvironment( )
+  {
+    if( currentEnvironment == null )
+    {
+      currentEnvironment = new Relay.Environment( )
+      currentEnvironment.injectNetworkLayer( NetworkLayer.createNetworkLayer( ) )
+    }
+
+    return currentEnvironment
+  }
+
+  static RegisterListeningComponent( component )
+  {
+    listeningComponent = component
   }
 }
