@@ -4,7 +4,7 @@ import Relay, {
 } from 'react-relay';
 
 import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
-import publicURL from '../configuration/scripts/publicURL'
+import publicURL from '../configuration/app/publicURL'
 
 
 let UserToken1 = null

@@ -5,7 +5,7 @@ import Button from 'react-native-button'
 
 import FloatingLabelTextInput from '../../../../app/components/FloatingLabelTextInput'
 import NetworkLayer from '../../../../app/NetworkLayer'
-import publicURL from '../../../../configuration/scripts/publicURL'
+import publicURL from '../../../../configuration/app/publicURL'
 import { SuccessfulLoginRouteName, SuccessfulLoginRouteOptions } from '../../../../configuration/units/urb-account-management/app/SuccessfulLoginRoute'
 
 const styles = StyleSheet.create( {

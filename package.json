@@ -4,7 +4,7 @@
     "npm": "^3.0.0"
   },
   "scripts": {
-    "setup-local": "cp ./configuration/scripts/default.env ./.env && cp ./configuration/scripts/default.publicURL.js ./configuration/scripts/publicURL.js",
+    "setup-local": "cp ./configuration/scripts/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js",
     "setup-cassandra-init": "cqlsh -f ./configuration/scripts/cassandra-init.cql",
     "update-da-memory": "./node_modules/.bin/replace OBJECT_PERSISTENCE=cassandra OBJECT_PERSISTENCE=memory ./.env",
     "update-da-cassandra": "./node_modules/.bin/replace OBJECT_PERSISTENCE=memory OBJECT_PERSISTENCE=cassandra ./.env",

@@ -18,7 +18,7 @@ if( IPAddress != undefined )
     '  jsCodeLocation = [NSURL URLWithString:@"http://' +  IPAddress + ':8081/index.ios.bundle?platform=ios&dev=true"];'
   )
   updateIPInFile(
-    './configuration/scripts/publicURL.js',
+    './configuration/app/publicURL.js',
     'const publicURL',
     'const publicURL = \'http://' +  IPAddress + ':4444\''
   )
