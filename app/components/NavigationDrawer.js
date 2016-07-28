@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Drawer from 'react-native-drawer';
 import { DefaultRenderer } from 'react-native-router-flux';
 
-import DrawerView from './DrawerView';
+import DrawerView from '../../configuration/app/components/DrawerView';
 
 class NavigationDrawer extends React.Component
 {
