@@ -161,7 +161,6 @@ Chrome.childContextTypes = {
 
 // It is important to retrieve UserToken2, since it is used in client.js
 export default Relay.createContainer( withWidth( )( Chrome ), {
-//export default Relay.createContainer( Chrome, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {

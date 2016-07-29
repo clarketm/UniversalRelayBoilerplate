@@ -6,6 +6,7 @@ import { Reducer, Router, Scene } from 'react-native-router-flux'
 import NavigationDrawer from './NavigationDrawer'
 import NetworkLayer from '../NetworkLayer'
 import RelayRenderer from './RelayComponentRenderer'
+import ViewerQuery from '../ViewerQuery'
 
 import routes from '../../configuration/app/routes'
 
@@ -28,7 +29,7 @@ function getSceneStyle ( )
   return {
     flex: 1,
     marginTop: 0,
-    backgroundColor: '#0000ff',
+    backgroundColor: '#ffffff',
     shadowColor: null,
     shadowOffset: null,
     shadowOpacity: null,
@@ -94,7 +95,7 @@ class ApplicationMain extends React.Component
       // Credentials are available, proceed to render UI
       return <View style={styles.container}>
         <Router createReducer={ reducerCreate } getSceneStyle={ getSceneStyle } wrapBy={ RelayRenderer( ) }>
-          <Scene key="tabbar" component={ NavigationDrawer } initial={ true }>
+          <Scene key="tabbar" component={ NavigationDrawer }  queries={ ViewerQuery } initial={ true }>
             { routes( MenuButton ) }
           </Scene>
         </Router>

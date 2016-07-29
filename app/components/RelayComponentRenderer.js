@@ -36,13 +36,12 @@ class RelayComponentRenderer extends Component
 
   render( )
   {
-
     let queryConfig
 
     if( this.props.navigationState.queries )
       queryConfig = {
         queries: this.props.navigationState.queries,
-        params: this.props.navigationState, // TODO x7000 not sure if it is correct to pass all the data, find the way extract only needed variables
+        params: { ...(this.props) }, // TODO x7000 not sure if it is correct to pass all the data, find the way extract only needed variables
         name: `rnrf-relay-renderer_${this.props.navigationState.key}_route`, // construct route name based on navState key
       }
     else if( this.props.navigationState.route )
