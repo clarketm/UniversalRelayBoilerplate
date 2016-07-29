@@ -36,13 +36,26 @@ class RelayComponentRenderer extends Component
 
   render( )
   {
-    return <Relay.Renderer
-      Container={this.props.component}
-      queryConfig={{
+
+    let queryConfig
+
+    if( this.props.navigationState.queries )
+      queryConfig = {
         queries: this.props.navigationState.queries,
         params: this.props.navigationState, // TODO x7000 not sure if it is correct to pass all the data, find the way extract only needed variables
         name: `rnrf-relay-renderer_${this.props.navigationState.key}_route`, // construct route name based on navState key
-      }}
+      }
+    else if( this.props.navigationState.route )
+    {
+      const routeData = JSON.parse( this.props.navigationState.data )
+      queryConfig = new this.props.navigationState.route( routeData )
+    }
+    else
+      throw new Error( "Neither queries nor route specified" )
+
+    return <Relay.Renderer
+      Container={this.props.component}
+      queryConfig={ queryConfig }
       environment={ this.context.environment }
       render={ ( {done, error, props, retry, stale} ) =>
       {
@@ -66,7 +79,7 @@ RelayComponentRenderer.contextTypes = {
   environment: Relay.PropTypes.Environment
 };
 
-export default (moduleProps) => (Component) =>
+export default ( moduleProps ) => ( Component ) =>
   !Relay.isContainer(Component)
   ?
     Component // not a Relay container, return component itself
