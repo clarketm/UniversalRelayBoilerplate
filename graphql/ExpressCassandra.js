@@ -22,7 +22,6 @@ let tableSchemas = new Map( )
 
 export function addTableSchema( tableName: string, tableSchema: object ): void
 {
-  console.log( "XXX Adding schema for table " + tableName )
   if( tableSchemas == null )
   {
     console.error( "Can not create schema" )
@@ -31,13 +30,7 @@ export function addTableSchema( tableName: string, tableSchema: object ): void
   tableSchemas[ tableName ] = tableSchema
 }
 
-
-// console.log( "tableSchemas:" )
-// console.log( tableSchemas )
-// for( let tableName in tableSchemas )
-//   console.log( tableSchemas[ tableName ] )
-
-export function connectAndLoadSchemas( )
+export function connectAndLoadSchemas( provideFeedback: boolean ): void
 {
   ExpressCassandraClient.connect( ( err ) =>
   {
@@ -56,15 +49,12 @@ export function connectAndLoadSchemas( )
               console.log( err.message )
               process.exit( )
             }
-            else
-            {
-              console.log( "XXX READY: " + ExpressCassandraClient.modelInstance[ tableName ]._properties.name )
-              // Table is ready to use .....
-              // console.log( ExpressCassandraClient.modelInstance.MyTable )
-              // console.log( ExpressCassandraClient.modelInstance.MyTable === MyTableSchema )
-            }
+            else if( provideFeedback )
+              console.log( "Table ready: " + ExpressCassandraClient.modelInstance[ tableName ]._properties.name )
           }
         )
+
+      tableSchemas = null // So that no more can be added
     }
   } )
 }
