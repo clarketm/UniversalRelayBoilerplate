@@ -29,9 +29,9 @@ For the most up to date list of technologies used please go to [CodeFoundries.co
 
 | **Technology** | **Description**|
 |----------------|----------------|
-| [React JS](/stack/react-js.html)                                | Library for building Single Page Applications and apps. Often called the 'V' in the MVC model. |
+| [React JS](https://facebook.github.io/react/)                                | Library for building Single Page Applications and apps. Often called the 'V' in the MVC model. |
 | [react-router](https://github.com/reactjs/react-router)         | React Router keeps your UI in sync with the URL. It has a simple API with powerful features like lazy code loading, dynamic route matching, and location transition handling built right in. Make the URL your first thought, not an after-thought. |
-| [React Native](/stack/react-native.html)                        | React Native enables you to build world-class application experiences on native platforms using a consistent developer experience based on JavaScript and React. |
+| [React Native](https://facebook.github.io/react-native/)                        | React Native enables you to build world-class application experiences on native platforms using a consistent developer experience based on JavaScript and React. |
 | [react-native-router-flux](https://github.com/aksonov/react-native-router-flux) | Router for React Native based on new React Native Navigation API. |
 | [Relay](https://facebook.github.io/relay/)                                      | A Javascript framework for building data-driven react applications. |
 | [Material UI](http://www.material-ui.com/)                      | Library for implementing [Material Design](https://www.google.com/design/spec/material-design/introduction.html) in React. All user interface in this kit is built exclusively with Material UI components. |
@@ -42,8 +42,8 @@ For the most up to date list of technologies used please go to [CodeFoundries.co
 
 | **Technology** | **Description**|
 |----------------|----------------|
-| [Node.js](/stack/node-js.html)                                  | Event-driven, non-blocking I/O runtime based on JavaScript that is lightweight and efficient. |
-| [GraphQL](/stack/graph-ql.html)                                 | A query language created by Facebook in 2012 for describing the capabilities and requirements of data models for client‐server applications. |
+| [Node.js](https://nodejs.org/en/)                                  | Event-driven, non-blocking I/O runtime based on JavaScript that is lightweight and efficient. |
+| [GraphQL](http://graphql.org/docs/getting-started/)                                 | A query language created by Facebook in 2012 for describing the capabilities and requirements of data models for client‐server applications. |
 | [GraphiQL](https://github.com/graphql/graphiql)                 | An graphical interactive in-browser GraphQL IDE. It allows to test the entire schema provided by GraphQL and can be an excellent tool for exploring the boilerplate, as well as a part of applications built on top of it. |
 | [Express GraphQL](https://github.com/graphql/express-graphql)   | A Node.js express library that allows the creation of GraphQL servers. |
 | [Isomorphic Relay](https://github.com/denvned/isomorphic-relay) | Adds server side rendering support to React Relay. The boilerplate fully utilizes this library. |
