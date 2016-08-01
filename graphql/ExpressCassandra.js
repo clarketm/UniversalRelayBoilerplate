@@ -31,31 +31,64 @@ export function addTableSchema( tableName: string, tableSchema: object ): void
   tableSchemas[ tableName ] = tableSchema
 }
 
-export function connectAndLoadSchemas( provideFeedback: boolean ): void
+function loadATableSchema( tableSchemasAsArray, runAsPartOfSetupCassandra: boolean ): void
 {
+  if( tableSchemasAsArray.length > 0 )
+  {
+    const tableName = tableSchemasAsArray[ 0 ][ 0 ]
+    const tableSchema = tableSchemasAsArray[ 0 ][ 1 ]
+
+    tableSchemasAsArray.splice( 0, 1 )
+
+    ExpressCassandraClient.loadSchema(
+      tableName,
+      tableSchema,
+      ( err ) =>
+      {
+        if( err )
+        {
+          console.error( err.message )
+          process.exit( 1 )
+        }
+        else
+        {
+          if( runAsPartOfSetupCassandra )
+            console.log( "Table ready: " + ExpressCassandraClient.modelInstance[ tableName ]._properties.name )
+
+          loadATableSchema( tableSchemasAsArray, runAsPartOfSetupCassandra ) // Load the next table
+        }
+      }
+    )
+  }
+  else if( runAsPartOfSetupCassandra )
+  {
+    console.log( "Success" )
+    process.exit( )
+  }
+}
+
+export function connectAndLoadSchemas( runAsPartOfSetupCassandra: boolean ): void
+{
+  // All table schemas should have been added by now.
+  canAddMoreTableSchemas = false
+
   ExpressCassandraClient.connect( ( err ) =>
   {
     if( err )
       console.log( err.message )
     else
     {
-      for( let tableName in tableSchemas )
-        ExpressCassandraClient.loadSchema(
-          tableName,
-          tableSchemas[ tableName ],
-          ( err ) =>
-          {
-            if( err )
-            {
-              console.error( err.message )
-              process.exit( 1 )
-            }
-            else if( provideFeedback )
-              console.log( "Table ready: " + ExpressCassandraClient.modelInstance[ tableName ]._properties.name )
-          }
-        )
+      // TODO x7000 the code below replaces the Array.from function, which does not seem to be working
+      //loadATableSchema( Array.from( tableSchemas ), runAsPartOfSetupCassandra )
 
-      tableSchemas = null // So that no more can be added
+
+      const tableSchemasAsArray = [ ]
+      for( let tableName in tableSchemas )
+        tableSchemasAsArray.push( [ tableName, tableSchemas[ tableName ] ] )
+      loadATableSchema( tableSchemasAsArray, runAsPartOfSetupCassandra )
+
+
+      tableSchemas = null // Free up the memory that is not needed any more
     }
   } )
 }
