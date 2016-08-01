@@ -19,13 +19,14 @@ const ExpressCassandraClient = ExpressCassandra.createClient( {
 } )
 
 let tableSchemas = new Map( )
+let canAddMoreTableSchemas = true
 
 export function addTableSchema( tableName: string, tableSchema: object ): void
 {
-  if( tableSchemas == null )
+  if( ! canAddMoreTableSchemas )
   {
-    console.error( "Can not create schema" )
-    process.exit( )
+    console.error( "Attempting to add table schemas after express-cassandra client connect." )
+    process.exit( 1 )
   }
   tableSchemas[ tableName ] = tableSchema
 }
@@ -46,8 +47,8 @@ export function connectAndLoadSchemas( provideFeedback: boolean ): void
           {
             if( err )
             {
-              console.log( err.message )
-              process.exit( )
+              console.error( err.message )
+              process.exit( 1 )
             }
             else if( provideFeedback )
               console.log( "Table ready: " + ExpressCassandraClient.modelInstance[ tableName ]._properties.name )
