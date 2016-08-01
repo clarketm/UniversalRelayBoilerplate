@@ -3,15 +3,13 @@
 import { addTableSchema } from '../../../../graphql/ExpressCassandra'
 
 
-addTableSchema( 'ToDo', {
+addTableSchema( 'PrimeNumber', {
   fields: {
       id: 'uuid',
-      ToDo_User_id: 'uuid',
-      ToDo_Text: 'text',
-      ToDo_Complete: 'boolean',
+      PrimeNumber_NumericValue: 'int',
+      PrimeNumber_TextValue: 'text',
   },
   key: [ 'id' ],
-  indexes: [ 'ToDo_User_id' ]
 } )
 
 export default true
