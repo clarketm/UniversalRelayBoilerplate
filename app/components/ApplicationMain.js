@@ -6,7 +6,6 @@ import { Reducer, Router, Scene } from 'react-native-router-flux'
 import NavigationDrawer from './NavigationDrawer'
 import NetworkLayer from '../NetworkLayer'
 import RelayRenderer from './RelayComponentRenderer'
-import ViewerQuery from '../ViewerQuery'
 
 import routes from '../../configuration/app/routes'
 
@@ -59,12 +58,11 @@ MenuButton.contextTypes = {
 
 class ApplicationMain extends React.Component
 {
-  constructor(props)
+  constructor( props )
   {
     super( props )
     this.state = {
-      // Initially will be null
-      environment: NetworkLayer.getCurrentEnvironment( )
+      user: 1
     }
     NetworkLayer.RegisterListeningComponent( this )
   }
@@ -72,7 +70,7 @@ class ApplicationMain extends React.Component
   updateEnvironment( isAnonymous )
   {
     this.setState( {
-      environment: NetworkLayer.getCurrentEnvironment( ),
+      user: this.state.user + 1,
       isAnonymous
     } )
   }
@@ -80,7 +78,7 @@ class ApplicationMain extends React.Component
   getChildContext( )
   {
     return {
-      environment: this.state.environment
+      environment: NetworkLayer.getCurrentEnvironment( )
     }
   }
 
@@ -92,16 +90,20 @@ class ApplicationMain extends React.Component
 
   render( )
   {
+    // Every time create a new viewer query. This way, when the relay environment changes and this method is called, the components
+    // dependent on the viewer query will be re-rendered
+    const viewerQuery = { Viewer: ( ) => Relay.QL`query { Viewer }` }
+
     // If the persisted credentials have not been loaded yet
-    if( this.state.environment == null )
+    if( NetworkLayer.getCurrentEnvironment( ) == null )
       // Return an empty view. Once the credentials are loaded, updateEnvironment will be called and it will cause re-render
       return <View />
     else
       // Credentials are available, proceed to render UI
       return <View style={styles.container}>
         <Router createReducer={ reducerCreate } getSceneStyle={ getSceneStyle } wrapBy={ RelayRenderer( ) }>
-          <Scene key="tabbar" component={ NavigationDrawer }  queries={ ViewerQuery } initial={ true }>
-            { routes( MenuButton, this.state.isAnonymous ) }
+          <Scene key="tabbar" component={ NavigationDrawer }  queries={ viewerQuery } initial={ true }>
+            { routes( MenuButton, viewerQuery, this.state.isAnonymous ) }
           </Scene>
         </Router>
       </View>
