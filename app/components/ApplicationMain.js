@@ -57,32 +57,37 @@ MenuButton.contextTypes = {
   drawer: React.PropTypes.object,
 }
 
-// Will start the process of loading credentials. Notice that the function returns before the loading is complete
-NetworkLayer.loadPersistedCredentials( )
-
 class ApplicationMain extends React.Component
 {
   constructor(props)
   {
     super( props )
     this.state = {
+      // Initially will be null
       environment: NetworkLayer.getCurrentEnvironment( )
     }
     NetworkLayer.RegisterListeningComponent( this )
   }
 
-  updateEnvironment( )
+  updateEnvironment( isAnonymous )
   {
     this.setState( {
-      environment: NetworkLayer.getCurrentEnvironment( )
+      environment: NetworkLayer.getCurrentEnvironment( ),
+      isAnonymous
     } )
   }
 
-  getChildContext ()
+  getChildContext( )
   {
     return {
       environment: this.state.environment
     }
+  }
+
+  componentDidMount( )
+  {
+    // Will start the process of loading credentials. Notice that the function returns before the loading is complete
+    NetworkLayer.loadPersistedCredentials( )
   }
 
   render( )
@@ -96,7 +101,7 @@ class ApplicationMain extends React.Component
       return <View style={styles.container}>
         <Router createReducer={ reducerCreate } getSceneStyle={ getSceneStyle } wrapBy={ RelayRenderer( ) }>
           <Scene key="tabbar" component={ NavigationDrawer }  queries={ ViewerQuery } initial={ true }>
-            { routes( MenuButton ) }
+            { routes( MenuButton, this.state.isAnonymous ) }
           </Scene>
         </Router>
       </View>

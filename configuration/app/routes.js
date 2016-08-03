@@ -7,12 +7,12 @@ import Login from '../../units/urb-account-management/app/components/Login'
 import ToDoScreen from '../../units/urb-example-todo/app/components/ToDoScreen'
 
 
-export default function routes ( MenuButton )
+export default function routes( MenuButton, isAnonymous )
 {
   return(
     <Scene key="main" tabs hideTabBar>
-      <Scene key="home_login" title="Login" component={ Login } leftButton={ MenuButton } />
-      <Scene key="home_ToDo" leftButton={ MenuButton }>
+      <Scene key="home_login" title="Login" component={ Login } leftButton={ MenuButton } initial={ isAnonymous } />
+      <Scene key="home_ToDo" leftButton={ MenuButton } initial={ ( ! isAnonymous ) }>
         <Scene key="home_ToDo_List" title="To Do" component={ ToDoScreen } queries={ ViewerQuery } />
       </Scene>
     </Scene>

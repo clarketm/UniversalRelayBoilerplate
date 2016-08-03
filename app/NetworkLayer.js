@@ -20,14 +20,14 @@ export default class NetworkLayer
       .getGenericPassword( )
       .then( (credentials) => {
         const credentialsJSON = JSON.parse( credentials.password, true )
-        NetworkLayer.setUserTokens( credentialsJSON.UserToken1, credentialsJSON.UserToken2 )
+        NetworkLayer.setUserTokens( credentialsJSON.UserToken1, credentialsJSON.UserToken2, false )
       } )
       .catch( ( error ) => {
-        NetworkLayer.setUserTokens( null, AnonymousUserToken2, true )
+        NetworkLayer.setUserTokens( null, AnonymousUserToken2, false )
       } )
   }
 
-  static setUserTokens( _UserToken1, _UserToken2, doNotPersist )
+  static setUserTokens( _UserToken1, _UserToken2, persist, anonymous )
   {
     UserToken1 = _UserToken1
     UserToken2 = _UserToken2
@@ -35,10 +35,10 @@ export default class NetworkLayer
 
     if( listeningComponent )
     {
-      listeningComponent.updateEnvironment( )
+      listeningComponent.updateEnvironment( _UserToken1 == null )
     }
 
-    if( ! doNotPersist )
+    if( persist )
     {
       const tokensAsJSON = JSON.stringify( { UserToken1, UserToken2 } )
       Keychain.setGenericPassword( 'user', tokensAsJSON )
