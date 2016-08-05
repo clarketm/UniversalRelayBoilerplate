@@ -12,8 +12,7 @@ import routes from '../../configuration/app/routes'
 
 const styles = StyleSheet.create( {
   container: {
-    flex:1,
-    backgroundColor:"red",
+    flex: 1,
   },
 } )
 
@@ -28,7 +27,6 @@ function getSceneStyle ( )
   return {
     flex: 1,
     marginTop: 0,
-    backgroundColor: '#ffffff',
     shadowColor: null,
     shadowOffset: null,
     shadowOpacity: null,
