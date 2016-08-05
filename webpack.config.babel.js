@@ -4,7 +4,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 var version = require( './configuration/package.js' ).version
 
-console.log( 'Webpack configuration, process.env: ' + process.env.NODE_ENV )
+console.log( 'Running Webpack, process.env.NODE_ENV=' + process.env.NODE_ENV + ', version=' + version )
 
 let config = {
   devtool: ( process.env.NODE_ENV == 'production' ? 'source-map' : 'eval' ),
