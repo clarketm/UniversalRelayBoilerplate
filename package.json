@@ -5,6 +5,7 @@
   },
   "scripts": {
     "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js",
+    "setup-local-w": "copy .\\configuration\\default.env .\\.env. && copy .\\configuration\\app\\default.publicURL.js configuration\\app\\publicURL.js",
     "setup-cassandra": "./node_modules/.bin/babel-node ./scripts/setup-cassandra.js",
     "update-da-memory": "./node_modules/.bin/replace OBJECT_PERSISTENCE=cassandra OBJECT_PERSISTENCE=memory ./.env",
     "update-da-cassandra": "./node_modules/.bin/replace OBJECT_PERSISTENCE=memory OBJECT_PERSISTENCE=cassandra ./.env",
@@ -20,8 +21,11 @@
     "dev-reset": "sudo chmod -R a+w * && watchman watch-del-all && rm -rf ~/Library/Developer/Xcode/DerivedData/* && rm -rf $TMPDIR/react-* && rm -rf ~/.node-gyp",
     "dev-prod": "export NODE_ENV=production && ./node_modules/.bin/babel-node ./server/server.js",
     "dev-server": "better-npm-run dev-server",
+    "dev-server-w": "better-npm-run dev-server-w",
     "dev-webpack": "rm -rf build && better-npm-run dev-webpack",
+    "dev-webpack-w": "rmdir /s /q build & better-npm-run dev-webpack-w",
     "dev": "rm -rf build && concurrently --kill-others \"npm run dev-webpack\" \"npm run dev-server\" \"npm run start\" ",
+    "dev-w": "rmdir /s /q build & concurrently --kill-others \"npm run dev-webpack-w\" \"npm run dev-server-w\" \"npm run start\" ",
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache"
   },
   "betterScripts": {
@@ -33,6 +37,15 @@
     },
     "dev-webpack": {
       "command": "./node_modules/.bin/webpack-dev-server --hot --inline --no-info --colors"
+    },
+    "dev-server-w": {
+      "command": "nodemon --exec node_modules\\.bin.\\babel-node -- server\\server.js",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "dev-webpack-w": {
+      "command": "node_modules\\.bin.\\webpack-dev-server --hot --inline --no-info --colors"
     }
   },
   "metadata": {
