@@ -13,7 +13,7 @@ const ExpressCassandraClient = ExpressCassandra.createClient( {
       class: 'SimpleStrategy',
       replication_factor: 1
     },
-    dropTableOnSchemaChange: false,
+    migration: 'safe',
     createKeyspace: true
   }
 } )
