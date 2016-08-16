@@ -1,5 +1,8 @@
 /* @flow weak */
 
+import winston from 'winston'
+
+
 export default class PersisterMemory
 {
   constructor( )
@@ -81,5 +84,10 @@ export default class PersisterMemory
     store.splice( indexToDelete, 1 )
 
     return Promise.resolve( )
+  }
+
+  createLogger( )
+  {
+    return new (winston.transports.Console)( )
   }
 }

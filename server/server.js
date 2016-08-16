@@ -18,22 +18,6 @@ import webapp from '../webapp/server'; // Isomorphic React server
 // Read environment
 require( 'dotenv' ).load( );
 
-// Validate Persistence
-const objectPersistence = process.env.OBJECT_PERSISTENCE;
-if( objectPersistence != 'memory' && objectPersistence != 'cassandra' )
-{
-  log.log( 'info', 'Invalid process.env.OBJECT_PERSISTENCE: ' + objectPersistence );
-  process.exit( );
-}
-
-// Log starting application - first gather connection information
-let persistenceInformation = { };
-if( objectPersistence == 'cassandra' )
-{
-  persistenceInformation.CASSANDRA_KEYSPACE = process.env.CASSANDRA_KEYSPACE;
-  persistenceInformation.CASSANDRA_CONNECTION_POINTS = process.env.CASSANDRA_CONNECTION_POINTS;
-}
-
 const startupInformation =
 {
   name:                 name,
@@ -47,9 +31,6 @@ const startupInformation =
   process_title:        process.title,
   process_pid:          process.pid,
   local_ip:             getLocalIP( ),
-
-  objectPersistence:    objectPersistence,
-  ...persistenceInformation
 }
 
 // Log starting application, also print to console

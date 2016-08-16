@@ -3,10 +3,10 @@
 
 // Uncomment the import section for the persister you need as default
 
-// import PersisterCassandra from '../../graphql/persister/PersisterCassandra'
+// import PersisterCassandra from '../../graphql/persister/cassandra/PersisterCassandra'
 // const defaultPersister = new PersisterCassandra( )
 
-import PersisterMemory from '../../graphql/persister/PersisterMemory'
+import PersisterMemory from '../../graphql/persister/memory/PersisterMemory'
 const defaultPersister = new PersisterMemory( )
 
 

@@ -1,6 +1,8 @@
 /* @flow weak */
 
-import { runQuery, runQueryOneResult, runQueryNoResult } from '../CassandraClient.js'
+import { runQuery, runQueryOneResult, runQueryNoResult } from '../../CassandraClient.js'
+import CassandraOptions from '../../CassandraOptions.js';
+import winstonCassandra from './winstonCassandra'
 
 
 export default class PersisterCassandra
@@ -77,5 +79,10 @@ export default class PersisterCassandra
     const cqlParams = [ fields.id ]
 
     return runQueryNoResult( cqlText, cqlParams )
+  }
+
+  createLogger( )
+  {
+    return new winstonCassandra( CassandraOptions )
   }
 }
