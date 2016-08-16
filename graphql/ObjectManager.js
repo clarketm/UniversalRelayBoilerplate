@@ -3,8 +3,7 @@
 import DataLoader from 'dataloader'
 
 import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
-import ObjectPersisterCassandra from './ObjectPersisterCassandra.js'
-import ObjectPersisterMemory from './ObjectPersisterMemory.js'
+import defaultPersister from '../configuration/graphql/defaultPersister'
 import User from '../configuration/graphql/model/User'
 import { Uuid } from './CassandraClient.js'
 
@@ -26,9 +25,6 @@ const User_0 = new User( {
   UserToken2: AnonymousUserToken2
 } )
 
-// Set persistence
-const ObjectPersister = (process.env.OBJECT_PERSISTENCE == 'memory') ? ObjectPersisterMemory : ObjectPersisterCassandra
-
 // Static set of entity definitions
 const entityDefinitions = { }
 
@@ -43,7 +39,7 @@ export default class ObjectManager
     this.Viewer_User_id = null
   }
 
-  static registerEntity( entityName: string, EntityType : any )
+  static registerEntity( entityName: string, EntityType : any, persister: any ): void
   {
     if( entityName in entityDefinitions )
       throw new Error( "Entity already registered: " + entityName )
@@ -51,9 +47,14 @@ export default class ObjectManager
     // In order to be able to access the name as a static property of the type
     EntityType.entityName = entityName
 
+    // Determine persister - default, or otherwise
+    if( persister == null )
+      persister = defaultPersister
+
     entityDefinitions[ entityName ] = {
       EntityName: entityName,
       EntityType: EntityType,
+      Persister: persister,
       TriggersForAdd: [ ],
       TriggersForUpdate: [ ],
       TriggersForRemove: [ ]
@@ -122,16 +123,17 @@ export default class ObjectManager
     if( ! ( entityName in entityDefinitions ) )
       throw new Error( "Can not find entity type named " + entityName )
 
-    const EntityType = entityDefinitions[ entityName ].EntityType
+    const entityDefinition = entityDefinitions[ entityName ]
+    const entityType = entityDefinition.EntityType
 
     let loadersList = multipleResults ? this.getLoadersMultiple( entityName ) : this.getLoadersSingle( entityName )
     let loader = loadersList[ fieldName ]
     if( loader == null )
     {
       if( multipleResults )
-        loader = new DataLoader( values => ObjectPersister.ObjectPersister_getList( entityName, EntityType, fieldName, values ) )
+        loader = new DataLoader( values => entityDefinition.Persister.getList( entityName, entityType, fieldName, values ) )
       else
-        loader = new DataLoader( values => ObjectPersister.ObjectPersister_get( entityName, EntityType, fieldName, values ) )
+        loader = new DataLoader( values => entityDefinition.Persister.get( entityName, entityType, fieldName, values ) )
 
       loadersList[ fieldName ] = loader
     }
@@ -203,7 +205,7 @@ export default class ObjectManager
       this.setViewerUserId( fields.id.toString( ) )
 
     return this.executeTriggers( entityDefinition.TriggersForAdd, fields )
-    .then( ( ) => ObjectPersister.ObjectPersister_add( entityName, fields, entityDefinition.EntityType ) )
+    .then( ( ) => entityDefinition.Persister.add( entityName, fields, entityDefinition.EntityType ) )
     .then( ( ) => {
       this.invalidateLoaderCache( entityName, fields )
       return fields.id
@@ -217,7 +219,7 @@ export default class ObjectManager
     if( entityDefinition == null ) console.log( 'Cound not find entity'+ entityName )
 
     return this.executeTriggers( entityDefinition.TriggersForUpdate, fields )
-    .then( ObjectPersister.ObjectPersister_update( entityName, fields ) )
+    .then( entityDefinition.Persister.update( entityName, fields ) )
     .then( ( ) => {
       this.invalidateLoaderCache( entityName, fields )
     } )
@@ -229,7 +231,7 @@ export default class ObjectManager
     const entityDefinition = entityDefinitions[ entityName ]
 
     return this.executeTriggers( entityDefinition.TriggersForRemove, fields )
-    .then( ObjectPersister.ObjectPersister_remove( entityName, fields ) )
+    .then( entityDefinition.Persister.remove( entityName, fields ) )
     .then( ( ) => {
       this.invalidateLoaderCache( entityName, fields )
     } )
