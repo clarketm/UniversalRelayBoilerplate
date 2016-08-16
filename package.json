@@ -7,8 +7,6 @@
     "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js",
     "setup-local-w": "copy .\\configuration\\default.env .\\.env. && copy .\\configuration\\app\\default.publicURL.js configuration\\app\\publicURL.js",
     "setup-cassandra": "./node_modules/.bin/babel-node ./scripts/setup-cassandra.js",
-    "update-da-memory": "./node_modules/.bin/replace OBJECT_PERSISTENCE=cassandra OBJECT_PERSISTENCE=memory ./.env",
-    "update-da-cassandra": "./node_modules/.bin/replace OBJECT_PERSISTENCE=memory OBJECT_PERSISTENCE=cassandra ./.env",
     "update-ip": "./node_modules/.bin/babel-node ./scripts/update-ip.js",
     "build-babel": "export NODE_ENV=production && rm -rf build && mkdir build && cp -r configuration ./build/configuration && cp -r webapp ./build/webapp && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines  && ./node_modules/.bin/babel -d ./build/configuration/ ./configuration -s --retain-lines && ./node_modules/.bin/babel -d ./build/graphql/ ./graphql -s --retain-lines && ./node_modules/.bin/babel -d ./build/scripts/ ./scripts -s --retain-lines && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines && ./node_modules/.bin/babel -d ./build/units/ ./units -s --retain-lines && ./node_modules/.bin/babel -d ./build/webapp/ ./webapp -s --retain-lines && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines && cp -r public ./build/public && cp ./package.json ./build",
     "build-bump-version": "./node_modules/.bin/babel-node ./scripts/build-bump-version.js",
