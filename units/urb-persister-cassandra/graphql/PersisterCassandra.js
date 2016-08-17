@@ -1,8 +1,8 @@
 /* @flow weak */
 
 import { runQuery, runQueryOneResult, runQueryNoResult, Uuid } from './CassandraClient'
-import CassandraOptions from './CassandraOptions';
-import { addTableSchema } from './ExpressCassandra'
+import CassandraOptions from './CassandraOptions'
+import ExpressCassandraClient, { addTableSchema } from './ExpressCassandra'
 import WinstonCassandra from './WinstonCassandra'
 
 
@@ -30,23 +30,37 @@ export default class PersisterCassandra
     return Promise.all( resultPromises )
   }
 
-  /*eslint no-unused-vars: ["error", { "args": "none" }]*/
-  add( entityName: string, fields: any, ObjectType: any )
+  updateUuidsInFields( entityName: string, fields: any )
   {
-    let cqlTextFieldNames = ''
-    let cqlTextFieldValues = ''
-    let cqlParams = [ ]
-
-    for( let fieldName in fields )
+    const schemaFields = ExpressCassandraClient.instance[ entityName ]._properties.schema.fields
+    for( let fieldName in schemaFields )
     {
-      cqlTextFieldNames += (cqlParams.length > 0 ? ', ' : '') + '"' + fieldName + '"'
-      cqlTextFieldValues += (cqlParams.length > 0 ? ', ' : '') + '?'
-      cqlParams.push( fields[ fieldName ] )
+      const fieldType = schemaFields[ fieldName ]
+      if( fieldType === 'uuid' )
+      {
+        const fieldValue = fields[ fieldName ]
+        if( ! ( fieldValue instanceof Uuid ) )
+          fields[ fieldName ] = Uuid.fromString( fieldValue )
+      }
     }
 
-    let cqlText = 'INSERT INTO "' + entityName + '" (' + cqlTextFieldNames + ') VALUES (' + cqlTextFieldValues + ')'
+  }
 
-    return runQueryNoResult( cqlText, cqlParams )
+  add( entityName: string, fields: any )
+  {
+    this.updateUuidsInFields( entityName, fields )
+
+    return new Promise( ( resolve, reject ) =>
+    {
+      const entity = new ExpressCassandraClient.instance[ entityName ]( fields )
+      entity.save( ( err ) =>
+      {
+        if( err )
+          reject( err )
+        else
+          resolve( )
+      } )
+    } )
   }
 
   update( entityName: string, fields: any )
