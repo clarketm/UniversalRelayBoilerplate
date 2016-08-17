@@ -2,7 +2,7 @@
 
 import cassandraDriver from 'cassandra-driver'
 
-import log from '../server/log.js'
+// TODO x1000 this is causing circular dependency: import log from '../../../server/log'
 import options from './CassandraOptions.js'
 
 
@@ -14,7 +14,8 @@ function ensureNoErrorOrReport( qText : string, qVar : Array<any>, err : any, re
 {
   if( err )
   {
-    log.log(
+    // TODO x1000 this is causing circular dependency: log.log(
+    console.log(
       'error',
       'Cassandra error',
       {

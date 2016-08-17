@@ -3,13 +3,13 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
-import log from './log.js';
 import path from 'path';
 import process from 'process';
 
 import auth from './auth'; // Authentication server
 import getLocalIP from '../scripts/getLocalIP'
 import graphql from '../graphql/server'; // GraphQL server
+import log from './log';
 import {name,version} from '../configuration/package'
 import serverExtensions from '../configuration/server/serverExtensions'
 import webapp from '../webapp/server'; // Isomorphic React server

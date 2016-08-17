@@ -2,6 +2,7 @@
 
 import winston from 'winston'
 
+let uuidSeed = 1
 
 export default class PersisterMemory
 {
@@ -89,5 +90,35 @@ export default class PersisterMemory
   createLogger( )
   {
     return new (winston.transports.Console)( )
+  }
+
+  uuidFromString( str: string ): string
+  {
+    return str
+  }
+
+  uuidRandom( ): string
+  {
+    let tail = "000000000" + ( uuidSeed++ )
+    tail = tail.substr( tail.length - 9  )
+    const newUUID = '00000000-0000-0000-0000-' + tail // Just use srings
+
+    return newUUID
+  }
+
+  uuidToString( id: any )
+  {
+    // ids are always strings anyway
+    return id
+  }
+
+  uuidEquals( id1: any, id2: any ): boolean
+  {
+    return id1 == id2
+  }
+
+  addTableSchema( tableName: string, tableSchema: object ): void
+  {
+    // Nothing to do
   }
 }

@@ -1,20 +1,17 @@
 /* @flow weak */
 
 import DataLoader from 'dataloader'
+import { cursorForObjectInConnection } from "graphql-relay"
 
 import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
 import defaultPersister from '../configuration/graphql/defaultPersister'
+import log from '../server/log'
 import User from '../configuration/graphql/model/User'
-import { Uuid } from './CassandraClient.js'
-
-
-// Read environment
-require( 'dotenv' ).load( )
 
 
 // Anonymous user
 const User_0 = new User( {
-  id: Uuid.fromString( '00000000-0000-0000-0000-000000000000' ),
+  id: defaultPersister.uuidFromString( '00000000-0000-0000-0000-000000000000' ),
   User_AccountName: '',
   User_AccountPassword: '',
   User_DisplayName: 'Anonymous',
@@ -141,7 +138,7 @@ export default class ObjectManager
     return loader
   }
 
-  getOneById( entityName: string, id: Uuid )
+  getOneById( entityName: string, id: any )
   {
     // Special hack for anonymous users
     if( entityName == 'User' && id == '00000000-0000-0000-0000-000000000000' )
@@ -149,10 +146,11 @@ export default class ObjectManager
     // For all non-user, non 0 ids, load from data loader
     else
     {
+      const entityDefinition = entityDefinitions[ entityName ]
+
       const loader = this.getLoader( entityName, 'id', false )
 
-      if( id instanceof Uuid )
-        id = id.toString( )
+      id = entityDefinition.Persister.uuidToString( id )
 
       return loader.load( id )
     }
@@ -198,7 +196,7 @@ export default class ObjectManager
     if( entityDefinition == null ) console.log( 'Cound not find entity'+ entityName )
 
     // Generate primary key
-    fields.id = Uuid.random( )
+    fields.id = entityDefinition.Persister.uuidRandom( )
 
     // If this is a user ID
     if( entityName == 'User' )
@@ -236,6 +234,42 @@ export default class ObjectManager
       this.invalidateLoaderCache( entityName, fields )
     } )
 
+  }
+
+  cursorForObjectInConnection( entityName: string, arr, obj )
+  {
+    const entityDefinition = entityDefinitions[ entityName ]
+
+    // IDs can be both strings and Uuid. Check that first, and convert to String
+    const obj_id = entityDefinition.Persister.uuidToString( obj.id )
+
+    // Make sure that the object and its instance can be compared with ===
+    // assumed that the object has id field which is unique
+    for( let ix = 0 ; ix < arr.length ; ix++ )
+    {
+      const arr_element_id = entityDefinition.Persister.uuidToString( arr[ ix ].id )
+
+      if( arr_element_id == obj_id )
+      {
+        arr[ ix ] = obj
+        break
+      }
+    }
+
+    let cursor = cursorForObjectInConnection( arr, obj )
+    if( cursor == null )
+    {
+      log.log(
+        'error',
+        'Could not create cursor for object in connection for ' + entityName,
+        {
+          obj,
+          arr
+        }
+      )
+    }
+
+    return cursor
   }
 }
 

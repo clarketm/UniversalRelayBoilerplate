@@ -1,8 +1,9 @@
 /* @flow weak */
 
-import { runQuery, runQueryOneResult, runQueryNoResult } from '../../CassandraClient.js'
-import CassandraOptions from '../../CassandraOptions.js';
-import winstonCassandra from './winstonCassandra'
+import { runQuery, runQueryOneResult, runQueryNoResult, Uuid } from './CassandraClient'
+import CassandraOptions from './CassandraOptions';
+import { addTableSchema } from './ExpressCassandra'
+import WinstonCassandra from './WinstonCassandra'
 
 
 export default class PersisterCassandra
@@ -83,6 +84,34 @@ export default class PersisterCassandra
 
   createLogger( )
   {
-    return new winstonCassandra( CassandraOptions )
+    return new WinstonCassandra( CassandraOptions )
+  }
+
+  uuidFromString( str: string )
+  {
+    return Uuid.fromString( str )
+  }
+
+  uuidRandom( )
+  {
+    return Uuid.random( )
+  }
+
+  uuidToString( id: any )
+  {
+    if( id instanceof Uuid )
+      id = id.toString( )
+
+    return id
+  }
+
+  uuidEquals( id1: any, id2: any ): boolean
+  {
+    return id1.equals( id2 )
+  }
+
+  addTableSchema( tableName: string, tableSchema: object ): void
+  {
+    addTableSchema( tableName, tableSchema )
   }
 }
