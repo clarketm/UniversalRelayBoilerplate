@@ -1,6 +1,6 @@
 /* @flow weak */
 
-import { runQuery, runQueryOneResult, runQueryNoResult, Uuid } from './CassandraClient'
+import { Uuid } from './CassandraClient'
 import CassandraOptions from './CassandraOptions'
 import ExpressCassandraClient, { addTableSchema } from './ExpressCassandra'
 import WinstonCassandra from './WinstonCassandra'
@@ -8,24 +8,57 @@ import WinstonCassandra from './WinstonCassandra'
 
 export default class PersisterCassandra
 {
-  get( entityName: string, ObjectType: any, fieldName: string, values: Array<any> )
+  get( entityName: string, ObjectType: any, fieldName: string, values: Array<any> ): Promise
   {
-    let cqlText = 'SELECT * FROM "' + entityName + '" WHERE "' + fieldName + '" = ?'
-    let resultPromises = [ ]
+    const resultPromises = [ ]
 
     for( let value of values )
-      resultPromises.push( runQueryOneResult( ObjectType, cqlText, [ value ] ) )
+      resultPromises.push(
+        new Promise( ( resolve, reject ) =>
+        {
+          const fields = { }
+          fields[ fieldName ] = value
+          this.updateUuidsInFields( entityName, fields )
+          ExpressCassandraClient.instance[ entityName ].findOne( fields, { raw: true }, (err, entity ) => {
+            if( err )
+              reject( err )
+            else
+            {
+              // TODO x1000 What is the behavior if the object does not exist? Is it an error
+              const retObj = new ObjectType( entity )
+              resolve( retObj )
+            }
+          } )
+        } )
+      )
 
     return Promise.all( resultPromises )
   }
 
-  getList( entityName: string, ObjectType: any, fieldName: string, values: Array<any> )
+  getList( entityName: string, ObjectType: any, fieldName: string, values: Array<any> ): Promise
   {
-    let cqlText = 'SELECT * FROM "' + entityName + '" WHERE "' + fieldName + '" = ?'
-    let resultPromises = [ ]
+    const resultPromises = [ ]
 
     for( let value of values )
-      resultPromises.push( runQuery( ObjectType, cqlText, [ value ] ) )
+      resultPromises.push(
+        new Promise( ( resolve, reject ) =>
+        {
+          const fields = { }
+          fields[ fieldName ] = value
+          this.updateUuidsInFields( entityName, fields )
+          ExpressCassandraClient.instance[ entityName ].find( fields, { raw: true }, (err, arrEntities ) => {
+            if( err )
+              reject( err )
+            else
+            {
+              const arrRetObj = [ ]
+              for( let entity of arrEntities )
+                arrRetObj.push( new ObjectType( entity ) )
+              resolve( arrRetObj )
+            }
+          } )
+        } )
+      )
 
     return Promise.all( resultPromises )
   }
@@ -33,7 +66,7 @@ export default class PersisterCassandra
   updateUuidsInFields( entityName: string, fields: any )
   {
     const schemaFields = ExpressCassandraClient.instance[ entityName ]._properties.schema.fields
-    for( let fieldName in schemaFields )
+    for( let fieldName in fields )
     {
       const fieldType = schemaFields[ fieldName ]
       if( fieldType === 'uuid' )
@@ -43,7 +76,6 @@ export default class PersisterCassandra
           fields[ fieldName ] = Uuid.fromString( fieldValue )
       }
     }
-
   }
 
   add( entityName: string, fields: any )
@@ -65,35 +97,24 @@ export default class PersisterCassandra
 
   update( entityName: string, fields: any )
   {
-    let cqlText = 'UPDATE "' + entityName + '" SET '
-    let cqlParams = [ ]
-
-    let followingItem = false
-
-    for( let fieldName in fields )
-      if( fieldName != 'id' ) // Do not update id
-      {
-        if( followingItem )
-          cqlText += ', '
-        else
-          followingItem = true
-
-        cqlText += '"' + fieldName + '" = ?'
-        cqlParams.push( fields[ fieldName ] )
-      }
-
-    cqlText += ' WHERE id = ?'
-    cqlParams.push( fields.id )
-
-    return runQueryNoResult( cqlText, cqlParams )
+    // TODO x2000 Optimize this with update, possibly. Maybe it's not so bad to read first after all
+    return this.add( entityName, fields )
   }
 
   remove( entityName: string, fields: any )
   {
-    const cqlText = 'DELETE FROM "' + entityName + '" WHERE id = ?'
-    const cqlParams = [ fields.id ]
+    this.updateUuidsInFields( entityName, fields )
 
-    return runQueryNoResult( cqlText, cqlParams )
+    return new Promise( ( resolve, reject ) =>
+    {
+      ExpressCassandraClient.instance[ entityName ].delete( fields , ( err ) =>
+      {
+        if( err )
+          reject( err )
+        else
+          resolve( )
+      } )
+    } )
   }
 
   createLogger( )
