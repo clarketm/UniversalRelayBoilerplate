@@ -1,10 +1,13 @@
 /* @flow weak */
 
-import { Uuid } from './CassandraClient'
+import cassandraDriver from 'cassandra-driver'
+
 import CassandraOptions from './CassandraOptions'
 import ExpressCassandraClient, { addTableSchema } from './ExpressCassandra'
 import WinstonCassandra from './WinstonCassandra'
 
+
+const Uuid = cassandraDriver.types.Uuid
 
 export default class PersisterCassandra
 {
