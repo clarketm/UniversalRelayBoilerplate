@@ -11,25 +11,24 @@ const Uuid = cassandraDriver.types.Uuid
 
 export default class PersisterCassandra
 {
-  get( entityName: string, ObjectType: any, fieldName: string, values: Array<any> ): Promise
+  getOneObject( entityName: string, ObjectType: any, filters: Array<any> ): Promise
   {
     const resultPromises = [ ]
 
-    for( let value of values )
+    for( let filter of filters )
       resultPromises.push(
         new Promise( ( resolve, reject ) =>
         {
-          const fields = { }
-          fields[ fieldName ] = value
-          this.updateUuidsInFields( entityName, fields )
-          ExpressCassandraClient.instance[ entityName ].findOne( fields, { raw: true }, (err, entity ) => {
+          this.updateUuidsInFields( entityName, filter )
+          ExpressCassandraClient.instance[ entityName ].findOne( filter, { raw: true }, (err, entity ) => {
             if( err )
               reject( err )
             else
             {
-              // TODO x1000 What is the behavior if the object does not exist? Is it an error
-              const retObj = new ObjectType( entity )
-              resolve( retObj )
+              if( entity != null )
+                resolve( new ObjectType( entity ) )
+              else
+                resolve( null )
             }
           } )
         } )
@@ -38,18 +37,16 @@ export default class PersisterCassandra
     return Promise.all( resultPromises )
   }
 
-  getList( entityName: string, ObjectType: any, fieldName: string, values: Array<any> ): Promise
+  getObjectList( entityName: string, ObjectType: any, filters: Array<any> ): Promise
   {
     const resultPromises = [ ]
 
-    for( let value of values )
+    for( let filter of filters )
       resultPromises.push(
         new Promise( ( resolve, reject ) =>
         {
-          const fields = { }
-          fields[ fieldName ] = value
-          this.updateUuidsInFields( entityName, fields )
-          ExpressCassandraClient.instance[ entityName ].find( fields, { raw: true }, (err, arrEntities ) => {
+          this.updateUuidsInFields( entityName, filter )
+          ExpressCassandraClient.instance[ entityName ].find( filter, { raw: true }, (err, arrEntities ) => {
             if( err )
               reject( err )
             else
@@ -135,7 +132,7 @@ export default class PersisterCassandra
     return Uuid.random( )
   }
 
-  uuidToString( id: any )
+  uuidToString( id: any ): string
   {
     if( id instanceof Uuid )
       id = id.toString( )
