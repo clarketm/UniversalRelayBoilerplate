@@ -25,7 +25,7 @@ export default mutationWithClientMutationId( {
         .then( ( retrieved_Object ) => {
           an_Object = retrieved_Object;
         } )
-        .then( ( ) => objectManager.getListBy( 'Translaticiarum', 'Translaticiarum_User_id', objectManager.getViewerUserId( ) ) )
+        .then( ( ) => objectManager.getObjectList( 'Translaticiarum', { Translaticiarum_User_id: objectManager.getViewerUserId( ) } ) )
         .then( ( arr ) => ( {
           cursor: objectManager.cursorForObjectInConnection( 'Translaticiarum', arr, an_Object ),
           node: an_Object,

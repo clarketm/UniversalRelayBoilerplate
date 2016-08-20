@@ -24,7 +24,7 @@ export default mutationWithClientMutationId( {
         .then( ( retrieved_Object ) => {
           an_Object = retrieved_Object;
         } )
-        .then( ( ) => objectManager.getListBy( 'Ensayo', 'Ensayo_User_id', objectManager.getViewerUserId( ) ) )
+        .then( ( ) => objectManager.getObjectList( 'Ensayo', { Ensayo_User_id: objectManager.getViewerUserId( ) } ) )
         .then( ( arr ) => ( {
           cursor: objectManager.cursorForObjectInConnection( 'Ensayo', arr, an_Object ),
           node: an_Object,

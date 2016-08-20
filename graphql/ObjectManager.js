@@ -199,14 +199,6 @@ export default class ObjectManager
     } )
   }
 
-  // TODO x1000 this should be replaced with getObjectList calls
-  getListBy( entityName: string, fieldName: string, value: string )
-  {
-    const filter = { }
-    filter[ fieldName ] = value
-    return this.getObjectList( entityName, filter )
-  }
-
   getObjectList( entityName: string, filter: object )
   {
     // TODO x2000 Provide try catch with logging here!
