@@ -11,8 +11,6 @@ import User from '../configuration/graphql/model/User'
 import _schemas_system from './model/_schemas'
 import _schemas from '../configuration/graphql/_schemas'
 
-_schemas_system;
-_schemas;
 
 // Anonymous user
 const User_0 = new User( {
@@ -33,14 +31,25 @@ const entityDefinitions = { }
 // Static array of object managers
 const setPersisters = new Set( )
 
+// Value for a change indicating that the record is deleted
+const deletedRecord = { deleted: true }
+
 export default class ObjectManager
 {
   Viewer_User_id: string
 
   constructor( )
   {
+    // Loaders for a single record, by entity name
     this.loadersSingle = { }
+
+    // Loaders for a multiple record lists, by entity name
     this.loadersMultiple = { }
+
+    // Changes made to records, by entity name
+    this.changes = { }
+
+    // UserID for the viewer. Could be unset if ObjectManager is used by system
     this.Viewer_User_id = null
   }
 
@@ -118,6 +127,17 @@ export default class ObjectManager
     this.loadersMultiple[ entityName ] = { }
   }
 
+  recordChange( entityName : string, fields: object, isDeletion: boolean )
+  {
+    let records = this.changes[ entityName ]
+    if( records == null )
+      records = this.changes[ entityName ] = { }
+
+    const id = fields.id
+
+    records[ id ] = isDeletion ? deletedRecord: fields
+  }
+
   getViewerUserId( )
   {
     if( this.Viewer_User_id == null )
@@ -162,6 +182,21 @@ export default class ObjectManager
     const loader = this.getLoader( entityName, loaderIdentifier, false )
 
     return loader.load( filter )
+    .then( ( result ) => {
+      const changes = this.changes[ entityName ]
+      if( changes )
+      {
+        const change = changes[ result.id ]
+        if( change != null )
+        {
+          if( change === deletedRecord )
+            result = null // Object is not found, return null
+          else // Add or update
+            Object.assign( result, change )
+        }
+      }
+      return result
+    } )
   }
 
   // TODO x1000 this should be replaced with getOneObject calls
@@ -185,6 +220,24 @@ export default class ObjectManager
     const loader = this.getLoader( entityName, loaderIdentifier, true )
 
     return loader.load( filter )
+    .then( ( arrResults ) => {
+      const changes = this.changes[ entityName ]
+      if( changes )
+      {
+        for( let ix = 0; ix < arrResults.length; ix++ )
+        {
+          const change = changes[ arrResults[ ix ].id ]
+          if( change != null )
+          {
+            if( change === deletedRecord )
+              arrResults.splice( ix--, 1 ) // Reduce ix in order not to skip over a record
+            else // Add or update
+              Object.assign( arrResults[ ix ], change )
+          }
+        }
+      }
+      return arrResults
+    } )
   }
 
   invalidateLoaderCache( entityName: string, fields: any )
@@ -226,6 +279,8 @@ export default class ObjectManager
     if( entityName == 'User' )
       this.setViewerUserId( fields.id.toString( ) )
 
+    this.recordChange( entityName, fields, false )
+
     return this.executeTriggers( entityDefinition.TriggersForAdd, fields )
     .then( ( ) => entityDefinition.Persister.add( entityName, fields, entityDefinition.EntityType ) )
     .then( ( ) => {
@@ -238,7 +293,9 @@ export default class ObjectManager
   {
     const entityDefinition = entityDefinitions[ entityName ]
 
-    if( entityDefinition == null ) console.log( 'Cound not find entity'+ entityName )
+    if( entityDefinition == null ) console.log( 'XXX Cound not find entity'+ entityName ) // Should that be recorded somewhere? Could be another
+
+    this.recordChange( entityName, fields, false )
 
     return this.executeTriggers( entityDefinition.TriggersForUpdate, fields )
     .then( entityDefinition.Persister.update( entityName, fields ) )
@@ -250,6 +307,8 @@ export default class ObjectManager
   remove( entityName: string, fields: any )
   {
     const entityDefinition = entityDefinitions[ entityName ]
+
+    this.recordChange( entityName, fields, true )
 
     return this.executeTriggers( entityDefinition.TriggersForRemove, fields )
     .then( entityDefinition.Persister.remove( entityName, fields ) )
