@@ -130,7 +130,7 @@
     "type": "git",
     "url": "git+https://github.com/codefoundries/UniversalRelayBoilerplate.git"
   },
-  "version": "9.0.0",
+  "version": "9.0.1",
   "private": false,
   "license": "MIT"
 }
