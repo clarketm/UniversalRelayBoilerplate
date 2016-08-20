@@ -102,10 +102,17 @@ To open the app:
 ## Configuring to use Cassandra
 
 * Install and configure Cassandra following the steps in [Cassandra Installation on Mac](http://codefoundries.com/developer/cassandra/cassandra-installation-mac.html).
-* Verify that the name of the database in `\.env` is the name of the database you want.
-* Create the database with `npm run setup-cassandra-init`.
-* Configure to use Cassandra with `npm run update-da-cassandra`.
+* Verify that the name of the database in `/.env` is the name of the database you want.
+* Modify [defaultPersister.js](https://github.com/codefoundries/UniversalRelayBoilerplate/blob/master/configuration/graphql/defaultPersister.js) to use Cassandra persister in the following way:
 
+```JavaScript
+import PersisterCassandra from '../../units/urb-persister-cassandra/graphql/PersisterCassandra'
+const defaultPersister = new PersisterCassandra( )
+
+export default defaultPersister
+```
+
+* Create the database with `npm run setup-database`.
 
 
 # Further Details
