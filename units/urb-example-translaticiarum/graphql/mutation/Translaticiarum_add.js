@@ -21,7 +21,7 @@ export default mutationWithClientMutationId( {
       resolve: ( {local_id}, { ...args }, context, { rootValue: objectManager } ) =>
       {
         let an_Object;
-        return objectManager.getOneById( 'Translaticiarum', local_id )
+        return objectManager.getOneObject( 'Translaticiarum', { id: local_id } )
         .then( ( retrieved_Object ) => {
           an_Object = retrieved_Object;
         } )
@@ -35,7 +35,7 @@ export default mutationWithClientMutationId( {
     },
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneObject( 'User', { id: objectManager.getViewerUserId( ) } )
     },
   },
   mutateAndGetPayload: ( { Translaticiarum_Type, Translaticiarum_Date, Translaticiarum_Time }, context, { rootValue: objectManager } ) =>

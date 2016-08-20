@@ -94,7 +94,7 @@ auth.post( '/createuser', ( req, res ) =>
       } )
   } )
   // Question - why are we loading the user? It might not yet be in DB ....
-  .then( ( user_id ) => objectManager.getOneById( 'User', user_id ) )
+  .then( ( user_id ) => objectManager.getOneObject( 'User', { id: user_id } ) )
   .then( ( a_User ) =>
   {
     // User has been created thus we create a JWT token

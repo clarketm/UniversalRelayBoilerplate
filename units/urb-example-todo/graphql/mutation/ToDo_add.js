@@ -18,7 +18,7 @@ export default mutationWithClientMutationId( {
       resolve: ( {local_id}, { ...args }, context, { rootValue: objectManager } ) =>
       {
         let an_Object;
-        return objectManager.getOneById( 'ToDo', local_id )
+        return objectManager.getOneObject( 'ToDo', { id: local_id } )
         .then( ( retrieved_Object ) => {
           an_Object = retrieved_Object;
         } )
@@ -32,7 +32,7 @@ export default mutationWithClientMutationId( {
     },
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneById( 'User', objectManager.getViewerUserId( ) )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneObject( 'User', { id: objectManager.getViewerUserId( ) } )
     },
   },
   mutateAndGetPayload: ( {ToDo_Text}, context, { rootValue: objectManager } ) =>

@@ -16,6 +16,6 @@ export default {
   Ensayo: {
     type: EnsayoType,
     args: { ...{ id: { type: GraphQLID } } },
-    resolve: ( parent, { id }, context, { rootValue: objectManager } ) => objectManager.getOneById( 'Ensayo', fromGlobalId(id).id ),
+    resolve: ( parent, { id }, context, { rootValue: objectManager } ) => objectManager.getOneObject( 'Ensayo', { id: fromGlobalId( id ).id } ),
   },
 }

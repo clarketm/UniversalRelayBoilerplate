@@ -199,12 +199,6 @@ export default class ObjectManager
     } )
   }
 
-  // TODO x1000 this should be replaced with getOneObject calls
-  getOneById( entityName: string, id: any )
-  {
-    return this.getOneObject( entityName, { id: id } )
-  }
-
   // TODO x1000 this should be replaced with getObjectList calls
   getListBy( entityName: string, fieldName: string, value: string )
   {
