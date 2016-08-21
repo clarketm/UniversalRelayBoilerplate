@@ -9,24 +9,26 @@ require('dotenv').load( )
 
 const AWS = vogels.AWS;
 
-if(process.env.DYNAMODB_SECRETACCESSKEY) {
+if( process.env.DYNAMODB_SECRETACCESSKEY )
 	// test on aws
-    AWS.config.update({
+    AWS.config.update( {
         accessKeyId: process.env.DYNAMODB_ACCESSKEYID
         , secretAccessKey: process.env.DYNAMODB_SECRETACCESSKEY
         , region: process.env.DYNAMODB_REGION
-    });
-} else {
+    } )
+else
+{
 	// test locally via docker
-	AWS.config.update({region: 'us-east-1'});
-    const opts = {endpoint: 'http://localhost:8000', apiVersion: '2012-08-10'};
-    vogels.dynamoDriver(new AWS.DynamoDB(opts));
+	AWS.config.update( {region: 'us-east-1'} )
+  const opts = { endpoint: 'http://localhost:8000', apiVersion: '2012-08-10' }
+  vogels.dynamoDriver( new AWS.DynamoDB( opts ) )
 }
 
 export default class PersisterDynamoDB
 {
   constructor( )
   {
+    this.tables = { }
     // TODO x0500 Implement code for DynamoDB/vogel here
   }
 
@@ -106,13 +108,21 @@ export default class PersisterDynamoDB
 
   addTableSchema( tableName: string, tableSchema: object ): void
   {
-    console.log( JSON.stringify( tableSchema ) )
+    //console.log( JSON.stringify( tableSchema ) )
 
     const vogelsSchema = {
-      hashKey: tableSchema.key,
-      schema: { }
+      schema: { },
+      indexes: [ ]
     }
 
+    // Determine key. Not sure how composite key should be handled
+    let key = tableSchema.key
+    if( Array.isArray( key ) )
+      key = key [ 0 ] // XXX this is not the best possible guess but it will create the tables
+
+    vogelsSchema.hashKey = key
+
+    // Copy fields
     for( let fieldName in tableSchema.fields )
     {
       const fieldType = tableSchema.fields[ fieldName ]
@@ -123,6 +133,12 @@ export default class PersisterDynamoDB
         vogelFieldDefinition = vogels.types.uuid( )
       else if( fieldType == 'text' )
         vogelFieldDefinition = Joi.string( )
+      else if( fieldType == 'timestamp' )
+        vogelFieldDefinition = Joi.date( )
+      else if( fieldType == 'int' )
+        vogelFieldDefinition = Joi.number( )
+      else if( fieldType == 'boolean' )
+        vogelFieldDefinition = Joi.boolean( )
       else
       {
         // Crappy catch all for now just for testing
@@ -130,38 +146,33 @@ export default class PersisterDynamoDB
         vogelFieldDefinition = Joi.string( )
       }
 
-      vogelsSchema[ fieldName ] = vogelFieldDefinition
+      vogelsSchema.schema[ fieldName ] = vogelFieldDefinition
     }
 
-    console.log( JSON.stringify( vogelsSchema ) )
+    // Copy indexes
+    if( tableSchema.indexes )
+      for( let fieldName of tableSchema.indexes )
+        vogelsSchema.indexes[ fieldName ] = { hashKey: fieldName, name: fieldName + 'Index', type: 'global' }
 
-  }
+    //console.log( JSON.stringify( vogelsSchema ) )
 
-  /*
-  let User = vogels.define('User', {
-  hashKey: 'userId',
-  schema: {
-    userId: vogels.types.uuid(),
-    name: Joi.string(),
-    location: Joi.string()
+    this.tables[ tableName ] =  vogels.define( tableName, vogelsSchema )
   }
-});
-
-  {
-    fields: {
-        id: 'uuid',
-        Ensayo_User_id: 'uuid',
-        Ensayo_Content: 'text',
-        Ensayo_Description: 'text',
-        Ensayo_Title: 'text',
-    },
-    key: [ 'id' ],
-    indexes: [ 'Ensayo_User_id' ]
-  }
-  */
 
   initialize( runAsPartOfSetupDatabase: boolean ): void
   {
-    // TODO x0500 Implement code for DynamoDB/vogel here.
+    vogels.createTables( ( err ) => {
+      if( err )
+      {
+        console.log( "Table creation failed" )
+        console.log( err )
+        reject( err )
+      }
+      else if( runAsPartOfSetupDatabase )
+      {
+        console.log( "Success" )
+        process.exit( )
+      }
+    } )
   }
 }
