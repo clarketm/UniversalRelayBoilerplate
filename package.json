@@ -69,6 +69,7 @@
     "graphql-relay": "0.4.2",
     "isomorphic-relay": "0.7.1",
     "isomorphic-relay-router": "0.8.1",
+    "joi": "9.0.4",
     "jwt-simple": "0.5.0",
     "material-ui": "0.15.4",
     "material-ui-country-flags": "3.0.1",
@@ -87,6 +88,7 @@
     "react-router-relay": "0.13.4",
     "react-tap-event-plugin": "1.0.0",
     "relay-local-schema": "0.5.3",
+    "vogels": "^2.2.0",
     "winston": "2.2.0"
   },
   "devDependencies": {
@@ -130,7 +132,7 @@
     "type": "git",
     "url": "git+https://github.com/codefoundries/UniversalRelayBoilerplate.git"
   },
-  "version": "9.3.1",
+  "version": "9.4.0",
   "private": false,
   "license": "MIT"
 }

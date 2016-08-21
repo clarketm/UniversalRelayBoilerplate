@@ -1,6 +1,27 @@
 /* @flow weak */
 
+import Joi from 'joi'
+import vogels from 'vogels'
 import winston from 'winston'
+
+require('dotenv').load( )
+
+
+const AWS = vogels.AWS;
+
+if(process.env.DYNAMODB_SECRETACCESSKEY) {
+	// test on aws
+    AWS.config.update({
+        accessKeyId: process.env.DYNAMODB_ACCESSKEYID
+        , secretAccessKey: process.env.DYNAMODB_SECRETACCESSKEY
+        , region: process.env.DYNAMODB_REGION
+    });
+} else {
+	// test locally via docker
+	AWS.config.update({region: 'us-east-1'});
+    const opts = {endpoint: 'http://localhost:8000', apiVersion: '2012-08-10'};
+    vogels.dynamoDriver(new AWS.DynamoDB(opts));
+}
 
 export default class PersisterDynamoDB
 {
@@ -85,8 +106,59 @@ export default class PersisterDynamoDB
 
   addTableSchema( tableName: string, tableSchema: object ): void
   {
-    // TODO x0500 Implement code for DynamoDB/vogel here.
+    console.log( JSON.stringify( tableSchema ) )
+
+    const vogelsSchema = {
+      hashKey: tableSchema.key,
+      schema: { }
+    }
+
+    for( let fieldName in tableSchema.fields )
+    {
+      const fieldType = tableSchema.fields[ fieldName ]
+
+      let vogelFieldDefinition
+
+      if( fieldType == 'uuid' )
+        vogelFieldDefinition = vogels.types.uuid( )
+      else if( fieldType == 'text' )
+        vogelFieldDefinition = Joi.string( )
+      else
+      {
+        // Crappy catch all for now just for testing
+        console.log( 'XXX unsupported field type ' + fieldType )
+        vogelFieldDefinition = Joi.string( )
+      }
+
+      vogelsSchema[ fieldName ] = vogelFieldDefinition
+    }
+
+    console.log( JSON.stringify( vogelsSchema ) )
+
   }
+
+  /*
+  let User = vogels.define('User', {
+  hashKey: 'userId',
+  schema: {
+    userId: vogels.types.uuid(),
+    name: Joi.string(),
+    location: Joi.string()
+  }
+});
+
+  {
+    fields: {
+        id: 'uuid',
+        Ensayo_User_id: 'uuid',
+        Ensayo_Content: 'text',
+        Ensayo_Description: 'text',
+        Ensayo_Title: 'text',
+    },
+    key: [ 'id' ],
+    indexes: [ 'Ensayo_User_id' ]
+  }
+  */
 
   initialize( runAsPartOfSetupDatabase: boolean ): void
   {
