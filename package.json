@@ -8,7 +8,7 @@
     "setup-local-w": "copy .\\configuration\\default.env .\\.env. && copy .\\configuration\\app\\default.publicURL.js configuration\\app\\publicURL.js",
     "setup-database": "./node_modules/.bin/babel-node ./scripts/setup-database.js",
     "update-ip": "./node_modules/.bin/babel-node ./scripts/update-ip.js",
-    "build-babel": "export NODE_ENV=production && rm -rf build && mkdir build && cp -r configuration ./build/configuration && cp -r webapp ./build/webapp && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines  && ./node_modules/.bin/babel -d ./build/configuration/ ./configuration -s --retain-lines && ./node_modules/.bin/babel -d ./build/graphql/ ./graphql -s --retain-lines && ./node_modules/.bin/babel -d ./build/scripts/ ./scripts -s --retain-lines && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines && ./node_modules/.bin/babel -d ./build/units/ ./units -s --retain-lines && ./node_modules/.bin/babel -d ./build/webapp/ ./webapp -s --retain-lines && ./node_modules/.bin/babel -d ./build/server/ ./server -s --retain-lines && cp -r public ./build/public && cp ./package.json ./build",
+    "build-babel": "export NODE_ENV=production && rm -rf build && mkdir build && cp -r configuration ./build/configuration && cp -r webapp ./build/webapp && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/server/ ./server && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/configuration/ ./configuration && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/graphql/ ./graphql && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/scripts/ ./scripts && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/server/ ./server && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/units/ ./units && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/webapp/ ./webapp && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/server/ ./server && cp -r public ./build/public && cp ./package.json ./build",
     "build-bump-version": "./node_modules/.bin/babel-node ./scripts/build-bump-version.js",
     "build-bundle-ios": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=false",
     "build-bundle-ios-dev": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=true",
@@ -52,6 +52,7 @@
     }
   },
   "dependencies": {
+    "babel-runtime": "6.11.6",
     "bcrypt": "0.8.7",
     "body-parser": "1.15.2",
     "cassandra-driver": "3.1.1",
@@ -101,7 +102,6 @@
     "babel-preset-stage-3": "6.11.0",
     "babel-relay-plugin": "0.9.2",
     "babel-relay-plugin-loader": "0.9.0",
-    "babel-runtime": "6.11.6",
     "better-npm-run": "0.0.10",
     "concurrently": "2.2.0",
     "css-loader": "0.23.1",
@@ -130,7 +130,7 @@
     "type": "git",
     "url": "git+https://github.com/codefoundries/UniversalRelayBoilerplate.git"
   },
-  "version": "9.3.0",
+  "version": "9.3.1",
   "private": false,
   "license": "MIT"
 }
