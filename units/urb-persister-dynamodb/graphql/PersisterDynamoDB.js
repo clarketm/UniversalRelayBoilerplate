@@ -41,8 +41,6 @@ export default class PersisterDynamoDB
       resultPromises.push(
         new Promise( ( resolve, reject ) =>
         {
-          //this.updateUuidsInFields( entityName, filter )
-
           this.tables[ entityName ].get( filter, ( err, entity ) => {
             if( err )
               reject( err )
@@ -68,14 +66,15 @@ export default class PersisterDynamoDB
       resultPromises.push(
         new Promise( ( resolve, reject ) =>
         {
-          //this.updateUuidsInFields( entityName, filter )
+          let query = this.tables[ entityName ].scan( )
+          for( let fieldName in filter )
+          {
+            query = query
+              .where( fieldName )
+              .equals( filter[ fieldName ] )
+          }
 
-
-          // TODO x0500 How should WHERE conditions be passed to query???
-          //this.tables[ entityName ].query( filter ).exec( ( err, queryResults ) => {
-
-
-          this.tables[ entityName ].scan( ).exec( ( err, queryResults ) => {
+          query.exec( ( err, queryResults ) => {
             if( err )
               reject( err )
             else
@@ -94,8 +93,6 @@ export default class PersisterDynamoDB
 
   add( entityName: string, fields: any, ObjectType: any )
   {
-    //this.updateUuidsInFields( entityName, fields )
-
     return new Promise( ( resolve, reject ) =>
     {
       this.tables[ entityName ].create( fields, ( err ) =>
@@ -110,8 +107,6 @@ export default class PersisterDynamoDB
 
   update( entityName: string, fields: any ): Promise
   {
-    //this.updateUuidsInFields( entityName, fields )
-
     return new Promise( ( resolve, reject ) =>
     {
       this.tables[ entityName ].update( fields , ( err ) =>
@@ -126,8 +121,6 @@ export default class PersisterDynamoDB
 
   remove( entityName: string, fields: any ): Promise
   {
-    //this.updateUuidsInFields( entityName, fields )
-
     return new Promise( ( resolve, reject ) =>
     {
       this.tables[ entityName ].destroy( fields , ( err ) =>
