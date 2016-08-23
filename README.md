@@ -111,6 +111,10 @@ export default defaultPersister
 
 * Create the database with `npm run setup-database`.
 
+## Configuring Dynamodb locally with Docker
+* Install [Docker](https://www.docker.com/)
+* run `docker-compose up` in a new terminal to start up a local dynamo db (or start it via docker Kitematic)
+
 Instructions for other databases will be added as support for those is added.
 
 
