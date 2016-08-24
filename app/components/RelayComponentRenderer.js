@@ -57,7 +57,7 @@ class RelayComponentRenderer extends Component
     return <Relay.Renderer
       Container={this.props.component}
       queryConfig={ queryConfig }
-      environment={ this.context.environment }
+      environment={ this.context.relay }
       render={ ( {done, error, props, retry, stale} ) =>
       {
         if (error) {
@@ -77,7 +77,7 @@ class RelayComponentRenderer extends Component
 }
 
 RelayComponentRenderer.contextTypes = {
-  environment: Relay.PropTypes.Environment
+  relay: Relay.PropTypes.Environment
 };
 
 export default ( moduleProps ) => ( Component ) =>

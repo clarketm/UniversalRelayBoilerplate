@@ -79,7 +79,7 @@ class ApplicationMain extends React.Component
   getChildContext( )
   {
     return {
-      environment: NetworkLayer.getCurrentEnvironment( )
+      relay: NetworkLayer.getCurrentEnvironment( )
     }
   }
 
@@ -115,7 +115,7 @@ class ApplicationMain extends React.Component
 }
 
 ApplicationMain.childContextTypes = {
-  environment: Relay.PropTypes.Environment
+  relay: Relay.PropTypes.Environment
 }
 
 export default ApplicationMain

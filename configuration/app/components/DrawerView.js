@@ -1,9 +1,9 @@
 /* @flow weak */
 
 import React from 'react'
-import Relay from 'react-relay';
+import Relay from 'react-relay'
 import {PropTypes} from "react"
-import {StyleSheet, View, Text} from "react-native"
+import {StyleSheet, View, Text} from 'react-native'
 import Button from 'react-native-button'
 import { Actions } from 'react-native-router-flux'
 
