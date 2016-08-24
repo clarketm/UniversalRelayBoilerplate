@@ -225,13 +225,16 @@ export default class PersisterCassandra
               console.log( "Table ready: " + ExpressCassandraClient.modelInstance[ tableName ]._properties.name )
 
             this.loadATableSchema( tableSchemasAsArray, runAsPartOfSetupDatabase ) // Load the next table
+            return
           }
         }
       )
     }
-
-    console.log( 'Initializing Cassandra persister - start' )
-    if( runAsPartOfSetupDatabase )
-      process.exit( )
+    else
+    {
+      console.log( 'Initializing Cassandra persister - success' )
+      if( runAsPartOfSetupDatabase )
+        process.exit( )
+    }
   }
 }
