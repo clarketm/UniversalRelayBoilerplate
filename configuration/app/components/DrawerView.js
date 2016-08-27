@@ -53,9 +53,9 @@ class DrawerView extends React.Component
           Hello
           { ' ' + ( this.props.Viewer.User_IsAnonymous ? 'Stranger' : this.props.Viewer.User_DisplayName ) }
         </Text>
-        { this.props.Viewer.User_IsAnonymous && <Button containerStyle={ styles.button } onPress={ ( ) => this.openRoute( 'home_login' ) }>Login</Button> }
-        <Button containerStyle={ styles.button } onPress={ ( ) => this.openRoute( 'home_ToDo' ) }>To Do</Button>
-        { ( ! this.props.Viewer.User_IsAnonymous ) && <Button containerStyle={ styles.button } onPress={ ( ) => this.openRoute( 'home_logout' ) }>Log Out</Button> }
+        { this.props.Viewer.User_IsAnonymous && <Button containerStyle={ styles.button } onPress={ ( ) => this.openRoute( '/user/login' ) }>Login</Button> }
+        <Button containerStyle={ styles.button } onPress={ ( ) => this.openRoute( '/todo' ) }>To Do</Button>
+        { ( ! this.props.Viewer.User_IsAnonymous ) && <Button containerStyle={ styles.button } onPress={ ( ) => this.openRoute( '/user/logout' ) }>Log Out</Button> }
       </View>
     )
   }

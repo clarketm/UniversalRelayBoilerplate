@@ -42,7 +42,7 @@ class ToDo_List extends React.Component
 
   _handle_requestChange = ( value ) =>
   {
-    this.context.router.push( '/ToDos/' + value )
+    this.context.router.push( '/todo/' + value )
   }
 
   renderTabs( )

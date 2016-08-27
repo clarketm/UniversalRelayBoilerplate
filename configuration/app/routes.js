@@ -12,11 +12,11 @@ export default function routes( MenuButton, viewerQuery, isAnonymous )
 {
   return(
     <Scene key="main" tabs hideTabBar>
-      <Scene key="home_login" title="Login" component={ Login } leftButton={ MenuButton } initial={ isAnonymous } />
-      <Scene key="home_ToDo" leftButton={ MenuButton } initial={ ( ! isAnonymous ) }>
-        <Scene key="home_ToDo_List" title="To Do" component={ ToDoScreen } queries={ viewerQuery } />
+      <Scene key="/user/login" title="Login" component={ Login } leftButton={ MenuButton } initial={ isAnonymous } />
+      <Scene key="/todo" leftButton={ MenuButton } initial={ ( ! isAnonymous ) }>
+        <Scene title="To Do" component={ ToDoScreen } queries={ viewerQuery } />
       </Scene>
-      <Scene key="home_logout" title="Logout" component={ Logout } queries={ viewerQuery } leftButton={ MenuButton } />
+      <Scene key="/user/logout" title="Logout" component={ Logout } queries={ viewerQuery } leftButton={ MenuButton } />
     </Scene>
   )
 }

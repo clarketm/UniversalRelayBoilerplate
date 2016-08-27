@@ -13,7 +13,7 @@ class AppBar_ToDo_OpenIndicator extends React.Component
 {
   _handle_onTouchTap_IncompleteTODOs = ( ) =>
   {
-    this.context.router.push( '/ToDos/active' );
+    this.context.router.push( '/todo/active' );
   };
 
   render( )

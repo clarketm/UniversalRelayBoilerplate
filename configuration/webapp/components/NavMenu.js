@@ -14,12 +14,12 @@ class NavMenu extends React.Component
   {
     let nestedItems_Misc = [
       <ListItem primaryText="Home" value="/" />,
-      <ListItem primaryText="Compendium" value="/compendiums" />,
+      <ListItem primaryText="Compendium" value="/compendium" />,
     ];
     if( ! this.props.Viewer.User_IsAnonymous )
     {
-      nestedItems_Misc.push( <ListItem primaryText="User Profile" value="/User" /> )
-      nestedItems_Misc.push( <ListItem primaryText="Force Login" value="/ForceLogin" /> )
+      nestedItems_Misc.push( <ListItem primaryText="User Profile" value="/user" /> )
+      nestedItems_Misc.push( <ListItem primaryText="Force Login" value="/force_login" /> )
     }
 
     return (
@@ -27,35 +27,31 @@ class NavMenu extends React.Component
         value={ this.props.value }
         onChange={ this.props.onChange }
       >
-        <ListItem
-          primaryText="To Do"
-          primaryTogglesNestedList={true}
-          nestedItems={ [
-            <ListItem primaryText="All" value="/ToDos" />,
-            <ListItem primaryText="Active" value="/ToDos/active" />,
-            <ListItem primaryText="Completed" value="/ToDos/completed" />,
-          ] }
-        />
+
         <ListItem
           primaryText="Ensayo"
           primaryTogglesNestedList={true}
           nestedItems={ [
-            <ListItem primaryText="Edit" value="/Ensayos" />,
-            <ListItem primaryText="Public View" value="/Ensayo_PublicListing" />,
+            <ListItem primaryText="View" value="/ensayo" />,
+            <ListItem primaryText="Edit" value="/ensayo/edit" />,
+          ] }
+        />
+        <ListItem
+          primaryText="To Do"
+          primaryTogglesNestedList={true}
+          nestedItems={ [
+            <ListItem primaryText="All" value="/todo" />,
+            <ListItem primaryText="Active" value="/todo/active" />,
+            <ListItem primaryText="Completed" value="/todo/completed" />,
           ] }
         />
         <ListItem
           primaryText="Translaticiarum"
           primaryTogglesNestedList={true}
           nestedItems={ [
-            <ListItem primaryText="View and Edit" value="/Translaticiarums" />,
-            <ListItem primaryText="Grid View" value="/TranslaticiarumsGrid" />,
+            <ListItem primaryText="Grid" value="/translaticiarum" />,
+            <ListItem primaryText="List" value="/translaticiarum/edit" />,
           ] }
-        />
-        <ListItem
-          primaryText="Misc"
-          primaryTogglesNestedList={true}
-          nestedItems={ nestedItems_Misc }
         />
         <ListItem
           primaryText="Material-UI"
@@ -67,6 +63,14 @@ class NavMenu extends React.Component
             <ListItem primaryText="Credit Cards" value="/mui/icons_credit_cards" />,
           ] }
         />
+
+
+        <ListItem
+          primaryText="Misc"
+          primaryTogglesNestedList={true}
+          nestedItems={ nestedItems_Misc }
+        />
+
       </SelectableList>
     )
   }

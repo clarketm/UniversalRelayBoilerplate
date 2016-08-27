@@ -11,7 +11,7 @@ class Ensayo_PublicListing extends React.Component
 {
   _handle_onClick( id )
   {
-    this.context.router.push( '/Ensayo_PublicListing/' + id );
+    this.context.router.push( '/ensayo/item/' + id );
   }
 
   renderEnsayos( )

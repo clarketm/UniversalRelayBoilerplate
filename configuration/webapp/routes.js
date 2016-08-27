@@ -31,37 +31,52 @@ export const queries = {
 
 export default createRoutes(
   <Route path="/" component={Chrome} queries={queries}>
+
     <IndexRoute component={HomeScreen} queries={queries} />
-    <Route path="Compendiums">
+
+
+    <Route path="compendium">
       <IndexRoute component={Compendium} queries={queries} />
     </Route>
-    <Route path="Ensayos" component={Ensayo_Screen} queries={queries}>
-      <IndexRoute component={Ensayo_List} queries={queries} />
-    </Route>
-    <Route path="Ensayo_PublicListing">
+
+    <Route path="ensayo">
       <IndexRoute component={Ensayo_PublicListing} queries={queries} />
-      <Route path=":id" component={Ensayo_PublicItem} queries={queries} />
+      <Route path="item">
+        <Route path=":id" component={Ensayo_PublicItem} queries={queries} />
+      </Route>
+      <Route path="edit" component={Ensayo_Screen} queries={queries}>
+        <IndexRoute component={Ensayo_List} queries={queries} />
+      </Route>
     </Route>
-    <Route path="ForceLogin">
+
+    <Route path="todo" component={ToDo_Screen} queries={queries}>
+      <IndexRoute component={ToDo_List} queries={queries} prepareParams={ () => ({status: 'any'}) }/>
+      <Route path=":status" component={ToDo_List} queries={queries} />
+    </Route>
+
+    <Route path="translaticiarum">
+      <IndexRoute component={Translaticiarum_Grid} queries={queries}/>
+      <Route path="edit" component={Translaticiarum_Screen} queries={queries}>
+        <IndexRoute component={Translaticiarum_List} queries={queries} />
+      </Route>
+    </Route>
+
+
+    <Route path="force_login">
       <IndexRoute component={ForceLogin} queries={queries} />
     </Route>
+
     <Route path="mui">
       <IndexRoute component={MUI_Home} queries={queries} />
       <Route path="icons" component={MUI_Icons} queries={queries} />
       <Route path="icons_country_flags" component={MUI_Icons_CountryFlags} queries={queries} />
       <Route path="icons_credit_cards" component={MUI_Icons_CreditCards} queries={queries} />
     </Route>
-    <Route path="Translaticiarums" component={Translaticiarum_Screen} queries={queries}>
-      <IndexRoute component={Translaticiarum_List} queries={queries} />
-    </Route>
-    <Route path="TranslaticiarumsGrid" component={Translaticiarum_Grid} queries={queries}/>
-    <Route path="User">
+
+    <Route path="user">
       <IndexRoute component={User_Properties} queries={queries} />
-      <Route path="UpdatePassword" component={User_UpdatePassword} queries={queries} />
+      <Route path="update_password" component={User_UpdatePassword} queries={queries} />
     </Route>
-    <Route path="ToDos" component={ToDo_Screen} queries={queries}>
-      <IndexRoute component={ToDo_List} queries={queries} prepareParams={ () => ({status: 'any'}) }/>
-      <Route path=":status" component={ToDo_List} queries={queries} />
-    </Route>
+
   </Route>
 );

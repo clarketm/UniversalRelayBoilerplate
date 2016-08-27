@@ -141,7 +141,6 @@ export default class PersisterDynamoDB
 
   uuidFromString( str: string ): string
   {
-    // TODO x0500 Implement code for DynamoDB/vogel here, if changes are necessary. If vogel handles UUID as string, no change necessary
     return str
   }
 
@@ -152,13 +151,11 @@ export default class PersisterDynamoDB
 
   uuidToString( id: any )
   {
-    // TODO x0500 Implement code for DynamoDB/vogel here, if changes are necessary. If vogel handles UUID as string, no change necessary
     return id
   }
 
   uuidEquals( id1: any, id2: any ): boolean
   {
-    // TODO x0500 Implement code for DynamoDB/vogel here, if changes are necessary. If vogel handles UUID as string, no change necessary
     return id1 == id2
   }
 
@@ -169,7 +166,6 @@ export default class PersisterDynamoDB
       console.error( "Attempting to add table schemas to Vogel after createTables." )
       process.exit( 1 )
     }
-    //console.log( JSON.stringify( tableSchema ) )
 
     const vogelsSchema = {
       schema: { },
@@ -179,7 +175,7 @@ export default class PersisterDynamoDB
     // Determine key. Not sure how composite key should be handled
     let key = tableSchema.key
     if( Array.isArray( key ) )
-      key = key [ 0 ] // XXX this is not the best possible guess but it will create the tables
+      key = key [ 0 ] // A bit crude but seems to create the table properly
 
     vogelsSchema.hashKey = key
 
@@ -203,7 +199,7 @@ export default class PersisterDynamoDB
       else
       {
         // Crappy catch all for now just for testing
-        console.log( 'XXX unsupported field type ' + fieldType )
+        console.log( 'Dynamo DB: unsupported field type ' + fieldType )
         vogelFieldDefinition = Joi.string( )
       }
 
@@ -214,8 +210,6 @@ export default class PersisterDynamoDB
     if( tableSchema.indexes )
       for( let fieldName of tableSchema.indexes )
         vogelsSchema.indexes[ fieldName ] = { hashKey: fieldName, name: fieldName + 'Index', type: 'global' }
-
-    //console.log( JSON.stringify( vogelsSchema ) )
 
     this.tables[ tableName ] =  vogels.define( tableName, vogelsSchema )
   }

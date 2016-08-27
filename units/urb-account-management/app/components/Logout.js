@@ -19,7 +19,7 @@ class Logout extends React.Component
 
   handle_onPress_Logout = ( ) =>
   {
-    NetworkLayer.logout( ( ) => { setTimeout( ( ) => Actions[ 'home_login' ]( ), 100 ) } )
+    NetworkLayer.logout( ( ) => { setTimeout( ( ) => Actions[ '/user/login' ]( ), 100 ) } )
   }
 
   render()

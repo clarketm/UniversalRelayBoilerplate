@@ -689,7 +689,7 @@ class AppBar_Auth extends React.Component
     this.setState( {
       Popover_AuthorizedUser_IsOpen: false,
     } );
-    this.context.router.push( '/User' );
+    this.context.router.push( '/user' );
   };
 
   _handle_Popover_AuthorizedUser_ChangePassword = ( ) =>
@@ -697,7 +697,7 @@ class AppBar_Auth extends React.Component
     this.setState( {
       Popover_AuthorizedUser_IsOpen: false,
     } );
-    this.context.router.push( '/User/UpdatePassword' );
+    this.context.router.push( '/user/update_password' );
   };
 
   _handle_Popover_AuthorizedUser_LogInAsADifferentUser = ( ) =>
