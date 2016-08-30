@@ -3,7 +3,7 @@
 import uuid from 'node-uuid'
 import winston from 'winston'
 
-export default class PersisterMemory
+export default class PersisterSQL
 {
   constructor( )
   {
