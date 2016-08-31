@@ -7,7 +7,7 @@
 import Persister from '../../units/urb-persister-cassandra/graphql/PersisterCassandra'
 // import Persister from '../../units/urb-persister-dynamodb/graphql/PersisterDynamoDB'
 // import Persister from '../../units/urb-persister-memory/graphql/PersisterMemory'
-//import Persister from '../../units/urb-persister-sql/graphql/PersisterSQL'
+//import Persister from '../../units/urb-persister-sails/graphql/PersisterSails'
 
 
 // And export the default

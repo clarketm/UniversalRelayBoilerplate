@@ -1,23 +1,12 @@
 /* @flow weak */
 
-import bookshelf from 'bookshelf'
 import uuid from 'node-uuid'
-import knex from 'knex'
 import winston from 'winston'
 
-export default class PersisterSQL
+export default class PersisterSails
 {
   constructor( )
   {
-    const knexClient = knex( {
-      client: 'sqlite3',
-      connection: {
-        filename: "./public/assets/default.sqlite"
-      }
-    } )
-
-    this.bookshelfClient = bookshelf( knexClient )
-
     this.stores = { }
   }
 
