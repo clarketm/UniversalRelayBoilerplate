@@ -4,17 +4,12 @@
 // Uncomment the import section for the persister you need as default
 
 
-// import PersisterCassandra from '../../units/urb-persister-cassandra/graphql/PersisterCassandra'
-// const defaultPersister = new PersisterCassandra( )
-
-
-// import PersisterDynamoDB from '../../units/urb-persister-dynamodb/graphql/PersisterDynamoDB'
-// const defaultPersister = new PersisterDynamoDB( )
-
-
-import PersisterMemory from '../../units/urb-persister-memory/graphql/PersisterMemory'
-const defaultPersister = new PersisterMemory( )
+import Persister from '../../units/urb-persister-cassandra/graphql/PersisterCassandra'
+// import Persister from '../../units/urb-persister-dynamodb/graphql/PersisterDynamoDB'
+// import Persister from '../../units/urb-persister-memory/graphql/PersisterMemory'
+//import Persister from '../../units/urb-persister-sql/graphql/PersisterSQL'
 
 
 // And export the default
+const defaultPersister = new Persister( )
 export default defaultPersister

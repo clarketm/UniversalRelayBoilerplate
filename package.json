@@ -90,6 +90,7 @@
     "react-router-relay": "0.13.4",
     "react-tap-event-plugin": "1.0.0",
     "relay-local-schema": "0.5.2",
+    "sqlite3": "^3.1.4",
     "vogels": "2.2.0",
     "winston": "2.2.0"
   },
@@ -135,7 +136,7 @@
     "type": "git",
     "url": "git+https://github.com/codefoundries/UniversalRelayBoilerplate.git"
   },
-  "version": "9.7.3",
+  "version": "9.7.4",
   "private": false,
   "license": "MIT"
 }
