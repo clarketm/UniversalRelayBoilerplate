@@ -3,7 +3,10 @@
 import uuid from 'node-uuid'
 import winston from 'winston'
 
-export default class PersisterSails
+// Work in progress, right now just in-memory storage
+// Tracking issue: https://github.com/codefoundries/UniversalRelayBoilerplate/issues/222
+
+export default class PersisterWaterline
 {
   constructor( )
   {

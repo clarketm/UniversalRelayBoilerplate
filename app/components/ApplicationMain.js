@@ -106,7 +106,7 @@ class ApplicationMain extends React.Component
       // Credentials are available, proceed to render UI
       return <View style={styles.container}>
         <Router createReducer={ reducerCreate } getSceneStyle={ getSceneStyle } wrapBy={ RelayRenderer( ) }>
-          <Scene key="tabbar" component={ NavigationDrawer }  queries={ viewerQuery } initial={ true }>
+          <Scene key="tabbar" component={ NavigationDrawer } queries={ viewerQuery } initial={ true }>
             { routes( MenuButton, viewerQuery, this.state.isAnonymous ) }
           </Scene>
         </Router>
