@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "material-ui-country-flags": "3.0.1",
+    "material-ui-credit-card-icons": "3.0.1"
+  },
+  "scripts": {
+    "build-mui-icon-list": "./node_modules/.bin/babel-node ./units/urb-example-mui/build-mui-icon-list.js"
+  }
+}

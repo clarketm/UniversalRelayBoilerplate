@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "setup-local-w": "copy .\\configuration\\default.env .\\.env. && copy .\\configuration\\app\\default.publicURL.js configuration\\app\\publicURL.js",
+    "dev-server-w": "better-npm-run dev-server-w",
+    "dev-webpack-w": "rmdir /s /q build & better-npm-run dev-webpack-w",
+    "dev-w": "rmdir /s /q build & concurrently --kill-others \"npm run dev-webpack-w\" \"npm run dev-server-w\" \"npm run start\" "
+  }
+}
