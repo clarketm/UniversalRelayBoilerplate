@@ -8,9 +8,6 @@ import defaultPersister from '../configuration/graphql/defaultPersister'
 import log from '../server/log'
 import User from '../configuration/graphql/model/User'
 
-import _schemas_system from './model/_schemas'
-import _schemas from '../configuration/graphql/_schemas'
-
 
 // Anonymous user
 const User_0 = new User( {

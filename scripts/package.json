@@ -4,15 +4,12 @@
     "npm": "^3.0.0"
   },
   "scripts": {
-    "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js",
-    "setup-database": "./node_modules/.bin/babel-node ./scripts/setup-database.js",
-    "update-ip": "./node_modules/.bin/babel-node ./scripts/update-ip.js",
     "build-babel": "export NODE_ENV=production && rm -rf build && mkdir build && cp -r configuration ./build/configuration && cp -r webapp ./build/webapp && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/server/ ./server && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/configuration/ ./configuration && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/graphql/ ./graphql && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/scripts/ ./scripts && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/server/ ./server && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/units/ ./units && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/webapp/ ./webapp && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/server/ ./server && cp -r public ./build/public && cp ./package.json ./build",
     "build-bump-version": "./node_modules/.bin/babel-node ./scripts/build-bump-version.js",
     "build-bundle-ios": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=false",
     "build-bundle-ios-dev": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=true",
     "build-lint": "eslint app configuration data graphql scripts server units webapp",
-    "build-schema": "./node_modules/.bin/babel-node ./scripts/build-schema.js",
+    "build-schema": "./node_modules/.bin/babel-node ./scripts/build-units.js && ./node_modules/.bin/babel-node ./scripts/build-schema.js",
     "build-server": "rm -rf build && npm run build-bump-version && npm run build-schema && npm run build-webpack && npm run build-babel",
     "build-units": "./node_modules/.bin/babel-node ./scripts/build-units.js",
     "build-webpack": "export NODE_ENV=production && rm -rf public/assets && mkdir public/assets &&  ./node_modules/.bin/webpack -p --output-filename client.js",
@@ -21,7 +18,11 @@
     "dev-server": "better-npm-run dev-server",
     "dev-webpack": "rm -rf build && better-npm-run dev-webpack",
     "dev": "rm -rf build && concurrently --kill-others \"npm run dev-webpack\" \"npm run dev-server\" \"npm run start\" ",
-    "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache"
+    "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- memory && npm run update-ip localhost && react-native link",
+    "setup-database": "./node_modules/.bin/babel-node ./scripts/setup-database.js",
+    "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
+    "update-default-persister": "./node_modules/.bin/babel-node ./scripts/update-default-persister.js",
+    "update-ip": "./node_modules/.bin/babel-node ./scripts/update-ip.js"
   },
   "betterScripts": {
     "dev-server": {

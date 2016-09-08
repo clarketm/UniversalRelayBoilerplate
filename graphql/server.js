@@ -7,6 +7,10 @@ import { getUserByCookie, verifyUserAuthToken, serveAuthenticationFailed } from 
 import ObjectManager from '../graphql/ObjectManager'
 import schema from './schema' // Schema for GraphQL server
 
+// Guarantee that all object registrations and schema definitions are executed
+import _schemas_system from './model/_schemas'
+import _schemas from '../configuration/graphql/_schemas'
+
 
 // Set up all persisters
 ObjectManager.initializePersisters( false )
