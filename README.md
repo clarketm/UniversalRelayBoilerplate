@@ -88,7 +88,6 @@ In order to set up the project locally, perform the following steps:
 | `git clone https://github.com/codefoundries/UniversalRelayBoilerplate` | Clone from github. Alternatively, you can download the source and update in some different way. |
 | `npm install` | Install node packages. You will see errors like `Error: ENOENT: no such file or directory, open '.env'`. They can be ignored. |
 | `npm run setup-local` | Perform initial setup. |
-| Edit [defaultPersister.js](https://github.com/codefoundries/UniversalRelayBoilerplate/blob/master/configuration/graphql/defaultPersister.js) | Update to either use in-memory persister, or configure the respective database. |
 
 In addition to the above, you might want to specify `JWT_SECRET` by modifying the `.env` file. This step can be skipped if you do not care about the actual security and simply want to get the project running.
 
