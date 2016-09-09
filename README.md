@@ -66,7 +66,7 @@ For the most up to date list of technologies used please go to [CodeFoundries.co
 
 # Development Setup
 
-For the most up to date setup instructions please go to [CodeFoundries.com](http://codefoundries.com/developer/rebar/technologies-used.html).
+For the most up to date setup instructions please go to the [development setup instructions](http://codefoundries.com/developer/rebar/development-setup.html).
 
 ## Initial Development Machine Setup
 
@@ -74,21 +74,33 @@ The setup is for OS X only. Prerequisites:
 
 * **Install [Node.js](https://nodejs.org)**.  
 * **Install [Git](https://git-scm.com/downloads)**.
-* **Make sure** that Node.js is at least version 5.0 and NPM is at least version 3.
+* **Make sure** that Node.js is at least version 6.0 and NPM is at least version 3.
 * **In order to speed up NPM** run `npm set progress=false`. This [speeds up NPM significantly](https://twitter.com/gavinjoyce/status/691773956144119808).
+* **Install react-native-cli** run `npm install -g react-native-cli`
+
 
 ## Initial Project setup on local machine
 
 In order to set up the project locally, perform the following steps:
 
-* **Clone from github.** `git clone https://github.com/codefoundries/UniversalRelayBoilerplate`.
-* **Install node packages.** `npm install`. You will see errors like `Error: ENOENT: no such file or directory, open '.env'.`. They can be ignored.
-* **Perform initial setup.** `npm run setup-local`.
-* **Specify JWT_SECRET** by modifying the `.env` file. This step can be skipped if you do not care about the actual security and simply want to get the project running.
+| Action                    | Notes                               |
+| ------------------------- | ----------------------------------- |
+| `git clone https://github.com/codefoundries/UniversalRelayBoilerplate` | Clone from github. Alternatively, you can download the source and update in some different way. |
+| `npm install` | Install node packages. You will see errors like `Error: ENOENT: no such file or directory, open '.env'`. They can be ignored. |
+| `npm run setup-local` | Perform initial setup. |
+| Edit [defaultPersister.js](https://github.com/codefoundries/UniversalRelayBoilerplate/blob/master/configuration/graphql/defaultPersister.js) | Update to either use in-memory persister, or configure the respective database. |
+
+In addition to the above, you might want to specify `JWT_SECRET` by modifying the `.env` file. This step can be skipped if you do not care about the actual security and simply want to get the project running.
 
 ## Running in development mode
 
-Two separate servers need to be started. The first one is the actual application in development mode. The second server is the webpack server which is to be run at all times for hot replace. This can be done with one command.
+In order to develop, three servers need to be started:
+
+* Web server.
+* Webpack server.
+* React Native packager.
+
+This can be done with one command:
 
 * Start application HTTP and Webpack server: `npm run dev`.
 
@@ -96,27 +108,29 @@ To open the app:
 
 * Navigate to `http://localhost:4444`, unless you specified a different IP and/or port either manually or by using `npm run update-ip`.
 
-## Configuring to use Cassandra
+To run the iOS app in the emulator:
 
-* Install and configure Cassandra following the steps in [Cassandra Installation on Mac](http://codefoundries.com/developer/cassandra/cassandra-installation-mac.html).
+* Run `react-native run-ios`.
+
+
+## Configuring Cassandra locally
+
+* Install and configure Cassandra following the steps in [Cassandra Installation on Mac](/developer/cassandra/cassandra-installation-mac.html).
 * Verify that the name of the database in `/.env` is the name of the database you want.
-* Modify [defaultPersister.js](https://github.com/codefoundries/UniversalRelayBoilerplate/blob/master/configuration/graphql/defaultPersister.js) to use Cassandra persister in the following way:
-
-```JavaScript
-import PersisterCassandra from '../../units/urb-persister-cassandra/graphql/PersisterCassandra'
-const defaultPersister = new PersisterCassandra( )
-
-export default defaultPersister
-```
-
+* Configure to use Cassandra as default persister: `npm run update-default-persister -- cassandra`.
 * Create the database with `npm run setup-database`.
 
 ## Configuring Dynamodb locally with Docker
-* Install [Docker](https://www.docker.com/)
-* Navigate to the docker-compose.yml file `cd units/urb-persister-dynamodb`
-* Then run `docker-compose up` in a new terminal to start up a local dynamo db (or start it via docker Kitematic)
+
+* Install [Docker](https://www.docker.com/).
+* Navigate to the docker-compose.yml file `cd units/urb-persister-dynamodb`.
+* Then run `docker-compose up` in a new terminal to start up a local dynamo db (or start it via docker Kitematic).
+* Configure to use DynamoDB as default persister: `npm run update-default-persister -- dynamodb`.
+
+## Other databases
 
 Instructions for other databases will be added as support for those is added.
+
 
 
 # Further Details
