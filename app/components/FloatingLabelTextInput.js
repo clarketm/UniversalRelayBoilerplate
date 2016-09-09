@@ -87,7 +87,7 @@ var FloatLabelTextField = React.createClass({
   withBorder: function() {
     if (!this.props.noBorder) {
       return styles.withBorder;
-    };
+    }
   },
 
   render: function() {

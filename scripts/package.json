@@ -9,6 +9,7 @@
     "build-bundle-ios": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=false",
     "build-bundle-ios-dev": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=true",
     "build-lint": "eslint app configuration data graphql scripts server units webapp",
+    "build-lint-fix": "eslint --fix app configuration data graphql scripts server units webapp",
     "build-schema": "./node_modules/.bin/babel-node ./scripts/build-units.js && ./node_modules/.bin/babel-node ./scripts/build-schema.js",
     "build-server": "rm -rf build && npm run build-bump-version && npm run build-schema && npm run build-webpack && npm run build-babel",
     "build-units": "./node_modules/.bin/babel-node ./scripts/build-units.js",
