@@ -83,7 +83,7 @@
     "react-router": "2.7.0",
     "react-router-relay": "0.13.4",
     "react-tap-event-plugin": "1.0.0",
-    "relay-local-schema": "0.5.2",
+    "relay-local-schema": "0.5.4",
     "winston": "2.2.0"
   },
   "devDependencies": {
