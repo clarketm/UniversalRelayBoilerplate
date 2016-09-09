@@ -1,9 +1,5 @@
-schema {
-  query: Query
-  mutation: Mutation
-}
-
 type Compendium implements Node {
+  # The ID of an object
   id: ID!
   Compendium_FirstTextInput: String
   Compendium_RangedNumber: Int
@@ -39,27 +35,37 @@ input Compendium_updateInput {
   Compendium_LikedSunset_Green: Boolean!
   Compendium_LikedSunset_Other: Boolean!
   Compendium_LikedSunset_OtherText: String!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type Compendium_updatePayload {
   Compendium: Compendium
-  clientMutationId: String!
+  clientMutationId: String
 }
 
+# A connection to a list of items.
 type CompendiumsConnection {
+  # Information to aid in pagination.
   pageInfo: PageInfo!
+
+  # A list of edges.
   edges: [CompendiumsEdge]
 }
 
+# An edge in a connection.
 type CompendiumsEdge {
+  # The item at the end of the edge
   node: Compendium
+
+  # A cursor for use in pagination
   cursor: String!
 }
 
+# Scalar type for storing date-time information
 scalar DateTime
 
 type Ensayo implements Node {
+  # The ID of an object
   id: ID!
   Ensayo_Title: String
   Ensayo_Description: String
@@ -70,24 +76,24 @@ input Ensayo_addInput {
   Ensayo_Content: String!
   Ensayo_Title: String!
   Ensayo_Description: String!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type Ensayo_addPayload {
   EnsayosEdge: EnsayosEdge
   Viewer: Viewer
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 input Ensayo_deleteInput {
   id: ID!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type Ensayo_deletePayload {
   deletedEnsayoId: ID
   Viewer: Viewer
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 input Ensayo_updateInput {
@@ -95,21 +101,29 @@ input Ensayo_updateInput {
   Ensayo_Content: String!
   Ensayo_Title: String!
   Ensayo_Description: String!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type Ensayo_updatePayload {
   Ensayo: Ensayo
-  clientMutationId: String!
+  clientMutationId: String
 }
 
+# A connection to a list of items.
 type EnsayosConnection {
+  # Information to aid in pagination.
   pageInfo: PageInfo!
+
+  # A list of edges.
   edges: [EnsayosEdge]
 }
 
+# An edge in a connection.
 type EnsayosEdge {
+  # The item at the end of the edge
   node: Ensayo
+
+  # A cursor for use in pagination
   cursor: String!
 }
 
@@ -130,14 +144,24 @@ type Mutation {
   Translaticiarum_update(input: Translaticiarum_updateInput!): Translaticiarum_updatePayload
 }
 
+# An object with a globally unique id.
 interface Node {
+  # The globally unique id of the object.
   id: ID!
 }
 
+# Information about pagination in a connection.
 type PageInfo {
+  # When paginating forwards, are there more items?
   hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
   hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
   startCursor: String
+
+  # When paginating forwards, the cursor to continue.
   endCursor: String
 }
 
@@ -147,6 +171,7 @@ type Query {
 }
 
 type ToDo implements Node {
+  # The ID of an object
   id: ID!
   ToDo_Text: String
   ToDo_Complete: Boolean
@@ -154,71 +179,80 @@ type ToDo implements Node {
 
 input ToDo_addInput {
   ToDo_Text: String!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type ToDo_addPayload {
   ToDosEdge: ToDosEdge
   Viewer: Viewer
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 input ToDo_deleteInput {
   id: ID!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type ToDo_deletePayload {
   deletedToDoId: ID
   Viewer: Viewer
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 input ToDo_list_updateMarkAllInput {
   ToDo_Complete: Boolean!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type ToDo_list_updateMarkAllPayload {
   changedToDos: [ToDo]
   Viewer: Viewer
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 input ToDo_updateRenameInput {
   id: ID!
   ToDo_Text: String!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type ToDo_updateRenamePayload {
   ToDo: ToDo
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 input ToDo_updateStatusInput {
   ToDo_Complete: Boolean!
   id: ID!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type ToDo_updateStatusPayload {
   ToDo: ToDo
   Viewer: Viewer
-  clientMutationId: String!
+  clientMutationId: String
 }
 
+# A connection to a list of items.
 type ToDosConnection {
+  # Information to aid in pagination.
   pageInfo: PageInfo!
+
+  # A list of edges.
   edges: [ToDosEdge]
 }
 
+# An edge in a connection.
 type ToDosEdge {
+  # The item at the end of the edge
   node: ToDo
+
+  # A cursor for use in pagination
   cursor: String!
 }
 
 type Translaticiarum implements Node {
+  # The ID of an object
   id: ID!
   Translaticiarum_Date: DateTime
   Translaticiarum_Time: DateTime
@@ -229,24 +263,24 @@ input Translaticiarum_addInput {
   Translaticiarum_Type: Int!
   Translaticiarum_Date: DateTime!
   Translaticiarum_Time: DateTime!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type Translaticiarum_addPayload {
   TranslaticiarumsEdge: TranslaticiarumsEdge
   Viewer: Viewer
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 input Translaticiarum_deleteInput {
   id: ID!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type Translaticiarum_deletePayload {
   deletedTranslaticiarumId: ID
   Viewer: Viewer
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 input Translaticiarum_updateInput {
@@ -254,25 +288,34 @@ input Translaticiarum_updateInput {
   Translaticiarum_Type: Int!
   Translaticiarum_Date: DateTime!
   Translaticiarum_Time: DateTime!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type Translaticiarum_updatePayload {
   Translaticiarum: Translaticiarum
-  clientMutationId: String!
+  clientMutationId: String
 }
 
+# A connection to a list of items.
 type TranslaticiarumsConnection {
+  # Information to aid in pagination.
   pageInfo: PageInfo!
+
+  # A list of edges.
   edges: [TranslaticiarumsEdge]
 }
 
+# An edge in a connection.
 type TranslaticiarumsEdge {
+  # The item at the end of the edge
   node: Translaticiarum
+
+  # A cursor for use in pagination
   cursor: String!
 }
 
 type Viewer implements Node {
+  # The ID of an object
   id: ID!
   User_IsAnonymous: Boolean
   User_AccountName: String
@@ -298,23 +341,23 @@ input Viewer_updateInput {
   User_Email: String!
   User_PhoneNumberMobile: String!
   User_Locale: String!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 input Viewer_updatePasswordInput {
   id: ID!
   User_AccountPassword_Current: String!
   User_AccountPassword: String!
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type Viewer_updatePasswordPayload {
   Viewer: Viewer
   ErrorMessage: String
-  clientMutationId: String!
+  clientMutationId: String
 }
 
 type Viewer_updatePayload {
   Viewer: Viewer
-  clientMutationId: String!
+  clientMutationId: String
 }
