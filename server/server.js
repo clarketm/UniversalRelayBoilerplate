@@ -1,22 +1,25 @@
 /* @flow weak */
 
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import compression from 'compression';
-import path from 'path';
-import process from 'process';
+// In order to use ES7 async/await
+import 'babel-polyfill'
 
-import auth from './auth'; // Authentication server
+import express from 'express'
+import cookieParser from 'cookie-parser'
+import compression from 'compression'
+import path from 'path'
+import process from 'process'
+
+import auth from './auth' // Authentication server
 import getLocalIP from '../scripts/getLocalIP'
-import graphql from '../graphql/server'; // GraphQL server
-import log from './log';
+import graphql from '../graphql/server' // GraphQL server
+import log from './log'
 import {name,version} from '../configuration/package'
 import serverExtensions from '../configuration/server/serverExtensions'
-import webapp from '../webapp/server'; // Isomorphic React server
+import webapp from '../webapp/server' // Isomorphic React server
 
 
 // Read environment
-require( 'dotenv' ).load( );
+require( 'dotenv' ).load( )
 
 const startupInformation =
 {
@@ -34,50 +37,50 @@ const startupInformation =
 }
 
 // Log starting application, also print to console
-log.log( 'info', 'Starting application', startupInformation );
+log.log( 'info', 'Starting application', startupInformation )
 console.log( startupInformation )
 
 // Main router
-let router = express( );
+let router = express( )
 
 // Add headers
 router.use(function (req, res, next)
 {
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', process.env.PUBLIC_URL);
+    res.setHeader('Access-Control-Allow-Origin', process.env.PUBLIC_URL)
     // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Credentials', true)
     // Pass to next layer of middleware
-    next();
-});
+    next()
+})
 
-router.set( 'trust proxy', 'loopback' );
-router.set( 'x-powered-by', false );
+router.set( 'trust proxy', 'loopback' )
+router.set( 'x-powered-by', false )
 
-router.use( compression( ) );
-router.use( cookieParser( ) );
+router.use( compression( ) )
+router.use( cookieParser( ) )
 
 // GraphQL server
-router.use( '/graphql', graphql );
+router.use( '/graphql', graphql )
 
 // Authentication server
-router.use( '/auth', auth );
+router.use( '/auth', auth )
 
 // Static assets server
-let oneYear = 365*86400000;
-router.use( express.static( path.resolve( __dirname + '/../public/' ), { maxAge: oneYear } ) );
+let oneYear = 365*86400000
+router.use( express.static( path.resolve( __dirname + '/../public/' ), { maxAge: oneYear } ) )
 
 // Add extensions - custom configurations
 serverExtensions( router )
 
 // Application with routes
-router.use( '/*', webapp );
+router.use( '/*', webapp )
 
-let server = router.listen( process.env.PORT, process.env.HOST );
+let server = router.listen( process.env.PORT, process.env.HOST )
 
-export default server;
+export default server
