@@ -135,14 +135,14 @@ export default class Login extends React.Component
             value={this.state.User_AccountPassword}
             onChangeTextValue={(text) => this.setState({User_AccountPassword: text})}
           />
-          <Button small icon={ undefined } onPress={ this.handle_onPress_Login } title=">Login" />
+          <Button small onPress={ this.handle_onPress_Login } title="Login" />
         </View>
       )
     else if( this.state.mode == mode_login_in_progress )
       return (
         <View style={styles.container}>
           <Text>Logging in as { this.state.User_AccountName }</Text>
-          <Button small onPress={ this.handle_onPress_Cancel } title=">Cancel" />
+          <Button small onPress={ this.handle_onPress_Cancel } title="Cancel" />
         </View>
       )
     else if( this.state.mode == mode_login_failed )
@@ -150,7 +150,7 @@ export default class Login extends React.Component
         <View style={styles.container}>
           <Text>Logging in as { this.state.User_AccountName } failed</Text>
           <Text>{ this.state.ErrorMessage }</Text>
-          <Button small onPress={ this.handle_onPress_Retry } title=">Retry" />
+          <Button small onPress={ this.handle_onPress_Retry } title="Retry" />
         </View>
       )
   }
