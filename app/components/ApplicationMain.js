@@ -21,7 +21,7 @@ const styles = StyleSheet.create( {
 
 const reducerCreate = params=>
 {
-  const defaultReducer = Reducer(params)
+  const defaultReducer = Reducer( params )
   return ( state, action ) => defaultReducer( state, action )
 }
 
@@ -46,7 +46,7 @@ class MenuButton extends React.Component {
 			>
 				<Image
 					source={require('../../configuration/app/images/drawer_open.png')}
-					style={{marginTop:20, height: 44, width: 44}}
+					style={ { marginTop:20, height: 44, width: 44 } }
 				/>
 			</TouchableOpacity>
 		)
@@ -99,7 +99,7 @@ class ApplicationMain extends React.Component
     const viewerQuery = { Viewer: ( ) => Relay.QL`query { Viewer }` }
 
     // If the persisted credentials have not been loaded yet
-    if( NetworkLayer.getCurrentEnvironment( ) == null )
+    if( ! NetworkLayer.getCurrentEnvironmentInitialized( ) )
       // Return an empty view. Once the credentials are loaded, updateEnvironment will be called and it will cause re-render
       return <View />
     else

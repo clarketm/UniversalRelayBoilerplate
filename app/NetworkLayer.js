@@ -9,7 +9,12 @@ import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
 import publicURL from '../configuration/app/publicURL'
 
 
-let currentEnvironment = null
+let currentEnvironment = new Relay.Environment( )
+
+// Initializing environment here to avoid prop warning.
+currentEnvironment.injectNetworkLayer( new DefaultNetworkLayer( 'http://localhost' ) )
+let currentEnvironmentInitialized = false
+
 let listeningComponent = null
 
 export default class NetworkLayer
@@ -38,6 +43,7 @@ export default class NetworkLayer
   {
     // New tokens mean new environment
     currentEnvironment = new Relay.Environment( )
+    currentEnvironmentInitialized = true
 
     // Set up options for network layer
     let headers = { }
@@ -69,6 +75,11 @@ export default class NetworkLayer
   static getCurrentEnvironment( )
   {
     return currentEnvironment
+  }
+
+  static getCurrentEnvironmentInitialized( )
+  {
+    return currentEnvironmentInitialized
   }
 
   static RegisterListeningComponent( component )
