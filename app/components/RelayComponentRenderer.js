@@ -8,7 +8,6 @@ import {
 import React, { Component, PropTypes } from 'react'
 import Relay from 'react-relay'
 
-import NetworkLayer from '../NetworkLayer'
 
 class RelayComponentRenderer extends Component
 {
@@ -85,9 +84,15 @@ export default ( moduleProps ) => ( Component ) =>
   ?
     Component // not a Relay container, return component itself
   :
-    (props) => // relay container - wrap it with renderer
-      <RelayComponentRenderer
-        {...moduleProps}
-        {...props}
-        component={Component}
-      />
+    // Relay container - wrap it with renderer to please lint
+    React.createClass( {
+      displayName: 'RelayComponentRendererWrapper',
+        render: function( )
+        {
+          return <RelayComponentRenderer
+            {...moduleProps}
+            {...this.props}
+            component={Component}
+          />
+        }
+      } )
