@@ -1,9 +1,8 @@
 import { Actions } from 'react-native-router-flux'
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { Button } from 'react-native-elements'
+import { Button, FormLabel, FormInput } from 'react-native-elements'
 
-import FloatingLabelTextInput from '../../../../app/components/FloatingLabelTextInput'
 import NetworkLayer from '../../../../app/NetworkLayer'
 import publicURL from '../../../../configuration/app/publicURL'
 import { SuccessfulLoginRouteName, SuccessfulLoginRouteOptions } from '../../../../configuration/units/urb-account-management/app/SuccessfulLoginRoute'
@@ -12,7 +11,7 @@ const styles = StyleSheet.create( {
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     backgroundColor: '#f0f0f0',
   },
 } )
@@ -124,17 +123,18 @@ export default class Login extends React.Component
     if( this.state.mode == mode_challenge )
       return (
         <View style={styles.container}>
-          <FloatingLabelTextInput
-            placeholder={"Account Name"}
+          <FormLabel>Account Name</FormLabel>
+          <FormInput
             value={this.state.User_AccountName}
-            onChangeTextValue={(text) => this.setState({User_AccountName: text})}
+            onChangeText={(text) => this.setState({User_AccountName: text})}
           />
-          <FloatingLabelTextInput
-            placeholder={"Password"}
+          <FormLabel>Password</FormLabel>
+          <FormInput
             secureTextEntry
             value={this.state.User_AccountPassword}
-            onChangeTextValue={(text) => this.setState({User_AccountPassword: text})}
+            onChangeText={(text) => this.setState({User_AccountPassword: text})}
           />
+          <FormLabel> </FormLabel>
           <Button small onPress={ this.handle_onPress_Login } title="Login" />
         </View>
       )
