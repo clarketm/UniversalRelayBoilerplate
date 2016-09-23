@@ -3,9 +3,11 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { Button, FormLabel, FormInput } from 'react-native-elements'
 
+import LoginExtensions from '../../../../configuration/units/urb-account-management/app/components/LoginExtensions'
 import NetworkLayer from '../../../../app/NetworkLayer'
 import publicURL from '../../../../configuration/app/publicURL'
 import { SuccessfulLoginRouteName, SuccessfulLoginRouteOptions } from '../../../../configuration/units/urb-account-management/app/SuccessfulLoginRoute'
+
 
 const styles = StyleSheet.create( {
   container: {
@@ -128,6 +130,7 @@ export default class Login extends React.Component
             value={this.state.User_AccountName}
             onChangeText={(text) => this.setState({User_AccountName: text})}
           />
+
           <FormLabel>Password</FormLabel>
           <FormInput
             secureTextEntry
@@ -135,7 +138,12 @@ export default class Login extends React.Component
             onChangeText={(text) => this.setState({User_AccountPassword: text})}
           />
           <FormLabel> </FormLabel>
+
           <Button small onPress={ this.handle_onPress_Login } title="Login" />
+          <FormLabel> </FormLabel>
+
+          <LoginExtensions />
+
         </View>
       )
     else if( this.state.mode == mode_login_in_progress )
