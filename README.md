@@ -115,7 +115,13 @@ To run the iOS app in the emulator:
 ## Configuring Cassandra locally
 
 * Install and configure Cassandra following the steps in [Cassandra Installation on Mac](/developer/cassandra/cassandra-installation-mac.html).
-* Verify that the name of the database in `/.env` is the name of the database you want.
+* Update the name of the database and the database server in `/.env`, or use the defaults. The defaults are:
+
+```javascript
+CASSANDRA_CONNECTION_POINTS=localhost
+CASSANDRA_KEYSPACE=urb
+```
+
 * Configure to use Cassandra as default persister: `npm run update-default-persister -- cassandra`.
 * Create the database with `npm run setup-database`.
 
