@@ -11,7 +11,7 @@ import process from 'process'
 
 import auth from './auth' // Authentication server
 import getLocalIP from '../scripts/getLocalIP'
-import graphql from '../graphql/server' // GraphQL server
+import graphql from './graphQL' // GraphQL server
 import log from './log'
 import {name,version} from '../configuration/package'
 import serverExtensions from '../configuration/server/serverExtensions'
@@ -38,7 +38,6 @@ const startupInformation =
 
 // Log starting application, also print to console
 log.log( 'info', 'Starting application', startupInformation )
-console.log( startupInformation )
 
 // Main router
 let router = express( )

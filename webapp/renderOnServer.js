@@ -1,33 +1,33 @@
 /* @flow weak */
 
-import Helmet from 'react-helmet';
-import IsomorphicRouter from 'isomorphic-relay-router';
+import Helmet from 'react-helmet'
+import IsomorphicRouter from 'isomorphic-relay-router'
 import MobileDetect from 'mobile-detect'
-import path from 'path';
-import ReactDOMServer from 'react-dom/server';
-import RelayLocalSchema from 'relay-local-schema';
-import { match } from 'react-router';
+import path from 'path'
+import ReactDOMServer from 'react-dom/server'
+import RelayLocalSchema from 'relay-local-schema'
+import { match } from 'react-router'
 
-import { getUserByCookie, serveAuthenticationFailed } from '../server/credentials_check.js';
-import isomorphicVars from '../configuration/webapp/scripts/isomorphicVars';
-import log from '../server/log';
-import ObjectManager from '../graphql/ObjectManager';
-import routes from '../configuration/webapp/routes';
-import schema from '../graphql/schema'; // Schema for GraphQL server
+import { getUserByCookie, serveAuthenticationFailed } from '../server/checkCredentials.js'
+import isomorphicVars from '../configuration/webapp/scripts/isomorphicVars'
+import log from '../server/log'
+import ObjectManager from '../graphql/ObjectManager'
+import routes from '../configuration/webapp/routes'
+import schema from '../graphql/schema' // Schema for GraphQL server
 
 // Read environment
-require( 'dotenv' ).load( );
+require( 'dotenv' ).load( )
 
 // Load up isomorphic vars here, for server rendering
-const isoVars = JSON.stringify( isomorphicVars( ) );
+const isoVars = JSON.stringify( isomorphicVars( ) )
 
 const httpError500FileName = path.resolve( __dirname, '../configuration/server/httpError/500.html' )
 
 export function serveFailure( type, res, message, err )
 {
-  log.log( type, 'Server error: ' + message, err );
+  log.log( type, 'Server error: ' + message, err )
 
-  res.status( 500 ).sendFile( httpError500FileName );
+  res.status( 500 ).sendFile( httpError500FileName )
 }
 
 const httpError404FileName = path.resolve( __dirname, '../configuration/server/httpError/404.html' )
@@ -36,31 +36,33 @@ export default ( req, res, next, assetsPath ) =>
 {
   match( { routes, location: req.originalUrl }, ( error, redirectLocation, renderProps ) => {
     if( error )
-      next(error);
+      next(error)
     else if( redirectLocation )
-      res.redirect( 302, redirectLocation.pathname + redirectLocation.search );
+      res.redirect( 302, redirectLocation.pathname + redirectLocation.search )
     else if( renderProps )
-      reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps );
+      reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps )
     else
-        res.status( 404 ).sendFile( httpError404FileName );
-  } );
-};
+        res.status( 404 ).sendFile( httpError404FileName )
+  } )
+}
 
 function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps )
 {
   // create individual object manager for each request
-  const objectManager = new ObjectManager( );
+  const objectManager = new ObjectManager( )
 
   getUserByCookie( objectManager, req, res )
   .then( ( ) => {
+    res.codeFoundriesInjected = { user: objectManager.getOneObject( 'User', { id: objectManager.getViewerUserId( ) } ) }
+  } )
+  .then( ( ) => {
     try
     {
-
       const networkLayer = new RelayLocalSchema.NetworkLayer( {
         schema,
         rootValue: objectManager,
         onError: ( errors, request ) => serveFailure( 'error', res, 'local network layer GraphQL failure', { errors, request } )
-      } );
+      } )
 
       function render( { data, props } )
       {
@@ -84,11 +86,11 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
           global.window = { innerWidth: innerWidth }
 
           // Also set global location for the leftNav
-          global.location = { pathname: req.originalUrl };
+          global.location = { pathname: req.originalUrl }
 
           // Get the react output HTML
-          const reactOutput = ReactDOMServer.renderToString( IsomorphicRouter.render(props) );
-          const helmet = Helmet.rewind( );
+          const reactOutput = ReactDOMServer.renderToString( IsomorphicRouter.render(props) )
+          const helmet = Helmet.rewind( )
 
           res.render( path.resolve( __dirname, 'renderOnServer.ejs' ), {
               preloadedData: JSON.stringify(data).replace(/\//g, '\\/'),
@@ -99,7 +101,7 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
               link: helmet.link,
               isomorphicVars: isoVars,
               NODE_ENV: process.env.NODE_ENV,
-          } );
+          } )
         }
         catch( err )
         {
@@ -107,13 +109,12 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
         }
       }
 
-      IsomorphicRouter.prepareData( renderProps, networkLayer ).then( render, next );
+      IsomorphicRouter.prepareData( renderProps, networkLayer ).then( render, next )
     }
     catch( err )
     {
       serveFailure( 'error', res, 'renderOnServer failed', err )
     }
   } )
-  .catch( ( error ) => serveAuthenticationFailed( res, error ) )
-  ; // then
+  .catch( ( error ) => serveAuthenticationFailed( req, res, error ) )
 }

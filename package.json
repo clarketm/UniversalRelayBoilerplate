@@ -135,5 +135,5 @@
     "webpack": "1.13.2",
     "webpack-dev-server": "1.16.1"
   },
-  "version": "10.1.5"
+  "version": "10.1.8"
 }

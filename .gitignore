@@ -47,3 +47,8 @@ configuration/app/publicURL.js
 ios/main.jsbundle
 public/assets
 build
+
+# Mobile bundles
+#
+android/app/src/main/assets/index.android.bundle
+ios/main.jsbundle

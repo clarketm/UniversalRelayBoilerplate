@@ -110,7 +110,7 @@ export default class PersisterMemory
 
   createLogger( )
   {
-    return new (winston.transports.Console)( )
+    return null // No need for logger, by default it will output to console in dev mode
   }
 
   uuidFromString( str: string ): string

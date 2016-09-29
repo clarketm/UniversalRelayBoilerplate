@@ -322,16 +322,7 @@ export default class ObjectManager
 
     let cursor = cursorForObjectInConnection( arr, obj )
     if( cursor == null )
-    {
-      log.log(
-        'error',
-        'Could not create cursor for object in connection for ' + entityName,
-        {
-          obj,
-          arr
-        }
-      )
-    }
+      log.log( 'error', 'Could not create cursor for object in connection for ' + entityName, { obj, arr } )
 
     return cursor
   }

@@ -136,7 +136,7 @@ export default class PersisterDynamoDB
   createLogger( )
   {
     // TODO x1000 have some kind of adapter for winston
-    return new (winston.transports.Console)( )
+    return null
   }
 
   uuidFromString( str: string ): string
