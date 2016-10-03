@@ -1,9 +1,9 @@
 /* @flow weak */
 
+import { Actions } from 'react-native-router-flux'
 import Keychain from 'react-native-keychain'
-import Relay, {
-  DefaultNetworkLayer,
-} from 'react-relay';
+import Relay from 'react-relay';
+import { RelayNetworkLayer, urlMiddleware } from 'react-relay-network-layer'
 
 import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
 import publicURL from '../configuration/app/publicURL'
@@ -12,7 +12,7 @@ import publicURL from '../configuration/app/publicURL'
 let currentEnvironment = new Relay.Environment( )
 
 // Initializing environment here to avoid prop warning.
-currentEnvironment.injectNetworkLayer( new DefaultNetworkLayer( 'http://localhost' ) )
+currentEnvironment.injectNetworkLayer( new Relay.DefaultNetworkLayer( 'http://localhost' ) )
 let currentEnvironmentInitialized = false
 
 let listeningComponent = null
@@ -56,12 +56,38 @@ export default class NetworkLayer
 
     const graphQLServerURL = publicURL + '/graphql';
 
-    // Create network layer with options and inject
-    currentEnvironment.injectNetworkLayer( new DefaultNetworkLayer(
-      graphQLServerURL,
-      { headers: headers }
-    ) )
+    // TODO: x1000 Remove commented out old version using default network layer
+    // currentEnvironment.injectNetworkLayer( new DefaultNetworkLayer(
+    //   graphQLServerURL,
+    //   { headers: headers }
+    // ) )
 
+    // Create network layer with options and inject
+    currentEnvironment.injectNetworkLayer( new RelayNetworkLayer(
+      [
+        urlMiddleware( { url: graphQLServerURL } ),
+        next => req => {
+          Object.assign( req.headers, headers )
+          return next( req )
+        },
+        next => req => {
+          return next( req )
+          .then( res => {
+            if( res.json.error )
+            {
+              alert( res.json.error )
+              if( res.json.error == "Authentication Failed" )
+              {
+                console.log( "TODO: x2000 Somehow alert the user. Your account could not be found. You have been logged out." )
+                NetworkLayer.logout( ( ) => {setTimeout( ( ) => Actions[ '/user/login' ]( ), 100 ) } )
+              }
+            }
+            return res
+          } )
+        }
+      ],
+      { disableBatchQuery: true }
+    ) )
     if( listeningComponent )
       listeningComponent.updateEnvironment( UserToken1 == null )
 

@@ -48,7 +48,7 @@ router.use( '/', ( req, res, next ) =>
       } )
     } )( req, res, next )
   } )
-  .catch( ( error ) => serveAuthenticationFailed( req, res, error ) )
+  .catch( ( error ) => serveAuthenticationFailed( req, res, error, true ) )
 } ) // router.use
 
 export default router

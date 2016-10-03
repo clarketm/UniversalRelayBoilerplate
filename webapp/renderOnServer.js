@@ -116,5 +116,5 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
       serveFailure( 'error', res, 'renderOnServer failed', err )
     }
   } )
-  .catch( ( error ) => serveAuthenticationFailed( req, res, error ) )
+  .catch( ( error ) => serveAuthenticationFailed( req, res, error, false ) )
 }

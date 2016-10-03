@@ -6,9 +6,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { browserHistory, match, Router } from 'react-router'
 import Relay from 'react-relay'
+import { RelayNetworkLayer, urlMiddleware } from 'react-relay-network-layer'
 
 import isomorphicVars from '../configuration/webapp/scripts/isomorphicVars'
 import routes from '../configuration/webapp/routes'
+import { postXHR } from './scripts/XHR';
 
 import './styles/main.css'
 
@@ -49,15 +51,61 @@ const graphQLServerURL = isoVars.PUBLIC_URL + '/graphql'
 // Create Relay environment
 // Ensure that on the client Relay is passing the HttpOnly cookie with auth, and the user auth token
 const relay = new Relay.Environment( )
-relay.injectNetworkLayer( new Relay.DefaultNetworkLayer(
-  graphQLServerURL,
-  {
-    credentials: 'same-origin',
-    headers: {
-      UserToken2: UserToken2,
+
+// TODO: x1000 Remove commented out old version using default network layer
+// relay.injectNetworkLayer( new Relay.DefaultNetworkLayer(
+//   graphQLServerURL,
+//   {
+//     credentials: 'same-origin',
+//     headers: {
+//       UserToken2: UserToken2,
+//     },
+//   }
+// ) )
+
+relay.injectNetworkLayer( new RelayNetworkLayer(
+  [
+    urlMiddleware( { url: graphQLServerURL } ),
+    next => req => {
+      req.headers[ 'UserToken2' ] = UserToken2 // Provide token for server to prevent CSRF
+      req.credentials = 'same-origin' // provide CORS policy to XHR request in fetch method
+      return next( req )
     },
-  }
+    next => req => {
+      return next( req )
+      .then( res => {
+        if( res.json.error )
+        {
+          alert( res.json.error )
+          if( res.json.error == "Authentication Failed" )
+          {
+            // When authentication fails, alert user and log out
+            var loc = window.location
+            var host = loc.protocol + "//" + loc.hostname + ":" + loc.port
+
+            postXHR(
+              host + '/auth/logout',
+              { },
+              ( ) => {
+                alert( "Your account could not be found. You have been logged out." )
+                location.replace( location.href )
+              },
+              ( ) => {
+                alert( "Your account could not be found. An attempt has been made to log you out, which did not succeed." )
+                location.replace( location.href )
+              }
+            )
+          }
+        }
+        else if( res.json.errors )
+          alert( 'GraphQL errors occurred! TODO: x2000 provide error handling' )
+        return res
+      } )
+    }
+  ],
+  { disableBatchQuery: true }
 ) )
+
 IsomorphicRelay.injectPreparedData( relay, data )
 
 const rootElement = document.getElementById( 'root' )

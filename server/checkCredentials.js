@@ -58,7 +58,7 @@ export function verifyUserAuthToken( a_User, req )
 
 const httpError403FileName = path.resolve( __dirname, '../configuration/server/httpError/403.html' )
 
-export function serveAuthenticationFailed( req, res, error )
+export function serveAuthenticationFailed( req, res, error, respondWithJSON )
 {
   // Collect information about the request
   var ip = req.headers[ 'x-real-ip' ] || req.connection.remoteAddress
@@ -73,5 +73,9 @@ export function serveAuthenticationFailed( req, res, error )
   log.log( 'warn', 'Checking credentials failed', { error, requestDetails } )
 
   res.cookie( 'UserToken1', '', { httpOnly: true, expires: new Date( 1 ) } ) // Expire cookie. Only way to 'delete'
-  res.status( 403 ).sendFile( httpError403FileName )
+
+  if( respondWithJSON )
+    res.status( 403 ).send( '{ "error": "Authentication Failed" }' )
+  else
+    res.status( 403 ).sendFile( httpError403FileName )
 }
