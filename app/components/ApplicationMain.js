@@ -8,6 +8,7 @@ import { Reducer, Router, Scene } from 'react-native-router-flux'
 import NavigationDrawer from './NavigationDrawer'
 import NetworkLayer from '../NetworkLayer'
 import RelayRenderer from './RelayComponentRenderer'
+import UrlRouter from '../UrlRouter'
 
 import { componentDidMountAdditionalInitialization } from '../../configuration/app/components/ApplicationMainSettings'
 import routes from '../../configuration/app/routes'
@@ -76,10 +77,10 @@ class ApplicationMain extends React.Component
     } )
   }
 
-  getChildContext( )
+  getChildContext()
   {
     return {
-      relay: NetworkLayer.getCurrentEnvironment( )
+      relay: NetworkLayer.getCurrentEnvironment()
     }
   }
 
@@ -92,11 +93,20 @@ class ApplicationMain extends React.Component
     componentDidMountAdditionalInitialization( )
   }
 
-  render( )
+  render()
   {
     // Every time create a new viewer query. This way, when the relay environment changes and this method is called, the components
     // dependent on the viewer query will be re-rendered
     const viewerQuery = { Viewer: ( ) => Relay.QL`query { Viewer }` }
+
+    // Routes are defined in the configuration folder
+    const configuredRoutes = routes( MenuButton, viewerQuery, this.state.isAnonymous )
+
+    // Traverse the defined routes to enable URL-based navigation
+    // TODO: x5000 consider memoizing the results so that URL map does not have to be re-done.
+    // That said, maybe it is worth doing it every time in case logged in user has a different
+    // URL schema somehow. Sounds like an anti pattern.
+    UrlRouter.traverseRoute( configuredRoutes )
 
     // If the persisted credentials have not been loaded yet
     if( ! NetworkLayer.getCurrentEnvironmentInitialized( ) )
@@ -107,7 +117,7 @@ class ApplicationMain extends React.Component
       return <View style={styles.container}>
         <Router createReducer={ reducerCreate } getSceneStyle={ getSceneStyle } wrapBy={ RelayRenderer( ) }>
           <Scene key="tabbar" component={ NavigationDrawer } queries={ viewerQuery } initial={ true }>
-            { routes( MenuButton, viewerQuery, this.state.isAnonymous ) }
+            { configuredRoutes }
           </Scene>
         </Router>
       </View>

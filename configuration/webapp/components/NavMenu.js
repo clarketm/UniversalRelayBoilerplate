@@ -4,9 +4,9 @@
 import React from 'react'
 import Relay from 'react-relay'
 
-import {List, ListItem, MakeSelectable} from 'material-ui/List';
+import {List, ListItem, makeSelectable} from 'material-ui/List'
 
-const SelectableList = MakeSelectable(List);
+const SelectableList = makeSelectable( List )
 
 class NavMenu extends React.Component
 {
@@ -15,7 +15,7 @@ class NavMenu extends React.Component
     let nestedItems_Misc = [
       <ListItem primaryText="Home" value="/" />,
       <ListItem primaryText="Compendium" value="/compendium" />,
-    ];
+    ]
     if( ! this.props.Viewer.User_IsAnonymous )
     {
       nestedItems_Misc.push( <ListItem primaryText="User Profile" value="/user" /> )
@@ -63,7 +63,6 @@ class NavMenu extends React.Component
             <ListItem primaryText="Credit Cards" value="/mui/icons_credit_cards" />,
           ] }
         />
-
 
         <ListItem
           primaryText="Misc"

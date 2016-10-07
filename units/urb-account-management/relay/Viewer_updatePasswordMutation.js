@@ -1,50 +1,57 @@
 /* @flow weak */
 
-import Relay from 'react-relay';
+import Relay from 'react-relay'
 
 export default class Viewer_updatePasswordMutation extends Relay.Mutation
 {
   static fragments = {
-    Viewer: ( ) => Relay.QL`
+    Viewer: () => Relay.QL `
       fragment on Viewer {
         id,
       }
     `,
-  };
-  getMutation( ) {
-    return Relay.QL`mutation{Viewer_updatePassword}`;
   }
-  getFatQuery( ) {
-    return Relay.QL`
+  getMutation()
+  {
+    return Relay.QL `mutation{Viewer_updatePassword}`
+  }
+  getFatQuery()
+  {
+    return Relay.QL `
       fragment on Viewer_updatePasswordPayload {
         Viewer {
           id
         }
       }
-    `;
+    `
   }
-  getConfigs( ) {
-    return [{
+  getConfigs()
+  {
+    return [
+    {
       type: 'REQUIRED_CHILDREN',
-      children: [Relay.QL`
+      children: [ Relay.QL `
         fragment on Viewer_updatePasswordPayload {
           ErrorMessage
         }
-      `],
-    }];
+      ` ],
+    } ]
   }
-  getVariables( ) {
+  getVariables()
+  {
     return {
-      id:                           this.props.Viewer.id,
+      id: this.props.Viewer.id,
       User_AccountPassword_Current: this.props.User_AccountPassword_Current,
-      User_AccountPassword:         this.props.User_AccountPassword,
-    };
+      User_AccountPassword: this.props.User_AccountPassword,
+    }
   }
-  getOptimisticResponse( ) {
+  getOptimisticResponse()
+  {
     return {
-      Viewer: {
-        id:                this.props.Viewer.id,
+      Viewer:
+      {
+        id: this.props.Viewer.id,
       },
-    };
+    }
   }
 }

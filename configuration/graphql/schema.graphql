@@ -318,13 +318,11 @@ type Viewer implements Node {
   # The ID of an object
   id: ID!
   User_IsAnonymous: Boolean
+  UserToken2: String
   User_AccountName: String
   User_DisplayName: String
-  User_ProfilePhoto: String
   User_Email: String
   User_PhoneNumberMobile: String
-  User_Locale: String
-  UserToken2: String
   compendiums(after: String, first: Int, before: String, last: Int): CompendiumsConnection
   Ensayos(after: String, first: Int, before: String, last: Int): EnsayosConnection
   Ensayo(id: ID): Ensayo
@@ -337,10 +335,8 @@ type Viewer implements Node {
 input Viewer_updateInput {
   id: ID!
   User_DisplayName: String!
-  User_ProfilePhoto: String!
   User_Email: String!
   User_PhoneNumberMobile: String!
-  User_Locale: String!
   clientMutationId: String
 }
 

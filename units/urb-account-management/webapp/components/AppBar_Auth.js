@@ -4,7 +4,6 @@
 import React from 'react';
 import Relay from 'react-relay';
 
-import Avatar from 'material-ui/Avatar';
 import Dialog from 'material-ui/Dialog';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
@@ -28,8 +27,9 @@ import {
   AccountNameAdditionalValidation,
 } from '../../../../configuration/units/urb-account-management/accountNameAndPasswordRequirements';
 import {ExtensionsForLogIn, ExtensionsForCreateUser} from '../../../../configuration/units/urb-account-management/webapp/components/AccountManagementExtensions'
-import { postXHR } from '../../../../webapp/scripts/XHR';
+import {postXHR} from '../../../../webapp/scripts/XHR';
 import scorePassword from '../../../../configuration/units/urb-account-management/scripts/scorePassword';
+import UserListItem from '../../../../configuration/webapp/components/UserListItem';
 
 const styles = {
   popover: {
@@ -548,10 +548,7 @@ class AppBar_Auth extends React.Component
       >
       <List>
         <Subheader>You are currently logged in as</Subheader>
-        <ListItem
-          primaryText={ this.props.Viewer.User_DisplayName }
-          leftAvatar={<Avatar src={ this.props.Viewer.User_ProfilePhoto } />}
-        />
+        <UserListItem Viewer={ this.props.Viewer } />
       </List>
       <List>
         <Subheader>Are you sure you want to log out?</Subheader>
@@ -628,10 +625,7 @@ class AppBar_Auth extends React.Component
       >
         <List>
           <Subheader>You are still logged in as</Subheader>
-          <ListItem
-            primaryText={ this.props.Viewer.User_DisplayName }
-            leftAvatar={<Avatar src={ this.props.Viewer.User_ProfilePhoto } />}
-          />
+          <UserListItem Viewer={ this.props.Viewer } />
         </List>
         <List>
           <Subheader>{ this.state.Dialog_LogOutFailed_Message }</Subheader>
@@ -664,10 +658,7 @@ class AppBar_Auth extends React.Component
         <div style={styles.popover}>
           <List>
             <Subheader>Logged In as</Subheader>
-            <ListItem
-              primaryText={ this.props.Viewer.User_DisplayName }
-              leftAvatar={<Avatar src={ this.props.Viewer.User_ProfilePhoto } />}
-            />
+            <UserListItem Viewer={ this.props.Viewer } />
           </List>
           <Divider />
           <List>
@@ -780,7 +771,6 @@ export default Relay.createContainer( AppBar_Auth, {
       fragment on Viewer {
         User_IsAnonymous,
         User_DisplayName,
-        User_ProfilePhoto,
       }
     `,
   },

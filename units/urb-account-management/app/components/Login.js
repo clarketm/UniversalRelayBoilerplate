@@ -1,4 +1,3 @@
-import { Actions } from 'react-native-router-flux'
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { Button, FormLabel, FormInput } from 'react-native-elements'
@@ -7,7 +6,7 @@ import LoginExtensions from '../../../../configuration/units/urb-account-managem
 import NetworkLayer from '../../../../app/NetworkLayer'
 import publicURL from '../../../../configuration/app/publicURL'
 import { SuccessfulLoginRouteName, SuccessfulLoginRouteOptions } from '../../../../configuration/units/urb-account-management/app/SuccessfulLoginRoute'
-
+import UrlRouter from '../../../../app/UrlRouter'
 
 const styles = StyleSheet.create( {
   container: {
@@ -79,7 +78,7 @@ export default class Login extends React.Component
         {
           NetworkLayer.setUserTokens( UserToken1, responseData.UserToken2, true )
 
-          Actions[ SuccessfulLoginRouteName ]( SuccessfulLoginRouteOptions )
+          UrlRouter.goToRouteByNameWithParams( SuccessfulLoginRouteName, SuccessfulLoginRouteOptions )
         }
         else
         {

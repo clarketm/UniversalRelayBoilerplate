@@ -1,7 +1,7 @@
 /* @flow */
 
 import './logs.schema'
-import './User.schema'
+import '../../configuration/graphql/model/User.schema'
 
 
 export default true

@@ -1,13 +1,13 @@
 /* @flow weak */
 'use strict'
 
-import { Actions } from 'react-native-router-flux'
 import Button from 'react-native-button'
 import Relay from 'react-relay'
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 
 import NetworkLayer from '../../../../app/NetworkLayer'
+import UrlRouter from '../../../../app/UrlRouter'
 
 
 class Logout extends React.Component
@@ -19,7 +19,7 @@ class Logout extends React.Component
 
   handle_onPress_Logout = ( ) =>
   {
-    NetworkLayer.logout( ( ) => { setTimeout( ( ) => Actions[ '/user/login' ]( ), 100 ) } )
+    NetworkLayer.logout( ( ) => { setTimeout( ( ) => UrlRouter.goToRouteByNameWithParams( '/user/login', { } ), 100 ) } )
   }
 
   render()

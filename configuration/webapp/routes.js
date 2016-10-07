@@ -1,8 +1,8 @@
 /* @flow weak */
 
-import React from 'react';
-import { createRoutes, IndexRoute, Route } from 'react-router';
-import Relay from 'react-relay';
+import React from 'react'
+import { createRoutes, IndexRoute, Route } from 'react-router'
+import Relay from 'react-relay'
 
 import Chrome from '../../webapp/components/Chrome';
 import Compendium from '../../units/urb-example-compendium/webapp/components/Compendium';
@@ -27,7 +27,7 @@ import User_UpdatePassword from '../../units/urb-account-management/webapp/compo
 
 export const queries = {
   Viewer: () => Relay.QL`query { Viewer }`,
-};
+}
 
 export default createRoutes(
   <Route path="/" component={Chrome} queries={queries}>
@@ -79,4 +79,4 @@ export default createRoutes(
     </Route>
 
   </Route>
-);
+)

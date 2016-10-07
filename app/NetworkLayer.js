@@ -1,12 +1,12 @@
 /* @flow weak */
 
-import { Actions } from 'react-native-router-flux'
 import Keychain from 'react-native-keychain'
 import Relay from 'react-relay';
 import { RelayNetworkLayer, urlMiddleware } from 'react-relay-network-layer'
 
 import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
 import publicURL from '../configuration/app/publicURL'
+import UrlRouter from './UrlRouter'
 
 
 let currentEnvironment = new Relay.Environment( )
@@ -79,7 +79,7 @@ export default class NetworkLayer
               if( res.json.error == "Authentication Failed" )
               {
                 console.log( "TODO: x2000 Somehow alert the user. Your account could not be found. You have been logged out." )
-                NetworkLayer.logout( ( ) => {setTimeout( ( ) => Actions[ '/user/login' ]( ), 100 ) } )
+                NetworkLayer.logout( ( ) => {setTimeout( ( ) => UrlRouter.goToRouteByNameWithParams( '/user/login', { } ), 100 ) } )
               }
             }
             return res

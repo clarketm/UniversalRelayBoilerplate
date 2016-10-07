@@ -156,6 +156,18 @@
               "deprecationReason": null
             },
             {
+              "name": "UserToken2",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "User_AccountName",
               "description": null,
               "args": [],
@@ -180,18 +192,6 @@
               "deprecationReason": null
             },
             {
-              "name": "User_ProfilePhoto",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "User_Email",
               "description": null,
               "args": [],
@@ -205,30 +205,6 @@
             },
             {
               "name": "User_PhoneNumberMobile",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "User_Locale",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "UserToken2",
               "description": null,
               "args": [],
               "type": {
@@ -1787,20 +1763,6 @@
               "defaultValue": null
             },
             {
-              "name": "User_ProfilePhoto",
-              "description": null,
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
               "name": "User_Email",
               "description": null,
               "type": {
@@ -1816,20 +1778,6 @@
             },
             {
               "name": "User_PhoneNumberMobile",
-              "description": null,
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "User_Locale",
               "description": null,
               "type": {
                 "kind": "NON_NULL",

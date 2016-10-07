@@ -2,10 +2,10 @@
 
 import React from 'react'
 import Relay from 'react-relay'
-import {PropTypes} from "react"
-import {StyleSheet, View, Text} from 'react-native'
+import { PropTypes } from "react"
+import { StyleSheet, View, Text } from 'react-native'
 import Button from 'react-native-button'
-import { Actions } from 'react-native-router-flux'
+import UrlRouter from '../../../app/UrlRouter'
 
 const styles = StyleSheet.create( {
   container: {
@@ -42,27 +42,27 @@ class DrawerView extends React.Component
   {
     this.context.drawer.close( )
 
-    Actions[ route ]( options )
+    UrlRouter.goToRouteByNameWithParams( route, options )
   }
 
   render( )
   {
     return (
-      <View style={[styles.container, this.props.sceneStyle ]}>
+      <View style={ [ styles.container, this.props.sceneStyle ] }>
         <Text style={ styles.greeting }>
           Hello
           { ' ' + ( this.props.Viewer.User_IsAnonymous ? 'Stranger' : this.props.Viewer.User_DisplayName ) }
         </Text>
-        { this.props.Viewer.User_IsAnonymous && <Button containerStyle={ styles.button } onPress={ ( ) => this.openRoute( '/user/login' ) }>Login</Button> }
-        <Button containerStyle={ styles.button } onPress={ ( ) => this.openRoute( '/todo' ) }>To Do</Button>
-        { ( ! this.props.Viewer.User_IsAnonymous ) && <Button containerStyle={ styles.button } onPress={ ( ) => this.openRoute( '/user/logout' ) }>Log Out</Button> }
+        { this.props.Viewer.User_IsAnonymous && <Button containerStyle={ styles.button } onPress={ () => this.openRoute( '/user/login' ) }>Login</Button> }
+        <Button containerStyle={ styles.button } onPress={ () => this.openRoute( '/todo' ) }>To Do</Button>
+        { ( ! this.props.Viewer.User_IsAnonymous ) && <Button containerStyle={ styles.button } onPress={ () => this.openRoute( '/user/logout' ) }>Log Out</Button> }
       </View>
     )
   }
 }
 
 DrawerView.contextTypes = {
-  drawer: React.PropTypes.object,
+  drawer: React.PropTypes.object
 }
 
 DrawerView.propTypes = {
@@ -78,6 +78,6 @@ export default Relay.createContainer( DrawerView, {
         User_IsAnonymous,
         User_DisplayName
       }
-    `,
-  },
+    `
+  }
 } )

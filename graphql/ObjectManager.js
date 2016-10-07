@@ -1,56 +1,58 @@
 /* @flow weak */
 
 import DataLoader from 'dataloader'
-import { cursorForObjectInConnection } from 'graphql-relay'
+import
+{
+  cursorForObjectInConnection
+}
+from 'graphql-relay'
 
 import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
 import defaultPersister from '../configuration/graphql/defaultPersister'
+import getNewUser from '../configuration/graphql/model/getNewUser'
 import log from '../server/log'
 import User from '../configuration/graphql/model/User'
 
 
 // Anonymous user
-const User_0 = new User( {
+const User_0 = new User( Object.assign( getNewUser(),
+{
   id: defaultPersister.uuidFromString( '00000000-0000-0000-0000-000000000000' ),
-  User_AccountName: '',
-  User_AccountPassword: '',
+  UserToken2: AnonymousUserToken2,
   User_DisplayName: 'Anonymous',
-  "User_ProfilePhoto": '',
-  User_Email: '',
-  User_PhoneNumberMobile: '',
-  User_Locale: '',
-  UserToken2: AnonymousUserToken2
-} )
+} ) )
 
 // Static set of entity definitions
-const entityDefinitions = { }
+const entityDefinitions = {}
 
 // Static array of object managers
-const setPersisters = new Set( )
+const setPersisters = new Set()
 
 // Value for a change indicating that the record is deleted
-const deletedRecord = { deleted: true }
+const deletedRecord = {
+  deleted: true
+}
 
 export default class ObjectManager
 {
   Viewer_User_id: string
 
-  constructor( )
+  constructor()
   {
     // Loaders for a single record, by entity name
-    this.loadersSingle = { }
+    this.loadersSingle = {}
 
     // Loaders for a multiple record lists, by entity name
-    this.loadersMultiple = { }
+    this.loadersMultiple = {}
 
     // Changes made to records, by entity name
-    this.changes = { }
+    this.changes = {}
 
     // UserID for the viewer. Could be unset if ObjectManager is used by system
     this.Viewer_User_id = null
   }
 
-  static registerEntity( entityName: string, EntityType : any, persister: any ): void
+  static registerEntity( entityName: string, EntityType: any, persister: any ): void
   {
     if( entityName in entityDefinitions )
       throw new Error( "Entity already registered: " + entityName )
@@ -69,9 +71,9 @@ export default class ObjectManager
       EntityName: entityName,
       EntityType: EntityType,
       Persister: persister,
-      TriggersForAdd: [ ],
-      TriggersForUpdate: [ ],
-      TriggersForRemove: [ ]
+      TriggersForAdd: [],
+      TriggersForUpdate: [],
+      TriggersForRemove: []
     }
   }
 
@@ -101,41 +103,41 @@ export default class ObjectManager
     this.Viewer_User_id = Viewer_User_id
   }
 
-  getLoadersSingle( entityName : string )
+  getLoadersSingle( entityName: string )
   {
     const foundLoaders = this.loadersSingle[ entityName ]
     if( foundLoaders != null )
       return foundLoaders
     else
-      return this.loadersSingle[ entityName ] = { }
+      return this.loadersSingle[ entityName ] = {}
   }
 
-  getLoadersMultiple( entityName : string )
+  getLoadersMultiple( entityName: string )
   {
     const foundLoaders = this.loadersMultiple[ entityName ]
     if( foundLoaders != null )
       return foundLoaders
     else
-      return this.loadersMultiple[ entityName ] = { }
+      return this.loadersMultiple[ entityName ] = {}
   }
 
-  clearLoadersMultiple( entityName : string )
+  clearLoadersMultiple( entityName: string )
   {
-    this.loadersMultiple[ entityName ] = { }
+    this.loadersMultiple[ entityName ] = {}
   }
 
-  recordChange( entityName : string, fields: object, isDeletion: boolean )
+  recordChange( entityName: string, fields: object, isDeletion: boolean )
   {
     let records = this.changes[ entityName ]
     if( records == null )
-      records = this.changes[ entityName ] = { }
+      records = this.changes[ entityName ] = {}
 
     const id = fields.id
 
-    records[ id ] = isDeletion ? deletedRecord: fields
+    records[ id ] = isDeletion ? deletedRecord : fields
   }
 
-  getViewerUserId( )
+  getViewerUserId()
   {
     if( this.Viewer_User_id == null )
       throw new Error( "Object Manager: viewer user id has not been set" )
@@ -145,7 +147,7 @@ export default class ObjectManager
 
   getLoader( entityName: string, fieldName: string, multipleResults: boolean )
   {
-    if( ! ( entityName in entityDefinitions ) )
+    if( !( entityName in entityDefinitions ) )
       throw new Error( "Can not find entity type named " + entityName )
 
     const entityDefinition = entityDefinitions[ entityName ]
@@ -174,53 +176,55 @@ export default class ObjectManager
       if( filter.id == '00000000-0000-0000-0000-000000000000' )
         return Promise.resolve( User_0 )
 
-    // For all non-user, non 0 ids, load from data loader per protocol
-    const loaderIdentifier = Object.keys( filter ).sort( ).join( ',' )
+      // For all non-user, non 0 ids, load from data loader per protocol
+    const loaderIdentifier = Object.keys( filter ).sort().join( ',' )
     const loader = this.getLoader( entityName, loaderIdentifier, false )
 
     return loader.load( filter )
-    .then( ( result ) => {
-      const changes = this.changes[ entityName ]
-      if( changes )
+      .then( ( result ) =>
       {
-        const change = changes[ result.id ]
-        if( change != null )
+        const changes = this.changes[ entityName ]
+        if( changes )
         {
-          if( change === deletedRecord )
-            result = null // Object is not found, return null
-          else // Add or update
-            Object.assign( result, change )
+          const change = changes[ result.id ]
+          if( change != null )
+          {
+            if( change === deletedRecord )
+              result = null // Object is not found, return null
+            else // Add or update
+              Object.assign( result, change )
+          }
         }
-      }
-      return result
-    } )
+        return result
+      } )
   }
 
   getObjectList( entityName: string, filter: object )
   {
     // TODO x2000 Provide try catch with logging here!
-    const loaderIdentifier = Object.keys( filter ).sort( ).join( ',' )
+    const loaderIdentifier = Object.keys( filter ).sort().join( ',' )
     const loader = this.getLoader( entityName, loaderIdentifier, true )
 
     return loader.load( filter )
-    .then( ( arrResults ) => {
-      const changes = this.changes[ entityName ]
-      if( changes )
+      .then( ( arrResults ) =>
       {
-        for( let ix = 0; ix < arrResults.length; ix++ )
+        const changes = this.changes[ entityName ]
+        if( changes )
         {
-          const change = changes[ arrResults[ ix ].id ]
-          if( change != null )
+          for( let ix = 0; ix < arrResults.length; ix++ )
           {
-            if( change === deletedRecord )
-              arrResults.splice( ix--, 1 ) // Reduce ix in order not to skip over a record
-            else // Add or update
-              Object.assign( arrResults[ ix ], change )
+            const change = changes[ arrResults[ ix ].id ]
+            if( change != null )
+            {
+              if( change === deletedRecord )
+                arrResults.splice( ix--, 1 ) // Reduce ix in order not to skip over a record
+              else // Add or update
+                Object.assign( arrResults[ ix ], change )
+            }
           }
         }
-      }
-      return arrResults
-    } )
+        return arrResults
+      } )
   }
 
   invalidateLoaderCache( entityName: string, fields: any )
@@ -240,7 +244,7 @@ export default class ObjectManager
 
   executeTriggers( arrTriggers, fields )
   {
-    const arrPromises = [ ]
+    const arrPromises = []
     for( let trigger of arrTriggers )
     {
       arrPromises.push( trigger( this, fields ) )
@@ -253,38 +257,40 @@ export default class ObjectManager
   {
     const entityDefinition = entityDefinitions[ entityName ]
 
-    if( entityDefinition == null ) console.log( 'Cound not find entity'+ entityName )
+    if( entityDefinition == null ) console.log( 'Cound not find entity' + entityName )
 
     // Generate primary key
-    fields.id = entityDefinition.Persister.uuidRandom( )
+    fields.id = entityDefinition.Persister.uuidRandom()
 
     // If this is a user ID
     if( entityName == 'User' )
-      this.setViewerUserId( fields.id.toString( ) )
+      this.setViewerUserId( fields.id.toString() )
 
     this.recordChange( entityName, fields, false )
 
     return this.executeTriggers( entityDefinition.TriggersForAdd, fields )
-    .then( ( ) => entityDefinition.Persister.add( entityName, fields, entityDefinition.EntityType ) )
-    .then( ( ) => {
-      this.invalidateLoaderCache( entityName, fields )
-      return fields.id
-    } )
+      .then( () => entityDefinition.Persister.add( entityName, fields, entityDefinition.EntityType ) )
+      .then( () =>
+      {
+        this.invalidateLoaderCache( entityName, fields )
+        return fields.id
+      } )
   }
 
   update( entityName: string, fields: any )
   {
     const entityDefinition = entityDefinitions[ entityName ]
 
-    if( entityDefinition == null ) console.log( 'XXX Cound not find entity'+ entityName ) // Should that be recorded somewhere? Could be another
+    if( entityDefinition == null ) console.log( 'XXX Cound not find entity' + entityName ) // Should that be recorded somewhere? Could be another
 
     this.recordChange( entityName, fields, false )
 
     return this.executeTriggers( entityDefinition.TriggersForUpdate, fields )
-    .then( entityDefinition.Persister.update( entityName, fields ) )
-    .then( ( ) => {
-      this.invalidateLoaderCache( entityName, fields )
-    } )
+      .then( entityDefinition.Persister.update( entityName, fields ) )
+      .then( () =>
+      {
+        this.invalidateLoaderCache( entityName, fields )
+      } )
   }
 
   remove( entityName: string, fields: any )
@@ -294,10 +300,11 @@ export default class ObjectManager
     this.recordChange( entityName, fields, true )
 
     return this.executeTriggers( entityDefinition.TriggersForRemove, fields )
-    .then( entityDefinition.Persister.remove( entityName, fields ) )
-    .then( ( ) => {
-      this.invalidateLoaderCache( entityName, fields )
-    } )
+      .then( entityDefinition.Persister.remove( entityName, fields ) )
+      .then( () =>
+      {
+        this.invalidateLoaderCache( entityName, fields )
+      } )
   }
 
   cursorForObjectInConnection( entityName: string, arr, obj )
@@ -309,7 +316,7 @@ export default class ObjectManager
 
     // Make sure that the object and its instance can be compared with ===
     // assumed that the object has id field which is unique
-    for( let ix = 0 ; ix < arr.length ; ix++ )
+    for( let ix = 0; ix < arr.length; ix++ )
     {
       const arr_element_id = entityDefinition.Persister.uuidToString( arr[ ix ].id )
 
@@ -322,7 +329,11 @@ export default class ObjectManager
 
     let cursor = cursorForObjectInConnection( arr, obj )
     if( cursor == null )
-      log.log( 'error', 'Could not create cursor for object in connection for ' + entityName, { obj, arr } )
+      log.log( 'error', 'Could not create cursor for object in connection for ' + entityName,
+      {
+        obj,
+        arr
+      } )
 
     return cursor
   }

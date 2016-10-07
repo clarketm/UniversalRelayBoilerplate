@@ -11,12 +11,12 @@ import ToDoScreen from '../../units/urb-example-todo/app/components/ToDoScreen'
 export default function routes( MenuButton, viewerQuery, isAnonymous )
 {
   return(
-    <Scene key='main' tabs hideTabBar>
-      <Scene key='/user/login' title='Login' component={ Login } leftButton={ MenuButton } initial={ isAnonymous } />
+    <Scene key='main-nourl' tabs hideTabBar>
+      <Scene key='/user/login' title="Login" component={ Login } leftButton={ MenuButton } initial={ isAnonymous } />
       <Scene key='/todo' leftButton={ MenuButton } initial={ ( ! isAnonymous ) }>
-        <Scene key='/todo-default' title='To Do' component={ ToDoScreen } queries={ viewerQuery } />
+        <Scene key='/todo-default-nourl' title="To Do" component={ ToDoScreen } queries={ viewerQuery } />
       </Scene>
-      <Scene key='/user/logout' title='Logout' component={ Logout } queries={ viewerQuery } leftButton={ MenuButton } />
+      <Scene key='/user/logout' title="Logout" component={ Logout } queries={ viewerQuery } leftButton={ MenuButton } />
     </Scene>
   )
 }
