@@ -51,4 +51,6 @@ build
 # Mobile bundles
 #
 android/app/src/main/assets/index.android.bundle
+android/app/src/main/assets/index.android.map
 ios/main.jsbundle
+/ios/main.map
