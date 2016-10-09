@@ -21,7 +21,7 @@
     "dev-server": "better-npm-run dev-server",
     "dev-webpack": "rm -rf build && better-npm-run dev-webpack",
     "dev": "rm -rf build && concurrently --kill-others \"npm run dev-webpack\" \"npm run dev-server\" \"npm run start\" ",
-    "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- memory && npm run update-ip localhost && react-native link",
+    "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- memory && npm run update-ip && react-native link",
     "setup-database": "./node_modules/.bin/babel-node ./scripts/setup-database.js",
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "update-default-persister": "./node_modules/.bin/babel-node ./scripts/update-default-persister.js",

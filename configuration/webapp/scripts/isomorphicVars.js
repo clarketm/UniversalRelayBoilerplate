@@ -6,7 +6,6 @@ export default function( )
   {
     // Running on server.
     return {
-      PUBLIC_URL: process.env.PUBLIC_URL,
       // Modify the code below to set the variables >>>
       // <<< Modify the code above to set the variables
     }

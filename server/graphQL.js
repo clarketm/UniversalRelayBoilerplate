@@ -36,7 +36,7 @@ router.use( '/', ( req, res, next ) =>
   getUserByCookie( objectManager, req, res )
   .then( ( a_User ) => {
     res.codeFoundriesInjected = { user: a_User }
-    verifyUserAuthToken( a_User, req, res )
+    return verifyUserAuthToken( a_User, req, res )
   } )
   .then( ( ) => {
     graphQLHTTP( () => {
