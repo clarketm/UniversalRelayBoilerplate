@@ -6,7 +6,6 @@ import Relay from 'react-relay';
 
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 
-import {version} from '../../package'
 import isomorphicVars from '../scripts/isomorphicVars';
 
 class HomeScreen extends React.Component
@@ -19,7 +18,7 @@ class HomeScreen extends React.Component
       <Card>
         <CardHeader
           title="Universal Relay Boilerplate"
-          subtitle={ "Version " + version }
+          subtitle={ "Version " + isoVars.npm_package_version }
         />
         <CardText>
           The purpose of this project is:
@@ -32,14 +31,14 @@ class HomeScreen extends React.Component
           <br/>
         </CardText>
       </Card>
-      <br/>
+       <br/>
       <Card>
         <CardHeader
           title="Isomorphic Variables"
           subtitle="Available both for client and server rendering"
         />
         <CardText>
-          <p>PUBLIC_URL: { isoVars.PUBLIC_URL }</p>
+          <p>npm_package_version: { isoVars.npm_package_version }</p>
         </CardText>
       </Card>
       <br/>
