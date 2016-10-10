@@ -2,19 +2,27 @@ import path from 'path'
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
-var version = require( './configuration/package.js' ).version
+const version = require( './configuration/package.js' ).version
+const host = process.env.HOST
 
 console.log( 'Running Webpack, process.env.NODE_ENV=' + process.env.NODE_ENV + ', version=' + version )
 
-let config = {
+const config = {
   devtool: ( process.env.NODE_ENV == 'production' ? 'source-map' : 'eval' ),
+  devServer: {
+    host,
+    port: 8080
+  },
   entry: {
-    client: path.resolve('webapp/client.js')
+    client: [
+      'whatwg-fetch',
+      path.resolve('webapp/client.js')
+    ]
   },
   output: {
     path: path.resolve( `public/assets/${version}` ),
     filename: '[name].js',
-    publicPath: `http://localhost:8080/${version}/`
+    publicPath: `http://${host}:8080/${version}/`
   },
   module: {
     preLoaders: [

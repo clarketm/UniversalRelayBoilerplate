@@ -15,7 +15,6 @@ export default class UrlRouter
   {
     routeTree = {}
     UrlRouter.traverseRouteRecursive( route )
-    console.log( 'XXX TREE: ' + JSON.stringify( routeTree, null, 2 ) )
   }
 
   static traverseRouteRecursive( route )

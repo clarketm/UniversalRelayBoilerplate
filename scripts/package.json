@@ -4,7 +4,7 @@
     "npm": "^3.0.0"
   },
   "scripts": {
-    "build-babel": "export NODE_ENV=production && rm -rf build && mkdir build && cp -r configuration ./build/configuration && cp -r webapp ./build/webapp && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/server/ ./server && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/configuration/ ./configuration && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/graphql/ ./graphql && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/scripts/ ./scripts && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/server/ ./server && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/units/ ./units && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/webapp/ ./webapp && ./node_modules/.bin/babel -s true --retain-lines --presets stage-3 -d ./build/server/ ./server && cp -r public ./build/public && cp ./package.json ./build",
+    "build-babel": "export NODE_ENV=production && rm -rf build && mkdir build && cp -r configuration ./build/configuration && cp -r webapp ./build/webapp && ./node_modules/.bin/babel -s true --retain-lines -d ./build/server/ ./server && ./node_modules/.bin/babel -s true --retain-lines -d ./build/configuration/ ./configuration && ./node_modules/.bin/babel -s true --retain-lines -d ./build/graphql/ ./graphql && ./node_modules/.bin/babel -s true --retain-lines -d ./build/scripts/ ./scripts && ./node_modules/.bin/babel -s true --retain-lines -d ./build/server/ ./server && ./node_modules/.bin/babel -s true --retain-lines -d ./build/units/ ./units && ./node_modules/.bin/babel -s true --retain-lines -d ./build/webapp/ ./webapp && ./node_modules/.bin/babel -s true --retain-lines -d ./build/server/ ./server && cp -r public ./build/public && cp ./package.json ./build",
     "build-bump-version": "./node_modules/.bin/babel-node ./scripts/build-bump-version.js",
     "build-bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/",
     "build-bundle-android-dev": "react-native bundle --platform android --dev true --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/",
@@ -18,7 +18,7 @@
     "build-server": "rm -rf build && npm run build-bump-version && npm run build-schema && npm run build-webpack && npm run build-babel",
     "build-units": "./node_modules/.bin/babel-node ./scripts/build-units.js",
     "build-webpack": "export NODE_ENV=production && rm -rf public/assets && mkdir public/assets &&  ./node_modules/.bin/webpack -p --output-filename client.js",
-    "dev-reset": "sudo chmod -R a+w * && watchman watch-del-all && rm -rf ~/Library/Developer/Xcode/DerivedData/* && rm -rf $TMPDIR/react-* && rm -rf ~/.node-gyp && rm ./ios/main.* && rm . android/app/src/main/assets/index.android.*",
+    "dev-reset": "sudo chmod -R a+w * && watchman watch-del-all && rm -rf ~/Library/Developer/Xcode/DerivedData/* && rm -rf $TMPDIR/react-* && rm -rf ~/.node-gyp && rm -f ./ios/main.* && rm -f ./android/app/src/main/assets/index.android.*",
     "dev-prod": "export NODE_ENV=production && ./node_modules/.bin/babel-node ./server/server.js",
     "dev-server": "better-npm-run dev-server",
     "dev-webpack": "rm -rf build && better-npm-run dev-webpack",
@@ -31,13 +31,13 @@
   },
   "betterScripts": {
     "dev-server": {
-      "command": "./node_modules/.bin/nodemon --exec ./node_modules/.bin/babel-node -- --presets stage-3 ./server/server.js",
+      "command": "./node_modules/.bin/nodemon --exec ./node_modules/.bin/babel-node -- ./server/server.js",
       "env": {
         "NODE_ENV": "development"
       }
     },
     "dev-server-w": {
-      "command": "node_modules\\.bin.\\nodemon --exec node_modules\\.bin.\\babel-node -- --presets stage-3 server\\server.js",
+      "command": "node_modules\\.bin.\\nodemon --exec node_modules\\.bin.\\babel-node -- server\\server.js",
       "env": {
         "NODE_ENV": "development"
       }
@@ -124,6 +124,7 @@
     "replace": "0.3.0",
     "style-loader": "0.13.1",
     "webpack": "1.13.2",
-    "webpack-dev-server": "1.16.2"
+    "webpack-dev-server": "1.16.2",
+    "whatwg-fetch": "1.0.0"
   }
 }

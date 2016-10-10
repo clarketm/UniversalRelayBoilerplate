@@ -16,6 +16,9 @@ import
 from '../configuration/server/requestLoggers'
 
 
+// Read environment
+require( 'dotenv' ).load()
+
 // Log requests for statically served files
 function logPublicRequest( req, res, next )
 {
@@ -23,7 +26,14 @@ function logPublicRequest( req, res, next )
 }
 
 // Use relative URL for asset path
-assetsPath = `/assets/${version}`
+let assetsPath
+if( process.env.NODE_ENV == 'production' )
+  assetsPath = `/assets/${version}`
+else
+{
+  const host = process.env.HOST
+  assetsPath = `http://${host}:8080/${version}`
+}
 
 let app = express()
 app.use( logPublicRequest )
