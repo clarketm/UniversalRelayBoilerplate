@@ -77,6 +77,7 @@ The setup is for OS X only. Prerequisites:
 * **Make sure** that Node.js is at least version 6.0 and NPM is at least version 3.
 * **In order to speed up NPM** run `npm set progress=false`. This [speeds up NPM significantly](https://twitter.com/gavinjoyce/status/691773956144119808).
 * **Install react-native-cli** run `npm install -g react-native-cli`
+* **Install yarn** run `npm install -g yarn`
 
 
 ## Initial Project setup on local machine
@@ -86,7 +87,7 @@ In order to set up the project locally, perform the following steps:
 | Action                    | Notes                               |
 | ------------------------- | ----------------------------------- |
 | `git clone https://github.com/codefoundries/UniversalRelayBoilerplate` | Clone from github. Alternatively, you can download the source and update in some different way. |
-| `npm install` | Install node packages. You will see errors like `Error: ENOENT: no such file or directory, open '.env'`. They can be ignored. |
+| `yarn` | Install node packages. |
 
 In addition to the above, you might want to specify `JWT_SECRET` by modifying the `.env` file. This step can be skipped if you do not care about the actual security and simply want to get the project running.
 
