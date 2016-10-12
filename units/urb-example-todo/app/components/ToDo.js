@@ -4,7 +4,7 @@
 import ToDo_updateStatusMutation from '../../relay/ToDo_updateStatusMutation';
 import ToDo_updateRenameMutation from '../../relay/ToDo_updateRenameMutation';
 import Relay from 'react-relay';
-import TodoTextInput from './ToDoTextInput';
+import ToDoTextInput from './ToDoTextInput';
 import React, {
   PropTypes,
 } from 'react';
@@ -86,7 +86,7 @@ class ToDo extends React.Component
       <View style={[this.props.style, styles.container]}>
         {this.renderCompleteCheckbox()}
         {this.state.isEditing ?
-          <TodoTextInput
+          <ToDoTextInput
             autoFocus={true}
             commitOnBlur={true}
             initialValue={this.props.ToDo.ToDo_Text}

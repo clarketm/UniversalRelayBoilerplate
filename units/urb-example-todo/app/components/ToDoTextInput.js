@@ -4,13 +4,13 @@
 import React from 'react'
 import { TextInput } from 'react-native'
 
-export default class TodoTextInput extends React.Component
+export default class ToDoTextInput extends React.Component
 {
-  static defaultProps = {
+  defaultProps:{
     commitOnBlur: false,
   }
-  
-  static propTypes =
+
+  propTypes:
   {
     autoFocus: TextInput.propTypes.autoFocus,
     clearButtonMode: TextInput.propTypes.clearButtonMode,
@@ -24,10 +24,6 @@ export default class TodoTextInput extends React.Component
     value: TextInput.propTypes.value,
   }
 
-  state = {
-    ToDo_Text: this.props.initialValue || '',
-  }
-
   constructor(props, context)
   {
     super(props, context)
@@ -35,6 +31,10 @@ export default class TodoTextInput extends React.Component
     this._handleBlur = this._handleBlur.bind(this)
     this._handleChangeText = this._handleChangeText.bind(this)
     this._handleSubmitEditing = this._handleSubmitEditing.bind(this)
+
+    this.state = {
+      ToDo_Text: this.props.initialValue || '',
+    }
   }
 
   _commitChanges( )

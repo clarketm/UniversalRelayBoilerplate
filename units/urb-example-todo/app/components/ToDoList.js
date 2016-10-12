@@ -18,7 +18,7 @@ import ToDo_addMutation from '../../relay/ToDo_addMutation';
 import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation';
 import ToDo_deleteMutation from '../../relay/ToDo_deleteMutation';
 import ToDo from './ToDo';
-import TodoTextInput from './ToDoTextInput';
+import ToDoTextInput from './ToDoTextInput';
 
 import Swipeout from '../../../../units/urb-react-native-swipeout/app/components/Swipeout';
 
@@ -127,11 +127,12 @@ class ToDoList extends React.Component
               {'\u276F'}
             </Text>
           </TouchableHighlight>
-          <TodoTextInput
+          <ToDoTextInput
             clearButtonMode="while-editing"
             onSave={this._handleTextInputSave}
             placeholder="What needs to be done?"
             style={styles.input}
+            initialValue=""
           />
         </View>
         <ListView

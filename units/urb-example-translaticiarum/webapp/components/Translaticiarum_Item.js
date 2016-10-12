@@ -66,8 +66,8 @@ class Translaticiarum_Item extends React.Component
         iconButtonElement={ <IconButton><NavigationMoreVert /></IconButton> }
         onItemTouchTap={ this._handle_onItemTouchTap }
       >
-        <MenuItem ref="edit" index={0}>Edit</MenuItem>
-        <MenuItem ref="delete" index={1}>Delete</MenuItem>
+        <MenuItem ref="edit" value={ 0 }>Edit</MenuItem>
+        <MenuItem ref="delete" value={ 1 }>Delete</MenuItem>
       </IconMenu>
     );
 

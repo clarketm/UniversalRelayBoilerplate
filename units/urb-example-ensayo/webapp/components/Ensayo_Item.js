@@ -42,11 +42,9 @@ class Ensayo_Item extends React.Component
     switch( item.ref )
     {
       case 'edit':
-        console.log( 'edit' );
         this.refs.Ensayo_Properties._handle_Open( );
         break;
       case 'delete':
-        console.log( 'delete' );
         this._Ensayo_delete( );
         break;
       default:
@@ -61,8 +59,8 @@ class Ensayo_Item extends React.Component
         iconButtonElement={<IconButton><NavigationMoreVert /></IconButton>}
         onItemTouchTap={ this._handle_onItemTouchTap }
       >
-        <MenuItem ref="edit" index={0}>Edit</MenuItem>
-        <MenuItem ref="delete" index={1}>Delete</MenuItem>
+        <MenuItem ref="edit" value={ 0 }>Edit</MenuItem>
+        <MenuItem ref="delete" value={ 1 }>Delete</MenuItem>
       </IconMenu>
     );
 

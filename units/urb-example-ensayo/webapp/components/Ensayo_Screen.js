@@ -36,7 +36,7 @@ class Ensayo_Screen extends React.Component
     return (
       <Card initiallyExpanded={true}>
 
-        <CardHeader initiallyExpanded={true} title="Ensayo" subtitle="This means Essay in Spanish" />
+        <CardHeader title="Ensayo" subtitle="This means Essay in Spanish" />
 
         <div style={ {float: 'right', marginTop: -58, marginRight: 20 } }>
           <FloatingActionButton

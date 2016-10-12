@@ -38,7 +38,7 @@ class Translaticiarum_Screen extends React.Component
     return (
       <Card initiallyExpanded={true}>
 
-        <CardHeader initiallyExpanded={true} title="Translaticiarum" subtitle="This means routine in Latin" />
+        <CardHeader title="Translaticiarum" subtitle="This means routine in Latin" />
 
         <div style={ {float: 'right', marginTop: -58, marginRight: 20 } }>
           <FloatingActionButton

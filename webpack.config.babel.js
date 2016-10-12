@@ -26,7 +26,7 @@ const config = {
   },
   module: {
     preLoaders: [
-      { test: /\.js(x)?$/, loader: 'eslint-loader', exclude: /node_modules/ }
+      // { test: /\.js(x)?$/, loader: 'eslint-loader', exclude: /node_modules/ } // TODO: Consider removing
     ],
     loaders: [
       { test: /\.js(x)?$/, loaders: [ 'react-hot', 'babel' ], exclude: /node_modules/ },
