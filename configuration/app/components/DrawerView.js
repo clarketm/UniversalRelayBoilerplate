@@ -2,73 +2,81 @@
 
 import React from 'react'
 import Relay from 'react-relay'
-import { PropTypes } from "react"
 import { StyleSheet, View, Text } from 'react-native'
-import Button from 'react-native-button'
+import { List, ListItem } from 'react-native-elements'
+
 import UrlRouter from '../../../app/UrlRouter'
 
 const styles = StyleSheet.create( {
-  container: {
+  container:
+  {
     flex: 1,
     marginTop: 20,
     justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    alignItems: 'stretch',
     backgroundColor: '#ffffff',
   },
-  greeting: {
-    height: 44,
+  greetingEnvelope:
+  {
+    height: 64,
     marginLeft: 15,
-    alignSelf: 'stretch',
-    fontSize: 20,
+    marginRight: 15,
     justifyContent: 'center',
-    color: '#000000',
-    borderBottomColor: '#e0e0e0',
-    borderBottomWidth: 1,
+    alignItems: 'center',
   },
-  button: {
-    height: 44,
-    marginLeft: 15,
-    alignSelf: 'stretch',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    borderBottomColor: '#e0e0e0',
-    borderBottomWidth: 1,
+  greetingText:
+  {
+    fontSize: 20,
+    color: '#000000',
+  },
+  list:
+  {
+    flex: 1,
   }
 } )
 
 class DrawerView extends React.Component
 {
-  openRoute = ( route, options ) =>
+  static contextTypes =
+  {
+    drawer: React.PropTypes.object,
+  }
+
+  static propTypes =
+  {
+    name: React.PropTypes.string,
+    sceneStyle: View.propTypes.style,
+    title: React.PropTypes.string,
+  }
+
+  openRoute = ( routeName, options ) =>
   {
     this.context.drawer.close( )
 
-    UrlRouter.goToRouteByNameWithParams( route, options )
+    // TODO: Just for testing use go to URL with parsing in order to test
+    // TODO x1000 change it to pass params for speed
+    //UrlRouter.goToRouteByNameAndParams( routeName, options )
+    UrlRouter.goToRouteByURL( routeName )
   }
 
   render( )
   {
+    const isAnonymous = this.props.Viewer.User_IsAnonymous
     return (
       <View style={ [ styles.container, this.props.sceneStyle ] }>
-        <Text style={ styles.greeting }>
-          Hello
-          { ' ' + ( this.props.Viewer.User_IsAnonymous ? 'Stranger' : this.props.Viewer.User_DisplayName ) }
-        </Text>
-        { this.props.Viewer.User_IsAnonymous && <Button containerStyle={ styles.button } onPress={ () => this.openRoute( '/user/login' ) }>Login</Button> }
-        <Button containerStyle={ styles.button } onPress={ () => this.openRoute( '/todo' ) }>To Do</Button>
-        { ( ! this.props.Viewer.User_IsAnonymous ) && <Button containerStyle={ styles.button } onPress={ () => this.openRoute( '/user/logout' ) }>Log Out</Button> }
+        <View style={ [ styles.greetingEnvelope ] }>
+          <Text style={ styles.greetingText }>
+            Hello { ' ' + ( isAnonymous ? 'Stranger' : this.props.Viewer.User_DisplayName ) }
+          </Text>
+        </View>
+        <List containerStyle={ styles.list }>
+          { isAnonymous && <ListItem onPress={ () => this.openRoute( '/user/login' ) } title="Login" hideChevron={ true } /> }
+          <ListItem onPress={ () => this.openRoute( '/todo' ) } title="To Do" hideChevron={ true } />
+          { ( !isAnonymous ) && <ListItem onPress={ () => this.openRoute( '/user/logout' ) } title="Log Out" hideChevron={ true } /> }
+        </List>
       </View>
     )
   }
-}
-
-DrawerView.contextTypes = {
-  drawer: React.PropTypes.object
-}
-
-DrawerView.propTypes = {
-  name: PropTypes.string,
-  sceneStyle: View.propTypes.style,
-  title: PropTypes.string,
 }
 
 export default Relay.createContainer( DrawerView, {

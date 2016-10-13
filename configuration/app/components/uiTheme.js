@@ -2,8 +2,26 @@ export default
 {
   palette:
   {
-    canvasColor: "#ffffff",
+    canvasColor: '#ffffff',
   },
+  buttonKinds:
+  {
+    action:
+    {
+      small: true,
+      backgroundColor: '#607D8B',
+    },
+    actionWholeWidth:
+    {
+      small: true,
+      backgroundColor: '#607D8B',
+      buttonStyle:
+      {
+        marginLeft: 0,
+        marginRight: 0,
+      }
+    },
+  }
   /*
   The following a sample MUI theme, try to model according to it:
   spacing:

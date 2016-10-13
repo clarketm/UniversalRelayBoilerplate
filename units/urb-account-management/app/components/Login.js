@@ -1,7 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { Button, FormLabel, FormInput } from 'react-native-elements'
+import { FormLabel, FormInput } from 'react-native-elements'
 
+import Button from '../../../../app/components/Button'
 import LoginExtensions from '../../../../configuration/units/urb-account-management/app/components/LoginExtensions'
 import NetworkLayer from '../../../../app/NetworkLayer'
 import publicURL from '../../../../configuration/app/publicURL'
@@ -53,7 +54,6 @@ export default class Login extends React.Component
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Origin': '',
-        // TODO x5000 Test if the following is needed when posting to /auth/login: Host: 'localhost'?
       },
       body: JSON.stringify( {
         User_AccountName: this.state.User_AccountName,
@@ -76,9 +76,12 @@ export default class Login extends React.Component
       {
         if( responseData.success )
         {
-          NetworkLayer.setUserTokens( UserToken1, responseData.UserToken2, true )
-
-          UrlRouter.goToRouteByNameWithParams( SuccessfulLoginRouteName, SuccessfulLoginRouteOptions )
+          NetworkLayer.setUserTokens(
+            UserToken1,
+            responseData.UserToken2,
+            true,
+            ( ) =>  UrlRouter.goToRouteByNameAndParams( SuccessfulLoginRouteName, SuccessfulLoginRouteOptions )
+          )
         }
         else
         {
@@ -138,7 +141,7 @@ export default class Login extends React.Component
           />
           <FormLabel> </FormLabel>
 
-          <Button small onPress={ this.handle_onPress_Login } title="Login" />
+          <Button kind='action' onPress={ this.handle_onPress_Login } title="Login" />
           <FormLabel> </FormLabel>
 
           <LoginExtensions />
@@ -148,16 +151,20 @@ export default class Login extends React.Component
     else if( this.state.mode == mode_login_in_progress )
       return (
         <View style={styles.container}>
-          <Text>Logging in as { this.state.User_AccountName }</Text>
-          <Button small onPress={ this.handle_onPress_Cancel } title="Cancel" />
+          <FormLabel>Logging in as</FormLabel>
+          <FormLabel>{ this.state.User_AccountName }</FormLabel>
+          <FormLabel> </FormLabel>
+          <Button kind='action' onPress={ this.handle_onPress_Cancel } title="Cancel" />
         </View>
       )
     else if( this.state.mode == mode_login_failed )
       return (
         <View style={styles.container}>
-          <Text>Logging in as { this.state.User_AccountName } failed</Text>
-          <Text>{ this.state.ErrorMessage }</Text>
-          <Button small onPress={ this.handle_onPress_Retry } title="Retry" />
+          <FormLabel>Failed to log in as</FormLabel>
+          <FormLabel>{ this.state.User_AccountName }</FormLabel>
+          <FormLabel>{ this.state.ErrorMessage }</FormLabel>
+          <FormLabel> </FormLabel>
+          <Button kind='action' onPress={ this.handle_onPress_Retry } title="Retry" />
         </View>
       )
   }

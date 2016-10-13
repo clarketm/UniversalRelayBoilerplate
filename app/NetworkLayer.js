@@ -19,27 +19,26 @@ let listeningComponent = null
 
 export default class NetworkLayer
 {
-  static loadPersistedCredentials( )
+  static loadPersistedCredentials( cb )
   {
     Keychain
       .getGenericPassword( )
       .then( (credentials) => {
         const credentialsJSON = JSON.parse( credentials.password, true )
-        NetworkLayer.setUserTokens( credentialsJSON.UserToken1, credentialsJSON.UserToken2, false )
+        NetworkLayer.setUserTokens( credentialsJSON.UserToken1, credentialsJSON.UserToken2, false, cb )
       } )
       .catch( ( error ) => {
-        NetworkLayer.setUserTokens( null, AnonymousUserToken2, false )
+        NetworkLayer.setUserTokens( null, AnonymousUserToken2, false, cb )
       } )
   }
 
   static logout( cb )
   {
     Keychain.resetGenericPassword( )
-    .then( ( ) => NetworkLayer.setUserTokens( null, AnonymousUserToken2, false ) )
-    .then( ( ) => cb( ) )
+    .then( ( ) => NetworkLayer.setUserTokens( null, AnonymousUserToken2, false, cb ) )
   }
 
-  static setUserTokens( UserToken1, UserToken2, persist )
+  static setUserTokens( UserToken1, UserToken2, persist, cb )
   {
     // New tokens mean new environment
     currentEnvironment = new Relay.Environment( )
@@ -55,12 +54,6 @@ export default class NetworkLayer
       headers.UserToken2 = UserToken2
 
     const graphQLServerURL = publicURL + '/graphql';
-
-    // TODO: x1000 Remove commented out old version using default network layer
-    // currentEnvironment.injectNetworkLayer( new DefaultNetworkLayer(
-    //   graphQLServerURL,
-    //   { headers: headers }
-    // ) )
 
     // Create network layer with options and inject
     currentEnvironment.injectNetworkLayer( new RelayNetworkLayer(
@@ -79,7 +72,7 @@ export default class NetworkLayer
               if( res.json.error == "Authentication Failed" )
               {
                 console.log( "TODO: x2000 Somehow alert the user. Your account could not be found. You have been logged out." )
-                NetworkLayer.logout( ( ) => {setTimeout( ( ) => UrlRouter.goToRouteByNameWithParams( '/user/login', { } ), 100 ) } )
+                NetworkLayer.logout( ( ) => UrlRouter.goToRouteByNameAndParams( '/user/login', { } ) )
               }
             }
             return res
@@ -88,8 +81,12 @@ export default class NetworkLayer
       ],
       { disableBatchQuery: true }
     ) )
+
     if( listeningComponent )
       listeningComponent.updateEnvironment( UserToken1 == null )
+
+    if( cb )
+      setTimeout( ( ) => { cb( ) } )
 
     if( persist )
     {

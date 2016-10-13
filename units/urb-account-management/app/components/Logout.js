@@ -1,11 +1,12 @@
 /* @flow weak */
 'use strict'
 
-import Button from 'react-native-button'
 import Relay from 'react-relay'
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
+import { FormLabel } from 'react-native-elements'
 
+import Button from '../../../../app/components/Button'
 import NetworkLayer from '../../../../app/NetworkLayer'
 import UrlRouter from '../../../../app/UrlRouter'
 
@@ -19,18 +20,20 @@ class Logout extends React.Component
 
   handle_onPress_Logout = ( ) =>
   {
-    NetworkLayer.logout( ( ) => { setTimeout( ( ) => UrlRouter.goToRouteByNameWithParams( '/user/login', { } ), 100 ) } )
+    // TODO x0100 Here the server should be properly called
+    NetworkLayer.logout( ( ) => UrlRouter.goToRouteByNameAndParams( '/user/login', { } ) )
   }
 
   render()
   {
+    let userName = this.props.Viewer.User_DisplayName
+    if( ! userName )
+      userName = ""
     return (
       <View style={styles.container}>
-        <Text style={ styles.greeting }>
-          Logged in as
-          { ' ' + this.props.Viewer.User_DisplayName }
-        </Text>
-        <Button onPress={ this.handle_onPress_Logout }>Log out</Button>
+        <FormLabel>Logged in as</FormLabel>
+        <FormLabel>{ userName }</FormLabel>
+        <Button kind='action' title="Log Out" onPress={ this.handle_onPress_Logout } />
       </View>
     )
   }
@@ -44,13 +47,13 @@ export default Relay.createContainer( Logout, {
       }
     `,
   },
-})
+} )
 
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     backgroundColor: '#f0f0f0',
   },
 } )

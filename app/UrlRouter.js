@@ -72,22 +72,22 @@ export default class UrlRouter
     }
   }
 
-  static goToRouteByNameWithParams( routeName, params )
+  static goToRouteByNameAndParams( routeName, params )
   {
     Actions[ routeName ]( JSON.stringify( params ) )
   }
 
-  static goToUrl( url )
+  static goToRouteByURL( url )
   {
     const arrUrl = url.split( '/' )
     const params = {}
-    UrlRouter.goToUrlRecursive( routeTree, arrUrl, 0, params )
+    UrlRouter.goToRouteByURLRecursive( routeTree, arrUrl, 0, params )
   }
 
-  static goToUrlRecursive( branch, arrUrl, ixArrUrl, params )
+  static goToRouteByURLRecursive( branch, arrUrl, ixArrUrl, params )
   {
     if( arrUrl.length == ixArrUrl )
-      UrlRouter.goToRouteByNameWithParams( branch[ '/' ], params )
+      UrlRouter.goToRouteByNameAndParams( branch[ '/' ], params )
     else
     {
       const urlSegment = arrUrl[ ixArrUrl ]
@@ -104,7 +104,7 @@ export default class UrlRouter
         nextBranch = nextParameter.nextBranch
       }
 
-      UrlRouter.goToUrlRecursive( nextBranch, arrUrl, ixArrUrl + 1, params )
+      UrlRouter.goToRouteByURLRecursive( nextBranch, arrUrl, ixArrUrl + 1, params )
     }
   }
 }

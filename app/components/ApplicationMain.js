@@ -10,6 +10,7 @@ import NetworkLayer from '../NetworkLayer'
 import RelayRenderer from './RelayComponentRenderer'
 import UrlRouter from '../UrlRouter'
 
+import uiTheme from '../../configuration/app/components/uiTheme.js'
 import { componentDidMountAdditionalInitialization } from '../../configuration/app/components/ApplicationMainSettings'
 import routes from '../../configuration/app/routes'
 
@@ -38,8 +39,14 @@ function getSceneStyle ( )
   }
 }
 
-class MenuButton extends React.Component {
-  render = ( ) => {
+class MenuButton extends React.Component
+{
+  static contextTypes =
+  {
+    drawer: React.PropTypes.object,
+  }
+
+  render = () => {
     const drawer = this.context.drawer
 		return (
 			<TouchableOpacity
@@ -54,17 +61,19 @@ class MenuButton extends React.Component {
 	}
 }
 
-MenuButton.contextTypes = {
-  drawer: React.PropTypes.object,
-}
-
 class ApplicationMain extends React.Component
 {
+  static childContextTypes =
+  {
+    relay: Relay.PropTypes.Environment,
+    uiTheme: React.PropTypes.object,
+  }
+
   constructor( props )
   {
     super( props )
     this.state = {
-      user: 1
+      isAnonymous: 1
     }
     NetworkLayer.RegisterListeningComponent( this )
   }
@@ -72,25 +81,29 @@ class ApplicationMain extends React.Component
   updateEnvironment( isAnonymous )
   {
     this.setState( {
-      user: this.state.user + 1,
+      //user: this.state.user + 1,
       isAnonymous
     } )
+
+    //this.forceUpdate()
   }
 
   getChildContext()
   {
     return {
-      relay: NetworkLayer.getCurrentEnvironment()
+      relay: NetworkLayer.getCurrentEnvironment(),
+      uiTheme: uiTheme
     }
   }
 
   componentDidMount( )
   {
     // Will start the process of loading credentials. Notice that the function returns before the loading is complete
-    NetworkLayer.loadPersistedCredentials( )
+    NetworkLayer.loadPersistedCredentials( ( ) => {
 
-    // Configurable hook so that additional actions can be performed when the application has been loaded
-    componentDidMountAdditionalInitialization( )
+      // Configurable hook so that additional actions can be performed when the application has been loaded
+      componentDidMountAdditionalInitialization( )
+    } )
   }
 
   render()
@@ -124,8 +137,5 @@ class ApplicationMain extends React.Component
   }
 }
 
-ApplicationMain.childContextTypes = {
-  relay: Relay.PropTypes.Environment
-}
 
 export default ApplicationMain
