@@ -254,8 +254,8 @@ function createViewerFields()
     '}'
   ] )
 
-  console.log( 'Written: ' + path.resolve( './configuration/graphql/_viewerFields.js' ) )
-  fs.writeFileSync( './configuration/graphql/_viewerFields.js', viewerFields.join( '\r\n' ), 'utf8' )
+  console.log( 'Written: ' + path.resolve( './configuration/graphql/_ViewerFields.js' ) )
+  fs.writeFileSync( './configuration/graphql/_ViewerFields.js', viewerFields.join( '\r\n' ), 'utf8' )
 }
 
 
