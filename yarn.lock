@@ -5503,9 +5503,9 @@ react-native-drawer@2.3.0:
   dependencies:
     tween-functions "^1.0.1"
 
-react-native-elements@0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-0.6.1.tgz#41be965427b2229abd527f8ca778e75c444709c0"
+react-native-elements@0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-0.6.2.tgz#5c66ec53090425a74c341ddc11ce660b17e420f6"
   dependencies:
     react-native-tab-navigator "^0.3.3"
 
@@ -5528,9 +5528,9 @@ react-native-listitem@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-native-listitem/-/react-native-listitem-1.0.5.tgz#b30c358d90ad9fa32dfa98972a4376a161fbc7f5"
 
-react-native-modalbox@1.3.7:
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/react-native-modalbox/-/react-native-modalbox-1.3.7.tgz#b5f3dd9d038e7617a4b8eecf84c212f5df618476"
+react-native-modalbox@1.3.8:
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/react-native-modalbox/-/react-native-modalbox-1.3.8.tgz#dc83bf90ded653288842a21153b5fca1af82e355"
 
 react-native-router-flux@3.36.0:
   version "3.36.0"
@@ -5639,9 +5639,9 @@ react-proxy@^1.1.7:
     lodash "^4.6.1"
     react-deep-force-update "^1.0.0"
 
-react-relay-network-layer@1.3.5:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/react-relay-network-layer/-/react-relay-network-layer-1.3.5.tgz#a67e51dcc8569c01c5c62a256b479fa78f978077"
+react-relay-network-layer@1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/react-relay-network-layer/-/react-relay-network-layer-1.3.6.tgz#95eb534a3e6dc2043eb7f03aed0d43eecc7d030c"
 
 react-relay@0.9.3:
   version "0.9.3"

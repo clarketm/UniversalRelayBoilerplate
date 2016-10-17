@@ -1,8 +1,10 @@
 {
   "scripts": {
-    "setup-local-w": "copy .\\configuration\\default.env .\\.env. && copy .\\configuration\\app\\default.publicURL.js configuration\\app\\publicURL.js",
+    "setup-local-w": "copy .\\configuration\\default.env .\\.env. && copy .\\configuration\\app\\default.publicURL.js configuration\\app\\publicURL.js && npm run update-default-persister -- memory && npm run update-ip && react-native link",
     "dev-server-w": "better-npm-run dev-server-w",
     "dev-webpack-w": "rmdir /s /q build & better-npm-run dev-webpack-w",
-    "dev-w": "rmdir /s /q build & concurrently --kill-others \"npm run dev-webpack-w\" \"npm run dev-server-w\" \"npm run start\" "
+    "dev-w": "rmdir /s /q build & concurrently --kill-others \"npm run dev-webpack-w\" \"npm run dev-server-w\" \"npm run start\" ",
+    "build-schema-w": ".\\node_modules\\.bin\\babel-node .\\scripts\\build-units.js && .\\node_modules\\.bin\\babel-node .\\scripts\\build-schema.js",
+    "build-units-w": ".\\node_modules\\.bin\\babel-node .\\scripts\\build-units.js"
   }
 }
