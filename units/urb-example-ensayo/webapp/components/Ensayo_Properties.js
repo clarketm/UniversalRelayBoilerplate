@@ -9,9 +9,9 @@ import TextField from 'material-ui/TextField';
 
 export default class Ensayo_Properties extends React.Component
 {
-  constructor( props : any )
+  constructor( props : any, context )
   {
-    super( props );
+    super( props, context );
 
     this.state = {
       Dialog_IsOpen: false,

@@ -6,7 +6,7 @@ const AccountPasswordStrengthMin = 30
 const AccountPasswordStrengthGood = 80
 const AccountNameAlias = "Account Name"
 
-function AccountNameAdditionalValidation( )
+function AccountNameAdditionalValidation()
 {
   return true
 }

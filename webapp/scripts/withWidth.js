@@ -12,9 +12,9 @@ export default function withWidth(options = {}) {
 
   return (MyComponent) => {
     return class WithWidth extends Component {
-      constructor( props )
+      constructor( props, context )
       {
-        super( props )
+        super( props, context )
         this.state = {
           width: this.getWidth(),
         };

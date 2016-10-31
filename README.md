@@ -101,15 +101,15 @@ In order to develop, three servers need to be started:
 
 This can be done with one command:
 
-* Start application HTTP and Webpack server: `npm run dev`.
+* Start application HTTP and Webpack server: `yarn dev`.
 
 To open the app:
 
-* Navigate to `http://localhost:4444`, or whatever IP was assigned when running `npm run update-ip` or after installation.
+* Navigate to `http://localhost:4444`, or whatever IP was assigned when running `yarn update-ip` or after installation.
 
 To run the iOS app in the emulator:
 
-* If the IP of your development machine has changed, run `npm run update-ip`.
+* If the IP of your development machine has changed, run `yarn update-ip`.
 * Run `react-native run-ios`.
 
 
@@ -123,15 +123,15 @@ CASSANDRA_CONNECTION_POINTS=localhost
 CASSANDRA_KEYSPACE=urb
 ```
 
-* Configure to use Cassandra as default persister: `npm run update-default-persister -- cassandra`.
-* Create the database with `npm run setup-database`.
+* Configure to use Cassandra as default persister: `yarn update-default-persister -- cassandra`.
+* Create the database with `yarn setup-database`.
 
 ## Configuring Dynamodb locally with Docker
 
 * Install [Docker](https://www.docker.com/).
 * Navigate to the docker-compose.yml file `cd units/urb-persister-dynamodb`.
 * Then run `docker-compose up` in a new terminal to start up a local dynamo db (or start it via docker Kitematic).
-* Configure to use DynamoDB as default persister: `npm run update-default-persister -- dynamodb`.
+* Configure to use DynamoDB as default persister: `yarn update-default-persister -- dynamodb`.
 
 ## Other databases
 

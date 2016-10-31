@@ -15,9 +15,9 @@ export default class ToDo_Properties extends React.Component
     updateHandler: React.PropTypes.func.isRequired,
   }
 
-  constructor( props : any )
+  constructor( props : any, context )
   {
-    super( props )
+    super( props, context )
 
     this.state = {
       Dialog_IsOpen: false,

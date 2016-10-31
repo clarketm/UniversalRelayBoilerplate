@@ -19,9 +19,9 @@ export default class Translaticiarum_Properties extends React.Component
     Translaticiarum_Type: React.PropTypes.number.isRequired,
   }
 
-  constructor( props : any )
+  constructor( props : any, context )
   {
-    super( props )
+    super( props, context )
 
     this.state = {
       Dialog_IsOpen: false,

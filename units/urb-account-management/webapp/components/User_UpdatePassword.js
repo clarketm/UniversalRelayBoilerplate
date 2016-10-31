@@ -25,9 +25,9 @@ class User_Properties extends React.Component
     relay: Relay.PropTypes.Environment,
   };
 
-  constructor( props )
+  constructor( props, context )
   {
-    super( props );
+    super( props, context );
 
     this.state = {
       User_AccountPassword_Current: "",

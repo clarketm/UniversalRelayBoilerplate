@@ -8,6 +8,7 @@ from 'react-native-router-flux'
 
 
 let routeTree = {}
+let currentlyOpenRoutes = []
 
 export default class UrlRouter
 {
@@ -74,6 +75,30 @@ export default class UrlRouter
 
   static goToRouteByNameAndParams( routeName, params )
   {
+    console.log( 'XXX url router routeName:' + routeName )
+      // First, check if the currently open routes contain that route
+    let ix
+    for( ix = currentlyOpenRoutes.length - 1; ix >= 0; ix-- )
+      if( currentlyOpenRoutes[ ix ] == routeName )
+      {
+        const popNum = currentlyOpenRoutes.length - 1 - ix
+        if( popNum > 0 )
+        {
+          for( var i = 0; i < popNum; i++ )
+            currentlyOpenRoutes.pop()
+
+          Actions.pop(
+          {
+            popNum,
+            refresh: JSON.stringify( params )
+          } )
+
+          return
+        }
+        break // TODO x2000 Is this even a real situation?
+      }
+
+    currentlyOpenRoutes = [ routeName ]
     Actions[ routeName ]( JSON.stringify( params ) )
   }
 

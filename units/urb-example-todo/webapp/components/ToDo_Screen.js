@@ -15,9 +15,9 @@ class ToDo_Screen extends React.Component
     relay: Relay.PropTypes.Environment,
   };
 
-  constructor( props )
+  constructor( props, context )
   {
-     super( props );
+     super( props, context );
 
      this.state = {
        ToDo_Text_New: '',

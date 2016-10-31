@@ -26,9 +26,9 @@ import {
 
 class MUI_Icons_CreditCards extends React.Component
 {
-  constructor(props)
+  constructor( props, context )
   {
-    super( props );
+    super( props, context )
     this.state = {
       value: 'CreditCardOutline'
     };

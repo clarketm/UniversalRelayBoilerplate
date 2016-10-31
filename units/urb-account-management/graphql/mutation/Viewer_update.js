@@ -53,7 +53,7 @@ export default mutationWithClientMutationId(
       } )
     },
   },
-  mutateAndGetPayload: (
+  mutateAndGetPayload: async(
   {
     id,
     User_DisplayName,
@@ -64,19 +64,20 @@ export default mutationWithClientMutationId(
     rootValue: objectManager
   } ) =>
   {
-    var local_id = fromGlobalId( id ).id
-    return objectManager.update( 'User',
-      {
-        id: local_id,
-        User_DisplayName,
-        User_PhoneNumberMobile,
-        User_Email,
-      } )
-      .then( () =>
-      {
-        return {
-          local_id
-        }
-      } )
+    // Do not use the passed ID at this point. Use the viewer user ID since it is verified
+    //const local_id = fromGlobalId( id ).id
+    const local_id = objectManager.getViewerUserId()
+
+    await objectManager.update( 'User',
+    {
+      id: local_id,
+      User_DisplayName,
+      User_PhoneNumberMobile,
+      User_Email,
+    } )
+
+    return {
+      local_id
+    }
   },
 } )

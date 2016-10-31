@@ -9,6 +9,7 @@ import publicURL from '../../../../configuration/app/publicURL'
 import { SuccessfulLoginRouteName, SuccessfulLoginRouteOptions } from '../../../../configuration/units/urb-account-management/app/SuccessfulLoginRoute'
 import UrlRouter from '../../../../app/UrlRouter'
 
+
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
@@ -24,9 +25,9 @@ const mode_login_failed = 3
 
 export default class Login extends React.Component
 {
-  constructor( props )
+  constructor( props, context )
   {
-    super( props )
+    super( props, context )
 
     this.loginAttempt = 0
 

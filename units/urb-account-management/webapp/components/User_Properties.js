@@ -19,9 +19,9 @@ class User_Properties extends React.Component
     relay: Relay.PropTypes.Environment,
   };
 
-  constructor( props )
+  constructor( props, context )
   {
-    super( props );
+    super( props, context );
   }
 
   _handleUpdate = ( ) =>

@@ -47,9 +47,9 @@ function isAccountNameAcceptable( AccountName )
 
 class AppBar_Auth extends React.Component
 {
-  constructor( props )
+  constructor( props, context )
   {
-    super( props );
+    super( props, context );
 
     this.state = {
       User_AccountName: '',

@@ -56,3 +56,7 @@ android/app/src/main/assets/index.android.map
 ios/main.jsbundle
 ios/main.jsbundle.meta
 /ios/main.map
+
+# Yarn
+#
+yarn-error.log

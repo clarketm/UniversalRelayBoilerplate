@@ -19,9 +19,9 @@ import muiTheme from '../../configuration/webapp/muiTheme.js';
 
 class Chrome extends React.Component
 {
-  constructor( props )
+  constructor( props, context )
   {
-    super( props );
+    super( props, context );
 
     this.state = {
       navDrawerOpen: false,

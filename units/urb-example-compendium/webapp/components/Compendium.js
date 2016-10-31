@@ -20,9 +20,9 @@ class Compendium extends React.Component
     relay: Relay.PropTypes.Environment,
   };
 
-  constructor( props )
+  constructor( props, context )
   {
-    super( props );
+    super( props, context );
 
     const node = this.props.Viewer.compendiums.edges[ 0 ].node;
 

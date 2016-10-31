@@ -9,10 +9,13 @@ import WinstonCassandra from './WinstonCassandra'
 
 const Uuid = CassandraDriver.types.Uuid
 
-const ExpressCassandraClient = ExpressCassandra.createClient( {
+const ExpressCassandraClient = ExpressCassandra.createClient(
+{
   clientOptions: CassandraOptions, // Options are pre-set in a separate part of the application, they are correct
-  ormOptions: {
-    defaultReplicationStrategy : {
+  ormOptions:
+  {
+    defaultReplicationStrategy:
+    {
       class: 'SimpleStrategy',
       replication_factor: 1
     },
@@ -23,22 +26,27 @@ const ExpressCassandraClient = ExpressCassandra.createClient( {
 
 export default class PersisterCassandra
 {
-  constructor( )
+  constructor()
   {
-    this.tableSchemas = new Map( )
+    this.tableSchemas = new Map()
     this.canAddMoreTableSchemas = true
   }
 
-  getOneObject( entityName: string, ObjectType: any, filters: Array<any> ): Promise
+  getOneObject( entityName: string, ObjectType: any, filters: Array < any > ): Promise
   {
-    const resultPromises = [ ]
+    const resultPromises = []
 
     for( let filter of filters )
       resultPromises.push(
         new Promise( ( resolve, reject ) =>
         {
           this.updateUuidsInFields( entityName, filter )
-          ExpressCassandraClient.instance[ entityName ].findOne( filter, { raw: true }, ( err, entity ) => {
+          ExpressCassandraClient.instance[ entityName ].findOne( filter,
+          {
+            raw: true,
+            allow_filtering: true
+          }, ( err, entity ) =>
+          {
             if( err )
               reject( err )
             else
@@ -55,21 +63,26 @@ export default class PersisterCassandra
     return Promise.all( resultPromises )
   }
 
-  getObjectList( entityName: string, ObjectType: any, filters: Array<any> ): Promise
+  getObjectList( entityName: string, ObjectType: any, filters: Array < any > ): Promise
   {
-    const resultPromises = [ ]
+    const resultPromises = []
 
     for( let filter of filters )
       resultPromises.push(
         new Promise( ( resolve, reject ) =>
         {
           this.updateUuidsInFields( entityName, filter )
-          ExpressCassandraClient.instance[ entityName ].find( filter, { raw: true }, ( err, arrEntities ) => {
+          ExpressCassandraClient.instance[ entityName ].find( filter,
+          {
+            raw: true,
+            allow_filtering: true
+          }, ( err, arrEntities ) =>
+          {
             if( err )
               reject( err )
             else
             {
-              const arrRetObj = [ ]
+              const arrRetObj = []
               for( let entity of arrEntities )
                 arrRetObj.push( new ObjectType( entity ) )
               resolve( arrRetObj )
@@ -90,7 +103,7 @@ export default class PersisterCassandra
       if( fieldType === 'uuid' )
       {
         const fieldValue = fields[ fieldName ]
-        if( ! ( fieldValue instanceof Uuid ) )
+        if( !( fieldValue instanceof Uuid ) )
           fields[ fieldName ] = Uuid.fromString( fieldValue )
       }
     }
@@ -108,7 +121,7 @@ export default class PersisterCassandra
         if( err )
           reject( err )
         else
-          resolve( )
+          resolve()
       } )
     } )
   }
@@ -125,17 +138,17 @@ export default class PersisterCassandra
 
     return new Promise( ( resolve, reject ) =>
     {
-      ExpressCassandraClient.instance[ entityName ].delete( fields , ( err ) =>
+      ExpressCassandraClient.instance[ entityName ].delete( fields, ( err ) =>
       {
         if( err )
           reject( err )
         else
-          resolve( )
+          resolve()
       } )
     } )
   }
 
-  createLogger( )
+  createLogger()
   {
     return new WinstonCassandra( CassandraOptions )
   }
@@ -145,15 +158,15 @@ export default class PersisterCassandra
     return Uuid.fromString( str )
   }
 
-  uuidRandom( )
+  uuidRandom()
   {
-    return Uuid.random( )
+    return Uuid.random()
   }
 
   uuidToString( id: any ): string
   {
     if( id instanceof Uuid )
-      id = id.toString( )
+      id = id.toString()
 
     return id
   }
@@ -165,7 +178,7 @@ export default class PersisterCassandra
 
   addTableSchema( tableName: string, tableSchema: object ): void
   {
-    if( ! this.canAddMoreTableSchemas )
+    if( !this.canAddMoreTableSchemas )
     {
       console.error( "Attempting to add table schemas after express-cassandra client connect." )
       process.exit( 1 )
@@ -189,7 +202,7 @@ export default class PersisterCassandra
         // TODO x7000 the code below replaces the Array.from function, which does not seem to be working
         //loadATableSchema( Array.from( this.tableSchemas ), runAsPartOfSetupDatabase )
 
-        const tableSchemasAsArray = [ ]
+        const tableSchemasAsArray = []
         for( let tableName in this.tableSchemas )
           tableSchemasAsArray.push( [ tableName, this.tableSchemas[ tableName ] ] )
         this.loadATableSchema( tableSchemasAsArray, runAsPartOfSetupDatabase )
@@ -234,7 +247,7 @@ export default class PersisterCassandra
     {
       console.log( 'Initializing Cassandra persister - success' )
       if( runAsPartOfSetupDatabase )
-        process.exit( )
+        process.exit()
     }
   }
 }

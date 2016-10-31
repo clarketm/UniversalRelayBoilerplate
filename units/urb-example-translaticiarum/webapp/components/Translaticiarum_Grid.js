@@ -28,9 +28,9 @@ class Translaticiarum_Grid extends React.Component
     relay: Relay.PropTypes.Environment,
   };
 
-  constructor( props )
+  constructor( props, context )
   {
-    super( props );
+    super( props, context );
 
     const Date_Start = new Date( );
     Date_Start.setHours( 0 );
