@@ -7,8 +7,6 @@ import
 from '../../package'
 
 
-console.log( 'XXX ver:' + version )
-
 export default function ()
 {
   if( typeof ( window ) == 'undefined' || typeof ( window.isomorphicVars ) == 'undefined' )

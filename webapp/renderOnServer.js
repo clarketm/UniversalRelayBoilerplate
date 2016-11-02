@@ -21,8 +21,6 @@ require( 'dotenv' ).load( )
 // Load up isomorphic vars here, for server rendering
 const isoVars = JSON.stringify( isomorphicVars( ) )
 
-console.log( 'XXX iso:' + isoVars )
-
 const httpError500FileName = path.resolve( __dirname, '../configuration/server/httpError/500.html' )
 
 export function serveFailure( type, res, message, err )

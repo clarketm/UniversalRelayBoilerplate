@@ -139,5 +139,5 @@
     "webpack-dev-server": "1.16.2",
     "whatwg-fetch": "1.0.0"
   },
-  "version": "13.4.5"
+  "version": "13.4.6"
 }
