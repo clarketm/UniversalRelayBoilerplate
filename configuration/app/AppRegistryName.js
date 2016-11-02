@@ -1,5 +1,5 @@
 /* @flow weak */
 
-const AppRegistryName = 'Rebar'
+const AppRegistryName = 'UniversalRelayBoilerplate'
 
 export default AppRegistryName

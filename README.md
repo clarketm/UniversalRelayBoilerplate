@@ -87,6 +87,7 @@ In order to set up the project locally, perform the following steps:
 | Action                    | Notes                               |
 | ------------------------- | ----------------------------------- |
 | `git clone https://github.com/codefoundries/UniversalRelayBoilerplate` | Clone from github. Alternatively, you can download the source and update in some different way. |
+| `yarn setup-local` | Set up default configuration for running the boilerplate. |
 | `yarn` | Install node packages. |
 
 In addition to the above, you might want to specify `JWT_SECRET` by modifying the `.env` file. This step can be skipped if you do not care about the actual security and simply want to get the project running.
