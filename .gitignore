@@ -60,3 +60,7 @@ ios/main.jsbundle.meta
 # Yarn
 #
 yarn-error.log
+
+# Android studio
+#
+android/local.properties
