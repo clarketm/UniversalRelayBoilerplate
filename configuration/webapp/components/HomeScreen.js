@@ -18,7 +18,7 @@ class HomeScreen extends React.Component
       <Card>
         <CardHeader
           title="Universal Relay Boilerplate"
-          subtitle={ "Version " + isoVars.npm_package_version }
+          subtitle={ "Build version " + isoVars.BuildVersion }
         />
         <CardText>
           The purpose of this project is:
@@ -38,7 +38,7 @@ class HomeScreen extends React.Component
           subtitle="Available both for client and server rendering"
         />
         <CardText>
-          <p>npm_package_version: { isoVars.npm_package_version }</p>
+          <p>Build Version: { isoVars.BuildVersion }</p>
         </CardText>
       </Card>
       <br/>
