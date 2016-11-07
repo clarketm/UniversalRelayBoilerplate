@@ -5,7 +5,6 @@ import Relay from 'react-relay'
 import { StyleSheet, View, Text } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
 
-import PushNotificationsRequester from '../../../units/rb-push-notifications/app/components/PushNotificationsRequester'
 import UrlRouter from '../../../app/UrlRouter'
 
 const styles = StyleSheet.create( {
@@ -80,7 +79,6 @@ class DrawerView extends React.Component
           { ( !isAnonymous ) && <ListItem onPress={ () => this.openRoute( '/user/messages/thread/55' ) } title="Test Thread" hideChevron={ true } /> }
           { ( !isAnonymous ) && <ListItem onPress={ () => this.openRoute( '/user/logout' ) } title="Log Out" hideChevron={ true } /> }
         </List>
-        { ( !isAnonymous ) && <PushNotificationsRequester Viewer={ this.props.Viewer }/> }
       </View>
     )
   }
@@ -92,7 +90,6 @@ export default Relay.createContainer( DrawerView, {
       fragment on Viewer {
         User_IsAnonymous,
         User_DisplayName
-        ${ PushNotificationsRequester.getFragment( 'Viewer' ) }
       }
     `
   }
