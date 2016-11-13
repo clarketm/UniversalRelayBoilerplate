@@ -5,17 +5,16 @@ import matchInDepth from '../scripts/matchInDepth'
 
 
 // Read environment
-require( 'dotenv' ).load( )
+require( 'dotenv' ).load()
 
 
-const condition =  JSON.parse( process.env.TRACE_CONDITION_REQUEST_AUTH )
+const condition = JSON.parse( process.env.TRACE_CONDITION_REQUEST_AUTH )
 
 // Example for logging requests that:
 // { "trace" : "none" } - do not trace any requests
 // { "clientIP": "127.0.0.1" } - trace requests coming from localhost
 
-export default function defaultrequestLoggerAuth( requestAndResponse )
-{
+export default function defaultrequestLoggerAuth( requestAndResponse ) {
   let logLevel = null
 
   // TODO: Whhat errors for Auth should be logged? definitily not 401.

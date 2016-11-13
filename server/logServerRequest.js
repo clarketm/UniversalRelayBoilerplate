@@ -1,21 +1,18 @@
 /* @flow weak */
 
 // Function to log requests
-export default function logServerRequest( req, res, next, loggingFunction )
-{
+export default function logServerRequest( req, res, next, loggingFunction ) {
   const oldWriteRes = res.write
   const oldEndRes = res.end
 
-  const chunksRes = [ ]
+  const chunksRes = []
 
-  res.write = function( chunk )
-  {
+  res.write = function ( chunk ) {
     chunksRes.push( new Buffer( chunk ) )
     oldWriteRes.apply( res, arguments )
   }
 
-  res.end = function( chunk )
-  {
+  res.end = function ( chunk ) {
     if( chunk )
       chunksRes.push( new Buffer( chunk ) )
 
@@ -44,5 +41,5 @@ export default function logServerRequest( req, res, next, loggingFunction )
     oldEndRes.apply( res, arguments )
   }
 
-  next( )
+  next()
 }

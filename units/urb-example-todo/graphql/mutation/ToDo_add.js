@@ -1,7 +1,7 @@
 /* @flow weak */
 
 import { mutationWithClientMutationId } from 'graphql-relay';
-import { GraphQLString, GraphQLNonNull } from "graphql";
+import { GraphQLString, GraphQLNonNull } from 'graphql'
 
 import ToDosConnection from '../type/ToDosConnection';
 import ViewerType from '../../../../graphql/type/ViewerType';

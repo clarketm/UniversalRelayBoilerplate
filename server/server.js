@@ -13,12 +13,7 @@ import auth from './auth' // Authentication server
 import getLocalIP from '../scripts/getLocalIP'
 import graphql from './graphQL' // GraphQL server
 import log from './log'
-import
-{
-  name,
-  version
-}
-from '../configuration/package'
+import { name, version } from '../configuration/package'
 import serverExtensions from '../configuration/server/serverExtensions'
 import webapp from '../webapp/server' // Isomorphic React server
 
@@ -47,8 +42,7 @@ log.log( 'info', 'Starting application', startupInformation )
 const router = express()
 
 // Add headers
-router.use( function ( req, res, next )
-{
+router.use( function ( req, res, next ) {
   // Website you wish to allow to connect
   res.setHeader( 'Access-Control-Allow-Origin', process.env.PUBLIC_URL )
     // Request methods you wish to allow
@@ -76,10 +70,7 @@ router.use( '/auth', auth )
 
 // Static assets server
 let oneYear = 365 * 86400000
-router.use( express.static( path.resolve( __dirname + '/../public/' ),
-{
-  maxAge: oneYear
-} ) )
+router.use( express.static( path.resolve( __dirname + '/../public/' ), { maxAge: oneYear } ) )
 
 // Add extensions - custom configurations
 serverExtensions( router )
@@ -91,8 +82,7 @@ router.use( '/*', webapp )
 // specified host serves
 if( process.env.NODE_ENV == 'production' )
   router.listen( process.env.PORT, process.env.HOST )
-else
-{
+else {
   // Development server - localhost
   const localhostDevelopmentServer = express()
   localhostDevelopmentServer.use( router )
@@ -100,14 +90,10 @@ else
   console.log( 'DEVELOPMENT. Server listening on 127.0.0.1' )
 
   // Development server - on a specific IP, if different from localhost
-  if( process.env.HOST != '127.0.0.1' )
-  {
+  if( process.env.HOST != '127.0.0.1' ) {
     const localIPDevelopmentServer = express()
     localIPDevelopmentServer.use( router )
     localIPDevelopmentServer.listen( process.env.PORT, process.env.HOST )
     console.log( 'DEVELOPMENT. Server listening on ' + process.env.HOST )
   }
 }
-
-// TODO x0100 Why export? Who's going to  import?
-// export default server

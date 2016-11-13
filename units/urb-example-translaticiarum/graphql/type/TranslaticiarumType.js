@@ -1,7 +1,7 @@
 /* @flow weak */
 
 import { globalIdField } from 'graphql-relay';
-import { GraphQLInt, GraphQLObjectType } from "graphql";
+import { GraphQLInt, GraphQLObjectType } from 'graphql'
 
 import GraphQLDateTime from "../../../../graphql/type/GraphQLDateTime";
 import NodeInterface from "../../../../graphql/NodeInterface";

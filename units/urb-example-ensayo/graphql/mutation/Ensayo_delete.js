@@ -1,7 +1,7 @@
 /* @flow weak */
 
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay';
-import { GraphQLID, GraphQLNonNull } from "graphql";
+import { GraphQLID, GraphQLNonNull } from 'graphql'
 
 import ViewerType from '../../../../graphql/type/ViewerType';
 

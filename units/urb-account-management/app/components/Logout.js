@@ -1,5 +1,4 @@
 /* @flow weak */
-'use strict'
 
 import Relay from 'react-relay'
 import React from 'react'
@@ -11,17 +10,14 @@ import NetworkLayer from '../../../../app/NetworkLayer'
 import UrlRouter from '../../../../app/UrlRouter'
 
 
-class Logout extends React.Component
-{
-  constructor(props, context)
-  {
-    super(props, context)
+class Logout extends React.Component {
+  constructor( props, context ) {
+    super( props, context )
   }
 
-  handle_onPress_Logout = ( ) =>
-  {
+  handle_onPress_Logout = () => {
     // TODO x0100 Here the server should be properly called
-    NetworkLayer.logout( ( ) => UrlRouter.goToRouteByNameAndParams( '/user/login', { } ) )
+    NetworkLayer.logout( () => UrlRouter.goToRouteByNameAndParams( '/user/login', {} ) )
   }
 
   render()
@@ -41,7 +37,7 @@ class Logout extends React.Component
 
 export default Relay.createContainer( Logout, {
   fragments: {
-    Viewer: variables => Relay.QL`
+    Viewer: variables => Relay.QL `
       fragment on Viewer {
         User_DisplayName
       }

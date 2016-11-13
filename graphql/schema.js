@@ -1,11 +1,9 @@
 /* @flow weak */
 
-import {GraphQLSchema} from "graphql"
+import { GraphQLSchema } from 'graphql'
 
-import { maskErrors } from './graphQLError'
-
-// graphql types
 import QueryType from "./type/QueryType"
+import { maskErrors } from './graphQLError'
 import MutationType from "./type/MutationType"
 
 

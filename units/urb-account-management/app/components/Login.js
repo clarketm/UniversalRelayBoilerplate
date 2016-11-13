@@ -1,3 +1,5 @@
+/* @flow weak */
+
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { FormLabel, FormInput } from 'react-native-elements'
@@ -23,10 +25,10 @@ const mode_challenge = 1
 const mode_login_in_progress = 2
 const mode_login_failed = 3
 
+
 export default class Login extends React.Component
 {
-  constructor( props, context )
-  {
+  constructor( props, context ) {
     super( props, context )
 
     this.loginAttempt = 0
@@ -39,75 +41,67 @@ export default class Login extends React.Component
     }
   }
 
-  handle_onPress_Login = ( ) =>
-  {
+  handle_onPress_Login = () => {
     this.setState( {
       mode: mode_login_in_progress,
     } )
 
-    const currentLoginAttempt = ++(this.loginAttempt)
+    const currentLoginAttempt = ++( this.loginAttempt )
 
     let UserToken1
 
     fetch( publicURL + '/auth/login', {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Origin': '',
-      },
-      body: JSON.stringify( {
-        User_AccountName: this.state.User_AccountName,
-        User_AccountPassword: this.state.User_AccountPassword,
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Origin': '',
+        },
+        body: JSON.stringify( {
+          User_AccountName: this.state.User_AccountName,
+          User_AccountPassword: this.state.User_AccountPassword,
+        } )
       } )
-    } )
-    .then( ( response ) => {
-      if( 'set-cookie' in response.headers.map )
-        for( let cookie of response.headers.map[ 'set-cookie' ] )
-          if( cookie.startsWith( 'UserToken1=' ) )
-          {
-            console.log( 'cookie=' + cookie )
-            UserToken1 = cookie.substring( 11, cookie.indexOf( ';' ) )
-            console.log( 'UserToken1=' + UserToken1 )
-          }
-      return response.json( )
-    } )
-    .then( (responseData ) => {
-      if( currentLoginAttempt == this.loginAttempt )
-      {
-        if( responseData.success )
-        {
-          NetworkLayer.setUserTokens(
-            UserToken1,
-            responseData.UserToken2,
-            true,
-            ( ) =>  UrlRouter.goToRouteByNameAndParams( SuccessfulLoginRouteName, SuccessfulLoginRouteOptions )
-          )
-        }
-        else
-        {
-          let errorMessage
-          if( responseData.error )
-            errorMessage = responseData.error
-          else
-            errorMessage = "Login failed"
+      .then( ( response ) => {
+        if( 'set-cookie' in response.headers.map )
+          for( let cookie of response.headers.map[ 'set-cookie' ] )
+            if( cookie.startsWith( 'UserToken1=' ) ) {
+              console.log( 'cookie=' + cookie )
+              UserToken1 = cookie.substring( 11, cookie.indexOf( ';' ) )
+              console.log( 'UserToken1=' + UserToken1 )
+            }
+        return response.json()
+      } )
+      .then( ( responseData ) => {
+        if( currentLoginAttempt == this.loginAttempt ) {
+          if( responseData.success ) {
+            NetworkLayer.setUserTokens(
+              UserToken1,
+              responseData.UserToken2,
+              true,
+              () => UrlRouter.goToRouteByNameAndParams( SuccessfulLoginRouteName, SuccessfulLoginRouteOptions )
+            )
+          } else {
+            let errorMessage
+            if( responseData.error )
+              errorMessage = responseData.error
+            else
+              errorMessage = "Login failed"
 
-          this.setState( {
-            mode: mode_login_failed,
-            ErrorMessage: errorMessage,
-          } )
-        }
-      }
-      else
-        console.log( "XXX Expired login event" )
-    } )
-    // TODO x5000 Error handling for failed login
-    .done()
+            this.setState( {
+              mode: mode_login_failed,
+              ErrorMessage: errorMessage,
+            } )
+          }
+        } else
+          console.log( "XXX Expired login event" )
+      } )
+      // TODO x5000 Error handling for failed login
+      .done()
   }
 
-  handle_onPress_Cancel = ( ) =>
-  {
-    this.loginAttempt++; // So that when the call back comes it is rejected
+  handle_onPress_Cancel = () => {
+    this.loginAttempt++ // So that when the call back comes it is rejected
 
     this.setState( {
       mode: mode_challenge,
@@ -115,8 +109,7 @@ export default class Login extends React.Component
     } )
   }
 
-  handle_onPress_Retry = ( ) =>
-  {
+  handle_onPress_Retry = () => {
     this.setState( {
       mode: mode_challenge,
       User_AccountPassword: "",

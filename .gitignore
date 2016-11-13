@@ -46,6 +46,7 @@ android/keystores/debug.keystore
 configuration/app/publicURL.js
 ios/main.jsbundle
 public/assets
+public/upload
 build
 
 # Mobile bundles
@@ -60,7 +61,3 @@ ios/main.jsbundle.meta
 # Yarn
 #
 yarn-error.log
-
-# Android studio
-#
-android/local.properties

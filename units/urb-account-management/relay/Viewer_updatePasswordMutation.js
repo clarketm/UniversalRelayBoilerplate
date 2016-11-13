@@ -2,6 +2,7 @@
 
 import Relay from 'react-relay'
 
+
 export default class Viewer_updatePasswordMutation extends Relay.Mutation
 {
   static fragments = {

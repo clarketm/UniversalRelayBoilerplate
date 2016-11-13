@@ -50,6 +50,9 @@ export default class ObjectManager
 
     // UserID for the viewer. Could be unset if ObjectManager is used by system
     this.Viewer_User_id = null
+
+    // Request object, if available
+    this.request = null
   }
 
   static registerEntity( entityName: string, EntityType: any, persister: any ): void
@@ -73,21 +76,25 @@ export default class ObjectManager
       Persister: persister,
       TriggersForAdd: [],
       TriggersForUpdate: [],
-      TriggersForRemove: []
+      TriggersForRemove: [],
+      TriggersForUpdateShouldRetrieveCurrentRecord: false
     }
   }
 
-  static RegisterTriggerForAdd( entityName: string, handler: any )
+  static RegisterTriggerForAdd( entityName: string, handler: func ): void
   {
     entityDefinitions[ entityName ].TriggersForAdd.push( handler )
   }
 
-  static RegisterTriggerForUpdate( entityName: string, handler: any )
+  static RegisterTriggerForUpdate( entityName: string, handler: func, shouldTrerieveCurrentRecord: boolean ): void
   {
     entityDefinitions[ entityName ].TriggersForUpdate.push( handler )
+
+    if( shouldTrerieveCurrentRecord )
+      entityDefinitions[ entityName ].TriggersForUpdateShouldRetrieveCurrentRecord = true
   }
 
-  static RegisterTriggerForAddAndUpdate( entityName: string, handler: any )
+  static RegisterTriggerForAddAndUpdate( entityName: string, handler: func ): void
   {
     ObjectManager.RegisterTriggerForAdd( entityName, handler )
     ObjectManager.RegisterTriggerForUpdate( entityName, handler )
@@ -98,9 +105,14 @@ export default class ObjectManager
     entityDefinitions[ entityName ].TriggersForRemove.push( handler )
   }
 
-  setViewerUserId( Viewer_User_id: string )
+  setViewerUserId( Viewer_User_id: string ): void
   {
     this.Viewer_User_id = Viewer_User_id
+  }
+
+  setRequest( req: any ): void
+  {
+    this.request = req
   }
 
   getLoadersSingle( entityName: string )
@@ -137,12 +149,20 @@ export default class ObjectManager
     records[ id ] = isDeletion ? deletedRecord : fields
   }
 
-  getViewerUserId()
+  getViewerUserId(): string
   {
     if( this.Viewer_User_id == null )
       throw new Error( "Object Manager: viewer user id has not been set" )
 
     return this.Viewer_User_id
+  }
+
+  getRequest(): any
+  {
+    if( this.request == null )
+      throw new Error( "Object Manager: request has not been set" )
+
+    return this.request
   }
 
   getLoader( entityName: string, fieldName: string, multipleResults: boolean )
@@ -242,69 +262,74 @@ export default class ObjectManager
     }
   }
 
-  executeTriggers( arrTriggers, fields )
+  executeTriggers( arrTriggers, fields, oldFields )
   {
     const arrPromises = []
     for( let trigger of arrTriggers )
     {
-      arrPromises.push( trigger( this, fields ) )
+      arrPromises.push( trigger( this, fields, oldFields ) )
     }
 
     return Promise.all( arrPromises )
   }
 
-  add( entityName: string, fields: any )
+  async add( entityName: string, fields: any ): any
   {
     const entityDefinition = entityDefinitions[ entityName ]
 
-    if( entityDefinition == null ) console.log( 'Cound not find entity' + entityName )
+    if( entityDefinition == null ) console.log( 'Cound not find entity ' + entityName )
 
-    // Generate primary key
-    fields.id = entityDefinition.Persister.uuidRandom()
+    // Generate primary key, if not already present
+    if( !fields.id )
+      fields.id = entityDefinition.Persister.uuidRandom()
 
     // If this is a user ID
     if( entityName == 'User' )
       this.setViewerUserId( fields.id.toString() )
 
     this.recordChange( entityName, fields, false )
+    await this.executeTriggers( entityDefinition.TriggersForAdd, fields )
 
-    return this.executeTriggers( entityDefinition.TriggersForAdd, fields )
-      .then( () => entityDefinition.Persister.add( entityName, fields, entityDefinition.EntityType ) )
-      .then( () =>
-      {
-        this.invalidateLoaderCache( entityName, fields )
-        return fields.id
-      } )
+    await entityDefinition.Persister.add( entityName, fields, entityDefinition.EntityType )
+
+    this.invalidateLoaderCache( entityName, fields )
+
+    return fields.id
   }
 
-  update( entityName: string, fields: any )
+  async update( entityName: string, fields: any ): void
   {
     const entityDefinition = entityDefinitions[ entityName ]
 
     if( entityDefinition == null ) console.log( 'XXX Cound not find entity' + entityName ) // Should that be recorded somewhere? Could be another
 
-    this.recordChange( entityName, fields, false )
-
-    return this.executeTriggers( entityDefinition.TriggersForUpdate, fields )
-      .then( entityDefinition.Persister.update( entityName, fields ) )
-      .then( () =>
+    let oldFields = null
+    if( entityDefinition.TriggersForUpdateShouldRetrieveCurrentRecord )
+    {
+      oldFields = this.getOneObject( entityName,
       {
-        this.invalidateLoaderCache( entityName, fields )
+        id: fields.id
       } )
+    }
+
+    this.recordChange( entityName, fields, false )
+    await this.executeTriggers( entityDefinition.TriggersForUpdate, fields, oldFields )
+
+    await entityDefinition.Persister.update( entityName, fields )
+
+    this.invalidateLoaderCache( entityName, fields )
   }
 
-  remove( entityName: string, fields: any )
+  async remove( entityName: string, fields: any ): void
   {
     const entityDefinition = entityDefinitions[ entityName ]
 
     this.recordChange( entityName, fields, true )
+    await this.executeTriggers( entityDefinition.TriggersForRemove, fields )
 
-    return this.executeTriggers( entityDefinition.TriggersForRemove, fields )
-      .then( entityDefinition.Persister.remove( entityName, fields ) )
-      .then( () =>
-      {
-        this.invalidateLoaderCache( entityName, fields )
-      } )
+    await entityDefinition.Persister.remove( entityName, fields )
+
+    this.invalidateLoaderCache( entityName, fields )
   }
 
   cursorForObjectInConnection( entityName: string, arr, obj )

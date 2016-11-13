@@ -1,7 +1,7 @@
 /* @flow weak */
 
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay';
-import { GraphQLString, GraphQLID, GraphQLNonNull } from "graphql";
+import { GraphQLString, GraphQLID, GraphQLNonNull } from 'graphql'
 
 import EnsayoType from '../type/EnsayoType';
 

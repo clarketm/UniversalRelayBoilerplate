@@ -5,7 +5,7 @@ import
   GraphQLInt,
   GraphQLString
 }
-from "graphql"
+from 'graphql'
 import
 {
   connectionArgs,
