@@ -26,10 +26,10 @@ const config = {
   },
   module: {
     preLoaders: [
-      // { test: /\.js(x)?$/, loader: 'eslint-loader', exclude: /node_modules/ } // TODO: Consider removing
+      //{ test: /\.js(x)?$/, loader: 'eslint-loader', exclude: /node_modules/ } // TODO x1000: Consider removing
     ],
     loaders: [
-      { test: /\.js(x)?$/, loaders: [ 'react-hot', 'babel' ], exclude: /node_modules/ },
+      { test: /\.js(x)?$/, loaders: [ 'react-hot-loader/webpack', 'babel' ], exclude: /node_modules/ },
       { test: /\.json$/, loaders: [ 'json' ] },
       { test: /\.css$/, loader: ExtractTextPlugin.extract( 'style-loader', 'css-loader') },
     ]
