@@ -3,6 +3,7 @@
 import jwt from 'jwt-simple'
 import path from 'path';
 
+import defaultPersister from '../configuration/graphql/defaultPersister'
 import log from './log'
 
 
@@ -11,13 +12,14 @@ require( 'dotenv' ).load()
 
 
 export function getUserByCookie( objectManager, req ) {
-  let user_id = '00000000-0000-0000-0000-000000000000' // Anonymous, unless cookie is passed
+  
+  let user_id = defaultPersister.uuidNull( ) // Anonymous, unless cookie is passed
 
   try {
     if( req.cookies.UserToken1 )
       if( req.cookies.UserToken1.length > 10 ) {
         var decoded = jwt.decode( req.cookies.UserToken1, process.env.JWT_SECRET )
-        user_id = decoded.user_id
+        user_id = defaultPersister.uuidFromString( decoded.user_id )
       }
   } catch( err ) {
     return Promise.reject( "Could not read auth cookie. " + err )
@@ -34,6 +36,7 @@ export function getUserByCookie( objectManager, req ) {
 }
 
 export function verifyUserAuthToken( a_User, req ) {
+
   if( !a_User )
     return Promise.reject( "User not found" )
   else {
@@ -48,6 +51,7 @@ export function verifyUserAuthToken( a_User, req ) {
 const httpError403FileName = path.resolve( __dirname, '../configuration/server/httpError/403.html' )
 
 export function serveAuthenticationFailed( req, res, error, respondWithJSON ) {
+
   // Collect information about the request
   var ip = req.headers[ 'x-real-ip' ] || req.connection.remoteAddress
 

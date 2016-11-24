@@ -3,7 +3,7 @@
 import { globalIdField } from 'graphql-relay';
 import { GraphQLString, GraphQLInt, GraphQLBoolean, GraphQLObjectType } from 'graphql'
 
-import NodeInterface from "../../../../graphql/NodeInterface";
+import NodeInterface from '../../../../graphql/NodeInterface';
 
 import Compendium from '../model/Compendium';
 

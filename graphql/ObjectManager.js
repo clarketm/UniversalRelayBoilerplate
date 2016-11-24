@@ -1,11 +1,7 @@
 /* @flow weak */
 
 import DataLoader from 'dataloader'
-import
-{
-  cursorForObjectInConnection
-}
-from 'graphql-relay'
+import { cursorForObjectInConnection } from 'graphql-relay'
 
 import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
 import defaultPersister from '../configuration/graphql/defaultPersister'
@@ -15,9 +11,8 @@ import User from '../configuration/graphql/model/User'
 
 
 // Anonymous user
-const User_0 = new User( Object.assign( getNewUser(),
-{
-  id: defaultPersister.uuidFromString( '00000000-0000-0000-0000-000000000000' ),
+const User_0 = new User( Object.assign( getNewUser(), {
+  id: defaultPersister.uuidNull(),
   UserToken2: AnonymousUserToken2,
   User_DisplayName: 'Anonymous',
 } ) )
@@ -33,12 +28,11 @@ const deletedRecord = {
   deleted: true
 }
 
-export default class ObjectManager
-{
+export default class ObjectManager {
+
   Viewer_User_id: string
 
-  constructor()
-  {
+  constructor() {
     // Loaders for a single record, by entity name
     this.loadersSingle = {}
 
@@ -55,8 +49,8 @@ export default class ObjectManager
     this.request = null
   }
 
-  static registerEntity( entityName: string, EntityType: any, persister: any ): void
-  {
+  static registerEntity( entityName: string, EntityType: any, persister: any ): void {
+
     if( entityName in entityDefinitions )
       throw new Error( "Entity already registered: " + entityName )
 
@@ -81,42 +75,42 @@ export default class ObjectManager
     }
   }
 
-  static RegisterTriggerForAdd( entityName: string, handler: func ): void
-  {
+  static RegisterTriggerForAdd( entityName: string, handler: func ): void {
+
     entityDefinitions[ entityName ].TriggersForAdd.push( handler )
   }
 
-  static RegisterTriggerForUpdate( entityName: string, handler: func, shouldTrerieveCurrentRecord: boolean ): void
-  {
+  static RegisterTriggerForUpdate( entityName: string, handler: func, shouldTrerieveCurrentRecord: boolean ): void {
+
     entityDefinitions[ entityName ].TriggersForUpdate.push( handler )
 
     if( shouldTrerieveCurrentRecord )
       entityDefinitions[ entityName ].TriggersForUpdateShouldRetrieveCurrentRecord = true
   }
 
-  static RegisterTriggerForAddAndUpdate( entityName: string, handler: func ): void
-  {
+  static RegisterTriggerForAddAndUpdate( entityName: string, handler: func ): void {
+
     ObjectManager.RegisterTriggerForAdd( entityName, handler )
     ObjectManager.RegisterTriggerForUpdate( entityName, handler )
   }
 
-  static RegisterTriggerForRemove( entityName: string, handler: any )
-  {
+  static RegisterTriggerForRemove( entityName: string, handler: any ) {
+
     entityDefinitions[ entityName ].TriggersForRemove.push( handler )
   }
 
-  setViewerUserId( Viewer_User_id: string ): void
-  {
+  setViewerUserId( Viewer_User_id: string ): void {
+
     this.Viewer_User_id = Viewer_User_id
   }
 
-  setRequest( req: any ): void
-  {
+  setRequest( req: any ): void {
+
     this.request = req
   }
 
-  getLoadersSingle( entityName: string )
-  {
+  getLoadersSingle( entityName: string ) {
+
     const foundLoaders = this.loadersSingle[ entityName ]
     if( foundLoaders != null )
       return foundLoaders
@@ -124,8 +118,8 @@ export default class ObjectManager
       return this.loadersSingle[ entityName ] = {}
   }
 
-  getLoadersMultiple( entityName: string )
-  {
+  getLoadersMultiple( entityName: string ) {
+
     const foundLoaders = this.loadersMultiple[ entityName ]
     if( foundLoaders != null )
       return foundLoaders
@@ -133,13 +127,13 @@ export default class ObjectManager
       return this.loadersMultiple[ entityName ] = {}
   }
 
-  clearLoadersMultiple( entityName: string )
-  {
+  clearLoadersMultiple( entityName: string ) {
+
     this.loadersMultiple[ entityName ] = {}
   }
 
-  recordChange( entityName: string, fields: object, isDeletion: boolean )
-  {
+  recordChange( entityName: string, fields: object, isDeletion: boolean ) {
+
     let records = this.changes[ entityName ]
     if( records == null )
       records = this.changes[ entityName ] = {}
@@ -149,24 +143,24 @@ export default class ObjectManager
     records[ id ] = isDeletion ? deletedRecord : fields
   }
 
-  getViewerUserId(): string
-  {
+  getViewerUserId(): string {
+
     if( this.Viewer_User_id == null )
       throw new Error( "Object Manager: viewer user id has not been set" )
 
     return this.Viewer_User_id
   }
 
-  getRequest(): any
-  {
+  getRequest(): any {
+
     if( this.request == null )
       throw new Error( "Object Manager: request has not been set" )
 
     return this.request
   }
 
-  getLoader( entityName: string, fieldName: string, multipleResults: boolean )
-  {
+  getLoader( entityName: string, fieldName: string, multipleResults: boolean ) {
+
     if( !( entityName in entityDefinitions ) )
       throw new Error( "Can not find entity type named " + entityName )
 
@@ -175,8 +169,7 @@ export default class ObjectManager
 
     let loadersList = multipleResults ? this.getLoadersMultiple( entityName ) : this.getLoadersSingle( entityName )
     let loader = loadersList[ fieldName ]
-    if( loader == null )
-    {
+    if( loader == null ) {
       if( multipleResults )
         loader = new DataLoader( filter => entityDefinition.Persister.getObjectList( entityName, entityType, filter ) )
       else
@@ -188,12 +181,12 @@ export default class ObjectManager
     return loader
   }
 
-  getOneObject( entityName: string, filter: object )
-  {
+  getOneObject( entityName: string, filter: object ) {
+
     // TODO x2000 Provide try catch with logging here!
     // Special hack for anonymous users
     if( entityName == 'User' )
-      if( filter.id == '00000000-0000-0000-0000-000000000000' )
+      if( filter.id == defaultPersister.uuidNullAsString() )
         return Promise.resolve( User_0 )
 
       // For all non-user, non 0 ids, load from data loader per protocol
@@ -201,14 +194,11 @@ export default class ObjectManager
     const loader = this.getLoader( entityName, loaderIdentifier, false )
 
     return loader.load( filter )
-      .then( ( result ) =>
-      {
+      .then( ( result ) => {
         const changes = this.changes[ entityName ]
-        if( changes )
-        {
+        if( changes ) {
           const change = changes[ result.id ]
-          if( change != null )
-          {
+          if( change != null ) {
             if( change === deletedRecord )
               result = null // Object is not found, return null
             else // Add or update
@@ -219,23 +209,19 @@ export default class ObjectManager
       } )
   }
 
-  getObjectList( entityName: string, filter: object )
-  {
+  getObjectList( entityName: string, filter: object ) {
+
     // TODO x2000 Provide try catch with logging here!
     const loaderIdentifier = Object.keys( filter ).sort().join( ',' )
     const loader = this.getLoader( entityName, loaderIdentifier, true )
 
     return loader.load( filter )
-      .then( ( arrResults ) =>
-      {
+      .then( ( arrResults ) => {
         const changes = this.changes[ entityName ]
-        if( changes )
-        {
-          for( let ix = 0; ix < arrResults.length; ix++ )
-          {
+        if( changes ) {
+          for( let ix = 0; ix < arrResults.length; ix++ ) {
             const change = changes[ arrResults[ ix ].id ]
-            if( change != null )
-            {
+            if( change != null ) {
               if( change === deletedRecord )
                 arrResults.splice( ix--, 1 ) // Reduce ix in order not to skip over a record
               else // Add or update
@@ -247,14 +233,13 @@ export default class ObjectManager
       } )
   }
 
-  invalidateLoaderCache( entityName: string, fields: any )
-  {
+  invalidateLoaderCache( entityName: string, fields: any ) {
+
     // At this moment there is no obvious way of knowing what to clear from lists, so delete them all
     this.clearLoadersMultiple( entityName )
 
     const loadersSingle = this.getLoadersSingle( entityName )
-    for( let loaderFieldName in loadersSingle )
-    {
+    for( let loaderFieldName in loadersSingle ) {
       if( loaderFieldName === 'id' )
         loadersSingle[ loaderFieldName ].clear( fields.id )
       else
@@ -262,19 +247,18 @@ export default class ObjectManager
     }
   }
 
-  executeTriggers( arrTriggers, fields, oldFields )
-  {
+  executeTriggers( arrTriggers, fields, oldFields ) {
+
     const arrPromises = []
-    for( let trigger of arrTriggers )
-    {
+    for( let trigger of arrTriggers ) {
       arrPromises.push( trigger( this, fields, oldFields ) )
     }
 
     return Promise.all( arrPromises )
   }
 
-  async add( entityName: string, fields: any ): any
-  {
+  async add( entityName: string, fields: any ): any {
+
     const entityDefinition = entityDefinitions[ entityName ]
 
     if( entityDefinition == null ) console.log( 'Cound not find entity ' + entityName )
@@ -297,17 +281,15 @@ export default class ObjectManager
     return fields.id
   }
 
-  async update( entityName: string, fields: any ): void
-  {
+  async update( entityName: string, fields: any ): void {
+
     const entityDefinition = entityDefinitions[ entityName ]
 
     if( entityDefinition == null ) console.log( 'XXX Cound not find entity' + entityName ) // Should that be recorded somewhere? Could be another
 
     let oldFields = null
-    if( entityDefinition.TriggersForUpdateShouldRetrieveCurrentRecord )
-    {
-      oldFields = this.getOneObject( entityName,
-      {
+    if( entityDefinition.TriggersForUpdateShouldRetrieveCurrentRecord ) {
+      oldFields = this.getOneObject( entityName, {
         id: fields.id
       } )
     }
@@ -320,8 +302,8 @@ export default class ObjectManager
     this.invalidateLoaderCache( entityName, fields )
   }
 
-  async remove( entityName: string, fields: any ): void
-  {
+  async remove( entityName: string, fields: any ): void {
+
     const entityDefinition = entityDefinitions[ entityName ]
 
     this.recordChange( entityName, fields, true )
@@ -332,8 +314,8 @@ export default class ObjectManager
     this.invalidateLoaderCache( entityName, fields )
   }
 
-  cursorForObjectInConnection( entityName: string, arr, obj )
-  {
+  cursorForObjectInConnection( entityName: string, arr, obj ) {
+
     const entityDefinition = entityDefinitions[ entityName ]
 
     // IDs can be both strings and Uuid. Check that first, and convert to String
@@ -341,12 +323,10 @@ export default class ObjectManager
 
     // Make sure that the object and its instance can be compared with ===
     // assumed that the object has id field which is unique
-    for( let ix = 0; ix < arr.length; ix++ )
-    {
+    for( let ix = 0; ix < arr.length; ix++ ) {
       const arr_element_id = entityDefinition.Persister.uuidToString( arr[ ix ].id )
 
-      if( arr_element_id == obj_id )
-      {
+      if( arr_element_id == obj_id ) {
         arr[ ix ] = obj
         break
       }
@@ -354,8 +334,7 @@ export default class ObjectManager
 
     let cursor = cursorForObjectInConnection( arr, obj )
     if( cursor == null )
-      log.log( 'error', 'Could not create cursor for object in connection for ' + entityName,
-      {
+      log.log( 'error', 'Could not create cursor for object in connection for ' + entityName, {
         obj,
         arr
       } )
@@ -363,8 +342,7 @@ export default class ObjectManager
     return cursor
   }
 
-  static initializePersisters( runAsPartOfSetupDatabase: boolean ): void
-  {
+  static initializePersisters( runAsPartOfSetupDatabase: boolean ): void {
     for( let persister of setPersisters )
       persister.initialize( runAsPartOfSetupDatabase )
   }

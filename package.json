@@ -62,7 +62,7 @@
   "dependencies": {
     "bcrypt": "0.8.7",
     "body-parser": "1.15.2",
-    "cassandra-driver": "3.1.6",
+    "cassandra-driver": "3.1.5",
     "classnames": "2.2.5",
     "compression": "1.6.2",
     "cookie-parser": "1.4.3",
@@ -91,7 +91,7 @@
     "react-dom": "15.4.1",
     "react-event-listener": "0.4.0",
     "react-helmet": "3.2.2",
-    "react-native": "0.37.0",
+    "react-native": "0.38.0",
     "react-native-device-info": "0.9.6",
     "react-native-keychain": "0.3.2",
     "react-native-vector-icons": "3.0.0",
@@ -140,5 +140,5 @@
     "webpack-dev-server": "1.16.2",
     "whatwg-fetch": "2.0.1"
   },
-  "version": "13.13.2"
+  "version": "13.14.3"
 }
