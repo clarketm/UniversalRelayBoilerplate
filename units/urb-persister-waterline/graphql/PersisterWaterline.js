@@ -11,7 +11,7 @@ const Uuid_Null = '00000000-0000-0000-0000-000000000000'
 
 
 export default class PersisterWaterline {
-  
+
   constructor() {
 
     this.stores = {}
@@ -133,7 +133,7 @@ export default class PersisterWaterline {
 
   uuidNullAsString() {
 
-    return Uuid_Null_String
+    return Uuid_Null
   }
 
   uuidToString( id: any ) {

@@ -130,7 +130,7 @@ export default class PersisterMemory {
 
   uuidNullAsString() {
 
-    return Uuid_Null_String
+    return Uuid_Null
   }
 
   uuidToString( id: any ) {

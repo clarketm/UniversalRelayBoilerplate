@@ -147,7 +147,7 @@ export default class PersisterDynamoDB {
 
   uuidNullAsString() {
 
-    return Uuid_Null_String
+    return Uuid_Null
   }
 
   uuidToString( id: any ) {
