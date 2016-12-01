@@ -128,7 +128,7 @@ function createMutations()
   getMutations( 'units/', mutationsImports, mutationsExports )
 
   let mutations = [
-    '/* @flow */',
+    '// @flow weak',
     ''
   ]
   mutations = mutations.concat( mutationsImports )
@@ -187,7 +187,7 @@ function createSchemas()
   getSchemas( 'units/', schemasImports )
 
   let schemas = [
-    '/* @flow */',
+    '// @flow weak',
     '/* eslint no-unused-vars: 0 */',
     ''
   ]
@@ -241,7 +241,7 @@ function createViewerFields()
   getViewerFields( 'units/', viewerFieldsImports, viewerFieldsExports )
 
   let viewerFields = [
-    '/* @flow */',
+    '// @flow weak',
     ''
   ]
   viewerFields = viewerFields.concat( viewerFieldsImports )

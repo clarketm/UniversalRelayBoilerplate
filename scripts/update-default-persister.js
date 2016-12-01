@@ -15,7 +15,7 @@ const supportedPersisters = {
 function updateDefaultPersister( fileName )
 {
   const defaultPersister = [
-    `/* @flow */`,
+    `// @flow weak`,
     ``,
     `import Persister from '` + fileName + `'`,
     ``,

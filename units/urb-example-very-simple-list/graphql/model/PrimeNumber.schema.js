@@ -1,4 +1,4 @@
-/* @flow */
+// @flow weak
 
 import defaultPersister from '../../../../configuration/graphql/defaultPersister'
 
