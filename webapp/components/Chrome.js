@@ -7,7 +7,7 @@ import Relay from 'react-relay';
 import AppBar from 'material-ui/AppBar';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import spacing from 'material-ui/styles/spacing';
-import withWidth, {LARGE, MEDIUM}  from '../scripts/withWidth';
+import withWidth, { LARGE, MEDIUM } from '../scripts/withWidth';
 
 import AppNavDrawer from './AppNavDrawer';
 import ChromeHelmet from '../../configuration/webapp/components/ChromeHelmet';
@@ -17,10 +17,8 @@ import { MainScreenTitle } from '../../configuration/webapp/components/ChromeSet
 import muiTheme from '../../configuration/webapp/muiTheme.js';
 
 
-class Chrome extends React.Component
-{
-  constructor( props, context )
-  {
+class Chrome extends React.Component {
+  constructor( props, context ) {
     super( props, context );
 
     this.state = {
@@ -28,39 +26,35 @@ class Chrome extends React.Component
     };
 
     this.muiTheme = getMuiTheme(
-      muiTheme,
-      { userAgent: navigator.userAgent }
+      muiTheme, { userAgent: navigator.userAgent }
     )
   }
 
-  getChildContext( )
-  {
-    return ( {
+  getChildContext( ) {
+    return( {
       muiTheme: this.muiTheme
     } );
   }
 
-  _handle_onTouchTap_NavigationToggle = ( ) =>
-  {
-    this._handle_RequestChangeNavDrawer( ! this.state.navDrawerOpen );
+  _handle_onTouchTap_NavigationToggle = ( ) => {
+    this._handle_RequestChangeNavDrawer( !this.state.navDrawerOpen );
   };
 
-  _handle_RequestChangeNavDrawer = (open) => {
+  _handle_RequestChangeNavDrawer = ( open ) => {
     this.setState( {
       navDrawerOpen: open,
     } );
   };
 
-  _handle_onChangeList_AppNavDrawer = (event, value) => {
-    this.context.router.push(value);
-    this.setState({
+  _handle_onChangeList_AppNavDrawer = ( event, value ) => {
+    this.context.router.push( value );
+    this.setState( {
       navDrawerOpen: false,
-    });
+    } );
   };
 
 
-  getStyles()
-  {
+  getStyles( ) {
     const styles = {
       appBar: {
         position: 'fixed',
@@ -79,14 +73,13 @@ class Chrome extends React.Component
       },
     };
 
-    if ( this.props.width === MEDIUM || this.props.width === LARGE )
-      styles.content = Object.assign(styles.content, styles.contentWhenMedium);
+    if( this.props.width === MEDIUM || this.props.width === LARGE )
+      styles.content = Object.assign( styles.content, styles.contentWhenMedium );
 
     return styles;
   }
 
-  render( )
-  {
+  render( ) {
     const styles = this.getStyles( )
 
     let {
@@ -100,8 +93,7 @@ class Chrome extends React.Component
     let docked = false
     let showMenuIconButton = true
 
-    if( this.props.width === LARGE )
-    {
+    if( this.props.width === LARGE ) {
       docked = true
       navDrawerOpen = true
       showMenuIconButton = false
@@ -113,7 +105,7 @@ class Chrome extends React.Component
       styles.root.paddingLeft = 256
     }
 
-    return (
+    return(
       <div>
         <ChromeHelmet />
         <AppBar
@@ -162,7 +154,7 @@ Chrome.childContextTypes = {
 // It is important to retrieve UserToken2, since it is used in client.js
 export default Relay.createContainer( withWidth( )( Chrome ), {
   fragments: {
-    Viewer: () => Relay.QL`
+    Viewer: ( ) => Relay.QL `
       fragment on Viewer {
         User_IsAnonymous,
         UserToken2,
@@ -172,4 +164,4 @@ export default Relay.createContainer( withWidth( )( Chrome ), {
       }
     `,
   },
-});
+} );

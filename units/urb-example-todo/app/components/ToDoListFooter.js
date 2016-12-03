@@ -1,49 +1,37 @@
 /* @flow weak */
 
 import Relay from 'react-relay'
-import React,
-{
-  PropTypes,
-}
-from 'react'
-import
-{
-  StyleSheet,
-  Text,
-  View,
-}
-from 'react-native'
+import React, { PropTypes, } from 'react'
+import { StyleSheet, Text, View, } from 'react-native'
 
 
-const styles = StyleSheet.create(
-{
-  container:
-  {
+const styles = StyleSheet.create( {
+
+  container: {
     alignItems: 'center',
     flexDirection: 'row',
     height: 40,
     justifyContent: 'space-between',
   },
-  strong:
-  {
+  strong: {
     fontWeight: 'bold',
   },
 } )
 
-class ToDoListFooter extends React.Component
-{
+class ToDoListFooter extends React.Component {
+
   static propTypes = {
     status: PropTypes.oneOf( [ 'active', 'any', 'completed' ] ).isRequired,
     style: View.propTypes.style,
   }
 
-  constructor( props, context )
-  {
+  constructor( props, context ) {
+
     super( props, context )
   }
 
-  render()
-  {
+  render() {
+
     var numCompletedTodos = this.props.Viewer.ToDo_CompletedCount
     var numRemainingTodos = this.props.Viewer.ToDo_TotalCount - numCompletedTodos
     return(
@@ -58,20 +46,16 @@ class ToDoListFooter extends React.Component
   }
 }
 
-export default Relay.createContainer( ToDoListFooter,
-{
-  initialVariables:
-  {
+export default Relay.createContainer( ToDoListFooter, {
+  initialVariables: {
     status: 'any',
   },
-  prepareVariables( prevVars )
-  {
+  prepareVariables( prevVars ) {
     return {
       ...prevVars
     }
   },
-  fragments:
-  {
+  fragments: {
     Viewer: () => Relay.QL `
       fragment on Viewer {
         ToDo_CompletedCount,

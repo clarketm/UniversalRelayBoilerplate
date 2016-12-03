@@ -5,21 +5,21 @@ import React from 'react'
 import Relay from 'react-relay'
 
 import Checkbox from 'material-ui/Checkbox'
-import {List} from 'material-ui/List'
-import {Tabs, Tab} from 'material-ui/Tabs'
+import { List } from 'material-ui/List'
+import { Tabs, Tab } from 'material-ui/Tabs'
 
 import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation'
 import ToDo_Item from './ToDo_Item'
 
-class ToDo_List extends React.Component
-{
+class ToDo_List extends React.Component {
+
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
     router: React.PropTypes.object.isRequired,
   }
 
-  _handle_onCheck_MarkAll = ( event, checked ) =>
-  {
+  _handle_onCheck_MarkAll = ( event, checked ) => {
+
     this.context.relay.commitUpdate(
       new ToDo_list_updateMarkAllMutation( {
         ToDo_Complete: checked,
@@ -29,9 +29,9 @@ class ToDo_List extends React.Component
     )
   }
 
-  renderToDos( )
-  {
-    return this.props.Viewer.ToDos.edges.map(edge =>
+  renderToDos() {
+
+    return this.props.Viewer.ToDos.edges.map( edge =>
       <ToDo_Item
         key={edge.node.id}
         ToDo={edge.node}
@@ -40,13 +40,13 @@ class ToDo_List extends React.Component
     )
   }
 
-  _handle_requestChange = ( value ) =>
-  {
+  _handle_requestChange = ( value ) => {
+
     this.context.router.push( '/todo/' + value )
   }
 
-  renderTabs( )
-  {
+  renderTabs() {
+
     return(
       <Tabs valueLink={ { value: this.props.relay.variables.status, requestChange: this._handle_requestChange } }>
         <Tab label="All" value="any" />
@@ -56,11 +56,11 @@ class ToDo_List extends React.Component
     )
   }
 
-  render( )
-  {
+  render() {
+
     var numToDos = this.props.Viewer.ToDo_TotalCount
     var numCompletedToDos = this.props.Viewer.ToDo_CompletedCount
-    return (
+    return(
       <div>
         { this.renderTabs( ) }
         <Checkbox
@@ -77,20 +77,18 @@ class ToDo_List extends React.Component
 }
 
 export default Relay.createContainer( ToDo_List, {
-  initialVariables:
-  {
+  initialVariables: {
     status: 'any',
     limit: 2147483647,
   },
 
-  prepareVariables( { status } )
-  {
+  prepareVariables( { status } ) {
     var nextStatus
-    if (status === 'active' || status === 'completed')
+    if( status === 'active' || status === 'completed' )
       nextStatus = status
     else
-      // This matches the Backbone example, which displays all ToDos on an
-      // invalid route.
+    // This matches the Backbone example, which displays all ToDos on an
+    // invalid route.
       nextStatus = 'any'
 
     return {
@@ -100,7 +98,7 @@ export default Relay.createContainer( ToDo_List, {
   },
 
   fragments: {
-    Viewer: () => Relay.QL`
+    Viewer: () => Relay.QL `
       fragment on Viewer {
         ToDo_CompletedCount,
         ToDos(status: $status, first: $limit) {
@@ -118,4 +116,4 @@ export default Relay.createContainer( ToDo_List, {
       }
     `,
   },
-})
+} )

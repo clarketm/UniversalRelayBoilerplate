@@ -88,12 +88,12 @@ IsomorphicRelay.injectPreparedData( relay, data )
 const rootElement = document.getElementById( 'root' )
 
 match( {
-      routes,
-      history: browserHistory
-    },
-    ( error, redirectLocation, renderProps ) => {
-      IsomorphicRouter.prepareInitialRender( relay, renderProps ).then( props => {
-          ReactDOM.render( <Router {...props } />, rootElement )
-          } )
-      }
-    )
+    routes,
+    history: browserHistory
+  },
+  ( error, redirectLocation, renderProps ) => {
+    IsomorphicRouter.prepareInitialRender( relay, renderProps ).then( props => {
+      ReactDOM.render( <Router {...props } />, rootElement )
+    } )
+  }
+)

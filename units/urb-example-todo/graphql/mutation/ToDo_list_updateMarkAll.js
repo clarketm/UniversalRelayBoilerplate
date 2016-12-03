@@ -1,11 +1,11 @@
 /* @flow weak */
 
-import { mutationWithClientMutationId } from 'graphql-relay';
+import { mutationWithClientMutationId } from 'graphql-relay'
 import { GraphQLBoolean, GraphQLList, GraphQLNonNull } from 'graphql'
 
-import ToDo_list_updateMarkAll from '../helper/ToDo_list_updateMarkAll';
-import ToDoType from '../type/ToDoType';
-import ViewerType from '../../../../graphql/type/ViewerType';
+import ToDo_list_updateMarkAll from '../helper/ToDo_list_updateMarkAll'
+import ToDoType from '../type/ToDoType'
+import ViewerType from '../../../../graphql/type/ViewerType'
 
 
 export default mutationWithClientMutationId( {
@@ -15,18 +15,16 @@ export default mutationWithClientMutationId( {
   },
   outputFields: {
     changedToDos: {
-      type: new GraphQLList(ToDoType),
-      resolve: ( {arr_local_ids_Changed_ToDos}, args, context, { rootValue: objectManager } ) => arr_local_ids_Changed_ToDos.map( local_id => objectManager.getOneObject( 'ToDo', { id: local_id } ) ),
+      type: new GraphQLList( ToDoType ),
+      resolve: ( { arr_local_ids_Changed_ToDos }, args, context, { rootValue: objectManager } ) => arr_local_ids_Changed_ToDos.map( local_id => objectManager.getOneObject( 'ToDo', { id: local_id } ) ),
     },
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneObject( 'User', { id: objectManager.getViewerUserId( ) } )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneObject( 'User', { id: objectManager.getViewerUserId() } )
     },
   },
-  mutateAndGetPayload: ( {ToDo_Complete}, context, { rootValue: objectManager } ) =>
-  {
+  mutateAndGetPayload: ( { ToDo_Complete }, context, { rootValue: objectManager } ) => {
     return ToDo_list_updateMarkAll( objectManager, ToDo_Complete )
-    .then( ( arr_local_ids_Changed_ToDos ) => ( {arr_local_ids_Changed_ToDos} ) )
-    ;
+      .then( ( arr_local_ids_Changed_ToDos ) => ( { arr_local_ids_Changed_ToDos } ) )
   }
-} );
+} )

@@ -1,74 +1,51 @@
 /* @flow weak */
 
-import
-{
-  GraphQLInt,
-  GraphQLString
-}
-from 'graphql'
-import
-{
-  connectionArgs,
-  connectionFromArray
-}
-from 'graphql-relay'
+import { GraphQLInt, GraphQLString } from 'graphql'
+import { connectionArgs, connectionFromArray } from 'graphql-relay'
 
 import ToDosConnection from "./ToDosConnection"
 
 
-export default
-{
-  ToDos:
-  {
+export default {
+
+  ToDos: {
     type: ToDosConnection.connectionType,
-    args:
-    {
-      status:
-      {
+    args: {
+      status: {
         type: GraphQLString,
         defaultValue: 'any',
       },
       ...connectionArgs,
     },
-    resolve: ( obj,
-    {
+    resolve: ( obj, {
       status,
       ...args
-    }, context,
-    {
+    }, context, {
       rootValue: objectManager
-    } ) =>
-    {
-      return objectManager.getObjectList( 'ToDo',
-        {
+    } ) => {
+      return objectManager.getObjectList( 'ToDo', {
           ToDo_User_id: objectManager.getViewerUserId()
         } )
         .then( ( arr ) => connectionFromArray( arr.filter( a_ToDo => status === 'any' || ( a_ToDo.ToDo_Complete === ( status === 'completed' ) ) ), args ) )
     }
   },
-  ToDo_TotalCount:
-  {
+
+  ToDo_TotalCount: {
     type: GraphQLInt,
-    resolve: ( obj,
-    {...args
-    }, context,
-    {
+    resolve: ( obj, {...args
+    }, context, {
       rootValue: objectManager
-    } ) => objectManager.getObjectList( 'ToDo',
-    {
+    } ) => objectManager.getObjectList( 'ToDo', {
       ToDo_User_id: objectManager.getViewerUserId()
     } ).then( ( arr ) => arr.length )
   },
-  ToDo_CompletedCount:
-  {
+
+  ToDo_CompletedCount: {
     type: GraphQLInt,
-    resolve: ( obj,
-    {...args
-    }, context,
-    {
+    resolve: ( obj, {...args
+    }, context, {
       rootValue: objectManager
-    } ) => objectManager.getObjectList( 'ToDo',
-    {
+    } ) => objectManager.getObjectList( 'ToDo', {
       ToDo_User_id: objectManager.getViewerUserId()
     } ).then( ( arr ) => arr.filter( a_ToDo => a_ToDo.ToDo_Complete ).length )
   },

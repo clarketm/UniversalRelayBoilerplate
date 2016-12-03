@@ -1,12 +1,11 @@
-import React, {Component, PropTypes} from 'react'
+import React, { Component, PropTypes } from 'react'
 import ClearFix from 'material-ui/internal/ClearFix'
 import spacing from 'material-ui/styles/spacing'
-import withWidth, {SMALL, MEDIUM, LARGE} from '../scripts/withWidth'
+import withWidth, { SMALL, MEDIUM, LARGE } from '../scripts/withWidth'
 
 const desktopGutter = spacing.desktopGutter
 
-class FullWidthSection extends Component
-{
+class FullWidthSection extends Component {
   static propTypes = {
     children: PropTypes.node,
     contentStyle: PropTypes.object,
@@ -21,8 +20,7 @@ class FullWidthSection extends Component
     contentType: 'div',
   };
 
-  getStyles( )
-  {
+  getStyles( ) {
     return {
       root: {
         padding: desktopGutter,
@@ -47,8 +45,7 @@ class FullWidthSection extends Component
     }
   }
 
-  render( )
-  {
+  render( ) {
     const {
       style,
       useContent,
@@ -61,16 +58,15 @@ class FullWidthSection extends Component
     const styles = this.getStyles( )
 
     let content;
-    if (useContent)
+    if( useContent )
       content = React.createElement(
-        contentType,
-        {style: Object.assign(styles.content, contentStyle)},
+        contentType, { style: Object.assign( styles.content, contentStyle ) },
         this.props.children
       )
     else
       content = this.props.children
 
-    return (
+    return(
       <ClearFix
         {...other}
         style={Object.assign(
@@ -86,4 +82,4 @@ class FullWidthSection extends Component
   }
 }
 
-export default withWidth( )(FullWidthSection)
+export default withWidth( )( FullWidthSection )

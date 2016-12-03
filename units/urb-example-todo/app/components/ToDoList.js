@@ -1,94 +1,99 @@
 /* @flow weak */
-'use strict';
+'use strict'
 
-import Relay from 'react-relay';
-import React, {
-  PropTypes,
-} from 'react';
-import {
-  ListView,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import Relay from 'react-relay'
+import React, { PropTypes, } from 'react'
+import { ListView, Platform, StyleSheet, Text, TouchableHighlight, View, } from 'react-native'
 
-import ToDo_addMutation from '../../relay/ToDo_addMutation';
-import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation';
-import ToDo_deleteMutation from '../../relay/ToDo_deleteMutation';
-import ToDo from './ToDo';
-import ToDoTextInput from './ToDoTextInput';
+import Swipeout from '../../../../units/urb-react-native-swipeout/app/components/Swipeout'
+import ToDo_addMutation from '../../relay/ToDo_addMutation'
+import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation'
+import ToDo_deleteMutation from '../../relay/ToDo_deleteMutation'
+import ToDo from './ToDo'
+import ToDoTextInput from './ToDoTextInput'
 
-import Swipeout from '../../../../units/urb-react-native-swipeout/app/components/Swipeout';
 
-const _ToDosDataSource = new ListView.DataSource({
-  rowHasChanged: (r1, r2) => r1.__dataID__ !== r2.__dataID__,
-});
+const _ToDosDataSource = new ListView.DataSource( {
 
-class ToDoList extends React.Component
-{
+  rowHasChanged: ( r1, r2 ) => r1.__dataID__ !== r2.__dataID__,
+} )
+
+class ToDoList extends React.Component {
+
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
-  };
+  }
 
   static propTypes = {
-    status: PropTypes.oneOf(['active', 'any', 'completed']).isRequired,
+    status: PropTypes.oneOf( [ 'active', 'any', 'completed' ] ).isRequired,
     style: View.propTypes.style,
-  };
-  constructor(props, context) {
-    super(props, context);
-    const {edges} = props.Viewer.ToDos;
+  }
+
+  constructor( props, context ) {
+
+    super( props, context )
+    const { edges } = props.Viewer.ToDos
     this.state = {
       initialListSize: edges.length,
       listScrollEnabled: true,
-      ToDosDataSource: _ToDosDataSource.cloneWithRows(edges),
-    };
-    this._handleMarkAllPress = this._handleMarkAllPress.bind(this);
-    this._handleSwipeInactive = this._handleSwipeInactive.bind(this);
-    this._handleTextInputSave = this._handleTextInputSave.bind(this);
-    this._handleTodoDestroy = this._handleTodoDestroy.bind(this);
-    this.renderTodoEdge = this.renderTodoEdge.bind(this);
+      ToDosDataSource: _ToDosDataSource.cloneWithRows( edges ),
+    }
+    this._handleMarkAllPress = this._handleMarkAllPress.bind( this )
+    this._handleSwipeInactive = this._handleSwipeInactive.bind( this )
+    this._handleTextInputSave = this._handleTextInputSave.bind( this )
+    this._handleTodoDestroy = this._handleTodoDestroy.bind( this )
+    this.renderTodoEdge = this.renderTodoEdge.bind( this )
   }
+
   _handleMarkAllPress() {
-    const numTodos = this.props.Viewer.ToDo_TotalCount;
-    const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount;
-    const ToDo_Complete = numTodos !== numCompletedTodos;
+
+    const numTodos = this.props.Viewer.ToDo_TotalCount
+    const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount
+    const ToDo_Complete = numTodos !== numCompletedTodos
     this.context.relay.commitUpdate(
-      new ToDo_list_updateMarkAllMutation({
+      new ToDo_list_updateMarkAllMutation( {
         ToDo_Complete,
         ToDos: this.props.Viewer.ToDos,
         Viewer: this.props.Viewer,
-      })
-    );
+      } )
+    )
   }
-  _handleSwipeInactive(swipeInactive) {
-    this.setState({listScrollEnabled: swipeInactive});
+
+  _handleSwipeInactive( swipeInactive ) {
+
+    this.setState( { listScrollEnabled: swipeInactive } )
   }
-  _handleTextInputSave(ToDo_Text) {
+
+  _handleTextInputSave( ToDo_Text ) {
+
     this.context.relay.commitUpdate(
-      new ToDo_addMutation({ToDo_Text, Viewer: this.props.Viewer})
-    );
+      new ToDo_addMutation( { ToDo_Text, Viewer: this.props.Viewer } )
+    )
   }
-  _handleTodoDestroy(ToDo) {
+
+  _handleTodoDestroy( ToDo ) {
+
     this.context.relay.commitUpdate(
-      new ToDo_deleteMutation({
+      new ToDo_deleteMutation( {
         ToDo,
         Viewer: this.props.Viewer,
-      })
-    );
+      } )
+    )
   }
-  componentWillReceiveProps(nextProps) {
-    if (this.props.Viewer.ToDos.edges !== nextProps.Viewer.ToDos.edges) {
-      this.setState({
-        ToDosDataSource:
-          _ToDosDataSource.cloneWithRows(nextProps.Viewer.ToDos.edges),
-      });
+
+  componentWillReceiveProps( nextProps ) {
+
+    if( this.props.Viewer.ToDos.edges !== nextProps.Viewer.ToDos.edges ) {
+      this.setState( {
+        ToDosDataSource: _ToDosDataSource.cloneWithRows( nextProps.Viewer.ToDos.edges ),
+      } )
     }
   }
-  renderTodoEdge(todoEdge) {
-    const destroyHandler = this._handleTodoDestroy.bind(null, todoEdge.node);
-    return (
+
+  renderTodoEdge( todoEdge ) {
+
+    const destroyHandler = this._handleTodoDestroy.bind( null, todoEdge.node )
+    return(
       <Swipeout
         key={todoEdge.node.id}
         right={[{
@@ -104,15 +109,19 @@ class ToDoList extends React.Component
           Viewer={this.props.Viewer}
         />
       </Swipeout>
-    );
+    )
   }
-  renderSeparator(sectionId, rowId) {
-    return <View key={`sep_${sectionId}_${rowId}`} style={styles.separator} />;
+
+  renderSeparator( sectionId, rowId ) {
+
+    return <View key={`sep_${sectionId}_${rowId}`} style={styles.separator} />
   }
+
   render() {
-    const numTodos = this.props.Viewer.ToDo_TotalCount;
-    const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount;
-    return (
+
+    const numTodos = this.props.Viewer.ToDo_TotalCount
+    const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount
+    return(
       <View style={[this.props.style, styles.container]}>
         <View style={styles.addTodoContainer}>
           <TouchableHighlight
@@ -142,34 +151,34 @@ class ToDoList extends React.Component
           renderSeparator={this.renderSeparator}
         />
       </View>
-    );
+    )
   }
 }
 
-export default Relay.createContainer(ToDoList, {
+export default Relay.createContainer( ToDoList, {
+
   initialVariables: {
     status: 'any',
     limit: 2147483647,
   },
 
-  prepareVariables( { status } )
-  {
-    var nextStatus;
-    if (status === 'active' || status === 'completed') {
-      nextStatus = status;
+  prepareVariables( { status } ) {
+    var nextStatus
+    if( status === 'active' || status === 'completed' ) {
+      nextStatus = status
     } else {
       // This matches the Backbone example, which displays all ToDos on an
       // invalid route.
-      nextStatus = 'any';
+      nextStatus = 'any'
     }
     return {
       status: nextStatus,
-      limit: 2147483647,  // GraphQLInt
-    };
+      limit: 2147483647, // GraphQLInt
+    }
   },
 
   fragments: {
-    Viewer: () => Relay.QL`
+    Viewer: () => Relay.QL `
       fragment on Viewer {
         ToDo_CompletedCount
         ToDos(status: $status, first: $limit) {
@@ -190,9 +199,9 @@ export default Relay.createContainer(ToDoList, {
       }
     `,
   },
-});
+} )
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   addTodoContainer: {
     borderBottomColor: 'rgba(0,0,0,0.1)',
     borderBottomWidth: 1,
@@ -205,13 +214,10 @@ const styles = StyleSheet.create({
   },
   input: {
     bottom: 0,
-    // FIXME: TextInput doesn't honor `fontWeight` or `fontStyle`
-    //        https://github.com/facebook/react-native/issues/2140
     fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined,
     fontSize: 24,
     fontStyle: 'italic',
     fontWeight: '300',
-    // fontFamily: Platform.OS === 'android' ? 'sans-serif-regular' : undefined,
     left: Platform.OS === 'android' ? 61 : 65,
     position: 'absolute',
     right: 15,
@@ -225,7 +231,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 44,
     justifyContent: 'center',
-    transform: [{rotate: '90deg'}],
+    transform: [ { rotate: '90deg' } ],
     width: 44,
   },
   markAllButtonDisabled: {
@@ -241,4 +247,4 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 8,
   },
-});
+} )

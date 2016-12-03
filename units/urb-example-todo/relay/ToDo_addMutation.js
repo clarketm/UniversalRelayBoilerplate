@@ -1,21 +1,22 @@
 /* @flow weak */
 
-import Relay from 'react-relay';
+import Relay from 'react-relay'
+
 
 export default class ToDo_addMutation extends Relay.Mutation {
   static fragments = {
-    Viewer: () => Relay.QL`
+    Viewer: () => Relay.QL `
       fragment on Viewer {
         id,
         ToDo_TotalCount,
       }
     `,
-  };
+  }
   getMutation() {
-    return Relay.QL`mutation{ToDo_add}`;
+    return Relay.QL `mutation{ToDo_add}`
   }
   getFatQuery() {
-    return Relay.QL`
+    return Relay.QL `
       fragment on ToDo_addPayload {
         ToDosEdge,
         Viewer {
@@ -23,10 +24,10 @@ export default class ToDo_addMutation extends Relay.Mutation {
           ToDo_TotalCount,
         },
       }
-    `;
+    `
   }
   getConfigs() {
-    return [{
+    return [ {
       type: 'RANGE_ADD',
       parentName: 'Viewer',
       parentID: this.props.Viewer.id,
@@ -38,12 +39,12 @@ export default class ToDo_addMutation extends Relay.Mutation {
         'status(active)': 'append',
         'status(completed)': null,
       },
-    }];
+    } ]
   }
   getVariables() {
     return {
       ToDo_Text: this.props.ToDo_Text,
-    };
+    }
   }
   getOptimisticResponse() {
     return {
@@ -59,6 +60,6 @@ export default class ToDo_addMutation extends Relay.Mutation {
         id: this.props.Viewer.id,
         ToDo_TotalCount: this.props.Viewer.ToDo_TotalCount + 1,
       },
-    };
+    }
   }
 }

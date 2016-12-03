@@ -1,88 +1,99 @@
 /* @flow weak */
-'use strict';
+'use strict'
 
-import ToDo_updateStatusMutation from '../../relay/ToDo_updateStatusMutation';
-import ToDo_updateRenameMutation from '../../relay/ToDo_updateRenameMutation';
-import Relay from 'react-relay';
-import ToDoTextInput from './ToDoTextInput';
-import React, {
-  PropTypes,
-} from 'react';
-import {
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import Relay from 'react-relay'
+import React, { PropTypes, } from 'react'
+import { Image, Platform, StyleSheet, Text, TouchableHighlight, View, } from 'react-native'
 
-class ToDo extends React.Component
-{
+import ToDoTextInput from './ToDoTextInput'
+import ToDo_updateStatusMutation from '../../relay/ToDo_updateStatusMutation'
+import ToDo_updateRenameMutation from '../../relay/ToDo_updateRenameMutation'
+
+
+class ToDo extends React.Component {
+
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
-  };
+  }
 
   static propTypes = {
     onDestroy: PropTypes.func.isRequired,
     style: View.propTypes.style,
-  };
+  }
+
   state = {
     isEditing: false,
-  };
-  constructor(props, context) {
-    super(props, context);
-    this._handleCompletePress = this._handleCompletePress.bind(this);
-    this._handleLabelPress = this._handleLabelPress.bind(this);
-    this._handleTextInputCancel = this._handleTextInputCancel.bind(this);
-    this._handleTextInputDelete = this._handleTextInputDelete.bind(this);
-    this._handleTextInputSave = this._handleTextInputSave.bind(this);
-    this._setEditMode = this._setEditMode.bind(this);
   }
+
+  constructor( props, context ) {
+    super( props, context )
+
+    this._handleCompletePress = this._handleCompletePress.bind( this )
+    this._handleLabelPress = this._handleLabelPress.bind( this )
+    this._handleTextInputCancel = this._handleTextInputCancel.bind( this )
+    this._handleTextInputDelete = this._handleTextInputDelete.bind( this )
+    this._handleTextInputSave = this._handleTextInputSave.bind( this )
+    this._setEditMode = this._setEditMode.bind( this )
+  }
+
   _handleCompletePress() {
-    var ToDo_Complete = !this.props.ToDo.ToDo_Complete;
+
+    var ToDo_Complete = !this.props.ToDo.ToDo_Complete
     this.context.relay.commitUpdate(
-      new ToDo_updateStatusMutation({
+      new ToDo_updateStatusMutation( {
         ToDo_Complete,
         ToDo: this.props.ToDo,
         Viewer: this.props.Viewer,
-      })
-    );
+      } )
+    )
   }
+
   _handleLabelPress() {
-    this._setEditMode(true);
+    this._setEditMode( true )
   }
+
   _handleTextInputCancel() {
-    this._setEditMode(false);
+
+    this._setEditMode( false )
   }
+
   _handleTextInputDelete() {
-    this._setEditMode(false);
-    this.props.onDestroy();
+
+    this._setEditMode( false )
+    this.props.onDestroy()
   }
-  _handleTextInputSave(ToDo_Text) {
-    this._setEditMode(false);
+
+  _handleTextInputSave( ToDo_Text ) {
+
+    this._setEditMode( false )
     this.context.relay.commitUpdate(
-      new ToDo_updateRenameMutation({ToDo: this.props.ToDo, ToDo_Text})
-    );
+      new ToDo_updateRenameMutation( { ToDo: this.props.ToDo, ToDo_Text } )
+    )
   }
-  _setEditMode(shouldEdit) {
-    this.setState({isEditing: shouldEdit});
+
+  _setEditMode( shouldEdit ) {
+
+    this.setState( { isEditing: shouldEdit } )
   }
+
   renderCompleteCheckbox() {
+
     const imageModule = this.props.ToDo.ToDo_Complete ?
-      require('../images/todo_checkbox-active.png') :
-      require('../images/todo_checkbox.png');
-    return (
+      require( '../images/todo_checkbox-active.png' ) :
+      require( '../images/todo_checkbox.png' )
+    return(
       <TouchableHighlight
         onPress={this._handleCompletePress}
         style={styles.checkbox}
         underlayColor="transparent">
         <Image source={imageModule} />
       </TouchableHighlight>
-    );
+    )
   }
+
   render() {
-    return (
+
+    return(
       <View style={[this.props.style, styles.container]}>
         {this.renderCompleteCheckbox()}
         {this.state.isEditing ?
@@ -108,13 +119,13 @@ class ToDo extends React.Component
           </TouchableHighlight>
         }
       </View>
-    );
+    )
   }
 }
 
-export default Relay.createContainer(ToDo, {
+export default Relay.createContainer( ToDo, {
   fragments: {
-    ToDo: () => Relay.QL`
+    ToDo: () => Relay.QL `
       fragment on ToDo {
         ToDo_Complete
         id
@@ -123,15 +134,15 @@ export default Relay.createContainer(ToDo, {
         ${ToDo_updateRenameMutation.getFragment('ToDo')}
       }
     `,
-    Viewer: () => Relay.QL`
+    Viewer: () => Relay.QL `
       fragment on Viewer {
         ${ToDo_updateStatusMutation.getFragment('Viewer')}
       }
     `,
   },
-});
+} )
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   checkbox: {
     width: 40,
   },
@@ -160,4 +171,4 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     textAlign: 'left',
   },
-});
+} )

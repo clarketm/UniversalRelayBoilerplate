@@ -1,9 +1,9 @@
 /* @flow weak */
 
-import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay';
+import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
 import { GraphQLID, GraphQLNonNull } from 'graphql'
 
-import ViewerType from '../../../../graphql/type/ViewerType';
+import ViewerType from '../../../../graphql/type/ViewerType'
 
 
 export default mutationWithClientMutationId( {
@@ -14,18 +14,16 @@ export default mutationWithClientMutationId( {
   outputFields: {
     deletedToDoId: {
       type: GraphQLID,
-      resolve: ( {id} ) => id,
+      resolve: ( { id } ) => id,
     },
     Viewer: {
       type: ViewerType,
-      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneObject( 'User', { id: objectManager.getViewerUserId( ) } )
+      resolve: ( parent, args, context, { rootValue: objectManager } ) => objectManager.getOneObject( 'User', { id: objectManager.getViewerUserId() } )
     },
   },
-  mutateAndGetPayload: ( {id}, context, { rootValue: objectManager } ) =>
-  {
-    var local_id = fromGlobalId(id).id;
-    return objectManager.remove( 'ToDo', { id: local_id} )
-    .then( ( ) => ( {id} ) )
-    ;
+  mutateAndGetPayload: ( { id }, context, { rootValue: objectManager } ) => {
+    var local_id = fromGlobalId( id ).id
+    return objectManager.remove( 'ToDo', { id: local_id } )
+      .then( () => ( { id } ) )
   }
-} );
+} )

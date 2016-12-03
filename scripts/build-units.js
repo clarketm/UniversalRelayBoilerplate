@@ -5,10 +5,9 @@ import path from 'path'
 
 
 const currentPackageJson = JSON.parse( fs.readFileSync( './package.json' ) )
-const packageJson = JSON.parse( fs.readFileSync( './scripts/package.json' ) )
+const packageJson = JSON.parse( fs.readFileSync( './scripts/package.part.json' ) )
 
-function addToPackageJson( fileName )
-{
+function addToPackageJson( fileName ) {
   const newPackageJson = JSON.parse( fs.readFileSync( fileName ) )
 
   if( newPackageJson.scripts )
@@ -24,55 +23,43 @@ function addToPackageJson( fileName )
     Object.assign( packageJson.devDependencies, newPackageJson.devDependencies )
 }
 
-function getPackages( directoryName: String )
-{
+function getPackages( directoryName: String ) {
   fs.readdirSync( directoryName )
-    .filter( unitName =>
-    {
+    .filter( unitName => {
       if( fs.statSync( directoryName + unitName )
-        .isDirectory() )
-      {
-        const packageJsonName = path.resolve( directoryName, unitName, 'package.json' )
-        try
-        {
+        .isDirectory() ) {
+        const packageJsonName = path.resolve( directoryName, unitName, 'package.part.json' )
+        try {
           addToPackageJson( packageJsonName )
-        }
-        catch( e )
-        {
-          if( e.code === 'ENOENT' )
-          {
+        } catch( e ) {
+          if( e.code === 'ENOENT' ) {
             getPackages( directoryName + unitName + "/" )
             return false
-          }
-          else
+          } else
             throw e
         }
       }
     } )
 }
 
-function sortObject( object: Object )
-{
+function sortObject( object: Object ) {
   var t = {}
   Object.keys( object )
     .sort()
-    .forEach( function ( k )
-    {
+    .forEach( function ( k ) {
       t[ k ] = object[ k ]
     } )
   return t
 }
 
-function orderPackages()
-{
+function orderPackages() {
   packageJson.scripts = sortObject( packageJson.scripts )
   packageJson.betterScripts = sortObject( packageJson.betterScripts )
   packageJson.dependencies = sortObject( packageJson.dependencies )
   packageJson.devDependencies = sortObject( packageJson.devDependencies )
 }
 
-function createPackageJson()
-{
+function createPackageJson() {
   // Make sure not to overwrite version information
   packageJson.version = currentPackageJson.version
   packageJson.name = currentPackageJson.name
@@ -84,44 +71,33 @@ function createPackageJson()
   fs.writeFileSync( './package.json', JSON.stringify( packageJson, null, 2 ), 'utf8' )
 }
 
-function getMutations( directoryName: String, mutationsImports: Array, mutationsExports: Array )
-{
+function getMutations( directoryName: String, mutationsImports: Array, mutationsExports: Array ) {
   fs.readdirSync( directoryName )
-    .filter( unitName =>
-    {
+    .filter( unitName => {
       if( fs.statSync( directoryName + unitName )
-        .isDirectory() )
-      {
+        .isDirectory() ) {
         const mutationsDir = path.resolve( directoryName, unitName, 'graphql/mutation' )
-        try
-        {
+        try {
           fs.readdirSync( mutationsDir )
-            .filter( mutationName =>
-            {
-              if( mutationName.endsWith( '.js' ) )
-              {
+            .filter( mutationName => {
+              if( mutationName.endsWith( '.js' ) ) {
                 const mutationNameNoJs = mutationName.substring( 0, mutationName.length - 3 )
                 mutationsImports.push( "import " + mutationNameNoJs + " from '../../" + directoryName + unitName + "/graphql/mutation/" + mutationNameNoJs + "'" )
                 mutationsExports.push( "  " + mutationNameNoJs + "," )
               }
             } )
-        }
-        catch( e )
-        {
-          if( e.code === 'ENOENT' )
-          {
+        } catch( e ) {
+          if( e.code === 'ENOENT' ) {
             getMutations( directoryName + unitName + "/", mutationsImports, mutationsExports )
             return false
-          }
-          else
+          } else
             throw e
         }
       }
     } )
 }
 
-function createMutations()
-{
+function createMutations() {
   const mutationsImports = []
   const mutationsExports = []
 
@@ -145,43 +121,32 @@ function createMutations()
   fs.writeFileSync( './configuration/graphql/_mutations.js', mutations.join( '\r\n' ), 'utf8' )
 }
 
-function getSchemas( directoryName: String, schemasImports: Array )
-{
+function getSchemas( directoryName: String, schemasImports: Array ) {
   fs.readdirSync( directoryName )
-    .filter( unitName =>
-    {
+    .filter( unitName => {
       if( fs.statSync( directoryName + unitName )
-        .isDirectory() )
-      {
+        .isDirectory() ) {
         const schemasDir = path.resolve( directoryName, unitName, 'graphql/model' )
-        try
-        {
+        try {
           fs.readdirSync( schemasDir )
-            .filter( mutationName =>
-            {
-              if( mutationName.endsWith( '.js' ) )
-              {
+            .filter( mutationName => {
+              if( mutationName.endsWith( '.js' ) ) {
                 const mutationNameNoJs = mutationName.substring( 0, mutationName.length - 3 )
                 schemasImports.push( "import " + mutationNameNoJs.replace( '.', '_' ) + " from '../../" + directoryName + unitName + "/graphql/model/" + mutationNameNoJs + "'" )
               }
             } )
-        }
-        catch( e )
-        {
-          if( e.code === 'ENOENT' )
-          {
+        } catch( e ) {
+          if( e.code === 'ENOENT' ) {
             getSchemas( directoryName + unitName + "/", schemasImports )
             return false
-          }
-          else
+          } else
             throw e
         }
       }
     } )
 }
 
-function createSchemas()
-{
+function createSchemas() {
   const schemasImports = []
 
   getSchemas( 'units/', schemasImports )
@@ -201,40 +166,30 @@ function createSchemas()
   fs.writeFileSync( './configuration/graphql/_schemas.js', schemas.join( '\r\n' ), 'utf8' )
 }
 
-function getViewerFields( directoryName: String, viewerFieldsImports: Array, viewerFieldsExports: Array )
-{
+function getViewerFields( directoryName: String, viewerFieldsImports: Array, viewerFieldsExports: Array ) {
   fs.readdirSync( directoryName )
-    .filter( unitName =>
-    {
+    .filter( unitName => {
       if( fs.statSync( directoryName + unitName )
-        .isDirectory() )
-      {
-        try
-        {
+        .isDirectory() ) {
+        try {
           const viewerFieldsImportName = unitName.replace( /-/g, '_' )
           if( fs.statSync( directoryName + unitName + '/graphql/type/_ViewerFields.js' )
-            .isFile() )
-          {
+            .isFile() ) {
             viewerFieldsImports.push( "import " + viewerFieldsImportName + " from '../../" + directoryName + unitName + "/graphql/type/_ViewerFields'" )
             viewerFieldsExports.push( "  ..." + viewerFieldsImportName + "," )
           }
-        }
-        catch( e )
-        {
-          if( e.code === 'ENOENT' )
-          {
+        } catch( e ) {
+          if( e.code === 'ENOENT' ) {
             getViewerFields( directoryName + unitName + "/", viewerFieldsImports, viewerFieldsExports )
             return false
-          }
-          else
+          } else
             throw e
         }
       }
     } )
 }
 
-function createViewerFields()
-{
+function createViewerFields() {
   const viewerFieldsImports = []
   const viewerFieldsExports = []
 

@@ -1,27 +1,25 @@
 /* @flow weak */
-'use strict';
+'use strict'
 
-import React, {
-  PropTypes,
-} from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-} from 'react-native';
+import React, { PropTypes, } from 'react'
+import { StyleSheet, Text, TouchableHighlight, } from 'react-native'
+
 
 export default class StatusButton extends React.Component {
+
   static propTypes = {
     active: PropTypes.bool.isRequired,
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
+    children: PropTypes.oneOfType( [
+      PropTypes.arrayOf( PropTypes.node ),
       PropTypes.node,
-    ]).isRequired,
+    ] ).isRequired,
     onPress: PropTypes.func.isRequired,
     style: Text.propTypes.style,
-  };
+  }
+
   render() {
-    return (
+
+    return(
       <TouchableHighlight
         onPress={this.props.onPress}
         style={[
@@ -37,7 +35,7 @@ export default class StatusButton extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   activeButton: {
     borderColor: 'rgba(175, 47, 47, 0.2)',
     borderRadius: 6,
@@ -52,4 +50,4 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
   },
-});
+} )

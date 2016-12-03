@@ -7,16 +7,15 @@ import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
 
 
-export default class ToDo_Properties extends React.Component
-{
-  static propTypes =
-  {
+export default class ToDo_Properties extends React.Component {
+
+  static propTypes = {
     ToDo_Text: React.PropTypes.string.isRequired,
     updateHandler: React.PropTypes.func.isRequired,
   }
 
-  constructor( props : any, context )
-  {
+  constructor( props: any, context ) {
+
     super( props, context )
 
     this.state = {
@@ -24,33 +23,24 @@ export default class ToDo_Properties extends React.Component
     }
   }
 
-  _handle_Open( )
-  {
-    this.setState( {
-      Dialog_IsOpen: true
-    } )
+  _handle_Open() {
+
+    this.setState( { Dialog_IsOpen: true } )
   }
 
-  _handle_onTouchTap_Close = ( ) =>
-  {
-    this.setState( {
-      Dialog_IsOpen: false
-    } )
+  _handle_onTouchTap_Close = () => {
+
+    this.setState( { Dialog_IsOpen: false } )
   }
 
-  _handle_onTouchTap_OK = ( ) =>
-  {
-    this.props.updateHandler( {
-      ToDo_Text: this.refs.ToDo_Text.getValue( ),
-    } )
+  _handle_onTouchTap_OK = () => {
 
-    this.setState( {
-      Dialog_IsOpen: false
-    } )
+    this.props.updateHandler( { ToDo_Text: this.refs.ToDo_Text.getValue() } )
+
+    this.setState( { Dialog_IsOpen: false } )
   }
 
-  render( )
-  {
+  render() {
     return(
       <div>
         <Dialog

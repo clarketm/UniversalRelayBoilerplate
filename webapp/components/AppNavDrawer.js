@@ -5,22 +5,19 @@ import React from 'react';
 import Relay from 'react-relay';
 
 import Drawer from 'material-ui/Drawer';
-import {spacing, typography, zIndex} from 'material-ui/styles';
+import { spacing, typography, zIndex } from 'material-ui/styles';
 
 import { NavMenuTitle } from '../../configuration/webapp/components/ChromeSettings';
 import NavMenu from '../../configuration/webapp/components/NavMenu';
 
 
-class AppNavDrawer extends React.Component
-{
-  _handle_onTouchTap_Drawer = ( ) =>
-  {
-    this.context.router.push('/');
-    this.props.onRequestChangeNavDrawer(false);
+class AppNavDrawer extends React.Component {
+  _handle_onTouchTap_Drawer = ( ) => {
+    this.context.router.push( '/' );
+    this.props.onRequestChangeNavDrawer( false );
   }
 
-  render( )
-  {
+  render( ) {
     const {
       location,
       docked,
@@ -30,7 +27,7 @@ class AppNavDrawer extends React.Component
       style,
     } = this.props;
 
-    return (
+    return(
       <Drawer
         style={style}
         docked={docked}
@@ -70,7 +67,7 @@ AppNavDrawer.contextTypes = {
 
 export default Relay.createContainer( AppNavDrawer, {
   fragments: {
-    Viewer: () => Relay.QL`
+    Viewer: ( ) => Relay.QL `
       fragment on Viewer {
         ${ NavMenu.getFragment( 'Viewer' ) },
       }

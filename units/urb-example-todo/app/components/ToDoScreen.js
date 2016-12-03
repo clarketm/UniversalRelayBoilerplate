@@ -1,35 +1,29 @@
 /* @flow weak */
-'use strict';
+'use strict'
 
-import Relay from 'react-relay';
-import StatusButton from './StatusButton';
-import ToDoList from './ToDoList';
-import ToDoListFooter from './ToDoListFooter';
-import React from 'react';
-import {
-  Platform,
-  StyleSheet,
-  View,
-} from 'react-native';
+import Relay from 'react-relay'
+import React from 'react'
+import { Platform, StyleSheet, View, } from 'react-native'
+
+import StatusButton from './StatusButton'
+import ToDoList from './ToDoList'
+import ToDoListFooter from './ToDoListFooter'
 
 
+class ToDoScreen extends React.Component {
 
-
-class ToDoScreen extends React.Component
-{
-  constructor(props, context)
-  {
-    super(props, context);
+  constructor( props, context ) {
+    super( props, context )
   }
 
-  _handleStatusChange = ( status ) =>
-  {
-    this.props.relay.setVariables( { status } )
-  };
+  _handleStatusChange = ( status ) => {
 
-  render()
-  {
-    return (
+    this.props.relay.setVariables( { status } )
+  }
+
+  render() {
+
+    return(
       <View style={styles.container}>
           <View style={styles.actionList}>
           <StatusButton
@@ -59,16 +53,16 @@ class ToDoScreen extends React.Component
           Viewer={this.props.Viewer}
         />
       </View>
-    );
+    )
   }
 }
 
-export default Relay.createContainer(ToDoScreen, {
+export default Relay.createContainer( ToDoScreen, {
   initialVariables: {
     status: 'any',
   },
   fragments: {
-    Viewer: variables => Relay.QL`
+    Viewer: variables => Relay.QL `
       fragment on Viewer {
         ToDo_TotalCount
         ${ToDoList.getFragment('Viewer', {status: variables.status})}
@@ -76,9 +70,9 @@ export default Relay.createContainer(ToDoScreen, {
       }
     `,
   },
-});
+} )
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   actionList: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -106,4 +100,4 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.03,
     shadowRadius: 1,
   },
-});
+} )
