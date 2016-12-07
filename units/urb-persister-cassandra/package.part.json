@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "cassandra-driver": "3.1.5",
-    "express-cassandra": "1.4.2"
+    "cassandra-driver": "3.1.6",
+    "express-cassandra": "1.6.2"
   }
 }
