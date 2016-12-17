@@ -342,9 +342,17 @@ export default class ObjectManager {
     return cursor
   }
 
-  static initializePersisters( runAsPartOfSetupDatabase: boolean ): void {
+  static initializePersisters( runAsPartOfSetupDatabase: boolean, cb: Function ): void {
+
+    console.log( "🚀 Initializing persisters - start ..." )
+
+    // TODO x8000 This should be re-done to work properly with more than one persister
     for( let persister of setPersisters )
-      persister.initialize( runAsPartOfSetupDatabase )
+      persister.initialize( runAsPartOfSetupDatabase, () => {
+
+        console.log( "🏆 Initializing Cassandra persister - success." )
+        cb()
+      } )
   }
 }
 

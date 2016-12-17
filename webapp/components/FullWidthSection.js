@@ -1,9 +1,14 @@
+/* @flow weak */
+
 import React, { Component, PropTypes } from 'react'
 import ClearFix from 'material-ui/internal/ClearFix'
 import spacing from 'material-ui/styles/spacing'
+
 import withWidth, { SMALL, MEDIUM, LARGE } from '../scripts/withWidth'
 
+
 const desktopGutter = spacing.desktopGutter
+
 
 class FullWidthSection extends Component {
   static propTypes = {
@@ -13,14 +18,14 @@ class FullWidthSection extends Component {
     style: PropTypes.object,
     useContent: PropTypes.bool,
     width: PropTypes.number.isRequired,
-  };
+  }
 
   static defaultProps = {
     useContent: false,
     contentType: 'div',
-  };
+  }
 
-  getStyles( ) {
+  getStyles() {
     return {
       root: {
         padding: desktopGutter,
@@ -45,7 +50,7 @@ class FullWidthSection extends Component {
     }
   }
 
-  render( ) {
+  render() {
     const {
       style,
       useContent,
@@ -55,9 +60,9 @@ class FullWidthSection extends Component {
       ...other,
     } = this.props
 
-    const styles = this.getStyles( )
+    const styles = this.getStyles()
 
-    let content;
+    let content
     if( useContent )
       content = React.createElement(
         contentType, { style: Object.assign( styles.content, contentStyle ) },
@@ -82,4 +87,4 @@ class FullWidthSection extends Component {
   }
 }
 
-export default withWidth( )( FullWidthSection )
+export default withWidth()( FullWidthSection )

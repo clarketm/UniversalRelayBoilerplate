@@ -9,6 +9,8 @@ const Uuid_Null = '00000000-0000-0000-0000-000000000000'
 
 export default class PersisterMemory {
 
+  stores: Object;
+
   constructor() {
 
     this.stores = {}
@@ -22,7 +24,7 @@ export default class PersisterMemory {
       return( this.stores[ entityName ] = [] )
   }
 
-  findIndexes( entityName: string, filter: object ) {
+  findIndexes( entityName: string, filter: Object ) {
 
     const store = this.getStore( entityName )
     const arr_Indexes = []
@@ -42,7 +44,7 @@ export default class PersisterMemory {
     return arr_Indexes
   }
 
-  findObjects( entityName: string, filter: object ) {
+  findObjects( entityName: string, filter: Object ) {
 
     const store = this.getStore( entityName )
     const arr_Objects = []
@@ -62,13 +64,13 @@ export default class PersisterMemory {
     return arr_Objects
   }
 
-  getOneObject( entityName: string, ObjectType: any, filters: Array < any > ): Promise {
+  getOneObject( entityName: string, ObjectType: any, filters: Array < any > ): Promise < any > {
 
     const arr_Objects = filters.map( filter => this.findObjects( entityName, filter )[ 0 ] )
     return Promise.resolve( arr_Objects )
   }
 
-  getObjectList( entityName: string, ObjectType: any, filters: Array < any > ): Promise {
+  getObjectList( entityName: string, ObjectType: any, filters: Array < any > ): Promise < Array < any > > {
 
     const arr_arr_Objects = filters.map( filter => this.findObjects( entityName, filter ) )
     return Promise.resolve( arr_arr_Objects )
@@ -84,7 +86,7 @@ export default class PersisterMemory {
     return Promise.resolve()
   }
 
-  update( entityName: string, fields: any ): Promise {
+  update( entityName: string, fields: any ): Promise < > {
 
     // Only use the ID to find the record to delete
     const newFields = {}
@@ -98,7 +100,7 @@ export default class PersisterMemory {
     return Promise.resolve()
   }
 
-  remove( entityName: string, fields: any ): Promise {
+  remove( entityName: string, fields: any ): Promise < > {
 
     const store = this.getStore( entityName )
 
@@ -144,13 +146,21 @@ export default class PersisterMemory {
     return id1 == id2
   }
 
-  addTableSchema( tableName: string, tableSchema: object ): void {
+  addTableSchema( tableName: string, tableSchema: Object ): void {
 
     // Nothing to do, it's all in memory
   }
 
-  initialize( runAsPartOfSetupDatabase: boolean ): void {
+  confirmHealth(): Promise < > {
+
+    return new Promise( ( resolve, reject ) => {
+      resolve()
+    } )
+  }
+
+  initialize( runAsPartOfSetupDatabase: boolean, cb: Function ): void {
 
     // Nothing to do, it's all in memory
+    cb()
   }
 }

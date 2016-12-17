@@ -14,8 +14,9 @@ import {
   fullBlack,
   pinkA200,
   white
-} from 'material-ui/styles/colors';
-import {fade} from 'material-ui/utils/colorManipulator';
+} from 'material-ui/styles/colors'
+import { fade } from 'material-ui/utils/colorManipulator'
+
 
 export default {
   spacing: {
@@ -51,4 +52,4 @@ export default {
   avatar: {
     borderColor: white,
   },
-};
+}

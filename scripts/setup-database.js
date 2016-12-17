@@ -1,3 +1,5 @@
+/* @flow */
+
 import process from 'process'
 
 import schema from '../graphql/schema' // Schema for GraphQL server
@@ -7,5 +9,8 @@ import ObjectManager from '../graphql/ObjectManager'
 import _schemas_system from '../graphql/model/_schemas'
 import _schemas from '../configuration/graphql/_schemas'
 
-console.log( 'Initializing schema' )
-ObjectManager.initializePersisters( true )
+
+ObjectManager.initializePersisters( true, () => {
+
+  process.exit()
+} )

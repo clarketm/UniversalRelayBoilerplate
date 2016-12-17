@@ -12,14 +12,17 @@ require( 'dotenv' ).load()
 const Uuid_Null = '00000000-0000-0000-0000-000000000000'
 const AWS = vogels.AWS;
 
-if( process.env.DYNAMODB_SECRETACCESSKEY )
-// test on aws
+
+if( process.env.DYNAMODB_SECRETACCESSKEY ) {
+
+  // test on aws
   AWS.config.update( {
-  accessKeyId: process.env.DYNAMODB_ACCESSKEYID,
-  secretAccessKey: process.env.DYNAMODB_SECRETACCESSKEY,
-  region: process.env.DYNAMODB_REGION
-} )
-else {
+    accessKeyId: process.env.DYNAMODB_ACCESSKEYID,
+    secretAccessKey: process.env.DYNAMODB_SECRETACCESSKEY,
+    region: process.env.DYNAMODB_REGION
+  } )
+} else {
+
   // test locally via docker
   AWS.config.update( { region: 'us-east-1' } )
   const opts = { endpoint: 'http://localhost:8000', apiVersion: '2012-08-10' }
@@ -35,7 +38,7 @@ export default class PersisterDynamoDB {
     this.canAddMoreTableSchemas = true
   }
 
-  getOneObject( entityName: string, ObjectType: any, filters: Array < any > ): Promise {
+  getOneObject( entityName: string, ObjectType: any, filters: Array < any > ): Promise < any > {
 
     const resultPromises = []
 
@@ -58,7 +61,7 @@ export default class PersisterDynamoDB {
     return Promise.all( resultPromises )
   }
 
-  getObjectList( entityName: string, ObjectType: any, filters: Array < any > ): Promise {
+  getObjectList( entityName: string, ObjectType: any, filters: Array < any > ): Promise < Array < Object > > {
 
     const resultPromises = []
 
@@ -70,6 +73,8 @@ export default class PersisterDynamoDB {
             query = query
               .where( fieldName )
               .equals( filter[ fieldName ] )
+            if( fieldName !== 'id' && fieldName.includes( 'Id' ) )
+              query = query.usingIndex( fieldName + 'Index' )
           }
 
           query.exec( ( err, queryResults ) => {
@@ -88,7 +93,7 @@ export default class PersisterDynamoDB {
     return Promise.all( resultPromises )
   }
 
-  add( entityName: string, fields: any, ObjectType: any ) {
+  add( entityName: string, fields: any, ObjectType: any ): Promise < > {
 
     return new Promise( ( resolve, reject ) => {
       this.tables[ entityName ].create( fields, ( err ) => {
@@ -100,7 +105,7 @@ export default class PersisterDynamoDB {
     } )
   }
 
-  update( entityName: string, fields: any ): Promise {
+  update( entityName: string, fields: any ): Promise < > {
 
     return new Promise( ( resolve, reject ) => {
       this.tables[ entityName ].update( fields, ( err ) => {
@@ -112,7 +117,7 @@ export default class PersisterDynamoDB {
     } )
   }
 
-  remove( entityName: string, fields: any ): Promise {
+  remove( entityName: string, fields: any ): Promise < > {
 
     return new Promise( ( resolve, reject ) => {
       this.tables[ entityName ].destroy( fields, ( err ) => {
@@ -160,10 +165,10 @@ export default class PersisterDynamoDB {
     return id1 == id2
   }
 
-  addTableSchema( tableName: string, tableSchema: object ): void {
+  addTableSchema( tableName: string, tableSchema: Object ): void {
 
     if( !this.canAddMoreTableSchemas ) {
-      console.error( "Attempting to add table schemas to Vogel after createTables." )
+      console.error( "💩 Attempting to add table schemas to Vogel after createTables." )
       process.exit( 1 )
     }
 
@@ -197,7 +202,7 @@ export default class PersisterDynamoDB {
         vogelFieldDefinition = Joi.boolean()
       else {
         // Crappy catch all for now just for testing
-        console.log( 'Dynamo DB: unsupported field type ' + fieldType )
+        console.log( "💩  Dynamo DB: unsupported field type " + fieldType )
         vogelFieldDefinition = Joi.string()
       }
 
@@ -207,26 +212,32 @@ export default class PersisterDynamoDB {
     // Copy indexes
     if( tableSchema.indexes )
       for( let fieldName of tableSchema.indexes )
-        vogelsSchema.indexes[ fieldName ] = { hashKey: fieldName, name: fieldName + 'Index', type: 'global' }
+        vogelsSchema.indexes.push( { hashKey: fieldName, name: fieldName + 'Index', type: 'global' } )
 
     this.tables[ tableName ] = vogels.define( tableName, vogelsSchema )
   }
 
-  initialize( runAsPartOfSetupDatabase: boolean ): void {
+  confirmHealth(): Promise < > {
 
-    console.log( 'Initializing DynamoDB persister - start' )
+    //
+    return new Promise( ( resolve, reject ) => {
+      resolve()
+    } )
+  }
+
+  initialize( runAsPartOfSetupDatabase: boolean, cb: Function ): void {
 
     // All table schemas should have been added by now.
     this.canAddMoreTableSchemas = false
 
     vogels.createTables( ( err ) => {
       if( err ) {
-        console.log( "Initializing DynamoDB persister - error" )
+        console.log( "💩 Initializing DynamoDB persister - error" )
         console.log( err )
+        process.exit( 1 )
       } else {
-        console.log( "Initializing DynamoDB persister - success" )
-        if( runAsPartOfSetupDatabase )
-          process.exit()
+
+        cb()
       }
     } )
   }

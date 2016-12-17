@@ -1,4 +1,4 @@
-/* @flow weak */
+/* @flow */
 
 import express from 'express'
 
@@ -12,24 +12,22 @@ import { requestLoggerRenderOnServer } from '../configuration/server/requestLogg
 require( 'dotenv' ).load()
 
 
-// Log requests for statically served files
-function logPublicRequest( req, res, next ) {
-  logServerRequest( req, res, next, requestLoggerRenderOnServer )
-}
-
 // Use relative URL for asset path
 let assetsPath
 if( process.env.NODE_ENV == 'production' )
   assetsPath = `/assets/${version}`
 else {
-  const host = process.env.HOST
+  const host = process.env.HOST || 4444
   assetsPath = `http://${host}:8080/${version}`
 }
 
-let app = express()
-app.use( logPublicRequest )
+// Create express router
+const app = express()
 
-// Serve HTML
+// Log requests for statically served files
+app.use( ( req, res, next ) => logServerRequest( req, res, next, requestLoggerRenderOnServer ) )
+
+// Serve HTML file, JavaScript bundle and other assets
 app.get( '/*', ( req, res, next ) => {
   renderOnServer( req, res, next, assetsPath )
 } )

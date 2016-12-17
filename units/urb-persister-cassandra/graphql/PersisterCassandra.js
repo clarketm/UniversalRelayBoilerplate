@@ -1,4 +1,4 @@
-/* @flow weak */
+/* @flow */
 
 import CassandraDriver from 'cassandra-driver'
 import ExpressCassandra from 'express-cassandra'
@@ -15,7 +15,9 @@ const Uuid_Null = Uuid.fromString( Uuid_Null_String )
 const ExpressCassandraClient = ExpressCassandra.createClient( {
   clientOptions: CassandraOptions, // Options are pre-set in a separate part of the application, they are correct
   ormOptions: {
+
     defaultReplicationStrategy: {
+
       class: 'SimpleStrategy',
       replication_factor: 1
     },
@@ -24,14 +26,17 @@ const ExpressCassandraClient = ExpressCassandra.createClient( {
   }
 } )
 
+
 export default class PersisterCassandra {
 
+  tableSchemas: ? Map < string, Object > ;
+
   constructor() {
+
     this.tableSchemas = new Map()
-    this.canAddMoreTableSchemas = true
   }
 
-  getOneObject( entityName: string, ObjectType: any, filters: Array < any > ): Promise {
+  getOneObject( entityName: string, ObjectType: any, filters: Array < any > ): Promise < any > {
 
     const resultPromises = []
 
@@ -58,7 +63,7 @@ export default class PersisterCassandra {
     return Promise.all( resultPromises )
   }
 
-  getObjectList( entityName: string, ObjectType: any, filters: Array < any > ): Promise {
+  getObjectList( entityName: string, ObjectType: any, filters: Array < any > ): Promise < Array < Object > > {
 
     const resultPromises = []
 
@@ -98,7 +103,7 @@ export default class PersisterCassandra {
     }
   }
 
-  add( entityName: string, fields: any ) {
+  add( entityName: string, fields: any ): Promise < > {
 
     this.updateUuidsInFields( entityName, fields )
 
@@ -113,13 +118,13 @@ export default class PersisterCassandra {
     } )
   }
 
-  update( entityName: string, fields: any ) {
+  update( entityName: string, fields: any ): Promise < > {
 
     // TODO x2000 Optimize this with update, possibly. Maybe it's not so bad to read first after all
     return this.add( entityName, fields )
   }
 
-  remove( entityName: string, fields: any ) {
+  remove( entityName: string, fields: any ): Promise < > {
 
     this.updateUuidsInFields( entityName, fields )
 
@@ -171,67 +176,85 @@ export default class PersisterCassandra {
     return id1.equals( id2 )
   }
 
-  addTableSchema( tableName: string, tableSchema: object ): void {
+  addTableSchema( tableName: string, tableSchema: Object ): void {
 
-    if( !this.canAddMoreTableSchemas ) {
-      console.error( "Attempting to add table schemas after express-cassandra client connect." )
+    if( this.tableSchemas )
+      this.tableSchemas.set( tableName, tableSchema )
+    else {
+
+      console.error( "💩 Attempting to add table schemas after express-cassandra client connect." )
       process.exit( 1 )
     }
-    this.tableSchemas[ tableName ] = tableSchema
   }
 
-  initialize( runAsPartOfSetupDatabase: boolean ): void {
+  confirmHealth(): Promise < > {
 
-    console.log( 'Initializing Cassandra persister - start' )
+    return new Promise( ( resolve, reject ) => {
+      ExpressCassandraClient.modelInstance.User.get_cql_client( ( err, client ) => {
+        if( err )
+          reject( err )
+        else
+          client.execute(
+            'select release_version from system.local;', ( err, result ) => {
+              if( err )
+                reject( err )
+              else resolve()
+            } )
+      } )
+    } )
+  }
+
+  initialize( runAsPartOfSetupDatabase: boolean, cb: Function ): void {
 
     // All table schemas should have been added by now.
-    this.canAddMoreTableSchemas = false
+    const enrolledTables = this.tableSchemas
+    this.tableSchemas = null // Free up the memory that is not needed any more and indicate that we can not add any more
 
     ExpressCassandraClient.connect( ( err ) => {
       if( err )
-        console.log( err.message )
+        console.log( "💩 Could not connect to Cassandra: " + err.message )
+      else if( !enrolledTables )
+        console.log( "💩 Table schemas missing!" )
       else {
-        // TODO x7000 the code below replaces the Array.from function, which does not seem to be working
-        //loadATableSchema( Array.from( this.tableSchemas ), runAsPartOfSetupDatabase )
 
-        const tableSchemasAsArray = []
-        for( let tableName in this.tableSchemas )
-          tableSchemasAsArray.push( [ tableName, this.tableSchemas[ tableName ] ] )
-        this.loadATableSchema( tableSchemasAsArray, runAsPartOfSetupDatabase )
+        const arrSchemas = []
+        for( let tableName of enrolledTables.keys() )
+          arrSchemas.push( [ tableName, enrolledTables.get( tableName ) ] )
 
-        this.tableSchemas = null // Free up the memory that is not needed any more
+        this.loadOneTableSchemaFromArray( arrSchemas, runAsPartOfSetupDatabase, cb )
       }
     } )
   }
 
-  loadATableSchema( tableSchemasAsArray, runAsPartOfSetupDatabase: boolean ): void {
-    if( tableSchemasAsArray.length > 0 ) {
-      const tableName = tableSchemasAsArray[ 0 ][ 0 ]
-      const tableSchema = tableSchemasAsArray[ 0 ][ 1 ]
+  loadOneTableSchemaFromArray( arrSchemas: Array < any > , runAsPartOfSetupDatabase: boolean, cb: Function ): void {
+    if( arrSchemas.length > 0 ) {
+      const tableName = arrSchemas[ 0 ][ 0 ]
+      const tableSchema = arrSchemas[ 0 ][ 1 ]
 
-      tableSchemasAsArray.splice( 0, 1 )
+      arrSchemas.splice( 0, 1 )
 
       ExpressCassandraClient.loadSchema(
         tableName,
         tableSchema,
         ( err ) => {
           if( err ) {
-            console.log( 'Initializing Cassandra persister - error' )
+
+            console.log( "💩 Initializing Cassandra persister - error while creating " + tableName + "!" )
             console.error( err.message )
             process.exit( 1 )
           } else {
-            if( runAsPartOfSetupDatabase )
-              console.log( "Table ready: " + ExpressCassandraClient.modelInstance[ tableName ]._properties.name )
 
-            this.loadATableSchema( tableSchemasAsArray, runAsPartOfSetupDatabase ) // Load the next table
+            if( runAsPartOfSetupDatabase )
+              console.log( "🛢 Table " + ExpressCassandraClient.modelInstance[ tableName ]._properties.name + " ready." )
+
+            this.loadOneTableSchemaFromArray( arrSchemas, runAsPartOfSetupDatabase, cb ) // Load the next table
             return
           }
         }
       )
     } else {
-      console.log( 'Initializing Cassandra persister - success' )
-      if( runAsPartOfSetupDatabase )
-        process.exit()
+
+      cb()
     }
   }
 }

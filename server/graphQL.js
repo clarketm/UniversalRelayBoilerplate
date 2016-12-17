@@ -15,9 +15,6 @@ import _schemas_system from '../graphql/model/_schemas'
 import _schemas from '../configuration/graphql/_schemas'
 
 
-// Set up all persisters
-ObjectManager.initializePersisters( false )
-
 // Create router for GraphQL
 const router = express()
 

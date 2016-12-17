@@ -1,23 +1,22 @@
 /* @flow weak */
 /* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
+import Drawer from 'material-ui/Drawer'
+import { spacing, typography, zIndex } from 'material-ui/styles'
+import React from 'react'
+import Relay from 'react-relay'
 
-import Drawer from 'material-ui/Drawer';
-import { spacing, typography, zIndex } from 'material-ui/styles';
-
-import { NavMenuTitle } from '../../configuration/webapp/components/ChromeSettings';
-import NavMenu from '../../configuration/webapp/components/NavMenu';
+import { NavMenuTitle } from '../../configuration/webapp/components/ChromeSettings'
+import NavMenu from '../../configuration/webapp/components/NavMenu'
 
 
 class AppNavDrawer extends React.Component {
-  _handle_onTouchTap_Drawer = ( ) => {
-    this.context.router.push( '/' );
-    this.props.onRequestChangeNavDrawer( false );
+  _handle_onTouchTap_Drawer = () => {
+    this.context.router.push( '/' )
+    this.props.onRequestChangeNavDrawer( false )
   }
 
-  render( ) {
+  render() {
     const {
       location,
       docked,
@@ -25,7 +24,7 @@ class AppNavDrawer extends React.Component {
       onChangeList,
       open,
       style,
-    } = this.props;
+    } = this.props
 
     return(
       <Drawer
@@ -56,18 +55,18 @@ class AppNavDrawer extends React.Component {
           onChange={ onChangeList }
         />
       </Drawer>
-    );
+    )
   }
 }
 
 AppNavDrawer.contextTypes = {
   muiTheme: React.PropTypes.object.isRequired,
   router: React.PropTypes.object.isRequired
-};
+}
 
 export default Relay.createContainer( AppNavDrawer, {
   fragments: {
-    Viewer: ( ) => Relay.QL `
+    Viewer: () => Relay.QL `
       fragment on Viewer {
         ${ NavMenu.getFragment( 'Viewer' ) },
       }

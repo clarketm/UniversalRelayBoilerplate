@@ -18,16 +18,13 @@ import { validateEmail } from '../scripts/validation'
 require( 'dotenv' ).load()
 
 
-function logAuthRequest( req, res, next ) {
-  logServerRequest( req, res, next, requestLoggerAuth )
-}
-
-let auth = express()
+const auth = express()
 
 auth.use( bodyParser.json() )
-auth.use( logAuthRequest )
+auth.use( ( req, res, next ) => logServerRequest( req, res, next, requestLoggerAuth ) )
 
 auth.post( '/login', ( req, res ) => {
+
   const objectManager = new ObjectManager()
 
   let User_AccountName = req.body.User_AccountName.toLowerCase()

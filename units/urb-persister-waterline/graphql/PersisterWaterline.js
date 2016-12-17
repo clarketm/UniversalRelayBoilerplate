@@ -152,8 +152,16 @@ export default class PersisterWaterline {
     // Nothing to do, it's all in memory
   }
 
-  initialize( runAsPartOfSetupDatabase: boolean ): void {
+  confirmHealth(): Promise < > {
+
+    return new Promise( ( resolve, reject ) => {
+      resolve()
+    } )
+  }
+
+  initialize( runAsPartOfSetupDatabase: boolean, cb: Function ): void {
 
     // Nothing to do, it's all in memory
+    cb()
   }
 }
