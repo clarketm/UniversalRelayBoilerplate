@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "joi": "10.0.6",
+    "joi": "10.2.0",
     "node-uuid": "1.4.7",
     "vogels": "2.2.0"
   }
