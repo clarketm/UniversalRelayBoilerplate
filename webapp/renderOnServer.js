@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import Helmet from 'react-helmet'
 import IsomorphicRouter from 'isomorphic-relay-router'

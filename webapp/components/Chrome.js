@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 /* eslint react/prop-types: 0 */
 
 import AppBar from 'material-ui/AppBar'

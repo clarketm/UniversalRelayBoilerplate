@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import scorePassword_Simple from '../../../../units/urb-account-management/scripts/scorePassword_Simple'
 

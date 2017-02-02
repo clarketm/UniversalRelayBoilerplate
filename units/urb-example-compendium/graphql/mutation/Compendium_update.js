@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay';
 import { GraphQLString, GraphQLInt, GraphQLBoolean, GraphQLID, GraphQLNonNull } from 'graphql'

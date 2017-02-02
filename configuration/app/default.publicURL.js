@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 const publicURL = 'http://your.server.here.com'
 

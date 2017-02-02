@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import { GraphQLInt, GraphQLString } from 'graphql'
 import { connectionArgs, connectionFromArray } from 'graphql-relay'

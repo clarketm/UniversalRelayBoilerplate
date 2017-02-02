@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import cassandraDriver from 'cassandra-driver'
 

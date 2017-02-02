@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { GraphQLInt, GraphQLNonNull } from 'graphql'

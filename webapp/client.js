@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import IsomorphicRelay from 'isomorphic-relay'
 import IsomorphicRouter from 'isomorphic-relay-router'

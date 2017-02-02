@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 var util = require( 'util' )
 var events = require( 'events' )

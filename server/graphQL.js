@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import bodyParser from 'body-parser'
 import express from 'express'

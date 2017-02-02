@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import log from './log'
 import matchInDepth from '../scripts/matchInDepth'

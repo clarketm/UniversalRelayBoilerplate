@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import fs from 'fs'
 import path from 'path'

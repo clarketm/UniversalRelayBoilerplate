@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 // Function to log requests
 export default function logServerRequest( req, res, next, loggingFunction ) {

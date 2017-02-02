@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import jwt from 'jwt-simple'
 import path from 'path';

@@ -16,7 +16,7 @@ const config = {
   entry: {
     client: [
       'whatwg-fetch',
-      path.resolve('webapp/client.js')
+      path.resolve( 'webapp/client.js' )
     ]
   },
   output: {
@@ -25,25 +25,28 @@ const config = {
     publicPath: `http://${host}:8080/${version}/`
   },
   module: {
-    preLoaders: [
+    rules: [
       //{ test: /\.js(x)?$/, loader: 'eslint-loader', exclude: /node_modules/ } // TODO x1000: Consider removing
-    ],
-    loaders: [
-      { test: /\.js(x)?$/, loaders: [ 'react-hot-loader/webpack', 'babel' ], exclude: /node_modules/ },
-      { test: /\.json$/, loaders: [ 'json' ] },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract( 'style-loader', 'css-loader') },
+      { test: /\.js(x)?$/, use: [ 'react-hot-loader/webpack', 'babel-loader' ], exclude: /node_modules/ },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract( {
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader'
+        } )
+      },
     ]
   },
   plugins: [
-    new webpack.NoErrorsPlugin( ),
-    new webpack.EnvironmentPlugin( Object.keys( process.env ) ),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.EnvironmentPlugin(),
     new ExtractTextPlugin( '[name].css' ),
     new webpack.DefinePlugin( {
-        process: {
-            env: {
-                NODE_ENV: JSON.stringify( process.env.NODE_ENV )
-            }
+      process: {
+        env: {
+          NODE_ENV: JSON.stringify( process.env.NODE_ENV )
         }
+      }
     } ),
   ]
 }

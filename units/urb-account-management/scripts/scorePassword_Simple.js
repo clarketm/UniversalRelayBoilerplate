@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 export default function scorePassword_Simple(
   pass,

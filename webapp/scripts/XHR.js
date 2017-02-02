@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 export function postXHR( url: string, jsondata: any, onSuccess, onFailure ) {
 

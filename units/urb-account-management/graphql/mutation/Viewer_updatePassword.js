@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import bcrypt from 'bcrypt'
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'

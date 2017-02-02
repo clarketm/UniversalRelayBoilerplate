@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import { GraphQLScalarType } from 'graphql'
 import { GraphQLError } from 'graphql/error'

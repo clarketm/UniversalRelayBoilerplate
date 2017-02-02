@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 const AccountNameLengthMin = 4
 const AccountPasswordLengthMin = 4

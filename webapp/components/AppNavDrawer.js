@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 /* eslint react/prop-types: 0 */
 
 import Drawer from 'material-ui/Drawer'

@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import Joi from 'joi'
 import uuid from 'node-uuid'

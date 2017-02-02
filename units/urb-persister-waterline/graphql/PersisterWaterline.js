@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import uuid from 'node-uuid'
 import winston from 'winston'

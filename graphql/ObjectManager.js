@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import DataLoader from 'dataloader'
 import { cursorForObjectInConnection } from 'graphql-relay'
@@ -189,7 +189,7 @@ export default class ObjectManager {
       if( filter.id == defaultPersister.uuidNullAsString() )
         return Promise.resolve( User_0 )
 
-      // For all non-user, non 0 ids, load from data loader per protocol
+    // For all non-user, non 0 ids, load from data loader per protocol
     const loaderIdentifier = Object.keys( filter ).sort().join( ',' )
     const loader = this.getLoader( entityName, loaderIdentifier, false )
 
@@ -350,7 +350,7 @@ export default class ObjectManager {
     for( let persister of setPersisters )
       persister.initialize( runAsPartOfSetupDatabase, () => {
 
-        console.log( "🏆 Initializing Cassandra persister - success." )
+        console.log( "🏆 Initializing persisters - success." )
         cb()
       } )
   }

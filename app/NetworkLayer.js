@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import * as Keychain from 'react-native-keychain'
 import Relay from 'react-relay';

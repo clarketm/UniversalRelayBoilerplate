@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import React from 'react'
 import { createRoutes, IndexRoute, Route } from 'react-router'

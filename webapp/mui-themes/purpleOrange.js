@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 // This is simply a copy of the light theme as per:
 // http://www.material-ui.com/v0.15.0-alpha.1/#/customization/themes

@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 export function dateUTCToLocal( date ) {
   const dateLocal = new Date()

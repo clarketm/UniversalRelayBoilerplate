@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import React, { PropTypes } from 'react'
 import Relay from 'react-relay'

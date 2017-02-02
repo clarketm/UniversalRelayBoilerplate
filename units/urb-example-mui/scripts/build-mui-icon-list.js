@@ -34,7 +34,7 @@ rrs('./node_modules/material-ui/src/svg-icons/').forEach(function(file) {
 });
 
 let sourceCode = [
-	`/* @flow weak */`,
+	`// @flow weak`,
 	`/* eslint react/prop-types: 0 */`,
 	``,
   `import React from 'react';`,

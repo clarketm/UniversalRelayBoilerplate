@@ -1,4 +1,4 @@
-/* @flow weak */
+// @flow weak
 
 import defaultRequestLoggerAuth from '../../server/defaultRequestLoggerAuth'
 import defaultRequestLoggerGraphQL from '../../server/defaultRequestLoggerGraphQL'
