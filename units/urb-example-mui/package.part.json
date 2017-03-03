@@ -4,6 +4,6 @@
     "material-ui-credit-card-icons": "3.2.1"
   },
   "scripts": {
-    "build-mui-icon-list": "./node_modules/.bin/babel-node ./units/urb-example-mui/build-mui-icon-list.js"
+    "build-mui-icon-list": "./node_modules/.bin/babel-node ./units/urb-example-mui/scripts/build-mui-icon-list.js"
   }
 }

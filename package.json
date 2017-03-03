@@ -13,7 +13,7 @@
     "build-bundle-ios-dev": "react-native bundle --platform ios --dev true --entry-file index.ios.js --bundle-output ios/main.jsbundle --sourcemap-output ios/main.map",
     "build-lint": "eslint app configuration data graphql scripts server units webapp",
     "build-lint-fix": "eslint --fix app configuration data graphql scripts server units webapp",
-    "build-mui-icon-list": "./node_modules/.bin/babel-node ./units/urb-example-mui/build-mui-icon-list.js",
+    "build-mui-icon-list": "./node_modules/.bin/babel-node ./units/urb-example-mui/scripts/build-mui-icon-list.js",
     "build-schema": "./node_modules/.bin/babel-node ./scripts/build-units.js && ./node_modules/.bin/babel-node ./scripts/build-schema.js",
     "build-schema-w": ".\\node_modules\\.bin\\babel-node .\\scripts\\build-units.js && .\\node_modules\\.bin\\babel-node .\\scripts\\build-schema.js",
     "build-server": "rm -rf build && npm run build-bump-version && npm run build-schema && npm run build-webpack && npm run build-babel",
@@ -141,6 +141,6 @@
     "webpack-dev-server": "2.2.1",
     "whatwg-fetch": "2.0.2"
   },
-  "version": "16.0.0",
+  "version": "16.0.1",
   "name": "UniversalRelayBoilerplate"
 }
