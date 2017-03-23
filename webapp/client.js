@@ -10,8 +10,9 @@ import { RelayNetworkLayer, urlMiddleware } from 'react-relay-network-layer'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import routes from '../configuration/webapp/routes'
-import { postXHR } from './scripts/XHR'
 import './styles/main.css'
+import Wrapper from './components/Wrapper'
+import { postXHR } from './scripts/XHR'
 
 
 // Use tap event plugin accoring to http://www.material-ui.com/#/get-started/installation
@@ -84,16 +85,26 @@ relay.injectNetworkLayer( new RelayNetworkLayer(
   }
 ) )
 
+function logPageView(){
+
+  // TODO: code to react to page changes. Most probably this should be moved to settings to enable google analytics, CRM, etc.
+}
+
 IsomorphicRelay.injectPreparedData( relay, data )
 const rootElement = document.getElementById( 'root' )
 
-match( {
-    routes,
-    history: browserHistory
-  },
-  ( error, redirectLocation, renderProps ) => {
-    IsomorphicRouter.prepareInitialRender( relay, renderProps ).then( props => {
-      ReactDOM.render( <Router {...props } />, rootElement )
-    } )
-  }
-)
+match( { routes, history: browserHistory }, ( error, redirectLocation, renderProps ) => {
+
+  IsomorphicRouter.prepareInitialRender( relay, renderProps ).then( props => {
+
+    ReactDOM.render(
+      <Wrapper
+      >
+        <Router { ...props } onUpdate={ logPageView } />
+      </Wrapper>,
+      rootElement
+    )
+
+  } )
+
+} )

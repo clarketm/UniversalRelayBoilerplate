@@ -8,16 +8,23 @@ export const LARGE = 3
 
 
 export default function withWidth( options = {} ) {
+
   const {
-    resizeInterval = 166,
+    resizeInterval = 0, // TODO: Should it be so small? Original value from  MUI example: 166,
   } = options
 
   return( MyComponent ) => {
     return class WithWidth extends Component {
+
       constructor( props, context ) {
+
         super( props, context )
+
+        const { width, innerWidth } = this.getWidth()
+
         this.state = {
-          width: this.getWidth(),
+          width,
+          innerWidth
         }
       }
 
@@ -37,6 +44,7 @@ export default function withWidth( options = {} ) {
       }
 
       getWidth() {
+
         const innerWidth = window.innerWidth
         let width
 
@@ -48,25 +56,28 @@ export default function withWidth( options = {} ) {
           width = SMALL
         }
 
-        return width
+        return { width, innerWidth }
       }
 
       updateWidth() {
-        let width = this.getWidth()
 
-        if( width !== this.state.width ) {
-          this.setState( {
-            width: width,
-          } )
-        }
+        const { width, innerWidth } = this.getWidth()
+
+        if( width !== this.state.width )
+          this.setState( { width } )
+
+        if( innerWidth !== this.state.innerWidth )
+          this.setState( { innerWidth } )
       }
 
       render() {
+
         return(
-          <EventListener target="window" onResize={this.handleResize}>
+          <EventListener target='window' onResize={ this.handleResize }>
             <MyComponent
-              {...this.props}
-              width={this.state.width}
+              { ...this.props }
+              width={ this.state.width }
+              innerWidth={ this.state.innerWidth }
             />
           </EventListener>
         )

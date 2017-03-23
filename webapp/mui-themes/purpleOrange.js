@@ -43,6 +43,10 @@ export default {
     canvasColor: white,
     borderColor: grey300,
     disabledColor: fade( darkBlack, 0.3 ),
+    backCanvas: {
+      viewportBackgroundColor: white,
+      navDrawerBoxShadow: true
+    },
   },
   avatar: {
     borderColor: white,

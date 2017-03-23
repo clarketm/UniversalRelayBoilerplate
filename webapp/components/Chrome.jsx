@@ -1,137 +1,132 @@
 // @flow weak
-/* eslint react/prop-types: 0 */
 
 import AppBar from 'material-ui/AppBar'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import React from 'react'
 import Relay from 'react-relay'
-import spacing from 'material-ui/styles/spacing'
 
 import AppNavDrawer from './AppNavDrawer'
 import ChromeHelmet from '../../configuration/webapp/components/ChromeHelmet'
 import ChromeRightIcon from '../../configuration/webapp/components/ChromeRightIcon'
 import Footer from '../../configuration/webapp/components/Footer'
 import { MainScreenTitle } from '../../configuration/webapp/components/ChromeSettings'
-import muiTheme from '../../configuration/webapp/muiTheme.js'
-import withWidth, { LARGE, MEDIUM } from '../scripts/withWidth'
+import muiTheme from '../../configuration/webapp/muiTheme'
+import { LARGE, MEDIUM, SMALL } from '../scripts/ViewportDimensions'
 
 
 class Chrome extends React.Component {
+
+  muiTheme: Object;
+  state: {
+    navDrawerIsOpen: boolean,
+  };
+
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired,
+    rbContext: React.PropTypes.object,
+  }
+
+  static childContextTypes = {
+    muiTheme: React.PropTypes.object,
+  }
+
   constructor( props, context ) {
     super( props, context )
 
     this.state = {
-      navDrawerOpen: false,
+      navDrawerIsOpen: false,
     }
 
-    this.muiTheme = getMuiTheme(
-      muiTheme, { userAgent: navigator.userAgent }
-    )
+    this.muiTheme = getMuiTheme( muiTheme, { userAgent: navigator.userAgent } )
   }
 
   getChildContext() {
+
     return( {
-      muiTheme: this.muiTheme
+      muiTheme: this.muiTheme,
     } )
   }
 
   _handle_onTouchTap_NavigationToggle = () => {
-    this._handle_RequestChangeNavDrawer( !this.state.navDrawerOpen )
+
+    this._handle_RequestChangeNavDrawer( !this.state.navDrawerIsOpen )
   }
 
   _handle_RequestChangeNavDrawer = ( open ) => {
-    this.setState( {
-      navDrawerOpen: open,
-    } )
+
+    this.setState( { navDrawerIsOpen: open } )
   }
 
   _handle_onChangeList_AppNavDrawer = ( event, value ) => {
+
     this.context.router.push( value )
-    this.setState( {
-      navDrawerOpen: false,
-    } )
+    this.setState( { navDrawerIsOpen: false } )
   }
 
-
   getStyles() {
+
     const styles = {
       appBar: {
         position: 'fixed',
         zIndex: this.muiTheme.zIndex.appBar + 1,
         top: 0,
       },
-      root: {
-        paddingTop: spacing.desktopKeylineIncrement,
-        minHeight: 400,
+      viewport: {
+        paddingLeft: 0,
+        minHeight: 500,
       },
-      content: {
-        margin: spacing.desktopGutter,
-      },
-      contentWhenMedium: {
-        margin: `${spacing.desktopGutter * 2}px ${spacing.desktopGutter * 3}px`,
-      },
+      navDrawer: {},
+      viewportContainer: {
+        backgroundColor: this.muiTheme.rawTheme.palette.backCanvas.viewportBackgroundColor
+      }
     }
-
-    if( this.props.width === MEDIUM || this.props.width === LARGE )
-      styles.content = Object.assign( styles.content, styles.contentWhenMedium )
 
     return styles
   }
 
   render() {
+
     const styles = this.getStyles()
 
-    let {
-      navDrawerOpen,
-    } = this.state
+    let { navDrawerIsOpen } = this.state
 
-    const {
-      prepareStyles,
-    } = this.muiTheme
-
-    let docked = false
     let showMenuIconButton = true
 
-    if( this.props.width === LARGE ) {
-      docked = true
-      navDrawerOpen = true
+    if( this.context.rbContext.viewportDimensions.get( this, 'muiSize' ) === LARGE ) {
+
+      navDrawerIsOpen = true
       showMenuIconButton = false
 
-      styles.navDrawer = {
-        zIndex: styles.appBar.zIndex - 1,
-      }
+      styles.navDrawer.zIndex = styles.appBar.zIndex - 1
       styles.appBar.paddingLeft = 276
-      styles.root.paddingLeft = 256
+      styles.viewport.paddingLeft = 256
     }
 
     return(
-      <div>
+      <div style={ styles.viewportContainer }>
         <ChromeHelmet />
         <AppBar
           onLeftIconButtonTouchTap={ this._handle_onTouchTap_NavigationToggle }
           title={ MainScreenTitle }
-          zDepth={0}
+          zDepth={ 0 }
           iconElementRight={ <ChromeRightIcon Viewer={this.props.Viewer} /> }
           style={styles.appBar}
           showMenuIconButton={showMenuIconButton}
         />
-        <div style={prepareStyles(styles.root)}>
-          <div style={prepareStyles(styles.content)}>
-            { this.props.children }
-          </div>
+        <div style={ styles.viewport }>
+          { this.props.children }
         </div>
         <AppNavDrawer
           Viewer={ this.props.Viewer }
-          style={styles.navDrawer}
-          location={location}
-          docked={docked}
-          onRequestChangeNavDrawer={this._handle_RequestChangeNavDrawer}
+          style={ styles.navDrawer }
+          location={ location }
+          docked={ true }
+          onRequestChangeNavDrawer={ this._handle_RequestChangeNavDrawer }
           onChangeList={ this._handle_onChangeList_AppNavDrawer }
-          open={navDrawerOpen}
+          open={ navDrawerIsOpen }
         />
         <Footer
           Viewer={ this.props.Viewer }
-          width={ this.props.width }
         />
       </div>
     )
@@ -140,18 +135,8 @@ class Chrome extends React.Component {
 
 //
 
-Chrome.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-}
-
-Chrome.childContextTypes = {
-  muiTheme: React.PropTypes.object,
-}
-
-//
-
 // It is important to retrieve UserToken2, since it is used in client.js
-export default Relay.createContainer( withWidth()( Chrome ), {
+export default Relay.createContainer( Chrome, {
   fragments: {
     Viewer: () => Relay.QL `
       fragment on Viewer {

@@ -44,6 +44,10 @@ export default {
     borderColor: grey300,
     disabledColor: fade( darkBlack, 0.3 ),
     pickerHeaderColor: cyan500,
+    backCanvas: {
+      viewportBackgroundColor: white,
+      navDrawerBoxShadow: true
+    },
   },
   avatar: {
     borderColor: white,

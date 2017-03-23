@@ -1,8 +1,5 @@
 // @flow weak
 
-// This is simply a copy of the light theme as per:
-// http://www.material-ui.com/v0.15.0-alpha.1/#/customization/themes
-
 import {
   darkBlack,
   grey100,
@@ -11,7 +8,8 @@ import {
   grey500,
   fullBlack,
   indigo300,
-  lightBlue700,
+  blue600,
+  lightBlue900,
   indigo400,
   redA700,
   white
@@ -35,8 +33,8 @@ export default {
   },
   fontFamily: 'Roboto, sans-serif',
   palette: {
-    primary1Color: lightBlue700,
-    primary2Color: indigo400,
+    primary1Color: blue600,
+    primary2Color: lightBlue900,
     primary3Color: grey400,
     accent1Color: redA700,
     accent2Color: grey100,
@@ -49,6 +47,10 @@ export default {
     pickerHeaderColor: indigo300,
     clockCircleColor: fade( darkBlack, 0.07 ),
     shadowColor: fullBlack,
+    backCanvas: {
+      viewportBackgroundColor: grey100,
+      navDrawerBoxShadow: false
+    },
   },
   avatar: {
     borderColor: white,

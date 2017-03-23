@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 /* eslint react/prop-types: 0 */
 
 import Drawer from 'material-ui/Drawer'
@@ -11,12 +11,20 @@ import NavMenu from '../../configuration/webapp/components/NavMenu'
 
 
 class AppNavDrawer extends React.Component {
+
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+    router: React.PropTypes.object.isRequired
+  }
+
   _handle_onTouchTap_Drawer = () => {
+
     this.context.router.push( '/' )
     this.props.onRequestChangeNavDrawer( false )
   }
 
   render() {
+
     const {
       location,
       docked,
@@ -26,13 +34,23 @@ class AppNavDrawer extends React.Component {
       style,
     } = this.props
 
+    const drawerContainerStyle = {
+      zIndex: zIndex.drawer - 100,
+      backgroundColor: this.context.muiTheme.rawTheme.palette.backCanvas.viewportBackgroundColor,
+
+    }
+
+    // If we do not want box shadow, override mui Drawer setting
+    if(!this.context.muiTheme.rawTheme.palette.backCanvas.navDrawerBoxShadow)
+    drawerContainerStyle.boxShadow = 0
+
     return(
       <Drawer
         style={style}
         docked={docked}
         open={open}
-        onRequestChange={onRequestChangeNavDrawer}
-        containerStyle={{zIndex: zIndex.drawer - 100}}
+        onRequestChange={ onRequestChangeNavDrawer }
+        containerStyle={ drawerContainerStyle }
       >
         <div
           style={ {
@@ -59,10 +77,6 @@ class AppNavDrawer extends React.Component {
   }
 }
 
-AppNavDrawer.contextTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
-  router: React.PropTypes.object.isRequired
-}
 
 export default Relay.createContainer( AppNavDrawer, {
   fragments: {

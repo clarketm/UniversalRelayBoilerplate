@@ -34,7 +34,7 @@ class Ensayo_Screen extends React.Component
   render( )
   {
     return (
-      <Card initiallyExpanded={true}>
+      <Card initiallyExpanded={ true }>
 
         <CardHeader title="Ensayo" subtitle="This means Essay in Spanish" />
 

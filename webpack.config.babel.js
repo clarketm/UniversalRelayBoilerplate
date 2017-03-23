@@ -8,7 +8,6 @@ const host = process.env.HOST
 console.log( 'Running Webpack, process.env.NODE_ENV=' + process.env.NODE_ENV + ', version=' + version )
 
 const config = {
-  devtool: ( process.env.NODE_ENV == 'production' ? 'source-map' : 'eval' ),
   devServer: {
     host,
     port: 8080
@@ -27,20 +26,28 @@ const config = {
   module: {
     rules: [
       //{ test: /\.js(x)?$/, loader: 'eslint-loader', exclude: /node_modules/ } // TODO x1000: Consider removing
-      { test: /\.js(x)?$/, use: [ 'react-hot-loader/webpack', 'babel-loader' ], exclude: /node_modules/ },
+      {
+        test: /\.js(x)?$/,
+        use: [ 'react-hot-loader/webpack', 'babel-loader' ],
+        exclude: /node_modules/
+      },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract( {
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader'
-        } )
+        use: ExtractTextPlugin.extract( { fallbackLoader: 'style-loader', loader: 'css-loader' } )
       },
     ]
   },
+
+  resolve: {
+    extensions: [ '.js', '.jsx' ]
+  },
+
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
+
     new webpack.EnvironmentPlugin(),
     new ExtractTextPlugin( '[name].css' ),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin( {
       process: {
         env: {
@@ -48,7 +55,9 @@ const config = {
         }
       }
     } ),
-  ]
+  ],
+
+  devtool: ( process.env.NODE_ENV == 'production' ? 'source-map' : 'eval' ),
 }
 
 export default config

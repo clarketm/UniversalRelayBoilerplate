@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import IsomorphicRouter from 'isomorphic-relay-router'
 import MobileDetect from 'mobile-detect'
 import path from 'path'
+import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import RelayLocalSchema from 'relay-local-schema'
 import { match } from 'react-router'
@@ -12,8 +13,10 @@ import { getUserByCookie, serveAuthenticationFailed } from '../server/checkCrede
 import isomorphicVars from '../configuration/webapp/scripts/isomorphicVars'
 import log from '../server/log'
 import ObjectManager from '../graphql/ObjectManager'
+import muiTheme from '../configuration/webapp/muiTheme'
 import routes from '../configuration/webapp/routes'
 import schema from '../graphql/schema' // Schema for GraphQL server
+import Wrapper from './components/Wrapper'
 
 
 // Read environment
@@ -77,13 +80,21 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
             else
               innerWidth = 1100 // Will qualify as LARGE
 
+            // TODO x0100 This should be removed, won't work in multi-request situation anyway
             global.window = { innerWidth: innerWidth }
 
             // Also set global location for the leftNav
             global.location = { pathname: req.originalUrl }
 
             // Get the react output HTML
-            const reactOutput = ReactDOMServer.renderToString( IsomorphicRouter.render( props ) )
+            const isomorphicResponse = IsomorphicRouter.render( props )
+            const reactOutput = ReactDOMServer.renderToString(
+              <Wrapper
+                innerWidth={ innerWidth }
+              >
+                { isomorphicResponse }
+              </Wrapper>
+            )
             const helmet = Helmet.rewind()
 
             res.render( path.resolve( __dirname, 'renderOnServer.ejs' ), {
@@ -93,6 +104,7 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
               title: helmet.title,
               meta: helmet.meta,
               link: helmet.link,
+              backgroundColor: muiTheme.palette.backCanvas.viewportBackgroundColor,
               isomorphicVars: isoVars,
               NODE_ENV: process.env.NODE_ENV,
             } )

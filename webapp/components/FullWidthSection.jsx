@@ -4,21 +4,26 @@ import React, { Component, PropTypes } from 'react'
 import ClearFix from 'material-ui/internal/ClearFix'
 import spacing from 'material-ui/styles/spacing'
 
-import withWidth, { SMALL, MEDIUM, LARGE } from '../scripts/withWidth'
+import { SMALL, MEDIUM, LARGE } from '../scripts/ViewportDimensions'
 
 
 const desktopGutter = spacing.desktopGutter
 
 
-class FullWidthSection extends Component {
+export default class FullWidthSection extends Component {
+
   static propTypes = {
     children: PropTypes.node,
     contentStyle: PropTypes.object,
     contentType: PropTypes.string,
     style: PropTypes.object,
-    useContent: PropTypes.bool,
-    width: PropTypes.number.isRequired,
+    useContent: PropTypes.bool
   }
+
+  static contextTypes = {
+    rbContext: React.PropTypes.object.isRequired,
+  }
+
 
   static defaultProps = {
     useContent: false,
@@ -51,14 +56,16 @@ class FullWidthSection extends Component {
   }
 
   render() {
+
     const {
       style,
       useContent,
       contentType,
       contentStyle,
-      width,
       ...other,
     } = this.props
+
+    const muiSize = this.context.rbContext.viewportDimensions.get( this, 'muiSize' )
 
     const styles = this.getStyles()
 
@@ -77,14 +84,12 @@ class FullWidthSection extends Component {
         style={Object.assign(
           styles.root,
           style,
-          width === SMALL && styles.rootWhenSmall,
-          width === MEDIUM && styles.rootWhenMedium,
-          width === LARGE && styles.rootWhenLarge)}
+          muiSize === SMALL && styles.rootWhenSmall,
+          muiSize === MEDIUM && styles.rootWhenMedium,
+          muiSize === LARGE && styles.rootWhenLarge)}
       >
-        {content}
+        { content }
       </ClearFix>
     )
   }
 }
-
-export default withWidth()( FullWidthSection )

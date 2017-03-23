@@ -18,11 +18,11 @@
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="manifest" href="/manifest.json">
-  
+
   <%- link %>
 
 </head>
-<body style="font-family: 'Roboto', sans-serif; margin: 0px; font-size: 13px; line-height: 20px;">
+<body style="font-family: 'Roboto', sans-serif; margin: 0px; font-size: 12px; line-height: 20px; background-color: <%- backgroundColor %>">
   <script>window.isomorphicVars = <%- isomorphicVars %></script>
   <script>window.process = { env: { NODE_ENV: '<%- NODE_ENV %>' } }</script>
   <div id="root"><%- reactOutput %></div>

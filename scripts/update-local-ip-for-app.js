@@ -32,7 +32,7 @@ if( IPAddress != undefined )
   updateIPInFile(
     './app/app.js',
     'let graphQLServerURL = "http://',
-    'let graphQLServerURL = "http://' +  IPAddress + ':4444/graphql";'
+    'let graphQLServerURL = "http://' +  IPAddress + ':5555/graphql";'
   )
   updateIPInFile(
     './.env',

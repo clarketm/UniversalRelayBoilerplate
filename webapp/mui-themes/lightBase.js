@@ -48,6 +48,10 @@ export default {
     pickerHeaderColor: cyan500,
     clockCircleColor: fade( darkBlack, 0.07 ),
     shadowColor: fullBlack,
+    backCanvas: {
+      viewportBackgroundColor: white,
+      navDrawerBoxShadow: true
+    },
   },
   avatar: {
     borderColor: white,

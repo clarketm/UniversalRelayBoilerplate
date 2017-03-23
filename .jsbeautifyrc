@@ -13,5 +13,35 @@
     "space_before_conditional": false,
     "space_in_empty_paren": false,
     "space_in_paren": true
+  },
+  "jsx": {
+    "brace_style": "collapse-preserve-inline",
+    "break_chained_methods": false,
+    "e4x": true,
+    "end_with_comma": true,
+    "end_with_newline": true,
+    "indent_size": 2,
+    "indent_with_tabs": false,
+    "preserve_newlines": true,
+    "max_preserve_newlines": 3,
+    "space_after_anon_function": true,
+    "space_before_conditional": false,
+    "space_in_empty_paren": false,
+    "space_in_paren": true
+  },
+  "json": {
+    "brace_style": "collapse-preserve-inline",
+    "break_chained_methods": false,
+    "e4x": true,
+    "end_with_comma": true,
+    "end_with_newline": true,
+    "indent_size": 2,
+    "indent_with_tabs": false,
+    "preserve_newlines": true,
+    "max_preserve_newlines": 3,
+    "space_after_anon_function": true,
+    "space_before_conditional": false,
+    "space_in_empty_paren": false,
+    "space_in_paren": true
   }
 }

@@ -1,15 +1,20 @@
 // @flow weak
 /* eslint react/prop-types: 0 */
 
+import { Card, CardHeader } from 'material-ui/Card'
+import TextField from 'material-ui/TextField'
 import React from 'react'
 import Relay from 'react-relay'
 
-import { Card, CardHeader } from 'material-ui/Card'
-import TextField from 'material-ui/TextField'
-
+import ResponsiveContentArea from '../../../../webapp/components/ResponsiveContentArea'
 import ToDo_addMutation from '../../relay/ToDo_addMutation'
 
+
 class ToDo_Screen extends React.Component {
+
+  state: {
+    ToDo_Text_New: string
+  };
 
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
@@ -49,8 +54,10 @@ class ToDo_Screen extends React.Component {
   }
 
   render() {
+
     return(
-      <Card>
+      <ResponsiveContentArea>
+      <Card initiallyExpanded={ true }>
 
         <CardHeader title="TO DOs" subtitle="List of TO DOs for user" />
 
@@ -67,6 +74,7 @@ class ToDo_Screen extends React.Component {
         </div>
 
       </Card>
+      </ResponsiveContentArea>
     )
   }
 }
