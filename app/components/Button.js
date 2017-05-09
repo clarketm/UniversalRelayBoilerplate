@@ -1,27 +1,21 @@
 // @flow weak
 
 import React from 'react'
-import
-{
-  Button as ElementsButton
-}
-from 'react-native-elements'
+import { Button as ElementsButton } from 'react-native-elements'
 
 
-export default class Button extends React.Component
-{
-  static propTypes =
-  {
+export default class Button extends React.Component {
+
+  static propTypes = {
     kind: React.PropTypes.string.isRequired,
   }
 
-  static contextTypes =
-  {
+  static contextTypes = {
     uiTheme: React.PropTypes.object,
   }
 
-  render()
-  {
+  render() {
+    
     const kindProps = this.context.uiTheme.buttonKinds[ this.props.kind ]
 
     if( kindProps == null )
@@ -30,8 +24,6 @@ export default class Button extends React.Component
     const props = Object.assign( {}, kindProps, this.props )
 
     delete props.kind
-
-    console.log( props )
 
     return <ElementsButton { ...props } />
   }

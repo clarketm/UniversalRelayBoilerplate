@@ -1,5 +1,5 @@
-// @flow weak
+// @flow
 
-const publicURL = 'http://your.server.here.com'
+const publicURL = 'http://universal-relay-boilerplate.herokuapp.com'
 
 export default publicURL

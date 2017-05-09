@@ -72,8 +72,7 @@ export default class NetworkLayer {
               return res
             } )
         }
-      ], { disableBatchQuery: true }
-    ) )
+      ] ) )
 
     if( listeningComponent )
       listeningComponent.updateEnvironment( UserToken1 == null )

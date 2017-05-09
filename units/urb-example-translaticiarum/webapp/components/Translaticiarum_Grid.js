@@ -27,6 +27,7 @@ class Translaticiarum_Grid extends React.Component {
   };
 
   static contextTypes = {
+    rbContext: React.PropTypes.object.isRequired,
     relay: Relay.PropTypes.Environment,
   }
 
@@ -137,7 +138,7 @@ class Translaticiarum_Grid extends React.Component {
     const firstDayEpoch = dateLocalToUTC( this.state.Date_Start ).getTime()
 
     // Depending on width, determine the number of days shows. Each day is 100 pixels
-    let numberOfDays = Math.floor( ( this.props.containerWidth - 120 ) / 100 )
+    let numberOfDays = Math.floor( ( this.context.rbContext.viewportDimensions.get( this, 'contentWidth' ) - 120 ) / 100 )
     if( numberOfDays < 1 ) numberOfDays = 1
     else if( numberOfDays > 7 ) numberOfDays = 7
 
