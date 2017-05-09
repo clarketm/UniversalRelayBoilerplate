@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <%- title %>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <%- meta %>
+
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="<%- assetsPath %>/client.css">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/manifest.json">
+
+  <%- link %>
+
+</head>
+<body style="font-family: 'Roboto', sans-serif; margin: 0px; font-size: 12px; line-height: 20px; background-color: <%- backgroundColor %>">
+  <script>window.isomorphicVars = <%- isomorphicVars %></script>
+  <script>window.process = { env: { NODE_ENV: '<%- NODE_ENV %>' } }</script>
+  <div id="root"><%- reactOutput %></div>
+  <script id="preloadedData" type="application/json"><%- preloadedData %></script>
+  <script src="<%- assetsPath %>/client.js"></script>
+</body>
+</html>

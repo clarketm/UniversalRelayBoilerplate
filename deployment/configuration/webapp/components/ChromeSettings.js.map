@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../configuration/webapp/components/ChromeSettings.js"],"names":["NavMenuTitle","MainScreenTitle"],"mappings":";;AAEO,GAAMA,mCAAe,MAArB;AACA,GAAMC,yCAAkB,6BAAxB","file":"ChromeSettings.js","sourcesContent":["// @flow weak\n\nexport const NavMenuTitle = \"Home\"\nexport const MainScreenTitle = \"Universal Relay Boilerplate\"\n"]}
