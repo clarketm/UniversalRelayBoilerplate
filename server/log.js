@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import winston from 'winston'
 

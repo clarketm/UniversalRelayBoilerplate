@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../configuration/webapp/muiTheme.js"],"names":[],"mappings":";;;AAGA,oE","file":"muiTheme.js","sourcesContent":["// @flow weak\n\n// Change the theme file name here to switch themes:\nimport muiTheme from '../../webapp/mui-themes/codeFoundries'\n\nexport default muiTheme;\n"]}

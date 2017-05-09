@@ -22,6 +22,7 @@ const ExpressCassandraClient = ExpressCassandra.createClient( {
       replication_factor: 1
     },
     migration: 'alter',
+    disableTTYConfirmation: true,
     createKeyspace: true
   }
 } )

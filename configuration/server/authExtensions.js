@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 /*eslint no-unused-vars: ["error", { "args": "none" }]*/
 export default function( auth )
