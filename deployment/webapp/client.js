@@ -42,12 +42,18 @@ alert('Authentication token retrieval failed');
 
 
 
+var site_id=window.configurationAsObject.site_id;
+var graphQLServerURL='/graphql'+(site_id?'?rb-site-builder-site-id='+site_id:'');
+
+
+
+
 var relay=new _reactRelay2.default.Environment();
 
 relay.injectNetworkLayer(new _reactRelayNetworkLayer.RelayNetworkLayer(
 [
 (0,_reactRelayNetworkLayer.urlMiddleware)({
-url:'/graphql'}),
+url:graphQLServerURL}),
 
 function(next){return function(req){
 req.headers['UserToken2']=UserToken2;
@@ -95,17 +101,20 @@ var rootElement=document.getElementById('root');
 
 (0,_reactRouter.match)({routes:_routes2.default,history:_reactRouter.browserHistory},function(error,redirectLocation,renderProps){
 
+setTimeout(function(){return(
+
 _isomorphicRelayRouter2.default.prepareInitialRender(relay,renderProps).then(function(props){
 
 _reactDom2.default.render(
 _react2.default.createElement(_Wrapper2.default,null,
-
 _react2.default.createElement(_reactRouter.Router,_extends({},props,{onUpdate:logPageView}))),
 
 rootElement);
 
 
-});
+}));},
+window.process.env.NODE_ENV=='development'?2000:0);
+
 
 });
 //# sourceMappingURL=client.js.map

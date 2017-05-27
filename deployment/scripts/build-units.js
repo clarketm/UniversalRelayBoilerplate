@@ -104,7 +104,7 @@ var mutationsExports=[];
 getMutations('units/',mutationsImports,mutationsExports);
 
 var mutations=[
-'// @flow weak',
+'// @flow',
 ''];
 
 mutations=mutations.concat(mutationsImports);
@@ -152,7 +152,7 @@ var schemasImports=[];
 getSchemas('units/',schemasImports);
 
 var schemas=[
-'// @flow weak',
+'// @flow',
 '/* eslint no-unused-vars: 0 */',
 ''];
 
@@ -196,7 +196,7 @@ var viewerFieldsExports=[];
 getViewerFields('units/',viewerFieldsImports,viewerFieldsExports);
 
 var viewerFields=[
-'// @flow weak',
+'// @flow',
 ''];
 
 viewerFields=viewerFields.concat(viewerFieldsImports);

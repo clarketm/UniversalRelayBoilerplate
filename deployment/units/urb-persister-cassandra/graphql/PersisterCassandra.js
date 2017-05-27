@@ -183,7 +183,7 @@ if(this.tableSchemas)
 this.tableSchemas.set(tableName,tableSchema);else
 {
 
-console.error("💩 Attempting to add table schemas after express-cassandra client connect.");
+console.error("💔 Attempting to add table schemas after express-cassandra client connect.");
 process.exit(1);
 }
 }},{key:'confirmHealth',value:function confirmHealth()
@@ -213,9 +213,9 @@ this.tableSchemas=null;
 
 ExpressCassandraClient.connect(function(err){
 if(err)
-console.log("💩 Could not connect to Cassandra: "+err.message);else
+console.log("💔 Could not connect to Cassandra: "+err.message);else
 if(!enrolledTables)
-console.log("💩 Table schemas missing!");else
+console.log("💔 Table schemas missing!");else
 {
 
 var arrSchemas=[];
@@ -240,7 +240,7 @@ tableSchema,
 function(err){
 if(err){
 
-console.log("💩 Initializing Cassandra persister - error while creating "+tableName+"!");
+console.log("💔 Initializing Cassandra persister - error while creating "+tableName+"!");
 console.error(err.message);
 process.exit(1);
 }else{

@@ -4,6 +4,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 const version = require( './configuration/package.js' ).version
 const host = process.env.HOST
+const port_webpack = process.env.PORT_WEBPACK
 
 console.log( 'Running Webpack, process.env.NODE_ENV=' + process.env.NODE_ENV + ', version=' + version )
 
@@ -11,7 +12,7 @@ const config = {
 
   devServer: {
     host,
-    port: 8080
+    port: port_webpack
   },
 
   entry: {
@@ -24,7 +25,7 @@ const config = {
   output: {
     path: path.resolve( `public/assets/${version}` ),
     filename: '[name].js',
-    publicPath: `http://${host}:8080/${version}/`
+    publicPath: `http://${host}:${port_webpack}/${version}/`
   },
 
   module: {

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../configuration/webapp/components/Wrapper.jsx"],"names":[],"mappings":";;AAEA,2D","file":"Wrapper.js","sourcesContent":["// @flow\n\nimport Wrapper from '../../../webapp/components/Wrapper'\n\n\nexport default Wrapper\n"]}

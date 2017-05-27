@@ -5,7 +5,7 @@ var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
 
 var _colors=require('material-ui/styles/colors');
-var _withWidth=require('../../../webapp/scripts/withWidth');
+var _ViewportDimensions=require('../../../webapp/scripts/ViewportDimensions');
 
 var _FullWidthSection=require('../../../webapp/components/FullWidthSection');var _FullWidthSection2=_interopRequireDefault(_FullWidthSection);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
@@ -32,7 +32,7 @@ Footer=function(_React$Component){_inherits(Footer,_React$Component);function Fo
 
 
 {
-if(this.props.width==_withWidth.LARGE)
+if(this.props.width==_ViewportDimensions.LARGE)
 styles.footer.paddingLeft=256+24;else
 
 styles.footer.paddingLeft=24;

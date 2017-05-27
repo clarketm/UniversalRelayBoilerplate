@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import Viewer_update from '../../units/urb-account-management/graphql/mutation/Viewer_update'
 import Viewer_updatePassword from '../../units/urb-account-management/graphql/mutation/Viewer_updatePassword'

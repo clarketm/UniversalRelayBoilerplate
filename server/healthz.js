@@ -17,7 +17,7 @@ healthz.get( '/', async( req, res, next ) => {
 
   } catch( err ) {
 
-    next( new Error( "💩 DB is unreachable" ) )
+    next( new Error( "💔 DB is unreachable" ) )
   }
 } )
 

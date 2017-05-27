@@ -168,7 +168,7 @@ return id1==id2;
 tableName,tableSchema){
 
 if(!this.canAddMoreTableSchemas){
-console.error("💩 Attempting to add table schemas to Vogel after createTables.");
+console.error("💔 Attempting to add table schemas to Vogel after createTables.");
 process.exit(1);
 }
 
@@ -202,7 +202,7 @@ if(fieldType=='boolean')
 vogelFieldDefinition=_joi2.default.boolean();else
 {
 
-console.log("💩  Dynamo DB: unsupported field type "+fieldType);
+console.log("💔  Dynamo DB: unsupported field type "+fieldType);
 vogelFieldDefinition=_joi2.default.string();
 }
 
@@ -232,7 +232,7 @@ this.canAddMoreTableSchemas=false;
 
 _vogels2.default.createTables(function(err){
 if(err){
-console.log("💩 Initializing DynamoDB persister - error");
+console.log("💔 Initializing DynamoDB persister - error");
 console.log(err);
 process.exit(1);
 }else{

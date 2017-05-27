@@ -37,10 +37,11 @@ props,context));_this.
 
 
 
+
 handle_onResize=function(){
 
-_this.viewportDimensions.handle_onResize();
-};_this.viewportDimensions=new _ViewportDimensions2.default();return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbContext:{viewportDimensions:this.viewportDimensions}};}},{key:'render',value:function render()
+_this.rbContext.viewportDimensions.handle_onResize();
+};_this.rbContext={};_this.rbContext.viewportDimensions=new _ViewportDimensions2.default();return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbContext:this.rbContext};}},{key:'render',value:function render()
 
 {
 

@@ -7,8 +7,8 @@ import getLocalIP from './getLocalIP'
 require( 'dotenv' ).load()
 
 
-// Determine port currently used in .env - this will be the port set. Use 4444 as default
-const port = process.env.PORT || 4444
+// Determine port currently used in .env - this will be the port set.
+const port = process.env.PORT
 
 let IPAddress = process.argv[ 2 ]
 

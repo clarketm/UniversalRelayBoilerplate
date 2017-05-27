@@ -17,7 +17,7 @@ res.sendStatus(200);_context.next=9;break;case 6:_context.prev=6;_context.t0=_co
 
 
 
-next(new Error("💩 DB is unreachable"));case 9:case'end':return _context.stop();}}},null,_this,[[0,6]]);});exports.default=
+next(new Error("💔 DB is unreachable"));case 9:case'end':return _context.stop();}}},null,_this,[[0,6]]);});exports.default=
 
 
 

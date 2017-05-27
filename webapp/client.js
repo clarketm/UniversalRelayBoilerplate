@@ -35,9 +35,15 @@ for( let fragment of data ) {
   }
 }
 
-
+// Verify authentication
 if( UserToken2.length == 0 )
   alert( 'Authentication token retrieval failed' )
+
+
+// Where is the GraphQL server? If we are in editing mode, site_id will be present in the configuration
+// GraphQL Server is relative to main server in directory graphql
+const site_id = window.configurationAsObject.site_id
+const graphQLServerURL = '/graphql' + ( site_id ? '?rb-site-builder-site-id=' + site_id : '' )
 
 
 // Create Relay environment
@@ -47,7 +53,7 @@ const relay = new Relay.Environment()
 relay.injectNetworkLayer( new RelayNetworkLayer(
   [
     urlMiddleware( {
-      url: '/graphql' // GraphQL Server is relative to main server in directory graphql
+      url: graphQLServerURL
     } ),
     next => req => {
       req.headers[ 'UserToken2' ] = UserToken2 // Provide token for server to prevent CSRF
@@ -85,7 +91,7 @@ relay.injectNetworkLayer( new RelayNetworkLayer(
   }
 ) )
 
-function logPageView(){
+function logPageView() {
 
   // TODO: code to react to page changes. Most probably this should be moved to settings to enable google analytics, CRM, etc.
 }
@@ -95,16 +101,19 @@ const rootElement = document.getElementById( 'root' )
 
 match( { routes, history: browserHistory }, ( error, redirectLocation, renderProps ) => {
 
-  IsomorphicRouter.prepareInitialRender( relay, renderProps ).then( props => {
+  setTimeout( () =>
 
-    ReactDOM.render(
-      <Wrapper
-      >
-        <Router { ...props } onUpdate={ logPageView } />
-      </Wrapper>,
-      rootElement
-    )
+    IsomorphicRouter.prepareInitialRender( relay, renderProps ).then( props => {
 
-  } )
+      ReactDOM.render(
+        <Wrapper>
+          <Router { ...props } onUpdate={ logPageView } />
+        </Wrapper>,
+        rootElement
+      )
+
+    } ),
+    window.process.env.NODE_ENV == 'development' ? 2000 : 0
+  ) // TODO x0100 Look at newer versions of webpack https://github.com/AndriyShepitsen/realsiterMaster/issues/51
 
 } )

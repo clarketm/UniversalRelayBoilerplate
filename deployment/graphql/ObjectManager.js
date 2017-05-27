@@ -47,6 +47,9 @@ this.Viewer_User_id=null;
 
 
 this.request=null;
+
+
+this.User_0=User_0;
 }_createClass(ObjectManager,[{key:'setViewerUserId',value:function setViewerUserId(
 
 
@@ -104,9 +107,15 @@ Viewer_User_id){
 this.Viewer_User_id=Viewer_User_id;
 }},{key:'setRequest',value:function setRequest(
 
-req){
+req,res){
 
 this.request=req;
+this.response=res;
+}},{key:'setSiteInformation',value:function setSiteInformation(
+
+siteInformation){
+
+this.siteInformation=siteInformation;
 }},{key:'getLoadersSingle',value:function getLoadersSingle(
 
 entityName){

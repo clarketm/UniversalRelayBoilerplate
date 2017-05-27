@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import fs from 'fs'
 import path from 'path'
@@ -104,7 +104,7 @@ function createMutations() {
   getMutations( 'units/', mutationsImports, mutationsExports )
 
   let mutations = [
-    '// @flow weak',
+    '// @flow',
     ''
   ]
   mutations = mutations.concat( mutationsImports )
@@ -152,7 +152,7 @@ function createSchemas() {
   getSchemas( 'units/', schemasImports )
 
   let schemas = [
-    '// @flow weak',
+    '// @flow',
     '/* eslint no-unused-vars: 0 */',
     ''
   ]
@@ -196,7 +196,7 @@ function createViewerFields() {
   getViewerFields( 'units/', viewerFieldsImports, viewerFieldsExports )
 
   let viewerFields = [
-    '// @flow weak',
+    '// @flow',
     ''
   ]
   viewerFields = viewerFields.concat( viewerFieldsImports )

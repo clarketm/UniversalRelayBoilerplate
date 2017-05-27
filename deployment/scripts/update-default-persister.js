@@ -14,7 +14,7 @@ waterline:'../../units/urb-persister-waterline/graphql/PersisterWaterline'};
 
 function updateDefaultPersister(fileName)
 {
-var defaultPersister=['// @flow weak','',
+var defaultPersister=['// @flow','',
 
 
 'import Persister from \''+fileName+'\'','','','const defaultPersister = new Persister( )','export default defaultPersister'];

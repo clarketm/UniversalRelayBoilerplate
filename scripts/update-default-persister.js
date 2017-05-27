@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import fs from 'fs'
 import path from 'path'
@@ -15,7 +15,7 @@ const supportedPersisters = {
 function updateDefaultPersister( fileName )
 {
   const defaultPersister = [
-    `// @flow weak`,
+    `// @flow`,
     ``,
     `import Persister from '` + fileName + `'`,
     ``,

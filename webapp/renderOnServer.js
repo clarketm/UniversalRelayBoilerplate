@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import Helmet from 'react-helmet'
 import IsomorphicRouter from 'isomorphic-relay-router'
@@ -9,14 +9,16 @@ import ReactDOMServer from 'react-dom/server'
 import RelayLocalSchema from 'relay-local-schema'
 import { match } from 'react-router'
 
-import { getUserByCookie, serveAuthenticationFailed } from '../server/checkCredentials.js'
+import { getUserByCookie, serveAuthenticationFailed } from '../server/checkCredentials'
 import isomorphicVars from '../configuration/webapp/scripts/isomorphicVars'
+import { getSiteInformation } from '../configuration/webapp/siteSettings'
 import log from '../server/log'
 import ObjectManager from '../graphql/ObjectManager'
 import muiTheme from '../configuration/webapp/muiTheme'
 import routes from '../configuration/webapp/routes'
 import schema from '../graphql/schema' // Schema for GraphQL server
-import Wrapper from './components/Wrapper'
+import { version } from '../configuration/package'
+import Wrapper from '../configuration/webapp/components/Wrapper'
 
 
 // Read environment
@@ -36,31 +38,65 @@ export function serveFailure( type, res, message, err ) {
   res.status( 500 ).sendFile( httpError500FileName )
 }
 
-export default( req, res, next, assetsPath ) => {
-  match( { routes, location: req.originalUrl }, ( error, redirectLocation, renderProps ) => {
-    if( error )
-      next( error )
-    else if( redirectLocation )
-      res.redirect( 302, redirectLocation.pathname + redirectLocation.search )
-    else if( renderProps )
-      reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps )
-    else
-      res.status( 404 ).sendFile( httpError404FileName )
-  } )
+
+export default async( req, res, next ) => {
+
+  let assetsPath
+
+  const siteInformation = await getSiteInformation( req, res )
+  if( siteInformation ) {
+
+    if( process.env.NODE_ENV === 'production' ) {
+
+      assetsPath = ( siteInformation.isSiteBuilderDisabled || siteInformation.inEditingMode ) ?
+        // When editing in production, use the assets with the configuration readign code intact (built when cutting a site version)
+        `/assets/${version}` :
+        // When in production mode, serve the assets compiled by factory's publisher
+        `/assets-site/${version}.${siteInformation.configurationAsObject.version}`
+
+    } else {
+
+      // When in development, always go to webpack
+      const host = process.env.HOST
+      const port_webpack = process.env.PORT_WEBPACK
+      assetsPath = `http://${host}:${port_webpack}/${version}`
+    }
+
+    match( { routes, location: req.originalUrl }, ( error, redirectLocation, renderProps ) => {
+      if( error )
+        next( error )
+      else if( redirectLocation )
+        res.redirect( 302, redirectLocation.pathname + redirectLocation.search )
+      else if( renderProps )
+        reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps, siteInformation )
+      else
+        res.status( 404 ).sendFile( httpError404FileName )
+    } )
+  } // If siteInformation was null, an error response has already been given
 }
 
-function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps ) {
-  // create individual object manager for each request
+function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps, siteInformation ) {
+
+  // Create individual object manager for each request
   const objectManager = new ObjectManager()
 
+  // Place site builder configuration into object manager
+  objectManager.setSiteInformation( siteInformation )
+
   getUserByCookie( objectManager, req, res )
-    .then( () => { res.codeFoundriesInjected = { user: objectManager.getOneObject( 'User', { id: objectManager.getViewerUserId() } ) } } )
     .then( () => {
+
+      // Inject request information in res
+      res.codeFoundriesInjected = { user: objectManager.getOneObject( 'User', { id: objectManager.getViewerUserId() } ) }
+    } )
+    .then( () => {
+
       try {
+
         const networkLayer = new RelayLocalSchema.NetworkLayer( {
           schema,
           rootValue: objectManager,
-          onError: ( errors, request ) => serveFailure( 'error', res, 'local network layer GraphQL failure', { errors, request } )
+          onError: ( errors, request ) => serveFailure( 'error', res, 'Local network layer GraphQL failure', { errors, request } )
         } )
 
         function render( { data, props } ) {
@@ -106,6 +142,11 @@ function reunderOnServerCorrectRequest( req, res, next, assetsPath, renderProps 
               link: helmet.link,
               backgroundColor: muiTheme.palette.backCanvas.viewportBackgroundColor,
               isomorphicVars: isoVars,
+              configurationAsObject: JSON.stringify( siteInformation.inEditingMode || process.env.NODE_ENV == 'development' ? siteInformation.configurationAsObject : {
+
+                // TODO 0x0050 Mask configurationAsObject.serverData
+                appData: siteInformation.configurationAsObject.appData
+              } ),
               NODE_ENV: process.env.NODE_ENV,
             } )
           } catch( err ) {

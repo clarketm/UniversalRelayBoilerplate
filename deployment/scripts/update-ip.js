@@ -8,7 +8,7 @@ require('dotenv').load();
 
 
 
-var port=process.env.PORT||4444;
+var port=process.env.PORT;
 
 var IPAddress=process.argv[2];
 

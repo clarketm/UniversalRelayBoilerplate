@@ -168,7 +168,7 @@ export default class PersisterDynamoDB {
   addTableSchema( tableName: string, tableSchema: Object ): void {
 
     if( !this.canAddMoreTableSchemas ) {
-      console.error( "💩 Attempting to add table schemas to Vogel after createTables." )
+      console.error( "💔 Attempting to add table schemas to Vogel after createTables." )
       process.exit( 1 )
     }
 
@@ -202,7 +202,7 @@ export default class PersisterDynamoDB {
         vogelFieldDefinition = Joi.boolean()
       else {
         // Crappy catch all for now just for testing
-        console.log( "💩  Dynamo DB: unsupported field type " + fieldType )
+        console.log( "💔  Dynamo DB: unsupported field type " + fieldType )
         vogelFieldDefinition = Joi.string()
       }
 
@@ -232,7 +232,7 @@ export default class PersisterDynamoDB {
 
     vogels.createTables( ( err ) => {
       if( err ) {
-        console.log( "💩 Initializing DynamoDB persister - error" )
+        console.log( "💔 Initializing DynamoDB persister - error" )
         console.log( err )
         process.exit( 1 )
       } else {

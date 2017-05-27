@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 /* eslint no-unused-vars: 0 */
 
 import Compendium from '../../units/urb-example-compendium/graphql/model/Compendium'

@@ -8,7 +8,7 @@ import ViewportDimensions from '../scripts/ViewportDimensions'
 
 export default class Wrapper extends React.Component {
 
-  viewportDimensions: ViewportDimensions;
+  rbContext: object;
 
   static childContextTypes = {
     rbContext: React.PropTypes.object,
@@ -20,7 +20,10 @@ export default class Wrapper extends React.Component {
 
     // TODO x0100 If a property for innerWidth is provided, use it for the initial request
 
-    this.viewportDimensions = new ViewportDimensions()
+    // Descendants can add other items to rbContext
+    this.rbContext = {}
+
+    this.rbContext.viewportDimensions = new ViewportDimensions()
   }
 
   componentDidMount() {
@@ -31,15 +34,13 @@ export default class Wrapper extends React.Component {
   getChildContext() {
 
     return( {
-      rbContext: {
-        viewportDimensions: this.viewportDimensions
-      }
+      rbContext: this.rbContext
     } )
   }
 
   handle_onResize = () => {
 
-    this.viewportDimensions.handle_onResize()
+    this.rbContext.viewportDimensions.handle_onResize()
   }
 
   render() {

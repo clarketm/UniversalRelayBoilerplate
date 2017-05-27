@@ -21,10 +21,12 @@
 
   <%- link %>
 
-</head>
-<body style="font-family: 'Roboto', sans-serif; margin: 0px; font-size: 12px; line-height: 20px; background-color: <%- backgroundColor %>">
+  <script>window.configurationAsObject = <%- configurationAsObject %></script>
   <script>window.isomorphicVars = <%- isomorphicVars %></script>
   <script>window.process = { env: { NODE_ENV: '<%- NODE_ENV %>' } }</script>
+
+</head>
+<body style="font-family: 'Roboto', sans-serif; margin: 0px; font-size: 12px; line-height: 20px; background-color: <%- backgroundColor %>">
   <div id="root"><%- reactOutput %></div>
   <script id="preloadedData" type="application/json"><%- preloadedData %></script>
   <script src="<%- assetsPath %>/client.js"></script>

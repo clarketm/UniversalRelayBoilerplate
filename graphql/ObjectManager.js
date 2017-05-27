@@ -47,6 +47,9 @@ export default class ObjectManager {
 
     // Request object, if available
     this.request = null
+
+    // Anonymous user available as property, for comparisons
+    this.User_0 = User_0
   }
 
   static registerEntity( entityName: string, EntityType: any, persister: any ): void {
@@ -104,9 +107,15 @@ export default class ObjectManager {
     this.Viewer_User_id = Viewer_User_id
   }
 
-  setRequest( req: any ): void {
+  setRequest( req: any, res: any ): void {
 
     this.request = req
+    this.response = res
+  }
+
+  setSiteInformation( siteInformation: Object ): void {
+
+    this.siteInformation = siteInformation
   }
 
   getLoadersSingle( entityName: string ) {
