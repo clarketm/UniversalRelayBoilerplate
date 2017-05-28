@@ -1,6 +1,6 @@
 // @flow weak
 
-import bcrypt from 'bcrypt'
+import bcryptjs from 'bcryptjs'
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
 import { GraphQLString, GraphQLID, GraphQLNonNull } from 'graphql'
 
@@ -52,7 +52,7 @@ export default mutationWithClientMutationId( {
 } )
 
 function promiseBcryptCompare( pass1, pass2 ) {
-  return new Promise( ( resolve, reject ) => bcrypt.compare( pass1, pass2,
+  return new Promise( ( resolve, reject ) => bcryptjs.compare( pass1, pass2,
     ( err, passwordsMatch ) => {
       if( err )
         reject( err )
@@ -62,7 +62,7 @@ function promiseBcryptCompare( pass1, pass2 ) {
 }
 
 function promiseBcryptHash( pass ) {
-  return new Promise( ( resolve, reject ) => bcrypt.hash( pass, 8,
+  return new Promise( ( resolve, reject ) => bcryptjs.hash( pass, 8,
     ( err, hash ) => {
       if( err )
         reject( err )

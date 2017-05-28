@@ -1,6 +1,6 @@
 // @flow weak
 
-import bcrypt from 'bcrypt'
+import bcryptjs from 'bcryptjs'
 import bodyParser from 'body-parser'
 import express from 'express'
 import jwt from 'jwt-simple'
@@ -38,7 +38,7 @@ auth.post( '/login', ( req, res ) => {
       else {
         const a_User = arr_Users[ 0 ]
 
-        bcrypt.compare( User_AccountPassword, a_User.User_AccountPassword, function ( err, User_AccountPasswordIsCorrect ) {
+        bcryptjs.compare( User_AccountPassword, a_User.User_AccountPassword, function ( err, User_AccountPasswordIsCorrect ) {
           if( User_AccountPasswordIsCorrect ) {
             res.codeFoundriesInjected = { user: a_User }
 
@@ -67,7 +67,7 @@ auth.post( '/createuser', ( req, res ) => {
       if( arr_Users.length > 0 )
         return Promise.reject( "User account already exists" )
       else
-        return new Promise( ( resolve ) => { bcrypt.hash( User_AccountPassword, 8, ( err, User_AccountPassword ) => resolve( User_AccountPassword ) ) } )
+        return new Promise( ( resolve ) => { bcryptjs.hash( User_AccountPassword, 8, ( err, User_AccountPassword ) => resolve( User_AccountPassword ) ) } )
           .then( ( User_AccountPassword ) => {
             // If account name looks like email address, use it as email
             const accountNameIsValidEmail = validateEmail( User_AccountName )

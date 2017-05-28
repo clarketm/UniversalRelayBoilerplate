@@ -1,6 +1,6 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
 
-var _bcrypt=require('bcrypt');var _bcrypt2=_interopRequireDefault(_bcrypt);
+var _bcryptjs=require('bcryptjs');var _bcryptjs2=_interopRequireDefault(_bcryptjs);
 var _bodyParser=require('body-parser');var _bodyParser2=_interopRequireDefault(_bodyParser);
 var _express=require('express');var _express2=_interopRequireDefault(_express);
 var _jwtSimple=require('jwt-simple');var _jwtSimple2=_interopRequireDefault(_jwtSimple);
@@ -38,7 +38,7 @@ res.status(401).json({error:'Incorrect user'});else
 {
 var a_User=arr_Users[0];
 
-_bcrypt2.default.compare(User_AccountPassword,a_User.User_AccountPassword,function(err,User_AccountPasswordIsCorrect){
+_bcryptjs2.default.compare(User_AccountPassword,a_User.User_AccountPassword,function(err,User_AccountPasswordIsCorrect){
 if(User_AccountPasswordIsCorrect){
 res.codeFoundriesInjected={user:a_User};
 
@@ -67,7 +67,7 @@ then(function(arr_Users){
 if(arr_Users.length>0)
 return Promise.reject("User account already exists");else
 
-return new Promise(function(resolve){_bcrypt2.default.hash(User_AccountPassword,8,function(err,User_AccountPassword){return resolve(User_AccountPassword);});}).
+return new Promise(function(resolve){_bcryptjs2.default.hash(User_AccountPassword,8,function(err,User_AccountPassword){return resolve(User_AccountPassword);});}).
 then(function(User_AccountPassword){
 
 var accountNameIsValidEmail=(0,_validation.validateEmail)(User_AccountName);
