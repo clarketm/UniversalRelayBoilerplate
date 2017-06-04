@@ -1,7 +1,6 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
 var _AppBar=require('material-ui/AppBar');var _AppBar2=_interopRequireDefault(_AppBar);
-var _getMuiTheme=require('material-ui/styles/getMuiTheme');var _getMuiTheme2=_interopRequireDefault(_getMuiTheme);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
 
@@ -10,16 +9,11 @@ var _ChromeHelmet=require('../../configuration/webapp/components/ChromeHelmet');
 var _ChromeRightIcon=require('../../configuration/webapp/components/ChromeRightIcon');var _ChromeRightIcon2=_interopRequireDefault(_ChromeRightIcon);
 var _Footer=require('../../configuration/webapp/components/Footer');var _Footer2=_interopRequireDefault(_Footer);
 var _ChromeSettings=require('../../configuration/webapp/components/ChromeSettings');
-var _muiTheme=require('../../configuration/webapp/muiTheme');var _muiTheme2=_interopRequireDefault(_muiTheme);
 var _ViewportDimensions=require('../scripts/ViewportDimensions');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
 
+
 Chrome=function(_React$Component){_inherits(Chrome,_React$Component);
-
-
-
-
-
 
 
 
@@ -38,37 +32,24 @@ props,context));_this.
 
 
 
-
-
-
-
-
-
-
-
-
 _handle_onTouchTap_NavigationToggle=function(){
-
 _this._handle_RequestChangeNavDrawer(!_this.state.navDrawerIsOpen);
 };_this.
 
 _handle_RequestChangeNavDrawer=function(open){
-
 _this.setState({navDrawerIsOpen:open});
 };_this.
 
 _handle_onChangeList_AppNavDrawer=function(event,value){
-
 _this.context.router.push(value);
 _this.setState({navDrawerIsOpen:false});
-};_this.state={navDrawerIsOpen:false};_this.muiTheme=(0,_getMuiTheme2.default)(_muiTheme2.default,{userAgent:navigator.userAgent});return _this;}_createClass(Chrome,[{key:'getChildContext',value:function getChildContext(){return{muiTheme:this.muiTheme};}},{key:'getStyles',value:function getStyles()
+};_this.state={navDrawerIsOpen:false};return _this;}_createClass(Chrome,[{key:'getStyles',value:function getStyles()
 
 {
-
 var styles={
 appBar:{
 position:'fixed',
-zIndex:this.muiTheme.zIndex.appBar+1,
+zIndex:this.context.muiTheme.zIndex.appBar+1,
 top:0},
 
 viewport:{
@@ -77,7 +58,7 @@ minHeight:500},
 
 navDrawer:{},
 viewportContainer:{
-backgroundColor:this.muiTheme.rawTheme.palette.backCanvas.viewportBackgroundColor}};
+backgroundColor:this.context.muiTheme.rawTheme.palette.backCanvas.viewportBackgroundColor}};
 
 
 
@@ -85,7 +66,6 @@ return styles;
 }},{key:'render',value:function render()
 
 {
-
 var styles=this.getStyles();var
 
 navDrawerIsOpen=this.state.navDrawerIsOpen;
@@ -93,7 +73,6 @@ navDrawerIsOpen=this.state.navDrawerIsOpen;
 var showMenuIconButton=true;
 
 if(this.context.rbContext.viewportDimensions.get(this,'muiSize')===_ViewportDimensions.LARGE){
-
 navDrawerIsOpen=true;
 showMenuIconButton=false;
 
@@ -125,12 +104,10 @@ onRequestChangeNavDrawer:this._handle_RequestChangeNavDrawer,
 onChangeList:this._handle_onChangeList_AppNavDrawer,
 open:navDrawerIsOpen}),
 
-_react2.default.createElement(_Footer2.default,{
-Viewer:this.props.Viewer})));
+_react2.default.createElement(_Footer2.default,{Viewer:this.props.Viewer})));
 
 
-
-}}]);return Chrome;}(_react2.default.Component);Chrome.contextTypes={router:_react2.default.PropTypes.object.isRequired,rbContext:_react2.default.PropTypes.object};Chrome.childContextTypes={muiTheme:_react2.default.PropTypes.object};exports.default=
+}}]);return Chrome;}(_react2.default.Component);Chrome.contextTypes={muiTheme:_react2.default.PropTypes.object,router:_react2.default.PropTypes.object.isRequired,rbContext:_react2.default.PropTypes.object};exports.default=
 
 
 

@@ -20,9 +20,7 @@ var _serverExtensions=require('../configuration/server/serverExtensions');var _s
 var _server=require('../webapp/server');var _server2=_interopRequireDefault(_server);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 
-
 require('dotenv').load();
-
 
 var startupInformation={
 name:_package.name,
@@ -85,30 +83,24 @@ router.use(_express2.default.static(_path2.default.resolve(__dirname+'/../public
 router.use('/*',_server2.default);
 
 
-
 _ObjectManager2.default.initializePersisters(false,function(){
 
 
-
-if(_process2.default.env.NODE_ENV=='production')
-router.listen(_process2.default.env.PORT,_process2.default.env.HOST);else
+if(_process2.default.env.NODE_ENV=='production')router.listen(_process2.default.env.PORT,_process2.default.env.HOST);else
 {
-
 
 var localhostDevelopmentServer=(0,_express2.default)();
 localhostDevelopmentServer.use(router);
 localhostDevelopmentServer.listen(_process2.default.env.PORT,'127.0.0.1');
-console.log("☄  DEVELOPMENT. Server listening on 127.0.0.1");
+console.log('☄  DEVELOPMENT. Server listening on 127.0.0.1');
 
 
 if(_process2.default.env.HOST!='127.0.0.1'){
-
 var localIPDevelopmentServer=(0,_express2.default)();
 localIPDevelopmentServer.use(router);
 localIPDevelopmentServer.listen(_process2.default.env.PORT,_process2.default.env.HOST);
-console.log("☄  DEVELOPMENT. Server listening on "+_process2.default.env.HOST);
+console.log('☄  DEVELOPMENT. Server listening on '+_process2.default.env.HOST);
 }
 }
-
 });
 //# sourceMappingURL=server.js.map

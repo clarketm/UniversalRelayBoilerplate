@@ -29,7 +29,7 @@
     "dev-webpack-w": "rmdir /s /q build & better-npm-run dev-webpack-w",
     "devw": "concurrently --kill-others \"npm run dev-webpack\" \"npm run dev-server\" ",
     "setup-database": "./node_modules/.bin/babel-node ./scripts/setup-database.js",
-    "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- memory && npm run update-ip && react-native link",
+    "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- memory && npm run update-ip && react-native link && (cd .git/hooks && ln -s -f ../../scripts/pre-commit.sh ./pre-commit)",
     "setup-local-cut-version": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- cassandra",
     "setup-local-w": "copy .\\configuration\\default.env .\\.env. && copy .\\configuration\\app\\default.publicURL.js configuration\\app\\publicURL.js && npm run update-default-persister -- memory && npm run update-ip && react-native link",
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
@@ -125,8 +125,9 @@
     "eslint-loader": "1.7.1",
     "eslint-plugin-react": "7.0.1",
     "extract-text-webpack-plugin": "2.1.0",
+    "flow-bin": "0.47.0",
     "nodemon": "1.11.0",
-    "prettier": "1.3.1",
+    "prettier": "1.4.2",
     "react-hot-loader": "3.0.0-beta.7",
     "react-native-drawer": "2.3.0",
     "react-native-elements": "0.12.2",
@@ -142,6 +143,6 @@
     "webpack-dev-server": "2.4.5",
     "whatwg-fetch": "2.0.3"
   },
-  "version": "19.1.0",
+  "version": "19.2.0",
   "name": "UniversalRelayBoilerplate"
 }
