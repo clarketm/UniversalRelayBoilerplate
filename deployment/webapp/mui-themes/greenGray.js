@@ -1,8 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});
 
-
-
-
 var _colors=require('material-ui/styles/colors');
 
 
@@ -14,7 +11,6 @@ var _colors=require('material-ui/styles/colors');
 
 
 var _colorManipulator=require('material-ui/utils/colorManipulator');exports.default=
-
 
 {
 spacing:{

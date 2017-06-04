@@ -76,9 +76,6 @@ res.status(401).json({error:reason});
 auth.post('/createuser',function _callee2(req,res){var objectManager,User_AccountName,User_AccountPassword;return regeneratorRuntime.async(function _callee2$(_context3){while(1){switch(_context3.prev=_context3.next){case 0:_context3.next=2;return regeneratorRuntime.awrap(
 getObjectManager(req,res));case 2:objectManager=_context3.sent;
 
-console.log('XXX objectManager.siteInformation.site_id');
-console.log(objectManager.siteInformation.site_id);
-
 User_AccountName=req.body.User_AccountName.toLowerCase();
 User_AccountPassword=req.body.User_AccountPassword;
 objectManager.
@@ -116,8 +113,6 @@ User_site_id:objectManager.siteInformation.site_id}));}).
 
 
 then(function(a_User){
-console.log('XXX a_User');
-console.log(a_User);
 res.codeFoundriesInjected={user:a_User};
 
 
@@ -128,7 +123,7 @@ res.json({success:true});
 }).
 catch(function(reason){
 res.status(401).json({error:''+reason});
-});case 8:case'end':return _context3.stop();}}},null,_this);});
+});case 6:case'end':return _context3.stop();}}},null,_this);});
 
 
 auth.post('/logout',function(req,res){

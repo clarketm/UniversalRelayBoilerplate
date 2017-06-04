@@ -146,7 +146,7 @@ var schemasImports=[];
 
 getSchemas('units/',schemasImports);
 
-var schemas=['// @flow','/* eslint no-unused-vars: 0 */',''];
+var schemas=['// @flow',''];
 schemas=schemas.concat(schemasImports);
 schemas=schemas.concat(['','export default true']);
 

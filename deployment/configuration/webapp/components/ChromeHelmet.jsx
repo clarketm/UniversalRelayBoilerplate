@@ -1,5 +1,5 @@
 // @flow
-/* eslint react/prop-types: 0 */
+
 
 import Helmet from 'react-helmet'
 import React from 'react'

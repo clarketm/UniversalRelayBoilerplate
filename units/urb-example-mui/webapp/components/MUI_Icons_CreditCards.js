@@ -1,16 +1,14 @@
 // @flow weak
-/* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
+import React from 'react'
+import Relay from 'react-relay'
 
-import {Card} from 'material-ui/Card';
-import Divider from 'material-ui/Divider';
-import {List, ListItem} from 'material-ui/List';
-import IconButton from 'material-ui/IconButton';
-import MenuItem from 'material-ui/MenuItem';
-import SelectField from 'material-ui/SelectField';
-
+import { Card } from 'material-ui/Card'
+import Divider from 'material-ui/Divider'
+import { List, ListItem } from 'material-ui/List'
+import IconButton from 'material-ui/IconButton'
+import MenuItem from 'material-ui/MenuItem'
+import SelectField from 'material-ui/SelectField'
 
 import {
   Icon_AmericanExpress,
@@ -20,31 +18,35 @@ import {
   Icon_JCB,
   Icon_MasterCard,
   Icon_Visa,
-  getCreditCardIconByName
-} from 'material-ui-credit-card-icons';
+  getCreditCardIconByName,
+} from 'material-ui-credit-card-icons'
 
-
-class MUI_Icons_CreditCards extends React.Component
-{
-  constructor( props, context )
-  {
-    super( props, context )
+class MUI_Icons_CreditCards extends React.Component {
+  constructor(props, context) {
+    super(props, context)
     this.state = {
-      value: 'CreditCardOutline'
-    };
+      value: 'CreditCardOutline',
+    }
   }
 
-  handleChange = ( event, index, value ) => this.setState( {value} );
+  handleChange = (event, index, value) => this.setState({ value })
 
-  render( )
-  {
+  render() {
     return (
       <div>
         <Card>
           <List>
-            <ListItem key="0" primaryText="Icon_AmericanExpress" leftIcon={<Icon_AmericanExpress />} />
+            <ListItem
+              key="0"
+              primaryText="Icon_AmericanExpress"
+              leftIcon={<Icon_AmericanExpress />}
+            />
             <Divider inset={true} />
-            <ListItem key="1" primaryText="Icon_CreditCardOutline" leftIcon={<Icon_CreditCardOutline />} />
+            <ListItem
+              key="1"
+              primaryText="Icon_CreditCardOutline"
+              leftIcon={<Icon_CreditCardOutline />}
+            />
             <Divider inset={true} />
             <ListItem key="2" primaryText="Icon_DinersClub" leftIcon={<Icon_DinersClub />} />
             <Divider inset={true} />
@@ -61,15 +63,15 @@ class MUI_Icons_CreditCards extends React.Component
         <Card>
           <div>
             <IconButton>
-              { getCreditCardIconByName( this.state.value ) }
+              {getCreditCardIconByName(this.state.value)}
             </IconButton>
             <SelectField value={this.state.value} onChange={this.handleChange}>
-              <MenuItem value={'AmericanExpress'} primaryText="AmericanExpress"/>
-              <MenuItem value={'CreditCardOutline'} primaryText="CreditCardOutline"/>
-              <MenuItem value={'DinersClub'} primaryText="DinersClub"/>
-              <MenuItem value={'Discover'} primaryText="Discover"/>
-              <MenuItem value={'MasterCard'} primaryText="MasterCard"/>
-              <MenuItem value={'Visa'} primaryText="Visa"/>
+              <MenuItem value={'AmericanExpress'} primaryText="AmericanExpress" />
+              <MenuItem value={'CreditCardOutline'} primaryText="CreditCardOutline" />
+              <MenuItem value={'DinersClub'} primaryText="DinersClub" />
+              <MenuItem value={'Discover'} primaryText="Discover" />
+              <MenuItem value={'MasterCard'} primaryText="MasterCard" />
+              <MenuItem value={'Visa'} primaryText="Visa" />
             </SelectField>
           </div>
         </Card>
@@ -78,12 +80,12 @@ class MUI_Icons_CreditCards extends React.Component
   }
 }
 
-export default Relay.createContainer( MUI_Icons_CreditCards, {
+export default Relay.createContainer(MUI_Icons_CreditCards, {
   fragments: {
-    Viewer: ( ) => Relay.QL`
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         User_IsAnonymous,
       }
     `,
   },
-} );
+})

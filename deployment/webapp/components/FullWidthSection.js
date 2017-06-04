@@ -6,13 +6,9 @@ var _spacing=require('material-ui/styles/spacing');var _spacing2=_interopRequire
 
 var _ViewportDimensions=require('../scripts/ViewportDimensions');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
-
 var desktopGutter=_spacing2.default.desktopGutter;var
 
-
 FullWidthSection=function(_Component){_inherits(FullWidthSection,_Component);function FullWidthSection(){_classCallCheck(this,FullWidthSection);return _possibleConstructorReturn(this,(FullWidthSection.__proto__||Object.getPrototypeOf(FullWidthSection)).apply(this,arguments));}_createClass(FullWidthSection,[{key:'getStyles',value:function getStyles()
-
-
 
 
 
@@ -56,13 +52,6 @@ paddingBottom:desktopGutter*3}};
 }},{key:'render',value:function render()
 
 {var _props=
-
-
-
-
-
-
-
 this.props,style=_props.style,useContent=_props.useContent,contentType=_props.contentType,contentStyle=_props.contentStyle,other=_objectWithoutProperties(_props,['style','useContent','contentType','contentStyle']);
 
 var muiSize=this.context.rbContext.viewportDimensions.get(this,'muiSize');
@@ -72,9 +61,9 @@ var styles=this.getStyles();
 var content=void 0;
 if(useContent)
 content=_react2.default.createElement(
-contentType,{style:_extends(styles.content,contentStyle)},
+contentType,
+{style:_extends(styles.content,contentStyle)},
 this.props.children);else
-
 
 content=this.props.children;
 
@@ -87,6 +76,7 @@ style,
 muiSize===_ViewportDimensions.SMALL&&styles.rootWhenSmall,
 muiSize===_ViewportDimensions.MEDIUM&&styles.rootWhenMedium,
 muiSize===_ViewportDimensions.LARGE&&styles.rootWhenLarge)}),
+
 
 content));
 

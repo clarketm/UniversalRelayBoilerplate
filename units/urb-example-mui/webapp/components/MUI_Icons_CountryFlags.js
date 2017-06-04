@@ -1,12 +1,11 @@
 // @flow weak
-/* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
+import React from 'react'
+import Relay from 'react-relay'
 
-import {Card} from 'material-ui/Card';
-import {List, ListItem} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+import { Card } from 'material-ui/Card'
+import { List, ListItem } from 'material-ui/List'
+import Divider from 'material-ui/Divider'
 
 import {
   Icon_Flag_AU,
@@ -18,13 +17,11 @@ import {
   Icon_Flag_FR,
   Icon_Flag_IN,
   Icon_Flag_RU,
-  Icon_Flag_US
-} from 'material-ui-country-flags';
+  Icon_Flag_US,
+} from 'material-ui-country-flags'
 
-class MUI_Icons_CountryFlags extends React.Component
-{
-  render( )
-  {
+class MUI_Icons_CountryFlags extends React.Component {
+  render() {
     return (
       <div>
         <Card>
@@ -55,12 +52,12 @@ class MUI_Icons_CountryFlags extends React.Component
   }
 }
 
-export default Relay.createContainer( MUI_Icons_CountryFlags, {
+export default Relay.createContainer(MUI_Icons_CountryFlags, {
   fragments: {
-    Viewer: ( ) => Relay.QL`
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         User_IsAnonymous,
       }
     `,
   },
-} );
+})

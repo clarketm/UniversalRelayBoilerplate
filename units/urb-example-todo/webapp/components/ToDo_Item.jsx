@@ -1,5 +1,4 @@
 // @flow weak
-/* eslint react/prop-types: 0 */
 
 import React from 'react'
 import Relay from 'react-relay'
@@ -18,46 +17,40 @@ import ToDo_updateRenameMutation from '../../relay/ToDo_updateRenameMutation'
 import ToDo_Properties from './ToDo_Properties'
 
 class ToDo_Item extends React.Component {
-
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   }
 
-  _handle_updateHandler_ToDo = ( ToDo_properties ) => {
-
+  _handle_updateHandler_ToDo = ToDo_properties => {
     this.context.relay.commitUpdate(
-      new ToDo_updateRenameMutation( { ToDo: this.props.ToDo, ...ToDo_properties } )
+      new ToDo_updateRenameMutation({ ToDo: this.props.ToDo, ...ToDo_properties }),
     )
   }
 
-  _handle_onCheck_Completed = ( event, ToDo_Complete ) => {
-
+  _handle_onCheck_Completed = (event, ToDo_Complete) => {
     this.context.relay.commitUpdate(
-      new ToDo_updateStatusMutation( {
+      new ToDo_updateStatusMutation({
         ToDo_Complete,
         ToDo: this.props.ToDo,
         Viewer: this.props.Viewer,
-      } )
+      }),
     )
   }
 
-  _handleTextInputSave( ToDo_Text ) {
-
+  _handleTextInputSave(ToDo_Text) {
     this.context.relay.commitUpdate(
-      new ToDo_updateRenameMutation( { ToDo: this.props.ToDo, ToDo_Text } )
+      new ToDo_updateRenameMutation({ ToDo: this.props.ToDo, ToDo_Text }),
     )
   }
 
   _ToDo_delete() {
-
     this.context.relay.commitUpdate(
-      new ToDo_deleteMutation( { ToDo: this.props.ToDo, Viewer: this.props.Viewer } )
+      new ToDo_deleteMutation({ ToDo: this.props.ToDo, Viewer: this.props.Viewer }),
     )
   }
 
-  _handle_onItemTouchTap = ( e, item ) => {
-
-    switch( item.ref ) {
+  _handle_onItemTouchTap = (e, item) => {
+    switch (item.ref) {
       case 'edit':
         this.refs.ToDo_Properties._handle_Open()
         break
@@ -70,42 +63,41 @@ class ToDo_Item extends React.Component {
   }
 
   render() {
-
     let rightIconMenu = (
       <IconMenu
-       iconButtonElement={<IconButton><NavigationMoreVert /></IconButton>}
-       onItemTouchTap={ this._handle_onItemTouchTap }
+        iconButtonElement={<IconButton><NavigationMoreVert /></IconButton>}
+        onItemTouchTap={this._handle_onItemTouchTap}
       >
-       <MenuItem ref="edit" value={ 0 }>Edit</MenuItem>
-       <MenuItem ref="delete" value={ 1 }>Delete</MenuItem>
-     </IconMenu>
+        <MenuItem ref="edit" value={0}>Edit</MenuItem>
+        <MenuItem ref="delete" value={1}>Delete</MenuItem>
+      </IconMenu>
     )
 
-    return(
+    return (
       <div>
         <ListItem
-          primaryText={ this.props.ToDo.ToDo_Text }
+          primaryText={this.props.ToDo.ToDo_Text}
           leftCheckbox={
             <Checkbox
-              defaultChecked={ this.props.ToDo.ToDo_Complete }
-              onCheck={ this._handle_onCheck_Completed }
+              defaultChecked={this.props.ToDo.ToDo_Complete}
+              onCheck={this._handle_onCheck_Completed}
             />
           }
-          rightIconButton={ rightIconMenu }
+          rightIconButton={rightIconMenu}
         />
         <ToDo_Properties
           ref="ToDo_Properties"
-          ToDo_Text={ this.props.ToDo.ToDo_Text }
-          updateHandler={ this._handle_updateHandler_ToDo }
+          ToDo_Text={this.props.ToDo.ToDo_Text}
+          updateHandler={this._handle_updateHandler_ToDo}
         />
       </div>
     )
   }
 }
 
-export default Relay.createContainer( ToDo_Item, {
+export default Relay.createContainer(ToDo_Item, {
   fragments: {
-    ToDo: () => Relay.QL `
+    ToDo: () => Relay.QL`
       fragment on ToDo {
         ToDo_Complete,
         id,
@@ -115,11 +107,11 @@ export default Relay.createContainer( ToDo_Item, {
         ${ToDo_updateRenameMutation.getFragment('ToDo')},
       }
     `,
-    Viewer: () => Relay.QL `
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         ${ToDo_updateStatusMutation.getFragment('Viewer')},
         ${ToDo_deleteMutation.getFragment('Viewer')},
       }
     `,
   },
-} )
+})

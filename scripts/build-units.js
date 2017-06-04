@@ -146,7 +146,7 @@ function createSchemas() {
 
   getSchemas('units/', schemasImports)
 
-  let schemas = ['// @flow', '/* eslint no-unused-vars: 0 */', '']
+  let schemas = ['// @flow', '']
   schemas = schemas.concat(schemasImports)
   schemas = schemas.concat(['', 'export default true'])
 

@@ -1,40 +1,42 @@
-const fs = require( 'fs' );
-const rrs = require( 'recursive-readdir-sync' );
+const fs = require('fs')
+const rrs = require('recursive-readdir-sync')
 
-let importsSource = [];
-let cardItemsSource = [];
-let key = 0;
+let importsSource = []
+let cardItemsSource = []
+let key = 0
 
-rrs( './node_modules/material-ui/svg-icons/' ).forEach( function ( file ) {
-  if( file !== 'node_modules/material-ui/svg-icons/index-generator.js' && file !== 'node_modules/material-ui/svg-icons/index.js' ) {
-
-    console.log( "📖  Reading " + file )
-    let fileLines = fs.readFileSync( file, 'utf8' ).split( '\n' );
+rrs('./node_modules/material-ui/svg-icons/').forEach(function(file) {
+  if (
+    file !== 'node_modules/material-ui/svg-icons/index-generator.js' &&
+    file !== 'node_modules/material-ui/svg-icons/index.js'
+  ) {
+    console.log('📖  Reading ' + file)
+    let fileLines = fs.readFileSync(file, 'utf8').split('\n')
     let index = 0,
-      found = false;
+      found = false
 
     // In order to display all the icons, comment out the following:
     //if( key > 50 ) return;
 
-    while( found === false && index < fileLines.length ) {
-      if( fileLines[ index ].indexOf( 'exports.default = ' ) > -1 ) {
-        let fileName = file.substring( 0, file.length - 3 ).replace( 'node_modules/', '' ) //.replace( 'svg-icons', 'lib/svg-icons' );
-        let moduleName = fileLines[ index ].replace( 'exports.default = ', '' ).replace( ';', '' ).trim();
+    while (found === false && index < fileLines.length) {
+      if (fileLines[index].indexOf('exports.default = ') > -1) {
+        let fileName = file.substring(0, file.length - 3).replace('node_modules/', '') //.replace( 'svg-icons', 'lib/svg-icons' );
+        let moduleName = fileLines[index].replace('exports.default = ', '').replace(';', '').trim()
 
-        importsSource.push( `import ${moduleName} from '${fileName}';` );
-        cardItemsSource.push( `            <ListItem key="${key++}" primaryText="${moduleName}" secondaryText="${fileName}" leftIcon={<${moduleName} />} />` );
-        cardItemsSource.push( `            <Divider inset={true} />` );
+        importsSource.push(`import ${moduleName} from '${fileName}';`)
+        cardItemsSource.push(
+          `            <ListItem key="${key++}" primaryText="${moduleName}" secondaryText="${fileName}" leftIcon={<${moduleName} />} />`,
+        )
+        cardItemsSource.push(`            <Divider inset={true} />`)
 
-        found = true;
-      } else
-        index++;
+        found = true
+      } else index++
     }
   }
-} );
+})
 
 let sourceCode = [
   `// @flow weak`,
-  `/* eslint react/prop-types: 0 */`,
   ``,
   `import React from 'react';`,
   `import Relay from 'react-relay';`,
@@ -43,7 +45,7 @@ let sourceCode = [
   `import {List, ListItem} from 'material-ui/List';`,
   `import Divider from 'material-ui/Divider';`,
   ``,
-  importsSource.join( '\n' ),
+  importsSource.join('\n'),
   // `import IconNotificationsEventAvailable from 'material-ui/svg-icons/notification/event-available';`,
   ``,
   `class MUI_Icons extends React.Component`,
@@ -54,7 +56,7 @@ let sourceCode = [
   `      <div>`,
   `        <Card>`,
   `          <List>`,
-  cardItemsSource.join( '\n' ),
+  cardItemsSource.join('\n'),
   // `            <ListItem key="2" primaryText="IconNotificationsEventAvailable" leftIcon={<IconNotificationsEventAvailable />} />`,
   // `            <Divider inset={true} />`,
   `          </List>`,
@@ -73,6 +75,6 @@ let sourceCode = [
   `    \`,`,
   `  },`,
   `});`,
-];
+]
 
-fs.writeFileSync( './units/urb-example-mui/webapp/components/MUI_Icons.js', sourceCode.join( '\n' ) );
+fs.writeFileSync('./units/urb-example-mui/webapp/components/MUI_Icons.js', sourceCode.join('\n'))

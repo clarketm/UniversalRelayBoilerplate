@@ -7,7 +7,6 @@ var _renderOnServer=require('./renderOnServer');var _renderOnServer2=_interopReq
 var _requestLoggers=require('../configuration/server/requestLoggers');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 
-
 var app=(0,_express2.default)();
 
 
@@ -17,7 +16,6 @@ app.use(function(req,res,next){return(0,_logServerRequest2.default)(req,res,next
 app.get('/*',function(req,res,next){
 (0,_renderOnServer2.default)(req,res,next);
 });exports.default=
-
 
 app;
 //# sourceMappingURL=server.js.map

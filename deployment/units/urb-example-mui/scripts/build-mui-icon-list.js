@@ -32,8 +32,7 @@ index++;
 }
 });
 
-var sourceCode=['// @flow weak','/* eslint react/prop-types: 0 */','','import React from \'react\';','import Relay from \'react-relay\';','','import {Card} from \'material-ui/Card\';','import {List, ListItem} from \'material-ui/List\';','import Divider from \'material-ui/Divider\';','',
-
+var sourceCode=['// @flow weak','','import React from \'react\';','import Relay from \'react-relay\';','','import {Card} from \'material-ui/Card\';','import {List, ListItem} from \'material-ui/List\';','import Divider from \'material-ui/Divider\';','',
 
 
 

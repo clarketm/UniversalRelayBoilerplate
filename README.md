@@ -57,7 +57,6 @@ For the most up to date list of technologies used please go to [CodeFoundries.co
 | **Technology** | **Description**|
 |----------------|----------------|
 | [Flow](http://flowtype.org/)                                    | Static type checker, designed to find type errors in JavaScript programs. |
-| [ESLint](http://eslint.org/)                                    | Pluggable linting utility for JavaScript and JSX. |
 | [Babel](http://babeljs.io)                                      | Compiles ES6/ES7 to ES5. Allows using features from ES6 and ES7 today. Also, used by Relay. |
 | [Webpack](http://webpack.github.io)                             | Bundles npm packages and the application Java Script into a single file. Includes hot reloading via [react-transform-hmr](https://www.npmjs.com/package/react-transform-hmr). Also, Webpack can bundle any required CSS. |
 | [NPM Scripts](https://docs.npmjs.com/misc/scripts)              | Glues all this together in a handy automated build. |

@@ -32,6 +32,13 @@ deleted:true};var
 ObjectManager=function(){
 
 
+
+
+
+
+
+
+
 function ObjectManager(){_classCallCheck(this,ObjectManager);
 
 this.loadersSingle={};
@@ -266,7 +273,7 @@ fields.id);case 11:case'end':return _context.stop();}}},null,this);}},{key:'upda
 entityName,fields){var entityDefinition,oldFields;return regeneratorRuntime.async(function update$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:
 entityDefinition=entityDefinitions[entityName];
 
-if(entityDefinition==null)console.log('XXX Cound not find entity'+entityName);
+if(entityDefinition==null)console.log('💔  XXX Cound not find entity'+entityName);
 
 oldFields=null;
 if(entityDefinition.TriggersForUpdateShouldRetrieveCurrentRecord){
@@ -280,18 +287,46 @@ this.executeTriggers(entityDefinition.TriggersForUpdate,fields,oldFields));case 
 
 entityDefinition.Persister.update(entityName,fields));case 9:
 
-this.invalidateLoaderCache(entityName,fields);case 10:case'end':return _context2.stop();}}},null,this);}},{key:'remove',value:function remove(
+this.invalidateLoaderCache(entityName,fields);case 10:case'end':return _context2.stop();}}},null,this);}},{key:'ensure',value:function ensure(
 
 
-entityName,fields){var entityDefinition;return regeneratorRuntime.async(function remove$(_context3){while(1){switch(_context3.prev=_context3.next){case 0:
+entityName,keyFields,ensureFields){var entityDefinition,entity,_iterator2,_isArray2,_i2,_ref2,ensuredFieldName,isMatchingValue;return regeneratorRuntime.async(function ensure$(_context3){while(1){switch(_context3.prev=_context3.next){case 0:
+entityDefinition=entityDefinitions[entityName];_context3.next=3;return regeneratorRuntime.awrap(
+
+this.getOneObject(entityName,keyFields));case 3:entity=_context3.sent;
+console.log(entity);
+console.log(ensureFields);_iterator2=
+
+Object.keys(ensureFields),_isArray2=Array.isArray(_iterator2),_i2=0,_iterator2=_isArray2?_iterator2:_iterator2[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();case 7:if(!_isArray2){_context3.next=13;break;}if(!(_i2>=_iterator2.length)){_context3.next=10;break;}return _context3.abrupt('break',24);case 10:_ref2=_iterator2[_i2++];_context3.next=17;break;case 13:_i2=_iterator2.next();if(!_i2.done){_context3.next=16;break;}return _context3.abrupt('break',24);case 16:_ref2=_i2.value;case 17:ensuredFieldName=_ref2;
+isMatchingValue=false;
+if(ensuredFieldName.endsWith('site_id'))
+isMatchingValue=
+entityDefinition.Persister.uuidToString(entity.site_id)==ensureFields.site_id;else
+if(ensuredFieldName.endsWith('_id'))
+isMatchingValue=entityDefinition.Persister.uuidEquals(
+ensureFields[ensuredFieldName],
+entity[ensuredFieldName]);else
+
+isMatchingValue=ensureFields[ensuredFieldName]==entity[ensuredFieldName];if(
+
+isMatchingValue){_context3.next=22;break;}throw(
+new Error(
+'💔  Field value can not be ensured for field '+ensuredFieldName+' of '+entityName));case 22:_context3.next=7;break;case 24:return _context3.abrupt('return',
+
+
+
+entity);case 25:case'end':return _context3.stop();}}},null,this);}},{key:'remove',value:function remove(
+
+
+entityName,fields){var entityDefinition;return regeneratorRuntime.async(function remove$(_context4){while(1){switch(_context4.prev=_context4.next){case 0:
 entityDefinition=entityDefinitions[entityName];
 
-this.recordChange(entityName,fields,true);_context3.next=4;return regeneratorRuntime.awrap(
-this.executeTriggers(entityDefinition.TriggersForRemove,fields));case 4:_context3.next=6;return regeneratorRuntime.awrap(
+this.recordChange(entityName,fields,true);_context4.next=4;return regeneratorRuntime.awrap(
+this.executeTriggers(entityDefinition.TriggersForRemove,fields));case 4:_context4.next=6;return regeneratorRuntime.awrap(
 
 entityDefinition.Persister.remove(entityName,fields));case 6:
 
-this.invalidateLoaderCache(entityName,fields);case 7:case'end':return _context3.stop();}}},null,this);}},{key:'cursorForObjectInConnection',value:function cursorForObjectInConnection(
+this.invalidateLoaderCache(entityName,fields);case 7:case'end':return _context4.stop();}}},null,this);}},{key:'cursorForObjectInConnection',value:function cursorForObjectInConnection(
 
 
 entityName,arr,obj){
@@ -313,19 +348,19 @@ break;
 
 var cursor=(0,_graphqlRelay.cursorForObjectInConnection)(arr,obj);
 if(cursor==null)
-_log2.default.log('error','Could not create cursor for object in connection for '+entityName,{
+_log2.default.log('error','💔  Could not create cursor for object in connection for '+entityName,{
 obj:obj,
 arr:arr});
 
 
 return cursor;
-}}],[{key:'registerEntity',value:function registerEntity(entityName,EntityType,persister){if(entityName in entityDefinitions)throw new Error('Entity already registered: '+entityName);EntityType.entityName=entityName;if(persister==null)persister=_defaultPersister2.default;setPersisters.add(persister);entityDefinitions[entityName]={EntityName:entityName,EntityType:EntityType,Persister:persister,TriggersForAdd:[],TriggersForUpdate:[],TriggersForRemove:[],TriggersForUpdateShouldRetrieveCurrentRecord:false};}},{key:'RegisterTriggerForAdd',value:function RegisterTriggerForAdd(entityName,handler){entityDefinitions[entityName].TriggersForAdd.push(handler);}},{key:'RegisterTriggerForUpdate',value:function RegisterTriggerForUpdate(entityName,handler,shouldTrerieveCurrentRecord){entityDefinitions[entityName].TriggersForUpdate.push(handler);if(shouldTrerieveCurrentRecord)entityDefinitions[entityName].TriggersForUpdateShouldRetrieveCurrentRecord=true;}},{key:'RegisterTriggerForAddAndUpdate',value:function RegisterTriggerForAddAndUpdate(entityName,handler){ObjectManager.RegisterTriggerForAdd(entityName,handler);ObjectManager.RegisterTriggerForUpdate(entityName,handler);}},{key:'RegisterTriggerForRemove',value:function RegisterTriggerForRemove(entityName,handler){entityDefinitions[entityName].TriggersForRemove.push(handler);}},{key:'initializePersisters',value:function initializePersisters(
+}}],[{key:'registerEntity',value:function registerEntity(entityName,EntityType,persister){if(entityName in entityDefinitions)throw new Error('Entity already registered: '+entityName);EntityType.entityName=entityName;if(persister==null)persister=_defaultPersister2.default;setPersisters.add(persister);entityDefinitions[entityName]={EntityName:entityName,EntityType:EntityType,Persister:persister,TriggersForAdd:[],TriggersForUpdate:[],TriggersForRemove:[],TriggersForUpdateShouldRetrieveCurrentRecord:false};}},{key:'RegisterTriggerForAdd',value:function RegisterTriggerForAdd(entityName,handler){entityDefinitions[entityName].TriggersForAdd.push(handler);}},{key:'RegisterTriggerForUpdate',value:function RegisterTriggerForUpdate(entityName,handler,shouldRetrieveCurrentRecord){entityDefinitions[entityName].TriggersForUpdate.push(handler);if(shouldRetrieveCurrentRecord)entityDefinitions[entityName].TriggersForUpdateShouldRetrieveCurrentRecord=true;}},{key:'RegisterTriggerForAddAndUpdate',value:function RegisterTriggerForAddAndUpdate(entityName,handler){ObjectManager.RegisterTriggerForAdd(entityName,handler);ObjectManager.RegisterTriggerForUpdate(entityName,handler,false);}},{key:'RegisterTriggerForRemove',value:function RegisterTriggerForRemove(entityName,handler){entityDefinitions[entityName].TriggersForRemove.push(handler);}},{key:'initializePersisters',value:function initializePersisters(
 
 runAsPartOfSetupDatabase,cb){
 console.log('🚀 Initializing persisters - start ...');
 
 
-for(var _iterator2=setPersisters,_isArray2=Array.isArray(_iterator2),_i2=0,_iterator2=_isArray2?_iterator2:_iterator2[typeof Symbol==='function'?Symbol.iterator:'@@iterator']();;){var _ref2;if(_isArray2){if(_i2>=_iterator2.length)break;_ref2=_iterator2[_i2++];}else{_i2=_iterator2.next();if(_i2.done)break;_ref2=_i2.value;}var persister=_ref2;
+for(var _iterator3=setPersisters,_isArray3=Array.isArray(_iterator3),_i3=0,_iterator3=_isArray3?_iterator3:_iterator3[typeof Symbol==='function'?Symbol.iterator:'@@iterator']();;){var _ref3;if(_isArray3){if(_i3>=_iterator3.length)break;_ref3=_iterator3[_i3++];}else{_i3=_iterator3.next();if(_i3.done)break;_ref3=_i3.value;}var persister=_ref3;
 persister.initialize(runAsPartOfSetupDatabase,function(){
 console.log('🏆 Initializing persisters - success.');
 cb();

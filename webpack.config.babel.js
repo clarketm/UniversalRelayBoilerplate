@@ -29,7 +29,6 @@ const config = {
 
   module: {
     rules: [
-      //{ test: /\.js(x)?$/, loader: 'eslint-loader', exclude: /node_modules/ } // TODO x1000: Consider removing
       {
         test: /\.js(x)?$/,
         use: ['react-hot-loader/webpack', 'babel-loader'],

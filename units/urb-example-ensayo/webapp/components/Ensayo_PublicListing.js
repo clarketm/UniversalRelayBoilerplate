@@ -1,52 +1,40 @@
 // @flow weak
-/* eslint react/prop-types: 0 */
 
-import React from 'react';
-import Relay from 'react-relay';
+import React from 'react'
+import Relay from 'react-relay'
 
-import {Card, CardHeader, CardText} from 'material-ui/Card';
+import { Card, CardHeader, CardText } from 'material-ui/Card'
 
-
-class Ensayo_PublicListing extends React.Component
-{
-  _handle_onClick( id )
-  {
-    this.context.router.push( '/ensayo/item/' + id );
+class Ensayo_PublicListing extends React.Component {
+  _handle_onClick(id) {
+    this.context.router.push('/ensayo/item/' + id)
   }
 
-  renderEnsayos( )
-  {
+  renderEnsayos() {
     return this.props.Viewer.Ensayos.edges.map(edge =>
-      <Card key={ edge.node.id }>
-        <CardHeader
-          title={ edge.node.Ensayo_Title }
-          subtitle={ edge.node.Ensayo_Description }
-        />
-        <CardText
-          onClick={ ( ) => this._handle_onClick( edge.node.id ) }
-        >
-          { edge.node.Ensayo_Content }
+      <Card key={edge.node.id}>
+        <CardHeader title={edge.node.Ensayo_Title} subtitle={edge.node.Ensayo_Description} />
+        <CardText onClick={() => this._handle_onClick(edge.node.id)}>
+          {edge.node.Ensayo_Content}
         </CardText>
-      </Card>
-    );
+      </Card>,
+    )
   }
 
-  render( )
-  {
+  render() {
     return (
       <div>
-        { this.renderEnsayos( ) }
+        {this.renderEnsayos()}
       </div>
-    );
+    )
   }
 }
 
 Ensayo_PublicListing.contextTypes = {
   router: React.PropTypes.object.isRequired,
-};
+}
 
-
-export default Relay.createContainer( Ensayo_PublicListing, {
+export default Relay.createContainer(Ensayo_PublicListing, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
@@ -63,4 +51,4 @@ export default Relay.createContainer( Ensayo_PublicListing, {
       }
     `,
   },
-});
+})

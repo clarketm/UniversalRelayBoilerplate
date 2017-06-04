@@ -1,6 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});
 
-
 var _Compendium=require('../../units/urb-example-compendium/graphql/model/Compendium');var _Compendium2=_interopRequireDefault(_Compendium);
 var _Compendium3=require('../../units/urb-example-compendium/graphql/model/Compendium.schema');var _Compendium4=_interopRequireDefault(_Compendium3);
 var _Ensayo=require('../../units/urb-example-ensayo/graphql/model/Ensayo');var _Ensayo2=_interopRequireDefault(_Ensayo);

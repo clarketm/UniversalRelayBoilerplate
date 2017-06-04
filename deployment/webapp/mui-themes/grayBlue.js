@@ -13,7 +13,6 @@ var _colors=require('material-ui/styles/colors');
 
 var _colorManipulator=require('material-ui/utils/colorManipulator');exports.default=
 
-
 {
 spacing:{
 iconSize:24,
