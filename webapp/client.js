@@ -10,7 +10,7 @@ import { RelayNetworkLayer, urlMiddleware } from 'react-relay-network-layer'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import routes from '../configuration/webapp/routes'
-import './styles/main.css'
+import '../configuration/webapp/styles/main.css'
 import Wrapper from './components/Wrapper'
 import { postXHR } from './scripts/XHR'
 
