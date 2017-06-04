@@ -1,7 +1,4 @@
-// @flow weak
-
-// This is simply a copy of the light theme as per:
-// http://www.material-ui.com/v0.15.0-alpha.1/#/customization/themes
+// @flow
 
 import {
   darkBlack,
@@ -11,10 +8,9 @@ import {
   lightBlack,
   purple900,
   yellow900,
-  white
+  white,
 } from 'material-ui/styles/colors'
 import { fade } from 'material-ui/utils/colorManipulator'
-
 
 export default {
   spacing: {
@@ -42,10 +38,10 @@ export default {
     alternateTextColor: white,
     canvasColor: white,
     borderColor: grey300,
-    disabledColor: fade( darkBlack, 0.3 ),
+    disabledColor: fade(darkBlack, 0.3),
     backCanvas: {
       viewportBackgroundColor: white,
-      navDrawerBoxShadow: true
+      navDrawerBoxShadow: true,
     },
   },
   avatar: {

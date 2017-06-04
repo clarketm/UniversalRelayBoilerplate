@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import {
   blue500,
@@ -9,10 +9,9 @@ import {
   grey300,
   lightBlack,
   purpleA200,
-  white
+  white,
 } from 'material-ui/styles/colors'
 import { fade } from 'material-ui/utils/colorManipulator'
-
 
 export default {
   spacing: {
@@ -40,11 +39,11 @@ export default {
     alternateTextColor: white,
     canvasColor: white,
     borderColor: grey300,
-    disabledColor: fade( darkBlack, 0.3 ),
+    disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: blue500,
     backCanvas: {
       viewportBackgroundColor: white,
-      navDrawerBoxShadow: true
+      navDrawerBoxShadow: true,
     },
   },
   avatar: {

@@ -76,9 +76,6 @@ auth.post('/login', async (req, res) => {
 auth.post('/createuser', async (req, res) => {
   const objectManager = await getObjectManager(req, res)
 
-  console.log('XXX objectManager.siteInformation.site_id')
-  console.log(objectManager.siteInformation.site_id)
-
   let User_AccountName = req.body.User_AccountName.toLowerCase()
   let User_AccountPassword = req.body.User_AccountPassword
   objectManager
@@ -116,8 +113,6 @@ auth.post('/createuser', async (req, res) => {
       }),
     )
     .then(a_User => {
-      console.log('XXX a_User')
-      console.log(a_User)
       res.codeFoundriesInjected = { user: a_User }
 
       // User has been created thus we create a JWT token

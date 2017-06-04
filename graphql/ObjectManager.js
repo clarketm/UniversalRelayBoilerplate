@@ -30,7 +30,14 @@ const deletedRecord = {
 }
 
 export default class ObjectManager {
-  Viewer_User_id: string
+  loadersSingle: Object
+  Viewer_User_id: ?string
+  loadersMultiple: Object
+  changes: Object
+  request: ?Object
+  response: ?Object
+  User_0: User
+  siteInformation: ?Object
 
   constructor() {
     // Loaders for a single record, by entity name
@@ -75,24 +82,24 @@ export default class ObjectManager {
     }
   }
 
-  static RegisterTriggerForAdd(entityName: string, handler: func): void {
+  static RegisterTriggerForAdd(entityName: string, handler: Function): void {
     entityDefinitions[entityName].TriggersForAdd.push(handler)
   }
 
   static RegisterTriggerForUpdate(
     entityName: string,
-    handler: func,
-    shouldTrerieveCurrentRecord: boolean,
+    handler: Function,
+    shouldRetrieveCurrentRecord: boolean,
   ): void {
     entityDefinitions[entityName].TriggersForUpdate.push(handler)
 
-    if (shouldTrerieveCurrentRecord)
+    if (shouldRetrieveCurrentRecord)
       entityDefinitions[entityName].TriggersForUpdateShouldRetrieveCurrentRecord = true
   }
 
-  static RegisterTriggerForAddAndUpdate(entityName: string, handler: func): void {
+  static RegisterTriggerForAddAndUpdate(entityName: string, handler: Function): void {
     ObjectManager.RegisterTriggerForAdd(entityName, handler)
-    ObjectManager.RegisterTriggerForUpdate(entityName, handler)
+    ObjectManager.RegisterTriggerForUpdate(entityName, handler, false)
   }
 
   static RegisterTriggerForRemove(entityName: string, handler: any) {
@@ -128,7 +135,7 @@ export default class ObjectManager {
     this.loadersMultiple[entityName] = {}
   }
 
-  recordChange(entityName: string, fields: object, isDeletion: boolean) {
+  recordChange(entityName: string, fields: Object, isDeletion: boolean) {
     let records = this.changes[entityName]
     if (records == null) records = this.changes[entityName] = {}
 
@@ -177,7 +184,7 @@ export default class ObjectManager {
     return loader
   }
 
-  getOneObject(entityName: string, filter: object) {
+  getOneObject(entityName: string, filter: Object) {
     // TODO x2000 Provide try catch with logging here!
     // Special hack for anonymous users
     if (entityName == 'User')
@@ -233,7 +240,7 @@ export default class ObjectManager {
     }
   }
 
-  executeTriggers(arrTriggers, fields, oldFields) {
+  executeTriggers(arrTriggers: Array<Function>, fields: Object, oldFields: Object) {
     const arrPromises = []
     for (let trigger of arrTriggers) {
       arrPromises.push(trigger(this, fields, oldFields))
@@ -263,10 +270,10 @@ export default class ObjectManager {
     return fields.id
   }
 
-  async update(entityName: string, fields: any): void {
+  async update(entityName: string, fields: any): Promise<void> {
     const entityDefinition = entityDefinitions[entityName]
 
-    if (entityDefinition == null) console.log('XXX Cound not find entity' + entityName) // Should that be recorded somewhere? Could be another
+    if (entityDefinition == null) console.log('💔  XXX Cound not find entity' + entityName) // Should that be recorded somewhere? Could be another
 
     let oldFields = null
     if (entityDefinition.TriggersForUpdateShouldRetrieveCurrentRecord) {
@@ -283,7 +290,35 @@ export default class ObjectManager {
     this.invalidateLoaderCache(entityName, fields)
   }
 
-  async remove(entityName: string, fields: any): void {
+  async ensure(entityName: string, keyFields: Object, ensureFields: Object): Promise<Object> {
+    const entityDefinition = entityDefinitions[entityName]
+
+    const entity = await this.getOneObject(entityName, keyFields)
+    console.log(entity)
+    console.log(ensureFields)
+
+    for (let ensuredFieldName of Object.keys(ensureFields)) {
+      let isMatchingValue = false
+      if (ensuredFieldName.endsWith('site_id'))
+        isMatchingValue =
+          entityDefinition.Persister.uuidToString(entity.site_id) == ensureFields.site_id
+      else if (ensuredFieldName.endsWith('_id'))
+        isMatchingValue = entityDefinition.Persister.uuidEquals(
+          ensureFields[ensuredFieldName],
+          entity[ensuredFieldName],
+        )
+      else isMatchingValue = ensureFields[ensuredFieldName] == entity[ensuredFieldName]
+
+      if (!isMatchingValue)
+        throw new Error(
+          '💔  Field value can not be ensured for field ' + ensuredFieldName + ' of ' + entityName,
+        )
+    }
+
+    return entity
+  }
+
+  async remove(entityName: string, fields: Object): Promise<void> {
     const entityDefinition = entityDefinitions[entityName]
 
     this.recordChange(entityName, fields, true)
@@ -313,7 +348,7 @@ export default class ObjectManager {
 
     let cursor = cursorForObjectInConnection(arr, obj)
     if (cursor == null)
-      log.log('error', 'Could not create cursor for object in connection for ' + entityName, {
+      log.log('error', '💔  Could not create cursor for object in connection for ' + entityName, {
         obj,
         arr,
       })

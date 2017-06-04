@@ -6,5 +6,16 @@
     "dev-w": "rmdir /s /q build & concurrently --kill-others \"npm run dev-webpack-w\" \"npm run dev-server-w\" \"npm run start\" ",
     "build-schema-w": ".\\node_modules\\.bin\\babel-node .\\scripts\\build-units.js && .\\node_modules\\.bin\\babel-node .\\scripts\\build-schema.js",
     "build-units-w": ".\\node_modules\\.bin\\babel-node .\\scripts\\build-units.js"
+  },
+  "betterScripts": {
+    "dev-server-w": {
+      "command": "node_modules\\.bin.\\nodemon --exec node_modules\\.bin.\\babel-node -- server\\server.js",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "dev-webpack-w": {
+      "command": "node_modules\\.bin.\\webpack-dev-server --hot --inline --no-info --colors"
+    }
   }
 }
