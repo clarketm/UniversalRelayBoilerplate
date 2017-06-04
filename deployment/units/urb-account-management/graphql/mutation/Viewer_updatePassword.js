@@ -1,6 +1,6 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _this=this;
 
-var _bcryptjs=require('bcryptjs');var _bcryptjs2=_interopRequireDefault(_bcryptjs);
+var _bcrypt=require('bcrypt');var _bcrypt2=_interopRequireDefault(_bcrypt);
 var _graphqlRelay=require('graphql-relay');
 var _graphql=require('graphql');
 
@@ -52,7 +52,7 @@ ErrorMessage="Incorrect current password";case 18:return _context.abrupt('return
 
 
 function promiseBcryptCompare(pass1,pass2){
-return new Promise(function(resolve,reject){return _bcryptjs2.default.compare(pass1,pass2,
+return new Promise(function(resolve,reject){return _bcrypt2.default.compare(pass1,pass2,
 function(err,passwordsMatch){
 if(err)
 reject(err);else
@@ -62,7 +62,7 @@ resolve(passwordsMatch);
 }
 
 function promiseBcryptHash(pass){
-return new Promise(function(resolve,reject){return _bcryptjs2.default.hash(pass,8,
+return new Promise(function(resolve,reject){return _bcrypt2.default.hash(pass,8,
 function(err,hash){
 if(err)
 reject(err);else

@@ -1,4 +1,4 @@
 // @flow
 
 export const name = 'urb'
-export const version = '19.1.0.131'
+export const version = '19.2.0.132'

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 
 import process from 'process'
 
@@ -9,8 +9,6 @@ import ObjectManager from '../graphql/ObjectManager'
 import _schemas_system from '../graphql/model/_schemas'
 import _schemas from '../configuration/graphql/_schemas'
 
-
-ObjectManager.initializePersisters( true, () => {
-
+ObjectManager.initializePersisters(true, () => {
   process.exit()
-} )
+})

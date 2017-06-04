@@ -1,16 +1,15 @@
 // @flow
 
-
 const siteInformation = {
+  site_id: '00000000-0000-0000-0000-000000000000',
   inEditingMode: false,
   isSiteBuilderDisabled: true,
   configurationAsObject: {
     appData: {},
-    serverData: {}
+    serverData: {},
   },
 }
 
 export function getSiteInformation() {
-
   return siteInformation
 }

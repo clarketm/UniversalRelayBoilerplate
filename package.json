@@ -1,7 +1,7 @@
 {
   "engines": {
-    "node": "^6.0.0",
-    "npm": "^3.0.0"
+    "node": "^7.10.0",
+    "npm": "^4.0.0"
   },
   "scripts": {
     "build-babel": "export NODE_ENV=production && rm -rf deployment/* && cp -r configuration ./deployment/configuration && cp -r webapp ./deployment/webapp && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/server/ ./server && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/configuration/ ./configuration && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/graphql/ ./graphql && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/scripts/ ./scripts && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/server/ ./server && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/units/ ./units && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/webapp/ ./webapp && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/server/ ./server && cp -r public ./deployment/public && cp ./package.json ./deployment && cp ./yarn.lock ./deployment",
@@ -29,7 +29,7 @@
     "dev-webpack-w": "rmdir /s /q build & better-npm-run dev-webpack-w",
     "devw": "concurrently --kill-others \"npm run dev-webpack\" \"npm run dev-server\" ",
     "setup-database": "./node_modules/.bin/babel-node ./scripts/setup-database.js",
-    "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- memory && npm run update-ip && react-native link",
+    "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- memory && npm run update-ip && react-native link && (cd .git/hooks && ln -s -f ../../scripts/pre-commit.sh ./pre-commit)",
     "setup-local-cut-version": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- cassandra",
     "setup-local-w": "copy .\\configuration\\default.env .\\.env. && copy .\\configuration\\app\\default.publicURL.js configuration\\app\\publicURL.js && npm run update-default-persister -- memory && npm run update-ip && react-native link",
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "babel-polyfill": "6.23.0",
-    "bcryptjs": "2.4.3",
+    "bcrypt": "1.0.2",
     "body-parser": "1.17.2",
     "cassandra-driver": "3.2.1",
     "classnames": "2.2.5",
@@ -125,7 +125,9 @@
     "eslint-loader": "1.7.1",
     "eslint-plugin-react": "7.0.1",
     "extract-text-webpack-plugin": "2.1.0",
+    "flow-bin": "0.47.0",
     "nodemon": "1.11.0",
+    "prettier": "1.4.2",
     "react-hot-loader": "3.0.0-beta.7",
     "react-native-drawer": "2.3.0",
     "react-native-elements": "0.12.2",
@@ -141,6 +143,6 @@
     "webpack-dev-server": "2.4.5",
     "whatwg-fetch": "2.0.3"
   },
-  "version": "19.1.0",
+  "version": "19.2.0",
   "name": "UniversalRelayBoilerplate"
 }
