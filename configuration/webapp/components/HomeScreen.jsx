@@ -1,9 +1,8 @@
 // @flow
 
+import { Card, CardHeader, CardText } from 'material-ui/Card'
 import React from 'react'
 import Relay from 'react-relay'
-
-import { Card, CardHeader, CardText } from 'material-ui/Card'
 
 import isomorphicVars from '../scripts/isomorphicVars'
 
