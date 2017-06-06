@@ -1,32 +1,24 @@
-// @flow weak
-'use strict'
+// @flow
 
-import React, { PropTypes, } from 'react'
-import { StyleSheet, Text, TouchableHighlight, } from 'react-native'
-
+import PropTypes from 'prop-types'
+import React from 'react'
+import { StyleSheet, Text, TouchableHighlight } from 'react-native'
 
 export default class StatusButton extends React.Component {
-
   static propTypes = {
     active: PropTypes.bool.isRequired,
-    children: PropTypes.oneOfType( [
-      PropTypes.arrayOf( PropTypes.node ),
-      PropTypes.node,
-    ] ).isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     onPress: PropTypes.func.isRequired,
     style: Text.propTypes.style,
   }
 
   render() {
-
-    return(
+    return (
       <TouchableHighlight
         onPress={this.props.onPress}
-        style={[
-          styles.baseButton,
-          this.props.active && styles.activeButton,
-        ]}
-        underlayColor="transparent">
+        style={[styles.baseButton, this.props.active && styles.activeButton]}
+        underlayColor="transparent"
+      >
         <Text style={[this.props.style, styles.buttonText]}>
           {this.props.children}
         </Text>
@@ -35,7 +27,7 @@ export default class StatusButton extends React.Component {
   }
 }
 
-const styles = StyleSheet.create( {
+const styles = StyleSheet.create({
   activeButton: {
     borderColor: 'rgba(175, 47, 47, 0.2)',
     borderRadius: 6,
@@ -50,4 +42,4 @@ const styles = StyleSheet.create( {
   buttonText: {
     fontSize: 16,
   },
-} )
+})

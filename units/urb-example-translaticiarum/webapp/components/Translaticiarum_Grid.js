@@ -1,9 +1,10 @@
-// @flow weak
+// @flow
 
 import { Card, CardActions, CardHeader } from 'material-ui/Card'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import DatePicker from 'material-ui/DatePicker/DatePicker'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
+import PropTypes from 'prop-types'
 import React from 'react'
 import Relay from 'react-relay'
 
@@ -27,7 +28,7 @@ class Translaticiarum_Grid extends React.Component {
   }
 
   static contextTypes = {
-    rbContext: React.PropTypes.object.isRequired,
+    rbContext: PropTypes.object.isRequired,
     relay: Relay.PropTypes.Environment,
   }
 

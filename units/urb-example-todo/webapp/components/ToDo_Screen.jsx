@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import { Card, CardHeader } from 'material-ui/Card'
 import TextField from 'material-ui/TextField'

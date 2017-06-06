@@ -1,5 +1,6 @@
-// @flow weak
+// @flow
 
+import PropTypes from 'prop-types'
 import React from 'react'
 import Relay from 'react-relay'
 
@@ -31,7 +32,7 @@ class Ensayo_PublicListing extends React.Component {
 }
 
 Ensayo_PublicListing.contextTypes = {
-  router: React.PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 }
 
 export default Relay.createContainer(Ensayo_PublicListing, {

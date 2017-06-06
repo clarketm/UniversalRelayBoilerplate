@@ -1,5 +1,6 @@
-// @flow weak
+// @flow
 
+import PropTypes from 'prop-types'
 import React from 'react'
 import Relay from 'react-relay'
 
@@ -776,7 +777,7 @@ class AppBar_Auth extends React.Component {
 }
 
 AppBar_Auth.contextTypes = {
-  router: React.PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 }
 
 export default Relay.createContainer(AppBar_Auth, {

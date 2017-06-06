@@ -1,12 +1,11 @@
-// @flow weak
+// @flow
 
+import PropTypes from 'prop-types'
 import Relay from 'react-relay'
-import React, { PropTypes, } from 'react'
-import { StyleSheet, Text, View, } from 'react-native'
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
-
-const styles = StyleSheet.create( {
-
+const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -16,51 +15,50 @@ const styles = StyleSheet.create( {
   strong: {
     fontWeight: 'bold',
   },
-} )
+})
 
 class ToDoListFooter extends React.Component {
-
   static propTypes = {
-    status: PropTypes.oneOf( [ 'active', 'any', 'completed' ] ).isRequired,
+    status: PropTypes.oneOf(['active', 'any', 'completed']).isRequired,
     style: View.propTypes.style,
   }
 
-  constructor( props, context ) {
-
-    super( props, context )
+  constructor(props, context) {
+    super(props, context)
   }
 
   render() {
-
     var numCompletedTodos = this.props.Viewer.ToDo_CompletedCount
     var numRemainingTodos = this.props.Viewer.ToDo_TotalCount - numCompletedTodos
-    return(
+    return (
       <View style={[this.props.style, styles.container]}>
         <Text>
           <Text style={styles.strong}>
             {numRemainingTodos}
-          </Text> item{numRemainingTodos === 1 ? '' : 's'} left
+          </Text>
+          {' '}
+          item{numRemainingTodos === 1 ? '' : 's'} left
         </Text>
       </View>
     )
   }
 }
 
-export default Relay.createContainer( ToDoListFooter, {
+export default Relay.createContainer(ToDoListFooter, {
   initialVariables: {
     status: 'any',
   },
-  prepareVariables( prevVars ) {
+  prepareVariables(prevVars) {
     return {
-      ...prevVars
+      ...prevVars,
     }
   },
   fragments: {
-    Viewer: () => Relay.QL `
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         ToDo_CompletedCount,
         ToDo_TotalCount
       }
     `,
   },
-} )
+})

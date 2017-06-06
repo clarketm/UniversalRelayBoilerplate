@@ -1,9 +1,9 @@
-// @flow weak
-'use strict'
+// @flow
 
+import PropTypes from 'prop-types'
 import Relay from 'react-relay'
-import React, { PropTypes, } from 'react'
-import { ListView, Platform, StyleSheet, Text, TouchableHighlight, View, } from 'react-native'
+import React from 'react'
+import { ListView, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 
 import Swipeout from '../../../../units/urb-react-native-swipeout/app/components/Swipeout'
 import ToDo_addMutation from '../../relay/ToDo_addMutation'
@@ -12,96 +12,87 @@ import ToDo_deleteMutation from '../../relay/ToDo_deleteMutation'
 import ToDo from './ToDo'
 import ToDoTextInput from './ToDoTextInput'
 
-
-const _ToDosDataSource = new ListView.DataSource( {
-
-  rowHasChanged: ( r1, r2 ) => r1.__dataID__ !== r2.__dataID__,
-} )
+const _ToDosDataSource = new ListView.DataSource({
+  rowHasChanged: (r1, r2) => r1.__dataID__ !== r2.__dataID__,
+})
 
 class ToDoList extends React.Component {
-
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   }
 
   static propTypes = {
-    status: PropTypes.oneOf( [ 'active', 'any', 'completed' ] ).isRequired,
+    status: PropTypes.oneOf(['active', 'any', 'completed']).isRequired,
     style: View.propTypes.style,
   }
 
-  constructor( props, context ) {
-
-    super( props, context )
+  constructor(props, context) {
+    super(props, context)
     const { edges } = props.Viewer.ToDos
     this.state = {
       initialListSize: edges.length,
       listScrollEnabled: true,
-      ToDosDataSource: _ToDosDataSource.cloneWithRows( edges ),
+      ToDosDataSource: _ToDosDataSource.cloneWithRows(edges),
     }
-    this._handleMarkAllPress = this._handleMarkAllPress.bind( this )
-    this._handleSwipeInactive = this._handleSwipeInactive.bind( this )
-    this._handleTextInputSave = this._handleTextInputSave.bind( this )
-    this._handleTodoDestroy = this._handleTodoDestroy.bind( this )
-    this.renderTodoEdge = this.renderTodoEdge.bind( this )
+    this._handleMarkAllPress = this._handleMarkAllPress.bind(this)
+    this._handleSwipeInactive = this._handleSwipeInactive.bind(this)
+    this._handleTextInputSave = this._handleTextInputSave.bind(this)
+    this._handleTodoDestroy = this._handleTodoDestroy.bind(this)
+    this.renderTodoEdge = this.renderTodoEdge.bind(this)
   }
 
   _handleMarkAllPress() {
-
     const numTodos = this.props.Viewer.ToDo_TotalCount
     const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount
     const ToDo_Complete = numTodos !== numCompletedTodos
     this.context.relay.commitUpdate(
-      new ToDo_list_updateMarkAllMutation( {
+      new ToDo_list_updateMarkAllMutation({
         ToDo_Complete,
         ToDos: this.props.Viewer.ToDos,
         Viewer: this.props.Viewer,
-      } )
+      }),
     )
   }
 
-  _handleSwipeInactive( swipeInactive ) {
-
-    this.setState( { listScrollEnabled: swipeInactive } )
+  _handleSwipeInactive(swipeInactive) {
+    this.setState({ listScrollEnabled: swipeInactive })
   }
 
-  _handleTextInputSave( ToDo_Text ) {
-
-    this.context.relay.commitUpdate(
-      new ToDo_addMutation( { ToDo_Text, Viewer: this.props.Viewer } )
-    )
+  _handleTextInputSave(ToDo_Text) {
+    this.context.relay.commitUpdate(new ToDo_addMutation({ ToDo_Text, Viewer: this.props.Viewer }))
   }
 
-  _handleTodoDestroy( ToDo ) {
-
+  _handleTodoDestroy(ToDo) {
     this.context.relay.commitUpdate(
-      new ToDo_deleteMutation( {
+      new ToDo_deleteMutation({
         ToDo,
         Viewer: this.props.Viewer,
-      } )
+      }),
     )
   }
 
-  componentWillReceiveProps( nextProps ) {
-
-    if( this.props.Viewer.ToDos.edges !== nextProps.Viewer.ToDos.edges ) {
-      this.setState( {
-        ToDosDataSource: _ToDosDataSource.cloneWithRows( nextProps.Viewer.ToDos.edges ),
-      } )
+  componentWillReceiveProps(nextProps) {
+    if (this.props.Viewer.ToDos.edges !== nextProps.Viewer.ToDos.edges) {
+      this.setState({
+        ToDosDataSource: _ToDosDataSource.cloneWithRows(nextProps.Viewer.ToDos.edges),
+      })
     }
   }
 
-  renderTodoEdge( todoEdge ) {
-
-    const destroyHandler = this._handleTodoDestroy.bind( null, todoEdge.node )
-    return(
+  renderTodoEdge(todoEdge) {
+    const destroyHandler = this._handleTodoDestroy.bind(null, todoEdge.node)
+    return (
       <Swipeout
         key={todoEdge.node.id}
-        right={[{
-          text: 'Delete',
-          type: 'delete',
-          onPress: destroyHandler,
-        }]}
-        scroll={this._handleSwipeInactive}>
+        right={[
+          {
+            text: 'Delete',
+            type: 'delete',
+            onPress: destroyHandler,
+          },
+        ]}
+        scroll={this._handleSwipeInactive}
+      >
         <ToDo
           onDestroy={destroyHandler}
           style={styles.ToDo}
@@ -112,27 +103,27 @@ class ToDoList extends React.Component {
     )
   }
 
-  renderSeparator( sectionId, rowId ) {
-
+  renderSeparator(sectionId, rowId) {
     return <View key={`sep_${sectionId}_${rowId}`} style={styles.separator} />
   }
 
   render() {
-
     const numTodos = this.props.Viewer.ToDo_TotalCount
     const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount
-    return(
+    return (
       <View style={[this.props.style, styles.container]}>
         <View style={styles.addTodoContainer}>
           <TouchableHighlight
             onPress={this._handleMarkAllPress}
             style={styles.markAllButtonContainer}
-            underlayColor="transparent">
+            underlayColor="transparent"
+          >
             <Text
               style={[
                 styles.markAllButton,
                 numTodos !== numCompletedTodos && styles.markAllButtonDisabled,
-              ]}>
+              ]}
+            >
               {'\u276F'}
             </Text>
           </TouchableHighlight>
@@ -155,16 +146,15 @@ class ToDoList extends React.Component {
   }
 }
 
-export default Relay.createContainer( ToDoList, {
-
+export default Relay.createContainer(ToDoList, {
   initialVariables: {
     status: 'any',
     limit: 2147483647,
   },
 
-  prepareVariables( { status } ) {
+  prepareVariables({ status }) {
     var nextStatus
-    if( status === 'active' || status === 'completed' ) {
+    if (status === 'active' || status === 'completed') {
       nextStatus = status
     } else {
       // This matches the Backbone example, which displays all ToDos on an
@@ -178,7 +168,7 @@ export default Relay.createContainer( ToDoList, {
   },
 
   fragments: {
-    Viewer: () => Relay.QL `
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         ToDo_CompletedCount
         ToDos(status: $status, first: $limit) {
@@ -199,9 +189,9 @@ export default Relay.createContainer( ToDoList, {
       }
     `,
   },
-} )
+})
 
-const styles = StyleSheet.create( {
+const styles = StyleSheet.create({
   addTodoContainer: {
     borderBottomColor: 'rgba(0,0,0,0.1)',
     borderBottomWidth: 1,
@@ -231,7 +221,7 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
     height: 44,
     justifyContent: 'center',
-    transform: [ { rotate: '90deg' } ],
+    transform: [{ rotate: '90deg' }],
     width: 44,
   },
   markAllButtonDisabled: {
@@ -247,4 +237,4 @@ const styles = StyleSheet.create( {
     paddingLeft: 10,
     paddingRight: 8,
   },
-} )
+})

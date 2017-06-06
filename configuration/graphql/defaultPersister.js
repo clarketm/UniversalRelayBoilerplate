@@ -1,7 +1,6 @@
-/* @flow */
+// @flow
 
 import Persister from '../../units/urb-persister-memory/graphql/PersisterMemory'
 
-
-const defaultPersister = new Persister( )
+const defaultPersister = new Persister()
 export default defaultPersister
