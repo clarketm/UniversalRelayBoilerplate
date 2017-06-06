@@ -25,10 +25,12 @@ return function(){return{children:[{children:[{fieldName:'Ensayo_Content',kind:'
 
 }},{key:'getConfigs',value:function getConfigs()
 {
-return[{
+return[
+{
 type:'FIELDS_CHANGE',
 fieldIDs:{
 Ensayo:this.props.Ensayo.id}}];
+
 
 
 }},{key:'getVariables',value:function getVariables()

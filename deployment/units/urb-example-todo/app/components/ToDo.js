@@ -1,6 +1,6 @@
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-'use strict';Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
-
+var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactNative=require('react-native');
@@ -9,9 +9,7 @@ var _ToDoTextInput=require('./ToDoTextInput');var _ToDoTextInput2=_interopRequir
 var _ToDo_updateStatusMutation=require('../../relay/ToDo_updateStatusMutation');var _ToDo_updateStatusMutation2=_interopRequireDefault(_ToDo_updateStatusMutation);
 var _ToDo_updateRenameMutation=require('../../relay/ToDo_updateRenameMutation');var _ToDo_updateRenameMutation2=_interopRequireDefault(_ToDo_updateRenameMutation);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
-
 ToDo=function(_React$Component){_inherits(ToDo,_React$Component);
-
 
 
 
@@ -37,7 +35,6 @@ _this._setEditMode=_this._setEditMode.bind(_this);return _this;
 }_createClass(ToDo,[{key:'_handleCompletePress',value:function _handleCompletePress()
 
 {
-
 var ToDo_Complete=!this.props.ToDo.ToDo_Complete;
 this.context.relay.commitUpdate(
 new _ToDo_updateStatusMutation2.default({
@@ -53,18 +50,15 @@ this._setEditMode(true);
 }},{key:'_handleTextInputCancel',value:function _handleTextInputCancel()
 
 {
-
 this._setEditMode(false);
 }},{key:'_handleTextInputDelete',value:function _handleTextInputDelete()
 
 {
-
 this._setEditMode(false);
 this.props.onDestroy();
 }},{key:'_handleTextInputSave',value:function _handleTextInputSave(
 
 ToDo_Text){
-
 this._setEditMode(false);
 this.context.relay.commitUpdate(
 new _ToDo_updateRenameMutation2.default({ToDo:this.props.ToDo,ToDo_Text:ToDo_Text}));
@@ -72,12 +66,10 @@ new _ToDo_updateRenameMutation2.default({ToDo:this.props.ToDo,ToDo_Text:ToDo_Tex
 }},{key:'_setEditMode',value:function _setEditMode(
 
 shouldEdit){
-
 this.setState({isEditing:shouldEdit});
 }},{key:'renderCompleteCheckbox',value:function renderCompleteCheckbox()
 
 {
-
 var imageModule=this.props.ToDo.ToDo_Complete?
 require('../images/todo_checkbox-active.png'):
 require('../images/todo_checkbox.png');
@@ -86,13 +78,13 @@ _react2.default.createElement(_reactNative.TouchableHighlight,{
 onPress:this._handleCompletePress,
 style:styles.checkbox,
 underlayColor:'transparent'},
+
 _react2.default.createElement(_reactNative.Image,{source:imageModule})));
 
 
 }},{key:'render',value:function render()
 
 {
-
 return(
 _react2.default.createElement(_reactNative.View,{style:[this.props.style,styles.container]},
 this.renderCompleteCheckbox(),
@@ -111,16 +103,14 @@ activeOpacity:1,
 onPress:this._handleLabelPress,
 style:styles.label,
 underlayColor:'transparent'},
-_react2.default.createElement(_reactNative.Text,{
-numberOfLines:1,
-style:styles.labelText},
+
+_react2.default.createElement(_reactNative.Text,{numberOfLines:1,style:styles.labelText},
 this.props.ToDo.ToDo_Text))));
 
 
 
 
-
-}}]);return ToDo;}(_react2.default.Component);ToDo.contextTypes={relay:_reactRelay2.default.PropTypes.Environment};ToDo.propTypes={onDestroy:_react.PropTypes.func.isRequired,style:_reactNative.View.propTypes.style};exports.default=
+}}]);return ToDo;}(_react2.default.Component);ToDo.contextTypes={relay:_reactRelay2.default.PropTypes.Environment};ToDo.propTypes={onDestroy:_propTypes2.default.func.isRequired,style:_reactNative.View.propTypes.style};exports.default=
 
 
 _reactRelay2.default.createContainer(ToDo,{

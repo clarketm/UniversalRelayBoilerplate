@@ -16,18 +16,23 @@ Ensayo_Description:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLString)}},
 outputFields:{
 Ensayo:{
 type:_EnsayoType2.default,
-resolve:function resolve(_ref,_ref2,context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var objectManager=_ref3.rootValue;return objectManager.getOneObject('Ensayo',{id:local_id});}}},
+resolve:function resolve(_ref,_ref2,context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var objectManager=_ref3.rootValue;return(
+objectManager.getOneObject('Ensayo',{id:local_id}));}}},
 
 
-mutateAndGetPayload:function mutateAndGetPayload(_ref4,context,_ref5){var id=_ref4.id,Ensayo_Content=_ref4.Ensayo_Content,Ensayo_Title=_ref4.Ensayo_Title,Ensayo_Description=_ref4.Ensayo_Description;var objectManager=_ref5.rootValue;
+mutateAndGetPayload:function mutateAndGetPayload(_ref4,
+
+context,_ref5)
+
+{var id=_ref4.id,Ensayo_Content=_ref4.Ensayo_Content,Ensayo_Title=_ref4.Ensayo_Title,Ensayo_Description=_ref4.Ensayo_Description;var objectManager=_ref5.rootValue;
 var local_id=(0,_graphqlRelay.fromGlobalId)(id).id;
-return objectManager.update('Ensayo',{
+return objectManager.
+update('Ensayo',{
 id:local_id,
 Ensayo_Content:Ensayo_Content,
 Ensayo_Title:Ensayo_Title,
 Ensayo_Description:Ensayo_Description}).
 
 then(function(){return{local_id:local_id};});
-
 }});
 //# sourceMappingURL=Ensayo_update.js.map

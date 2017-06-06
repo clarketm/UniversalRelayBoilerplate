@@ -12,9 +12,7 @@ import Relay from 'react-relay'
 import Compendium_updateMutation from '../../relay/Compendium_updateMutation'
 import ResponsiveContentArea from '../../../../webapp/components/ResponsiveContentArea'
 
-
 class Compendium extends React.Component {
-
   state: {
     Compendium_RangedNumber_error: string,
     Compendium_FirstTextInput: string,
@@ -24,27 +22,27 @@ class Compendium extends React.Component {
     Compendium_FavoriteMammal: number,
     Compendium_FavoriteMammalOtherText: string,
     Compendium_LastText: string,
-    Compendium_LikedSunset_Ocean: bool,
-    Compendium_LikedSunset_Lake: bool,
-    Compendium_LikedSunset_Mountains: bool,
-    Compendium_LikedSunset_Plains: bool,
-    Compendium_LikedSunset_Purple: bool,
-    Compendium_LikedSunset_Green: bool,
-    Compendium_LikedSunset_Other: bool,
+    Compendium_LikedSunset_Ocean: boolean,
+    Compendium_LikedSunset_Lake: boolean,
+    Compendium_LikedSunset_Mountains: boolean,
+    Compendium_LikedSunset_Plains: boolean,
+    Compendium_LikedSunset_Purple: boolean,
+    Compendium_LikedSunset_Green: boolean,
+    Compendium_LikedSunset_Other: boolean,
     Compendium_LikedSunset_OtherText: string,
-  };
+  }
 
   static contextTypes = {
     relay: Relay.PropTypes.Environment,
   }
 
-  constructor( props, context ) {
-    super( props, context )
+  constructor(props, context) {
+    super(props, context)
 
-    const node = this.props.Viewer.compendiums.edges[ 0 ].node
+    const node = this.props.Viewer.compendiums.edges[0].node
 
     this.state = {
-      Compendium_RangedNumber_error: "",
+      Compendium_RangedNumber_error: '',
       Compendium_FirstTextInput: node.Compendium_FirstTextInput,
       Compendium_RangedNumber: node.Compendium_RangedNumber,
       Compendium_Excitement: node.Compendium_Excitement,
@@ -63,9 +61,9 @@ class Compendium extends React.Component {
     }
   }
 
-  _handleUpdate = ( Compendium ) => {
+  _handleUpdate = Compendium => {
     this.context.relay.commitUpdate(
-      new Compendium_updateMutation( {
+      new Compendium_updateMutation({
         Compendium: Compendium,
         Compendium_FirstTextInput: this.state.Compendium_FirstTextInput,
         Compendium_RangedNumber: this.state.Compendium_RangedNumber,
@@ -82,97 +80,91 @@ class Compendium extends React.Component {
         Compendium_LikedSunset_Green: this.state.Compendium_LikedSunset_Green,
         Compendium_LikedSunset_Other: this.state.Compendium_LikedSunset_Other,
         Compendium_LikedSunset_OtherText: this.state.Compendium_LikedSunset_OtherText,
-      } )
+      }),
     )
   }
 
-  _handle_onChange_Compendium_FirstTextInput = ( event ) => {
-    this.setState( { Compendium_FirstTextInput: event.target.value } )
+  _handle_onChange_Compendium_FirstTextInput = event => {
+    this.setState({ Compendium_FirstTextInput: event.target.value })
   }
 
-  _handle_onChange_Compendium_RangedNumber = ( event ) => {
+  _handle_onChange_Compendium_RangedNumber = event => {
     const value = event.target.value
-    let valueInt = parseInt( value, 10 )
+    let valueInt = parseInt(value, 10)
 
-    if( isNaN( valueInt ) )
-      valueInt = 0
+    if (isNaN(valueInt)) valueInt = 0
 
-    this.setState( { Compendium_RangedNumber: valueInt } )
+    this.setState({ Compendium_RangedNumber: valueInt })
 
-    let errorText = "Enter a number between 18 and 65"
+    let errorText = 'Enter a number between 18 and 65'
 
-    if( value == valueInt )
-      if( valueInt >= 18 && valueInt <= 65 )
-        errorText = ""
+    if (value == valueInt) if (valueInt >= 18 && valueInt <= 65) errorText = ''
 
-    this.setState( { Compendium_RangedNumber_error: errorText } )
+    this.setState({ Compendium_RangedNumber_error: errorText })
   }
 
-  _handle_onChange_Compendium_Excitement = ( event, index, value ) => {
-    this.setState( { Compendium_Excitement: value } )
+  _handle_onChange_Compendium_Excitement = (event, index, value) => {
+    this.setState({ Compendium_Excitement: value })
   }
 
-  _handle_onChange_Compendium_LastText = ( event ) => {
-    this.setState( { Compendium_LastText: event.target.value } )
+  _handle_onChange_Compendium_LastText = event => {
+    this.setState({ Compendium_LastText: event.target.value })
   }
 
-  _handle_onChange_Compendium_FollowUpQuestion = ( event ) => {
-    this.setState( { Compendium_FollowUpQuestion: event.target.value } )
+  _handle_onChange_Compendium_FollowUpQuestion = event => {
+    this.setState({ Compendium_FollowUpQuestion: event.target.value })
   }
 
-  _handle_onChange_Compendium_FavoriteMammal = ( event, index, value ) => {
-    this.setState( { Compendium_FavoriteMammal: value } )
+  _handle_onChange_Compendium_FavoriteMammal = (event, index, value) => {
+    this.setState({ Compendium_FavoriteMammal: value })
   }
 
-  _handle_onChange_Compendium_FavoriteMammalOtherText = ( event ) => {
-    this.setState( { Compendium_FavoriteMammalOtherText: event.target.value } )
+  _handle_onChange_Compendium_FavoriteMammalOtherText = event => {
+    this.setState({ Compendium_FavoriteMammalOtherText: event.target.value })
   }
 
-  _handle_onChange_Compendium_LikedSunset_Ocean = ( event, value ) => {
-    this.setState( { Compendium_LikedSunset_Ocean: value } )
+  _handle_onChange_Compendium_LikedSunset_Ocean = (event, value) => {
+    this.setState({ Compendium_LikedSunset_Ocean: value })
   }
 
-  _handle_onChange_Compendium_LikedSunset = ( event, value ) => {
-    this.setState( { Compendium_LikedSunset_Lake: value } )
+  _handle_onChange_Compendium_LikedSunset = (event, value) => {
+    this.setState({ Compendium_LikedSunset_Lake: value })
   }
 
-  _handle_onChange_Compendium_LikedSunset_Mountains = ( event, value ) => {
-    this.setState( { Compendium_LikedSunset_Mountains: value } )
+  _handle_onChange_Compendium_LikedSunset_Mountains = (event, value) => {
+    this.setState({ Compendium_LikedSunset_Mountains: value })
   }
 
-  _handle_onChange_Compendium_LikedSunset_Plains = ( event, value ) => {
-    this.setState( { Compendium_LikedSunset_Plains: value } )
+  _handle_onChange_Compendium_LikedSunset_Plains = (event, value) => {
+    this.setState({ Compendium_LikedSunset_Plains: value })
   }
 
-  _handle_onChange_Compendium_LikedSunset_Purple = ( event, value ) => {
-    this.setState( { Compendium_LikedSunset_Purple: value } )
+  _handle_onChange_Compendium_LikedSunset_Purple = (event, value) => {
+    this.setState({ Compendium_LikedSunset_Purple: value })
   }
 
-  _handle_onChange_Compendium_LikedSunset_Green = ( event, value ) => {
-    this.setState( { Compendium_LikedSunset_Green: value } )
+  _handle_onChange_Compendium_LikedSunset_Green = (event, value) => {
+    this.setState({ Compendium_LikedSunset_Green: value })
   }
 
-  _handle_onChange_Compendium_LikedSunset_Other = ( event, value ) => {
-    this.setState( { Compendium_LikedSunset_Other: value } )
+  _handle_onChange_Compendium_LikedSunset_Other = (event, value) => {
+    this.setState({ Compendium_LikedSunset_Other: value })
   }
 
-  _handle_onChange_Compendium_LikedSunset_OtherText = ( event ) => {
-    this.setState( { Compendium_LikedSunset_OtherText: event.target.value } )
+  _handle_onChange_Compendium_LikedSunset_OtherText = event => {
+    this.setState({ Compendium_LikedSunset_OtherText: event.target.value })
   }
 
   render() {
     // Determine error text, since we already have the errors in state
-    let formErrorText = ""
-    if(
-      this.state.Compendium_RangedNumber_error != ""
-    )
-      formErrorText = "There are errors"
+    let formErrorText = ''
+    if (this.state.Compendium_RangedNumber_error != '') formErrorText = 'There are errors'
 
-    const edge = this.props.Viewer.compendiums.edges[ 0 ]
+    const edge = this.props.Viewer.compendiums.edges[0]
 
-    return(
+    return (
       <ResponsiveContentArea>
-        <Card key={ edge.node.id }>
+        <Card key={edge.node.id}>
           <CardHeader
             title="User Compendium"
             subtitle="One to one properties for a user retrieved from an edge"
@@ -180,114 +172,128 @@ class Compendium extends React.Component {
           <CardText>
             <div>
               <TextField
-                value={ this.state.Compendium_FirstTextInput }
+                value={this.state.Compendium_FirstTextInput}
                 floatingLabelText="When we do a Haiku"
-                fullWidth={ true }
-                onChange={ this._handle_onChange_Compendium_FirstTextInput }
+                fullWidth={true}
+                onChange={this._handle_onChange_Compendium_FirstTextInput}
               />
               <TextField
-                value={ this.state.Compendium_RangedNumber }
+                value={this.state.Compendium_RangedNumber}
                 floatingLabelText="A number between eighteen and sixty"
-                fullWidth={ true }
-                errorText={ this.state.Compendium_RangedNumber_error }
-                onChange={ this._handle_onChange_Compendium_RangedNumber }
+                fullWidth={true}
+                errorText={this.state.Compendium_RangedNumber_error}
+                onChange={this._handle_onChange_Compendium_RangedNumber}
               />
               <SelectField
-                value={ this.state.Compendium_FavoriteMammal }
+                value={this.state.Compendium_FavoriteMammal}
                 floatingLabelText="Which one is your favorite water mammal?"
-                fullWidth={ true }
-                onChange={ this._handle_onChange_Compendium_FavoriteMammal }
+                fullWidth={true}
+                onChange={this._handle_onChange_Compendium_FavoriteMammal}
               >
-                <MenuItem value={1} primaryText="Dolphin"/>
-                <MenuItem value={2} primaryText="Whale"/>
-                <MenuItem value={3} primaryText="Manatee"/>
-                <MenuItem value={4} primaryText="Other"/>
+                <MenuItem value={1} primaryText="Dolphin" />
+                <MenuItem value={2} primaryText="Whale" />
+                <MenuItem value={3} primaryText="Manatee" />
+                <MenuItem value={4} primaryText="Other" />
               </SelectField>
-              { ( this.state.Compendium_FavoriteMammal != 4 ) ||
+              {this.state.Compendium_FavoriteMammal != 4 ||
                 <TextField
-                  value={ this.state.Compendium_FavoriteMammalOtherText }
-                  fullWidth={ true }
-                  onChange={ this._handle_onChange_Compendium_FavoriteMammalOtherText }
-                />
-              }
+                  value={this.state.Compendium_FavoriteMammalOtherText}
+                  fullWidth={true}
+                  onChange={this._handle_onChange_Compendium_FavoriteMammalOtherText}
+                />}
               <TextField
-                value={ this.state.Compendium_FollowUpQuestion }
+                value={this.state.Compendium_FollowUpQuestion}
                 floatingLabelText="The middle has"
-                fullWidth={ true }
-                onChange={ this._handle_onChange_Compendium_FollowUpQuestion }
+                fullWidth={true}
+                onChange={this._handle_onChange_Compendium_FollowUpQuestion}
               />
               <SelectField
-                value={ this.state.Compendium_Excitement }
+                value={this.state.Compendium_Excitement}
                 floatingLabelText="How excited are you about Relay?"
-                fullWidth={ true }
-                onChange={ this._handle_onChange_Compendium_Excitement }
+                fullWidth={true}
+                onChange={this._handle_onChange_Compendium_Excitement}
               >
-                <MenuItem value={1} primaryText="Ambivalent, just meh" label="Ambivalent"/>
-                <MenuItem value={2} primaryText="Cautious, been burnt before" label="Cautious"/>
-                <MenuItem value={3} primaryText="Optimistic, Facebook made it!" label="Optimistic"/>
-                <MenuItem value={4} primaryText="Excited, I can do so much with it" label="Excited"/>
-                <MenuItem value={5} primaryText="Enthusiastic, great productivity" label="Enthusiastic"/>
-                <MenuItem value={6} primaryText="Ecstatic, death to REST!" label="Ecstatic"/>
-                <MenuItem value={7} primaryText="Riled Up, can't wait for 1.0" label="Riled Up"/>
-                <MenuItem value={8} primaryText="Mind = Blown, I will become a contributor" label="Mind = Blown"/>
+                <MenuItem value={1} primaryText="Ambivalent, just meh" label="Ambivalent" />
+                <MenuItem value={2} primaryText="Cautious, been burnt before" label="Cautious" />
+                <MenuItem
+                  value={3}
+                  primaryText="Optimistic, Facebook made it!"
+                  label="Optimistic"
+                />
+                <MenuItem
+                  value={4}
+                  primaryText="Excited, I can do so much with it"
+                  label="Excited"
+                />
+                <MenuItem
+                  value={5}
+                  primaryText="Enthusiastic, great productivity"
+                  label="Enthusiastic"
+                />
+                <MenuItem value={6} primaryText="Ecstatic, death to REST!" label="Ecstatic" />
+                <MenuItem value={7} primaryText="Riled Up, can't wait for 1.0" label="Riled Up" />
+                <MenuItem
+                  value={8}
+                  primaryText="Mind = Blown, I will become a contributor"
+                  label="Mind = Blown"
+                />
               </SelectField>
               <TextField
-                value={ this.state.Compendium_LastText }
+                value={this.state.Compendium_LastText}
                 floatingLabelText="More than both the beginning and the end"
-                fullWidth={ true }
-                onChange={ this._handle_onChange_Compendium_LastText }
+                fullWidth={true}
+                onChange={this._handle_onChange_Compendium_LastText}
               />
               <div>
                 What kind of sunsets do you like?
               </div>
               <Checkbox
                 label="Over the ocean"
-                defaultChecked={ this.state.Compendium_LikedSunset_Ocean }
-                onCheck={ this._handle_onChange_Compendium_LikedSunset_Ocean }
+                defaultChecked={this.state.Compendium_LikedSunset_Ocean}
+                onCheck={this._handle_onChange_Compendium_LikedSunset_Ocean}
               />
               <Checkbox
                 label="Over a lake"
-                defaultChecked={ this.state.Compendium_LikedSunset_Lake }
-                onCheck={ this._handle_onChange_Compendium_LikedSunset }
+                defaultChecked={this.state.Compendium_LikedSunset_Lake}
+                onCheck={this._handle_onChange_Compendium_LikedSunset}
               />
               <Checkbox
                 label="From a mountain top"
-                defaultChecked={ this.state.Compendium_LikedSunset_Mountains }
-                onCheck={ this._handle_onChange_Compendium_LikedSunset_Mountains }
+                defaultChecked={this.state.Compendium_LikedSunset_Mountains}
+                onCheck={this._handle_onChange_Compendium_LikedSunset_Mountains}
               />
               <Checkbox
                 label="Over plains"
-                defaultChecked={ this.state.Compendium_LikedSunset_Plains }
-                onCheck={ this._handle_onChange_Compendium_LikedSunset_Plains }
+                defaultChecked={this.state.Compendium_LikedSunset_Plains}
+                onCheck={this._handle_onChange_Compendium_LikedSunset_Plains}
               />
               <Checkbox
                 label="Purple"
-                defaultChecked={ this.state.Compendium_LikedSunset_Purple }
-                onCheck={ this._handle_onChange_Compendium_LikedSunset_Purple }
+                defaultChecked={this.state.Compendium_LikedSunset_Purple}
+                onCheck={this._handle_onChange_Compendium_LikedSunset_Purple}
               />
               <Checkbox
                 label="Green"
-                defaultChecked={ this.state.Compendium_LikedSunset_Green }
-                onCheck={ this._handle_onChange_Compendium_LikedSunset_Green }
+                defaultChecked={this.state.Compendium_LikedSunset_Green}
+                onCheck={this._handle_onChange_Compendium_LikedSunset_Green}
               />
               <Checkbox
                 label="Other"
-                defaultChecked={ this.state.Compendium_LikedSunset_Other }
-                onCheck={ this._handle_onChange_Compendium_LikedSunset_Other }
+                defaultChecked={this.state.Compendium_LikedSunset_Other}
+                onCheck={this._handle_onChange_Compendium_LikedSunset_Other}
               />
-              { ( ! this.state.Compendium_LikedSunset_Other ) ||
+              {!this.state.Compendium_LikedSunset_Other ||
                 <TextField
-                  value={ this.state.Compendium_LikedSunset_OtherText }
-                  fullWidth={ true }
-                  onChange={ this._handle_onChange_Compendium_LikedSunset_OtherText }
-                />
-              }
+                  value={this.state.Compendium_LikedSunset_OtherText}
+                  fullWidth={true}
+                  onChange={this._handle_onChange_Compendium_LikedSunset_OtherText}
+                />}
               <div>
                 <RaisedButton
                   label="Update"
                   secondary={true}
-                  disabled={ formErrorText != "" }
-                  onTouchTap={ ( ) => this._handleUpdate( edge.node ) }
+                  disabled={formErrorText != ''}
+                  onTouchTap={() => this._handleUpdate(edge.node)}
                 />
               </div>
             </div>
@@ -298,9 +304,9 @@ class Compendium extends React.Component {
   }
 }
 
-export default Relay.createContainer( Compendium, {
+export default Relay.createContainer(Compendium, {
   fragments: {
-    Viewer: () => Relay.QL `
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         compendiums( first: 1 ){
           edges {
@@ -328,4 +334,4 @@ export default Relay.createContainer( Compendium, {
       }
     `,
   },
-} )
+})

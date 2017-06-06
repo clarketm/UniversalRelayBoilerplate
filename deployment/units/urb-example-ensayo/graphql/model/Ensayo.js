@@ -2,9 +2,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _ObjectManager=requ
 
 
 Ensayo=
-
-function Ensayo(fields)
-{_classCallCheck(this,Ensayo);
+function Ensayo(fields){_classCallCheck(this,Ensayo);
 this.id=fields.id;
 this.Ensayo_User_id=fields.Ensayo_User_id;
 this.Ensayo_Title=fields.Ensayo_Title;

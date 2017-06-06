@@ -1,6 +1,7 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var _react=require('react');var _react2=_interopRequireDefault(_react);
+Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
 
-
+var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
+var _react=require('react');var _react2=_interopRequireDefault(_react);
 
 var _reactNative=require('react-native');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
@@ -28,15 +29,16 @@ opacity:0.8}});
 
 
 var NativeButton=_react2.default.createClass({displayName:'NativeButton',
-
 propTypes:_extends({},
 
 _reactNative.TouchableWithoutFeedback.propTypes,{
 textStyle:_reactNative.Text.propTypes.style,
 disabledStyle:_reactNative.Text.propTypes.style,
-children:_react.PropTypes.node.isRequired,
-underlayColor:_react.PropTypes.string,
-background:_reactNative.TouchableNativeFeedback.propTypes?_reactNative.TouchableNativeFeedback.propTypes.background:_react.PropTypes.any}),
+children:_propTypes2.default.node.isRequired,
+underlayColor:_propTypes2.default.string,
+background:_reactNative.TouchableNativeFeedback.propTypes?
+_reactNative.TouchableNativeFeedback.propTypes.background:
+_propTypes2.default.any}),
 
 
 statics:{
@@ -92,8 +94,7 @@ background:this.props.background||_reactNative.TouchableNativeFeedback.Selectabl
 
 
 return(
-_react2.default.createElement(_reactNative.TouchableNativeFeedback,
-buttonProps,
+_react2.default.createElement(_reactNative.TouchableNativeFeedback,buttonProps,
 _react2.default.createElement(_reactNative.View,{style:[styles.button,this.props.style,disabledStyle]},
 this._renderText())));
 
@@ -107,6 +108,7 @@ _react2.default.createElement(_reactNative.TouchableHighlight,_extends({},
 buttonProps,{
 style:[styles.button,this.props.style,disabledStyle],
 underlayColor:this.props.underlayColor}),
+
 this._renderText()));
 
 

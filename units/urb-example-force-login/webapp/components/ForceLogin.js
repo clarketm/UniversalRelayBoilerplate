@@ -6,20 +6,14 @@ import Relay from 'react-relay'
 
 import { RequiresAuthenticationNotice } from '../../../../units/urb-account-management/webapp/components/RequiresAuthentication.js'
 
-
 class ForceLogin extends React.Component {
-
   render() {
-
-    if( this.props.Viewer.User_IsAnonymous )
+    if (this.props.Viewer.User_IsAnonymous)
       return <RequiresAuthenticationNotice /> // Anonymous users do not get to have a profile
     else
-      return(
+      return (
         <Card>
-          <CardHeader
-            title="Only Authorized"
-            subtitle="Only users who log in see this."
-          />
+          <CardHeader title="Only Authorized" subtitle="Only users who log in see this." />
           <CardText>
             Content seen by authorized users
           </CardText>
@@ -28,12 +22,12 @@ class ForceLogin extends React.Component {
   }
 }
 
-export default Relay.createContainer( ForceLogin, {
+export default Relay.createContainer(ForceLogin, {
   fragments: {
-    Viewer: () => Relay.QL `
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         User_IsAnonymous,
       }
     `,
   },
-} )
+})

@@ -12,9 +12,7 @@ var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_
 var _Compendium_updateMutation=require('../../relay/Compendium_updateMutation');var _Compendium_updateMutation2=_interopRequireDefault(_Compendium_updateMutation);
 var _ResponsiveContentArea=require('../../../../webapp/components/ResponsiveContentArea');var _ResponsiveContentArea2=_interopRequireDefault(_ResponsiveContentArea);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
-
 Compendium=function(_React$Component){_inherits(Compendium,_React$Component);
-
 
 
 
@@ -94,16 +92,13 @@ _handle_onChange_Compendium_RangedNumber=function(event){
 var value=event.target.value;
 var valueInt=parseInt(value,10);
 
-if(isNaN(valueInt))
-valueInt=0;
+if(isNaN(valueInt))valueInt=0;
 
 _this.setState({Compendium_RangedNumber:valueInt});
 
-var errorText="Enter a number between 18 and 65";
+var errorText='Enter a number between 18 and 65';
 
-if(value==valueInt)
-if(valueInt>=18&&valueInt<=65)
-errorText="";
+if(value==valueInt)if(valueInt>=18&&valueInt<=65)errorText='';
 
 _this.setState({Compendium_RangedNumber_error:errorText});
 };_this.
@@ -158,15 +153,12 @@ _this.setState({Compendium_LikedSunset_Other:value});
 
 _handle_onChange_Compendium_LikedSunset_OtherText=function(event){
 _this.setState({Compendium_LikedSunset_OtherText:event.target.value});
-};var node=_this.props.Viewer.compendiums.edges[0].node;_this.state={Compendium_RangedNumber_error:"",Compendium_FirstTextInput:node.Compendium_FirstTextInput,Compendium_RangedNumber:node.Compendium_RangedNumber,Compendium_Excitement:node.Compendium_Excitement,Compendium_FollowUpQuestion:node.Compendium_FollowUpQuestion,Compendium_FavoriteMammal:node.Compendium_FavoriteMammal,Compendium_FavoriteMammalOtherText:node.Compendium_FavoriteMammalOtherText,Compendium_LastText:node.Compendium_LastText,Compendium_LikedSunset_Ocean:node.Compendium_LikedSunset_Ocean,Compendium_LikedSunset_Lake:node.Compendium_LikedSunset_Lake,Compendium_LikedSunset_Mountains:node.Compendium_LikedSunset_Mountains,Compendium_LikedSunset_Plains:node.Compendium_LikedSunset_Plains,Compendium_LikedSunset_Purple:node.Compendium_LikedSunset_Purple,Compendium_LikedSunset_Green:node.Compendium_LikedSunset_Green,Compendium_LikedSunset_Other:node.Compendium_LikedSunset_Other,Compendium_LikedSunset_OtherText:node.Compendium_LikedSunset_OtherText};return _this;}_createClass(Compendium,[{key:'render',value:function render()
+};var node=_this.props.Viewer.compendiums.edges[0].node;_this.state={Compendium_RangedNumber_error:'',Compendium_FirstTextInput:node.Compendium_FirstTextInput,Compendium_RangedNumber:node.Compendium_RangedNumber,Compendium_Excitement:node.Compendium_Excitement,Compendium_FollowUpQuestion:node.Compendium_FollowUpQuestion,Compendium_FavoriteMammal:node.Compendium_FavoriteMammal,Compendium_FavoriteMammalOtherText:node.Compendium_FavoriteMammalOtherText,Compendium_LastText:node.Compendium_LastText,Compendium_LikedSunset_Ocean:node.Compendium_LikedSunset_Ocean,Compendium_LikedSunset_Lake:node.Compendium_LikedSunset_Lake,Compendium_LikedSunset_Mountains:node.Compendium_LikedSunset_Mountains,Compendium_LikedSunset_Plains:node.Compendium_LikedSunset_Plains,Compendium_LikedSunset_Purple:node.Compendium_LikedSunset_Purple,Compendium_LikedSunset_Green:node.Compendium_LikedSunset_Green,Compendium_LikedSunset_Other:node.Compendium_LikedSunset_Other,Compendium_LikedSunset_OtherText:node.Compendium_LikedSunset_OtherText};return _this;}_createClass(Compendium,[{key:'render',value:function render()
 
 {var _this2=this;
 
-var formErrorText="";
-if(
-this.state.Compendium_RangedNumber_error!="")
-
-formErrorText="There are errors";
+var formErrorText='';
+if(this.state.Compendium_RangedNumber_error!='')formErrorText='There are errors';
 
 var edge=this.props.Viewer.compendiums.edges[0];
 
@@ -209,7 +201,6 @@ value:this.state.Compendium_FavoriteMammalOtherText,
 fullWidth:true,
 onChange:this._handle_onChange_Compendium_FavoriteMammalOtherText}),
 
-
 _react2.default.createElement(_TextField2.default,{
 value:this.state.Compendium_FollowUpQuestion,
 floatingLabelText:'The middle has',
@@ -224,12 +215,28 @@ onChange:this._handle_onChange_Compendium_Excitement},
 
 _react2.default.createElement(_MenuItem2.default,{value:1,primaryText:'Ambivalent, just meh',label:'Ambivalent'}),
 _react2.default.createElement(_MenuItem2.default,{value:2,primaryText:'Cautious, been burnt before',label:'Cautious'}),
-_react2.default.createElement(_MenuItem2.default,{value:3,primaryText:'Optimistic, Facebook made it!',label:'Optimistic'}),
-_react2.default.createElement(_MenuItem2.default,{value:4,primaryText:'Excited, I can do so much with it',label:'Excited'}),
-_react2.default.createElement(_MenuItem2.default,{value:5,primaryText:'Enthusiastic, great productivity',label:'Enthusiastic'}),
+_react2.default.createElement(_MenuItem2.default,{
+value:3,
+primaryText:'Optimistic, Facebook made it!',
+label:'Optimistic'}),
+
+_react2.default.createElement(_MenuItem2.default,{
+value:4,
+primaryText:'Excited, I can do so much with it',
+label:'Excited'}),
+
+_react2.default.createElement(_MenuItem2.default,{
+value:5,
+primaryText:'Enthusiastic, great productivity',
+label:'Enthusiastic'}),
+
 _react2.default.createElement(_MenuItem2.default,{value:6,primaryText:'Ecstatic, death to REST!',label:'Ecstatic'}),
 _react2.default.createElement(_MenuItem2.default,{value:7,primaryText:'Riled Up, can\'t wait for 1.0',label:'Riled Up'}),
-_react2.default.createElement(_MenuItem2.default,{value:8,primaryText:'Mind = Blown, I will become a contributor',label:'Mind = Blown'})),
+_react2.default.createElement(_MenuItem2.default,{
+value:8,
+primaryText:'Mind = Blown, I will become a contributor',
+label:'Mind = Blown'})),
+
 
 _react2.default.createElement(_TextField2.default,{
 value:this.state.Compendium_LastText,
@@ -281,12 +288,11 @@ value:this.state.Compendium_LikedSunset_OtherText,
 fullWidth:true,
 onChange:this._handle_onChange_Compendium_LikedSunset_OtherText}),
 
-
 _react2.default.createElement('div',null,
 _react2.default.createElement(_RaisedButton2.default,{
 label:'Update',
 secondary:true,
-disabled:formErrorText!="",
+disabled:formErrorText!='',
 onTouchTap:function onTouchTap(){return _this2._handleUpdate(edge.node);}})))))));
 
 

@@ -9,8 +9,10 @@ var _LoginExtensions=require('../../../../configuration/units/urb-account-manage
 var _NetworkLayer=require('../../../../app/NetworkLayer');var _NetworkLayer2=_interopRequireDefault(_NetworkLayer);
 var _publicURL=require('../../../../configuration/app/publicURL');var _publicURL2=_interopRequireDefault(_publicURL);
 var _SuccessfulLoginRoute=require('../../../../configuration/units/urb-account-management/app/SuccessfulLoginRoute');
-var _UrlRouter=require('../../../../app/UrlRouter');var _UrlRouter2=_interopRequireDefault(_UrlRouter);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
+
+
+var _UrlRouter=require('../../../../app/UrlRouter');var _UrlRouter2=_interopRequireDefault(_UrlRouter);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
 var styles=_reactNative.StyleSheet.create({
 container:{
@@ -25,9 +27,7 @@ var mode_challenge=1;
 var mode_login_in_progress=2;
 var mode_login_failed=3;var
 
-
 Login=function(_React$Component){_inherits(Login,_React$Component);
-
 function Login(props,context){_classCallCheck(this,Login);var _this=_possibleConstructorReturn(this,(Login.__proto__||Object.getPrototypeOf(Login)).call(this,
 props,context));_this.
 
@@ -51,11 +51,11 @@ var currentLoginAttempt=++_this.loginAttempt;
 var UserToken1=void 0;
 
 fetch(_publicURL2.default+'/auth/login',{
-method:"POST",
+method:'POST',
 headers:{
-'Accept':'application/json',
+Accept:'application/json',
 'Content-Type':'application/json',
-'Origin':''},
+Origin:''},
 
 body:JSON.stringify({
 User_AccountName:_this.state.User_AccountName,
@@ -75,26 +75,23 @@ return response.json();
 then(function(responseData){
 if(currentLoginAttempt==_this.loginAttempt){
 if(responseData.success){
-_NetworkLayer2.default.setUserTokens(
-UserToken1,
-responseData.UserToken2,
-true,
-function(){return _UrlRouter2.default.goToRouteByNameAndParams(_SuccessfulLoginRoute.SuccessfulLoginRouteName,_SuccessfulLoginRoute.SuccessfulLoginRouteOptions);});
+_NetworkLayer2.default.setUserTokens(UserToken1,responseData.UserToken2,true,function(){return(
+_UrlRouter2.default.goToRouteByNameAndParams(_SuccessfulLoginRoute.SuccessfulLoginRouteName,_SuccessfulLoginRoute.SuccessfulLoginRouteOptions));});
+
+
+
 
 }else{
 var errorMessage=void 0;
-if(responseData.error)
-errorMessage=responseData.error;else
-
-errorMessage="Login failed";
+if(responseData.error)errorMessage=responseData.error;else
+errorMessage='Login failed';
 
 _this.setState({
 mode:mode_login_failed,
 ErrorMessage:errorMessage});
 
 }
-}else
-console.log("XXX Expired login event");
+}else console.log('XXX Expired login event');
 }).
 
 done();
@@ -105,17 +102,16 @@ _this.loginAttempt++;
 
 _this.setState({
 mode:mode_challenge,
-User_AccountPassword:""});
+User_AccountPassword:''});
 
 };_this.
 
 handle_onPress_Retry=function(){
 _this.setState({
 mode:mode_challenge,
-User_AccountPassword:""});
+User_AccountPassword:''});
 
-};_this.loginAttempt=0;_this.state={mode:mode_challenge,User_AccountName:"",User_AccountPassword:"",ErrorMessage:""};return _this;}_createClass(Login,[{key:'render',value:function render()
-
+};_this.loginAttempt=0;_this.state={mode:mode_challenge,User_AccountName:'',User_AccountPassword:'',ErrorMessage:''};return _this;}_createClass(Login,[{key:'render',value:function render()
 
 {var _this2=this;
 if(this.state.mode==mode_challenge)

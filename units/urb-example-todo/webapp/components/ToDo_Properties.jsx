@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react'
 
@@ -6,17 +6,14 @@ import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
 
-
 export default class ToDo_Properties extends React.Component {
-
   static propTypes = {
     ToDo_Text: React.PropTypes.string.isRequired,
     updateHandler: React.PropTypes.func.isRequired,
   }
 
-  constructor( props: any, context ) {
-
-    super( props, context )
+  constructor(props: any, context) {
+    super(props, context)
 
     this.state = {
       Dialog_IsOpen: false,
@@ -24,38 +21,40 @@ export default class ToDo_Properties extends React.Component {
   }
 
   _handle_Open() {
-
-    this.setState( { Dialog_IsOpen: true } )
+    this.setState({ Dialog_IsOpen: true })
   }
 
   _handle_onTouchTap_Close = () => {
-
-    this.setState( { Dialog_IsOpen: false } )
+    this.setState({ Dialog_IsOpen: false })
   }
 
   _handle_onTouchTap_OK = () => {
+    this.props.updateHandler({ ToDo_Text: this.refs.ToDo_Text.getValue() })
 
-    this.props.updateHandler( { ToDo_Text: this.refs.ToDo_Text.getValue() } )
-
-    this.setState( { Dialog_IsOpen: false } )
+    this.setState({ Dialog_IsOpen: false })
   }
 
   render() {
-    return(
+    return (
       <div>
         <Dialog
-          open={ this.state.Dialog_IsOpen }
+          open={this.state.Dialog_IsOpen}
           title="ToDo"
-          actions={ [
-            <FlatButton key="Cancel" label="Cancel" onTouchTap={ this._handle_onTouchTap_Close } />,
-            <FlatButton key="OK" label="OK" primary={true} onTouchTap={ this._handle_onTouchTap_OK } />,
-          ] }
+          actions={[
+            <FlatButton key="Cancel" label="Cancel" onTouchTap={this._handle_onTouchTap_Close} />,
+            <FlatButton
+              key="OK"
+              label="OK"
+              primary={true}
+              onTouchTap={this._handle_onTouchTap_OK}
+            />,
+          ]}
         >
           <TextField
             ref="ToDo_Text"
-            defaultValue={ this.props.ToDo_Text }
+            defaultValue={this.props.ToDo_Text}
             floatingLabelText="To Do"
-            fullWidth={ true }
+            fullWidth={true}
           />
         </Dialog>
       </div>

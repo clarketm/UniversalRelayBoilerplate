@@ -1,7 +1,6 @@
 Object.defineProperty(exports,"__esModule",{value:true});exports.default=
 
-function(auth)
-{
+function(auth){
 
 };
 //# sourceMappingURL=authExtensions.js.map

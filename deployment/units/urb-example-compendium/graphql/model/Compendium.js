@@ -2,9 +2,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _ObjectManager=requ
 
 
 Compendium=
-
-function Compendium(fields)
-{_classCallCheck(this,Compendium);
+function Compendium(fields){_classCallCheck(this,Compendium);
 this.id=fields.id;
 this.Compendium_User_id=fields.Compendium_User_id;
 this.Compendium_FirstTextInput=fields.Compendium_FirstTextInput;

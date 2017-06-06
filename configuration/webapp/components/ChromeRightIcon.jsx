@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import AppBar_Auth from '../../../units/urb-account-management/webapp/components/AppBar_Auth'
 

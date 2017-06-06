@@ -1,10 +1,10 @@
-// @flow weak
+// @flow
 
-import {connectionDefinitions} from 'graphql-relay';
+import { connectionDefinitions } from 'graphql-relay'
 
-import EnsayoType from "./EnsayoType";
+import EnsayoType from './EnsayoType'
 
-export default connectionDefinitions( {
+export default connectionDefinitions({
   name: 'Ensayos',
   nodeType: EnsayoType,
-} );
+})

@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import { Card, CardHeader } from 'material-ui/Card'
 import ContentAdd from 'material-ui/svg-icons/content/add'

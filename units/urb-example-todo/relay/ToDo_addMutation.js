@@ -1,11 +1,10 @@
-// @flow weak
+// @flow
 
 import Relay from 'react-relay'
 
-
 export default class ToDo_addMutation extends Relay.Mutation {
   static fragments = {
-    Viewer: () => Relay.QL `
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         id,
         ToDo_TotalCount,
@@ -13,10 +12,10 @@ export default class ToDo_addMutation extends Relay.Mutation {
     `,
   }
   getMutation() {
-    return Relay.QL `mutation{ToDo_add}`
+    return Relay.QL`mutation{ToDo_add}`
   }
   getFatQuery() {
-    return Relay.QL `
+    return Relay.QL`
       fragment on ToDo_addPayload {
         ToDosEdge,
         Viewer {
@@ -27,19 +26,21 @@ export default class ToDo_addMutation extends Relay.Mutation {
     `
   }
   getConfigs() {
-    return [ {
-      type: 'RANGE_ADD',
-      parentName: 'Viewer',
-      parentID: this.props.Viewer.id,
-      connectionName: 'ToDos',
-      edgeName: 'ToDosEdge',
-      rangeBehaviors: {
-        '': 'append',
-        'status(any)': 'append',
-        'status(active)': 'append',
-        'status(completed)': null,
+    return [
+      {
+        type: 'RANGE_ADD',
+        parentName: 'Viewer',
+        parentID: this.props.Viewer.id,
+        connectionName: 'ToDos',
+        edgeName: 'ToDosEdge',
+        rangeBehaviors: {
+          '': 'append',
+          'status(any)': 'append',
+          'status(active)': 'append',
+          'status(completed)': null,
+        },
       },
-    } ]
+    ]
   }
   getVariables() {
     return {

@@ -24,7 +24,8 @@ return function(){return{children:[{children:[{fieldName:'cursor',kind:'Field',m
 
 }},{key:'getConfigs',value:function getConfigs()
 {
-return[{
+return[
+{
 type:'RANGE_ADD',
 parentName:'Viewer',
 parentID:this.props.Viewer.id,
@@ -32,6 +33,7 @@ connectionName:'Translaticiarums',
 edgeName:'TranslaticiarumsEdge',
 rangeBehaviors:{
 '':'append'}}];
+
 
 
 }},{key:'getVariables',value:function getVariables()

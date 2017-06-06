@@ -2,8 +2,7 @@ Object.defineProperty(exports,"__esModule",{value:true});exports.default=
 
 
 
-function(pass)
-{
+function(pass){
 return(0,_scorePassword_Simple2.default)(
 pass,
 5.0,

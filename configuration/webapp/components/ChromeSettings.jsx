@@ -1,4 +1,4 @@
 // @flow
 
-export const NavMenuTitle = "Home"
-export const MainScreenTitle = "Universal Relay Boilerplate"
+export const NavMenuTitle = 'Home'
+export const MainScreenTitle = 'Universal Relay Boilerplate'

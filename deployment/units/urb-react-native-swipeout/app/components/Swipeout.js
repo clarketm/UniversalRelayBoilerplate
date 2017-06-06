@@ -1,30 +1,23 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var _reactTweenState=require('react-tween-state');var _reactTweenState2=_interopRequireDefault(_reactTweenState);
+Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
+
+var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
+var _react=require('react');var _react2=_interopRequireDefault(_react);
+var _reactTweenState=require('react-tween-state');var _reactTweenState2=_interopRequireDefault(_reactTweenState);
+
 var _NativeButton=require('./NativeButton');var _NativeButton2=_interopRequireDefault(_NativeButton);
 var _styles=require('./styles');var _styles2=_interopRequireDefault(_styles);
 
-var _react=require('react');var _react2=_interopRequireDefault(_react);
-
-
-
-
 var _reactNative=require('react-native');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
-
-
-
-
-
-
 var SwipeoutBtn=_react2.default.createClass({displayName:'SwipeoutBtn',
-
 propTypes:{
-backgroundColor:_react.PropTypes.string,
-color:_react.PropTypes.string,
-component:_react.PropTypes.node,
-onPress:_react.PropTypes.func,
-text:_react.PropTypes.string,
-type:_react.PropTypes.string,
-underlayColor:_react.PropTypes.string},
+backgroundColor:_propTypes2.default.string,
+color:_propTypes2.default.string,
+component:_propTypes2.default.node,
+onPress:_propTypes2.default.func,
+text:_propTypes2.default.string,
+type:_propTypes2.default.string,
+underlayColor:_propTypes2.default.string},
 
 
 getDefaultProps:function getDefaultProps(){
@@ -56,17 +49,21 @@ if(btn.type==='secondary')styleSwipeoutBtn.push(_styles2.default.colorSecondary)
 
 if(btn.backgroundColor)styleSwipeoutBtn.push([{backgroundColor:btn.backgroundColor}]);
 
-styleSwipeoutBtn.push([{
+styleSwipeoutBtn.push([
+{
 height:btn.height,
 width:btn.width}]);
+
 
 
 var styleSwipeoutBtnComponent=[];
 
 
-styleSwipeoutBtnComponent.push([{
+styleSwipeoutBtnComponent.push([
+{
 height:btn.height,
 width:btn.width}]);
+
 
 
 var styleSwipeoutBtnText=[_styles2.default.swipeoutBtnText];
@@ -83,12 +80,7 @@ disabled:this.props.disabled,
 style:styleSwipeoutBtn,
 textStyle:styleSwipeoutBtnText},
 
-btn.component?
-_react2.default.createElement(_reactNative.View,{style:styleSwipeoutBtnComponent},btn.component):
-
-btn.text));
-
-
+btn.component?_react2.default.createElement(_reactNative.View,{style:styleSwipeoutBtnComponent},btn.component):btn.text));
 
 
 }});
@@ -98,15 +90,15 @@ var Swipeout=_react2.default.createClass({displayName:'Swipeout',
 mixins:[_reactTweenState2.default.Mixin],
 
 propTypes:{
-autoClose:_react.PropTypes.bool,
-backgroundColor:_react.PropTypes.string,
-close:_react.PropTypes.bool,
-left:_react.PropTypes.array,
-onOpen:_react.PropTypes.func,
-right:_react.PropTypes.array,
-scroll:_react.PropTypes.func,
+autoClose:_propTypes2.default.bool,
+backgroundColor:_propTypes2.default.string,
+close:_propTypes2.default.bool,
+left:_propTypes2.default.array,
+onOpen:_propTypes2.default.func,
+right:_propTypes2.default.array,
+scroll:_propTypes2.default.func,
 style:_reactNative.View.propTypes.style,
-sensitivity:_react.PropTypes.number},
+sensitivity:_propTypes2.default.number},
 
 
 getDefaultProps:function getDefaultProps(){
@@ -221,8 +213,7 @@ this.setState({contentPos:-btnsRightWidth,openedLeft:false,openedRight:true});
 
 this._tweenContent('contentPos',btnsLeftWidth);
 this.setState({contentPos:btnsLeftWidth,openedLeft:true,openedRight:false});
-}else
-{
+}else{
 
 this._tweenContent('contentPos',0);
 this.setState({contentPos:0,openedLeft:false,openedRight:false});
@@ -312,6 +303,7 @@ ref:'swipeoutContent',
 style:styleContent,
 onLayout:this._onLayout},
 this._panResponder.panHandlers),
+
 this.props.children),
 
 this._renderButtons(this.props.right,isRightVisible,styleRight),
@@ -330,13 +322,13 @@ contentHeight:height});
 
 _renderButtons:function _renderButtons(buttons,isVisible,style){
 if(buttons&&isVisible){
-return _react2.default.createElement(_reactNative.View,{style:style},
-buttons.map(this._renderButton));
+return(
+_react2.default.createElement(_reactNative.View,{style:style},
+buttons.map(this._renderButton)));
+
 
 }else{
-return(
-_react2.default.createElement(_reactNative.View,null));
-
+return _react2.default.createElement(_reactNative.View,null);
 }
 },
 
@@ -354,6 +346,7 @@ text:btn.text,
 type:btn.type,
 underlayColor:btn.underlayColor,
 width:this.state.btnWidth}));
+
 
 }});
 

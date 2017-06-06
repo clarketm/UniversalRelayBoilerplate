@@ -1,10 +1,10 @@
-// @flow weak
+// @flow
 
-import {connectionDefinitions} from 'graphql-relay';
+import { connectionDefinitions } from 'graphql-relay'
 
-import TranslaticiarumType from "./TranslaticiarumType";
+import TranslaticiarumType from './TranslaticiarumType'
 
-export default connectionDefinitions( {
+export default connectionDefinitions({
   name: 'Translaticiarums',
   nodeType: TranslaticiarumType,
-} );
+})

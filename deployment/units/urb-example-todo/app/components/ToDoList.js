@@ -1,6 +1,6 @@
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-'use strict';Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
-
+var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactNative=require('react-native');
@@ -12,9 +12,7 @@ var _ToDo_deleteMutation=require('../../relay/ToDo_deleteMutation');var _ToDo_de
 var _ToDo=require('./ToDo');var _ToDo2=_interopRequireDefault(_ToDo);
 var _ToDoTextInput=require('./ToDoTextInput');var _ToDoTextInput2=_interopRequireDefault(_ToDoTextInput);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
-
 var _ToDosDataSource=new _reactNative.ListView.DataSource({
-
 rowHasChanged:function rowHasChanged(r1,r2){return r1.__dataID__!==r2.__dataID__;}});var
 
 
@@ -28,9 +26,7 @@ ToDoList=function(_React$Component){_inherits(ToDoList,_React$Component);
 
 
 
-
 function ToDoList(props,context){_classCallCheck(this,ToDoList);var _this=_possibleConstructorReturn(this,(ToDoList.__proto__||Object.getPrototypeOf(ToDoList)).call(this,
-
 props,context));var
 edges=props.Viewer.ToDos.edges;
 _this.state={
@@ -46,7 +42,6 @@ _this.renderTodoEdge=_this.renderTodoEdge.bind(_this);return _this;
 }_createClass(ToDoList,[{key:'_handleMarkAllPress',value:function _handleMarkAllPress()
 
 {
-
 var numTodos=this.props.Viewer.ToDo_TotalCount;
 var numCompletedTodos=this.props.Viewer.ToDo_CompletedCount;
 var ToDo_Complete=numTodos!==numCompletedTodos;
@@ -60,19 +55,14 @@ Viewer:this.props.Viewer}));
 }},{key:'_handleSwipeInactive',value:function _handleSwipeInactive(
 
 swipeInactive){
-
 this.setState({listScrollEnabled:swipeInactive});
 }},{key:'_handleTextInputSave',value:function _handleTextInputSave(
 
 ToDo_Text){
-
-this.context.relay.commitUpdate(
-new _ToDo_addMutation2.default({ToDo_Text:ToDo_Text,Viewer:this.props.Viewer}));
-
+this.context.relay.commitUpdate(new _ToDo_addMutation2.default({ToDo_Text:ToDo_Text,Viewer:this.props.Viewer}));
 }},{key:'_handleTodoDestroy',value:function _handleTodoDestroy(
 
 ToDo){
-
 this.context.relay.commitUpdate(
 new _ToDo_deleteMutation2.default({
 ToDo:ToDo,
@@ -82,7 +72,6 @@ Viewer:this.props.Viewer}));
 }},{key:'componentWillReceiveProps',value:function componentWillReceiveProps(
 
 nextProps){
-
 if(this.props.Viewer.ToDos.edges!==nextProps.Viewer.ToDos.edges){
 this.setState({
 ToDosDataSource:_ToDosDataSource.cloneWithRows(nextProps.Viewer.ToDos.edges)});
@@ -91,17 +80,19 @@ ToDosDataSource:_ToDosDataSource.cloneWithRows(nextProps.Viewer.ToDos.edges)});
 }},{key:'renderTodoEdge',value:function renderTodoEdge(
 
 todoEdge){
-
 var destroyHandler=this._handleTodoDestroy.bind(null,todoEdge.node);
 return(
 _react2.default.createElement(_Swipeout2.default,{
 key:todoEdge.node.id,
-right:[{
+right:[
+{
 text:'Delete',
 type:'delete',
 onPress:destroyHandler}],
 
+
 scroll:this._handleSwipeInactive},
+
 _react2.default.createElement(_ToDo2.default,{
 onDestroy:destroyHandler,
 style:styles.ToDo,
@@ -113,12 +104,10 @@ Viewer:this.props.Viewer})));
 }},{key:'renderSeparator',value:function renderSeparator(
 
 sectionId,rowId){
-
 return _react2.default.createElement(_reactNative.View,{key:'sep_'+sectionId+'_'+rowId,style:styles.separator});
 }},{key:'render',value:function render()
 
 {
-
 var numTodos=this.props.Viewer.ToDo_TotalCount;
 var numCompletedTodos=this.props.Viewer.ToDo_CompletedCount;
 return(
@@ -128,10 +117,12 @@ _react2.default.createElement(_reactNative.TouchableHighlight,{
 onPress:this._handleMarkAllPress,
 style:styles.markAllButtonContainer,
 underlayColor:'transparent'},
+
 _react2.default.createElement(_reactNative.Text,{
 style:[
 styles.markAllButton,
 numTodos!==numCompletedTodos&&styles.markAllButtonDisabled]},
+
 
 '\u276F')),
 
@@ -152,11 +143,10 @@ renderSeparator:this.renderSeparator})));
 
 
 
-}}]);return ToDoList;}(_react2.default.Component);ToDoList.contextTypes={relay:_reactRelay2.default.PropTypes.Environment};ToDoList.propTypes={status:_react.PropTypes.oneOf(['active','any','completed']).isRequired,style:_reactNative.View.propTypes.style};exports.default=
+}}]);return ToDoList;}(_react2.default.Component);ToDoList.contextTypes={relay:_reactRelay2.default.PropTypes.Environment};ToDoList.propTypes={status:_propTypes2.default.oneOf(['active','any','completed']).isRequired,style:_reactNative.View.propTypes.style};exports.default=
 
 
 _reactRelay2.default.createContainer(ToDoList,{
-
 initialVariables:{
 status:'any',
 limit:2147483647},

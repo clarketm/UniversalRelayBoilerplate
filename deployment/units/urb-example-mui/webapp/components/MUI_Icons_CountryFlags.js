@@ -1,6 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
 
@@ -22,8 +21,6 @@ var _materialUiCountryFlags=require('material-ui-country-flags');function _inter
 
 
 MUI_Icons_CountryFlags=function(_React$Component){_inherits(MUI_Icons_CountryFlags,_React$Component);function MUI_Icons_CountryFlags(){_classCallCheck(this,MUI_Icons_CountryFlags);return _possibleConstructorReturn(this,(MUI_Icons_CountryFlags.__proto__||Object.getPrototypeOf(MUI_Icons_CountryFlags)).apply(this,arguments));}_createClass(MUI_Icons_CountryFlags,[{key:'render',value:function render()
-
-
 {
 return(
 _react2.default.createElement('div',null,

@@ -1,6 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
 
@@ -9,24 +8,18 @@ var _List=require('material-ui/List');function _interopRequireDefault(obj){retur
 var SelectableList=(0,_List.makeSelectable)(_List.List);var
 
 NavMenu=function(_React$Component){_inherits(NavMenu,_React$Component);function NavMenu(){_classCallCheck(this,NavMenu);return _possibleConstructorReturn(this,(NavMenu.__proto__||Object.getPrototypeOf(NavMenu)).apply(this,arguments));}_createClass(NavMenu,[{key:'render',value:function render()
-
-
 {
 var nestedItems_Misc=[
 _react2.default.createElement(_List.ListItem,{primaryText:'Home',value:'/'}),
 _react2.default.createElement(_List.ListItem,{primaryText:'Compendium',value:'/compendium'})];
 
-if(!this.props.Viewer.User_IsAnonymous)
-{
+if(!this.props.Viewer.User_IsAnonymous){
 nestedItems_Misc.push(_react2.default.createElement(_List.ListItem,{primaryText:'User Profile',value:'/user'}));
 nestedItems_Misc.push(_react2.default.createElement(_List.ListItem,{primaryText:'Force Login',value:'/force_login'}));
 }
 
 return(
-_react2.default.createElement(SelectableList,{
-value:this.props.value,
-onChange:this.props.onChange},
-
+_react2.default.createElement(SelectableList,{value:this.props.value,onChange:this.props.onChange},
 
 _react2.default.createElement(_List.ListItem,{
 primaryText:'Ensayo',

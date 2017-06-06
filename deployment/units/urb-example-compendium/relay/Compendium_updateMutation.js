@@ -10,7 +10,6 @@ Compendium_updateMutation=function(_Relay$Mutation){_inherits(Compendium_updateM
 
 
 
-
 {
 return function(){return{calls:[{kind:'Call',metadata:{},name:'Compendium_update',value:{kind:'CallVariable',callVariableName:'input'}}],children:[{fieldName:'clientMutationId',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'String'}],kind:'Mutation',metadata:{inputType:'Compendium_updateInput!'},name:'Compendium_updateMutation',responseType:'Compendium_updatePayload'};}();
 }},{key:'getFatQuery',value:function getFatQuery()
@@ -38,10 +37,12 @@ return function(){return{children:[{children:[{fieldName:'Compendium_FirstTextIn
 
 }},{key:'getConfigs',value:function getConfigs()
 {
-return[{
+return[
+{
 type:'FIELDS_CHANGE',
 fieldIDs:{
 Compendium:this.props.Compendium.id}}];
+
 
 
 }},{key:'getVariables',value:function getVariables()

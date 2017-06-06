@@ -8,7 +8,6 @@ var _MutationType=require('./type/MutationType');var _MutationType2=_interopRequ
 
 
 
-
 var schema=new _graphql.GraphQLSchema({
 query:_QueryType2.default,
 mutation:_MutationType2.default});

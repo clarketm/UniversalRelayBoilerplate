@@ -1,6 +1,6 @@
-// @flow weak
+// @flow
 
-import Relay from 'react-relay';
+import Relay from 'react-relay'
 
 export default class Translaticiarum_updateMutation extends Relay.Mutation {
   static fragments = {
@@ -9,9 +9,9 @@ export default class Translaticiarum_updateMutation extends Relay.Mutation {
         id,
       }
     `,
-  };
+  }
   getMutation() {
-    return Relay.QL`mutation{Translaticiarum_update}`;
+    return Relay.QL`mutation{Translaticiarum_update}`
   }
   getFatQuery() {
     return Relay.QL`
@@ -22,15 +22,17 @@ export default class Translaticiarum_updateMutation extends Relay.Mutation {
           Translaticiarum_Time,
         }
       }
-    `;
+    `
   }
   getConfigs() {
-    return [{
-      type: 'FIELDS_CHANGE',
-      fieldIDs: {
-        Translaticiarum: this.props.Translaticiarum.id,
+    return [
+      {
+        type: 'FIELDS_CHANGE',
+        fieldIDs: {
+          Translaticiarum: this.props.Translaticiarum.id,
+        },
       },
-    }];
+    ]
   }
   getVariables() {
     return {
@@ -38,7 +40,7 @@ export default class Translaticiarum_updateMutation extends Relay.Mutation {
       Translaticiarum_Type: this.props.Translaticiarum_Type,
       Translaticiarum_Date: this.props.Translaticiarum_Date,
       Translaticiarum_Time: this.props.Translaticiarum_Time,
-    };
+    }
   }
   getOptimisticResponse() {
     return {
@@ -48,6 +50,6 @@ export default class Translaticiarum_updateMutation extends Relay.Mutation {
         Translaticiarum_Date: this.props.Translaticiarum_Date,
         Translaticiarum_Time: this.props.Translaticiarum_Time,
       },
-    };
+    }
   }
 }

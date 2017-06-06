@@ -6,9 +6,11 @@ var cardItemsSource=[];
 var key=0;
 
 rrs('./node_modules/material-ui/svg-icons/').forEach(function(file){
-if(file!=='node_modules/material-ui/svg-icons/index-generator.js'&&file!=='node_modules/material-ui/svg-icons/index.js'){
-
-console.log("📖  Reading "+file);
+if(
+file!=='node_modules/material-ui/svg-icons/index-generator.js'&&
+file!=='node_modules/material-ui/svg-icons/index.js')
+{
+console.log('📖  Reading '+file);
 var fileLines=fs.readFileSync(file,'utf8').split('\n');
 var index=0,
 found=false;
@@ -22,17 +24,18 @@ var fileName=file.substring(0,file.length-3).replace('node_modules/','');
 var moduleName=fileLines[index].replace('exports.default = ','').replace(';','').trim();
 
 importsSource.push('import '+moduleName+' from \''+fileName+'\';');
-cardItemsSource.push('            <ListItem key="'+key++ +'" primaryText="'+moduleName+'" secondaryText="'+fileName+'" leftIcon={<'+moduleName+' />} />');
+cardItemsSource.push('            <ListItem key="'+
+key++ +'" primaryText="'+moduleName+'" secondaryText="'+fileName+'" leftIcon={<'+moduleName+' />} />');
+
 cardItemsSource.push('            <Divider inset={true} />');
 
 found=true;
-}else
-index++;
+}else index++;
 }
 }
 });
 
-var sourceCode=['// @flow weak','','import React from \'react\';','import Relay from \'react-relay\';','','import {Card} from \'material-ui/Card\';','import {List, ListItem} from \'material-ui/List\';','import Divider from \'material-ui/Divider\';','',
+var sourceCode=['// @flow','','import React from \'react\';','import Relay from \'react-relay\';','','import {Card} from \'material-ui/Card\';','import {List, ListItem} from \'material-ui/List\';','import Divider from \'material-ui/Divider\';','',
 
 
 

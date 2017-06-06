@@ -1,6 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
 
@@ -22,16 +21,13 @@ ToDo_Item=function(_React$Component){_inherits(ToDo_Item,_React$Component);funct
 
 
 
-
 _handle_updateHandler_ToDo=function(ToDo_properties){
-
 _this.context.relay.commitUpdate(
 new _ToDo_updateRenameMutation2.default(_extends({ToDo:_this.props.ToDo},ToDo_properties)));
 
 },_this.
 
 _handle_onCheck_Completed=function(event,ToDo_Complete){
-
 _this.context.relay.commitUpdate(
 new _ToDo_updateStatusMutation2.default({
 ToDo_Complete:ToDo_Complete,
@@ -53,10 +49,7 @@ Viewer:_this.props.Viewer}));
 
 
 
-
-
 _handle_onItemTouchTap=function(e,item){
-
 switch(item.ref){
 case'edit':
 _this.refs.ToDo_Properties._handle_Open();
@@ -70,7 +63,6 @@ break;}
 },_temp),_possibleConstructorReturn(_this,_ret);}_createClass(ToDo_Item,[{key:'_handleTextInputSave',value:function _handleTextInputSave(ToDo_Text){this.context.relay.commitUpdate(new _ToDo_updateRenameMutation2.default({ToDo:this.props.ToDo,ToDo_Text:ToDo_Text}));}},{key:'_ToDo_delete',value:function _ToDo_delete(){this.context.relay.commitUpdate(new _ToDo_deleteMutation2.default({ToDo:this.props.ToDo,Viewer:this.props.Viewer}));}},{key:'render',value:function render()
 
 {
-
 var rightIconMenu=
 _react2.default.createElement(_IconMenu2.default,{
 iconButtonElement:_react2.default.createElement(_IconButton2.default,null,_react2.default.createElement(_moreVert2.default,null)),

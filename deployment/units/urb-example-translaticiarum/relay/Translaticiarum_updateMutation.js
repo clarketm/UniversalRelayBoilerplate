@@ -25,10 +25,12 @@ return function(){return{children:[{children:[{fieldName:'Translaticiarum_Type',
 
 }},{key:'getConfigs',value:function getConfigs()
 {
-return[{
+return[
+{
 type:'FIELDS_CHANGE',
 fieldIDs:{
 Translaticiarum:this.props.Translaticiarum.id}}];
+
 
 
 }},{key:'getVariables',value:function getVariables()

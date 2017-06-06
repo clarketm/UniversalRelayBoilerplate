@@ -1,6 +1,6 @@
-// @flow weak
+// @flow
 
-import Relay from 'react-relay';
+import Relay from 'react-relay'
 
 export default class Ensayo_addMutation extends Relay.Mutation {
   static fragments = {
@@ -9,9 +9,9 @@ export default class Ensayo_addMutation extends Relay.Mutation {
         id,
       }
     `,
-  };
+  }
   getMutation() {
-    return Relay.QL`mutation{Ensayo_add}`;
+    return Relay.QL`mutation{Ensayo_add}`
   }
   getFatQuery() {
     return Relay.QL`
@@ -21,26 +21,28 @@ export default class Ensayo_addMutation extends Relay.Mutation {
           Ensayos,
         },
       }
-    `;
+    `
   }
   getConfigs() {
-    return [{
-      type: 'RANGE_ADD',
-      parentName: 'Viewer',
-      parentID: this.props.Viewer.id,
-      connectionName: 'Ensayos',
-      edgeName: 'EnsayosEdge',
-      rangeBehaviors: {
-        '': 'append',
+    return [
+      {
+        type: 'RANGE_ADD',
+        parentName: 'Viewer',
+        parentID: this.props.Viewer.id,
+        connectionName: 'Ensayos',
+        edgeName: 'EnsayosEdge',
+        rangeBehaviors: {
+          '': 'append',
+        },
       },
-    }];
+    ]
   }
   getVariables() {
     return {
       Ensayo_Content: this.props.Ensayo_Content,
       Ensayo_Title: this.props.Ensayo_Title,
       Ensayo_Description: this.props.Ensayo_Description,
-    };
+    }
   }
   getOptimisticResponse() {
     return {
@@ -54,6 +56,6 @@ export default class Ensayo_addMutation extends Relay.Mutation {
       Viewer: {
         id: this.props.Viewer.id,
       },
-    };
+    }
   }
 }

@@ -1,33 +1,24 @@
-Object.defineProperty(exports,"__esModule",{value:true});exports.default=
-{
-dimensions:
-{},
-palette:
-{
+Object.defineProperty(exports,"__esModule",{value:true});exports.default={
+dimensions:{},
+palette:{
 canvasColor:'#ffffff'},
 
-havigationBarStyle:
-{
+havigationBarStyle:{
 borderBottomWidth:0,
 backgroundColor:'#03A9F4'},
 
-navigationBarTitleStyle:
-{
+navigationBarTitleStyle:{
 color:'#000000'},
 
-buttonKinds:
-{
-action:
-{
+buttonKinds:{
+action:{
 small:true,
 backgroundColor:'#607D8B'},
 
-actionWholeWidth:
-{
+actionWholeWidth:{
 small:true,
 backgroundColor:'#607D8B',
-buttonStyle:
-{
+buttonStyle:{
 marginLeft:0,
 marginRight:0}}}};
 //# sourceMappingURL=uiThemeCommon.js.map

@@ -1,11 +1,10 @@
-// @flow weak
+// @flow
 
 import { connectionDefinitions } from 'graphql-relay'
 
-import ToDoType from "./ToDoType"
+import ToDoType from './ToDoType'
 
-
-export default connectionDefinitions( {
+export default connectionDefinitions({
   name: 'ToDos',
   nodeType: ToDoType,
-} )
+})

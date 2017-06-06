@@ -10,7 +10,7 @@ var _reactRelayNetworkLayer=require('react-relay-network-layer');
 var _reactTapEventPlugin=require('react-tap-event-plugin');var _reactTapEventPlugin2=_interopRequireDefault(_reactTapEventPlugin);
 
 var _routes=require('../configuration/webapp/routes');var _routes2=_interopRequireDefault(_routes);
-require('./styles/main.css');
+require('../configuration/webapp/styles/main.css');
 var _Wrapper=require('./components/Wrapper');var _Wrapper2=_interopRequireDefault(_Wrapper);
 var _XHR=require('./scripts/XHR');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 

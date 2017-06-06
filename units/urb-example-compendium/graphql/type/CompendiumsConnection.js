@@ -1,10 +1,10 @@
-// @flow weak
+// @flow
 
-import { connectionDefinitions } from 'graphql-relay';
+import { connectionDefinitions } from 'graphql-relay'
 
-import CompendiumType from "./CompendiumType";
+import CompendiumType from './CompendiumType'
 
-export default connectionDefinitions( {
+export default connectionDefinitions({
   name: 'Compendiums',
   nodeType: CompendiumType,
-} );
+})

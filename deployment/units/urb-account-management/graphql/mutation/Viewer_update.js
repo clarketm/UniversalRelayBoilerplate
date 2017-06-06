@@ -5,7 +5,6 @@ var _graphql=require('graphql');
 
 var _ViewerType=require('../../../../graphql/type/ViewerType');var _ViewerType2=_interopRequireDefault(_ViewerType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
-
 (0,_graphqlRelay.mutationWithClientMutationId)({
 name:'Viewer_update',
 inputFields:{
@@ -17,15 +16,15 @@ User_PhoneNumberMobile:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLString)
 outputFields:{
 Viewer:{
 type:_ViewerType2.default,
-resolve:function resolve(parent,args,context,_ref){var objectManager=_ref.rootValue;return objectManager.getOneObject('User',{id:objectManager.getViewerUserId()});}}},
+resolve:function resolve(parent,args,context,_ref){var objectManager=_ref.rootValue;return(
+objectManager.getOneObject('User',{id:objectManager.getViewerUserId()}));}}},
 
 
 mutateAndGetPayload:function mutateAndGetPayload(_ref2,
 
+context,_ref3){var id=_ref2.id,User_DisplayName=_ref2.User_DisplayName,User_Email=_ref2.User_Email,User_PhoneNumberMobile=_ref2.User_PhoneNumberMobile;var
+objectManager=_ref3.rootValue;var local_id;return regeneratorRuntime.async(function mutateAndGetPayload$(_context){while(1){switch(_context.prev=_context.next){case 0:
 
-
-
-context,_ref3){var id=_ref2.id,User_DisplayName=_ref2.User_DisplayName,User_Email=_ref2.User_Email,User_PhoneNumberMobile=_ref2.User_PhoneNumberMobile;var objectManager=_ref3.rootValue;var local_id;return regeneratorRuntime.async(function mutateAndGetPayload$(_context){while(1){switch(_context.prev=_context.next){case 0:
 
 
 local_id=objectManager.getViewerUserId();_context.next=3;return regeneratorRuntime.awrap(

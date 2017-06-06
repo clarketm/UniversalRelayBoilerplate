@@ -1,17 +1,16 @@
-// @flow weak
+// @flow
 
 import Relay from 'react-relay'
 
-
 export default class ToDo_updateStatusMutation extends Relay.Mutation {
   static fragments = {
-    ToDo: () => Relay.QL `
+    ToDo: () => Relay.QL`
       fragment on ToDo {
         id,
       }
     `,
     // TODO: Mark ToDo_CompletedCount optional
-    Viewer: () => Relay.QL `
+    Viewer: () => Relay.QL`
       fragment on Viewer {
         id,
         ToDo_CompletedCount,
@@ -19,10 +18,10 @@ export default class ToDo_updateStatusMutation extends Relay.Mutation {
     `,
   }
   getMutation() {
-    return Relay.QL `mutation{ToDo_updateStatus}`
+    return Relay.QL`mutation{ToDo_updateStatus}`
   }
   getFatQuery() {
-    return Relay.QL `
+    return Relay.QL`
       fragment on ToDo_updateStatusPayload {
         ToDo {
           ToDo_Complete,
@@ -35,13 +34,15 @@ export default class ToDo_updateStatusMutation extends Relay.Mutation {
     `
   }
   getConfigs() {
-    return [ {
-      type: 'FIELDS_CHANGE',
-      fieldIDs: {
-        ToDo: this.props.ToDo.id,
-        Viewer: this.props.Viewer.id,
+    return [
+      {
+        type: 'FIELDS_CHANGE',
+        fieldIDs: {
+          ToDo: this.props.ToDo.id,
+          Viewer: this.props.Viewer.id,
+        },
       },
-    } ]
+    ]
   }
   getVariables() {
     return {
@@ -51,10 +52,10 @@ export default class ToDo_updateStatusMutation extends Relay.Mutation {
   }
   getOptimisticResponse() {
     var ViewerPayload = { id: this.props.Viewer.id }
-    if( this.props.Viewer.ToDo_CompletedCount != null ) {
-      ViewerPayload.ToDo_CompletedCount = this.props.ToDo_Complete ?
-        this.props.Viewer.ToDo_CompletedCount + 1 :
-        this.props.Viewer.ToDo_CompletedCount - 1
+    if (this.props.Viewer.ToDo_CompletedCount != null) {
+      ViewerPayload.ToDo_CompletedCount = this.props.ToDo_Complete
+        ? this.props.Viewer.ToDo_CompletedCount + 1
+        : this.props.Viewer.ToDo_CompletedCount - 1
     }
     return {
       ToDo: {

@@ -64,10 +64,14 @@ return callback(new Error('Partition '+this.options.partitionBy+' not supported'
 }
 
 return this.client.execute(
-'INSERT INTO '+this.options.table+' (key, date, level, message, meta) VALUES (?, ?, ?, ?, ?)',[key,new Date(),level,msg,util.inspect(meta)],{prepare:true,consistency:this.options.consistency},
+'INSERT INTO '+
+this.options.table+
+' (key, date, level, message, meta) VALUES (?, ?, ?, ?, ?)',
+[key,new Date(),level,msg,util.inspect(meta)],
+{prepare:true,consistency:this.options.consistency},
 callback);
-};
 
+};
 
 
 

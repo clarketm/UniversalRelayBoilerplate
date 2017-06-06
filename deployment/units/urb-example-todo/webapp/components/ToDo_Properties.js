@@ -6,16 +6,13 @@ var _Dialog=require('material-ui/Dialog');var _Dialog2=_interopRequireDefault(_D
 var _FlatButton=require('material-ui/FlatButton');var _FlatButton2=_interopRequireDefault(_FlatButton);
 var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireDefault(_TextField);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
-
 ToDo_Properties=function(_React$Component){_inherits(ToDo_Properties,_React$Component);
 
 
 
 
 
-
 function ToDo_Properties(props,context){_classCallCheck(this,ToDo_Properties);var _this=_possibleConstructorReturn(this,(ToDo_Properties.__proto__||Object.getPrototypeOf(ToDo_Properties)).call(this,
-
 props,context));_this.
 
 
@@ -27,14 +24,11 @@ props,context));_this.
 
 
 
-
 _handle_onTouchTap_Close=function(){
-
 _this.setState({Dialog_IsOpen:false});
 };_this.
 
 _handle_onTouchTap_OK=function(){
-
 _this.props.updateHandler({ToDo_Text:_this.refs.ToDo_Text.getValue()});
 
 _this.setState({Dialog_IsOpen:false});
@@ -48,7 +42,12 @@ open:this.state.Dialog_IsOpen,
 title:'ToDo',
 actions:[
 _react2.default.createElement(_FlatButton2.default,{key:'Cancel',label:'Cancel',onTouchTap:this._handle_onTouchTap_Close}),
-_react2.default.createElement(_FlatButton2.default,{key:'OK',label:'OK',primary:true,onTouchTap:this._handle_onTouchTap_OK})]},
+_react2.default.createElement(_FlatButton2.default,{
+key:'OK',
+label:'OK',
+primary:true,
+onTouchTap:this._handle_onTouchTap_OK})]},
+
 
 
 _react2.default.createElement(_TextField2.default,{

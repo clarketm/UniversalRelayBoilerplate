@@ -1,15 +1,14 @@
-// @flow weak
+// @flow
 
 import defaultPersister from '../../../../configuration/graphql/defaultPersister'
 
-
-defaultPersister.addTableSchema( 'PrimeNumber', {
+defaultPersister.addTableSchema('PrimeNumber', {
   fields: {
-      id: 'uuid',
-      PrimeNumber_NumericValue: 'int',
-      PrimeNumber_TextValue: 'text',
+    id: 'uuid',
+    PrimeNumber_NumericValue: 'int',
+    PrimeNumber_TextValue: 'text',
   },
-  key: [ 'id' ],
-} )
+  key: ['id'],
+})
 
 export default true

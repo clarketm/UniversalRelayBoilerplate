@@ -16,7 +16,6 @@ var _schemas2=require('../graphql/model/_schemas');var _schemas3=_interopRequire
 var _schemas4=require('../configuration/graphql/_schemas');var _schemas5=_interopRequireDefault(_schemas4);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 
-
 var router=(0,_express2.default)();
 
 
@@ -25,14 +24,12 @@ router.use(function(req,res,next){return(0,_logServerRequest2.default)(req,res,n
 
 router.use('/',function _callee(req,res,next){var objectManager,siteInformation,a_User;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:
 
-
 objectManager=new _ObjectManager2.default();
 objectManager.setRequest(req,res);_context.next=4;return regeneratorRuntime.awrap(
 
 
 (0,_siteSettings.getSiteInformation)(req,res));case 4:siteInformation=_context.sent;if(!
 siteInformation){_context.next=20;break;}
-
 objectManager.setSiteInformation(siteInformation);_context.prev=7;_context.next=10;return regeneratorRuntime.awrap(
 
 
@@ -49,7 +46,6 @@ pretty:true,
 graphiql:true};
 
 })(req,res,next);_context.next=20;break;case 17:_context.prev=17;_context.t0=_context['catch'](7);
-
 
 (0,_checkCredentials.serveAuthenticationFailed)(req,res,_context.t0,true);case 20:case'end':return _context.stop();}}},null,_this,[[7,17]]);});exports.default=
 

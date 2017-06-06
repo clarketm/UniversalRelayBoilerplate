@@ -2,9 +2,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _ObjectManager=requ
 
 
 PrimeNumber=
-
-function PrimeNumber(fields)
-{_classCallCheck(this,PrimeNumber);
+function PrimeNumber(fields){_classCallCheck(this,PrimeNumber);
 this.id=fields.id;
 this.PrimeNumber_NumericValue=fields.PrimeNumber_NumericValue;
 this.PrimeNumber_TextValue=fields.PrimeNumber_TextValue;

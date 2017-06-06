@@ -29,12 +29,14 @@ return function(){return{children:[{fieldName:'deletedTranslaticiarumId',kind:'F
 
 }},{key:'getConfigs',value:function getConfigs()
 {
-return[{
+return[
+{
 type:'NODE_DELETE',
 parentName:'Viewer',
 parentID:this.props.Viewer.id,
 connectionName:'Translaticiarums',
 deletedIDFieldName:'deletedTranslaticiarumId'}];
+
 
 }},{key:'getVariables',value:function getVariables()
 {

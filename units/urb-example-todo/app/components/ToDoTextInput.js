@@ -1,11 +1,10 @@
-// @flow weak
+// @flow
 'use strict'
 
 import React from 'react'
 import { TextInput } from 'react-native'
 
 export default class ToDoTextInput extends React.Component {
-
   defaultProps: {
     commitOnBlur: false,
   }
@@ -23,13 +22,12 @@ export default class ToDoTextInput extends React.Component {
     value: TextInput.propTypes.value,
   }
 
-  constructor( props, context ) {
-
-    super( props, context )
-    this._commitChanges = this._commitChanges.bind( this )
-    this._handleBlur = this._handleBlur.bind( this )
-    this._handleChangeText = this._handleChangeText.bind( this )
-    this._handleSubmitEditing = this._handleSubmitEditing.bind( this )
+  constructor(props, context) {
+    super(props, context)
+    this._commitChanges = this._commitChanges.bind(this)
+    this._handleBlur = this._handleBlur.bind(this)
+    this._handleChangeText = this._handleChangeText.bind(this)
+    this._handleSubmitEditing = this._handleSubmitEditing.bind(this)
 
     this.state = {
       ToDo_Text: this.props.initialValue || '',
@@ -37,46 +35,41 @@ export default class ToDoTextInput extends React.Component {
   }
 
   _commitChanges() {
-
     var newText = this.state.ToDo_Text.trim()
-    if( this.props.onDelete && newText === '' ) {
+    if (this.props.onDelete && newText === '') {
       this.props.onDelete()
-    } else if( this.props.onCancel && newText === this.props.initialValue ) {
+    } else if (this.props.onCancel && newText === this.props.initialValue) {
       this.props.onCancel()
-    } else if( newText !== '' ) {
-      this.props.onSave( newText )
-      if( this._mounted !== false ) {
-        this.setState( { ToDo_Text: '' } )
+    } else if (newText !== '') {
+      this.props.onSave(newText)
+      if (this._mounted !== false) {
+        this.setState({ ToDo_Text: '' })
       }
     }
   }
 
   _handleBlur() {
-
-    if( this.props.commitOnBlur ) {
+    if (this.props.commitOnBlur) {
       this._commitChanges()
     }
   }
 
-  _handleChangeText( ToDo_Text ) {
-
-    if( this._mounted !== false ) {
-      this.setState( { ToDo_Text: ToDo_Text } )
+  _handleChangeText(ToDo_Text) {
+    if (this._mounted !== false) {
+      this.setState({ ToDo_Text: ToDo_Text })
     }
   }
 
   _handleSubmitEditing() {
-
     this._commitChanges()
   }
 
   componentWillUnmount() {
-
     this._mounted = false
   }
 
   render() {
-    return(
+    return (
       <TextInput
         autoFocus={this.props.autoFocus}
         clearButtonMode={this.props.clearButtonMode}

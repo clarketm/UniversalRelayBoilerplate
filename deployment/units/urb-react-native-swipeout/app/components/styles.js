@@ -1,7 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _reactNative=require('react-native');
 
-
-
 var styles=_reactNative.StyleSheet.create({
 swipeout:{
 backgroundColor:'#dbddde',
@@ -30,7 +28,6 @@ right:0,
 top:0},
 
 swipeoutContent:{},
-
 colorDelete:{
 backgroundColor:'#fb3d38'},
 

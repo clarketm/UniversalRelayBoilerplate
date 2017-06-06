@@ -1,6 +1,6 @@
-// @flow weak
+// @flow
 
-import Relay from 'react-relay';
+import Relay from 'react-relay'
 
 export default class Translaticiarum_deleteMutation extends Relay.Mutation {
   static fragments = {
@@ -14,9 +14,9 @@ export default class Translaticiarum_deleteMutation extends Relay.Mutation {
         id,
       }
     `,
-  };
+  }
   getMutation() {
-    return Relay.QL`mutation{Translaticiarum_delete}`;
+    return Relay.QL`mutation{Translaticiarum_delete}`
   }
   getFatQuery() {
     return Relay.QL`
@@ -26,25 +26,27 @@ export default class Translaticiarum_deleteMutation extends Relay.Mutation {
           id
         },
       }
-    `;
+    `
   }
   getConfigs() {
-    return [{
-      type: 'NODE_DELETE',
-      parentName: 'Viewer',
-      parentID: this.props.Viewer.id,
-      connectionName: 'Translaticiarums',
-      deletedIDFieldName: 'deletedTranslaticiarumId',
-    }];
+    return [
+      {
+        type: 'NODE_DELETE',
+        parentName: 'Viewer',
+        parentID: this.props.Viewer.id,
+        connectionName: 'Translaticiarums',
+        deletedIDFieldName: 'deletedTranslaticiarumId',
+      },
+    ]
   }
   getVariables() {
     return {
       id: this.props.Translaticiarum.id,
-    };
+    }
   }
   getOptimisticResponse() {
     return {
       deletedTranslaticiarumId: this.props.Translaticiarum.id,
-    };
+    }
   }
 }

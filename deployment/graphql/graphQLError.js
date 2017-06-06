@@ -36,16 +36,7 @@ Object.defineProperty(exports,"__esModule",{value:true});exports.defaultHandler=
 
 
 
-
-
-
-
-
-
-
-
 setDefaultHandler=setDefaultHandler;exports.
-
 
 
 
@@ -59,7 +50,6 @@ maskType(thing,fn);
 maskField(thing,fn);
 }
 }
-
 
 function maskField(field,fn){
 var resolveFn=field.resolve;
@@ -81,7 +71,6 @@ fn(_context.t0));case 11:case'end':return _context.stop();}}},null,this,[[0,8]])
 field.resolve._resolveFn=resolveFn;
 }
 
-
 function maskType(type,fn){
 if(type[Processed]||!type.getFields){
 return;
@@ -96,7 +85,6 @@ continue;
 maskField(fields[fieldName],fn);
 }
 }
-
 
 function maskSchema(schema,fn){
 var types=schema.getTypeMap();

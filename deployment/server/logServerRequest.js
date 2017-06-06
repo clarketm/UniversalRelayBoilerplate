@@ -13,8 +13,7 @@ oldWriteRes.apply(res,arguments);
 };
 
 res.end=function(chunk){
-if(chunk)
-chunksRes.push(new Buffer(chunk));
+if(chunk)chunksRes.push(new Buffer(chunk));
 
 var responseBody=Buffer.concat(chunksRes).toString('utf8');
 
@@ -24,7 +23,6 @@ var clientIP=req.headers['x-real-ip']||req.connection.remoteAddress;
 var user=void 0;
 if(res.codeFoundriesInjected&&res.codeFoundriesInjected.user)
 user=res.codeFoundriesInjected.user;else
-
 user='not determined';
 
 var requestAndResponse={

@@ -2,19 +2,15 @@ Object.defineProperty(exports,"__esModule",{value:true});var _deepmerge=require(
 
 var _uiThemeCommon=require('./uiThemeCommon');var _uiThemeCommon2=_interopRequireDefault(_uiThemeCommon);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
-
 var uiThemePlatformSpecific={
-dimensions:
-{
+dimensions:{
 commonLineHeight:44,
 commonLinePaddingLeft:15,
 commonLinePaddingRight:15,
 commonLineSeparatorPaddingLeft:15},
 
-line:
-{
-leftImageStyle:
-{
+line:{
+leftImageStyle:{
 marginLeft:15,
 
 

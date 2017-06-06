@@ -29,12 +29,14 @@ return function(){return{children:[{fieldName:'deletedEnsayoId',kind:'Field',met
 
 }},{key:'getConfigs',value:function getConfigs()
 {
-return[{
+return[
+{
 type:'NODE_DELETE',
 parentName:'Viewer',
 parentID:this.props.Viewer.id,
 connectionName:'Ensayos',
 deletedIDFieldName:'deletedEnsayoId'}];
+
 
 }},{key:'getVariables',value:function getVariables()
 {

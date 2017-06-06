@@ -1,6 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
 
@@ -17,9 +16,7 @@ ToDo_List=function(_React$Component){_inherits(ToDo_List,_React$Component);funct
 
 
 
-
 _handle_onCheck_MarkAll=function(event,checked){
-
 _this.context.relay.commitUpdate(
 new _ToDo_list_updateMarkAllMutation2.default({
 ToDo_Complete:checked,
@@ -35,20 +32,18 @@ Viewer:_this.props.Viewer}));
 
 
 
-
-
-
-
-
 _handle_requestChange=function(value){
-
 _this.context.router.push('/todo/'+value);
 },_temp),_possibleConstructorReturn(_this,_ret);}_createClass(ToDo_List,[{key:'renderToDos',value:function renderToDos(){var _this2=this;return this.props.Viewer.ToDos.edges.map(function(edge){return _react2.default.createElement(_ToDo_Item2.default,{key:edge.node.id,ToDo:edge.node,Viewer:_this2.props.Viewer});});}},{key:'renderTabs',value:function renderTabs()
 
 {
-
 return(
-_react2.default.createElement(_Tabs.Tabs,{valueLink:{value:this.props.relay.variables.status,requestChange:this._handle_requestChange}},
+_react2.default.createElement(_Tabs.Tabs,{
+valueLink:{
+value:this.props.relay.variables.status,
+requestChange:this._handle_requestChange}},
+
+
 _react2.default.createElement(_Tabs.Tab,{label:'All',value:'any'}),
 _react2.default.createElement(_Tabs.Tab,{label:'Active',value:'active'}),
 _react2.default.createElement(_Tabs.Tab,{label:'Completed',value:'completed'})));
@@ -57,7 +52,6 @@ _react2.default.createElement(_Tabs.Tab,{label:'Completed',value:'completed'})))
 }},{key:'render',value:function render()
 
 {
-
 var numToDos=this.props.Viewer.ToDo_TotalCount;
 var numCompletedToDos=this.props.Viewer.ToDo_CompletedCount;
 return(
@@ -84,8 +78,7 @@ limit:2147483647},
 
 prepareVariables:function prepareVariables(_ref2){var status=_ref2.status;
 var nextStatus;
-if(status==='active'||status==='completed')
-nextStatus=status;else
+if(status==='active'||status==='completed')nextStatus=status;else
 
 
 

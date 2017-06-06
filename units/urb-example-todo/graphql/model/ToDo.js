@@ -1,10 +1,7 @@
 import ObjectManager from '../../../../graphql/ObjectManager'
 
-
 export default class ToDo {
-
-  constructor( fields ) {
-
+  constructor(fields) {
     this.id = fields.id
     this.ToDo_User_id = fields.ToDo_User_id
     this.ToDo_Text = fields.ToDo_Text
@@ -12,4 +9,4 @@ export default class ToDo {
   }
 }
 
-ObjectManager.registerEntity( 'ToDo', ToDo )
+ObjectManager.registerEntity('ToDo', ToDo)

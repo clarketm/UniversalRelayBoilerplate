@@ -4,13 +4,11 @@ var AccountNameLengthMin=4;
 var AccountPasswordLengthMin=4;
 var AccountPasswordStrengthMin=30;
 var AccountPasswordStrengthGood=80;
-var AccountNameAlias="Account Name";
+var AccountNameAlias='Account Name';
 
-function AccountNameAdditionalValidation()
-{
+function AccountNameAdditionalValidation(){
 return true;
 }exports.
-
 
 
 AccountNameLengthMin=AccountNameLengthMin;exports.

@@ -1,44 +1,43 @@
-// @flow weak
+// @flow
 'use strict'
 
 import Relay from 'react-relay'
 import React from 'react'
-import { Platform, StyleSheet, View, } from 'react-native'
+import { Platform, StyleSheet, View } from 'react-native'
 
 import StatusButton from './StatusButton'
 import ToDoList from './ToDoList'
 import ToDoListFooter from './ToDoListFooter'
 
-
 class ToDoScreen extends React.Component {
-
-  constructor( props, context ) {
-    super( props, context )
+  constructor(props, context) {
+    super(props, context)
   }
 
-  _handleStatusChange = ( status ) => {
-
-    this.props.relay.setVariables( { status } )
+  _handleStatusChange = status => {
+    this.props.relay.setVariables({ status })
   }
 
   render() {
-
-    return(
+    return (
       <View style={styles.container}>
-          <View style={styles.actionList}>
+        <View style={styles.actionList}>
           <StatusButton
             active={this.props.relay.variables.status === 'any'}
-            onPress={ ( ) => this._handleStatusChange( 'any' ) }>
+            onPress={() => this._handleStatusChange('any')}
+          >
             All
           </StatusButton>
           <StatusButton
             active={this.props.relay.variables.status === 'active'}
-            onPress={ ( ) => this._handleStatusChange( 'active' ) }>
+            onPress={() => this._handleStatusChange('active')}
+          >
             Active
           </StatusButton>
           <StatusButton
             active={this.props.relay.variables.status === 'completed'}
-            onPress={ ( ) => this._handleStatusChange( 'completed' ) }>
+            onPress={() => this._handleStatusChange('completed')}
+          >
             Completed
           </StatusButton>
         </View>
@@ -57,22 +56,22 @@ class ToDoScreen extends React.Component {
   }
 }
 
-export default Relay.createContainer( ToDoScreen, {
+export default Relay.createContainer(ToDoScreen, {
   initialVariables: {
     status: 'any',
   },
   fragments: {
-    Viewer: variables => Relay.QL `
+    Viewer: variables => Relay.QL`
       fragment on Viewer {
         ToDo_TotalCount
-        ${ToDoList.getFragment('Viewer', {status: variables.status})}
-        ${ToDoListFooter.getFragment('Viewer', {status: variables.status})}
+        ${ToDoList.getFragment('Viewer', { status: variables.status })}
+        ${ToDoListFooter.getFragment('Viewer', { status: variables.status })}
       }
     `,
   },
-} )
+})
 
-const styles = StyleSheet.create( {
+const styles = StyleSheet.create({
   actionList: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -83,7 +82,7 @@ const styles = StyleSheet.create( {
     backgroundColor: '#F5F5F5',
     flex: 1,
     //paddingTop: Platform.OS === 'android' ? undefined : 20,
-    paddingTop: 84 // TODO x3000 Read nav bar height from context
+    paddingTop: 84, // TODO x3000 Read nav bar height from context
   },
   footer: {
     height: 10,
@@ -100,4 +99,4 @@ const styles = StyleSheet.create( {
     shadowOpacity: 0.03,
     shadowRadius: 1,
   },
-} )
+})

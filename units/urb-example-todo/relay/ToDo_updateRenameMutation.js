@@ -1,21 +1,20 @@
-// @flow weak
+// @flow
 
 import Relay from 'react-relay'
 
-
 export default class ToDo_updateRenameMutation extends Relay.Mutation {
   static fragments = {
-    ToDo: () => Relay.QL `
+    ToDo: () => Relay.QL`
       fragment on ToDo {
         id,
       }
     `,
   }
   getMutation() {
-    return Relay.QL `mutation{ToDo_updateRename}`
+    return Relay.QL`mutation{ToDo_updateRename}`
   }
   getFatQuery() {
-    return Relay.QL `
+    return Relay.QL`
       fragment on ToDo_updateRenamePayload {
         ToDo {
           ToDo_Text,
@@ -24,12 +23,14 @@ export default class ToDo_updateRenameMutation extends Relay.Mutation {
     `
   }
   getConfigs() {
-    return [ {
-      type: 'FIELDS_CHANGE',
-      fieldIDs: {
-        ToDo: this.props.ToDo.id,
+    return [
+      {
+        type: 'FIELDS_CHANGE',
+        fieldIDs: {
+          ToDo: this.props.ToDo.id,
+        },
       },
-    } ]
+    ]
   }
   getVariables() {
     return {

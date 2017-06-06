@@ -1,6 +1,6 @@
-// @flow weak
+// @flow
 
-import Relay from 'react-relay';
+import Relay from 'react-relay'
 
 export default class Ensayo_updateMutation extends Relay.Mutation {
   static fragments = {
@@ -9,9 +9,9 @@ export default class Ensayo_updateMutation extends Relay.Mutation {
         id,
       }
     `,
-  };
+  }
   getMutation() {
-    return Relay.QL`mutation{Ensayo_update}`;
+    return Relay.QL`mutation{Ensayo_update}`
   }
   getFatQuery() {
     return Relay.QL`
@@ -22,15 +22,17 @@ export default class Ensayo_updateMutation extends Relay.Mutation {
           Ensayo_Description,
         }
       }
-    `;
+    `
   }
   getConfigs() {
-    return [{
-      type: 'FIELDS_CHANGE',
-      fieldIDs: {
-        Ensayo: this.props.Ensayo.id,
+    return [
+      {
+        type: 'FIELDS_CHANGE',
+        fieldIDs: {
+          Ensayo: this.props.Ensayo.id,
+        },
       },
-    }];
+    ]
   }
   getVariables() {
     return {
@@ -38,7 +40,7 @@ export default class Ensayo_updateMutation extends Relay.Mutation {
       Ensayo_Content: this.props.Ensayo_Content,
       Ensayo_Title: this.props.Ensayo_Title,
       Ensayo_Description: this.props.Ensayo_Description,
-    };
+    }
   }
   getOptimisticResponse() {
     return {
@@ -48,6 +50,6 @@ export default class Ensayo_updateMutation extends Relay.Mutation {
         Ensayo_Title: this.props.Ensayo_Title,
         Ensayo_Description: this.props.Ensayo_Description,
       },
-    };
+    }
   }
 }

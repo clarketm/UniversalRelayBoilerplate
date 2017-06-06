@@ -2,9 +2,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _ObjectManager=requ
 
 
 Translaticiarum=
-
-function Translaticiarum(fields)
-{_classCallCheck(this,Translaticiarum);
+function Translaticiarum(fields){_classCallCheck(this,Translaticiarum);
 this.id=fields.id;
 this.Translaticiarum_User_id=fields.Translaticiarum_User_id;
 this.Translaticiarum_Date=fields.Translaticiarum_Date;

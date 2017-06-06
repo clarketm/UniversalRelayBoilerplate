@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import bodyParser from 'body-parser'
 import express from 'express'
@@ -15,45 +15,41 @@ import schema from '../graphql/schema' // Schema for GraphQL server
 import _schemas_system from '../graphql/model/_schemas'
 import _schemas from '../configuration/graphql/_schemas'
 
-
 // Create router for GraphQL
 const router = express()
 
 // Set up parser and logging
-router.use( bodyParser.json() )
-router.use( ( req, res, next ) => logServerRequest( req, res, next, requestLoggerGraphQL ) )
+router.use(bodyParser.json())
+router.use((req, res, next) => logServerRequest(req, res, next, requestLoggerGraphQL))
 
-router.use( '/', async( req, res, next ) => {
-
+router.use('/', async (req, res, next) => {
   // Create individual object manager for each request
   const objectManager = new ObjectManager()
-  objectManager.setRequest( req, res )
+  objectManager.setRequest(req, res)
 
   // Collect site builder configuration and place it into object manager
-  const siteInformation = await getSiteInformation( req, res )
-  if( siteInformation ) {
-
-    objectManager.setSiteInformation( siteInformation )
+  const siteInformation = await getSiteInformation(req, res)
+  if (siteInformation) {
+    objectManager.setSiteInformation(siteInformation)
 
     try {
-      const a_User = await getUserByCookie( objectManager, req, res )
+      const a_User = await getUserByCookie(objectManager, req, res)
 
       res.codeFoundriesInjected = { user: a_User }
-      await verifyUserAuthToken( a_User, req, res )
+      await verifyUserAuthToken(a_User, req, res)
 
-      graphQLHTTP( () => {
-        return( {
+      graphQLHTTP(() => {
+        return {
           schema: schema,
           rootValue: objectManager,
           pretty: true,
           graphiql: true,
-        } )
-      } )( req, res, next )
-
-    } catch( err ) {
-      serveAuthenticationFailed( req, res, err, true )
+        }
+      })(req, res, next)
+    } catch (err) {
+      serveAuthenticationFailed(req, res, err, true)
     }
   }
-} ) // router.use
+}) // router.use
 
 export default router

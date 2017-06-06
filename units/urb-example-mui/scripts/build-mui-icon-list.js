@@ -36,7 +36,7 @@ rrs('./node_modules/material-ui/svg-icons/').forEach(function(file) {
 })
 
 let sourceCode = [
-  `// @flow weak`,
+  `// @flow`,
   ``,
   `import React from 'react';`,
   `import Relay from 'react-relay';`,

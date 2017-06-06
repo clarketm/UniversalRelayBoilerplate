@@ -22,9 +22,7 @@ ToDoTextInput=function(_React$Component){_inherits(ToDoTextInput,_React$Componen
 
 
 
-
 function ToDoTextInput(props,context){_classCallCheck(this,ToDoTextInput);var _this=_possibleConstructorReturn(this,(ToDoTextInput.__proto__||Object.getPrototypeOf(ToDoTextInput)).call(this,
-
 props,context));
 _this._commitChanges=_this._commitChanges.bind(_this);
 _this._handleBlur=_this._handleBlur.bind(_this);
@@ -37,7 +35,6 @@ ToDo_Text:_this.props.initialValue||''};return _this;
 }_createClass(ToDoTextInput,[{key:'_commitChanges',value:function _commitChanges()
 
 {
-
 var newText=this.state.ToDo_Text.trim();
 if(this.props.onDelete&&newText===''){
 this.props.onDelete();
@@ -52,26 +49,22 @@ this.setState({ToDo_Text:''});
 }},{key:'_handleBlur',value:function _handleBlur()
 
 {
-
 if(this.props.commitOnBlur){
 this._commitChanges();
 }
 }},{key:'_handleChangeText',value:function _handleChangeText(
 
 ToDo_Text){
-
 if(this._mounted!==false){
 this.setState({ToDo_Text:ToDo_Text});
 }
 }},{key:'_handleSubmitEditing',value:function _handleSubmitEditing()
 
 {
-
 this._commitChanges();
 }},{key:'componentWillUnmount',value:function componentWillUnmount()
 
 {
-
 this._mounted=false;
 }},{key:'render',value:function render()
 

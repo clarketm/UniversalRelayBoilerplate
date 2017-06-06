@@ -4,7 +4,6 @@ var _graphql=require('graphql');
 
 var _mutations2=require('../../configuration/graphql/_mutations');var _mutations3=_interopRequireDefault(_mutations2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
-
 new _graphql.GraphQLObjectType({
 name:'Mutation',
 fields:_extends({},_mutations3.default)});

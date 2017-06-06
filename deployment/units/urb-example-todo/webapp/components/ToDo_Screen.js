@@ -1,6 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-
 var _Card=require('material-ui/Card');
 var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireDefault(_TextField);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
@@ -8,7 +7,6 @@ var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_
 
 var _ResponsiveContentArea=require('../../../../webapp/components/ResponsiveContentArea');var _ResponsiveContentArea2=_interopRequireDefault(_ResponsiveContentArea);
 var _ToDo_addMutation=require('../../relay/ToDo_addMutation');var _ToDo_addMutation2=_interopRequireDefault(_ToDo_addMutation);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
-
 
 ToDo_Screen=function(_React$Component){_inherits(ToDo_Screen,_React$Component);
 
@@ -19,9 +17,7 @@ ToDo_Screen=function(_React$Component){_inherits(ToDo_Screen,_React$Component);
 
 
 
-
 function ToDo_Screen(props,context){_classCallCheck(this,ToDo_Screen);var _this=_possibleConstructorReturn(this,(ToDo_Screen.__proto__||Object.getPrototypeOf(ToDo_Screen)).call(this,
-
 props,context));_this.
 
 
@@ -29,9 +25,7 @@ props,context));_this.
 
 
 
-
 _handle_onKeyDown_AddToDo=function(e){
-
 if(e.keyCode===13){
 _this.context.relay.commitUpdate(
 new _ToDo_addMutation2.default({
@@ -47,14 +41,12 @@ ToDo_Text_New:''});
 };_this.
 
 _handle_OnChange=function(event){
-
 _this.setState({
 ToDo_Text_New:event.target.value});
 
 };_this.state={ToDo_Text_New:''};return _this;}_createClass(ToDo_Screen,[{key:'render',value:function render()
 
 {
-
 return(
 _react2.default.createElement(_ResponsiveContentArea2.default,null,
 _react2.default.createElement(_Card.Card,{initiallyExpanded:true},

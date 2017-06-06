@@ -8,29 +8,25 @@ var _reactNativeElements=require('react-native-elements');
 var _UrlRouter=require('../../../app/UrlRouter');var _UrlRouter2=_interopRequireDefault(_UrlRouter);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
 var styles=_reactNative.StyleSheet.create({
-container:
-{
+container:{
 flex:1,
 marginTop:20,
 justifyContent:'flex-start',
 alignItems:'stretch',
 backgroundColor:'#ffffff'},
 
-greetingEnvelope:
-{
+greetingEnvelope:{
 height:64,
 marginLeft:15,
 marginRight:15,
 justifyContent:'center',
 alignItems:'center'},
 
-greetingText:
-{
+greetingText:{
 fontSize:20,
 color:'#000000'},
 
-list:
-{
+list:{
 flex:1}});var
 
 
@@ -46,11 +42,7 @@ DrawerView=function(_React$Component){_inherits(DrawerView,_React$Component);fun
 
 
 
-
-
-
-openRoute=function(routeName,options)
-{
+openRoute=function(routeName,options){
 _this.context.drawer.close();
 
 
@@ -58,7 +50,6 @@ _this.context.drawer.close();
 
 _UrlRouter2.default.goToRouteByURL(routeName);
 },_temp),_possibleConstructorReturn(_this,_ret);}_createClass(DrawerView,[{key:'render',value:function render()
-
 
 {var _this2=this;
 var isAnonymous=this.props.Viewer.User_IsAnonymous;
@@ -70,14 +61,48 @@ _react2.default.createElement(_reactNative.Text,{style:styles.greetingText},'Hel
 
 
 _react2.default.createElement(_reactNativeElements.List,{containerStyle:styles.list},
-isAnonymous&&_react2.default.createElement(_reactNativeElements.ListItem,{onPress:function onPress(){return _this2.openRoute('/user/login');},title:'Login',hideChevron:true}),
+isAnonymous&&
+_react2.default.createElement(_reactNativeElements.ListItem,{
+onPress:function onPress(){return _this2.openRoute('/user/login');},
+title:'Login',
+hideChevron:true}),
+
 _react2.default.createElement(_reactNativeElements.ListItem,{onPress:function onPress(){return _this2.openRoute('/todo');},title:'To Do',hideChevron:true}),
-_react2.default.createElement(_reactNativeElements.ListItem,{onPress:function onPress(){return _this2.openRoute('/villa/search');},title:'Map',hideChevron:true}),
-!isAnonymous&&_react2.default.createElement(_reactNativeElements.ListItem,{onPress:function onPress(){return _this2.openRoute('/paymentmethod');},title:'Payment Methods',hideChevron:true}),
-!isAnonymous&&_react2.default.createElement(_reactNativeElements.ListItem,{onPress:function onPress(){return _this2.openRoute('/user/location');},title:'Set Location',hideChevron:true}),
-!isAnonymous&&_react2.default.createElement(_reactNativeElements.ListItem,{onPress:function onPress(){return _this2.openRoute('/user/profile');},title:'Profile',hideChevron:true}),
-!isAnonymous&&_react2.default.createElement(_reactNativeElements.ListItem,{onPress:function onPress(){return _this2.openRoute('/user/messages/thread/55');},title:'Test Thread',hideChevron:true}),
-!isAnonymous&&_react2.default.createElement(_reactNativeElements.ListItem,{onPress:function onPress(){return _this2.openRoute('/user/logout');},title:'Log Out',hideChevron:true}))));
+_react2.default.createElement(_reactNativeElements.ListItem,{
+onPress:function onPress(){return _this2.openRoute('/villa/search');},
+title:'Map',
+hideChevron:true}),
+
+!isAnonymous&&
+_react2.default.createElement(_reactNativeElements.ListItem,{
+onPress:function onPress(){return _this2.openRoute('/paymentmethod');},
+title:'Payment Methods',
+hideChevron:true}),
+
+!isAnonymous&&
+_react2.default.createElement(_reactNativeElements.ListItem,{
+onPress:function onPress(){return _this2.openRoute('/user/location');},
+title:'Set Location',
+hideChevron:true}),
+
+!isAnonymous&&
+_react2.default.createElement(_reactNativeElements.ListItem,{
+onPress:function onPress(){return _this2.openRoute('/user/profile');},
+title:'Profile',
+hideChevron:true}),
+
+!isAnonymous&&
+_react2.default.createElement(_reactNativeElements.ListItem,{
+onPress:function onPress(){return _this2.openRoute('/user/messages/thread/55');},
+title:'Test Thread',
+hideChevron:true}),
+
+!isAnonymous&&
+_react2.default.createElement(_reactNativeElements.ListItem,{
+onPress:function onPress(){return _this2.openRoute('/user/logout');},
+title:'Log Out',
+hideChevron:true}))));
+
 
 
 

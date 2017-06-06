@@ -8,14 +8,16 @@ var _NodeInterface=require('../NodeInterface');var _NodeInterface2=_interopRequi
 var _ViewerFields2=require('../../configuration/graphql/_ViewerFields');var _ViewerFields3=_interopRequireDefault(_ViewerFields2);
 var _User=require('../../configuration/graphql/model/User');var _User2=_interopRequireDefault(_User);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
-
 new _graphql.GraphQLObjectType({
 name:'Viewer',
 interfaces:[_NodeInterface2.default],
 isTypeOf:function isTypeOf(object){return object instanceof _User2.default;},
 fields:_extends({
 id:(0,_graphqlRelay.globalIdField)('Viewer'),
-User_IsAnonymous:{type:_graphql.GraphQLBoolean,resolve:function resolve(obj){return _defaultPersister2.default.uuidEquals(obj.id,_defaultPersister2.default.uuidNull());}},
+User_IsAnonymous:{
+type:_graphql.GraphQLBoolean,
+resolve:function resolve(obj){return _defaultPersister2.default.uuidEquals(obj.id,_defaultPersister2.default.uuidNull());}},
+
 UserToken2:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.UserToken2;}},
 User_AccountName:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_AccountName;}},
 User_DisplayName:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_DisplayName;}},
