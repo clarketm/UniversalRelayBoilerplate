@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 
 import CassandraDriver from 'cassandra-driver'
 import ExpressCassandra from 'express-cassandra'

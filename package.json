@@ -121,6 +121,7 @@
     "css-loader": "0.28.3",
     "extract-text-webpack-plugin": "2.1.0",
     "flow-bin": "0.47.0",
+    "html-to-react": "1.2.9",
     "nodemon": "1.11.0",
     "prettier": "1.4.2",
     "react-hot-loader": "3.0.0-beta.7",
@@ -130,6 +131,7 @@
     "react-native-modalbox": "1.3.9",
     "react-native-router-flux": "3.39.1",
     "react-native-vector-icons": "4.1.1",
+    "react-rte": "0.11.0",
     "react-tween-state": "0.1.5",
     "recursive-readdir-sync": "1.0.6",
     "replace": "0.3.0",
@@ -138,6 +140,6 @@
     "webpack-dev-server": "2.4.5",
     "whatwg-fetch": "2.0.3"
   },
-  "version": "20.0.0",
+  "version": "20.1.0",
   "name": "UniversalRelayBoilerplate"
 }
