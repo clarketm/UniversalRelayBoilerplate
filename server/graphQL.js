@@ -7,7 +7,7 @@ import graphQLHTTP from 'express-graphql'
 import { getUserByCookie, verifyUserAuthToken, serveAuthenticationFailed } from './checkCredentials'
 import { getSiteInformation } from '../configuration/webapp/siteSettings'
 import logServerRequest from './logServerRequest'
-import ObjectManager from '../graphql/ObjectManager'
+import { getObjectManager } from '../graphql/ObjectManager'
 import { requestLoggerGraphQL } from '../configuration/server/requestLoggers'
 import schema from '../graphql/schema' // Schema for GraphQL server
 
@@ -22,16 +22,9 @@ const router = express()
 router.use(bodyParser.json())
 router.use((req, res, next) => logServerRequest(req, res, next, requestLoggerGraphQL))
 
-router.use('/', async (req, res, next) => {
-  // Create individual object manager for each request
-  const objectManager = new ObjectManager()
-  objectManager.setRequest(req, res)
-
-  // Collect site builder configuration and place it into object manager
-  const siteInformation = await getSiteInformation(req, res)
-  if (siteInformation) {
-    objectManager.setSiteInformation(siteInformation)
-
+async function root(req, res, next) {
+  const objectManager = await getObjectManager(req, res)
+  if (objectManager.siteInformation) {
     try {
       const a_User = await getUserByCookie(objectManager, req, res)
 
@@ -50,6 +43,7 @@ router.use('/', async (req, res, next) => {
       serveAuthenticationFailed(req, res, err, true)
     }
   }
-}) // router.use
+}
+router.use('/', root)
 
 export default router

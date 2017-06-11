@@ -34,7 +34,7 @@ export function serveFailure(type, res, message, err) {
   res.status(500).sendFile(httpError500FileName)
 }
 
-export default async (req, res, next) => {
+export default async (req: Object, res: Object, next) => {
   let assetsPath
 
   const siteInformation = await getSiteInformation(req, res)
