@@ -6,6 +6,7 @@ import { cursorForObjectInConnection } from 'graphql-relay'
 import AnonymousUserToken2 from '../configuration/server/AnonymousUserToken2'
 import defaultPersister from '../configuration/graphql/defaultPersister'
 import getNewUser from '../configuration/graphql/model/getNewUser'
+import { getSiteInformation } from '../configuration/webapp/siteSettings'
 import log from '../server/log'
 import User from '../configuration/graphql/model/User'
 
@@ -368,4 +369,22 @@ export default class ObjectManager {
   }
 }
 
+// Register the user
 ObjectManager.registerEntity('User', User)
+
+// Get an Object Manager with site information
+export async function getObjectManager(req: Object, res: Object) {
+  // Set site information
+  const siteInformation = await getSiteInformation(req, res)
+
+  // Create individual object manager for each request
+  const objectManager = new ObjectManager()
+
+  // Set request and response
+  objectManager.setRequest(req, res)
+
+  // Place site builder configuration into object manager
+  objectManager.setSiteInformation(siteInformation)
+
+  return objectManager
+}
