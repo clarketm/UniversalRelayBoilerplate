@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var _this=this;
+Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
 
 var _bcrypt=require('bcrypt');var _bcrypt2=_interopRequireDefault(_bcrypt);
 var _bodyParser=require('body-parser');var _bodyParser2=_interopRequireDefault(_bodyParser);
@@ -9,9 +9,8 @@ var _authExtensions=require('../configuration/server/authExtensions');var _authE
 var _delayPromise=require('../scripts/delayPromise');var _delayPromise2=_interopRequireDefault(_delayPromise);
 var _getNewUser=require('../configuration/graphql/model/getNewUser');var _getNewUser2=_interopRequireDefault(_getNewUser);
 var _logServerRequest=require('./logServerRequest');var _logServerRequest2=_interopRequireDefault(_logServerRequest);
-var _ObjectManager=require('../graphql/ObjectManager');var _ObjectManager2=_interopRequireDefault(_ObjectManager);
+var _ObjectManager=require('../graphql/ObjectManager');
 var _requestLoggers=require('../configuration/server/requestLoggers');
-var _siteSettings=require('../configuration/webapp/siteSettings');
 
 var _validation=require('../scripts/validation');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
@@ -23,21 +22,11 @@ var auth=(0,_express2.default)();
 auth.use(_bodyParser2.default.json());
 auth.use(function(req,res,next){return(0,_logServerRequest2.default)(req,res,next,_requestLoggers.requestLoggerAuth);});
 
-function getObjectManager(req,res){var siteInformation,objectManager;return regeneratorRuntime.async(function getObjectManager$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.next=2;return regeneratorRuntime.awrap(
-(0,_siteSettings.getSiteInformation)(req,res));case 2:siteInformation=_context.sent;
 
 
-objectManager=new _ObjectManager2.default();
-
-
-objectManager.setSiteInformation(siteInformation);return _context.abrupt('return',
-
-objectManager);case 6:case'end':return _context.stop();}}},null,this);}
-
-
-auth.post('/login',function _callee(req,res){var objectManager,User_AccountName,User_AccountPassword;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:_context2.next=2;return regeneratorRuntime.awrap(
-getObjectManager(req,res));case 2:objectManager=_context2.sent;
-
+function login(req,res){var objectManager,User_AccountName,User_AccountPassword;return regeneratorRuntime.async(function login$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.next=2;return regeneratorRuntime.awrap(
+(0,_ObjectManager.getObjectManager)(req,res));case 2:objectManager=_context.sent;
+if(objectManager.siteInformation){
 User_AccountName=req.body.User_AccountName.toLowerCase();
 User_AccountPassword=req.body.User_AccountPassword;
 
@@ -70,12 +59,16 @@ res.json({success:true,UserToken2:a_User.UserToken2});
 }).
 catch(function(reason){
 res.status(401).json({error:reason});
-});case 6:case'end':return _context2.stop();}}},null,_this);});
+});
+}case 4:case'end':return _context.stop();}}},null,this);}
+
+auth.post('/login',login);
 
 
-auth.post('/createuser',function _callee2(req,res){var objectManager,User_AccountName,User_AccountPassword;return regeneratorRuntime.async(function _callee2$(_context3){while(1){switch(_context3.prev=_context3.next){case 0:_context3.next=2;return regeneratorRuntime.awrap(
-getObjectManager(req,res));case 2:objectManager=_context3.sent;
 
+function createuser(req,res){var objectManager,User_AccountName,User_AccountPassword;return regeneratorRuntime.async(function createuser$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:_context2.next=2;return regeneratorRuntime.awrap(
+(0,_ObjectManager.getObjectManager)(req,res));case 2:objectManager=_context2.sent;
+if(objectManager.siteInformation){
 User_AccountName=req.body.User_AccountName.toLowerCase();
 User_AccountPassword=req.body.User_AccountPassword;
 objectManager.
@@ -123,7 +116,11 @@ res.json({success:true});
 }).
 catch(function(reason){
 res.status(401).json({error:''+reason});
-});case 6:case'end':return _context3.stop();}}},null,_this);});
+});
+}case 4:case'end':return _context2.stop();}}},null,this);}
+
+auth.post('/createuser',createuser);
+
 
 
 auth.post('/logout',function(req,res){
