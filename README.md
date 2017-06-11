@@ -106,7 +106,7 @@ This can be done with one command:
 
 To open the app:
 
-* Navigate to `http://localhost:4444`, or whatever IP was assigned when running `yarn update-ip` or after installation.
+* Navigate to `http://localhost:26005`, or whatever IP was assigned when running `yarn update-ip` or after installation.
 
 To run the iOS app in the emulator:
 
