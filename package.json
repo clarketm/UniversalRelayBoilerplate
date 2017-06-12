@@ -27,9 +27,9 @@
     "dev-webpack-w": "rmdir /s /q build & better-npm-run dev-webpack-w",
     "devw": "concurrently --kill-others \"npm run dev-webpack\" \"npm run dev-server\" ",
     "setup-database": "./node_modules/.bin/babel-node ./scripts/setup-database.js",
-    "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- memory && npm run update-ip && react-native link && (cd .git/hooks && ln -s -f ../../scripts/pre-commit.sh ./pre-commit)",
-    "setup-local-cut-version": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-default-persister -- cassandra",
-    "setup-local-w": "copy .\\configuration\\default.env .\\.env. && copy .\\configuration\\app\\default.publicURL.js configuration\\app\\publicURL.js && npm run update-default-persister -- memory && npm run update-ip && react-native link",
+    "setup-local": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js && npm run update-ip && react-native link && (cd .git/hooks && ln -s -f ../../scripts/pre-commit.sh ./pre-commit)",
+    "setup-local-cut-version": "cp ./configuration/default.env ./.env && cp ./configuration/app/default.publicURL.js ./configuration/app/publicURL.js",
+    "setup-local-w": "copy .\\configuration\\default.env .\\.env. && copy .\\configuration\\app\\default.publicURL.js configuration\\app\\publicURL.js && npm run update-ip && react-native link",
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "update-default-persister": "./node_modules/.bin/babel-node ./scripts/update-default-persister.js",
     "update-ip": "./node_modules/.bin/babel-node ./scripts/update-ip.js"
