@@ -7,9 +7,7 @@ var _Ensayo3=require('../../units/urb-example-ensayo/graphql/model/Ensayo.schema
 var _ToDo=require('../../units/urb-example-todo/graphql/model/ToDo');var _ToDo2=_interopRequireDefault(_ToDo);
 var _ToDo3=require('../../units/urb-example-todo/graphql/model/ToDo.schema');var _ToDo4=_interopRequireDefault(_ToDo3);
 var _Translaticiarum=require('../../units/urb-example-translaticiarum/graphql/model/Translaticiarum');var _Translaticiarum2=_interopRequireDefault(_Translaticiarum);
-var _Translaticiarum3=require('../../units/urb-example-translaticiarum/graphql/model/Translaticiarum.schema');var _Translaticiarum4=_interopRequireDefault(_Translaticiarum3);
-var _PrimeNumber=require('../../units/urb-example-very-simple-list/graphql/model/PrimeNumber');var _PrimeNumber2=_interopRequireDefault(_PrimeNumber);
-var _PrimeNumber3=require('../../units/urb-example-very-simple-list/graphql/model/PrimeNumber.schema');var _PrimeNumber4=_interopRequireDefault(_PrimeNumber3);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
+var _Translaticiarum3=require('../../units/urb-example-translaticiarum/graphql/model/Translaticiarum.schema');var _Translaticiarum4=_interopRequireDefault(_Translaticiarum3);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
 true;
 //# sourceMappingURL=_schemas.js.map
