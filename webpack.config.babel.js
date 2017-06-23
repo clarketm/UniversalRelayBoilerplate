@@ -51,7 +51,15 @@ const config = {
   plugins: [
     new webpack.EnvironmentPlugin(),
     new ExtractTextPlugin('[name].css'),
-    new webpack.HotModuleReplacementPlugin(),
+    // TODO: Enable once fixed
+    /*
+    /Users/alex/Documents/Projects/cfworkspace/urb/main/node_modules/webpack/lib/HotModuleReplacementPlugin.js:59
+                                records.chunkModuleIds[chunk.id] = chunk.mapModules(function(m) {
+                                                                         ^
+    TypeError: chunk.mapModules is not a function
+        at /Users/alex/Documents/Projects/cfworkspace/urb/main/node_modules/webpack/lib/HotModuleReplacementPlugin.js:59:46
+    */
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       process: {
