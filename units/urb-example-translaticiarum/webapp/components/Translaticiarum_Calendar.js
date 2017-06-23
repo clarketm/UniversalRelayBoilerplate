@@ -7,6 +7,7 @@ import React from 'react'
 import BigCalendar from 'react-big-calendar'
 import Relay from 'react-relay'
 
+import { dateFromUTCString, dateUTCToLocal } from '../../../../webapp/scripts/DateTimeHelpers'
 import ResponsiveContentArea from '../../../../webapp/components/ResponsiveContentArea'
 import Translaticiarum_addMutation from '../../relay/Translaticiarum_addMutation'
 import Translaticiarum_Properties from './Translaticiarum_Properties'
@@ -14,77 +15,6 @@ import Translaticiarum_Properties from './Translaticiarum_Properties'
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
 BigCalendar.momentLocalizer(moment) // or globalizeLocalizer
-
-const events = [
-  {
-    title: 'All Day Event',
-    allDay: true,
-    start: new Date(2017, 6, 0),
-    end: new Date(2017, 6, 1),
-  },
-  {
-    title: 'Long Event',
-    start: new Date(2017, 6, 7),
-    end: new Date(2017, 6, 10),
-  },
-
-  {
-    title: 'DTS STARTS',
-    start: new Date(2016, 2, 13, 0, 0, 0),
-    end: new Date(2016, 2, 20, 0, 0, 0),
-  },
-
-  {
-    title: 'DTS ENDS',
-    start: new Date(2016, 10, 6, 0, 0, 0),
-    end: new Date(2016, 10, 13, 0, 0, 0),
-  },
-
-  {
-    title: 'Some Event',
-    start: new Date(2017, 6, 9, 0, 0, 0),
-    end: new Date(2017, 6, 9, 0, 0, 0),
-  },
-  {
-    title: 'Conference',
-    start: new Date(2017, 6, 11),
-    end: new Date(2017, 6, 13),
-    desc: 'Big conference for important people',
-  },
-  {
-    title: 'Meeting',
-    start: new Date(2017, 6, 12, 10, 30, 0, 0),
-    end: new Date(2017, 6, 12, 12, 30, 0, 0),
-    desc: 'Pre-meeting meeting, to prepare for the meeting',
-  },
-  {
-    title: 'Lunch',
-    start: new Date(2017, 6, 12, 12, 0, 0, 0),
-    end: new Date(2017, 6, 12, 13, 0, 0, 0),
-    desc: 'Power lunch',
-  },
-  {
-    title: 'Meeting',
-    start: new Date(2017, 6, 12, 14, 0, 0, 0),
-    end: new Date(2017, 6, 12, 15, 0, 0, 0),
-  },
-  {
-    title: 'Happy Hour',
-    start: new Date(2017, 6, 12, 17, 0, 0, 0),
-    end: new Date(2017, 6, 12, 17, 30, 0, 0),
-    desc: 'Most important meal of the day',
-  },
-  {
-    title: 'Dinner',
-    start: new Date(2017, 6, 12, 20, 0, 0, 0),
-    end: new Date(2017, 6, 12, 21, 0, 0, 0),
-  },
-  {
-    title: 'Birthday Party',
-    start: new Date(2017, 6, 13, 7, 0, 0),
-    end: new Date(2017, 6, 13, 10, 30, 0),
-  },
-]
 
 class Translaticiarum_Calendar extends React.Component {
   static contextTypes = {
@@ -104,6 +34,27 @@ class Translaticiarum_Calendar extends React.Component {
   render() {
     const today = new Date()
 
+    const translaticiarum = this.props.Viewer.Translaticiarums.edges
+
+    const calendarEvents = translaticiarum.map(translaticiarumEdge => {
+      const translaticiarum = translaticiarumEdge.node
+      const theDate = dateFromUTCString(translaticiarum.Translaticiarum_Date)
+      const theTime = dateFromUTCString(translaticiarum.Translaticiarum_Time)
+
+      const theDateTimeStart = dateUTCToLocal(new Date(theDate.getTime() + theTime.getTime()))
+      const theDateTimeStop = dateUTCToLocal(
+        new Date(theDate.getTime() + theTime.getTime() + 7200000),
+      )
+
+      return {
+        title: 'Type ' + translaticiarum.Translaticiarum_Type,
+        start: theDateTimeStart,
+        end: theDateTimeStop,
+      }
+    })
+
+    console.log(calendarEvents)
+
     return (
       <ResponsiveContentArea>
         <Card initiallyExpanded={true}>
@@ -113,7 +64,7 @@ class Translaticiarum_Calendar extends React.Component {
             subtitle="Using React Big Calendar"
           />
 
-          <BigCalendar events={events} defaultDate={new Date(2017, 6, 1)} />
+          <BigCalendar events={calendarEvents} defaultDate={new Date(2017, 6, 1)} />
 
         </Card>
       </ResponsiveContentArea>
@@ -125,6 +76,16 @@ export default Relay.createContainer(Translaticiarum_Calendar, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
+        Translaticiarums(first: 2147483647) {
+          edges {
+            node {
+              id,
+              Translaticiarum_Type,
+              Translaticiarum_Date,
+              Translaticiarum_Time,
+            },
+          },
+        },
         ${Translaticiarum_addMutation.getFragment('Viewer')},
       }
     `,

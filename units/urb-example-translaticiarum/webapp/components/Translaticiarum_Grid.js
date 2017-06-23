@@ -172,7 +172,7 @@ class Translaticiarum_Grid extends React.Component {
             </tbody>
           </table>
 
-          <CardActions initiallyExpanded={true}>
+          <CardActions>
             <DatePicker
               hintText="Date Start"
               value={this.state.Date_Start}
