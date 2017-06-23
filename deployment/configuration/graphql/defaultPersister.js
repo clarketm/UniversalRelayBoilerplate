@@ -1,8 +1,7 @@
 Object.defineProperty(exports,"__esModule",{value:true});
 
-var _PersisterCassandra=require('../../units/urb-persister-cassandra/graphql/PersisterCassandra');var _PersisterCassandra2=_interopRequireDefault(_PersisterCassandra);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+var _PersisterMemory=require('../../units/urb-persister-memory/graphql/PersisterMemory');var _PersisterMemory2=_interopRequireDefault(_PersisterMemory);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
-
-var defaultPersister=new _PersisterCassandra2.default();exports.default=
+var defaultPersister=new _PersisterMemory2.default();exports.default=
 defaultPersister;
 //# sourceMappingURL=defaultPersister.js.map
