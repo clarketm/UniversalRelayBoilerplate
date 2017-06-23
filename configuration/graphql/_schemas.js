@@ -8,7 +8,5 @@ import ToDo from '../../units/urb-example-todo/graphql/model/ToDo'
 import ToDo_schema from '../../units/urb-example-todo/graphql/model/ToDo.schema'
 import Translaticiarum from '../../units/urb-example-translaticiarum/graphql/model/Translaticiarum'
 import Translaticiarum_schema from '../../units/urb-example-translaticiarum/graphql/model/Translaticiarum.schema'
-import PrimeNumber from '../../units/urb-example-very-simple-list/graphql/model/PrimeNumber'
-import PrimeNumber_schema from '../../units/urb-example-very-simple-list/graphql/model/PrimeNumber.schema'
 
 export default true
