@@ -7,7 +7,7 @@ const host = process.env.HOST
 const port_webpack = process.env.PORT_WEBPACK
 
 console.log(
-  'Running Webpack, process.env.NODE_ENV=' + process.env.NODE_ENV + ', version=' + version,
+  '📦  Running Webpack, process.env.NODE_ENV=' + process.env.NODE_ENV + ', version=' + version,
 )
 
 const config = {
@@ -19,6 +19,21 @@ const config = {
 
   entry: {
     client: ['whatwg-fetch', path.resolve('webapp/client.js')],
+    vendor: [
+      'isomorphic-relay',
+      'isomorphic-relay-router',
+      'material-ui',
+      'prop-types',
+      'react',
+      'react-dom',
+      'react-event-listener',
+      'react-helmet',
+      'react-relay',
+      'react-relay-network-layer',
+      'react-router',
+      'react-router-relay',
+      'react-tap-event-plugin',
+    ],
   },
 
   output: {
@@ -37,8 +52,8 @@ const config = {
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader',
+          fallback: 'style-loader',
+          use: 'css-loader',
         }),
       },
     ],
@@ -50,6 +65,11 @@ const config = {
 
   plugins: [
     new webpack.EnvironmentPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+      filename: 'vendor.js',
+    }),
     new ExtractTextPlugin('[name].css'),
     // TODO: Enable once fixed
     /*
