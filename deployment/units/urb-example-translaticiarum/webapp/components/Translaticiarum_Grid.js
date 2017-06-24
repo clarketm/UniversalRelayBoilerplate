@@ -172,7 +172,7 @@ transliticiarumDay));})));}))),
 
 
 
-_react2.default.createElement(_Card.CardActions,{initiallyExpanded:true},
+_react2.default.createElement(_Card.CardActions,null,
 _react2.default.createElement(_DatePicker2.default,{
 hintText:'Date Start',
 value:this.state.Date_Start,

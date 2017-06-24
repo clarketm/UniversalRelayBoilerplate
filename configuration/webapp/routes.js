@@ -25,6 +25,7 @@ import MUI_Home from '../../units/urb-example-mui/webapp/components/MUI_Home'
 import ToDo_List from '../../units/urb-example-todo/webapp/components/ToDo_List'
 import ToDo_Screen from '../../units/urb-example-todo/webapp/components/ToDo_Screen'
 
+import Translaticiarum_Calendar from '../../units/urb-example-translaticiarum/webapp/components/Translaticiarum_Calendar'
 import Translaticiarum_List from '../../units/urb-example-translaticiarum/webapp/components/Translaticiarum_List'
 import Translaticiarum_Grid from '../../units/urb-example-translaticiarum/webapp/components/Translaticiarum_Grid'
 import Translaticiarum_Screen from '../../units/urb-example-translaticiarum/webapp/components/Translaticiarum_Screen'
@@ -69,6 +70,7 @@ export default createRoutes(
       <Route path="edit" component={Translaticiarum_Screen} queries={queries}>
         <IndexRoute component={Translaticiarum_List} queries={queries} />
       </Route>
+      <Route path="calendar" component={Translaticiarum_Calendar} queries={queries} />
     </Route>
 
     <Route path="force_login">
