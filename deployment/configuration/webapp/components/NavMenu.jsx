@@ -44,6 +44,7 @@ class NavMenu extends React.Component {
           nestedItems={[
             <ListItem primaryText="Grid" value="/translaticiarum" />,
             <ListItem primaryText="List" value="/translaticiarum/edit" />,
+            <ListItem primaryText="Calendar" value="/translaticiarum/calendar" />,
           ]}
         />
         <ListItem
