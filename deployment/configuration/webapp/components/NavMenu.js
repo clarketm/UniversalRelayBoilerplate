@@ -43,7 +43,8 @@ primaryText:'Translaticiarum',
 primaryTogglesNestedList:true,
 nestedItems:[
 _react2.default.createElement(_List.ListItem,{primaryText:'Grid',value:'/translaticiarum'}),
-_react2.default.createElement(_List.ListItem,{primaryText:'List',value:'/translaticiarum/edit'})]}),
+_react2.default.createElement(_List.ListItem,{primaryText:'List',value:'/translaticiarum/edit'}),
+_react2.default.createElement(_List.ListItem,{primaryText:'Calendar',value:'/translaticiarum/calendar'})]}),
 
 
 _react2.default.createElement(_List.ListItem,{
