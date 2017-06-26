@@ -146,6 +146,6 @@
     "webpack-dev-server": "2.5.0",
     "whatwg-fetch": "2.0.3"
   },
-  "version": "20.1.0",
+  "version": "20.2.1",
   "name": "UniversalRelayBoilerplate"
 }
