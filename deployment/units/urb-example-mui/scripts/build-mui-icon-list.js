@@ -35,17 +35,7 @@ found=true;
 }
 });
 
-var sourceCode=['// @flow','','import React from \'react\';','import Relay from \'react-relay\';','','import {Card} from \'material-ui/Card\';','import {List, ListItem} from \'material-ui/List\';','import Divider from \'material-ui/Divider\';','',
-
-
-
-
-
-
-
-
-
-importsSource.join('\n'),'','class MUI_Icons extends React.Component','{','  render( )','  {','    return (','      <div>','        <Card>','          <List>',
+var sourceCode=['// @flow','','import React from \'react\';','import Relay from \'react-relay\';','','import {Card} from \'material-ui/Card\';','import {List, ListItem} from \'material-ui/List\';','import Divider from \'material-ui/Divider\';','','import ResponsiveContentArea from \'../../../../webapp/components/ResponsiveContentArea\'','',
 
 
 
@@ -56,7 +46,19 @@ importsSource.join('\n'),'','class MUI_Icons extends React.Component','{','  ren
 
 
 
-cardItemsSource.join('\n'),'          </List>','        </Card>','      </div>','    )','  }','}','','export default Relay.createContainer(MUI_Icons, {','  fragments: {','    Viewer: () => Relay.QL`','      fragment on Viewer {','        User_IsAnonymous,','      }','    `,','  },','});'];
+
+importsSource.join('\n'),'','class MUI_Icons extends React.Component','{','  render( )','  {','    return (','     <ResponsiveContentArea>','        <Card>','          <List>',
+
+
+
+
+
+
+
+
+
+
+cardItemsSource.join('\n'),'          </List>','        </Card>','      </ResponsiveContentArea>','    )','  }','}','','export default Relay.createContainer(MUI_Icons, {','  fragments: {','    Viewer: () => Relay.QL`','      fragment on Viewer {','        User_IsAnonymous,','      }','    `,','  },','});'];
 
 
 
