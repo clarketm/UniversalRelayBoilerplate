@@ -1,15 +1,11 @@
 // @flow
 
-import React from 'react'
-import Relay from 'react-relay'
-
 import { Card } from 'material-ui/Card'
 import Divider from 'material-ui/Divider'
 import { List, ListItem } from 'material-ui/List'
 import IconButton from 'material-ui/IconButton'
 import MenuItem from 'material-ui/MenuItem'
 import SelectField from 'material-ui/SelectField'
-
 import {
   Icon_AmericanExpress,
   Icon_CreditCardOutline,
@@ -20,8 +16,14 @@ import {
   Icon_Visa,
   getCreditCardIconByName,
 } from 'material-ui-credit-card-icons'
+import React from 'react'
+import Relay from 'react-relay'
+
+import ResponsiveContentArea from '../../../../webapp/components/ResponsiveContentArea'
 
 class MUI_Icons_CreditCards extends React.Component {
+  state: { value: string }
+
   constructor(props, context) {
     super(props, context)
     this.state = {
@@ -33,7 +35,7 @@ class MUI_Icons_CreditCards extends React.Component {
 
   render() {
     return (
-      <div>
+      <ResponsiveContentArea>
         <Card>
           <List>
             <ListItem
@@ -75,7 +77,7 @@ class MUI_Icons_CreditCards extends React.Component {
             </SelectField>
           </div>
         </Card>
-      </div>
+      </ResponsiveContentArea>
     )
   }
 }
