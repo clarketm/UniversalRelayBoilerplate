@@ -3,8 +3,11 @@
     "react-native-stage-0"
   ],
   "plugins": [
+    "dynamic-import-node",
+    "dynamic-import-webpack",
     "react-hot-loader/babel",
     "transform-class-properties",
-    "babel-relay-plugin-loader"
+    "babel-relay-plugin-loader",
+    "syntax-dynamic-import"
   ]
 }

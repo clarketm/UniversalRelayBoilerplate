@@ -1,12 +1,8 @@
 // @flow
 
-import React from 'react'
-import Relay from 'react-relay'
-
 import { Card } from 'material-ui/Card'
 import { List, ListItem } from 'material-ui/List'
 import Divider from 'material-ui/Divider'
-
 import {
   Icon_Flag_AU,
   Icon_Flag_BG,
@@ -19,11 +15,15 @@ import {
   Icon_Flag_RU,
   Icon_Flag_US,
 } from 'material-ui-country-flags'
+import React from 'react'
+import Relay from 'react-relay'
+
+import ResponsiveContentArea from '../../../../webapp/components/ResponsiveContentArea'
 
 class MUI_Icons_CountryFlags extends React.Component {
   render() {
     return (
-      <div>
+      <ResponsiveContentArea>
         <Card>
           <List>
             <ListItem key="AU" primaryText="Icon_Flag_AU" leftIcon={<Icon_Flag_AU />} />
@@ -47,7 +47,7 @@ class MUI_Icons_CountryFlags extends React.Component {
             <ListItem key="US" primaryText="Icon_Flag_US" leftIcon={<Icon_Flag_US />} />
           </List>
         </Card>
-      </div>
+      </ResponsiveContentArea>
     )
   }
 }

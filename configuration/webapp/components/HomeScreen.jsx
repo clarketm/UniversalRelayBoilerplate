@@ -5,13 +5,14 @@ import React from 'react'
 import Relay from 'react-relay'
 
 import isomorphicVars from '../scripts/isomorphicVars'
+import ResponsiveContentArea from '../../../webapp/components/ResponsiveContentArea'
 
 class HomeScreen extends React.Component {
   render() {
     var isoVars = isomorphicVars()
 
     return (
-      <div>
+      <ResponsiveContentArea>
         <Card>
           <CardHeader
             title="Universal Relay Boilerplate"
@@ -81,7 +82,7 @@ class HomeScreen extends React.Component {
             </a>
           </CardText>
         </Card>
-      </div>
+      </ResponsiveContentArea>
     )
   }
 }

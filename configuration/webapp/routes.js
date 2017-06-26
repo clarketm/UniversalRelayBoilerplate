@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import Async from 'react-code-splitting'
 import { createRoutes, IndexRoute, Route } from 'react-router'
 import Relay from 'react-relay'
 
@@ -25,6 +26,9 @@ import MUI_Home from '../../units/urb-example-mui/webapp/components/MUI_Home'
 import ToDo_List from '../../units/urb-example-todo/webapp/components/ToDo_List'
 import ToDo_Screen from '../../units/urb-example-todo/webapp/components/ToDo_Screen'
 
+// https://github.com/codefoundries/UniversalRelayBoilerplate/issues/307
+// prettier-ignore
+//const Translaticiarum_Calendar = () => <Async load={ import( '../../units/urb-example-translaticiarum/webapp/components/Translaticiarum_Calendar' ) } />
 import Translaticiarum_Calendar from '../../units/urb-example-translaticiarum/webapp/components/Translaticiarum_Calendar'
 import Translaticiarum_List from '../../units/urb-example-translaticiarum/webapp/components/Translaticiarum_List'
 import Translaticiarum_Grid from '../../units/urb-example-translaticiarum/webapp/components/Translaticiarum_Grid'

@@ -1,14 +1,9 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-var _react=require('react');var _react2=_interopRequireDefault(_react);
-var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
-
 var _Card=require('material-ui/Card');
 var _List=require('material-ui/List');
 var _Divider=require('material-ui/Divider');var _Divider2=_interopRequireDefault(_Divider);
-
-var _materialUiCountryFlags=require('material-ui-country-flags');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
-
+var _materialUiCountryFlags=require('material-ui-country-flags');
 
 
 
@@ -19,11 +14,16 @@ var _materialUiCountryFlags=require('material-ui-country-flags');function _inter
 
 
 
+
+var _react=require('react');var _react2=_interopRequireDefault(_react);
+var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
+
+var _ResponsiveContentArea=require('../../../../webapp/components/ResponsiveContentArea');var _ResponsiveContentArea2=_interopRequireDefault(_ResponsiveContentArea);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
 MUI_Icons_CountryFlags=function(_React$Component){_inherits(MUI_Icons_CountryFlags,_React$Component);function MUI_Icons_CountryFlags(){_classCallCheck(this,MUI_Icons_CountryFlags);return _possibleConstructorReturn(this,(MUI_Icons_CountryFlags.__proto__||Object.getPrototypeOf(MUI_Icons_CountryFlags)).apply(this,arguments));}_createClass(MUI_Icons_CountryFlags,[{key:'render',value:function render()
 {
 return(
-_react2.default.createElement('div',null,
+_react2.default.createElement(_ResponsiveContentArea2.default,null,
 _react2.default.createElement(_Card.Card,null,
 _react2.default.createElement(_List.List,null,
 _react2.default.createElement(_List.ListItem,{key:'AU',primaryText:'Icon_Flag_AU',leftIcon:_react2.default.createElement(_materialUiCountryFlags.Icon_Flag_AU,null)}),
