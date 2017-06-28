@@ -181,8 +181,10 @@ export default class PersisterCassandra {
     this.tableSchemas = null // Free up the memory that is not needed any more and indicate that we can not add any more
 
     ExpressCassandraClient.connect(err => {
-      if (err) console.log('💔 Could not connect to Cassandra: ' + err.message)
-      else if (!enrolledTables) console.log('💔 Table schemas missing!')
+      if (err) {
+        console.log('💔 Could not connect to Cassandra: ' + err.message)
+        setTimeout(() => process.exit(1), 5000) // Exit the process. A process manager like pm2 would re-start
+      } else if (!enrolledTables) console.log('💔 Table schemas missing!')
       else {
         const arrSchemas = []
         for (let tableName of enrolledTables.keys())
