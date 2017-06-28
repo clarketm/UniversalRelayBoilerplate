@@ -181,8 +181,10 @@ var enrolledTables=this.tableSchemas;
 this.tableSchemas=null;
 
 ExpressCassandraClient.connect(function(err){
-if(err)console.log('💔 Could not connect to Cassandra: '+err.message);else
-if(!enrolledTables)console.log('💔 Table schemas missing!');else
+if(err){
+console.log('💔 Could not connect to Cassandra: '+err.message);
+setTimeout(function(){return process.exit(1);},5000);
+}else if(!enrolledTables)console.log('💔 Table schemas missing!');else
 {
 var arrSchemas=[];
 for(var _iterator4=enrolledTables.keys(),_isArray4=Array.isArray(_iterator4),_i4=0,_iterator4=_isArray4?_iterator4:_iterator4[typeof Symbol==='function'?Symbol.iterator:'@@iterator']();;){var _ref4;if(_isArray4){if(_i4>=_iterator4.length)break;_ref4=_iterator4[_i4++];}else{_i4=_iterator4.next();if(_i4.done)break;_ref4=_i4.value;}var tableName=_ref4;
