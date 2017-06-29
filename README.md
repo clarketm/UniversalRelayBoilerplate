@@ -15,6 +15,16 @@ Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Mater
 
 
 
+# Actively supported features
+
+We make our best to support all the features and the examples in working order. However, there are a few features that we do not have the resources to maintain and test:
+
+* Windows support. `urb-tools-windows` contains custom scripts for working on windows, but we do not actively test those as we make changes.
+* DynamDb support. `urb-persister-dynamodb` contains the code for working with AWS DynamoDb, but we do not actively test it as we make changes.
+
+PRs for fixing any issues and enhancing the above would be gladly appreciated.
+
+
 # Updates and Announcements
 
 Please follow [@CodeFoundries](https://twitter.com/CodeFoundries) and [our blog](http://codefoundries.com/blog/) if you are interested in news about the boilerplate.
