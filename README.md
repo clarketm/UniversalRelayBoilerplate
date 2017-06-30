@@ -11,7 +11,14 @@ Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Mater
 
 [Project Details](http://codefoundries.com/developer/rebar/).
 
-[Live demo](http://universal-relay-boilerplate.herokuapp.com/).
+[Live demo I](http://universal-relay-boilerplate.herokuapp.com/) - uses in-memory persister.
+
+[Live demo II](https://alexlechuck.com/) - uses Cassandra persister with Elassandra storage hosted on AWS micro instance.
+
+
+# Updates and Announcements
+
+Please follow [@CodeFoundries](https://twitter.com/CodeFoundries) and [our blog](http://codefoundries.com/blog/) if you are interested in news about the boilerplate.
 
 
 
@@ -20,15 +27,10 @@ Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Mater
 We make our best to support all the features and the examples in working order. However, there are a few features that we do not have the resources to maintain and test:
 
 * Windows support. `urb-tools-windows` contains custom scripts for working on windows, but we do not actively test those as we make changes.
-* DynamDb support. `urb-persister-dynamodb` contains the code for working with AWS DynamoDb, but we do not actively test it as we make changes.
+* DynamoDB support. `urb-persister-dynamodb` contains the code for working with AWS DynamoDB, but we do not actively test it as we make changes.
 
-PRs for fixing any issues and enhancing the above would be gladly appreciated.
+Pull requests fixing any issues and enhancing the above would be highly appreciated and merged.
 
-
-
-# Updates and Announcements
-
-Please follow [@CodeFoundries](https://twitter.com/CodeFoundries) and [our blog](http://codefoundries.com/blog/) if you are interested in news about the boilerplate.
 
 
 
@@ -90,7 +92,6 @@ The setup is for OS X only. Prerequisites:
 * **Install react-native-cli** run `npm install -g react-native-cli`
 * **Install yarn** run `npm install -g yarn`
 
-
 ## Initial Project setup on local machine
 
 In order to set up the project locally, perform the following steps:
@@ -124,7 +125,6 @@ To run the iOS app in the emulator:
 * If the IP of your development machine has changed, run `yarn update-ip`.
 * Run `react-native run-ios`.
 
-
 ## Configuring Cassandra locally
 
 * Install and configure Cassandra following the steps in [Cassandra Installation on Mac](/developer/cassandra/cassandra-installation-mac.html).
@@ -138,12 +138,12 @@ CASSANDRA_KEYSPACE=urb
 * Configure to use Cassandra as default persister: `yarn update-default-persister -- cassandra`.
 * Create the database with `yarn setup-database`.
 
-## Configuring Dynamodb locally with Docker
+## Configuring DynamoDB locally with Docker
 
 * Install [Docker](https://www.docker.com/).
-* Navigate to the docker-compose.yml file `cd units/urb-persister-dynamodb`.
+* Navigate to the docker-compose.yml file `cd units/urb-persister-DynamoDB`.
 * Then run `docker-compose up` in a new terminal to start up a local dynamo db (or start it via docker Kitematic).
-* Configure to use DynamoDB as default persister: `yarn update-default-persister -- dynamodb`.
+* Configure to use DynamoDB as default persister: `yarn update-default-persister -- DynamoDB`.
 
 ## Other databases
 
