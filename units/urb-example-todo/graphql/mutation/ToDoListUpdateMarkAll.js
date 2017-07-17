@@ -3,12 +3,12 @@
 import { mutationWithClientMutationId } from 'graphql-relay'
 import { GraphQLBoolean, GraphQLList, GraphQLNonNull } from 'graphql'
 
-import ToDo_list_updateMarkAll from '../helper/ToDo_list_updateMarkAll'
+import ToDoListUpdateMarkAll from '../helper/ToDoListUpdateMarkAll'
 import ToDoType from '../type/ToDoType'
 import ViewerType from '../../../../graphql/type/ViewerType'
 
 export default mutationWithClientMutationId({
-  name: 'ToDo_list_updateMarkAll',
+  name: 'ToDoListUpdateMarkAll',
   inputFields: {
     ToDo_Complete: { type: new GraphQLNonNull(GraphQLBoolean) },
   },
@@ -27,7 +27,7 @@ export default mutationWithClientMutationId({
     },
   },
   mutateAndGetPayload: ({ ToDo_Complete }, context, { rootValue: objectManager }) => {
-    return ToDo_list_updateMarkAll(
+    return ToDoListUpdateMarkAll(
       objectManager,
       ToDo_Complete,
     ).then(arr_local_ids_Changed_ToDos => ({ arr_local_ids_Changed_ToDos }))

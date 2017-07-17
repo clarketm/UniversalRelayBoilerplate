@@ -7,7 +7,7 @@ import Checkbox from 'material-ui/Checkbox'
 import { List } from 'material-ui/List'
 import { Tabs, Tab } from 'material-ui/Tabs'
 
-import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation'
+import ToDoListUpdateMarkAllMutation from '../../relay/ToDoListUpdateMarkAllMutation'
 import ToDo_Item from './ToDo_Item'
 
 class ToDo_List extends React.Component {
@@ -18,7 +18,7 @@ class ToDo_List extends React.Component {
 
   _handle_onCheck_MarkAll = (event, checked) => {
     this.context.relay.commitUpdate(
-      new ToDo_list_updateMarkAllMutation({
+      new ToDoListUpdateMarkAllMutation({
         ToDo_Complete: checked,
         ToDos: this.props.Viewer.ToDos,
         Viewer: this.props.Viewer,
@@ -101,10 +101,10 @@ export default Relay.createContainer(ToDo_List, {
               ${ToDo_Item.getFragment('ToDo')},
             },
           },
-          ${ToDo_list_updateMarkAllMutation.getFragment('ToDos')},
+          ${ToDoListUpdateMarkAllMutation.getFragment('ToDos')},
         },
         ToDo_TotalCount,
-        ${ToDo_list_updateMarkAllMutation.getFragment('Viewer')},
+        ${ToDoListUpdateMarkAllMutation.getFragment('Viewer')},
         ${ToDo_Item.getFragment('Viewer')},
       }
     `,

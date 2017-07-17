@@ -1,16 +1,15 @@
 // @flow
 
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
-import { GraphQLBoolean, GraphQLID, GraphQLNonNull } from 'graphql'
+import { GraphQLString, GraphQLID, GraphQLNonNull } from 'graphql'
 
 import ToDoType from '../type/ToDoType'
-import ViewerType from '../../../../graphql/type/ViewerType'
 
 export default mutationWithClientMutationId({
-  name: 'ToDo_updateStatus',
+  name: 'ToDoUpdateRename',
   inputFields: {
-    ToDo_Complete: { type: new GraphQLNonNull(GraphQLBoolean) },
     id: { type: new GraphQLNonNull(GraphQLID) },
+    ToDo_Text: { type: new GraphQLNonNull(GraphQLString) },
   },
   outputFields: {
     ToDo: {
@@ -18,18 +17,13 @@ export default mutationWithClientMutationId({
       resolve: ({ local_id }, { ...args }, context, { rootValue: objectManager }) =>
         objectManager.getOneObject('ToDo', { id: local_id }),
     },
-    Viewer: {
-      type: ViewerType,
-      resolve: (parent, args, context, { rootValue: objectManager }) =>
-        objectManager.getOneObject('User', { id: objectManager.getViewerUserId() }),
-    },
   },
-  mutateAndGetPayload: ({ id, ToDo_Complete }, context, { rootValue: objectManager }) => {
+  mutateAndGetPayload: ({ id, ToDo_Text }, context, { rootValue: objectManager }) => {
     var local_id = fromGlobalId(id).id
     return objectManager
       .update('ToDo', {
         id: local_id,
-        ToDo_Complete,
+        ToDo_Text,
       })
       .then(() => ({ local_id }))
   },

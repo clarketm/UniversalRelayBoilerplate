@@ -6,11 +6,11 @@ import Compendium_update from '../../units/urb-example-compendium/graphql/mutati
 import Ensayo_add from '../../units/urb-example-ensayo/graphql/mutation/Ensayo_add'
 import Ensayo_delete from '../../units/urb-example-ensayo/graphql/mutation/Ensayo_delete'
 import Ensayo_update from '../../units/urb-example-ensayo/graphql/mutation/Ensayo_update'
-import ToDo_add from '../../units/urb-example-todo/graphql/mutation/ToDo_add'
-import ToDo_delete from '../../units/urb-example-todo/graphql/mutation/ToDo_delete'
-import ToDo_list_updateMarkAll from '../../units/urb-example-todo/graphql/mutation/ToDo_list_updateMarkAll'
-import ToDo_updateRename from '../../units/urb-example-todo/graphql/mutation/ToDo_updateRename'
-import ToDo_updateStatus from '../../units/urb-example-todo/graphql/mutation/ToDo_updateStatus'
+import ToDoAdd from '../../units/urb-example-todo/graphql/mutation/ToDoAdd'
+import ToDoDelete from '../../units/urb-example-todo/graphql/mutation/ToDoDelete'
+import ToDoListUpdateMarkAll from '../../units/urb-example-todo/graphql/mutation/ToDoListUpdateMarkAll'
+import ToDoUpdateRename from '../../units/urb-example-todo/graphql/mutation/ToDoUpdateRename'
+import ToDoUpdateStatus from '../../units/urb-example-todo/graphql/mutation/ToDoUpdateStatus'
 import Translaticiarum_add from '../../units/urb-example-translaticiarum/graphql/mutation/Translaticiarum_add'
 import Translaticiarum_delete from '../../units/urb-example-translaticiarum/graphql/mutation/Translaticiarum_delete'
 import Translaticiarum_update from '../../units/urb-example-translaticiarum/graphql/mutation/Translaticiarum_update'
@@ -22,11 +22,11 @@ export default {
   Ensayo_add,
   Ensayo_delete,
   Ensayo_update,
-  ToDo_add,
-  ToDo_delete,
-  ToDo_list_updateMarkAll,
-  ToDo_updateRename,
-  ToDo_updateStatus,
+  ToDoAdd,
+  ToDoDelete,
+  ToDoListUpdateMarkAll,
+  ToDoUpdateRename,
+  ToDoUpdateStatus,
   Translaticiarum_add,
   Translaticiarum_delete,
   Translaticiarum_update,

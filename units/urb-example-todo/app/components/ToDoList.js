@@ -6,9 +6,9 @@ import React from 'react'
 import { ListView, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 
 import Swipeout from '../../../../units/urb-react-native-swipeout/app/components/Swipeout'
-import ToDo_addMutation from '../../relay/ToDo_addMutation'
-import ToDo_list_updateMarkAllMutation from '../../relay/ToDo_list_updateMarkAllMutation'
-import ToDo_deleteMutation from '../../relay/ToDo_deleteMutation'
+import ToDoAddMutation from '../../relay/ToDoAddMutation'
+import ToDoListUpdateMarkAllMutation from '../../relay/ToDoListUpdateMarkAllMutation'
+import ToDoDeleteMutation from '../../relay/ToDoDeleteMutation'
 import ToDo from './ToDo'
 import ToDoTextInput from './ToDoTextInput'
 
@@ -46,7 +46,7 @@ class ToDoList extends React.Component {
     const numCompletedTodos = this.props.Viewer.ToDo_CompletedCount
     const ToDo_Complete = numTodos !== numCompletedTodos
     this.context.relay.commitUpdate(
-      new ToDo_list_updateMarkAllMutation({
+      new ToDoListUpdateMarkAllMutation({
         ToDo_Complete,
         ToDos: this.props.Viewer.ToDos,
         Viewer: this.props.Viewer,
@@ -59,12 +59,12 @@ class ToDoList extends React.Component {
   }
 
   _handleTextInputSave(ToDo_Text) {
-    this.context.relay.commitUpdate(new ToDo_addMutation({ ToDo_Text, Viewer: this.props.Viewer }))
+    this.context.relay.commitUpdate(new ToDoAddMutation({ ToDo_Text, Viewer: this.props.Viewer }))
   }
 
   _handleTodoDestroy(ToDo) {
     this.context.relay.commitUpdate(
-      new ToDo_deleteMutation({
+      new ToDoDeleteMutation({
         ToDo,
         Viewer: this.props.Viewer,
       }),
@@ -175,16 +175,16 @@ export default Relay.createContainer(ToDoList, {
           edges {
             node {
               id
-              ${ToDo_deleteMutation.getFragment('ToDo')}
+              ${ToDoDeleteMutation.getFragment('ToDo')}
               ${ToDo.getFragment('ToDo')}
             }
           }
-          ${ToDo_list_updateMarkAllMutation.getFragment('ToDos')}
+          ${ToDoListUpdateMarkAllMutation.getFragment('ToDos')}
         }
         ToDo_TotalCount
-        ${ToDo_addMutation.getFragment('Viewer')}
-        ${ToDo_list_updateMarkAllMutation.getFragment('Viewer')}
-        ${ToDo_deleteMutation.getFragment('Viewer')}
+        ${ToDoAddMutation.getFragment('Viewer')}
+        ${ToDoListUpdateMarkAllMutation.getFragment('Viewer')}
+        ${ToDoDeleteMutation.getFragment('Viewer')}
         ${ToDo.getFragment('Viewer')}
       }
     `,

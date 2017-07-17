@@ -2,7 +2,7 @@
 
 import Relay from 'react-relay'
 
-export default class ToDo_updateStatusMutation extends Relay.Mutation {
+export default class ToDoUpdateStatusMutation extends Relay.Mutation {
   static fragments = {
     ToDo: () => Relay.QL`
       fragment on ToDo {
@@ -18,11 +18,11 @@ export default class ToDo_updateStatusMutation extends Relay.Mutation {
     `,
   }
   getMutation() {
-    return Relay.QL`mutation{ToDo_updateStatus}`
+    return Relay.QL`mutation{ToDoUpdateStatus}`
   }
   getFatQuery() {
     return Relay.QL`
-      fragment on ToDo_updateStatusPayload {
+      fragment on ToDoUpdateStatusPayload {
         ToDo {
           ToDo_Complete,
         },

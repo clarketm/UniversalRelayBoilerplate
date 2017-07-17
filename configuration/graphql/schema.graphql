@@ -134,11 +134,11 @@ type Mutation {
   Ensayo_add(input: Ensayo_addInput!): Ensayo_addPayload
   Ensayo_delete(input: Ensayo_deleteInput!): Ensayo_deletePayload
   Ensayo_update(input: Ensayo_updateInput!): Ensayo_updatePayload
-  ToDo_add(input: ToDo_addInput!): ToDo_addPayload
-  ToDo_delete(input: ToDo_deleteInput!): ToDo_deletePayload
-  ToDo_list_updateMarkAll(input: ToDo_list_updateMarkAllInput!): ToDo_list_updateMarkAllPayload
-  ToDo_updateRename(input: ToDo_updateRenameInput!): ToDo_updateRenamePayload
-  ToDo_updateStatus(input: ToDo_updateStatusInput!): ToDo_updateStatusPayload
+  ToDoAdd(input: ToDoAddInput!): ToDoAddPayload
+  ToDoDelete(input: ToDoDeleteInput!): ToDoDeletePayload
+  ToDoListUpdateMarkAll(input: ToDoListUpdateMarkAllInput!): ToDoListUpdateMarkAllPayload
+  ToDoUpdateRename(input: ToDoUpdateRenameInput!): ToDoUpdateRenamePayload
+  ToDoUpdateStatus(input: ToDoUpdateStatusInput!): ToDoUpdateStatusPayload
   Translaticiarum_add(input: Translaticiarum_addInput!): Translaticiarum_addPayload
   Translaticiarum_delete(input: Translaticiarum_deleteInput!): Translaticiarum_deletePayload
   Translaticiarum_update(input: Translaticiarum_updateInput!): Translaticiarum_updatePayload
@@ -177,58 +177,35 @@ type ToDo implements Node {
   ToDo_Complete: Boolean
 }
 
-input ToDo_addInput {
+input ToDoAddInput {
   ToDo_Text: String!
   clientMutationId: String
 }
 
-type ToDo_addPayload {
+type ToDoAddPayload {
   ToDosEdge: ToDosEdge
   Viewer: Viewer
   clientMutationId: String
 }
 
-input ToDo_deleteInput {
+input ToDoDeleteInput {
   id: ID!
   clientMutationId: String
 }
 
-type ToDo_deletePayload {
+type ToDoDeletePayload {
   deletedToDoId: ID
   Viewer: Viewer
   clientMutationId: String
 }
 
-input ToDo_list_updateMarkAllInput {
+input ToDoListUpdateMarkAllInput {
   ToDo_Complete: Boolean!
   clientMutationId: String
 }
 
-type ToDo_list_updateMarkAllPayload {
+type ToDoListUpdateMarkAllPayload {
   changedToDos: [ToDo]
-  Viewer: Viewer
-  clientMutationId: String
-}
-
-input ToDo_updateRenameInput {
-  id: ID!
-  ToDo_Text: String!
-  clientMutationId: String
-}
-
-type ToDo_updateRenamePayload {
-  ToDo: ToDo
-  clientMutationId: String
-}
-
-input ToDo_updateStatusInput {
-  ToDo_Complete: Boolean!
-  id: ID!
-  clientMutationId: String
-}
-
-type ToDo_updateStatusPayload {
-  ToDo: ToDo
   Viewer: Viewer
   clientMutationId: String
 }
@@ -249,6 +226,29 @@ type ToDosEdge {
 
   # A cursor for use in pagination
   cursor: String!
+}
+
+input ToDoUpdateRenameInput {
+  id: ID!
+  ToDo_Text: String!
+  clientMutationId: String
+}
+
+type ToDoUpdateRenamePayload {
+  ToDo: ToDo
+  clientMutationId: String
+}
+
+input ToDoUpdateStatusInput {
+  ToDo_Complete: Boolean!
+  id: ID!
+  clientMutationId: String
+}
+
+type ToDoUpdateStatusPayload {
+  ToDo: ToDo
+  Viewer: Viewer
+  clientMutationId: String
 }
 
 type Translaticiarum implements Node {

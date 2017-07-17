@@ -1,4 +1,4 @@
-export default function ToDo_list_updateMarkAll(objectManager, ToDo_CompleteNew) {
+export default function ToDoListUpdateMarkAll(objectManager, ToDo_CompleteNew) {
   return objectManager
     .getObjectList('ToDo', { ToDo_User_id: objectManager.getViewerUserId() })
     .then(arr => {

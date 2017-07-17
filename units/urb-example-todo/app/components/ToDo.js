@@ -6,8 +6,8 @@ import React from 'react'
 import { Image, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 
 import ToDoTextInput from './ToDoTextInput'
-import ToDo_updateStatusMutation from '../../relay/ToDo_updateStatusMutation'
-import ToDo_updateRenameMutation from '../../relay/ToDo_updateRenameMutation'
+import ToDoUpdateStatusMutation from '../../relay/ToDoUpdateStatusMutation'
+import ToDoUpdateRenameMutation from '../../relay/ToDoUpdateRenameMutation'
 
 class ToDo extends React.Component {
   static contextTypes = {
@@ -37,7 +37,7 @@ class ToDo extends React.Component {
   _handleCompletePress() {
     var ToDo_Complete = !this.props.ToDo.ToDo_Complete
     this.context.relay.commitUpdate(
-      new ToDo_updateStatusMutation({
+      new ToDoUpdateStatusMutation({
         ToDo_Complete,
         ToDo: this.props.ToDo,
         Viewer: this.props.Viewer,
@@ -61,7 +61,7 @@ class ToDo extends React.Component {
   _handleTextInputSave(ToDo_Text) {
     this._setEditMode(false)
     this.context.relay.commitUpdate(
-      new ToDo_updateRenameMutation({ ToDo: this.props.ToDo, ToDo_Text }),
+      new ToDoUpdateRenameMutation({ ToDo: this.props.ToDo, ToDo_Text }),
     )
   }
 
@@ -120,13 +120,13 @@ export default Relay.createContainer(ToDo, {
         ToDo_Complete
         id
         ToDo_Text
-        ${ToDo_updateStatusMutation.getFragment('ToDo')}
-        ${ToDo_updateRenameMutation.getFragment('ToDo')}
+        ${ToDoUpdateStatusMutation.getFragment('ToDo')}
+        ${ToDoUpdateRenameMutation.getFragment('ToDo')}
       }
     `,
     Viewer: () => Relay.QL`
       fragment on Viewer {
-        ${ToDo_updateStatusMutation.getFragment('Viewer')}
+        ${ToDoUpdateStatusMutation.getFragment('Viewer')}
       }
     `,
   },

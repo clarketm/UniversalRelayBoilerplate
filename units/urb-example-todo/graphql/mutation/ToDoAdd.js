@@ -7,7 +7,7 @@ import ToDosConnection from '../type/ToDosConnection'
 import ViewerType from '../../../../graphql/type/ViewerType'
 
 export default mutationWithClientMutationId({
-  name: 'ToDo_add',
+  name: 'ToDoAdd',
   inputFields: {
     ToDo_Text: { type: new GraphQLNonNull(GraphQLString) },
   },

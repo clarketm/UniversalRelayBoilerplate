@@ -2,7 +2,7 @@
 
 import Relay from 'react-relay'
 
-export default class ToDo_addMutation extends Relay.Mutation {
+export default class ToDoAddMutation extends Relay.Mutation {
   static fragments = {
     Viewer: () => Relay.QL`
       fragment on Viewer {
@@ -12,11 +12,11 @@ export default class ToDo_addMutation extends Relay.Mutation {
     `,
   }
   getMutation() {
-    return Relay.QL`mutation{ToDo_add}`
+    return Relay.QL`mutation{ToDoAdd}`
   }
   getFatQuery() {
     return Relay.QL`
-      fragment on ToDo_addPayload {
+      fragment on ToDoAddPayload {
         ToDosEdge,
         Viewer {
           ToDos,

@@ -2,7 +2,7 @@
 
 import Relay from 'react-relay'
 
-export default class ToDo_deleteMutation extends Relay.Mutation {
+export default class ToDoDeleteMutation extends Relay.Mutation {
   static fragments = {
     // TODO: Mark ToDo_Complete as optional
     ToDo: () => Relay.QL`
@@ -21,11 +21,11 @@ export default class ToDo_deleteMutation extends Relay.Mutation {
     `,
   }
   getMutation() {
-    return Relay.QL`mutation{ToDo_delete}`
+    return Relay.QL`mutation{ToDoDelete}`
   }
   getFatQuery() {
     return Relay.QL`
-      fragment on ToDo_deletePayload {
+      fragment on ToDoDeletePayload {
         deletedToDoId,
         Viewer {
           ToDo_CompletedCount,
@@ -53,9 +53,10 @@ export default class ToDo_deleteMutation extends Relay.Mutation {
   getOptimisticResponse() {
     var ViewerPayload = { id: this.props.Viewer.id }
     if (this.props.Viewer.ToDo_CompletedCount != null) {
-      ViewerPayload.ToDo_CompletedCount = this.props.ToDo.ToDo_Complete === true
-        ? this.props.Viewer.ToDo_CompletedCount - 1
-        : this.props.Viewer.ToDo_CompletedCount
+      ViewerPayload.ToDo_CompletedCount =
+        this.props.ToDo.ToDo_Complete === true
+          ? this.props.Viewer.ToDo_CompletedCount - 1
+          : this.props.Viewer.ToDo_CompletedCount
     }
     if (this.props.Viewer.ToDo_TotalCount != null) {
       ViewerPayload.ToDo_TotalCount = this.props.Viewer.ToDo_TotalCount - 1

@@ -6,7 +6,7 @@ import React from 'react'
 import Relay from 'react-relay'
 
 import ResponsiveContentArea from '../../../../webapp/components/ResponsiveContentArea'
-import ToDo_addMutation from '../../relay/ToDo_addMutation'
+import ToDoAddMutation from '../../relay/ToDoAddMutation'
 
 class ToDo_Screen extends React.Component {
   state: {
@@ -28,7 +28,7 @@ class ToDo_Screen extends React.Component {
   _handle_onKeyDown_AddToDo = e => {
     if (e.keyCode === 13) {
       this.context.relay.commitUpdate(
-        new ToDo_addMutation({
+        new ToDoAddMutation({
           ToDo_Text: this.state.ToDo_Text_New,
           Viewer: this.props.Viewer,
         }),
@@ -50,7 +50,6 @@ class ToDo_Screen extends React.Component {
     return (
       <ResponsiveContentArea>
         <Card initiallyExpanded={true}>
-
           <CardHeader title="TO DOs" subtitle="List of TO DOs for user" />
 
           {this.props.children}
@@ -64,7 +63,6 @@ class ToDo_Screen extends React.Component {
               onChange={this._handle_OnChange}
             />
           </div>
-
         </Card>
       </ResponsiveContentArea>
     )
@@ -76,7 +74,7 @@ export default Relay.createContainer(ToDo_Screen, {
     Viewer: () => Relay.QL`
       fragment on Viewer {
         ToDo_TotalCount,
-        ${ToDo_addMutation.getFragment('Viewer')},
+        ${ToDoAddMutation.getFragment('Viewer')},
       }
     `,
   },
