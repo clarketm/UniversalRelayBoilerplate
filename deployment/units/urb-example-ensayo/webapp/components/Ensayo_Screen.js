@@ -6,7 +6,7 @@ var _FloatingActionButton=require('material-ui/FloatingActionButton');var _Float
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
 
-var _Ensayo_addMutation=require('../../relay/Ensayo_addMutation');var _Ensayo_addMutation2=_interopRequireDefault(_Ensayo_addMutation);
+var _EnsayoAddMutation=require('../../relay/EnsayoAddMutation');var _EnsayoAddMutation2=_interopRequireDefault(_EnsayoAddMutation);
 var _Ensayo_Properties=require('./Ensayo_Properties');var _Ensayo_Properties2=_interopRequireDefault(_Ensayo_Properties);
 var _ResponsiveContentArea=require('../../../../webapp/components/ResponsiveContentArea');var _ResponsiveContentArea2=_interopRequireDefault(_ResponsiveContentArea);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
@@ -17,7 +17,7 @@ Ensayo_Screen=function(_React$Component){_inherits(Ensayo_Screen,_React$Componen
 
 _handle_updateHandler_Ensayo=function(Ensayo_properties){
 _this.context.relay.commitUpdate(
-new _Ensayo_addMutation2.default(_extends({},Ensayo_properties,{Viewer:_this.props.Viewer})));
+new _EnsayoAddMutation2.default(_extends({},Ensayo_properties,{Viewer:_this.props.Viewer})));
 
 },_this.
 
@@ -62,5 +62,5 @@ _reactRelay2.default.createContainer(Ensayo_Screen,{
 fragments:{
 Viewer:function Viewer(){return function(RQL_0){return{children:[].concat.apply([],[{fieldName:'id',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'ID'},_reactRelay2.default.QL.__frag(RQL_0)]),id:_reactRelay2.default.QL.__id(),kind:'Fragment',metadata:{},name:'Ensayo_Screen_ViewerRelayQL',type:'Viewer'};}(
 
-_Ensayo_addMutation2.default.getFragment('Viewer'));}}});
+_EnsayoAddMutation2.default.getFragment('Viewer'));}}});
 //# sourceMappingURL=Ensayo_Screen.js.map

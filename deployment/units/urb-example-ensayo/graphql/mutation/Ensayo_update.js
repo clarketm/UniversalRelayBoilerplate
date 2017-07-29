@@ -6,7 +6,7 @@ var _graphql=require('graphql');
 var _EnsayoType=require('../type/EnsayoType');var _EnsayoType2=_interopRequireDefault(_EnsayoType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}exports.default=
 
 (0,_graphqlRelay.mutationWithClientMutationId)({
-name:'Ensayo_update',
+name:'EnsayoUpdate',
 inputFields:{
 id:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLID)},
 Ensayo_Content:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLString)},
@@ -35,4 +35,4 @@ Ensayo_Description:Ensayo_Description}).
 
 then(function(){return{local_id:local_id};});
 }});
-//# sourceMappingURL=Ensayo_update.js.map
+//# sourceMappingURL=EnsayoUpdate.js.map

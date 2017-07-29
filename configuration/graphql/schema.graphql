@@ -72,31 +72,31 @@ type Ensayo implements Node {
   Ensayo_Content: String
 }
 
-input Ensayo_addInput {
+input EnsayoAddInput {
   Ensayo_Content: String!
   Ensayo_Title: String!
   Ensayo_Description: String!
   clientMutationId: String
 }
 
-type Ensayo_addPayload {
+type EnsayoAddPayload {
   EnsayosEdge: EnsayosEdge
   Viewer: Viewer
   clientMutationId: String
 }
 
-input Ensayo_deleteInput {
+input EnsayoDeleteInput {
   id: ID!
   clientMutationId: String
 }
 
-type Ensayo_deletePayload {
+type EnsayoDeletePayload {
   deletedEnsayoId: ID
   Viewer: Viewer
   clientMutationId: String
 }
 
-input Ensayo_updateInput {
+input EnsayoUpdateInput {
   id: ID!
   Ensayo_Content: String!
   Ensayo_Title: String!
@@ -104,7 +104,7 @@ input Ensayo_updateInput {
   clientMutationId: String
 }
 
-type Ensayo_updatePayload {
+type EnsayoUpdatePayload {
   Ensayo: Ensayo
   clientMutationId: String
 }
@@ -131,9 +131,9 @@ type Mutation {
   Viewer_update(input: Viewer_updateInput!): Viewer_updatePayload
   Viewer_updatePassword(input: Viewer_updatePasswordInput!): Viewer_updatePasswordPayload
   Compendium_update(input: Compendium_updateInput!): Compendium_updatePayload
-  Ensayo_add(input: Ensayo_addInput!): Ensayo_addPayload
-  Ensayo_delete(input: Ensayo_deleteInput!): Ensayo_deletePayload
-  Ensayo_update(input: Ensayo_updateInput!): Ensayo_updatePayload
+  EnsayoAdd(input: EnsayoAddInput!): EnsayoAddPayload
+  EnsayoDelete(input: EnsayoDeleteInput!): EnsayoDeletePayload
+  EnsayoUpdate(input: EnsayoUpdateInput!): EnsayoUpdatePayload
   ToDoAdd(input: ToDoAddInput!): ToDoAddPayload
   ToDoDelete(input: ToDoDeleteInput!): ToDoDeletePayload
   ToDoListUpdateMarkAll(input: ToDoListUpdateMarkAllInput!): ToDoListUpdateMarkAllPayload

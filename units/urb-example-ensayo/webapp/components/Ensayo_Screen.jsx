@@ -6,7 +6,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import React from 'react'
 import Relay from 'react-relay'
 
-import Ensayo_addMutation from '../../relay/Ensayo_addMutation'
+import EnsayoAddMutation from '../../relay/EnsayoAddMutation'
 import Ensayo_Properties from './Ensayo_Properties'
 import ResponsiveContentArea from '../../../../webapp/components/ResponsiveContentArea'
 
@@ -17,7 +17,7 @@ class Ensayo_Screen extends React.Component {
 
   _handle_updateHandler_Ensayo = Ensayo_properties => {
     this.context.relay.commitUpdate(
-      new Ensayo_addMutation({ ...Ensayo_properties, Viewer: this.props.Viewer }),
+      new EnsayoAddMutation({ ...Ensayo_properties, Viewer: this.props.Viewer }),
     )
   }
 
@@ -29,7 +29,6 @@ class Ensayo_Screen extends React.Component {
     return (
       <ResponsiveContentArea>
         <Card initiallyExpanded={true}>
-
           <CardHeader title="Ensayo" subtitle="This means Essay in Spanish" />
 
           <div style={{ float: 'right', marginTop: -58, marginRight: 20 }}>
@@ -51,7 +50,6 @@ class Ensayo_Screen extends React.Component {
             Ensayo_Description={''}
             updateHandler={this._handle_updateHandler_Ensayo}
           />
-
         </Card>
       </ResponsiveContentArea>
     )
@@ -62,7 +60,7 @@ export default Relay.createContainer(Ensayo_Screen, {
   fragments: {
     Viewer: () => Relay.QL`
       fragment on Viewer {
-        ${Ensayo_addMutation.getFragment('Viewer')},
+        ${EnsayoAddMutation.getFragment('Viewer')},
       }
     `,
   },

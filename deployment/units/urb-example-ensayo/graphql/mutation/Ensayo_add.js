@@ -7,7 +7,7 @@ var _EnsayosConnection=require('../type/EnsayosConnection');var _EnsayosConnecti
 var _ViewerType=require('../../../../graphql/type/ViewerType');var _ViewerType2=_interopRequireDefault(_ViewerType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}exports.default=
 
 (0,_graphqlRelay.mutationWithClientMutationId)({
-name:'Ensayo_add',
+name:'EnsayoAdd',
 inputFields:{
 Ensayo_Content:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLString)},
 Ensayo_Title:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLString)},
@@ -53,4 +53,4 @@ Ensayo_Title:Ensayo_Title,
 Ensayo_Description:Ensayo_Description}).
 
 then(function(local_id){return{local_id:local_id};}));}});
-//# sourceMappingURL=Ensayo_add.js.map
+//# sourceMappingURL=EnsayoAdd.js.map

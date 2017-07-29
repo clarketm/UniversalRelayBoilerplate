@@ -6,7 +6,7 @@ import { GraphQLID, GraphQLNonNull } from 'graphql'
 import ViewerType from '../../../../graphql/type/ViewerType'
 
 export default mutationWithClientMutationId({
-  name: 'Ensayo_delete',
+  name: 'EnsayoDelete',
   inputFields: {
     id: { type: new GraphQLNonNull(GraphQLID) },
   },

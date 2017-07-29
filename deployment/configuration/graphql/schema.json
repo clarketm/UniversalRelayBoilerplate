@@ -1426,7 +1426,7 @@
               "deprecationReason": null
             },
             {
-              "name": "Ensayo_add",
+              "name": "EnsayoAdd",
               "description": null,
               "args": [
                 {
@@ -1437,7 +1437,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "Ensayo_addInput",
+                      "name": "EnsayoAddInput",
                       "ofType": null
                     }
                   },
@@ -1446,14 +1446,14 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Ensayo_addPayload",
+                "name": "EnsayoAddPayload",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "Ensayo_delete",
+              "name": "EnsayoDelete",
               "description": null,
               "args": [
                 {
@@ -1464,7 +1464,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "Ensayo_deleteInput",
+                      "name": "EnsayoDeleteInput",
                       "ofType": null
                     }
                   },
@@ -1473,14 +1473,14 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Ensayo_deletePayload",
+                "name": "EnsayoDeletePayload",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "Ensayo_update",
+              "name": "EnsayoUpdate",
               "description": null,
               "args": [
                 {
@@ -1491,7 +1491,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "Ensayo_updateInput",
+                      "name": "EnsayoUpdateInput",
                       "ofType": null
                     }
                   },
@@ -1500,7 +1500,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Ensayo_updatePayload",
+                "name": "EnsayoUpdatePayload",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -2232,7 +2232,7 @@
         },
         {
           "kind": "INPUT_OBJECT",
-          "name": "Ensayo_addInput",
+          "name": "EnsayoAddInput",
           "description": null,
           "fields": null,
           "inputFields": [
@@ -2295,7 +2295,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Ensayo_addPayload",
+          "name": "EnsayoAddPayload",
           "description": null,
           "fields": [
             {
@@ -2342,7 +2342,7 @@
         },
         {
           "kind": "INPUT_OBJECT",
-          "name": "Ensayo_deleteInput",
+          "name": "EnsayoDeleteInput",
           "description": null,
           "fields": null,
           "inputFields": [
@@ -2377,7 +2377,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Ensayo_deletePayload",
+          "name": "EnsayoDeletePayload",
           "description": null,
           "fields": [
             {
@@ -2424,7 +2424,7 @@
         },
         {
           "kind": "INPUT_OBJECT",
-          "name": "Ensayo_updateInput",
+          "name": "EnsayoUpdateInput",
           "description": null,
           "fields": null,
           "inputFields": [
@@ -2501,7 +2501,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Ensayo_updatePayload",
+          "name": "EnsayoUpdatePayload",
           "description": null,
           "fields": [
             {

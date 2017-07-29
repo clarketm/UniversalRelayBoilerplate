@@ -6,7 +6,7 @@ import { GraphQLString, GraphQLID, GraphQLNonNull } from 'graphql'
 import EnsayoType from '../type/EnsayoType'
 
 export default mutationWithClientMutationId({
-  name: 'Ensayo_update',
+  name: 'EnsayoUpdate',
   inputFields: {
     id: { type: new GraphQLNonNull(GraphQLID) },
     Ensayo_Content: { type: new GraphQLNonNull(GraphQLString) },

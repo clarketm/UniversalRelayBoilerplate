@@ -9,8 +9,8 @@ var _List=require('material-ui/List');
 var _MenuItem=require('material-ui/MenuItem');var _MenuItem2=_interopRequireDefault(_MenuItem);
 var _moreVert=require('material-ui/svg-icons/navigation/more-vert');var _moreVert2=_interopRequireDefault(_moreVert);
 
-var _Ensayo_deleteMutation=require('../../relay/Ensayo_deleteMutation');var _Ensayo_deleteMutation2=_interopRequireDefault(_Ensayo_deleteMutation);
-var _Ensayo_updateMutation=require('../../relay/Ensayo_updateMutation');var _Ensayo_updateMutation2=_interopRequireDefault(_Ensayo_updateMutation);
+var _EnsayoDeleteMutation=require('../../relay/EnsayoDeleteMutation');var _EnsayoDeleteMutation2=_interopRequireDefault(_EnsayoDeleteMutation);
+var _EnsayoUpdateMutation=require('../../relay/EnsayoUpdateMutation');var _EnsayoUpdateMutation2=_interopRequireDefault(_EnsayoUpdateMutation);
 
 var _Ensayo_Properties=require('./Ensayo_Properties');var _Ensayo_Properties2=_interopRequireDefault(_Ensayo_Properties);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
@@ -21,7 +21,7 @@ Ensayo_Item=function(_React$Component){_inherits(Ensayo_Item,_React$Component);f
 
 _handle_updateHandler_Ensayo=function(Ensayo_properties){
 _this.context.relay.commitUpdate(
-new _Ensayo_updateMutation2.default(_extends({Ensayo:_this.props.Ensayo},Ensayo_properties)));
+new _EnsayoUpdateMutation2.default(_extends({Ensayo:_this.props.Ensayo},Ensayo_properties)));
 
 },_this.
 
@@ -37,12 +37,12 @@ case'edit':
 _this.refs.Ensayo_Properties._handle_Open();
 break;
 case'delete':
-_this._Ensayo_delete();
+_this._EnsayoDelete();
 break;
 default:
 break;}
 
-},_temp),_possibleConstructorReturn(_this,_ret);}_createClass(Ensayo_Item,[{key:'_Ensayo_delete',value:function _Ensayo_delete(){this.context.relay.commitUpdate(new _Ensayo_deleteMutation2.default({Ensayo:this.props.Ensayo,Viewer:this.props.Viewer}));}},{key:'render',value:function render()
+},_temp),_possibleConstructorReturn(_this,_ret);}_createClass(Ensayo_Item,[{key:'_EnsayoDelete',value:function _EnsayoDelete(){this.context.relay.commitUpdate(new _EnsayoDeleteMutation2.default({Ensayo:this.props.Ensayo,Viewer:this.props.Viewer}));}},{key:'render',value:function render()
 
 {
 var rightIconMenu=
@@ -78,11 +78,11 @@ Ensayo:function Ensayo(){return function(RQL_0,RQL_1){return{children:[].concat.
 
 
 
-_Ensayo_deleteMutation2.default.getFragment('Ensayo'),
-_Ensayo_updateMutation2.default.getFragment('Ensayo'));},
+_EnsayoDeleteMutation2.default.getFragment('Ensayo'),
+_EnsayoUpdateMutation2.default.getFragment('Ensayo'));},
 
 
 Viewer:function Viewer(){return function(RQL_0){return{children:[].concat.apply([],[{fieldName:'id',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'ID'},_reactRelay2.default.QL.__frag(RQL_0)]),id:_reactRelay2.default.QL.__id(),kind:'Fragment',metadata:{},name:'Ensayo_Item_ViewerRelayQL',type:'Viewer'};}(
 
-_Ensayo_deleteMutation2.default.getFragment('Viewer'));}}});
+_EnsayoDeleteMutation2.default.getFragment('Viewer'));}}});
 //# sourceMappingURL=Ensayo_Item.js.map

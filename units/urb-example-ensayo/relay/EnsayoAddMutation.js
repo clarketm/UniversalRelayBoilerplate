@@ -2,7 +2,7 @@
 
 import Relay from 'react-relay'
 
-export default class Ensayo_addMutation extends Relay.Mutation {
+export default class EnsayoAddMutation extends Relay.Mutation {
   static fragments = {
     Viewer: () => Relay.QL`
       fragment on Viewer {
@@ -11,11 +11,11 @@ export default class Ensayo_addMutation extends Relay.Mutation {
     `,
   }
   getMutation() {
-    return Relay.QL`mutation{Ensayo_add}`
+    return Relay.QL`mutation{EnsayoAdd}`
   }
   getFatQuery() {
     return Relay.QL`
-      fragment on Ensayo_addPayload {
+      fragment on EnsayoAddPayload {
         EnsayosEdge,
         Viewer {
           Ensayos,

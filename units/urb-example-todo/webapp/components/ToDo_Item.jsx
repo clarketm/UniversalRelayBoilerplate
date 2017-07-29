@@ -43,7 +43,7 @@ class ToDo_Item extends React.Component {
     )
   }
 
-  _ToDoDelete() {
+  _handle_ToDoDelete() {
     this.context.relay.commitUpdate(
       new ToDoDeleteMutation({ ToDo: this.props.ToDo, Viewer: this.props.Viewer }),
     )
@@ -55,7 +55,7 @@ class ToDo_Item extends React.Component {
         this.refs.ToDo_Properties._handle_Open()
         break
       case 'delete':
-        this._ToDoDelete()
+        this._handle_ToDoDelete()
         break
       default:
         break

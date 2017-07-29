@@ -68,6 +68,8 @@ ios/main.jsbundle
 ios/main.jsbundle.meta
 /ios/main.map
 
-# Yarn
+# Logs
 #
-yarn-error.log
+logs
+*.log
+

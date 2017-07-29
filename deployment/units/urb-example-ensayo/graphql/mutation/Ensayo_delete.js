@@ -6,7 +6,7 @@ var _graphql=require('graphql');
 var _ViewerType=require('../../../../graphql/type/ViewerType');var _ViewerType2=_interopRequireDefault(_ViewerType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
 (0,_graphqlRelay.mutationWithClientMutationId)({
-name:'Ensayo_delete',
+name:'EnsayoDelete',
 inputFields:{
 id:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLID)}},
 
@@ -25,4 +25,4 @@ mutateAndGetPayload:function mutateAndGetPayload(_ref3,context,_ref4){var id=_re
 var local_id=(0,_graphqlRelay.fromGlobalId)(id).id;
 return objectManager.remove('Ensayo',{id:local_id}).then(function(){return{id:id};});
 }});
-//# sourceMappingURL=Ensayo_delete.js.map
+//# sourceMappingURL=EnsayoDelete.js.map

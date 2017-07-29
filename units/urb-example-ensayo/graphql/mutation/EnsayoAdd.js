@@ -7,7 +7,7 @@ import EnsayosConnection from '../type/EnsayosConnection'
 import ViewerType from '../../../../graphql/type/ViewerType'
 
 export default mutationWithClientMutationId({
-  name: 'Ensayo_add',
+  name: 'EnsayoAdd',
   inputFields: {
     Ensayo_Content: { type: new GraphQLNonNull(GraphQLString) },
     Ensayo_Title: { type: new GraphQLNonNull(GraphQLString) },

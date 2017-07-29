@@ -2,7 +2,7 @@
 
 import Relay from 'react-relay'
 
-export default class Ensayo_deleteMutation extends Relay.Mutation {
+export default class EnsayoDeleteMutation extends Relay.Mutation {
   static fragments = {
     Ensayo: () => Relay.QL`
       fragment on Ensayo {
@@ -16,11 +16,11 @@ export default class Ensayo_deleteMutation extends Relay.Mutation {
     `,
   }
   getMutation() {
-    return Relay.QL`mutation{Ensayo_delete}`
+    return Relay.QL`mutation{EnsayoDelete}`
   }
   getFatQuery() {
     return Relay.QL`
-      fragment on Ensayo_deletePayload {
+      fragment on EnsayoDeletePayload {
         deletedEnsayoId,
         Viewer {
           id

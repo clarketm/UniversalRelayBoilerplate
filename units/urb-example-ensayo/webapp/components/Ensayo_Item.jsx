@@ -9,8 +9,8 @@ import { ListItem } from 'material-ui/List'
 import MenuItem from 'material-ui/MenuItem'
 import NavigationMoreVert from 'material-ui/svg-icons/navigation/more-vert'
 
-import Ensayo_deleteMutation from '../../relay/Ensayo_deleteMutation'
-import Ensayo_updateMutation from '../../relay/Ensayo_updateMutation'
+import EnsayoDeleteMutation from '../../relay/EnsayoDeleteMutation'
+import EnsayoUpdateMutation from '../../relay/EnsayoUpdateMutation'
 
 import Ensayo_Properties from './Ensayo_Properties'
 
@@ -21,13 +21,13 @@ class Ensayo_Item extends React.Component {
 
   _handle_updateHandler_Ensayo = Ensayo_properties => {
     this.context.relay.commitUpdate(
-      new Ensayo_updateMutation({ Ensayo: this.props.Ensayo, ...Ensayo_properties }),
+      new EnsayoUpdateMutation({ Ensayo: this.props.Ensayo, ...Ensayo_properties }),
     )
   }
 
-  _Ensayo_delete() {
+  _EnsayoDelete() {
     this.context.relay.commitUpdate(
-      new Ensayo_deleteMutation({ Ensayo: this.props.Ensayo, Viewer: this.props.Viewer }),
+      new EnsayoDeleteMutation({ Ensayo: this.props.Ensayo, Viewer: this.props.Viewer }),
     )
   }
 
@@ -37,7 +37,7 @@ class Ensayo_Item extends React.Component {
         this.refs.Ensayo_Properties._handle_Open()
         break
       case 'delete':
-        this._Ensayo_delete()
+        this._EnsayoDelete()
         break
       default:
         break
@@ -47,11 +47,19 @@ class Ensayo_Item extends React.Component {
   render() {
     const rightIconMenu = (
       <IconMenu
-        iconButtonElement={<IconButton><NavigationMoreVert /></IconButton>}
+        iconButtonElement={
+          <IconButton>
+            <NavigationMoreVert />
+          </IconButton>
+        }
         onItemTouchTap={this._handle_onItemTouchTap}
       >
-        <MenuItem ref="edit" value={0}>Edit</MenuItem>
-        <MenuItem ref="delete" value={1}>Delete</MenuItem>
+        <MenuItem ref="edit" value={0}>
+          Edit
+        </MenuItem>
+        <MenuItem ref="delete" value={1}>
+          Delete
+        </MenuItem>
       </IconMenu>
     )
 
@@ -78,13 +86,13 @@ export default Relay.createContainer(Ensayo_Item, {
         Ensayo_Title,
         Ensayo_Description,
         Ensayo_Content,
-        ${Ensayo_deleteMutation.getFragment('Ensayo')},
-        ${Ensayo_updateMutation.getFragment('Ensayo')},
+        ${EnsayoDeleteMutation.getFragment('Ensayo')},
+        ${EnsayoUpdateMutation.getFragment('Ensayo')},
       }
     `,
     Viewer: () => Relay.QL`
       fragment on Viewer {
-        ${Ensayo_deleteMutation.getFragment('Viewer')},
+        ${EnsayoDeleteMutation.getFragment('Viewer')},
       }
     `,
   },
