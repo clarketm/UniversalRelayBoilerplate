@@ -1,6 +1,6 @@
-[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&maxAge=2592000)](https://twitter.com/CodeFoundries)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/code-foundries/code-foundries)
+# Sunset and Next Version
+
+Two of the major building blocks of this boilerplate - `Material-UI` and `Relay` have been revamped in their move to version 1.0, including significant changes in the APIs. Implementing them requires a significant amount of change and in many cases requires almost complete rewrite of the existing code. This, coupled with the need for some re-architecture, made us start a new project, which will become the eventual next version of `UniversalRelayBoilerplate` and `Rebar`. You can follow the progress at [Test Project for URB Next](https://github.com/codefoundries/todomvc-modern-universal).
 
 
 # Universal Relay Boilerplate (URB)
