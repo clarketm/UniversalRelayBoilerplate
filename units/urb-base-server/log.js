@@ -2,7 +2,7 @@
 
 import winston from 'winston'
 
-import defaultPersister from '../configuration/graphql/defaultPersister'
+import defaultPersister from '../../configuration/urb-base-server/graphql/defaultPersister'
 
 // Read environment
 require('dotenv').load()

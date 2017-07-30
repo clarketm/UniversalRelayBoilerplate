@@ -3,10 +3,10 @@
 import { GraphQLBoolean, GraphQLString, GraphQLObjectType } from 'graphql'
 import { globalIdField } from 'graphql-relay'
 
-import defaultPersister from '../../configuration/graphql/defaultPersister'
+import defaultPersister from '../../../../configuration/urb-base-server/graphql/defaultPersister'
 import NodeInterface from '../NodeInterface'
-import _ViewerFields from '../../configuration/graphql/_ViewerFields'
-import User from '../../configuration/graphql/model/User'
+import _ViewerFields from '../../../../configuration/urb-base-server/graphql/_ViewerFields'
+import User from '../../../../configuration/urb-base-server/graphql/model/User'
 
 export default new GraphQLObjectType({
   name: 'Viewer',

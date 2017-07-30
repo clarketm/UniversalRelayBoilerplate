@@ -1,7 +1,7 @@
-// @flow
+// @flow weak
 
 import log from './log'
-import matchInDepth from '../scripts/matchInDepth'
+import matchInDepth from './matchInDepth'
 
 // Read environment
 require('dotenv').load()

@@ -5,7 +5,7 @@ import { GraphQLBoolean, GraphQLList, GraphQLNonNull } from 'graphql'
 
 import ToDoListUpdateMarkAll from '../helper/ToDoListUpdateMarkAll'
 import ToDoType from '../type/ToDoType'
-import ViewerType from '../../../../graphql/type/ViewerType'
+import ViewerType from '../../../../units/urb-base-server/graphql/type/ViewerType'
 
 export default mutationWithClientMutationId({
   name: 'ToDoListUpdateMarkAll',

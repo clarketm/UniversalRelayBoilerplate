@@ -1,6 +1,6 @@
 // @flow
 
-export default function matchInDepth(payload, condition) {
+export default function matchInDepth(payload: Object, condition: Object) {
   for (let ix in condition) {
     const payloadValue = payload[ix]
     const typeOfValue = typeof payloadValue

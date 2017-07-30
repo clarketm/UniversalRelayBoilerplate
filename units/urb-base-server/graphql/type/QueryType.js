@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import { fromGlobalId } from 'graphql-relay'
 import { GraphQLID, GraphQLNonNull, GraphQLObjectType } from 'graphql'

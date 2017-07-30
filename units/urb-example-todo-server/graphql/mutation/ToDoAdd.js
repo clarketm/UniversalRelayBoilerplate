@@ -4,7 +4,7 @@ import { mutationWithClientMutationId } from 'graphql-relay'
 import { GraphQLString, GraphQLNonNull } from 'graphql'
 
 import ToDosConnection from '../type/ToDosConnection'
-import ViewerType from '../../../../graphql/type/ViewerType'
+import ViewerType from '../../../../units/urb-base-server/graphql/type/ViewerType'
 
 export default mutationWithClientMutationId({
   name: 'ToDoAdd',

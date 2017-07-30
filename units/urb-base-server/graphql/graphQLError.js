@@ -3,7 +3,7 @@
 //import uuid from 'uuid';
 import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 
-import log from '../server/log'
+import log from '../log'
 
 // Mark field/type/schema
 export const Processed = Symbol()
