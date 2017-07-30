@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../configuration/app/components/ApplicationMainSettings.android.js"],"names":["componentDidMountAdditionalInitialization"],"mappings":";;AAEgBA,yC,CAAAA,yC,CAAT,QAASA,0CAAT,EAAqD,CAAE","file":"ApplicationMainSettings.android.js","sourcesContent":["// @flow\n\nexport function componentDidMountAdditionalInitialization() {}\n"]}

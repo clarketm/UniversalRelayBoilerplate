@@ -1,10 +1,10 @@
-# Sunset and Next Version
+# Universal Relay Boilerplate (URB) Classic
 
-Two of the major building blocks of this boilerplate - `Material-UI` and `Relay` have been revamped in their move to version 1.0, including significant changes in the APIs. Implementing them requires a significant amount of change and in many cases requires almost complete rewrite of the existing code. This, coupled with the need for some re-architecture, made us start a new project, which will become the eventual next version of `UniversalRelayBoilerplate` and `Rebar`. You can follow the progress at [URB Next](https://github.com/codefoundries/todomvc-modern-universal).
+The previous version of this repository with Material-UI `0.18.x` and Relay `0.10` is available at [Universal Relay Boilerplate Classic](https://github.com/codefoundries/UniversalRelayBoilerplateClassic). The current version is unfinished and under heavy development.
 
 
-# Universal Relay Boilerplate (URB)
-Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra, other databases.
+# Universal Relay Boilerplate (URB) Next
+Boilerplate + examples for universal web application with React, Material-UI, Relay, GraphQL, JWT, Node.js, Apache Cassandra.
 
 
 [Project Overview](http://codefoundries.com/products/UniversalRelayBoilerplate.html).
@@ -28,6 +28,7 @@ We make our best to support all the features and the examples in working order. 
 
 * Windows support. `urb-tools-windows` contains custom scripts for working on windows, but we do not actively test those as we make changes.
 * DynamoDB support. `urb-persister-dynamodb` contains the code for working with AWS DynamoDB, but we do not actively test it as we make changes.
+* React Native. Support will be added back once the refactoring of the web part is done.
 
 Pull requests fixing any issues and enhancing the above would be highly appreciated and merged.
 

@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../configuration/webapp/components/ChromeRightIcon.jsx"],"names":[],"mappings":";;AAEA,gG","file":"ChromeRightIcon.js","sourcesContent":["// @flow\n\nimport AppBar_Auth from '../../../units/urb-account-management/webapp/components/AppBar_Auth'\n\nexport default AppBar_Auth\n"]}

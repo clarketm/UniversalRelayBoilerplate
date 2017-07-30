@@ -1,20 +1,52 @@
 // @flow
 
 import express from 'express'
+import React from 'react'
+import path from 'path'
+import { getFarceResult } from 'found/lib/server'
+import ReactDOMServer from 'react-dom/server'
+import serialize from 'serialize-javascript'
 
-import logServerRequest from '../server/logServerRequest'
-import renderOnServer from './renderOnServer'
-import { requestLoggerRenderOnServer } from '../configuration/server/requestLoggers'
+import { ServerFetcher } from '../scripts/fetcher'
+import { createResolver, historyMiddlewares, render, routeConfig } from './router'
+import Wrapper from './components/Wrapper'
+
+// Read environment
+require('dotenv').load()
+
+const port = process.env.PORT
+const port_webpack = process.env.PORT_WEBPACK
 
 // Create express router
-const app = express()
+const router = express()
 
-// Log requests for statically served files
-app.use((req, res, next) => logServerRequest(req, res, next, requestLoggerRenderOnServer))
+router.use(async (req, res) => {
+  const fetcher = new ServerFetcher(`http://localhost:${port}/graphql`)
 
-// Serve HTML file, JavaScript bundle and other assets
-app.get('/*', (req, res, next) => {
-  renderOnServer(req, res, next)
+  const { redirect, status, element } = await getFarceResult({
+    url: req.url,
+    historyMiddlewares,
+    routeConfig,
+    resolver: createResolver(fetcher),
+    render,
+  })
+
+  if (redirect) {
+    res.redirect(302, redirect.url)
+    return
+  }
+
+  const userAgent = req.headers['user-agent']
+
+  res.render(path.resolve(__dirname, 'html.ejs'), {
+    port_webpack,
+    root_html: ReactDOMServer.renderToString(
+      <Wrapper userAgent={userAgent}>
+        {element}
+      </Wrapper>,
+    ),
+    relay_payload: serialize(fetcher, { isJSON: true }),
+  })
 })
 
-export default app
+export default router

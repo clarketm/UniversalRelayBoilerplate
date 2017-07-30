@@ -1,18 +1,15 @@
-// @flow
+// @flow weak
 
 import fs from 'fs'
 import path from 'path'
 
-const currentPackageJson = JSON.parse(fs.readFileSync('./package.json'))
+const currentPackageJson = JSON.parse('' + fs.readFileSync('./package.json'))
 const packageJson = JSON.parse(fs.readFileSync('./scripts/package.part.json'))
 
 function addToPackageJson(fileName) {
   const newPackageJson = JSON.parse(fs.readFileSync(fileName))
 
   if (newPackageJson.scripts) Object.assign(packageJson.scripts, newPackageJson.scripts)
-
-  if (newPackageJson.betterScripts)
-    Object.assign(packageJson.betterScripts, newPackageJson.betterScripts)
 
   if (newPackageJson.dependencies)
     Object.assign(packageJson.dependencies, newPackageJson.dependencies)
@@ -21,7 +18,7 @@ function addToPackageJson(fileName) {
     Object.assign(packageJson.devDependencies, newPackageJson.devDependencies)
 }
 
-function getPackages(directoryName: String) {
+function getPackages(directoryName: string) {
   fs.readdirSync(directoryName).filter(unitName => {
     if (fs.statSync(directoryName + unitName).isDirectory()) {
       const packageJsonName = path.resolve(directoryName, unitName, 'package.part.json')
@@ -47,7 +44,6 @@ function sortObject(object: Object) {
 
 function orderPackages() {
   packageJson.scripts = sortObject(packageJson.scripts)
-  packageJson.betterScripts = sortObject(packageJson.betterScripts)
   packageJson.dependencies = sortObject(packageJson.dependencies)
   packageJson.devDependencies = sortObject(packageJson.devDependencies)
 }

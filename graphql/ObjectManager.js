@@ -209,7 +209,7 @@ export default class ObjectManager {
     })
   }
 
-  getObjectList(entityName: string, filter: object) {
+  getObjectList(entityName: string, filter: Object) {
     // TODO x2000 Provide try catch with logging here!
     const loaderIdentifier = Object.keys(filter).sort().join(',')
     const loader = this.getLoader(entityName, loaderIdentifier, true)

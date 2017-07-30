@@ -2,6 +2,9 @@ import path from 'path'
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
+// Read environment
+require('dotenv').load()
+
 const version = require('./configuration/package.js').version
 const host = process.env.HOST
 const port_webpack = process.env.PORT_WEBPACK
@@ -20,8 +23,7 @@ const config = {
   entry: {
     client: ['whatwg-fetch', path.resolve('webapp/client.js')],
     vendor: [
-      'isomorphic-relay',
-      'isomorphic-relay-router',
+      'babel-polyfill',
       'material-ui',
       'prop-types',
       'react',
@@ -29,9 +31,9 @@ const config = {
       'react-event-listener',
       'react-helmet',
       'react-relay',
-      'react-relay-network-layer',
-      'react-router',
-      'react-router-relay',
+
+      // ZZZ TODO: Add the proper libraries for relay modern
+
       'react-tap-event-plugin',
     ],
   },
@@ -71,15 +73,7 @@ const config = {
       filename: 'vendor.js',
     }),
     new ExtractTextPlugin('[name].css'),
-    // TODO: Enable once fixed
-    /*
-    /Users/alex/Documents/Projects/cfworkspace/urb/main/node_modules/webpack/lib/HotModuleReplacementPlugin.js:59
-                                records.chunkModuleIds[chunk.id] = chunk.mapModules(function(m) {
-                                                                         ^
-    TypeError: chunk.mapModules is not a function
-        at /Users/alex/Documents/Projects/cfworkspace/urb/main/node_modules/webpack/lib/HotModuleReplacementPlugin.js:59:46
-    */
-    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       process: {

@@ -2,7 +2,30 @@
 
 // Class used by GraphQL Server
 export default class User {
-  constructor(fields) {
+  id: string
+  User_site_id: string
+  UserToken2: string
+  User_AccountName: string
+  User_AccountPassword: string
+  User_DisplayName: string
+  User_Email: string
+  User_PhoneNumberMobile: string
+  User_Latitude: number
+  User_Longitude: number
+  //
+
+  constructor(fields: {
+    id: string,
+    User_site_id: string,
+    UserToken2: string,
+    User_AccountName: string,
+    User_AccountPassword: string,
+    User_DisplayName: string,
+    User_Email: string,
+    User_PhoneNumberMobile: string,
+    User_Latitude: number,
+    User_Longitude: number,
+  }) {
     this.id = fields.id
     this.User_site_id = fields.User_site_id
     this.UserToken2 = fields.UserToken2

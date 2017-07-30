@@ -12,6 +12,8 @@ require('dotenv').load()
 export function getUserByCookie(objectManager, req) {
   let user_id = defaultPersister.uuidNull() // Anonymous, unless cookie is passed
 
+  // ZZZ
+  /*
   try {
     if (req.cookies.UserToken1)
       if (req.cookies.UserToken1.length > 10) {
@@ -21,6 +23,7 @@ export function getUserByCookie(objectManager, req) {
   } catch (err) {
     return Promise.reject('💔  Could not read auth cookie. ' + err)
   }
+  */
 
   return objectManager
     .getOneObject('User', {

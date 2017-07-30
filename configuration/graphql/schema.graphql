@@ -1,69 +1,3 @@
-type Compendium implements Node {
-  # The ID of an object
-  id: ID!
-  Compendium_FirstTextInput: String
-  Compendium_RangedNumber: Int
-  Compendium_Excitement: Int
-  Compendium_FollowUpQuestion: String
-  Compendium_FavoriteMammal: Int
-  Compendium_FavoriteMammalOtherText: String
-  Compendium_LastText: String
-  Compendium_LikedSunset_Ocean: Boolean
-  Compendium_LikedSunset_Lake: Boolean
-  Compendium_LikedSunset_Mountains: Boolean
-  Compendium_LikedSunset_Plains: Boolean
-  Compendium_LikedSunset_Purple: Boolean
-  Compendium_LikedSunset_Green: Boolean
-  Compendium_LikedSunset_Other: Boolean
-  Compendium_LikedSunset_OtherText: String
-}
-
-input Compendium_updateInput {
-  id: ID!
-  Compendium_FirstTextInput: String!
-  Compendium_RangedNumber: Int!
-  Compendium_Excitement: Int!
-  Compendium_FollowUpQuestion: String!
-  Compendium_FavoriteMammal: Int!
-  Compendium_FavoriteMammalOtherText: String!
-  Compendium_LastText: String!
-  Compendium_LikedSunset_Ocean: Boolean!
-  Compendium_LikedSunset_Lake: Boolean!
-  Compendium_LikedSunset_Mountains: Boolean!
-  Compendium_LikedSunset_Plains: Boolean!
-  Compendium_LikedSunset_Purple: Boolean!
-  Compendium_LikedSunset_Green: Boolean!
-  Compendium_LikedSunset_Other: Boolean!
-  Compendium_LikedSunset_OtherText: String!
-  clientMutationId: String
-}
-
-type Compendium_updatePayload {
-  Compendium: Compendium
-  clientMutationId: String
-}
-
-# A connection to a list of items.
-type CompendiumsConnection {
-  # Information to aid in pagination.
-  pageInfo: PageInfo!
-
-  # A list of edges.
-  edges: [CompendiumsEdge]
-}
-
-# An edge in a connection.
-type CompendiumsEdge {
-  # The item at the end of the edge
-  node: Compendium
-
-  # A cursor for use in pagination
-  cursor: String!
-}
-
-# Scalar type for storing date-time information
-scalar DateTime
-
 type Ensayo implements Node {
   # The ID of an object
   id: ID!
@@ -91,21 +25,8 @@ input EnsayoDeleteInput {
 }
 
 type EnsayoDeletePayload {
-  deletedEnsayoId: ID
+  deletedId: ID
   Viewer: Viewer
-  clientMutationId: String
-}
-
-input EnsayoUpdateInput {
-  id: ID!
-  Ensayo_Content: String!
-  Ensayo_Title: String!
-  Ensayo_Description: String!
-  clientMutationId: String
-}
-
-type EnsayoUpdatePayload {
-  Ensayo: Ensayo
   clientMutationId: String
 }
 
@@ -127,10 +48,20 @@ type EnsayosEdge {
   cursor: String!
 }
 
+input EnsayoUpdateInput {
+  id: ID!
+  Ensayo_Content: String!
+  Ensayo_Title: String!
+  Ensayo_Description: String!
+  clientMutationId: String
+}
+
+type EnsayoUpdatePayload {
+  Ensayo: Ensayo
+  clientMutationId: String
+}
+
 type Mutation {
-  Viewer_update(input: Viewer_updateInput!): Viewer_updatePayload
-  Viewer_updatePassword(input: Viewer_updatePasswordInput!): Viewer_updatePasswordPayload
-  Compendium_update(input: Compendium_updateInput!): Compendium_updatePayload
   EnsayoAdd(input: EnsayoAddInput!): EnsayoAddPayload
   EnsayoDelete(input: EnsayoDeleteInput!): EnsayoDeletePayload
   EnsayoUpdate(input: EnsayoUpdateInput!): EnsayoUpdatePayload
@@ -139,9 +70,6 @@ type Mutation {
   ToDoListUpdateMarkAll(input: ToDoListUpdateMarkAllInput!): ToDoListUpdateMarkAllPayload
   ToDoUpdateRename(input: ToDoUpdateRenameInput!): ToDoUpdateRenamePayload
   ToDoUpdateStatus(input: ToDoUpdateStatusInput!): ToDoUpdateStatusPayload
-  Translaticiarum_add(input: Translaticiarum_addInput!): Translaticiarum_addPayload
-  Translaticiarum_delete(input: Translaticiarum_deleteInput!): Translaticiarum_deletePayload
-  Translaticiarum_update(input: Translaticiarum_updateInput!): Translaticiarum_updatePayload
 }
 
 # An object with a globally unique id.
@@ -183,7 +111,7 @@ input ToDoAddInput {
 }
 
 type ToDoAddPayload {
-  ToDosEdge: ToDosEdge
+  ToDoEdge: ToDosEdge
   Viewer: Viewer
   clientMutationId: String
 }
@@ -194,7 +122,7 @@ input ToDoDeleteInput {
 }
 
 type ToDoDeletePayload {
-  deletedToDoId: ID
+  deletedId: ID
   Viewer: Viewer
   clientMutationId: String
 }
@@ -240,8 +168,8 @@ type ToDoUpdateRenamePayload {
 }
 
 input ToDoUpdateStatusInput {
-  ToDo_Complete: Boolean!
   id: ID!
+  ToDo_Complete: Boolean!
   clientMutationId: String
 }
 
@@ -249,69 +177,6 @@ type ToDoUpdateStatusPayload {
   ToDo: ToDo
   Viewer: Viewer
   clientMutationId: String
-}
-
-type Translaticiarum implements Node {
-  # The ID of an object
-  id: ID!
-  Translaticiarum_Date: DateTime
-  Translaticiarum_Time: DateTime
-  Translaticiarum_Type: Int
-}
-
-input Translaticiarum_addInput {
-  Translaticiarum_Type: Int!
-  Translaticiarum_Date: DateTime!
-  Translaticiarum_Time: DateTime!
-  clientMutationId: String
-}
-
-type Translaticiarum_addPayload {
-  TranslaticiarumsEdge: TranslaticiarumsEdge
-  Viewer: Viewer
-  clientMutationId: String
-}
-
-input Translaticiarum_deleteInput {
-  id: ID!
-  clientMutationId: String
-}
-
-type Translaticiarum_deletePayload {
-  deletedTranslaticiarumId: ID
-  Viewer: Viewer
-  clientMutationId: String
-}
-
-input Translaticiarum_updateInput {
-  id: ID!
-  Translaticiarum_Type: Int!
-  Translaticiarum_Date: DateTime!
-  Translaticiarum_Time: DateTime!
-  clientMutationId: String
-}
-
-type Translaticiarum_updatePayload {
-  Translaticiarum: Translaticiarum
-  clientMutationId: String
-}
-
-# A connection to a list of items.
-type TranslaticiarumsConnection {
-  # Information to aid in pagination.
-  pageInfo: PageInfo!
-
-  # A list of edges.
-  edges: [TranslaticiarumsEdge]
-}
-
-# An edge in a connection.
-type TranslaticiarumsEdge {
-  # The item at the end of the edge
-  node: Translaticiarum
-
-  # A cursor for use in pagination
-  cursor: String!
 }
 
 type Viewer implements Node {
@@ -323,37 +188,9 @@ type Viewer implements Node {
   User_DisplayName: String
   User_Email: String
   User_PhoneNumberMobile: String
-  compendiums(after: String, first: Int, before: String, last: Int): CompendiumsConnection
   Ensayos(after: String, first: Int, before: String, last: Int): EnsayosConnection
   Ensayo(id: ID): Ensayo
   ToDos(status: String = "any", after: String, first: Int, before: String, last: Int): ToDosConnection
   ToDo_TotalCount: Int
   ToDo_CompletedCount: Int
-  Translaticiarums(after: String, first: Int, before: String, last: Int): TranslaticiarumsConnection
-}
-
-input Viewer_updateInput {
-  id: ID!
-  User_DisplayName: String!
-  User_Email: String!
-  User_PhoneNumberMobile: String!
-  clientMutationId: String
-}
-
-input Viewer_updatePasswordInput {
-  id: ID!
-  User_AccountPassword_Current: String!
-  User_AccountPassword: String!
-  clientMutationId: String
-}
-
-type Viewer_updatePasswordPayload {
-  Viewer: Viewer
-  ErrorMessage: String
-  clientMutationId: String
-}
-
-type Viewer_updatePayload {
-  Viewer: Viewer
-  clientMutationId: String
 }

@@ -7,7 +7,7 @@
     "dynamic-import-webpack",
     "react-hot-loader/babel",
     "transform-class-properties",
-    "babel-relay-plugin-loader",
-    "syntax-dynamic-import"
+    "syntax-dynamic-import",
+    ["relay", { "schema": "copnfiguration/graphql/schema.graphql" }]
   ]
 }

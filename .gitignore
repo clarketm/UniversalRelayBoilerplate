@@ -68,8 +68,11 @@ ios/main.jsbundle
 ios/main.jsbundle.meta
 /ios/main.map
 
+# Relay
+#
+__generated__/
+
 # Logs
 #
 logs
 *.log
-

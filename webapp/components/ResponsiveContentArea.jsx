@@ -1,47 +1,49 @@
 // @flow
 
+import { createStyleSheet, withStyles } from 'material-ui/styles'
+import PropTypes from 'prop-types'
 import React from 'react'
 import spacing from 'material-ui/styles/spacing'
 
 import { LARGE, MEDIUM } from '../scripts/ViewportDimensions'
 
-export default class ResponsiveContentArea extends React.Component {
+const styleSheet = createStyleSheet('ResponseiveContentArea', theme => ({
+  root: {
+    paddingTop: spacing.unit,
+    minHeight: 400,
+  },
+  content: {
+    margin: spacing.unit,
+  },
+  contentWhenMedium: {
+    margin: `${spacing.unit * 2}px ${spacing.unit * 3}px`,
+  },
+}))
+
+class ResponsiveContentArea extends React.Component {
   static contextTypes = {
-    muiTheme: React.PropTypes.object,
-    rbContext: React.PropTypes.object,
+    muiTheme: PropTypes.object,
+    rbContext: PropTypes.object,
   }
 
-  getStyles() {
-    const styles = {
-      root: {
-        paddingTop: spacing.desktopKeylineIncrement,
-        minHeight: 400,
-      },
-      content: {
-        margin: spacing.desktopGutter,
-      },
-      contentWhenMedium: {
-        margin: `${spacing.desktopGutter * 2}px ${spacing.desktopGutter * 3}px`,
-      },
-    }
-
-    const muiSize = this.context.rbContext.viewportDimensions.get(this, 'muiSize')
-    if (muiSize === MEDIUM || muiSize === LARGE)
-      styles.content = Object.assign(styles.content, styles.contentWhenMedium)
-
-    return styles
-  }
+  // ZZZ
+  // getStyles() {
+  //   const muiSize = this.context.rbContext.viewportDimensions.get(this, 'muiSize')
+  //   if (muiSize === MEDIUM || muiSize === LARGE)
+  //     styles.content = Object.assign(styles.content, styles.contentWhenMedium)
+  // }
 
   render() {
-    const styles = this.getStyles()
-    const { prepareStyles } = this.context.muiTheme
+    const classes = this.props.classes
 
     return (
-      <div style={prepareStyles(styles.root)}>
-        <div style={prepareStyles(styles.content)}>
+      <div className={classes.root}>
+        <div className={classes.content}>
           {this.props.children}
         </div>
       </div>
     )
   }
 }
+
+export default withStyles(styleSheet)(ResponsiveContentArea)

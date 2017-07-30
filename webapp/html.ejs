@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Relay • ToDoMVC</title>
+  <link rel="stylesheet" href="http://localhost:<%- port_webpack %>/20.2.1.147/client.css">
+</head>
+
+<body>
+  <div id="root"><%- root_html %></div>
+
+  <script>
+    window.__RELAY_PAYLOADS__ = <%- relay_payload %>
+  </script>
+  <script src="http://localhost:<%- port_webpack %>/20.2.1.147/vendor.js"></script>
+  <script src="http://localhost:<%- port_webpack %>/20.2.1.147/client.js"></script>
+</body>
+
+</html>

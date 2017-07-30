@@ -1,10 +1,13 @@
 // @flow
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles'
 import React from 'react'
+import PropTypes from 'prop-types'
 import EventListener from 'react-event-listener'
 
-import muiTheme from '../../configuration/webapp/muiTheme'
+import createPalette from 'material-ui/styles/palette'
+
+// import muiTheme from '../../configuration/webapp/muiTheme'
 import ViewportDimensions from '../scripts/ViewportDimensions'
 
 //
@@ -14,8 +17,7 @@ export default class Wrapper extends React.Component {
   rbContext: Object
 
   static childContextTypes = {
-    muiTheme: React.PropTypes.object,
-    rbContext: React.PropTypes.object,
+    rbContext: PropTypes.object,
   }
 
   constructor(props: any, context: any) {
@@ -28,8 +30,10 @@ export default class Wrapper extends React.Component {
 
     this.rbContext.viewportDimensions = new ViewportDimensions()
 
-    this.muiTheme = getMuiTheme(muiTheme, {
-      userAgent: this.props.userAgent || navigator.userAgent,
+    this.muiTheme = createMuiTheme({
+      palette: createPalette({
+        type: 'dark', // Switching the dark mode on is a single property value change.
+      }),
     })
   }
 
@@ -39,7 +43,6 @@ export default class Wrapper extends React.Component {
 
   getChildContext() {
     return {
-      muiTheme: this.muiTheme,
       rbContext: this.rbContext,
     }
   }
@@ -51,7 +54,9 @@ export default class Wrapper extends React.Component {
   render() {
     return (
       <EventListener target="window" onResize={this.handle_onResize}>
-        {this.props.children}
+        <MuiThemeProvider theme={this.muiTheme}>
+          {this.props.children}
+        </MuiThemeProvider>
       </EventListener>
     )
   }
