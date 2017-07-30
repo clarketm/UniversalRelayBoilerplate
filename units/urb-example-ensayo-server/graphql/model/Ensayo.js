@@ -1,6 +1,6 @@
 // @flow
 
-import ObjectManager from '../../../../graphql/ObjectManager'
+import ObjectManager from '../../../../units/urb-base-server/graphql/ObjectManager'
 
 // Class used by GraphQL Server
 export default class Ensayo {

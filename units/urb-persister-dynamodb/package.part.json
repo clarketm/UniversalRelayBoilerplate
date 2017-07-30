@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "joi": "10.6.0",
+    "node-uuid": "1.4.8",
+    "vogels": "2.2.0"
+  }
+}

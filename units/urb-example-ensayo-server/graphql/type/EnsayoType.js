@@ -4,7 +4,7 @@ import { globalIdField } from 'graphql-relay'
 import { GraphQLString, GraphQLObjectType } from 'graphql'
 
 import Ensayo from '../model/Ensayo'
-import NodeInterface from '../../../../graphql/NodeInterface'
+import NodeInterface from '../../../../units/urb-base-server/graphql/NodeInterface'
 
 export default new GraphQLObjectType({
   name: 'Ensayo',
