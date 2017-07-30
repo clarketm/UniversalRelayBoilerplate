@@ -33,8 +33,6 @@ const config = {
       'react-relay',
 
       // ZZZ TODO: Add the proper libraries for relay modern
-
-      'react-tap-event-plugin',
     ],
   },
 
