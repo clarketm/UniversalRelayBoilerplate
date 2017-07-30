@@ -23,7 +23,7 @@ const styleSheet = createStyleSheet(theme => ({
 const contextTypes = {
   relay: PropTypes.shape({
     variables: PropTypes.shape({
-      status: PropTypes.String.isRequired,
+      status: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   router: PropTypes.object.isRequired,

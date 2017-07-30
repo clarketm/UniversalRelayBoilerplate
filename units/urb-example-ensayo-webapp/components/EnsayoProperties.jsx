@@ -27,10 +27,10 @@ const styleSheet = createStyleSheet(theme => ({
 
 export default class EnsayoProperties extends React.Component {
   static propTypes = {
-    Ensayo_Title: PropTypes.String.isRequired,
-    Ensayo_Description: PropTypes.String.isRequired,
-    Ensayo_Content: PropTypes.String.isRequired,
-    open: PropTypes.Boolean.isRequired,
+    Ensayo_Title: PropTypes.string.isRequired,
+    Ensayo_Description: PropTypes.string.isRequired,
+    Ensayo_Content: PropTypes.string.isRequired,
+    open: PropTypes.bool.isRequired,
     handlerUpdate: PropTypes.func.isRequired,
     handlerClose: PropTypes.func.isRequired,
   }

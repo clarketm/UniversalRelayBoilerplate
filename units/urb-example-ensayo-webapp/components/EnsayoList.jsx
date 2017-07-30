@@ -8,6 +8,7 @@ import { createFragmentContainer, graphql } from 'react-relay'
 
 import EnsayoItem from './EnsayoItem'
 
+// ZZZ Is the styleshet really necessary here? Should this be a separate component anyway?
 const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',

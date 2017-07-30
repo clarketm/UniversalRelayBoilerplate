@@ -1,9 +1,9 @@
 // @flow
 
+import AddIcon from 'material-ui-icons/Add'
+import Button from 'material-ui/Button'
 import Card, { CardHeader } from 'material-ui/Card'
 import { createStyleSheet, withStyles } from 'material-ui/styles'
-import ContentAdd from 'material-ui/svg-icons/content/add'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
@@ -16,6 +16,7 @@ const styleSheet = createStyleSheet(theme => ({
   card: {
     minWidth: 275,
   },
+  addNewButton: { float: 'right', marginTop: -58, marginRight: 20 },
 }))
 
 class EnsayoScreen extends React.Component {
@@ -39,7 +40,7 @@ class EnsayoScreen extends React.Component {
     )
   }
 
-  _handle_onTouchTap_Add = () => {
+  _handle_onClick_Add = () => {
     this.refs.EnsayoProperties._handle_Open()
   }
 
@@ -49,16 +50,17 @@ class EnsayoScreen extends React.Component {
     return (
       <ResponsiveContentArea>
         <Card className={classes.card}>
-          <CardHeader title="Ensayo" subtitle="This means Essay in Spanish" />
+          <CardHeader title="Ensayo" subtitle="List of essays" />
 
-          <div style={{ float: 'right', marginTop: -58, marginRight: 20 }}>
-            <FloatingActionButton
-              secondary={true}
-              mini={true}
-              onTouchTap={this._handle_onTouchTap_Add}
+          <div className={classes.addNewButton}>
+            <Button
+              fab
+              color="primary"
+              className={classes.button}
+              onClick={this._handle_onClick_Add}
             >
-              <ContentAdd />
-            </FloatingActionButton>
+              <AddIcon />
+            </Button>
           </div>
 
           {this.props.children}

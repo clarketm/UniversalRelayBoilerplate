@@ -20,8 +20,8 @@ const styleSheet = createStyleSheet(theme => ({
 
 class ToDo_Properties extends React.Component {
   static propTypes = {
-    ToDo_Text: PropTypes.String.isRequired,
-    open: PropTypes.Boolean.isRequired,
+    ToDo_Text: PropTypes.string.isRequired,
+    open: PropTypes.bool.isRequired,
     handlerUpdate: PropTypes.func.isRequired,
     handlerClose: PropTypes.func.isRequired,
   }
