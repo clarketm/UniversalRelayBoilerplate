@@ -24,13 +24,15 @@ const config = {
     client: ['whatwg-fetch', path.resolve('webapp/client.js')],
     vendor: [
       'babel-polyfill',
+      'found',
+      'found-relay',
       'material-ui',
       'prop-types',
       'react',
       'react-dom',
       'react-event-listener',
       'react-helmet',
-      'react-relay',
+      'relay-runtime',
 
       // ZZZ TODO: Add the proper libraries for relay modern
     ],

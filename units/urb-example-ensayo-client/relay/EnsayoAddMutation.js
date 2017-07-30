@@ -9,7 +9,7 @@ const mutation = graphql`
       Viewer {
         id
       }
-      EnsayoEdge {
+      EnsayosEdge {
         cursor
         node {
           id
@@ -21,12 +21,12 @@ const mutation = graphql`
   }
 `
 
-function sharedUpdater(store, user, EnsayoEdge) {
+function sharedUpdater(store, user, EnsayosEdge) {
   const userProxy = store.get(user.id)
 
   const connection = ConnectionHandler.getConnection(userProxy, 'EnsayoList_Ensayos')
   if (connection) {
-    ConnectionHandler.insertEdgeAfter(connection, EnsayoEdge)
+    ConnectionHandler.insertEdgeAfter(connection, EnsayosEdge)
   }
 }
 
@@ -43,7 +43,7 @@ function commit(environment, user, Ensayo_Title, Ensayo_Description, Ensayo_Cont
 
     updater(store) {
       const payload = store.getRootField('EnsayoAdd')
-      sharedUpdater(store, user, payload.getLinkedRecord('EnsayoEdge'))
+      sharedUpdater(store, user, payload.getLinkedRecord('EnsayosEdge'))
     },
 
     optimisticUpdater(store) {
@@ -54,13 +54,13 @@ function commit(environment, user, Ensayo_Title, Ensayo_Description, Ensayo_Cont
       aEnsayo.setValue(Ensayo_Content, 'Ensayo_Content')
       aEnsayo.setValue(id, 'id')
 
-      const EnsayoEdge = store.create(
-        `client:EnsayoAdd:EnsayoEdge:${clientMutationId}`,
-        'EnsayoEdge',
+      const EnsayosEdge = store.create(
+        `client:EnsayoAdd:EnsayosEdge:${clientMutationId}`,
+        'EnsayosEdge',
       )
-      EnsayoEdge.setLinkedRecord(aEnsayo, 'node')
+      EnsayosEdge.setLinkedRecord(aEnsayo, 'node')
 
-      sharedUpdater(store, user, EnsayoEdge)
+      sharedUpdater(store, user, EnsayosEdge)
     },
   })
 }

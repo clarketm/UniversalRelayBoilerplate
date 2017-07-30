@@ -38,12 +38,12 @@ function commit(environment, user, ToDos, ToDo_Complete, status) {
     updater(store) {
       const userProxy = store.get(user.id)
       const connection = ConnectionHandler.getConnection(userProxy, 'ToDoList_ToDos', { status })
-      const ToDoEdges = store
+      const ToDosEdges = store
         .getRootField('ToDoListUpdateMarkAll')
         .getLinkedRecord('Viewer')
         .getLinkedRecord('ToDos', { status })
         .getLinkedRecords('edges')
-      connection.setLinkedRecords(ToDoEdges, 'edges')
+      connection.setLinkedRecords(ToDosEdges, 'edges')
     },
 
     optimisticUpdater(store) {

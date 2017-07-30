@@ -111,7 +111,7 @@ input ToDoAddInput {
 }
 
 type ToDoAddPayload {
-  ToDoEdge: ToDosEdge
+  ToDosEdge: ToDosEdge
   Viewer: Viewer
   clientMutationId: String
 }

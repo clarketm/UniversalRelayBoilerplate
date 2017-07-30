@@ -10,7 +10,7 @@ const mutation = graphql`
         id
         ToDo_TotalCount
       }
-      ToDoEdge {
+      ToDosEdge {
         cursor
         node {
           id
@@ -22,12 +22,12 @@ const mutation = graphql`
   }
 `
 
-function sharedUpdater(store, user, ToDoEdge) {
+function sharedUpdater(store, user, ToDosEdge) {
   const userProxy = store.get(user.id)
   ;['any', 'active'].forEach(status => {
     const connection = ConnectionHandler.getConnection(userProxy, 'ToDoList_ToDos', { status })
     if (connection) {
-      ConnectionHandler.insertEdgeAfter(connection, ToDoEdge)
+      ConnectionHandler.insertEdgeAfter(connection, ToDosEdge)
     }
   })
 }
@@ -45,7 +45,7 @@ function commit(environment, user, ToDo_Text) {
 
     updater(store) {
       const payload = store.getRootField('ToDoAdd')
-      sharedUpdater(store, user, payload.getLinkedRecord('ToDoEdge'))
+      sharedUpdater(store, user, payload.getLinkedRecord('ToDosEdge'))
     },
 
     optimisticUpdater(store) {
@@ -54,10 +54,10 @@ function commit(environment, user, ToDo_Text) {
       aToDo.setValue(ToDo_Text, 'ToDo_Text')
       aToDo.setValue(id, 'id')
 
-      const ToDoEdge = store.create(`client:ToDoAdd:ToDoEdge:${clientMutationId}`, 'ToDoEdge')
-      ToDoEdge.setLinkedRecord(aToDo, 'node')
+      const ToDosEdge = store.create(`client:ToDoAdd:ToDosEdge:${clientMutationId}`, 'ToDosEdge')
+      ToDosEdge.setLinkedRecord(aToDo, 'node')
 
-      sharedUpdater(store, user, ToDoEdge)
+      sharedUpdater(store, user, ToDosEdge)
 
       const userProxy = store.get(user.id)
       const ToDo_TotalCount = userProxy.getValue('ToDo_TotalCount')

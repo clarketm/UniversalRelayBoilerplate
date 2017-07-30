@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
 
-const RichTextEditor = typeof document !== 'undefined' ? require('react-rte').default : null
+//const RichTextEditor = typeof document !== 'undefined' ? require('react-rte').default : null
 
 const styleSheet = createStyleSheet(theme => ({
   container: {
@@ -49,9 +49,11 @@ export default class EnsayoProperties extends React.Component {
     this.state = {
       Ensayo_Title,
       Ensayo_Description,
+      /*
       Ensayo_Content_RTE: RichTextEditor
         ? RichTextEditor.createValueFromString(Ensayo_Content, 'html')
         : {},
+        */
     }
   }
 
@@ -97,14 +99,6 @@ export default class EnsayoProperties extends React.Component {
               value={Ensayo_Description}
               onChange={event => this.setState({ Ensayo_Description: event.target.value })}
             />
-            <div className={classes.richTextContainer}>
-              {RichTextEditor == null
-                ? <div />
-                : <RichTextEditor
-                    value={this.state.Ensayo_Content_RTE}
-                    onChange={this._handle_OnChange_RTE_Ensayo_Content}
-                  />}
-            </div>
           </DialogContent>
           <DialogActions>
             <Button onClick={this._handle_Close}>Cancel</Button>
@@ -117,3 +111,15 @@ export default class EnsayoProperties extends React.Component {
     )
   }
 }
+
+/*
+<div className={classes.richTextContainer}>
+  {RichTextEditor == null
+    ? <div />
+    : <RichTextEditor
+        value={this.state.Ensayo_Content_RTE}
+        onChange={this._handle_OnChange_RTE_Ensayo_Content}
+      />}
+</div>
+
+*/

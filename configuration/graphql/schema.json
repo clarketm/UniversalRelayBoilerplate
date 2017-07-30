@@ -1339,7 +1339,7 @@
           "description": null,
           "fields": [
             {
-              "name": "ToDoEdge",
+              "name": "ToDosEdge",
               "description": null,
               "args": [],
               "type": {

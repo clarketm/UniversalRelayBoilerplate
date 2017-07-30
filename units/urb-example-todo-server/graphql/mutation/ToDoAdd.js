@@ -14,7 +14,7 @@ export default mutationWithClientMutationId({
   },
 
   outputFields: {
-    ToDoEdge: {
+    ToDosEdge: {
       type: ToDosConnection.edgeType,
       resolve: async ({ local_id }, { ...args }, context, { rootValue: objectManager }) => {
         const an_Object = await objectManager.getOneObject('ToDo', { id: local_id })
