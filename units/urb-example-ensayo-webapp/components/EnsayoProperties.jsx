@@ -71,7 +71,7 @@ export default class EnsayoProperties extends React.Component {
     this.props.handlerUpdate({
       Ensayo_Title: this.refs.Ensayo_Title.getValue(),
       Ensayo_Description: this.refs.Ensayo_Description.getValue(),
-      Ensayo_Content: this.state.Ensayo_Content_RTE.toString('html'),
+      //Ensayo_Content: this.state.Ensayo_Content_RTE.toString('html'),
     })
 
     this.props.handlerClose()
