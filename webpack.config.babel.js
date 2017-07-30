@@ -21,7 +21,7 @@ const config = {
   },
 
   entry: {
-    client: ['whatwg-fetch', path.resolve('webapp/client.js')],
+    client: ['whatwg-fetch', path.resolve('units/urb-base-webapp/client.js')],
     vendor: [
       'babel-polyfill',
       'found',
@@ -33,8 +33,6 @@ const config = {
       'react-event-listener',
       'react-helmet',
       'relay-runtime',
-
-      // ZZZ TODO: Add the proper libraries for relay modern
     ],
   },
 

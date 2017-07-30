@@ -38,7 +38,7 @@ export default class EnsayoProperties extends React.Component {
   state: {
     Ensayo_Title: string,
     Ensayo_Description: string,
-    Ensayo_Content_RTE: Object,
+    //    Ensayo_Content_RTE: Object,
   }
 
   constructor(props: Object, context: Object) {
@@ -57,11 +57,13 @@ export default class EnsayoProperties extends React.Component {
     }
   }
 
+  /*
   _handle_OnChange_RTE_Ensayo_Content = value => {
     this.setState({
       Ensayo_Content_RTE: value,
     })
   }
+  */
 
   _handle_Close = () => {
     this.props.handlerClose()
@@ -69,8 +71,9 @@ export default class EnsayoProperties extends React.Component {
 
   _handle_OK = () => {
     this.props.handlerUpdate({
-      Ensayo_Title: this.refs.Ensayo_Title.getValue(),
-      Ensayo_Description: this.refs.Ensayo_Description.getValue(),
+      Ensayo_Title: this.state.Ensayo_Title,
+      Ensayo_Description: this.state.Ensayo_Description,
+      Ensayo_Content: '',
       //Ensayo_Content: this.state.Ensayo_Content_RTE.toString('html'),
     })
 

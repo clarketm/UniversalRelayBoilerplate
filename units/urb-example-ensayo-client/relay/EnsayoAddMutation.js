@@ -15,6 +15,7 @@ const mutation = graphql`
           id
           Ensayo_Title
           Ensayo_Description
+          Ensayo_Content
         }
       }
     }

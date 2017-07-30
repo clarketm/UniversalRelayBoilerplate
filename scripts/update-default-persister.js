@@ -4,10 +4,9 @@ import fs from 'fs'
 import path from 'path'
 
 const supportedPersisters = {
-  cassandra: '../../units/urb-persister-cassandra/graphql/PersisterCassandra',
-  dynamodb: '../../units/urb-persister-dynamodb/graphql/PersisterDynamoDB',
-  memory: '../../units/urb-persister-memory/graphql/PersisterMemory',
-  waterline: '../../units/urb-persister-waterline/graphql/PersisterWaterline',
+  cassandra: '../../../units/urb-persister-cassandra/graphql/PersisterCassandra',
+  dynamodb: '../../../units/urb-persister-dynamodb/graphql/PersisterDynamoDB',
+  memory: '../../../units/urb-persister-memory/graphql/PersisterMemory',
 }
 
 function updateDefaultPersister(fileName) {
@@ -21,9 +20,11 @@ function updateDefaultPersister(fileName) {
     `export default defaultPersister`,
   ]
 
-  console.log('Written: ' + path.resolve('./configuration/graphql/defaultPersister.js'))
+  console.log(
+    'Written: ' + path.resolve('./configuration/urb-base-server/graphql/defaultPersister.js'),
+  )
   fs.writeFileSync(
-    './configuration/graphql/defaultPersister.js',
+    './configuration/urb-base-server/graphql/defaultPersister.js',
     defaultPersister.join('\r\n'),
     'utf8',
   )

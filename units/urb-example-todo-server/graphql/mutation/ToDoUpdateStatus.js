@@ -4,7 +4,7 @@ import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
 import { GraphQLBoolean, GraphQLID, GraphQLNonNull } from 'graphql'
 
 import ToDoType from '../type/ToDoType'
-import ViewerType from '../../../../graphql/type/ViewerType'
+import ViewerType from '../../../../units/urb-base-server/graphql/type/ViewerType'
 
 export default mutationWithClientMutationId({
   name: 'ToDoUpdateStatus',

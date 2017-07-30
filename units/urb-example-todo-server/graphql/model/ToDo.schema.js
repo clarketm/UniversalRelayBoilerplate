@@ -1,6 +1,6 @@
 // @flow
 
-import defaultPersister from '../../../../configuration/graphql/defaultPersister'
+import defaultPersister from '../../../../configuration/urb-base-server/graphql/defaultPersister'
 
 defaultPersister.addTableSchema('ToDo', {
   fields: {

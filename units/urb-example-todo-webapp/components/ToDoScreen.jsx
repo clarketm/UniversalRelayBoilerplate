@@ -7,7 +7,7 @@ import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 import TextField from 'material-ui/TextField'
 
-import ResponsiveContentArea from '../../../webapp/components/ResponsiveContentArea'
+import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 import ToDoAddMutation from '../../urb-example-todo-client/relay/ToDoAddMutation'
 
 const styleSheet = createStyleSheet(theme => ({

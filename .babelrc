@@ -8,6 +8,6 @@
     "react-hot-loader/babel",
     "transform-class-properties",
     "syntax-dynamic-import",
-    ["relay", { "schema": "copnfiguration/graphql/schema.graphql" }]
+    ["relay", { "schema": "copnfiguration/units/urb-base-server/graphql/schema.graphql" }]
   ]
 }

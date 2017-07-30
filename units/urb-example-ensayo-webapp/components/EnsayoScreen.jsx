@@ -10,7 +10,7 @@ import { createFragmentContainer, graphql } from 'react-relay'
 
 import EnsayoAddMutation from '../../urb-example-ensayo-client/relay/EnsayoAddMutation'
 import EnsayoProperties from './EnsayoProperties'
-import ResponsiveContentArea from '../../../webapp/components/ResponsiveContentArea'
+import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
 const styleSheet = createStyleSheet(theme => ({
   card: {
@@ -27,6 +27,16 @@ class EnsayoScreen extends React.Component {
     relay: PropTypes.object.isRequired,
   }
 
+  state: {
+    propertiesIsOpen: boolean,
+  }
+
+  constructor(props: Object, context: Object) {
+    super(props, context)
+
+    this.state = { propertiesIsOpen: false }
+  }
+
   _handle_updateHandler_Ensayo = ensayoProperties => {
     const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = ensayoProperties
     const { relay, Viewer } = this.props
@@ -40,8 +50,12 @@ class EnsayoScreen extends React.Component {
     )
   }
 
+  _handle_handlerClose_Properties = () => {
+    this.setState({ propertiesIsOpen: false })
+  }
+
   _handle_onClick_Add = () => {
-    this.refs.EnsayoProperties._handle_Open()
+    this.setState({ propertiesIsOpen: true })
   }
 
   render() {
@@ -50,7 +64,7 @@ class EnsayoScreen extends React.Component {
     return (
       <ResponsiveContentArea>
         <Card className={classes.card}>
-          <CardHeader title="Ensayo" subtitle="List of essays" />
+          <CardHeader title="Ensayo" subheader="List of essays" />
 
           <div className={classes.addNewButton}>
             <Button
@@ -66,11 +80,12 @@ class EnsayoScreen extends React.Component {
           {this.props.children}
 
           <EnsayoProperties
-            ref="EnsayoProperties"
-            Ensayo_Content={''}
-            Ensayo_Title={''}
-            Ensayo_Description={''}
-            updateHandler={this._handle_updateHandler_Ensayo}
+            Ensayo_Title=""
+            Ensayo_Content=""
+            Ensayo_Description=""
+            handlerUpdate={this._handle_updateHandler_Ensayo}
+            handlerClose={this._handle_handlerClose_Properties}
+            open={this.state.propertiesIsOpen}
           />
         </Card>
       </ResponsiveContentArea>
