@@ -51,6 +51,8 @@ class ToDo_Properties extends React.Component {
   }
 
   render() {
+    const { ToDo_Text } = this.state
+
     return (
       <div>
         <Dialog open={this.props.open} onRequestClose={this._handle_Close}>
@@ -59,7 +61,7 @@ class ToDo_Properties extends React.Component {
             <TextField
               label="To Do"
               fullWidth={true}
-              value={this.state.ToDo_Text}
+              value={ToDo_Text}
               onChange={event => this.setState({ ToDo_Text: event.target.value })}
             />
           </DialogContent>

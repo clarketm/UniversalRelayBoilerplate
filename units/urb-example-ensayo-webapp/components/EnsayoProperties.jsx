@@ -72,6 +72,8 @@ export default class EnsayoProperties extends React.Component {
   }
 
   render() {
+    const { Ensayo_Title, Ensayo_Description } = this.state
+
     return (
       <div>
         <Dialog open={this.props.open} onRequestClose={this._handle_Close}>
@@ -79,16 +81,16 @@ export default class EnsayoProperties extends React.Component {
 
           <DialogContent>
             <TextField
-              ref="Ensayo_Title"
-              defaultValue={this.props.Ensayo_Title}
-              floatingLabelText="Title"
+              label="Title"
               fullWidth={true}
+              value={Ensayo_Title}
+              onChange={event => this.setState({ Ensayo_Title: event.target.value })}
             />
             <TextField
-              ref="Ensayo_Description"
-              defaultValue={this.props.Ensayo_Description}
-              floatingLabelText="Description"
+              label="Description"
               fullWidth={true}
+              value={Ensayo_Description}
+              onChange={event => this.setState({ Ensayo_Description: event.target.value })}
             />
             <div
               style={{
