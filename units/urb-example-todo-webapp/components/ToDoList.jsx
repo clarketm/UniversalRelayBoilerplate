@@ -23,7 +23,7 @@ const styleSheet = createStyleSheet('CheckboxList', theme => ({
 const contextTypes = {
   relay: PropTypes.shape({
     variables: PropTypes.shape({
-      status: PropTypes.string.isRequired,
+      status: PropTypes.String.isRequired,
     }).isRequired,
   }).isRequired,
   router: PropTypes.object.isRequired,

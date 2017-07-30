@@ -24,8 +24,8 @@ class ToDo_Properties extends React.Component {
   }
 
   propTypes: {
-    ToDo_Text: PropTypes.string.isRequired,
-    open: PropTypes.boolean.isRequired,
+    ToDo_Text: PropTypes.String.isRequired,
+    open: PropTypes.Boolean.isRequired,
     handlerUpdate: PropTypes.func.isRequired,
     handlerClose: PropTypes.func.isRequired,
   }
