@@ -17,6 +17,12 @@ const styleSheet = createStyleSheet(theme => ({
   formControl: {
     margin: theme.spacing.unit,
   },
+  richTextContainer: {
+    width: '100%',
+    height: 300,
+    display: 'inline-block',
+    position: 'relative',
+  },
 }))
 
 export default class EnsayoProperties extends React.Component {
@@ -32,8 +38,7 @@ export default class EnsayoProperties extends React.Component {
   state: {
     Ensayo_Title: string,
     Ensayo_Description: string,
-    Ensayo_Content: string,
-    RichTextEditorValue: Object,
+    Ensayo_Content_RTE: Object,
   }
 
   constructor(props: Object, context: Object) {
@@ -44,16 +49,15 @@ export default class EnsayoProperties extends React.Component {
     this.state = {
       Ensayo_Title,
       Ensayo_Description,
-      Ensayo_Content,
-      RichTextEditorValue: RichTextEditor
+      Ensayo_Content_RTE: RichTextEditor
         ? RichTextEditor.createValueFromString(Ensayo_Content, 'html')
         : {},
     }
   }
 
-  _handle_OnChange_RTE = value => {
+  _handle_OnChange_RTE_Ensayo_Content = value => {
     this.setState({
-      RichTextEditorValue: value,
+      Ensayo_Content_RTE: value,
     })
   }
 
@@ -63,15 +67,16 @@ export default class EnsayoProperties extends React.Component {
 
   _handle_OK = () => {
     this.props.handlerUpdate({
-      Ensayo_Content: this.state.RichTextEditorValue.toString('html'),
       Ensayo_Title: this.refs.Ensayo_Title.getValue(),
       Ensayo_Description: this.refs.Ensayo_Description.getValue(),
+      Ensayo_Content: this.state.Ensayo_Content_RTE.toString('html'),
     })
 
     this.props.handlerClose()
   }
 
   render() {
+    const classes = this.props.classes
     const { Ensayo_Title, Ensayo_Description } = this.state
 
     return (
@@ -92,19 +97,12 @@ export default class EnsayoProperties extends React.Component {
               value={Ensayo_Description}
               onChange={event => this.setState({ Ensayo_Description: event.target.value })}
             />
-            <div
-              style={{
-                width: '100%',
-                height: 300,
-                display: 'inline-block',
-                position: 'relative',
-              }}
-            >
+            <div className={classes.richTextContainer}>
               {RichTextEditor == null
                 ? <div />
                 : <RichTextEditor
-                    value={this.state.RichTextEditorValue}
-                    onChange={this._handle_OnChange_RTE}
+                    value={this.state.Ensayo_Content_RTE}
+                    onChange={this._handle_OnChange_RTE_Ensayo_Content}
                   />}
             </div>
           </DialogContent>
