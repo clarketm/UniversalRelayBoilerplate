@@ -19,10 +19,20 @@ class EnsayoItem extends React.Component {
     relay: PropTypes.object.isRequired,
   }
 
-  state = {
-    anchorEl: undefined,
-    MenuIsOpen: false,
-    PropertiesIsOpen: false,
+  state: {
+    anchorEl: ?Object,
+    menuIsOpen: boolean,
+    propertiesIsOpen: boolean,
+  }
+
+  constructor(props: Object, context: Object) {
+    super(props, context)
+
+    this.state = {
+      anchorEl: undefined,
+      menuIsOpen: false,
+      propertiesIsOpen: false,
+    }
   }
 
   _handle_handlerUpdate_Properties = ensayoProperties => {
@@ -39,19 +49,19 @@ class EnsayoItem extends React.Component {
   }
 
   _handle_handlerClose_Properties = () => {
-    this.setState({ PropertiesIsOpen: false })
+    this.setState({ propertiesIsOpen: false })
   }
 
   handleClickListItem = event => {
-    this.setState({ MenuIsOpen: true, anchorEl: event.currentTarget })
+    this.setState({ menuIsOpen: true, anchorEl: event.currentTarget })
   }
 
   _handle_Menu_onClick_Edit = event => {
-    this.setState({ MenuIsOpen: false, PropertiesIsOpen: true })
+    this.setState({ menuIsOpen: false, propertiesIsOpen: true })
   }
 
   _handle_Menu_onClick_Delete = event => {
-    this.setState({ MenuIsOpen: false })
+    this.setState({ menuIsOpen: false })
 
     const { relay, Viewer, Ensayo } = this.props
 
@@ -59,7 +69,7 @@ class EnsayoItem extends React.Component {
   }
 
   handleRequestClose = () => {
-    this.setState({ MenuIsOpen: false })
+    this.setState({ menuIsOpen: false })
   }
 
   render() {
@@ -81,7 +91,7 @@ class EnsayoItem extends React.Component {
           Ensayo_Content={Ensayo_Content}
           handlerUpdate={this._handle_handlerUpdate_Properties}
           handlerClose={this._handle_handlerClose_Properties}
-          open={this.state.PropertiesIsOpen}
+          open={this.state.propertiesIsOpen}
         />
       </div>
     )
