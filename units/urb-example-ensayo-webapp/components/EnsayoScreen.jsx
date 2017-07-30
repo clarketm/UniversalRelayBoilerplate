@@ -12,14 +12,14 @@ import EnsayoAddMutation from '../../urb-example-ensayo-client/relay/EnsayoAddMu
 import EnsayoProperties from './EnsayoProperties'
 import ResponsiveContentArea from '../../../webapp/components/ResponsiveContentArea'
 
-const styleSheet = createStyleSheet('SimpleCard', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   card: {
     minWidth: 275,
   },
 }))
 
 class EnsayoScreen extends React.Component {
-  propTypes: {
+  static propTypes = {
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,

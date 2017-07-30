@@ -12,7 +12,7 @@ import Tabs, { Tab } from 'material-ui/Tabs'
 import ToDoListUpdateMarkAllMutation from '../../urb-example-todo-client/relay/ToDoListUpdateMarkAllMutation'
 import ToDoItem from './ToDoItem'
 
-const styleSheet = createStyleSheet('CheckboxList', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -30,7 +30,7 @@ const contextTypes = {
 }
 
 class ToDoList extends React.Component {
-  propTypes: {
+  static propTypes = {
     Viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
   }

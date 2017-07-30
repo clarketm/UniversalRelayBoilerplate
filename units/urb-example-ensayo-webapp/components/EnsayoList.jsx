@@ -8,7 +8,7 @@ import { createFragmentContainer, graphql } from 'react-relay'
 
 import EnsayoItem from './EnsayoItem'
 
-const styleSheet = createStyleSheet('CheckboxList', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -17,7 +17,7 @@ const styleSheet = createStyleSheet('CheckboxList', theme => ({
 }))
 
 class EnsayoList extends React.Component {
-  propTypes: {
+  static propTypes = {
     Viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
   }

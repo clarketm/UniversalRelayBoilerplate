@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
 
-const styleSheet = createStyleSheet('AppFrame', theme => ({}))
+const styleSheet = createStyleSheet(theme => ({}))
 
 class AppFrame extends Component {
   render() {

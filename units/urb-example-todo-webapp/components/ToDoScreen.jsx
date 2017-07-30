@@ -10,14 +10,14 @@ import TextField from 'material-ui/TextField'
 import ResponsiveContentArea from '../../../webapp/components/ResponsiveContentArea'
 import ToDoAddMutation from '../../urb-example-todo-client/relay/ToDoAddMutation'
 
-const styleSheet = createStyleSheet('SimpleCard', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   card: {
     minWidth: 275,
   },
 }))
 
 class ToDoScreen extends React.Component {
-  propTypes: {
+  static propTypes = {
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,

@@ -1,7 +1,7 @@
 // @flow
 
 import Button from 'material-ui/Button'
-import Dialog from 'material-ui/Dialog'
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -9,7 +9,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles'
 
 const RichTextEditor = typeof document !== 'undefined' ? require('react-rte').default : null
 
-const styleSheet = createStyleSheet('ComposedTextField', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -20,10 +20,6 @@ const styleSheet = createStyleSheet('ComposedTextField', theme => ({
 }))
 
 export default class EnsayoProperties extends React.Component {
-  state: {
-    RichTextEditorValue: Object,
-  }
-
   static propTypes = {
     Ensayo_Title: PropTypes.String.isRequired,
     Ensayo_Description: PropTypes.String.isRequired,
@@ -33,12 +29,24 @@ export default class EnsayoProperties extends React.Component {
     handlerClose: PropTypes.func.isRequired,
   }
 
+  state: {
+    Ensayo_Title: string,
+    Ensayo_Description: string,
+    Ensayo_Content: string,
+    RichTextEditorValue: Object,
+  }
+
   constructor(props: Object, context: Object) {
     super(props, context)
 
+    const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = this.props
+
     this.state = {
+      Ensayo_Title,
+      Ensayo_Description,
+      Ensayo_Content,
       RichTextEditorValue: RichTextEditor
-        ? RichTextEditor.createValueFromString(this.props.Ensayo_Content, 'html')
+        ? RichTextEditor.createValueFromString(Ensayo_Content, 'html')
         : {},
     }
   }
@@ -66,46 +74,44 @@ export default class EnsayoProperties extends React.Component {
   render() {
     return (
       <div>
-        <Dialog
-          open={this.state.this.props.open}
-          title="Ensayo"
-          actions={[
-            <FlatButton key="Cancel" label="Cancel" onTouchTap={this._handle_onTouchTap_Cancel} />,
-            <FlatButton
-              key="OK"
-              label="OK"
-              primary={true}
-              onTouchTap={this._handle_onTouchTap_OK}
-            />,
-          ]}
-        >
-          <TextField
-            ref="Ensayo_Title"
-            defaultValue={this.props.Ensayo_Title}
-            floatingLabelText="Title"
-            fullWidth={true}
-          />
-          <TextField
-            ref="Ensayo_Description"
-            defaultValue={this.props.Ensayo_Description}
-            floatingLabelText="Description"
-            fullWidth={true}
-          />
-          <div
-            style={{
-              width: '100%',
-              height: 300,
-              display: 'inline-block',
-              position: 'relative',
-            }}
-          >
-            {RichTextEditor == null
-              ? <div />
-              : <RichTextEditor
-                  value={this.state.RichTextEditorValue}
-                  onChange={this._handle_OnChange_RTE}
-                />}
-          </div>
+        <Dialog open={this.props.open} onRequestClose={this._handle_Close}>
+          <DialogTitle>Ensayo</DialogTitle>
+
+          <DialogContent>
+            <TextField
+              ref="Ensayo_Title"
+              defaultValue={this.props.Ensayo_Title}
+              floatingLabelText="Title"
+              fullWidth={true}
+            />
+            <TextField
+              ref="Ensayo_Description"
+              defaultValue={this.props.Ensayo_Description}
+              floatingLabelText="Description"
+              fullWidth={true}
+            />
+            <div
+              style={{
+                width: '100%',
+                height: 300,
+                display: 'inline-block',
+                position: 'relative',
+              }}
+            >
+              {RichTextEditor == null
+                ? <div />
+                : <RichTextEditor
+                    value={this.state.RichTextEditorValue}
+                    onChange={this._handle_OnChange_RTE}
+                  />}
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this._handle_Close}>Cancel</Button>
+            <Button onClick={this._handle_OK} color="primary">
+              OK
+            </Button>
+          </DialogActions>
         </Dialog>
       </div>
     )

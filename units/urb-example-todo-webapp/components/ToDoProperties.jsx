@@ -8,7 +8,7 @@ import React from 'react'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 
-const styleSheet = createStyleSheet('ComposedTextField', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -19,22 +19,24 @@ const styleSheet = createStyleSheet('ComposedTextField', theme => ({
 }))
 
 class ToDo_Properties extends React.Component {
-  state: {
-    ToDo_Text: string,
-  }
-
-  propTypes: {
+  static propTypes = {
     ToDo_Text: PropTypes.String.isRequired,
     open: PropTypes.Boolean.isRequired,
     handlerUpdate: PropTypes.func.isRequired,
     handlerClose: PropTypes.func.isRequired,
   }
 
+  state: {
+    ToDo_Text: string,
+  }
+
   constructor(props: Object, context: Object) {
     super(props, context)
 
+    const { ToDo_Text } = this.props
+
     this.state = {
-      ToDo_Text: props.ToDo_Text,
+      ToDo_Text,
     }
   }
 

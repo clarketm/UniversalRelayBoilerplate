@@ -7,7 +7,7 @@ import spacing from 'material-ui/styles/spacing'
 
 import { LARGE, MEDIUM } from '../scripts/ViewportDimensions'
 
-const styleSheet = createStyleSheet('ResponseiveContentArea', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     paddingTop: spacing.unit,
     minHeight: 400,

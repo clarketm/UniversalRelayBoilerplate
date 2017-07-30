@@ -15,7 +15,7 @@ import ToDoUpdateRenameMutation from '../../urb-example-todo-client/relay/ToDoUp
 import ToDoProperties from './ToDoProperties'
 
 class ToDoItem extends React.Component {
-  propTypes: {
+  static propTypes = {
     Viewer: PropTypes.object.isRequired,
     ToDo: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,

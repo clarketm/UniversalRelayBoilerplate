@@ -13,7 +13,7 @@ import EnsayoProperties from './EnsayoProperties'
 import EnsayoUpdateMutation from '../../urb-example-ensayo-client/relay/EnsayoUpdateMutation'
 
 class EnsayoItem extends React.Component {
-  propTypes: {
+  static propTypes = {
     Viewer: PropTypes.object.isRequired,
     Ensayo: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
