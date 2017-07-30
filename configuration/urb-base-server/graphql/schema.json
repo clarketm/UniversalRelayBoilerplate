@@ -1001,20 +1001,6 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "Ensayo_Content",
-              "description": null,
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
               "name": "Ensayo_Title",
               "description": null,
               "type": {
@@ -1030,6 +1016,20 @@
             },
             {
               "name": "Ensayo_Description",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "Ensayo_Content",
               "description": null,
               "type": {
                 "kind": "NON_NULL",
@@ -1207,20 +1207,6 @@
               "defaultValue": null
             },
             {
-              "name": "Ensayo_Content",
-              "description": null,
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
               "name": "Ensayo_Title",
               "description": null,
               "type": {
@@ -1236,6 +1222,20 @@
             },
             {
               "name": "Ensayo_Description",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "Ensayo_Content",
               "description": null,
               "type": {
                 "kind": "NON_NULL",

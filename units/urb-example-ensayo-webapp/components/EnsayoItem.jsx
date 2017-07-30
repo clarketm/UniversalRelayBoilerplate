@@ -85,6 +85,19 @@ class EnsayoItem extends React.Component {
         >
           <ListItemText primary={Ensayo_Title} secondary={Ensayo_Description} />
         </ListItem>
+        <Menu
+          id="lock-menu"
+          anchorEl={this.state.anchorEl}
+          open={this.state.menuIsOpen}
+          onRequestClose={this.handleRequestClose}
+        >
+          <MenuItem key="edit" onClick={event => this._handle_Menu_onClick_Edit(event)}>
+            Edit
+          </MenuItem>
+          <MenuItem key="delete" onClick={event => this._handle_Menu_onClick_Delete(event)}>
+            Delete
+          </MenuItem>
+        </Menu>
         <EnsayoProperties
           Ensayo_Title={Ensayo_Title}
           Ensayo_Description={Ensayo_Description}

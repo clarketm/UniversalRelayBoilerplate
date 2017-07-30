@@ -7,9 +7,9 @@ type Ensayo implements Node {
 }
 
 input EnsayoAddInput {
-  Ensayo_Content: String!
   Ensayo_Title: String!
   Ensayo_Description: String!
+  Ensayo_Content: String!
   clientMutationId: String
 }
 
@@ -50,9 +50,9 @@ type EnsayosEdge {
 
 input EnsayoUpdateInput {
   id: ID!
-  Ensayo_Content: String!
   Ensayo_Title: String!
   Ensayo_Description: String!
+  Ensayo_Content: String!
   clientMutationId: String
 }
 

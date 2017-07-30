@@ -10,9 +10,9 @@ export default mutationWithClientMutationId({
 
   inputFields: {
     id: { type: new GraphQLNonNull(GraphQLID) },
-    Ensayo_Content: { type: new GraphQLNonNull(GraphQLString) },
     Ensayo_Title: { type: new GraphQLNonNull(GraphQLString) },
     Ensayo_Description: { type: new GraphQLNonNull(GraphQLString) },
+    Ensayo_Content: { type: new GraphQLNonNull(GraphQLString) },
   },
 
   outputFields: {
@@ -24,7 +24,7 @@ export default mutationWithClientMutationId({
   },
 
   mutateAndGetPayload: async (
-    { id, Ensayo_Content, Ensayo_Title, Ensayo_Description },
+    { id, Ensayo_Title, Ensayo_Description, Ensayo_Content },
     context,
     { rootValue: objectManager },
   ) => {
@@ -32,9 +32,9 @@ export default mutationWithClientMutationId({
 
     await objectManager.update('Ensayo', {
       id: local_id,
-      Ensayo_Content,
       Ensayo_Title,
       Ensayo_Description,
+      Ensayo_Content,
     })
 
     return { local_id }

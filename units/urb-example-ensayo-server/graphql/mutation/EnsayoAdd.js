@@ -10,9 +10,9 @@ export default mutationWithClientMutationId({
   name: 'EnsayoAdd',
 
   inputFields: {
-    Ensayo_Content: { type: new GraphQLNonNull(GraphQLString) },
     Ensayo_Title: { type: new GraphQLNonNull(GraphQLString) },
     Ensayo_Description: { type: new GraphQLNonNull(GraphQLString) },
+    Ensayo_Content: { type: new GraphQLNonNull(GraphQLString) },
   },
 
   outputFields: {
@@ -21,7 +21,7 @@ export default mutationWithClientMutationId({
       resolve: async ({ local_id }, { ...args }, context, { rootValue: objectManager }) => {
         const an_Object = await objectManager.getOneObject('Ensayo', { id: local_id })
 
-        const arr = objectManager.getObjectList('Ensayo', {
+        const arr = await objectManager.getObjectList('Ensayo', {
           Ensayo_User_id: objectManager.getViewerUserId(),
         })
 
@@ -40,15 +40,15 @@ export default mutationWithClientMutationId({
   },
 
   mutateAndGetPayload: async (
-    { Ensayo_Content, Ensayo_Title, Ensayo_Description },
+    { Ensayo_Title, Ensayo_Description, Ensayo_Content },
     context,
     { rootValue: objectManager },
   ) => {
     const local_id = await objectManager.add('Ensayo', {
       Ensayo_User_id: objectManager.getViewerUserId(),
-      Ensayo_Content,
       Ensayo_Title,
       Ensayo_Description,
+      Ensayo_Content,
     })
     return { local_id }
   },
