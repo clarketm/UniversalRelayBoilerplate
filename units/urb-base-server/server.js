@@ -8,7 +8,7 @@ import graphQLHTTP from 'express-graphql'
 
 import graphql from './graphQL' // GraphQL server
 import ObjectManager from './graphql/ObjectManager'
-import webapp from '../../webapp/server' // Isomorphic React server
+import webapp from '../urb-base-webapp/server' // Isomorphic React server
 
 // Read environment
 require('dotenv').load()

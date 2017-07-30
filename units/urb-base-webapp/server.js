@@ -7,7 +7,7 @@ import { getFarceResult } from 'found/lib/server'
 import ReactDOMServer from 'react-dom/server'
 import serialize from 'serialize-javascript'
 
-import { ServerFetcher } from '../scripts/fetcher'
+import { ServerFetcher } from '../urb-base-universal/scripts/fetcher'
 import { createResolver, historyMiddlewares, render, routeConfig } from './router'
 import Wrapper from './components/Wrapper'
 

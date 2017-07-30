@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Relay from 'react-relay'
 
-import ResponsiveContentArea from '../../../webapp/components/ResponsiveContentArea'
+import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
 class EnsayoPublicList extends React.Component {
   _handle_onClick(id) {

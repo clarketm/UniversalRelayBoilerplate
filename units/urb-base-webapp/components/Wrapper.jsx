@@ -1,16 +1,12 @@
 // @flow
 
+import createPalette from 'material-ui/styles/palette'
 import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import EventListener from 'react-event-listener'
 
-import createPalette from 'material-ui/styles/palette'
-
-// import muiTheme from '../../configuration/webapp/muiTheme'
 import ViewportDimensions from '../scripts/ViewportDimensions'
-
-//
 
 export default class Wrapper extends React.Component {
   muiTheme: Object

@@ -1,12 +1,12 @@
 // @flow
 
-import { Card, CardHeader, CardText } from 'material-ui/Card'
+import Card, { CardHeader } from 'material-ui/Card'
 import Helmet from 'react-helmet'
 import { Parser } from 'html-to-react'
 import React from 'react'
 import Relay from 'react-relay'
 
-import ResponsiveContentArea from '../../../webapp/components/ResponsiveContentArea'
+import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
 class EnsayoPublicItem extends React.Component {
   render() {

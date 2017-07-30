@@ -5,7 +5,7 @@ import express from 'express'
 import graphQLHTTP from 'express-graphql'
 
 import { getUserByCookie, verifyUserAuthToken, serveAuthenticationFailed } from './checkCredentials'
-import { getSiteInformation } from '../../configuration/webapp/siteSettings'
+import { getSiteInformation } from '../../configuration/urb-base-webapp/siteSettings'
 import logServerRequest from './logServerRequest'
 import { getObjectManager } from './graphql/ObjectManager'
 import { requestLoggerGraphQL } from '../../configuration/urb-base-server/requestLoggers'

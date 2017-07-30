@@ -10,7 +10,7 @@ import { createFragmentContainer, graphql } from 'react-relay'
 
 import EnsayoAddMutation from '../../urb-example-ensayo-client/relay/EnsayoAddMutation'
 import EnsayoProperties from './EnsayoProperties'
-import ResponsiveContentArea from '../../../webapp/components/ResponsiveContentArea'
+import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
 const styleSheet = createStyleSheet(theme => ({
   card: {

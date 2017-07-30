@@ -1,3 +1,5 @@
+// @flow weak
+
 import queryMiddleware from 'farce/lib/queryMiddleware'
 import createRender from 'found/lib/createRender'
 import makeRouteConfig from 'found/lib/makeRouteConfig'
@@ -8,10 +10,10 @@ import { graphql } from 'react-relay'
 import { Environment, Network, RecordSource, Store } from 'relay-runtime'
 
 import AppFrame from './components/AppFrame'
-import EnsayoList from '../units/urb-example-ensayo-webapp/components/EnsayoList'
-import EnsayoScreen from '../units/urb-example-ensayo-webapp/components/EnsayoScreen'
-import ToDoScreen from '../units/urb-example-todo-webapp/components/ToDoScreen'
-import ToDoList from '../units/urb-example-todo-webapp/components/ToDoList'
+import EnsayoList from '../urb-example-ensayo-webapp/components/EnsayoList'
+import EnsayoScreen from '../urb-example-ensayo-webapp/components/EnsayoScreen'
+import ToDoScreen from '../urb-example-todo-webapp/components/ToDoScreen'
+import ToDoList from '../urb-example-todo-webapp/components/ToDoList'
 
 export const historyMiddlewares = [queryMiddleware]
 

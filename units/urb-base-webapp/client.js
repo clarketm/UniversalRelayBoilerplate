@@ -8,7 +8,7 @@ import createInitialFarceRouter from 'found/lib/createInitialFarceRouter'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { ClientFetcher } from '../scripts/fetcher'
+import { ClientFetcher } from '../urb-base-universal/scripts/fetcher'
 import { createResolver, historyMiddlewares, render, routeConfig } from './router'
 import Wrapper from './components/Wrapper'
 
