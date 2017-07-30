@@ -7,7 +7,6 @@ const supportedPersisters = {
   cassandra: '../../units/urb-persister-cassandra/graphql/PersisterCassandra',
   dynamodb: '../../units/urb-persister-dynamodb/graphql/PersisterDynamoDB',
   memory: '../../units/urb-persister-memory/graphql/PersisterMemory',
-  waterline: '../../units/urb-persister-waterline/graphql/PersisterWaterline',
 }
 
 function updateDefaultPersister(fileName) {
