@@ -1,3 +1,5 @@
+// @flow weak
+
 import 'isomorphic-fetch'
 
 // TODO: Update this when someone releases a real, production-quality solution
@@ -5,7 +7,10 @@ import 'isomorphic-fetch'
 // enough to get things working.
 
 class FetcherBase {
-  constructor(url) {
+  url: string
+  payloads: Array<any>
+
+  constructor(url: string) {
     this.url = url
   }
 

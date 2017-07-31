@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 
-import AppRegistryName from '../configuration/app/AppRegistryName'
+import AppRegistryName from '../../configuration/app/AppRegistryName'
 import getLocalIP from './getLocalIP'
 
 // Read environment

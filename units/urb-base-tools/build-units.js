@@ -3,19 +3,25 @@
 import fs from 'fs'
 import path from 'path'
 
-const currentPackageJson = JSON.parse('' + fs.readFileSync('./package.json'))
-const packageJson = JSON.parse(fs.readFileSync('./scripts/package.part.json'))
+const currentPackageJson = JSON.parse(fs.readFileSync('./package.json'))
+const packageJson = {
+  dependencies: {},
+  devDependencies: {},
+  engines: {},
+  metadata: {},
+  scripts: {},
+}
 
 function addToPackageJson(fileName) {
   const newPackageJson = JSON.parse(fs.readFileSync(fileName))
 
-  if (newPackageJson.scripts) Object.assign(packageJson.scripts, newPackageJson.scripts)
-
   if (newPackageJson.dependencies)
     Object.assign(packageJson.dependencies, newPackageJson.dependencies)
-
   if (newPackageJson.devDependencies)
     Object.assign(packageJson.devDependencies, newPackageJson.devDependencies)
+  if (newPackageJson.engines) Object.assign(packageJson.engines, newPackageJson.engines)
+  if (newPackageJson.metadata) Object.assign(packageJson.metadata, newPackageJson.metadata)
+  if (newPackageJson.scripts) Object.assign(packageJson.scripts, newPackageJson.scripts)
 }
 
 function getPackages(directoryName: string) {

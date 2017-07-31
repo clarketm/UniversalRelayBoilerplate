@@ -3,7 +3,7 @@ import fs from 'fs'
 // Read environment
 require('dotenv').load()
 
-import { version } from '../configuration/package.js'
+import { version } from '../../configuration/package.js'
 
 console.log('Current version in package.json: ' + process.env.npm_package_version)
 console.log('Current version in package.js:   ' + version)
