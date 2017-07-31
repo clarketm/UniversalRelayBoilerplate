@@ -10,6 +10,6 @@ const siteInformation = {
   },
 }
 
-export function getSiteInformation() {
+export function getSiteInformation(req: Object, res: Object) {
   return siteInformation
 }
