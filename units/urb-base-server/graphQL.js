@@ -9,7 +9,7 @@ import { getSiteInformation } from '../../configuration/urb-base-webapp/siteSett
 import logServerRequest from './logServerRequest'
 import { getObjectManager } from './graphql/ObjectManager'
 import { requestLoggerGraphQL } from '../../configuration/urb-base-server/requestLoggers'
-import schema from '../../units/urb-base-server/graphql/schema' // Schema for GraphQL server
+import schema from './graphql/schema' // Schema for GraphQL server
 
 // Guarantee that all object registrations and schema definitions are executed
 import _schemas_system from './graphql/model/_schemas'

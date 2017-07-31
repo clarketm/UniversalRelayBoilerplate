@@ -37,7 +37,7 @@ const config = {
   },
 
   output: {
-    path: path.resolve(`public/assets/${version}`),
+    path: path.resolve(`deployment/configuration/urb-base-server/public_files/assets/${version}`),
     filename: '[name].js',
     publicPath: `http://${host}:${port_webpack}/${version}/`,
   },
