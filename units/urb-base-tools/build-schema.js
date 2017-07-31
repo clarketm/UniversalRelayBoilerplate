@@ -7,13 +7,10 @@ import { introspectionQuery, printSchema } from 'graphql/utilities'
 
 import schema from '../urb-base-server/graphql/schema'
 
-let file_schema_json = path.join(
-  __dirname,
-  '../../configuration/urb-base-server/graphql/schema.json',
-)
+let file_schema_json = path.join(__dirname, '../_configuration/urb-base-server/graphql/schema.json')
 let file_schema_graphql = path.join(
   __dirname,
-  '../../configuration/urb-base-server/graphql/schema.graphql',
+  '../_configuration/urb-base-server/graphql/schema.graphql',
 )
 
 // Save JSON of full schema introspection for Babel Relay Plugin to use

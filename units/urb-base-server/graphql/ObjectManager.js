@@ -3,12 +3,12 @@
 import DataLoader from 'dataloader'
 import { cursorForObjectInConnection } from 'graphql-relay'
 
-import AnonymousUserToken2 from '../../../configuration/urb-base-server/AnonymousUserToken2'
-import defaultPersister from '../../../configuration/urb-base-server/graphql/defaultPersister'
-import getNewUser from '../../../configuration/urb-base-server/graphql/model/getNewUser'
-import { getSiteInformation } from '../../../configuration/urb-base-webapp/siteSettings'
+import AnonymousUserToken2 from '../../_configuration/urb-base-server/AnonymousUserToken2'
+import defaultPersister from '../../_configuration/urb-base-server/graphql/defaultPersister'
+import getNewUser from '../../_configuration/urb-base-server/graphql/model/getNewUser'
+import { getSiteInformation } from '../../_configuration/urb-base-webapp/siteSettings'
 import log from '../log'
-import User from '../../../configuration/urb-base-server/graphql/model/User'
+import User from '../../_configuration/urb-base-server/graphql/model/User'
 
 // Anonymous user
 const User_0 = new User(

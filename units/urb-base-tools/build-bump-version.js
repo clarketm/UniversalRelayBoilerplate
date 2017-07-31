@@ -3,7 +3,7 @@ import fs from 'fs'
 // Read environment
 require('dotenv').load()
 
-import { version } from '../../configuration/package.js'
+import { version } from '../_configuration/package.js'
 
 console.log('Current version in package.json: ' + process.env.npm_package_version)
 console.log('Current version in package.js:   ' + version)
@@ -15,7 +15,7 @@ if (versionBuildNumber == null) versionBuildNumber = 1
 versionBuildNumber++
 const newVersion = process.env.npm_package_version + '.' + versionBuildNumber
 
-const fileName = './configuration/package.js'
+const fileName = './units/_configuration/package.js'
 const searchString = 'export const version = '
 const newContentOfLine = "export const version = '" + newVersion + "'"
 

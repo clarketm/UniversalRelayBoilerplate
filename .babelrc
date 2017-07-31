@@ -6,6 +6,6 @@
     "react-hot-loader/babel",
     "transform-class-properties",
     "syntax-dynamic-import",
-    ["relay", { "schema": "configuration/urb-base-server/graphql/schema.graphql" }]
+    ["relay", { "schema": "units/_configuration/urb-base-server/graphql/schema.graphql" }]
   ]
 }
