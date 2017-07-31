@@ -2,5 +2,5 @@ Object.defineProperty(exports,"__esModule",{value:true});
 
 
 
-var debugPrintSiteInformationToConsole=exports.debugPrintSiteInformationToConsole=false;
+var debugWriteToConsoleServerRequestSiteInformation=exports.debugWriteToConsoleServerRequestSiteInformation=false;
 //# sourceMappingURL=debug.js.map
