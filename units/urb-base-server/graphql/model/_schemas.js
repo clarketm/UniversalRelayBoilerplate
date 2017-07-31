@@ -1,6 +1,6 @@
 // @flow
 
 import './logs.schema'
-import '../../../../configuration/urb-base-server/graphql/model/User.schema'
+import '../../../_configuration/urb-base-server/graphql/model/User.schema'
 
 export default true

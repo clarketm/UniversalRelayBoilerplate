@@ -8,7 +8,6 @@ var packageJson={
 dependencies:{},
 devDependencies:{},
 engines:{},
-metadata:{},
 scripts:{}};
 
 
@@ -173,7 +172,6 @@ _fs2.default.readdirSync(directoryName).filter(function(unitName){
 if(_fs2.default.statSync(directoryName+unitName).isDirectory()){
 try{
 var viewerFieldsImportName=unitName.replace(/-/g,'_');
-console.log(directoryName+unitName+'/graphql/type/_ViewerFields.js');
 if(_fs2.default.statSync(directoryName+unitName+'/graphql/type/_ViewerFields.js').isFile()){
 viewerFieldsImports.push(
 'import '+
@@ -220,5 +218,5 @@ viewerFields.join('\r\n'),
 createPackageJson();
 createMutations();
 createSchemas();
-createViewerFields();;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(currentPackageJson,'currentPackageJson','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(packageJson,'packageJson','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(addToPackageJson,'addToPackageJson','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(getPackages,'getPackages','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(sortObject,'sortObject','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(orderPackages,'orderPackages','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(createPackageJson,'createPackageJson','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(getMutations,'getMutations','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(createMutations,'createMutations','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(getSchemas,'getSchemas','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(createSchemas,'createSchemas','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(getViewerFields,'getViewerFields','units/urb-base-tools/build-units.js');__REACT_HOT_LOADER__.register(createViewerFields,'createViewerFields','units/urb-base-tools/build-units.js');}();;
+createViewerFields();
 //# sourceMappingURL=build-units.js.map

@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _jsxFileName='units/urb-base-webapp/components/Wrapper.jsx';var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
 var _palette=require('material-ui/styles/palette');var _palette2=_interopRequireDefault(_palette);
 var _styles=require('material-ui/styles');
@@ -43,17 +43,17 @@ props,context));_this.
 
 
 
-handle_onResize=function(){return _this.__handle_onResize__REACT_HOT_LOADER__.apply(_this,arguments);};_this.rbContext={};_this.rbContext.viewportDimensions=new _ViewportDimensions2.default();_this.muiTheme=(0,_styles.createMuiTheme)({palette:(0,_palette2.default)({type:'dark'})});return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbContext:this.rbContext};}},{key:'__handle_onResize__REACT_HOT_LOADER__',value:function __handle_onResize__REACT_HOT_LOADER__(){
-this.rbContext.viewportDimensions.handle_onResize();
-}},{key:'render',value:function render()
+handle_onResize=function(){
+_this.rbContext.viewportDimensions.handle_onResize();
+};_this.rbContext={};_this.rbContext.viewportDimensions=new _ViewportDimensions2.default();_this.muiTheme=(0,_styles.createMuiTheme)({palette:(0,_palette2.default)({type:'dark'})});return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbContext:this.rbContext};}},{key:'render',value:function render()
 
 {
 return(
-_react2.default.createElement(_reactEventListener2.default,{target:'window',onResize:this.handle_onResize,__source:{fileName:_jsxFileName,lineNumber:52}},
-_react2.default.createElement(_styles.MuiThemeProvider,{theme:this.muiTheme,__source:{fileName:_jsxFileName,lineNumber:53}},
+_react2.default.createElement(_reactEventListener2.default,{target:'window',onResize:this.handle_onResize},
+_react2.default.createElement(_styles.MuiThemeProvider,{theme:this.muiTheme},
 this.props.children)));
 
 
 
-}}]);return Wrapper;}(_react2.default.Component);Wrapper.childContextTypes={rbContext:_propTypes2.default.object};var _default=Wrapper;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(Wrapper,'Wrapper','units/urb-base-webapp/components/Wrapper.jsx');__REACT_HOT_LOADER__.register(_default,'default','units/urb-base-webapp/components/Wrapper.jsx');}();;
+}}]);return Wrapper;}(_react2.default.Component);Wrapper.childContextTypes={rbContext:_propTypes2.default.object};exports.default=Wrapper;
 //# sourceMappingURL=Wrapper.js.map

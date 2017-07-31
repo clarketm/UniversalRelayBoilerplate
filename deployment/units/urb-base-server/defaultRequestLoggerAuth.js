@@ -24,5 +24,5 @@ var logLevel=null;
 if((0,_matchInDepth2.default)(requestAndResponse,condition))logLevel='info';
 
 if(logLevel)_log2.default.log(logLevel,'Auth request',requestAndResponse);
-};var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(condition,'condition','units/urb-base-server/defaultRequestLoggerAuth.js');__REACT_HOT_LOADER__.register(defaultrequestLoggerAuth,'defaultrequestLoggerAuth','units/urb-base-server/defaultRequestLoggerAuth.js');}();;
+}
 //# sourceMappingURL=defaultRequestLoggerAuth.js.map

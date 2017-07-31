@@ -18,7 +18,7 @@ var defaultPersisterLogger=_defaultPersister2.default.createLogger();
 if(defaultPersisterLogger)transports.push(defaultPersisterLogger);
 
 
-var log=new _winston2.default.Logger({transports:transports});var _default=
+var log=new _winston2.default.Logger({transports:transports});exports.default=
 
-log;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(transports,'transports','units/urb-base-server/log.js');__REACT_HOT_LOADER__.register(defaultPersisterLogger,'defaultPersisterLogger','units/urb-base-server/log.js');__REACT_HOT_LOADER__.register(log,'log','units/urb-base-server/log.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-base-server/log.js');}();;
+log;
 //# sourceMappingURL=log.js.map

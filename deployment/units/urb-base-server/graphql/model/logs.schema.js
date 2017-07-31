@@ -10,8 +10,8 @@ level:'text',
 message:'text',
 meta:'text'},
 
-key:['key','date']});var _default=
+key:['key','date']});exports.default=
 
 
-true;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','units/urb-base-server/graphql/model/logs.schema.js');}();;
+true;
 //# sourceMappingURL=logs.schema.js.map

@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _jsxFileName='units/urb-example-todo-webapp/components/ToDoList.jsx';var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
 var _Checkbox=require('material-ui/Checkbox');var _Checkbox2=_interopRequireDefault(_Checkbox);
 var _Form=require('material-ui/Form');
@@ -35,34 +35,34 @@ ToDoList=function(_React$Component){_inherits(ToDoList,_React$Component);functio
 
 
 
-_handle_onClick_MarkAll=function(){var _this2;return(_this2=_this).___handle_onClick_MarkAll__REACT_HOT_LOADER__.apply(_this2,arguments);},_this.
+_handle_onClick_MarkAll=function(event,checked){var _this$props=
+_this.props,relay=_this$props.relay,Viewer=_this$props.Viewer;var
+variables=_this.context.relay.variables;
+var ToDo_Complete=checked;
 
+_ToDoListUpdateMarkAllMutation2.default.commit(
+relay.environment,
+Viewer,
+Viewer.ToDos,
+ToDo_Complete,
+variables.status);
 
+},_this.
 
-
-
-
-
-
-
-
-
-
-
-_handle_onChange=function(){var _this3;return(_this3=_this).___handle_onChange__REACT_HOT_LOADER__.apply(_this3,arguments);},_temp),_possibleConstructorReturn(_this,_ret);}_createClass(ToDoList,[{key:'___handle_onClick_MarkAll__REACT_HOT_LOADER__',value:function ___handle_onClick_MarkAll__REACT_HOT_LOADER__(event,checked){var _props=this.props,relay=_props.relay,Viewer=_props.Viewer;var variables=this.context.relay.variables;var ToDo_Complete=checked;_ToDoListUpdateMarkAllMutation2.default.commit(relay.environment,Viewer,Viewer.ToDos,ToDo_Complete,variables.status);}},{key:'___handle_onChange__REACT_HOT_LOADER__',value:function ___handle_onChange__REACT_HOT_LOADER__(event,index){
+_handle_onChange=function(event,index){
 var url=index===2?'/todo/completed':index===1?'/todo/active':'/todo';
-this.context.router.push(url);
-}},{key:'renderTabs',value:function renderTabs()
+_this.context.router.push(url);
+},_temp),_possibleConstructorReturn(_this,_ret);}_createClass(ToDoList,[{key:'renderTabs',value:function renderTabs()
 
 {
 var status=this.context.relay.variables.status;
 var index=status==='active'?1:status==='completed'?2:0;
 
 return(
-_react2.default.createElement(_Tabs2.default,{index:index,onChange:this._handle_onChange,__source:{fileName:_jsxFileName,lineNumber:62}},
-_react2.default.createElement(_Tabs.Tab,{label:'All',__source:{fileName:_jsxFileName,lineNumber:63}}),
-_react2.default.createElement(_Tabs.Tab,{label:'Active',__source:{fileName:_jsxFileName,lineNumber:64}}),
-_react2.default.createElement(_Tabs.Tab,{label:'Completed',__source:{fileName:_jsxFileName,lineNumber:65}})));
+_react2.default.createElement(_Tabs2.default,{index:index,onChange:this._handle_onChange},
+_react2.default.createElement(_Tabs.Tab,{label:'All'}),
+_react2.default.createElement(_Tabs.Tab,{label:'Active'}),
+_react2.default.createElement(_Tabs.Tab,{label:'Completed'})));
 
 
 }},{key:'render',value:function render()
@@ -76,29 +76,29 @@ return null;
 }
 
 return(
-_react2.default.createElement('div',{__source:{fileName:_jsxFileName,lineNumber:79}},
+_react2.default.createElement('div',null,
 this.renderTabs(),
-_react2.default.createElement(_Form.FormGroup,{row:true,__source:{fileName:_jsxFileName,lineNumber:81}},
+_react2.default.createElement(_Form.FormGroup,{row:true},
 _react2.default.createElement(_Form.FormControlLabel,{
 control:
 _react2.default.createElement(_Checkbox2.default,{
 checked:ToDo_TotalCount===ToDo_CompletedCount,
-onChange:this._handle_onClick_MarkAll,__source:{fileName:_jsxFileName,lineNumber:84}}),
+onChange:this._handle_onClick_MarkAll}),
 
 
-label:'Mark all as complete',__source:{fileName:_jsxFileName,lineNumber:82}})),
+label:'Mark all as complete'})),
 
 
-_react2.default.createElement(_List2.default,{__source:{fileName:_jsxFileName,lineNumber:92}},
-ToDos.edges.map(function(_ref2){var node=_ref2.node;return _react2.default.createElement(_ToDoItem2.default,{key:node.id,Viewer:Viewer,ToDo:node,__source:{fileName:_jsxFileName,lineNumber:93}});}))));
+_react2.default.createElement(_List2.default,null,
+ToDos.edges.map(function(_ref2){var node=_ref2.node;return _react2.default.createElement(_ToDoItem2.default,{key:node.id,Viewer:Viewer,ToDo:node});}))));
 
 
 
 }}]);return ToDoList;}(_react2.default.Component);ToDoList.propTypes={Viewer:_propTypes2.default.object.isRequired,relay:_propTypes2.default.object.isRequired};
 
 
-ToDoList.contextTypes=contextTypes;var _default=
+ToDoList.contextTypes=contextTypes;exports.default=
 
 (0,_reactRelay.createFragmentContainer)(
-(0,_styles.withStyles)(styleSheet)(ToDoList),{Viewer:function Viewer(){return require('./__generated__/ToDoList_Viewer.graphql');}});exports.default=_default;;var _temp2=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(styleSheet,'styleSheet','units/urb-example-todo-webapp/components/ToDoList.jsx');__REACT_HOT_LOADER__.register(contextTypes,'contextTypes','units/urb-example-todo-webapp/components/ToDoList.jsx');__REACT_HOT_LOADER__.register(ToDoList,'ToDoList','units/urb-example-todo-webapp/components/ToDoList.jsx');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-todo-webapp/components/ToDoList.jsx');}();;
+(0,_styles.withStyles)(styleSheet)(ToDoList),{Viewer:function Viewer(){return require('./__generated__/ToDoList_Viewer.graphql');}});
 //# sourceMappingURL=ToDoList.js.map

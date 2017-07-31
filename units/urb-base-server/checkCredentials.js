@@ -3,7 +3,7 @@
 import jwt from 'jwt-simple'
 import path from 'path'
 
-import defaultPersister from '../../configuration/urb-base-server/graphql/defaultPersister'
+import defaultPersister from '../_configuration/urb-base-server/graphql/defaultPersister'
 import log from './log'
 
 // Read environment
@@ -56,7 +56,7 @@ export function verifyUserAuthToken(a_User, req) {
 
 const httpError403FileName = path.resolve(
   __dirname,
-  '../configuration/units/urb-base-server/httpError/403.html',
+  '../_configuration/urb-base-server/httpError/403.html',
 )
 
 export function serveAuthenticationFailed(req, res, error, respondWithJSON) {

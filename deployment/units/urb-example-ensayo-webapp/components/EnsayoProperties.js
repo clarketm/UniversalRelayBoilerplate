@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _jsxFileName='units/urb-example-ensayo-webapp/components/EnsayoProperties.jsx';var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
 var _Dialog=require('material-ui/Dialog');var _Dialog2=_interopRequireDefault(_Dialog);
@@ -55,7 +55,7 @@ Ensayo_Description:Ensayo_Description};return _this;
 
 
 
-}_createClass(EnsayoProperties,[{key:'___handle_Close__REACT_HOT_LOADER__',value:function ___handle_Close__REACT_HOT_LOADER__()
+}_createClass(EnsayoProperties,[{key:'render',value:function render()
 
 
 
@@ -65,52 +65,52 @@ Ensayo_Description:Ensayo_Description};return _this;
 
 
 
-{
-this.props.handlerClose();
-}},{key:'___handle_OK__REACT_HOT_LOADER__',value:function ___handle_OK__REACT_HOT_LOADER__()
-
-{
-this.props.handlerUpdate({
-Ensayo_Title:this.state.Ensayo_Title,
-Ensayo_Description:this.state.Ensayo_Description,
-Ensayo_Content:''});
 
 
 
-this.props.handlerClose();
-}},{key:'render',value:function render()
+
+
+
+
+
+
+
+
+
+
+
 
 {var _this2=this;
 var classes=this.props.classes;var _state=
 this.state,Ensayo_Title=_state.Ensayo_Title,Ensayo_Description=_state.Ensayo_Description;
 
 return(
-_react2.default.createElement('div',{__source:{fileName:_jsxFileName,lineNumber:88}},
-_react2.default.createElement(_Dialog2.default,{open:this.props.open,onRequestClose:this._handle_Close,__source:{fileName:_jsxFileName,lineNumber:89}},
-_react2.default.createElement(_Dialog.DialogTitle,{__source:{fileName:_jsxFileName,lineNumber:90}},'Ensayo'),
+_react2.default.createElement('div',null,
+_react2.default.createElement(_Dialog2.default,{open:this.props.open,onRequestClose:this._handle_Close},
+_react2.default.createElement(_Dialog.DialogTitle,null,'Ensayo'),
 
-_react2.default.createElement(_Dialog.DialogContent,{__source:{fileName:_jsxFileName,lineNumber:92}},
+_react2.default.createElement(_Dialog.DialogContent,null,
 _react2.default.createElement(_TextField2.default,{
 label:'Title',
 fullWidth:true,
 value:Ensayo_Title,
-onChange:function onChange(event){return _this2.setState({Ensayo_Title:event.target.value});},__source:{fileName:_jsxFileName,lineNumber:93}}),
+onChange:function onChange(event){return _this2.setState({Ensayo_Title:event.target.value});}}),
 
 _react2.default.createElement(_TextField2.default,{
 label:'Description',
 fullWidth:true,
 value:Ensayo_Description,
-onChange:function onChange(event){return _this2.setState({Ensayo_Description:event.target.value});},__source:{fileName:_jsxFileName,lineNumber:99}})),
+onChange:function onChange(event){return _this2.setState({Ensayo_Description:event.target.value});}})),
 
 
-_react2.default.createElement(_Dialog.DialogActions,{__source:{fileName:_jsxFileName,lineNumber:106}},
-_react2.default.createElement(_Button2.default,{onClick:this._handle_Close,__source:{fileName:_jsxFileName,lineNumber:107}},'Cancel'),
-_react2.default.createElement(_Button2.default,{onClick:this._handle_OK,color:'primary',__source:{fileName:_jsxFileName,lineNumber:108}},'OK')))));
-
-
-
+_react2.default.createElement(_Dialog.DialogActions,null,
+_react2.default.createElement(_Button2.default,{onClick:this._handle_Close},'Cancel'),
+_react2.default.createElement(_Button2.default,{onClick:this._handle_OK,color:'primary'},'OK')))));
 
 
 
-}}]);return EnsayoProperties;}(_react2.default.Component);EnsayoProperties.propTypes={Ensayo_Title:_propTypes2.default.string.isRequired,Ensayo_Description:_propTypes2.default.string.isRequired,Ensayo_Content:_propTypes2.default.string.isRequired,open:_propTypes2.default.bool.isRequired,handlerUpdate:_propTypes2.default.func.isRequired,handlerClose:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){return _this3.___handle_Close__REACT_HOT_LOADER__.apply(_this3,arguments);};this._handle_OK=function(){return _this3.___handle_OK__REACT_HOT_LOADER__.apply(_this3,arguments);};};var _default=EnsayoProperties;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(styleSheet,'styleSheet','units/urb-example-ensayo-webapp/components/EnsayoProperties.jsx');__REACT_HOT_LOADER__.register(EnsayoProperties,'EnsayoProperties','units/urb-example-ensayo-webapp/components/EnsayoProperties.jsx');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-ensayo-webapp/components/EnsayoProperties.jsx');}();;
+
+
+
+}}]);return EnsayoProperties;}(_react2.default.Component);EnsayoProperties.propTypes={Ensayo_Title:_propTypes2.default.string.isRequired,Ensayo_Description:_propTypes2.default.string.isRequired,Ensayo_Content:_propTypes2.default.string.isRequired,open:_propTypes2.default.bool.isRequired,handlerUpdate:_propTypes2.default.func.isRequired,handlerClose:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_OK=function(){_this3.props.handlerUpdate({Ensayo_Title:_this3.state.Ensayo_Title,Ensayo_Description:_this3.state.Ensayo_Description,Ensayo_Content:''});_this3.props.handlerClose();};};exports.default=EnsayoProperties;
 //# sourceMappingURL=EnsayoProperties.js.map

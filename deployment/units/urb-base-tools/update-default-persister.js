@@ -39,5 +39,5 @@ console.error('Error: Default persister not specified. Specify default persister
 console.error('  npm run update-default-persister -- memory');
 console.error('Valid options are:');
 for(var name in supportedPersisters){console.error('  '+name);}
-};var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(supportedPersisters,'supportedPersisters','units/urb-base-tools/update-default-persister.js');__REACT_HOT_LOADER__.register(updateDefaultPersister,'updateDefaultPersister','units/urb-base-tools/update-default-persister.js');__REACT_HOT_LOADER__.register(persisterName,'persisterName','units/urb-base-tools/update-default-persister.js');__REACT_HOT_LOADER__.register(persisterFileName,'persisterFileName','units/urb-base-tools/update-default-persister.js');}();;
+}
 //# sourceMappingURL=update-default-persister.js.map

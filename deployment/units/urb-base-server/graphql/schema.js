@@ -13,7 +13,7 @@ query:_QueryType2.default,
 mutation:_MutationType2.default});
 
 
-(0,_graphQLError.maskErrors)(schema);var _default=
+(0,_graphQLError.maskErrors)(schema);exports.default=
 
-schema;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(schema,'schema','units/urb-base-server/graphql/schema.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-base-server/graphql/schema.js');}();;
+schema;
 //# sourceMappingURL=schema.js.map

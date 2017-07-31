@@ -5,8 +5,11 @@ import 'babel-polyfill'
 
 import express from 'express'
 import graphQLHTTP from 'express-graphql'
+import path from 'path'
 
+import auth from './auth' // Authentication server
 import graphql from './graphQL' // GraphQL server
+import healthz from './healthz' // Health check endpoint server
 import ObjectManager from './graphql/ObjectManager'
 import webapp from '../urb-base-webapp/server' // Isomorphic React server
 
@@ -19,6 +22,20 @@ const router = express()
 
 // GraphQL server
 router.use('/graphql', graphql)
+
+// Authentication server
+router.use('/auth', auth)
+
+// Health check endpoint
+router.use('/healthz', healthz)
+
+// Static assets server
+let oneYear = 365 * 86400000
+router.use(
+  express.static(path.resolve(__dirname + '/../_configuration/urb-base-server/public_files/'), {
+    maxAge: oneYear,
+  }),
+)
 
 // Application with routes
 router.use(webapp)

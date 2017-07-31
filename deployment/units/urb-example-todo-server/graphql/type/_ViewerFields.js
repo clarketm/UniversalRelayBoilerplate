@@ -3,7 +3,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _this=this;var _ext
 var _graphql=require('graphql');
 var _graphqlRelay=require('graphql-relay');
 
-var _ToDosConnection=require('./ToDosConnection');var _ToDosConnection2=_interopRequireDefault(_ToDosConnection);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}var _default=
+var _ToDosConnection=require('./ToDosConnection');var _ToDosConnection2=_interopRequireDefault(_ToDosConnection);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}exports.default=
 
 {
 ToDos:{
@@ -49,5 +49,5 @@ objectManager.getObjectList('ToDo',{
 ToDo_User_id:objectManager.getViewerUserId()}));case 2:arr=_context3.sent;return _context3.abrupt('return',
 
 
-arr.filter(function(a_ToDo){return a_ToDo.ToDo_Complete;}).length);case 4:case'end':return _context3.stop();}}},null,_this);}}};exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-todo-server/graphql/type/_ViewerFields.js');}();;
+arr.filter(function(a_ToDo){return a_ToDo.ToDo_Complete;}).length);case 4:case'end':return _context3.stop();}}},null,_this);}}};
 //# sourceMappingURL=_ViewerFields.js.map

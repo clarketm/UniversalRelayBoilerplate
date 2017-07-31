@@ -228,5 +228,5 @@ return;
 }else{
 cb();
 }
-}}]);return PersisterCassandra;}();var _default=PersisterCassandra;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(Uuid,'Uuid','units/urb-persister-cassandra/graphql/PersisterCassandra.js');__REACT_HOT_LOADER__.register(Uuid_Null_String,'Uuid_Null_String','units/urb-persister-cassandra/graphql/PersisterCassandra.js');__REACT_HOT_LOADER__.register(Uuid_Null,'Uuid_Null','units/urb-persister-cassandra/graphql/PersisterCassandra.js');__REACT_HOT_LOADER__.register(ExpressCassandraClient,'ExpressCassandraClient','units/urb-persister-cassandra/graphql/PersisterCassandra.js');__REACT_HOT_LOADER__.register(PersisterCassandra,'PersisterCassandra','units/urb-persister-cassandra/graphql/PersisterCassandra.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-persister-cassandra/graphql/PersisterCassandra.js');}();;
+}}]);return PersisterCassandra;}();exports.default=PersisterCassandra;
 //# sourceMappingURL=PersisterCassandra.js.map

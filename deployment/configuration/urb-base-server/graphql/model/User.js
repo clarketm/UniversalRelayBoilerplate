@@ -36,5 +36,5 @@ this.User_Email=fields.User_Email;
 this.User_PhoneNumberMobile=fields.User_PhoneNumberMobile;
 this.User_Latitude=fields.User_Latitude;
 this.User_Longitude=fields.User_Longitude;
-};var _default=User;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(User,"User","configuration/urb-base-server/graphql/model/User.js");__REACT_HOT_LOADER__.register(_default,"default","configuration/urb-base-server/graphql/model/User.js");}();;
+};exports.default=User;
 //# sourceMappingURL=User.js.map

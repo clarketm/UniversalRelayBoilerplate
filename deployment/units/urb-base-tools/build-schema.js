@@ -32,5 +32,5 @@ console.log('Written: '+file_schema_json);
 _fs2.default.writeFileSync(file_schema_graphql,(0,_utilities.printSchema)(_schema2.default));
 console.log('Written: '+file_schema_graphql);
 
-createJson();;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(file_schema_json,'file_schema_json','units/urb-base-tools/build-schema.js');__REACT_HOT_LOADER__.register(file_schema_graphql,'file_schema_graphql','units/urb-base-tools/build-schema.js');__REACT_HOT_LOADER__.register(createJson,'createJson','units/urb-base-tools/build-schema.js');}();;
+createJson();
 //# sourceMappingURL=build-schema.js.map

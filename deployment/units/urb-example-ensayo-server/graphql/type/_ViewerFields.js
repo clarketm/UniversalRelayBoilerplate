@@ -4,7 +4,7 @@ var _graphql=require('graphql');
 var _graphqlRelay=require('graphql-relay');
 
 var _EnsayosConnection=require('./EnsayosConnection');var _EnsayosConnection2=_interopRequireDefault(_EnsayosConnection);
-var _EnsayoType=require('./EnsayoType');var _EnsayoType2=_interopRequireDefault(_EnsayoType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}var _default=
+var _EnsayoType=require('./EnsayoType');var _EnsayoType2=_interopRequireDefault(_EnsayoType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}exports.default=
 
 {
 Ensayos:{
@@ -27,5 +27,5 @@ type:_EnsayoType2.default,
 args:_extends({id:{type:_graphql.GraphQLID}}),
 
 resolve:function resolve(parent,_ref3,context,_ref4){var id=_ref3.id;var objectManager=_ref4.rootValue;return(
-objectManager.getOneObject('Ensayo',{id:(0,_graphqlRelay.fromGlobalId)(id).id}));}}};exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-ensayo-server/graphql/type/_ViewerFields.js');}();;
+objectManager.getOneObject('Ensayo',{id:(0,_graphqlRelay.fromGlobalId)(id).id}));}}};
 //# sourceMappingURL=_ViewerFields.js.map

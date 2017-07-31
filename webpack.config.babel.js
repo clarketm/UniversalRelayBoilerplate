@@ -5,7 +5,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 // Read environment
 require('dotenv').load()
 
-const version = require('./configuration/package.js').version
+const version = require('./units/_configuration/package.js').version
 const host = process.env.HOST
 const port_webpack = process.env.PORT_WEBPACK
 
@@ -37,7 +37,9 @@ const config = {
   },
 
   output: {
-    path: path.resolve(`deployment/configuration/urb-base-server/public_files/assets/${version}`),
+    path: path.resolve(
+      `deployment/units/_configuration/urb-base-server/public_files/assets/${version}`,
+    ),
     filename: '[name].js',
     publicPath: `http://${host}:${port_webpack}/${version}/`,
   },

@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});exports.render=exports.routeConfig=exports.historyMiddlewares=undefined;var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var _jsxFileName='units/urb-base-webapp/router.jsx';exports.
+Object.defineProperty(exports,"__esModule",{value:true});exports.render=exports.routeConfig=exports.historyMiddlewares=undefined;var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};exports.
 
 
 
@@ -35,11 +35,11 @@ var ToDoListQuery=function ToDoListQuery(){return require('./__generated__/route
 
 
 var routeConfig=exports.routeConfig=(0,_makeRouteConfig2.default)(
-_react2.default.createElement(_Route2.default,{path:'/',Component:_AppFrame2.default,__source:{fileName:_jsxFileName,lineNumber:38}},
+_react2.default.createElement(_Route2.default,{path:'/',Component:_AppFrame2.default},
 _react2.default.createElement(_Route2.default,{
 path:'todo',
 Component:_ToDoScreen2.default,
-query:function query(){return require('./__generated__/router_ToDoScreen_Query.graphql');},__source:{fileName:_jsxFileName,lineNumber:39}},
+query:function query(){return require('./__generated__/router_ToDoScreen_Query.graphql');}},
 
 
 
@@ -50,15 +50,15 @@ query:function query(){return require('./__generated__/router_ToDoScreen_Query.g
 _react2.default.createElement(_Route2.default,{
 Component:_ToDoList2.default,
 query:ToDoListQuery,
-prepareVariables:function prepareVariables(params){return _extends({},params,{status:'any'});},__source:{fileName:_jsxFileName,lineNumber:50}}),
+prepareVariables:function prepareVariables(params){return _extends({},params,{status:'any'});}}),
 
-_react2.default.createElement(_Route2.default,{path:':status',Component:_ToDoList2.default,query:ToDoListQuery,__source:{fileName:_jsxFileName,lineNumber:55}})),
+_react2.default.createElement(_Route2.default,{path:':status',Component:_ToDoList2.default,query:ToDoListQuery})),
 
-_react2.default.createElement(_Route2.default,{path:'ensayo',__source:{fileName:_jsxFileName,lineNumber:57}},
+_react2.default.createElement(_Route2.default,{path:'ensayo'},
 _react2.default.createElement(_Route2.default,{
 path:'edit',
 Component:_EnsayoScreen2.default,
-query:function query(){return require('./__generated__/router_EnsayoScreen_Query.graphql');},__source:{fileName:_jsxFileName,lineNumber:58}},
+query:function query(){return require('./__generated__/router_EnsayoScreen_Query.graphql');}},
 
 
 
@@ -68,7 +68,7 @@ query:function query(){return require('./__generated__/router_EnsayoScreen_Query
 
 _react2.default.createElement(_Route2.default,{
 Component:_EnsayoList2.default,
-query:function query(){return require('./__generated__/router_EnsayoList_Query.graphql');},__source:{fileName:_jsxFileName,lineNumber:69}})))));
+query:function query(){return require('./__generated__/router_EnsayoList_Query.graphql');}})))));
 
 
 
@@ -81,5 +81,5 @@ query:function query(){return require('./__generated__/router_EnsayoList_Query.g
 
 
 
-var render=exports.render=(0,_createRender2.default)({});;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(historyMiddlewares,'historyMiddlewares','units/urb-base-webapp/router.jsx');__REACT_HOT_LOADER__.register(createResolver,'createResolver','units/urb-base-webapp/router.jsx');__REACT_HOT_LOADER__.register(ToDoListQuery,'ToDoListQuery','units/urb-base-webapp/router.jsx');__REACT_HOT_LOADER__.register(routeConfig,'routeConfig','units/urb-base-webapp/router.jsx');__REACT_HOT_LOADER__.register(render,'render','units/urb-base-webapp/router.jsx');}();;
+var render=exports.render=(0,_createRender2.default)({});
 //# sourceMappingURL=router.js.map

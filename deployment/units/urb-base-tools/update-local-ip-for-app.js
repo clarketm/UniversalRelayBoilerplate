@@ -52,5 +52,5 @@ console.log('['+fileName+'] has been updated with local IP '+IPAddress);
 break;
 }else index++;
 }
-};var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(IPAddress,'IPAddress','units/urb-base-tools/update-local-ip-for-app.js');__REACT_HOT_LOADER__.register(k,'k','units/urb-base-tools/update-local-ip-for-app.js');__REACT_HOT_LOADER__.register(k2,'k2','units/urb-base-tools/update-local-ip-for-app.js');__REACT_HOT_LOADER__.register(updateIPInFile,'updateIPInFile','units/urb-base-tools/update-local-ip-for-app.js');}();;
+}
 //# sourceMappingURL=update-local-ip-for-app.js.map

@@ -18,8 +18,8 @@ this.id=fields.id;
 this.ToDo_User_id=fields.ToDo_User_id;
 this.ToDo_Text=fields.ToDo_Text;
 this.ToDo_Complete=fields.ToDo_Complete;
-};var _default=ToDo;exports.default=_default;
+};exports.default=ToDo;
 
 
-_ObjectManager2.default.registerEntity('ToDo',ToDo);;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(ToDo,'ToDo','units/urb-example-todo-server/graphql/model/ToDo.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-todo-server/graphql/model/ToDo.js');}();;
+_ObjectManager2.default.registerEntity('ToDo',ToDo);
 //# sourceMappingURL=ToDo.js.map

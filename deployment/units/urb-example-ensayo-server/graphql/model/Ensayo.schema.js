@@ -17,10 +17,10 @@ custom_indexes:[
 {
 on:'Ensayo_User_id',
 using:'org.apache.cassandra.index.sasi.SASIIndex',
-options:{}}]});var _default=
+options:{}}]});exports.default=
 
 
 
 
-true;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-ensayo-server/graphql/model/Ensayo.schema.js');}();;
+true;
 //# sourceMappingURL=Ensayo.schema.js.map

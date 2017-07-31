@@ -35,7 +35,7 @@ Ensayo_Content:Ensayo_Content}}};
 
 }});
 
-}var _default=
+}exports.default=
 
-{commit:commit};exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(mutation,'mutation','units/urb-example-ensayo-client/relay/EnsayoUpdateMutation.js');__REACT_HOT_LOADER__.register(commit,'commit','units/urb-example-ensayo-client/relay/EnsayoUpdateMutation.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-ensayo-client/relay/EnsayoUpdateMutation.js');}();;
+{commit:commit};
 //# sourceMappingURL=EnsayoUpdateMutation.js.map

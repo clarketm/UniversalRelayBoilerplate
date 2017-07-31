@@ -77,5 +77,5 @@ res.cookie('UserToken1','',{httpOnly:true,expires:new Date(1)});
 
 if(respondWithJSON)res.status(403).send('{ "error": "💔  Authentication Failed" }');else
 res.status(403).sendFile(httpError403FileName);
-};var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(getUserByCookie,'getUserByCookie','units/urb-base-server/checkCredentials.js');__REACT_HOT_LOADER__.register(verifyUserAuthToken,'verifyUserAuthToken','units/urb-base-server/checkCredentials.js');__REACT_HOT_LOADER__.register(httpError403FileName,'httpError403FileName','units/urb-base-server/checkCredentials.js');__REACT_HOT_LOADER__.register(serveAuthenticationFailed,'serveAuthenticationFailed','units/urb-base-server/checkCredentials.js');}();;
+}
 //# sourceMappingURL=checkCredentials.js.map

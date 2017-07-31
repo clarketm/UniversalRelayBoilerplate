@@ -40,5 +40,5 @@ oldEndRes.apply(res,arguments);
 };
 
 next();
-};var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(logServerRequest,'logServerRequest','units/urb-base-server/logServerRequest.js');}();;
+}
 //# sourceMappingURL=logServerRequest.js.map

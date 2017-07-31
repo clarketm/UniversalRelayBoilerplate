@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _jsxFileName='units/urb-example-ensayo-webapp/components/EnsayoList.jsx';var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
 var _List=require('material-ui/List');var _List2=_interopRequireDefault(_List);
 var _styles=require('material-ui/styles');
@@ -28,17 +28,17 @@ Viewer=this.props.Viewer;var
 Ensayos=Viewer.Ensayos;
 
 return(
-_react2.default.createElement('div',{__source:{fileName:_jsxFileName,lineNumber:31}},
-_react2.default.createElement(_List2.default,{__source:{fileName:_jsxFileName,lineNumber:32}},
+_react2.default.createElement('div',null,
+_react2.default.createElement(_List2.default,null,
 Ensayos.edges.map(function(_ref){var node=_ref.node;return(
-_react2.default.createElement(_EnsayoItem2.default,{key:node.id,Viewer:Viewer,Ensayo:node,__source:{fileName:_jsxFileName,lineNumber:34}}));}))));
+_react2.default.createElement(_EnsayoItem2.default,{key:node.id,Viewer:Viewer,Ensayo:node}));}))));
 
 
 
 
-}}]);return EnsayoList;}(_react2.default.Component);EnsayoList.propTypes={Viewer:_propTypes2.default.object.isRequired,relay:_propTypes2.default.object.isRequired};var _default=
+}}]);return EnsayoList;}(_react2.default.Component);EnsayoList.propTypes={Viewer:_propTypes2.default.object.isRequired,relay:_propTypes2.default.object.isRequired};exports.default=
 
 
 (0,_reactRelay.createFragmentContainer)(
-(0,_styles.withStyles)(styleSheet)(EnsayoList),{Viewer:function Viewer(){return require('./__generated__/EnsayoList_Viewer.graphql');}});exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(styleSheet,'styleSheet','units/urb-example-ensayo-webapp/components/EnsayoList.jsx');__REACT_HOT_LOADER__.register(EnsayoList,'EnsayoList','units/urb-example-ensayo-webapp/components/EnsayoList.jsx');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-ensayo-webapp/components/EnsayoList.jsx');}();;
+(0,_styles.withStyles)(styleSheet)(EnsayoList),{Viewer:function Viewer(){return require('./__generated__/EnsayoList_Viewer.graphql');}});
 //# sourceMappingURL=EnsayoList.js.map

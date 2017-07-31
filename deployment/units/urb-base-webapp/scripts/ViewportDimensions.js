@@ -59,11 +59,11 @@ function ViewportDimensions(){var _this=this;_classCallCheck(this,ViewportDimens
 
 
 
-removeComponent=function(){return _this.__removeComponent__REACT_HOT_LOADER__.apply(_this,arguments);};this.
+removeComponent=function(component){
+_this.subscribedComponents.delete(component);
+};this.
 
-
-
-handle_onResize=function(){return _this.__handle_onResize__REACT_HOT_LOADER__.apply(_this,arguments);};this.subscribedComponents=new Map();this.viewportDimensionsVersion=1;this.viewportDimensions={muiSize:0,totalWidth:0,totalHeight:0,contentWidth:0};}_createClass(ViewportDimensions,[{key:'get',value:function get(component,dimensionName){component.viewportDimensionsVersion=this.viewportDimensionsVersion;var subscriptionInfo=this.subscribedComponents.get(component);if(subscriptionInfo==null){subscriptionInfo={};this.subscribedComponents.set(component,subscriptionInfo);var self=this;if(component.componentWillUnmount){var currentFunction=component.componentWillUnmount.bind(component);component.componentWillUnmount=function(){self.removeComponent(component);currentFunction();};}else component.componentWillUnmount=function(){self.removeComponent(component);};}subscriptionInfo[dimensionName]=true;var dimensionValue=this.viewportDimensions[dimensionName];if(dimensionValue==null)throw new Error('Could not find viewport dimension named '+dimensionName);return dimensionValue;}},{key:'__removeComponent__REACT_HOT_LOADER__',value:function __removeComponent__REACT_HOT_LOADER__(component){this.subscribedComponents.delete(component);}},{key:'__handle_onResize__REACT_HOT_LOADER__',value:function __handle_onResize__REACT_HOT_LOADER__(){
+handle_onResize=function(){
 var totalWidth=window.innerWidth;
 var totalHeight=window.innerHeight;
 
@@ -83,30 +83,30 @@ contentWidth-=256;
 
 var changesMade={};
 
-if(muiSize!==this.viewportDimensions.muiSize){
+if(muiSize!==_this.viewportDimensions.muiSize){
 changesMade.muiSize=true;
-this.viewportDimensions.muiSize=muiSize;
+_this.viewportDimensions.muiSize=muiSize;
 }
 
-if(totalWidth!==this.viewportDimensions.totalWidth){
+if(totalWidth!==_this.viewportDimensions.totalWidth){
 changesMade.totalWidth=true;
-this.viewportDimensions.totalWidth=totalWidth;
+_this.viewportDimensions.totalWidth=totalWidth;
 }
 
-if(totalHeight!==this.viewportDimensions.totalHeight){
+if(totalHeight!==_this.viewportDimensions.totalHeight){
 changesMade.totalHeight=true;
-this.viewportDimensions.totalHeight=totalHeight;
+_this.viewportDimensions.totalHeight=totalHeight;
 }
 
-if(contentWidth!==this.viewportDimensions.contentWidth){
+if(contentWidth!==_this.viewportDimensions.contentWidth){
 changesMade.contentWidth=true;
-this.viewportDimensions.contentWidth=contentWidth;
+_this.viewportDimensions.contentWidth=contentWidth;
 }
 
-var viewportDimensionsVersion=++this.viewportDimensionsVersion;
+var viewportDimensionsVersion=++_this.viewportDimensionsVersion;
 
 
-for(var _iterator=this.subscribedComponents,_isArray=Array.isArray(_iterator),_i=0,_iterator=_isArray?_iterator:_iterator[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();;){var _ref3;if(_isArray){if(_i>=_iterator.length)break;_ref3=_iterator[_i++];}else{_i=_iterator.next();if(_i.done)break;_ref3=_i.value;}var _ref=_ref3;var _ref2=_slicedToArray(_ref,2);var component=_ref2[0];var dimensionsSubscribed=_ref2[1];
+for(var _iterator=_this.subscribedComponents,_isArray=Array.isArray(_iterator),_i=0,_iterator=_isArray?_iterator:_iterator[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();;){var _ref3;if(_isArray){if(_i>=_iterator.length)break;_ref3=_iterator[_i++];}else{_i=_iterator.next();if(_i.done)break;_ref3=_i.value;}var _ref=_ref3;var _ref2=_slicedToArray(_ref,2);var component=_ref2[0];var dimensionsSubscribed=_ref2[1];
 if(component.viewportDimensionsVersion!=viewportDimensionsVersion){
 component.viewportDimensionsVersion=viewportDimensionsVersion;
 
@@ -122,5 +122,5 @@ break;
 if(mustUpdate)component.forceUpdate();
 }
 }
-}}]);return ViewportDimensions;}();var _default=ViewportDimensions;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(SMALL,'SMALL','units/urb-base-webapp/scripts/ViewportDimensions.js');__REACT_HOT_LOADER__.register(MEDIUM,'MEDIUM','units/urb-base-webapp/scripts/ViewportDimensions.js');__REACT_HOT_LOADER__.register(LARGE,'LARGE','units/urb-base-webapp/scripts/ViewportDimensions.js');__REACT_HOT_LOADER__.register(ViewportDimensions,'ViewportDimensions','units/urb-base-webapp/scripts/ViewportDimensions.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-base-webapp/scripts/ViewportDimensions.js');}();;
+};this.subscribedComponents=new Map();this.viewportDimensionsVersion=1;this.viewportDimensions={muiSize:0,totalWidth:0,totalHeight:0,contentWidth:0};}_createClass(ViewportDimensions,[{key:'get',value:function get(component,dimensionName){component.viewportDimensionsVersion=this.viewportDimensionsVersion;var subscriptionInfo=this.subscribedComponents.get(component);if(subscriptionInfo==null){subscriptionInfo={};this.subscribedComponents.set(component,subscriptionInfo);var self=this;if(component.componentWillUnmount){var currentFunction=component.componentWillUnmount.bind(component);component.componentWillUnmount=function(){self.removeComponent(component);currentFunction();};}else component.componentWillUnmount=function(){self.removeComponent(component);};}subscriptionInfo[dimensionName]=true;var dimensionValue=this.viewportDimensions[dimensionName];if(dimensionValue==null)throw new Error('Could not find viewport dimension named '+dimensionName);return dimensionValue;}}]);return ViewportDimensions;}();exports.default=ViewportDimensions;
 //# sourceMappingURL=ViewportDimensions.js.map

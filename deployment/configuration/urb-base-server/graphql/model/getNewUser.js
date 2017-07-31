@@ -10,5 +10,5 @@ User_PhoneNumberMobile:'',
 User_Latitude:0,
 User_Longitude:0};
 
-};var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(getNewUser,'getNewUser','configuration/urb-base-server/graphql/model/getNewUser.js');}();;
+}
 //# sourceMappingURL=getNewUser.js.map

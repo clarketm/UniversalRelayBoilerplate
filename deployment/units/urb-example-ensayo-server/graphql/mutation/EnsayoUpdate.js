@@ -3,7 +3,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _this=this;
 var _graphqlRelay=require('graphql-relay');
 var _graphql=require('graphql');
 
-var _EnsayoType=require('../type/EnsayoType');var _EnsayoType2=_interopRequireDefault(_EnsayoType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}var _default=
+var _EnsayoType=require('../type/EnsayoType');var _EnsayoType2=_interopRequireDefault(_EnsayoType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}exports.default=
 
 (0,_graphqlRelay.mutationWithClientMutationId)({
 name:'EnsayoUpdate',
@@ -37,5 +37,5 @@ Ensayo_Description:Ensayo_Description,
 Ensayo_Content:Ensayo_Content}));case 3:return _context.abrupt('return',
 
 
-{local_id:local_id});case 4:case'end':return _context.stop();}}},null,_this);}});exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-ensayo-server/graphql/mutation/EnsayoUpdate.js');}();;
+{local_id:local_id});case 4:case'end':return _context.stop();}}},null,_this);}});
 //# sourceMappingURL=EnsayoUpdate.js.map

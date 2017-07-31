@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _jsxFileName='units/urb-example-ensayo-webapp/components/EnsayoScreen.jsx';var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
 var _Add=require('material-ui-icons/Add');var _Add2=_interopRequireDefault(_Add);
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
@@ -37,43 +37,43 @@ props,context));_this.
 
 
 
-_handle_updateHandler_Ensayo=function(){return _this.___handle_updateHandler_Ensayo__REACT_HOT_LOADER__.apply(_this,arguments);};_this.
+_handle_updateHandler_Ensayo=function(ensayoProperties){var
+Ensayo_Title=ensayoProperties.Ensayo_Title,Ensayo_Description=ensayoProperties.Ensayo_Description,Ensayo_Content=ensayoProperties.Ensayo_Content;var _this$props=
+_this.props,relay=_this$props.relay,Viewer=_this$props.Viewer;
 
+_EnsayoAddMutation2.default.commit(
+relay.environment,
+Viewer,
+Ensayo_Content,
+Ensayo_Title,
+Ensayo_Description);
 
+};_this.
 
+_handle_handlerClose_Properties=function(){
+_this.setState({propertiesIsOpen:false});
+};_this.
 
-
-
-
-
-
-
-
-
-_handle_handlerClose_Properties=function(){return _this.___handle_handlerClose_Properties__REACT_HOT_LOADER__.apply(_this,arguments);};_this.
-
-
-
-_handle_onClick_Add=function(){return _this.___handle_onClick_Add__REACT_HOT_LOADER__.apply(_this,arguments);};_this.state={propertiesIsOpen:false};return _this;}_createClass(EnsayoScreen,[{key:'___handle_updateHandler_Ensayo__REACT_HOT_LOADER__',value:function ___handle_updateHandler_Ensayo__REACT_HOT_LOADER__(ensayoProperties){var Ensayo_Title=ensayoProperties.Ensayo_Title,Ensayo_Description=ensayoProperties.Ensayo_Description,Ensayo_Content=ensayoProperties.Ensayo_Content;var _props=this.props,relay=_props.relay,Viewer=_props.Viewer;_EnsayoAddMutation2.default.commit(relay.environment,Viewer,Ensayo_Content,Ensayo_Title,Ensayo_Description);}},{key:'___handle_handlerClose_Properties__REACT_HOT_LOADER__',value:function ___handle_handlerClose_Properties__REACT_HOT_LOADER__(){this.setState({propertiesIsOpen:false});}},{key:'___handle_onClick_Add__REACT_HOT_LOADER__',value:function ___handle_onClick_Add__REACT_HOT_LOADER__(){
-this.setState({propertiesIsOpen:true});
-}},{key:'render',value:function render()
+_handle_onClick_Add=function(){
+_this.setState({propertiesIsOpen:true});
+};_this.state={propertiesIsOpen:false};return _this;}_createClass(EnsayoScreen,[{key:'render',value:function render()
 
 {
 var classes=this.props.classes;
 
 return(
-_react2.default.createElement(_ResponsiveContentArea2.default,{__source:{fileName:_jsxFileName,lineNumber:65}},
-_react2.default.createElement(_Card2.default,{className:classes.card,__source:{fileName:_jsxFileName,lineNumber:66}},
-_react2.default.createElement(_Card.CardHeader,{title:'Ensayo',subheader:'List of essays',__source:{fileName:_jsxFileName,lineNumber:67}}),
+_react2.default.createElement(_ResponsiveContentArea2.default,null,
+_react2.default.createElement(_Card2.default,{className:classes.card},
+_react2.default.createElement(_Card.CardHeader,{title:'Ensayo',subheader:'List of essays'}),
 
-_react2.default.createElement('div',{className:classes.addNewButton,__source:{fileName:_jsxFileName,lineNumber:69}},
+_react2.default.createElement('div',{className:classes.addNewButton},
 _react2.default.createElement(_Button2.default,{
 fab:true,
 color:'primary',
 className:classes.button,
-onClick:this._handle_onClick_Add,__source:{fileName:_jsxFileName,lineNumber:70}},
+onClick:this._handle_onClick_Add},
 
-_react2.default.createElement(_Add2.default,{__source:{fileName:_jsxFileName,lineNumber:76}}))),
+_react2.default.createElement(_Add2.default,null))),
 
 
 
@@ -85,14 +85,14 @@ Ensayo_Content:'',
 Ensayo_Description:'',
 handlerUpdate:this._handle_updateHandler_Ensayo,
 handlerClose:this._handle_handlerClose_Properties,
-open:this.state.propertiesIsOpen,__source:{fileName:_jsxFileName,lineNumber:82}}))));
+open:this.state.propertiesIsOpen}))));
 
 
 
 
-}}]);return EnsayoScreen;}(_react2.default.Component);EnsayoScreen.propTypes={classes:_propTypes2.default.object.isRequired,Viewer:_propTypes2.default.object.isRequired,children:_propTypes2.default.node.isRequired,relay:_propTypes2.default.object.isRequired};var _default=
+}}]);return EnsayoScreen;}(_react2.default.Component);EnsayoScreen.propTypes={classes:_propTypes2.default.object.isRequired,Viewer:_propTypes2.default.object.isRequired,children:_propTypes2.default.node.isRequired,relay:_propTypes2.default.object.isRequired};exports.default=
 
 
 (0,_reactRelay.createFragmentContainer)(
-(0,_styles.withStyles)(styleSheet)(EnsayoScreen),{Viewer:function Viewer(){return require('./__generated__/EnsayoScreen_Viewer.graphql');}});exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(styleSheet,'styleSheet','units/urb-example-ensayo-webapp/components/EnsayoScreen.jsx');__REACT_HOT_LOADER__.register(EnsayoScreen,'EnsayoScreen','units/urb-example-ensayo-webapp/components/EnsayoScreen.jsx');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-ensayo-webapp/components/EnsayoScreen.jsx');}();;
+(0,_styles.withStyles)(styleSheet)(EnsayoScreen),{Viewer:function Viewer(){return require('./__generated__/EnsayoScreen_Viewer.graphql');}});
 //# sourceMappingURL=EnsayoScreen.js.map

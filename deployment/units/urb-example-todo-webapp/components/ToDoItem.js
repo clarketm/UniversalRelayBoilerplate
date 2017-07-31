@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _jsxFileName='units/urb-example-todo-webapp/components/ToDoItem.jsx';var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
 var _Checkbox=require('material-ui/Checkbox');var _Checkbox2=_interopRequireDefault(_Checkbox);
 var _IconButton=require('material-ui/IconButton');var _IconButton2=_interopRequireDefault(_IconButton);
@@ -37,58 +37,58 @@ props,context));_this.
 
 
 
-_handle_onClickCheckbox=function(){return _this.___handle_onClickCheckbox__REACT_HOT_LOADER__.apply(_this,arguments);};_this.
+_handle_onClickCheckbox=function(event,ToDo_Complete){var _this$props=
+_this.props,relay=_this$props.relay,Viewer=_this$props.Viewer,ToDo=_this$props.ToDo;
 
+_ToDoUpdateStatusMutation2.default.commit(relay.environment,Viewer,ToDo,ToDo_Complete);
+};_this.
 
+_handle_handlerUpdate_Properties=function(ToDo_properties){var _this$props2=
+_this.props,relay=_this$props2.relay,ToDo=_this$props2.ToDo;
 
+_ToDoUpdateRenameMutation2.default.commit(relay.environment,ToDo,ToDo_properties.ToDo_Text);
+};_this.
 
+_handle_handlerClose_Properties=function(){
+_this.setState({propertiesIsOpen:false});
+};_this.
 
-_handle_handlerUpdate_Properties=function(){return _this.___handle_handlerUpdate_Properties__REACT_HOT_LOADER__.apply(_this,arguments);};_this.
+handleClickListItem=function(event){
+_this.setState({menuIsOpen:true,anchorEl:event.currentTarget});
+};_this.
 
+_handle_Menu_onClick_Edit=function(event){
+_this.setState({menuIsOpen:false,propertiesIsOpen:true});
+};_this.
 
+_handle_Menu_onClick_Delete=function(event){
+_this.setState({menuIsOpen:false});var _this$props3=
 
+_this.props,relay=_this$props3.relay,Viewer=_this$props3.Viewer,ToDo=_this$props3.ToDo;
 
+_ToDoDeleteMutation2.default.commit(relay.environment,Viewer,ToDo);
+};_this.
 
-_handle_handlerClose_Properties=function(){return _this.___handle_handlerClose_Properties__REACT_HOT_LOADER__.apply(_this,arguments);};_this.
-
-
-
-handleClickListItem=function(){return _this.__handleClickListItem__REACT_HOT_LOADER__.apply(_this,arguments);};_this.
-
-
-
-_handle_Menu_onClick_Edit=function(){return _this.___handle_Menu_onClick_Edit__REACT_HOT_LOADER__.apply(_this,arguments);};_this.
-
-
-
-_handle_Menu_onClick_Delete=function(){return _this.___handle_Menu_onClick_Delete__REACT_HOT_LOADER__.apply(_this,arguments);};_this.
-
-
-
-
-
-
-
-handleRequestClose=function(){return _this.__handleRequestClose__REACT_HOT_LOADER__.apply(_this,arguments);};_this.state={anchorEl:undefined,menuIsOpen:false,propertiesIsOpen:false};return _this;}_createClass(ToDoItem,[{key:'___handle_onClickCheckbox__REACT_HOT_LOADER__',value:function ___handle_onClickCheckbox__REACT_HOT_LOADER__(event,ToDo_Complete){var _props=this.props,relay=_props.relay,Viewer=_props.Viewer,ToDo=_props.ToDo;_ToDoUpdateStatusMutation2.default.commit(relay.environment,Viewer,ToDo,ToDo_Complete);}},{key:'___handle_handlerUpdate_Properties__REACT_HOT_LOADER__',value:function ___handle_handlerUpdate_Properties__REACT_HOT_LOADER__(ToDo_properties){var _props2=this.props,relay=_props2.relay,ToDo=_props2.ToDo;_ToDoUpdateRenameMutation2.default.commit(relay.environment,ToDo,ToDo_properties.ToDo_Text);}},{key:'___handle_handlerClose_Properties__REACT_HOT_LOADER__',value:function ___handle_handlerClose_Properties__REACT_HOT_LOADER__(){this.setState({propertiesIsOpen:false});}},{key:'__handleClickListItem__REACT_HOT_LOADER__',value:function __handleClickListItem__REACT_HOT_LOADER__(event){this.setState({menuIsOpen:true,anchorEl:event.currentTarget});}},{key:'___handle_Menu_onClick_Edit__REACT_HOT_LOADER__',value:function ___handle_Menu_onClick_Edit__REACT_HOT_LOADER__(event){this.setState({menuIsOpen:false,propertiesIsOpen:true});}},{key:'___handle_Menu_onClick_Delete__REACT_HOT_LOADER__',value:function ___handle_Menu_onClick_Delete__REACT_HOT_LOADER__(event){this.setState({menuIsOpen:false});var _props3=this.props,relay=_props3.relay,Viewer=_props3.Viewer,ToDo=_props3.ToDo;_ToDoDeleteMutation2.default.commit(relay.environment,Viewer,ToDo);}},{key:'__handleRequestClose__REACT_HOT_LOADER__',value:function __handleRequestClose__REACT_HOT_LOADER__(){
-this.setState({menuIsOpen:false});
-}},{key:'render',value:function render()
+handleRequestClose=function(){
+_this.setState({menuIsOpen:false});
+};_this.state={anchorEl:undefined,menuIsOpen:false,propertiesIsOpen:false};return _this;}_createClass(ToDoItem,[{key:'render',value:function render()
 
 {var _this2=this;var _props$ToDo=
 this.props.ToDo,ToDo_Complete=_props$ToDo.ToDo_Complete,ToDo_Text=_props$ToDo.ToDo_Text;
 
 return(
-_react2.default.createElement('div',{__source:{fileName:_jsxFileName,lineNumber:80}},
+_react2.default.createElement('div',null,
 _react2.default.createElement(_List.ListItem,{
 button:true,
 'aria-haspopup':'true',
 'aria-controls':'lock-menu',
-onClick:function onClick(event){return _this2._handle_onClickCheckbox(event,!ToDo_Complete);},__source:{fileName:_jsxFileName,lineNumber:81}},
+onClick:function onClick(event){return _this2._handle_onClickCheckbox(event,!ToDo_Complete);}},
 
-_react2.default.createElement(_Checkbox2.default,{checked:ToDo_Complete,__source:{fileName:_jsxFileName,lineNumber:87}}),
-_react2.default.createElement(_List.ListItemText,{primary:ToDo_Text,__source:{fileName:_jsxFileName,lineNumber:88}}),
-_react2.default.createElement(_List.ListItemSecondaryAction,{__source:{fileName:_jsxFileName,lineNumber:89}},
-_react2.default.createElement(_IconButton2.default,{onClick:this.handleClickListItem,__source:{fileName:_jsxFileName,lineNumber:90}},
-_react2.default.createElement(_materialUiIcons.MoreVert,{__source:{fileName:_jsxFileName,lineNumber:91}})))),
+_react2.default.createElement(_Checkbox2.default,{checked:ToDo_Complete}),
+_react2.default.createElement(_List.ListItemText,{primary:ToDo_Text}),
+_react2.default.createElement(_List.ListItemSecondaryAction,null,
+_react2.default.createElement(_IconButton2.default,{onClick:this.handleClickListItem},
+_react2.default.createElement(_materialUiIcons.MoreVert,null)))),
 
 
 
@@ -96,12 +96,12 @@ _react2.default.createElement(_Menu2.default,{
 id:'lock-menu',
 anchorEl:this.state.anchorEl,
 open:this.state.menuIsOpen,
-onRequestClose:this.handleRequestClose,__source:{fileName:_jsxFileName,lineNumber:95}},
+onRequestClose:this.handleRequestClose},
 
-_react2.default.createElement(_Menu.MenuItem,{key:'edit',onClick:function onClick(event){return _this2._handle_Menu_onClick_Edit(event);},__source:{fileName:_jsxFileName,lineNumber:101}},'Edit'),
+_react2.default.createElement(_Menu.MenuItem,{key:'edit',onClick:function onClick(event){return _this2._handle_Menu_onClick_Edit(event);}},'Edit'),
 
 
-_react2.default.createElement(_Menu.MenuItem,{key:'delete',onClick:function onClick(event){return _this2._handle_Menu_onClick_Delete(event);},__source:{fileName:_jsxFileName,lineNumber:104}},'Delete')),
+_react2.default.createElement(_Menu.MenuItem,{key:'delete',onClick:function onClick(event){return _this2._handle_Menu_onClick_Delete(event);}},'Delete')),
 
 
 
@@ -109,11 +109,11 @@ _react2.default.createElement(_ToDoProperties2.default,{
 ToDo_Text:ToDo_Text,
 handlerUpdate:this._handle_handlerUpdate_Properties,
 handlerClose:this._handle_handlerClose_Properties,
-open:this.state.propertiesIsOpen,__source:{fileName:_jsxFileName,lineNumber:108}})));
+open:this.state.propertiesIsOpen})));
 
 
 
-}}]);return ToDoItem;}(_react2.default.Component);ToDoItem.propTypes={Viewer:_propTypes2.default.object.isRequired,ToDo:_propTypes2.default.object.isRequired,relay:_propTypes2.default.object.isRequired};var _default=
+}}]);return ToDoItem;}(_react2.default.Component);ToDoItem.propTypes={Viewer:_propTypes2.default.object.isRequired,ToDo:_propTypes2.default.object.isRequired,relay:_propTypes2.default.object.isRequired};exports.default=
 
 
 (0,_reactRelay.createFragmentContainer)(ToDoItem,{
@@ -122,5 +122,5 @@ Viewer:function(){return require('./__generated__/ToDoItem_Viewer.graphql');},
 
 
 
-ToDo:function(){return require('./__generated__/ToDoItem_ToDo.graphql');}});exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(ToDoItem,'ToDoItem','units/urb-example-todo-webapp/components/ToDoItem.jsx');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-todo-webapp/components/ToDoItem.jsx');}();;
+ToDo:function(){return require('./__generated__/ToDoItem_ToDo.graphql');}});
 //# sourceMappingURL=ToDoItem.js.map

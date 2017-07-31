@@ -8,7 +8,6 @@ const packageJson = {
   dependencies: {},
   devDependencies: {},
   engines: {},
-  metadata: {},
   scripts: {},
 }
 
@@ -78,7 +77,6 @@ function getMutations(directoryName: String, mutationsImports: Array, mutationsE
               'import ' +
                 mutationNameNoJs +
                 " from '../../../" +
-                directoryName +
                 unitName +
                 '/graphql/mutation/' +
                 mutationNameNoJs +
@@ -109,15 +107,18 @@ function createMutations() {
   mutations = mutations.concat(mutationsExports)
   mutations = mutations.concat(['}'])
 
-  console.log('Written: ' + path.resolve('./configuration/urb-base-server/graphql/_mutations.js'))
+  console.log(
+    'Written: ' + path.resolve('./units/_configuration/urb-base-server/graphql/_mutations.js'),
+  )
   fs.writeFileSync(
-    './configuration/urb-base-server/graphql/_mutations.js',
+    './units/_configuration/urb-base-server/graphql/_mutations.js',
     mutations.join('\r\n'),
     'utf8',
   )
 }
 
-function getSchemas(directoryName: String, schemasImports: Array) {
+function getSchemas(schemasImports: Array) {
+  const directoryName = 'units/'
   fs.readdirSync(directoryName).filter(unitName => {
     if (fs.statSync(directoryName + unitName).isDirectory()) {
       const schemasDir = path.resolve(directoryName, unitName, 'graphql/model')
@@ -129,7 +130,6 @@ function getSchemas(directoryName: String, schemasImports: Array) {
               'import ' +
                 mutationNameNoJs.replace('.', '_') +
                 " from '../../../" +
-                directoryName +
                 unitName +
                 '/graphql/model/' +
                 mutationNameNoJs +
@@ -139,7 +139,6 @@ function getSchemas(directoryName: String, schemasImports: Array) {
         })
       } catch (e) {
         if (e.code === 'ENOENT') {
-          //getSchemas(directoryName + unitName + '/', schemasImports)
           return false
         } else throw e
       }
@@ -150,15 +149,17 @@ function getSchemas(directoryName: String, schemasImports: Array) {
 function createSchemas() {
   const schemasImports = []
 
-  getSchemas('units/', schemasImports)
+  getSchemas(schemasImports)
 
   let schemas = ['// @flow', '']
   schemas = schemas.concat(schemasImports)
   schemas = schemas.concat(['', 'export default true'])
 
-  console.log('Written: ' + path.resolve('./configuration/urb-base-server/graphql/_schemas.js'))
+  console.log(
+    'Written: ' + path.resolve('./units/_configuration/urb-base-server/graphql/_schemas.js'),
+  )
   fs.writeFileSync(
-    './configuration/urb-base-server/graphql/_schemas.js',
+    './units/_configuration/urb-base-server/graphql/_schemas.js',
     schemas.join('\r\n'),
     'utf8',
   )
@@ -173,13 +174,11 @@ function getViewerFields(
     if (fs.statSync(directoryName + unitName).isDirectory()) {
       try {
         const viewerFieldsImportName = unitName.replace(/-/g, '_')
-        console.log(directoryName + unitName + '/graphql/type/_ViewerFields.js')
         if (fs.statSync(directoryName + unitName + '/graphql/type/_ViewerFields.js').isFile()) {
           viewerFieldsImports.push(
             'import ' +
               viewerFieldsImportName +
               " from '../../../" +
-              directoryName +
               unitName +
               "/graphql/type/_ViewerFields'",
           )
@@ -208,10 +207,10 @@ function createViewerFields() {
   viewerFields = viewerFields.concat(['}'])
 
   console.log(
-    'Written: ' + path.resolve('./configuration/urb-base-server/graphql/_ViewerFields.js'),
+    'Written: ' + path.resolve('./units/_configuration/urb-base-server/graphql/_ViewerFields.js'),
   )
   fs.writeFileSync(
-    './configuration/urb-base-server/graphql/_ViewerFields.js',
+    './units/_configuration/urb-base-server/graphql/_ViewerFields.js',
     viewerFields.join('\r\n'),
     'utf8',
   )

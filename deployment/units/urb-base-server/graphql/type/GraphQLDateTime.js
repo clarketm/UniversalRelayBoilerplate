@@ -36,12 +36,12 @@ throw new _error.GraphQLError(
 
 
 return result;
-}var _default=
+}exports.default=
 
 new _graphql.GraphQLScalarType({
 name:'DateTime',
 description:'Scalar type for storing date-time information',
 serialize:coerceDate,
 parseValue:coerceDate,
-parseLiteral:parseLiteral});exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(coerceDate,'coerceDate','units/urb-base-server/graphql/type/GraphQLDateTime.js');__REACT_HOT_LOADER__.register(parseLiteral,'parseLiteral','units/urb-base-server/graphql/type/GraphQLDateTime.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-base-server/graphql/type/GraphQLDateTime.js');}();;
+parseLiteral:parseLiteral});
 //# sourceMappingURL=GraphQLDateTime.js.map

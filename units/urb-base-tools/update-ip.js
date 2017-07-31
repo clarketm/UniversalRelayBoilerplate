@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 
-import AppRegistryName from '../../configuration/app/AppRegistryName'
+import AppRegistryName from '../_configuration/app/AppRegistryName'
 import getLocalIP from './getLocalIP'
 
 // Read environment
@@ -25,7 +25,7 @@ if (IPAddress != undefined) {
       ':8081/index.ios.bundle?platform=ios&dev=true"];',
   )
   updateIPInFile(
-    './configuration/app/publicURL.js',
+    './units/_configuration/app/publicURL.js',
     'const publicURL',
     "const publicURL = 'http://" + IPAddress + ':' + port + "'",
   )

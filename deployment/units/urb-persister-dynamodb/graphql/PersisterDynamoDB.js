@@ -197,5 +197,5 @@ process.exit(1);
 cb();
 }
 });
-}}]);return PersisterDynamoDB;}();var _default=PersisterDynamoDB;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(Uuid_Null,'Uuid_Null','units/urb-persister-dynamodb/graphql/PersisterDynamoDB.js');__REACT_HOT_LOADER__.register(AWS,'AWS','units/urb-persister-dynamodb/graphql/PersisterDynamoDB.js');__REACT_HOT_LOADER__.register(PersisterDynamoDB,'PersisterDynamoDB','units/urb-persister-dynamodb/graphql/PersisterDynamoDB.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-persister-dynamodb/graphql/PersisterDynamoDB.js');}();;
+}}]);return PersisterDynamoDB;}();exports.default=PersisterDynamoDB;
 //# sourceMappingURL=PersisterDynamoDB.js.map

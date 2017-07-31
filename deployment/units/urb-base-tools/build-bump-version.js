@@ -34,5 +34,5 @@ console.log('New version in package.js:       '+newVersion);
 }
 break;
 }else index++;
-};var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(versionBuildNumber,'versionBuildNumber','units/urb-base-tools/build-bump-version.js');__REACT_HOT_LOADER__.register(newVersion,'newVersion','units/urb-base-tools/build-bump-version.js');__REACT_HOT_LOADER__.register(fileName,'fileName','units/urb-base-tools/build-bump-version.js');__REACT_HOT_LOADER__.register(searchString,'searchString','units/urb-base-tools/build-bump-version.js');__REACT_HOT_LOADER__.register(newContentOfLine,'newContentOfLine','units/urb-base-tools/build-bump-version.js');__REACT_HOT_LOADER__.register(fileLines,'fileLines','units/urb-base-tools/build-bump-version.js');__REACT_HOT_LOADER__.register(index,'index','units/urb-base-tools/build-bump-version.js');}();;
+}
 //# sourceMappingURL=build-bump-version.js.map
