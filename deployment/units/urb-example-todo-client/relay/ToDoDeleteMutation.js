@@ -60,7 +60,7 @@ userProxy.setValue(ToDo_TotalCount-1,'ToDo_CompletedCount');
 }
 }});
 
-}var _default=
+}exports.default=
 
-{commit:commit};exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(mutation,'mutation','units/urb-example-todo-client/relay/ToDoDeleteMutation.js');__REACT_HOT_LOADER__.register(sharedUpdater,'sharedUpdater','units/urb-example-todo-client/relay/ToDoDeleteMutation.js');__REACT_HOT_LOADER__.register(commit,'commit','units/urb-example-todo-client/relay/ToDoDeleteMutation.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-todo-client/relay/ToDoDeleteMutation.js');}();;
+{commit:commit};
 //# sourceMappingURL=ToDoDeleteMutation.js.map

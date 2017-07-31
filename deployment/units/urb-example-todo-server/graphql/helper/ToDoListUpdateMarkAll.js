@@ -18,5 +18,5 @@ arr_local_ids_Changed_ToDos=arr_filtered.map(function(a_ToDo){return a_ToDo.id;}
 
 Promise.all(arrPromiseToUpdate));case 8:return _context.abrupt('return',
 
-arr_local_ids_Changed_ToDos);case 9:case'end':return _context.stop();}}},null,this);};;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}}();;
+arr_local_ids_Changed_ToDos);case 9:case'end':return _context.stop();}}},null,this);};
 //# sourceMappingURL=ToDoListUpdateMarkAll.js.map

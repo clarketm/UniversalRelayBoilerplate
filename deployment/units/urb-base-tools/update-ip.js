@@ -56,5 +56,5 @@ index++;
 }catch(err){
 console.log('['+fileName+'] has not been been updated with local IP because '+err);
 }
-};var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(port,'port','units/urb-base-tools/update-ip.js');__REACT_HOT_LOADER__.register(IPAddress,'IPAddress','units/urb-base-tools/update-ip.js');__REACT_HOT_LOADER__.register(updateIPInFile,'updateIPInFile','units/urb-base-tools/update-ip.js');}();;
+}
 //# sourceMappingURL=update-ip.js.map

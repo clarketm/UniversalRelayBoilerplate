@@ -43,5 +43,5 @@ localIPDevelopmentServer.listen(process.env.PORT,process.env.HOST);
 console.log('☄  DEVELOPMENT. Server listening on '+process.env.HOST);
 }
 }
-});;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(port,'port','units/urb-base-server/server.js');__REACT_HOT_LOADER__.register(router,'router','units/urb-base-server/server.js');}();;
+});
 //# sourceMappingURL=server.js.map

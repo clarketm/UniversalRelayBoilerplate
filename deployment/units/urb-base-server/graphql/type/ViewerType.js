@@ -6,7 +6,7 @@ var _graphqlRelay=require('graphql-relay');
 var _defaultPersister=require('../../../../configuration/urb-base-server/graphql/defaultPersister');var _defaultPersister2=_interopRequireDefault(_defaultPersister);
 var _NodeInterface=require('../NodeInterface');var _NodeInterface2=_interopRequireDefault(_NodeInterface);
 var _ViewerFields2=require('../../../../configuration/urb-base-server/graphql/_ViewerFields');var _ViewerFields3=_interopRequireDefault(_ViewerFields2);
-var _User=require('../../../../configuration/urb-base-server/graphql/model/User');var _User2=_interopRequireDefault(_User);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var _default=
+var _User=require('../../../../configuration/urb-base-server/graphql/model/User');var _User2=_interopRequireDefault(_User);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
 new _graphql.GraphQLObjectType({
 name:'Viewer',
@@ -22,5 +22,5 @@ UserToken2:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj
 User_AccountName:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_AccountName;}},
 User_DisplayName:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_DisplayName;}},
 User_Email:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_Email;}},
-User_PhoneNumberMobile:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_PhoneNumberMobile;}}},_ViewerFields3.default)});exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','units/urb-base-server/graphql/type/ViewerType.js');}();;
+User_PhoneNumberMobile:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_PhoneNumberMobile;}}},_ViewerFields3.default)});
 //# sourceMappingURL=ViewerType.js.map

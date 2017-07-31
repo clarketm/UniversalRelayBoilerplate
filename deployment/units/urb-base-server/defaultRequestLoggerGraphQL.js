@@ -23,5 +23,5 @@ if((0,_matchInDepth2.default)(requestAndResponse,condition))
 logLevel='info';
 
 if(logLevel)_log2.default.log(logLevel,'GraphQL request',requestAndResponse);
-};var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(condition,'condition','units/urb-base-server/defaultRequestLoggerGraphQL.js');__REACT_HOT_LOADER__.register(defaultRequestLoggerGraphQL,'defaultRequestLoggerGraphQL','units/urb-base-server/defaultRequestLoggerGraphQL.js');}();;
+}
 //# sourceMappingURL=defaultRequestLoggerGraphQL.js.map

@@ -16,7 +16,7 @@ function resolveNodeField(source,args,context,_ref){var objectManager=_ref.rootV
 
 if(type==='Viewer')return objectManager.getOneObject('User',{id:id});else
 return objectManager.getOneObject(type,{id:id});
-}var _default=
+}exports.default=
 
 new _graphql.GraphQLObjectType({
 name:'Query',
@@ -31,5 +31,5 @@ resolve:resolveNodeField},
 Viewer:{
 type:_ViewerType2.default,
 resolve:function resolve(parent,args,context,_ref2){var objectManager=_ref2.rootValue;return(
-objectManager.getOneObject('User',{id:objectManager.getViewerUserId()}));}}};}});exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(resolveNodeField,'resolveNodeField','units/urb-base-server/graphql/type/QueryType.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-base-server/graphql/type/QueryType.js');}();;
+objectManager.getOneObject('User',{id:objectManager.getViewerUserId()}));}}};}});
 //# sourceMappingURL=QueryType.js.map

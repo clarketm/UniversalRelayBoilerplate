@@ -1,4 +1,4 @@
-var _jsxFileName='units/urb-base-webapp/client.js',_this=this;
+var _this=this;
 
 
 require('babel-polyfill');
@@ -27,8 +27,8 @@ render:_router.render}));case 4:Router=_context.sent;
 
 
 _reactDom2.default.render(
-_react2.default.createElement(_Wrapper2.default,{__source:{fileName:_jsxFileName,lineNumber:30}},
-_react2.default.createElement(Router,{resolver:resolver,__source:{fileName:_jsxFileName,lineNumber:31}})),
+_react2.default.createElement(_Wrapper2.default,null,
+_react2.default.createElement(Router,{resolver:resolver})),
 
-document.getElementById('root'));case 6:case'end':return _context.stop();}}},null,_this);})();;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}}();;
+document.getElementById('root'));case 6:case'end':return _context.stop();}}},null,_this);})();
 //# sourceMappingURL=client.js.map

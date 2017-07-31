@@ -8,7 +8,6 @@ const packageJson = {
   dependencies: {},
   devDependencies: {},
   engines: {},
-  metadata: {},
   scripts: {},
 }
 
@@ -173,7 +172,6 @@ function getViewerFields(
     if (fs.statSync(directoryName + unitName).isDirectory()) {
       try {
         const viewerFieldsImportName = unitName.replace(/-/g, '_')
-        console.log(directoryName + unitName + '/graphql/type/_ViewerFields.js')
         if (fs.statSync(directoryName + unitName + '/graphql/type/_ViewerFields.js').isFile()) {
           viewerFieldsImports.push(
             'import ' +

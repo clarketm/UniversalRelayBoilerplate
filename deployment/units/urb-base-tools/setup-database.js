@@ -11,5 +11,5 @@ var _schemas4=require('../../configuration/urb-base-server/graphql/_schemas');va
 
 _ObjectManager2.default.initializePersisters(true,function(){
 _process2.default.exit();
-});;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}}();;
+});
 //# sourceMappingURL=setup-database.js.map

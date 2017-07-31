@@ -3,7 +3,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _this=this;
 var _graphqlRelay=require('graphql-relay');
 var _graphql=require('graphql');
 
-var _ViewerType=require('../../../../units/urb-base-server/graphql/type/ViewerType');var _ViewerType2=_interopRequireDefault(_ViewerType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var _default=
+var _ViewerType=require('../../../../units/urb-base-server/graphql/type/ViewerType');var _ViewerType2=_interopRequireDefault(_ViewerType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
 (0,_graphqlRelay.mutationWithClientMutationId)({
 name:'EnsayoDelete',
@@ -30,5 +30,5 @@ local_id=(0,_graphqlRelay.fromGlobalId)(id).id;_context.next=3;return regenerato
 
 objectManager.remove('Ensayo',{id:local_id}));case 3:return _context.abrupt('return',
 
-{id:id});case 4:case'end':return _context.stop();}}},null,_this);}});exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-ensayo-server/graphql/mutation/EnsayoDelete.js');}();;
+{id:id});case 4:case'end':return _context.stop();}}},null,_this);}});
 //# sourceMappingURL=EnsayoDelete.js.map

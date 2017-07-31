@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _jsxFileName='units/urb-base-webapp/server.js',_this=this;
+Object.defineProperty(exports,"__esModule",{value:true});var _this=this;
 
 var _express=require('express');var _express2=_interopRequireDefault(_express);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
@@ -41,13 +41,13 @@ userAgent=req.headers['user-agent'];
 res.render(_path2.default.resolve(__dirname,'html.ejs'),{
 port_webpack:port_webpack,
 root_html:_server3.default.renderToString(
-_react2.default.createElement(_Wrapper2.default,{userAgent:userAgent,__source:{fileName:_jsxFileName,lineNumber:44}},
+_react2.default.createElement(_Wrapper2.default,{userAgent:userAgent},
 element)),
 
 
-relay_payload:(0,_serializeJavascript2.default)(fetcher,{isJSON:true})});case 12:case'end':return _context.stop();}}},null,_this);});var _default=
+relay_payload:(0,_serializeJavascript2.default)(fetcher,{isJSON:true})});case 12:case'end':return _context.stop();}}},null,_this);});exports.default=
 
 
 
-router;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(port,'port','units/urb-base-webapp/server.js');__REACT_HOT_LOADER__.register(port_webpack,'port_webpack','units/urb-base-webapp/server.js');__REACT_HOT_LOADER__.register(router,'router','units/urb-base-webapp/server.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-base-webapp/server.js');}();;
+router;
 //# sourceMappingURL=server.js.map

@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _jsxFileName='units/urb-example-ensayo-webapp/components/EnsayoPublicList.jsx';var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
 var _Card=require('material-ui/Card');
 var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
@@ -14,16 +14,16 @@ this.context.router.push('/ensayo/item/'+id);
 
 {var _this2=this;
 return this.props.Viewer.Ensayos.edges.map(function(edge){return(
-_react2.default.createElement(_Card.Card,{key:edge.node.id,__source:{fileName:_jsxFileName,lineNumber:17}},
-_react2.default.createElement(_Card.CardHeader,{title:edge.node.Ensayo_Title,subtitle:edge.node.Ensayo_Description,__source:{fileName:_jsxFileName,lineNumber:18}}),
-_react2.default.createElement(_Card.CardText,{onClick:function onClick(){return _this2._handle_onClick(edge.node.id);},__source:{fileName:_jsxFileName,lineNumber:19}},'Click here to read!')));});
+_react2.default.createElement(_Card.Card,{key:edge.node.id},
+_react2.default.createElement(_Card.CardHeader,{title:edge.node.Ensayo_Title,subtitle:edge.node.Ensayo_Description}),
+_react2.default.createElement(_Card.CardText,{onClick:function onClick(){return _this2._handle_onClick(edge.node.id);}},'Click here to read!')));});
 
 
 }},{key:'render',value:function render()
 
 {
 return(
-_react2.default.createElement(_ResponsiveContentArea2.default,{__source:{fileName:_jsxFileName,lineNumber:26}},
+_react2.default.createElement(_ResponsiveContentArea2.default,null,
 this.renderEnsayos()));
 
 
@@ -31,10 +31,10 @@ this.renderEnsayos()));
 
 
 EnsayoPublicList.contextTypes={
-router:_propTypes2.default.object.isRequired};var _default=
+router:_propTypes2.default.object.isRequired};exports.default=
 
 
 _reactRelay2.default.createContainer(EnsayoPublicList,{
 fragments:{
-Viewer:function Viewer(){return function(){return{children:[{calls:[{kind:'Call',metadata:{type:'Int'},name:'first',value:{kind:'CallValue',callValue:2147483647}}],children:[{children:[{children:[{fieldName:'id',kind:'Field',metadata:{isRequisite:true},type:'ID'},{fieldName:'Ensayo_Title',kind:'Field',metadata:{},type:'String'},{fieldName:'Ensayo_Description',kind:'Field',metadata:{},type:'String'}],fieldName:'node',kind:'Field',metadata:{canHaveSubselections:true,inferredRootCallName:'node',inferredPrimaryKey:'id',isRequisite:true},type:'Ensayo'},{fieldName:'cursor',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'String'}],fieldName:'edges',kind:'Field',metadata:{canHaveSubselections:true,isPlural:true},type:'EnsayosEdge'},{children:[{fieldName:'hasNextPage',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'Boolean'},{fieldName:'hasPreviousPage',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'Boolean'}],fieldName:'pageInfo',kind:'Field',metadata:{canHaveSubselections:true,isGenerated:true,isRequisite:true},type:'PageInfo'}],fieldName:'Ensayos',kind:'Field',metadata:{canHaveSubselections:true,isConnection:true},type:'EnsayosConnection'},{fieldName:'id',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'ID'}],id:_reactRelay2.default.QL.__id(),kind:'Fragment',metadata:{},name:'EnsayoPublicList_ViewerRelayQL',type:'Viewer'};}();}}});exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(EnsayoPublicList,'EnsayoPublicList','units/urb-example-ensayo-webapp/components/EnsayoPublicList.jsx');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-ensayo-webapp/components/EnsayoPublicList.jsx');}();;
+Viewer:function Viewer(){return function(){return{children:[{calls:[{kind:'Call',metadata:{type:'Int'},name:'first',value:{kind:'CallValue',callValue:2147483647}}],children:[{children:[{children:[{fieldName:'id',kind:'Field',metadata:{isRequisite:true},type:'ID'},{fieldName:'Ensayo_Title',kind:'Field',metadata:{},type:'String'},{fieldName:'Ensayo_Description',kind:'Field',metadata:{},type:'String'}],fieldName:'node',kind:'Field',metadata:{canHaveSubselections:true,inferredRootCallName:'node',inferredPrimaryKey:'id',isRequisite:true},type:'Ensayo'},{fieldName:'cursor',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'String'}],fieldName:'edges',kind:'Field',metadata:{canHaveSubselections:true,isPlural:true},type:'EnsayosEdge'},{children:[{fieldName:'hasNextPage',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'Boolean'},{fieldName:'hasPreviousPage',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'Boolean'}],fieldName:'pageInfo',kind:'Field',metadata:{canHaveSubselections:true,isGenerated:true,isRequisite:true},type:'PageInfo'}],fieldName:'Ensayos',kind:'Field',metadata:{canHaveSubselections:true,isConnection:true},type:'EnsayosConnection'},{fieldName:'id',kind:'Field',metadata:{isGenerated:true,isRequisite:true},type:'ID'}],id:_reactRelay2.default.QL.__id(),kind:'Fragment',metadata:{},name:'EnsayoPublicList_ViewerRelayQL',type:'Viewer'};}();}}});
 //# sourceMappingURL=EnsayoPublicList.js.map

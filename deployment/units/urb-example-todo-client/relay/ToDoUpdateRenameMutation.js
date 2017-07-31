@@ -31,7 +31,7 @@ ToDo_Text:ToDo_Text}}};
 
 }});
 
-}var _default=
+}exports.default=
 
-{commit:commit};exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(mutation,'mutation','units/urb-example-todo-client/relay/ToDoUpdateRenameMutation.js');__REACT_HOT_LOADER__.register(commit,'commit','units/urb-example-todo-client/relay/ToDoUpdateRenameMutation.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-todo-client/relay/ToDoUpdateRenameMutation.js');}();;
+{commit:commit};
 //# sourceMappingURL=ToDoUpdateRenameMutation.js.map

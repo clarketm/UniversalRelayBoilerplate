@@ -16,8 +16,8 @@ User_Latitude:'double',
 User_Longitude:'double'},
 
 key:['id'],
-indexes:['User_AccountName']});var _default=
+indexes:['User_AccountName']});exports.default=
 
 
-true;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','configuration/urb-base-server/graphql/model/User.schema.js');}();;
+true;
 //# sourceMappingURL=User.schema.js.map

@@ -44,7 +44,7 @@ graphiql:true};
 
 
 
-router.use('/',root);var _default=
+router.use('/',root);exports.default=
 
-router;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(router,'router','units/urb-base-server/graphQL.js');__REACT_HOT_LOADER__.register(root,'root','units/urb-base-server/graphQL.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-base-server/graphQL.js');}();;
+router;
 //# sourceMappingURL=graphQL.js.map

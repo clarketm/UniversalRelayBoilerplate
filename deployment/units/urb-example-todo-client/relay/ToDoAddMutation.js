@@ -66,7 +66,7 @@ userProxy.setValue(ToDo_TotalCount+1,'ToDo_TotalCount');
 }
 }});
 
-}var _default=
+}exports.default=
 
-{commit:commit};exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(mutation,'mutation','units/urb-example-todo-client/relay/ToDoAddMutation.js');__REACT_HOT_LOADER__.register(sharedUpdater,'sharedUpdater','units/urb-example-todo-client/relay/ToDoAddMutation.js');__REACT_HOT_LOADER__.register(nextClientMutationId,'nextClientMutationId','units/urb-example-todo-client/relay/ToDoAddMutation.js');__REACT_HOT_LOADER__.register(commit,'commit','units/urb-example-todo-client/relay/ToDoAddMutation.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-todo-client/relay/ToDoAddMutation.js');}();;
+{commit:commit};
 //# sourceMappingURL=ToDoAddMutation.js.map

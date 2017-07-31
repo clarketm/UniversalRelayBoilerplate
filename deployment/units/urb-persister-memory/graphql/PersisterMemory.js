@@ -135,5 +135,5 @@ resolve();
 runAsPartOfSetupDatabase,cb){
 
 cb();
-}}]);return PersisterMemory;}();var _default=PersisterMemory;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(Uuid_Null,'Uuid_Null','units/urb-persister-memory/graphql/PersisterMemory.js');__REACT_HOT_LOADER__.register(PersisterMemory,'PersisterMemory','units/urb-persister-memory/graphql/PersisterMemory.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-persister-memory/graphql/PersisterMemory.js');}();;
+}}]);return PersisterMemory;}();exports.default=PersisterMemory;
 //# sourceMappingURL=PersisterMemory.js.map

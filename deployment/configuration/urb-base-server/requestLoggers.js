@@ -8,5 +8,5 @@ var _defaultRequestLoggerRenderOnServer=require('../../units/urb-base-server/def
 var requestLoggerAuth=exports.requestLoggerAuth=_defaultRequestLoggerAuth2.default;
 var requestLoggerGraphQL=exports.requestLoggerGraphQL=_defaultRequestLoggerGraphQL2.default;
 var requestLoggerPublic=exports.requestLoggerPublic=_defaultRequestLoggerPublic2.default;
-var requestLoggerRenderOnServer=exports.requestLoggerRenderOnServer=_defaultRequestLoggerRenderOnServer2.default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(requestLoggerAuth,'requestLoggerAuth','configuration/urb-base-server/requestLoggers.js');__REACT_HOT_LOADER__.register(requestLoggerGraphQL,'requestLoggerGraphQL','configuration/urb-base-server/requestLoggers.js');__REACT_HOT_LOADER__.register(requestLoggerPublic,'requestLoggerPublic','configuration/urb-base-server/requestLoggers.js');__REACT_HOT_LOADER__.register(requestLoggerRenderOnServer,'requestLoggerRenderOnServer','configuration/urb-base-server/requestLoggers.js');}();;
+var requestLoggerRenderOnServer=exports.requestLoggerRenderOnServer=_defaultRequestLoggerRenderOnServer2.default;
 //# sourceMappingURL=requestLoggers.js.map

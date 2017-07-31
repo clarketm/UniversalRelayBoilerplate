@@ -16,10 +16,10 @@ custom_indexes:[
 {
 on:'ToDo_User_id',
 using:'org.apache.cassandra.index.sasi.SASIIndex',
-options:{}}]});var _default=
+options:{}}]});exports.default=
 
 
 
 
-true;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-todo-server/graphql/model/ToDo.schema.js');}();;
+true;
 //# sourceMappingURL=ToDo.schema.js.map

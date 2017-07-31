@@ -7,7 +7,7 @@ var _ToDoAdd=require('../../../units/urb-example-todo-server/graphql/mutation/To
 var _ToDoDelete=require('../../../units/urb-example-todo-server/graphql/mutation/ToDoDelete');var _ToDoDelete2=_interopRequireDefault(_ToDoDelete);
 var _ToDoListUpdateMarkAll=require('../../../units/urb-example-todo-server/graphql/mutation/ToDoListUpdateMarkAll');var _ToDoListUpdateMarkAll2=_interopRequireDefault(_ToDoListUpdateMarkAll);
 var _ToDoUpdateRename=require('../../../units/urb-example-todo-server/graphql/mutation/ToDoUpdateRename');var _ToDoUpdateRename2=_interopRequireDefault(_ToDoUpdateRename);
-var _ToDoUpdateStatus=require('../../../units/urb-example-todo-server/graphql/mutation/ToDoUpdateStatus');var _ToDoUpdateStatus2=_interopRequireDefault(_ToDoUpdateStatus);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var _default=
+var _ToDoUpdateStatus=require('../../../units/urb-example-todo-server/graphql/mutation/ToDoUpdateStatus');var _ToDoUpdateStatus2=_interopRequireDefault(_ToDoUpdateStatus);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
 {
 EnsayoAdd:_EnsayoAdd2.default,
@@ -17,5 +17,5 @@ ToDoAdd:_ToDoAdd2.default,
 ToDoDelete:_ToDoDelete2.default,
 ToDoListUpdateMarkAll:_ToDoListUpdateMarkAll2.default,
 ToDoUpdateRename:_ToDoUpdateRename2.default,
-ToDoUpdateStatus:_ToDoUpdateStatus2.default};exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','configuration/urb-base-server/graphql/_mutations.js');}();;
+ToDoUpdateStatus:_ToDoUpdateStatus2.default};
 //# sourceMappingURL=_mutations.js.map

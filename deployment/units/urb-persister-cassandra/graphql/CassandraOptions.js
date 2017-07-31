@@ -19,7 +19,7 @@ CassandraOptions.authProvider=new _cassandraDriver2.default.auth.PlainTextAuthPr
 process.env.CASSANDRA_USER,
 process.env.CASSANDRA_PASSWORD);
 
-}var _default=
+}exports.default=
 
-CassandraOptions;exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(CassandraOptions,'CassandraOptions','units/urb-persister-cassandra/graphql/CassandraOptions.js');__REACT_HOT_LOADER__.register(_default,'default','units/urb-persister-cassandra/graphql/CassandraOptions.js');}();;
+CassandraOptions;
 //# sourceMappingURL=CassandraOptions.js.map

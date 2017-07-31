@@ -4,7 +4,7 @@ var _graphqlRelay=require('graphql-relay');
 var _graphql=require('graphql');
 
 var _ToDosConnection=require('../type/ToDosConnection');var _ToDosConnection2=_interopRequireDefault(_ToDosConnection);
-var _ViewerType=require('../../../../units/urb-base-server/graphql/type/ViewerType');var _ViewerType2=_interopRequireDefault(_ViewerType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}var _default=
+var _ViewerType=require('../../../../units/urb-base-server/graphql/type/ViewerType');var _ViewerType2=_interopRequireDefault(_ViewerType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}exports.default=
 
 (0,_graphqlRelay.mutationWithClientMutationId)({
 name:'ToDoAdd',
@@ -43,5 +43,5 @@ ToDo_User_id:objectManager.getViewerUserId(),
 ToDo_Text:ToDo_Text,
 ToDo_Complete:false}));case 2:local_id=_context2.sent;return _context2.abrupt('return',
 
-{local_id:local_id});case 4:case'end':return _context2.stop();}}},null,_this);}});exports.default=_default;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(_default,'default','units/urb-example-todo-server/graphql/mutation/ToDoAdd.js');}();;
+{local_id:local_id});case 4:case'end':return _context2.stop();}}},null,_this);}});
 //# sourceMappingURL=ToDoAdd.js.map

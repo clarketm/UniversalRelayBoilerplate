@@ -95,5 +95,5 @@ module.exports=Cassandra;
 
 
 module.exports.Cassandra=Cassandra;
-module.exports.types=cql.types;;var _temp=function(){if(typeof __REACT_HOT_LOADER__==='undefined'){return;}__REACT_HOT_LOADER__.register(defaultOptions,'defaultOptions','units/urb-persister-cassandra/graphql/WinstonCassandra.js');__REACT_HOT_LOADER__.register(Cassandra,'Cassandra','units/urb-persister-cassandra/graphql/WinstonCassandra.js');}();;
+module.exports.types=cql.types;
 //# sourceMappingURL=WinstonCassandra.js.map
