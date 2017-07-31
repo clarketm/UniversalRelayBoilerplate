@@ -54,10 +54,9 @@ fastlane/screenshots
 
 # Server
 #
-/.env
-/configuration/app/publicURL.js
+.env
+configuration/app/publicURL.js
 ios/main.jsbundle
-/public/assets/*
 
 # Mobile bundles
 #
