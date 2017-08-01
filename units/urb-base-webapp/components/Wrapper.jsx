@@ -1,8 +1,10 @@
 // @flow
 
+import blue from 'material-ui/colors/blue'
 import createPalette from 'material-ui/styles/palette'
 import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles'
 import React from 'react'
+import pink from 'material-ui/colors/pink'
 import PropTypes from 'prop-types'
 import EventListener from 'react-event-listener'
 
@@ -16,7 +18,7 @@ export default class Wrapper extends React.Component {
     rbContext: PropTypes.object,
   }
 
-  constructor(props: any, context: any) {
+  constructor(props: Object, context: Object) {
     super(props, context)
 
     // TODO x0100 If a property for innerWidth is provided, use it for the initial request
@@ -28,7 +30,9 @@ export default class Wrapper extends React.Component {
 
     this.muiTheme = createMuiTheme({
       palette: createPalette({
-        type: 'dark', // Switching the dark mode on is a single property value change.
+        primary: blue,
+        accent: pink,
+        type: 'light',
       }),
     })
   }
