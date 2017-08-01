@@ -71,7 +71,7 @@
   },
   "scripts": {
     "build-bump-version": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-bump-version.js",
-    "build-deployment": "npm run build-schema && npm run build-webpack && npm run build-server",
+    "build-deployment": "npm run build-schema  && npm run build-server && npm run build-webpack",
     "build-schema": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-units.js && ./node_modules/.bin/babel-node ./units/urb-base-tools/build-schema.js && ./node_modules/.bin/relay-compiler --src ./units/ --extensions=js --schema units/_configuration/urb-base-server/graphql/schema.graphql && ./node_modules/.bin/relay-compiler --src ./units/ --extensions=jsx --schema units/_configuration/urb-base-server/graphql/schema.graphql",
     "build-server": "export NODE_ENV=production && rm -rf deployment/* && cp -r ./units/_configuration ./deployment/units && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/units/ ./units && rsync -avm --include='*.ejs' -f 'hide,! */' units ./deployment/ && rsync -avm --include='*.graphql.js' -f 'hide,! */' units ./deployment/ && cp ./package.json ./deployment && cp ./yarn.lock ./deployment",
     "build-units": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-units.js",
