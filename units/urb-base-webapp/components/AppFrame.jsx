@@ -49,10 +49,10 @@ const styleSheet = createStyleSheet(theme => ({
   appBar: {
     transition: theme.transitions.create('width'),
   },
-  appBarHome: {
-    backgroundColor: 'transparent',
-    boxShadow: 'none',
-  },
+  // appBarHome: {
+  //   backgroundColor: 'transparent',
+  //   boxShadow: 'none',
+  // },
   [theme.breakpoints.up('lg')]: {
     drawer: {
       width: '250px',
