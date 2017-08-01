@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../../units/_configuration/package.js"],"names":["name","version"],"mappings":";;AAEO,GAAMA,mBAAO,KAAb;AACA,GAAMC,yBAAU,SAAhB","file":"package.js","sourcesContent":["// @flow\n\nexport const name = 'urb'\nexport const version = '0.1.0.6'\n"]}
+{"version":3,"sources":["../../../units/_configuration/package.js"],"names":["name","version"],"mappings":";;AAEO,GAAMA,mBAAO,KAAb;AACA,GAAMC,yBAAU,SAAhB","file":"package.js","sourcesContent":["// @flow\n\nexport const name = 'urb'\nexport const version = '0.1.0.7'\n"]}
