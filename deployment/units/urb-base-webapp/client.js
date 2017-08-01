@@ -8,7 +8,7 @@ var _createInitialFarceRouter=require('found/lib/createInitialFarceRouter');var 
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactDom=require('react-dom');var _reactDom2=_interopRequireDefault(_reactDom);
 
-var _fetcher=require('../urb-base-universal/scripts/fetcher');
+var _fetcher=require('../urb-base-universal/fetcher');
 var _router=require('./router');
 var _Wrapper=require('./components/Wrapper');var _Wrapper2=_interopRequireDefault(_Wrapper);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 

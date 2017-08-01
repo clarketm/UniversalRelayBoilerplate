@@ -3,10 +3,10 @@ Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.ass
 var _graphql=require('graphql');
 var _graphqlRelay=require('graphql-relay');
 
-var _defaultPersister=require('../../../../configuration/urb-base-server/graphql/defaultPersister');var _defaultPersister2=_interopRequireDefault(_defaultPersister);
+var _defaultPersister=require('../../../_configuration/urb-base-server/graphql/defaultPersister');var _defaultPersister2=_interopRequireDefault(_defaultPersister);
 var _NodeInterface=require('../NodeInterface');var _NodeInterface2=_interopRequireDefault(_NodeInterface);
-var _ViewerFields2=require('../../../../configuration/urb-base-server/graphql/_ViewerFields');var _ViewerFields3=_interopRequireDefault(_ViewerFields2);
-var _User=require('../../../../configuration/urb-base-server/graphql/model/User');var _User2=_interopRequireDefault(_User);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
+var _ViewerFields2=require('../../../_configuration/urb-base-server/graphql/_ViewerFields');var _ViewerFields3=_interopRequireDefault(_ViewerFields2);
+var _User=require('../../../_configuration/urb-base-server/graphql/model/User');var _User2=_interopRequireDefault(_User);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
 new _graphql.GraphQLObjectType({
 name:'Viewer',

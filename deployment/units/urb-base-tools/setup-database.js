@@ -7,7 +7,7 @@ var _ObjectManager=require('../urb-base-server/graphql/ObjectManager');var _Obje
 
 
 var _schemas2=require('../urb-base-server/graphql/model/_schemas');var _schemas3=_interopRequireDefault(_schemas2);
-var _schemas4=require('../../configuration/urb-base-server/graphql/_schemas');var _schemas5=_interopRequireDefault(_schemas4);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+var _schemas4=require('../_configuration/urb-base-server/graphql/_schemas');var _schemas5=_interopRequireDefault(_schemas4);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 _ObjectManager2.default.initializePersisters(true,function(){
 _process2.default.exit();

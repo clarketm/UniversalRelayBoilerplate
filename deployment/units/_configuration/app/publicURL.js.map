@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../units/_configuration/app/publicURL.js"],"names":["publicURL"],"mappings":";;AAEA,GAAMA,WAAY,4BAAlB,C;;AAEeA,S","file":"publicURL.js","sourcesContent":["// @flow\n\nconst publicURL = 'http://172.31.99.247:26005'\n\nexport default publicURL\n"]}

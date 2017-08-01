@@ -2,7 +2,7 @@
 
 var _fs=require('fs');var _fs2=_interopRequireDefault(_fs);
 
-var _AppRegistryName=require('../../configuration/app/AppRegistryName');var _AppRegistryName2=_interopRequireDefault(_AppRegistryName);
+var _AppRegistryName=require('../_configuration/app/AppRegistryName');var _AppRegistryName2=_interopRequireDefault(_AppRegistryName);
 var _getLocalIP=require('./getLocalIP');var _getLocalIP2=_interopRequireDefault(_getLocalIP);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 
@@ -25,7 +25,7 @@ IPAddress+
 ':8081/index.ios.bundle?platform=ios&dev=true"];');
 
 updateIPInFile(
-'./configuration/app/publicURL.js',
+'./units/_configuration/app/publicURL.js',
 'const publicURL',
 "const publicURL = 'http://"+IPAddress+':'+port+"'");
 

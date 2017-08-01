@@ -3,7 +3,7 @@ var _fs=require('fs');var _fs2=_interopRequireDefault(_fs);
 
 
 
-var _package=require('../../configuration/package.js');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}require('dotenv').load();
+var _package=require('../_configuration/package.js');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}require('dotenv').load();
 
 console.log('Current version in package.json: '+process.env.npm_package_version);
 console.log('Current version in package.js:   '+_package.version);
@@ -15,7 +15,7 @@ if(versionBuildNumber==null)versionBuildNumber=1;
 versionBuildNumber++;
 var newVersion=process.env.npm_package_version+'.'+versionBuildNumber;
 
-var fileName='./configuration/package.js';
+var fileName='./units/_configuration/package.js';
 var searchString='export const version = ';
 var newContentOfLine="export const version = '"+newVersion+"'";
 

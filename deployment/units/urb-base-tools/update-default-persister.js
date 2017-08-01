@@ -4,9 +4,9 @@ var _fs=require('fs');var _fs2=_interopRequireDefault(_fs);
 var _path=require('path');var _path2=_interopRequireDefault(_path);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 var supportedPersisters={
-cassandra:'../../../units/urb-persister-cassandra/graphql/PersisterCassandra',
-dynamodb:'../../../units/urb-persister-dynamodb/graphql/PersisterDynamoDB',
-memory:'../../../units/urb-persister-memory/graphql/PersisterMemory'};
+cassandra:'../../../urb-persister-cassandra/graphql/PersisterCassandra',
+dynamodb:'../../../urb-persister-dynamodb/graphql/PersisterDynamoDB',
+memory:'../../../urb-persister-memory/graphql/PersisterMemory'};
 
 
 function updateDefaultPersister(fileName){
@@ -21,10 +21,11 @@ var defaultPersister=['// @flow','',
 
 
 console.log(
-'Written: '+_path2.default.resolve('./configuration/urb-base-server/graphql/defaultPersister.js'));
+'Written: '+
+_path2.default.resolve('./units/_configuration/urb-base-server/graphql/defaultPersister.js'));
 
 _fs2.default.writeFileSync(
-'./configuration/urb-base-server/graphql/defaultPersister.js',
+'./units/_configuration/urb-base-server/graphql/defaultPersister.js',
 defaultPersister.join('\r\n'),
 'utf8');
 

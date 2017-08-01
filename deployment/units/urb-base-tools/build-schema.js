@@ -7,13 +7,10 @@ var _utilities=require('graphql/utilities');
 
 var _schema=require('../urb-base-server/graphql/schema');var _schema2=_interopRequireDefault(_schema);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
-var file_schema_json=_path2.default.join(
-__dirname,
-'../../configuration/urb-base-server/graphql/schema.json');
-
+var file_schema_json=_path2.default.join(__dirname,'../_configuration/urb-base-server/graphql/schema.json');
 var file_schema_graphql=_path2.default.join(
 __dirname,
-'../../configuration/urb-base-server/graphql/schema.graphql');
+'../_configuration/urb-base-server/graphql/schema.graphql');
 
 
 

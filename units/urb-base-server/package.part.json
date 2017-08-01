@@ -73,7 +73,7 @@
     "build-bump-version": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-bump-version.js",
     "build-deployment": "npm run build-schema && npm run build-webpack && npm run build-server",
     "build-schema": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-units.js && ./node_modules/.bin/babel-node ./units/urb-base-tools/build-schema.js && ./node_modules/.bin/relay-compiler --src ./units/ --extensions=js --schema units/_configuration/urb-base-server/graphql/schema.graphql && ./node_modules/.bin/relay-compiler --src ./units/ --extensions=jsx --schema units/_configuration/urb-base-server/graphql/schema.graphql",
-    "build-server": "export NODE_ENV=production && rm -rf deployment/* && cp -r ./units/_configuration/ ./deployment/units/_configuration/ && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/units/ ./units && cp ./units/urb-base-webapp/html.ejs ./deployment/units/urb-base-webapp/html.ejs &&cp ./package.json ./deployment && cp ./yarn.lock ./deployment",
+    "build-server": "export NODE_ENV=production && rm -rf deployment/* && cp -r ./units/_configuration ./deployment/units && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/units/ ./units && cp ./units/urb-base-webapp/html.ejs ./deployment/units/urb-base-webapp/html.ejs &&cp ./package.json ./deployment && cp ./yarn.lock ./deployment",
     "build-units": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-units.js",
     "build-webpack": "export NODE_ENV=production && rm -rf deployment/units/_configuration/urb-base-server/public_files/assets/* &&  ./node_modules/.bin/webpack -p --output-filename client.js",
     "dev": "concurrently --kill-others \"npm run dev-relay\" \"npm run dev-webpack\" \"npm run dev-server\" ",

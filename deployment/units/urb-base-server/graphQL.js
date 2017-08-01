@@ -5,15 +5,15 @@ var _express=require('express');var _express2=_interopRequireDefault(_express);
 var _expressGraphql=require('express-graphql');var _expressGraphql2=_interopRequireDefault(_expressGraphql);
 
 var _checkCredentials=require('./checkCredentials');
-var _siteSettings=require('../../configuration/urb-base-webapp/siteSettings');
+var _siteSettings=require('../_configuration/urb-base-webapp/siteSettings');
 var _logServerRequest=require('./logServerRequest');var _logServerRequest2=_interopRequireDefault(_logServerRequest);
 var _ObjectManager=require('./graphql/ObjectManager');
-var _requestLoggers=require('../../configuration/urb-base-server/requestLoggers');
+var _requestLoggers=require('../_configuration/urb-base-server/requestLoggers');
 var _schema=require('./graphql/schema');var _schema2=_interopRequireDefault(_schema);
 
 
 var _schemas2=require('./graphql/model/_schemas');var _schemas3=_interopRequireDefault(_schemas2);
-var _schemas4=require('../../configuration/urb-base-server/graphql/_schemas');var _schemas5=_interopRequireDefault(_schemas4);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+var _schemas4=require('../_configuration/urb-base-server/graphql/_schemas');var _schemas5=_interopRequireDefault(_schemas4);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 
 var router=(0,_express2.default)();
