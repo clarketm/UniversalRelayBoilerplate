@@ -1,12 +1,14 @@
 // @flow
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
-import { ListItem } from 'material-ui/List'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import Button from 'material-ui/Button'
 import Collapse from 'material-ui/transitions/Collapse'
+import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { ListItem } from 'material-ui/List'
+
+import Link from './Link'
 
 const styleSheet = createStyleSheet('AppDrawerNavItem', theme => ({
   button: theme.mixins.gutters({
@@ -69,6 +71,7 @@ class AppDrawerNavItem extends Component {
       return (
         <ListItem className={classes.navLink} disableGutters>
           <Button
+            component={Link}
             to={to}
             className={classNames(classes.button, classes.navLinkButton)}
             activeClassName={classes.activeButton}

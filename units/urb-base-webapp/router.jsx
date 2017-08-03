@@ -35,7 +35,17 @@ const ToDoListQuery = graphql`
 `
 
 export const routeConfig = makeRouteConfig(
-  <Route path="/" Component={AppFrame}>
+  <Route
+    path="/"
+    Component={AppFrame}
+    query={graphql`
+      query router_AppFrame_Query {
+        Viewer {
+          ...AppFrame_Viewer
+        }
+      }
+    `}
+  >
     <Route
       path="todo"
       Component={ToDoScreen}
