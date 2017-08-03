@@ -35,7 +35,17 @@ var ToDoListQuery=function ToDoListQuery(){return require('./__generated__/route
 
 
 var routeConfig=exports.routeConfig=(0,_makeRouteConfig2.default)(
-_react2.default.createElement(_Route2.default,{path:'/',Component:_AppFrame2.default},
+_react2.default.createElement(_Route2.default,{
+path:'/',
+Component:_AppFrame2.default,
+query:function query(){return require('./__generated__/router_AppFrame_Query.graphql');}},
+
+
+
+
+
+
+
 _react2.default.createElement(_Route2.default,{
 path:'todo',
 Component:_ToDoScreen2.default,

@@ -1,8 +1,10 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
+var _blue=require('material-ui/colors/blue');var _blue2=_interopRequireDefault(_blue);
 var _palette=require('material-ui/styles/palette');var _palette2=_interopRequireDefault(_palette);
 var _styles=require('material-ui/styles');
 var _react=require('react');var _react2=_interopRequireDefault(_react);
+var _pink=require('material-ui/colors/pink');var _pink2=_interopRequireDefault(_pink);
 var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _reactEventListener=require('react-event-listener');var _reactEventListener2=_interopRequireDefault(_reactEventListener);
 
@@ -43,9 +45,11 @@ props,context));_this.
 
 
 
+
+
 handle_onResize=function(){
 _this.rbContext.viewportDimensions.handle_onResize();
-};_this.rbContext={};_this.rbContext.viewportDimensions=new _ViewportDimensions2.default();_this.muiTheme=(0,_styles.createMuiTheme)({palette:(0,_palette2.default)({type:'dark'})});return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbContext:this.rbContext};}},{key:'render',value:function render()
+};_this.rbContext={};_this.rbContext.viewportDimensions=new _ViewportDimensions2.default();_this.muiTheme=(0,_styles.createMuiTheme)({palette:(0,_palette2.default)({primary:_blue2.default,accent:_pink2.default,type:'light'})});return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbContext:this.rbContext};}},{key:'render',value:function render()
 
 {
 return(
