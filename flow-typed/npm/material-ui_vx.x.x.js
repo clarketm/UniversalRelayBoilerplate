@@ -230,11 +230,19 @@ declare module 'material-ui/Dialog/withResponsiveFullScreen' {
   declare module.exports: any
 }
 
+declare module 'material-ui/Divider' {
+  declare module.exports: any
+}
+
 declare module 'material-ui/Divider/Divider' {
   declare module.exports: any
 }
 
 declare module 'material-ui/Divider/index' {
+  declare module.exports: any
+}
+
+declare module 'material-ui/Drawer' {
   declare module.exports: any
 }
 
@@ -718,6 +726,10 @@ declare module 'material-ui/transitions/Slide' {
   declare module.exports: any
 }
 
+declare module 'material-ui/Typography' {
+  declare module.exports: any
+}
+
 declare module 'material-ui/Typography/index' {
   declare module.exports: any
 }
@@ -970,6 +982,9 @@ declare module 'material-ui/Icon/Icon.js' {
 }
 declare module 'material-ui/Icon/index.js' {
   declare module.exports: $Exports<'material-ui/Icon/index'>
+}
+declare module 'material-ui/IconButton' {
+  declare module.exports: $Exports<'material-ui/IconButton'>
 }
 declare module 'material-ui/IconButton/IconButton.js' {
   declare module.exports: $Exports<'material-ui/IconButton/IconButton'>
@@ -1264,6 +1279,9 @@ declare module 'material-ui/TextField/index.js' {
 }
 declare module 'material-ui/TextField/TextField.js' {
   declare module.exports: $Exports<'material-ui/TextField/TextField'>
+}
+declare module 'material-ui/Toolbar' {
+  declare module.exports: $Exports<'material-ui/Toolbar'>
 }
 declare module 'material-ui/Toolbar/index.js' {
   declare module.exports: $Exports<'material-ui/Toolbar/index'>

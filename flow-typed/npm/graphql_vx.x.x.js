@@ -22,6 +22,10 @@ declare module 'graphql' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
+declare module 'graphql/error' {
+  declare module.exports: any
+}
+
 declare module 'graphql/error/formatError' {
   declare module.exports: any
 }
@@ -98,6 +102,10 @@ declare module 'graphql/language/ast' {
   declare module.exports: any
 }
 
+declare module 'graphql/language' {
+  declare module.exports: any
+}
+
 declare module 'graphql/language/index' {
   declare module.exports: any
 }
@@ -163,6 +171,10 @@ declare module 'graphql/type/scalars' {
 }
 
 declare module 'graphql/type/schema' {
+  declare module.exports: any
+}
+
+declare module 'graphql/utilities' {
   declare module.exports: any
 }
 
