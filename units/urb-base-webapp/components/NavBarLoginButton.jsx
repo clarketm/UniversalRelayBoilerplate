@@ -6,9 +6,15 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
+import LoginDialog from './LoginDialog'
+
 const styleSheet = createStyleSheet(theme => ({}))
 
 class NavBarLoginButton extends React.Component {
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  }
+
   static propTypes = {
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
@@ -16,13 +22,31 @@ class NavBarLoginButton extends React.Component {
   }
 
   state: {
-    propertiesIsOpen: boolean,
+    loginDialogIsOpen: boolean,
   }
 
   constructor(props: Object, context: Object) {
     super(props, context)
 
-    this.state = { propertiesIsOpen: false }
+    this.state = { loginDialogIsOpen: false }
+  }
+
+  _handle_onClick_Login = () => {
+    this.setState({ loginDialogIsOpen: true })
+  }
+
+  _handle_Login_Close = () => {
+    this.setState({ loginDialogIsOpen: false })
+  }
+
+  _handle_Login_LogIn = () => {
+    this.setState({ loginDialogIsOpen: false })
+  }
+
+  _handle_Login_NewUser = () => {
+    this.setState({ loginDialogIsOpen: false })
+
+    this.context.router.push('/user/new')
   }
 
   render() {
@@ -30,7 +54,15 @@ class NavBarLoginButton extends React.Component {
 
     return (
       <div>
-        <Button color="contrast">Login</Button>
+        <Button color="contrast" onClick={this._handle_onClick_Login}>
+          Login
+        </Button>
+        <LoginDialog
+          open={this.state.loginDialogIsOpen}
+          handlerClose={this._handle_Login_Close}
+          handlerLogIn={this._handle_Login_LogIn}
+          handlerNewUser={this._handle_Login_NewUser}
+        />
       </div>
     )
   }

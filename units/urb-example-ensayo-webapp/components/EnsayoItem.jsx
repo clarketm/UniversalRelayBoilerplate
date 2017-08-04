@@ -35,7 +35,7 @@ class EnsayoItem extends React.Component {
     }
   }
 
-  _handle_handlerUpdate_Properties = ensayoProperties => {
+  _handle_Update_Properties = ensayoProperties => {
     const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = ensayoProperties
     const { relay, Ensayo } = this.props
 
@@ -48,7 +48,7 @@ class EnsayoItem extends React.Component {
     )
   }
 
-  _handle_handlerClose_Properties = () => {
+  _handle_Close_Properties = () => {
     this.setState({ propertiesIsOpen: false })
   }
 
@@ -102,8 +102,8 @@ class EnsayoItem extends React.Component {
           Ensayo_Title={Ensayo_Title}
           Ensayo_Description={Ensayo_Description}
           Ensayo_Content={Ensayo_Content}
-          handlerUpdate={this._handle_handlerUpdate_Properties}
-          handlerClose={this._handle_handlerClose_Properties}
+          handlerUpdate={this._handle_Update_Properties}
+          handlerClose={this._handle_Close_Properties}
           open={this.state.propertiesIsOpen}
         />
       </div>

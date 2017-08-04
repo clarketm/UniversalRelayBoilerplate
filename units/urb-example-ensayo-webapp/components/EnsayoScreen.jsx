@@ -50,7 +50,7 @@ class EnsayoScreen extends React.Component {
     )
   }
 
-  _handle_handlerClose_Properties = () => {
+  _handle_Close_Properties = () => {
     this.setState({ propertiesIsOpen: false })
   }
 
@@ -84,7 +84,7 @@ class EnsayoScreen extends React.Component {
             Ensayo_Content=""
             Ensayo_Description=""
             handlerUpdate={this._handle_updateHandler_Ensayo}
-            handlerClose={this._handle_handlerClose_Properties}
+            handlerClose={this._handle_Close_Properties}
             open={this.state.propertiesIsOpen}
           />
         </Card>
