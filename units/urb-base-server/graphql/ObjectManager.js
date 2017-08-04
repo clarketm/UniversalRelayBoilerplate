@@ -330,7 +330,7 @@ export default class ObjectManager {
     this.invalidateLoaderCache(entityName, fields)
   }
 
-  cursorForObjectInConnection(entityName: string, arr, obj) {
+  cursorForObjectInConnection(entityName: string, arr: Array<Object>, obj: Object) {
     const entityDefinition = entityDefinitions[entityName]
 
     // IDs can be both strings and Uuid. Check that first, and convert to String

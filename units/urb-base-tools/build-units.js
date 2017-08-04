@@ -65,7 +65,11 @@ function createPackageJson() {
   fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2), 'utf8')
 }
 
-function getMutations(directoryName: String, mutationsImports: Array, mutationsExports: Array) {
+function getMutations(
+  directoryName: string,
+  mutationsImports: Array<string>,
+  mutationsExports: Array<string>,
+) {
   fs.readdirSync(directoryName).filter(unitName => {
     if (fs.statSync(directoryName + unitName).isDirectory()) {
       const mutationsDir = path.resolve(directoryName, unitName, 'graphql/mutation')
@@ -117,7 +121,7 @@ function createMutations() {
   )
 }
 
-function getSchemas(schemasImports: Array) {
+function getSchemas(schemasImports: Array<string>) {
   const directoryName = 'units/'
   fs.readdirSync(directoryName).filter(unitName => {
     if (fs.statSync(directoryName + unitName).isDirectory()) {
@@ -166,9 +170,9 @@ function createSchemas() {
 }
 
 function getViewerFields(
-  directoryName: String,
-  viewerFieldsImports: Array,
-  viewerFieldsExports: Array,
+  directoryName: string,
+  viewerFieldsImports: Array<string>,
+  viewerFieldsExports: Array<string>,
 ) {
   fs.readdirSync(directoryName).filter(unitName => {
     if (fs.statSync(directoryName + unitName).isDirectory()) {

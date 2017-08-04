@@ -8,8 +8,9 @@ import getLocalIP from './getLocalIP'
 // Read environment
 require('dotenv').load()
 
-// Determine port currently used in .env - this will be the port set.
 const port = process.env.PORT
+if (port == null || typeof port !== 'string')
+  throw new Error('💔  update-ip requires the environment variable PORT to be set')
 
 let IPAddress = process.argv[2]
 
