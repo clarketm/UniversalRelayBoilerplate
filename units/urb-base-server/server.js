@@ -17,6 +17,12 @@ import webapp from '../urb-base-webapp/server' // Isomorphic React server
 require('dotenv').load()
 
 const port = process.env.PORT
+if (port == null || typeof port !== 'string')
+  throw new Error('💔  urb-base-server/server.js requires the environment variable PORT to be set')
+
+const host = process.env.HOST
+if (host == null || typeof host !== 'string')
+  throw new Error('💔  urb-base-server/server.js requires the environment variable HOST to be set')
 
 const router = express()
 
@@ -44,20 +50,20 @@ router.use(webapp)
 ObjectManager.initializePersisters(false, () => {
   // Serve - work differently in development and production. In production only the
   // specified host serves
-  if (process.env.NODE_ENV == 'production') router.listen(process.env.PORT, process.env.HOST)
+  if (process.env.NODE_ENV == 'production') router.listen(port, host)
   else {
     // Development server - localhost
     const localhostDevelopmentServer = express()
     localhostDevelopmentServer.use(router)
-    localhostDevelopmentServer.listen(process.env.PORT, '127.0.0.1')
+    localhostDevelopmentServer.listen(port, '127.0.0.1')
     console.log('☄  DEVELOPMENT. Server listening on 127.0.0.1')
 
     // Development server - on a specific IP, if different from localhost
     if (process.env.HOST != '127.0.0.1') {
       const localIPDevelopmentServer = express()
       localIPDevelopmentServer.use(router)
-      localIPDevelopmentServer.listen(process.env.PORT, process.env.HOST)
-      console.log('☄  DEVELOPMENT. Server listening on ' + process.env.HOST)
+      localIPDevelopmentServer.listen(port, host)
+      console.log('☄  DEVELOPMENT. Server listening on ' + host)
     }
   }
 })
