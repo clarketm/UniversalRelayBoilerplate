@@ -470,6 +470,10 @@ declare module 'material-ui/Progress/CircularProgress' {
   declare module.exports: any
 }
 
+declare module 'material-ui/Progress' {
+  declare module.exports: any
+}
+
 declare module 'material-ui/Progress/index' {
   declare module.exports: any
 }
@@ -695,6 +699,10 @@ declare module 'material-ui/test-utils/index' {
 }
 
 declare module 'material-ui/test-utils/until' {
+  declare module.exports: any
+}
+
+declare module 'material-ui/TextField' {
   declare module.exports: any
 }
 
