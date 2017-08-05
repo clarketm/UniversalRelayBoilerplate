@@ -51,7 +51,7 @@ res.codeFoundriesInjected={user:a_User};
 
 var token=_jwtSimple2.default.encode({user_id:a_User.id},process.env.JWT_SECRET);
 
-res.cookie('UserToken1',token,{httpOnly:true});
+res.cookie('UserToken1',token,{httpOnly:false});
 res.json({success:true,UserToken2:a_User.UserToken2});
 }else res.status(401).json({error:'💔  Incorrect password'});
 });
@@ -111,7 +111,7 @@ res.codeFoundriesInjected={user:a_User};
 
 var token=_jwtSimple2.default.encode({user_id:a_User.id},process.env.JWT_SECRET);
 
-res.cookie('UserToken1',token,{httpOnly:true});
+res.cookie('UserToken1',token,{httpOnly:false});
 res.json({success:true});
 }).
 catch(function(reason){
@@ -124,7 +124,7 @@ auth.post('/createuser',createuser);
 
 
 auth.post('/logout',function(req,res){
-res.cookie('UserToken1','',{httpOnly:true,expires:new Date(1)});
+res.cookie('UserToken1','',{httpOnly:false,expires:new Date(1)});
 res.json({success:true});
 });
 

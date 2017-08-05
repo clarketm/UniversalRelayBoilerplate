@@ -8,14 +8,18 @@ var _createInitialFarceRouter=require('found/lib/createInitialFarceRouter');var 
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactDom=require('react-dom');var _reactDom2=_interopRequireDefault(_reactDom);
 
-var _fetcher=require('../urb-base-universal/fetcher');
+var _fetcherClient=require('./fetcherClient');var _fetcherClient2=_interopRequireDefault(_fetcherClient);
 var _router=require('./router');
 var _Wrapper=require('./components/Wrapper');var _Wrapper2=_interopRequireDefault(_Wrapper);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 
 (function _callee(){var fetcher,resolver,Router;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:
 
-fetcher=new _fetcher.ClientFetcher('/graphql',window.__RELAY_PAYLOADS__);
+fetcher=new _fetcherClient2.default(
+'/graphql',
+window.__RELAY_PAYLOADS__,
+'ZZZ UserToken2 in client');
+
 resolver=(0,_router.createResolver)(fetcher);_context.next=4;return regeneratorRuntime.awrap(
 
 (0,_createInitialFarceRouter2.default)({
