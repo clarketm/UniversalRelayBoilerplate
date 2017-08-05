@@ -5,42 +5,31 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import spacing from 'material-ui/styles/spacing'
 
-import { LARGE, MEDIUM } from '../scripts/ViewportDimensions'
-
-const styleSheet = createStyleSheet(theme => ({
-  root: {
-    paddingTop: spacing.unit,
-    minHeight: 400,
-  },
-  content: {
-    margin: spacing.unit,
-  },
-  contentWhenMedium: {
-    margin: `${spacing.unit * 2}px ${spacing.unit * 3}px`,
+const styleSheet = createStyleSheet('AppContent', theme => ({
+  content: theme.mixins.gutters({
+    paddingTop: 80,
+    flex: '1 1 100%',
+    maxWidth: '100%',
+    margin: '0 auto',
+  }),
+  [theme.breakpoints.up(948)]: {
+    content: {
+      maxWidth: 900,
+    },
   },
 }))
 
 class ResponsiveContentArea extends React.Component {
   static contextTypes = {
-    muiTheme: PropTypes.object,
     rbContext: PropTypes.object,
   }
-
-  // ZZZ
-  // getStyles() {
-  //   const muiSize = this.context.rbContext.viewportDimensions.get(this, 'muiSize')
-  //   if (muiSize === MEDIUM || muiSize === LARGE)
-  //     styles.content = Object.assign(styles.content, styles.contentWhenMedium)
-  // }
 
   render() {
     const classes = this.props.classes
 
     return (
-      <div className={classes.root}>
-        <div className={classes.content}>
-          {this.props.children}
-        </div>
+      <div className={classes.content}>
+        {this.props.children}
       </div>
     )
   }
