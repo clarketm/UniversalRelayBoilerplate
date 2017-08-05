@@ -13,7 +13,7 @@ var logLevel=null;
 
 
 
-if((0,_matchInDepth2.default)(requestAndResponse,_debug.debugWriteToLogServerRequestWeAapp))logLevel='info';
+if((0,_matchInDepth2.default)(requestAndResponse,_debug.debugWriteToLogServerRequestWebApp))logLevel='info';
 
 if(logLevel)_log2.default.log(logLevel,'Render on server request',requestAndResponse);
 }
