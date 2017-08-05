@@ -26,10 +26,10 @@ async function root(req, res, next) {
   const objectManager = await getObjectManager(req, res)
   if (objectManager.siteInformation) {
     try {
-      const a_User = await getUserByCookie(objectManager, req, res)
+      const a_User = await getUserByCookie(objectManager, req)
 
       res.codeFoundriesInjected = { user: a_User }
-      await verifyUserAuthToken(a_User, req, res)
+      await verifyUserAuthToken(a_User, req)
 
       graphQLHTTP(() => {
         return {

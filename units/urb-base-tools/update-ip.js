@@ -24,17 +24,19 @@ if (IPAddress != undefined) {
     '  jsCodeLocation = [NSURL URLWithString:@"http://' +
       IPAddress +
       ':8081/index.ios.bundle?platform=ios&dev=true"];',
+    IPAddress,
   )
   updateIPInFile(
     './units/_configuration/app/publicURL.js',
     'const publicURL',
     "const publicURL = 'http://" + IPAddress + ':' + port + "'",
+    IPAddress,
   )
-  updateIPInFile('./.env', 'PUBLIC_URL=', 'PUBLIC_URL=http://' + IPAddress + ':' + port)
-  updateIPInFile('./.env', 'HOST=', 'HOST=' + IPAddress)
+  updateIPInFile('./.env', 'PUBLIC_URL=', 'PUBLIC_URL=http://' + IPAddress + ':' + port, IPAddress)
+  updateIPInFile('./.env', 'HOST=', 'HOST=' + IPAddress, IPAddress)
 } else console.log('IP Address not specified and could not be found')
 
-function updateIPInFile(fileName, searchString, newContentOfLine) {
+function updateIPInFile(fileName, searchString, newContentOfLine, IPAddress) {
   try {
     let fileLines = fs.readFileSync(fileName, 'utf8').split('\n')
     let index = 0

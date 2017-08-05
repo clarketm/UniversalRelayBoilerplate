@@ -9,11 +9,14 @@ if (IPAddress == undefined) {
   // Find out IP address
   const interfaces = os.networkInterfaces()
   const addresses = []
-  for (var k in interfaces)
-    for (var k2 in interfaces[k]) {
+  for (let k in interfaces) {
+    // $FlowIssue it will be there
+    for (let k2 in interfaces[k]) {
+      // $FlowIssue it will be there
       const address = interfaces[k][k2]
       if (address.family === 'IPv4' && !address.internal) addresses.push(address.address)
     }
+  }
 
   if (addresses.length >= 0) IPAddress = addresses[0]
 }

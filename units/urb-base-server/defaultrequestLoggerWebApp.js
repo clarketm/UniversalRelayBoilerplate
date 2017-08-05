@@ -1,6 +1,6 @@
 // @flow weak
 
-import { debugWriteToLogServerRequestWeAapp } from '../_configuration/debug'
+import { debugWriteToLogServerRequestWebApp } from '../_configuration/debug'
 import log from './log'
 import matchInDepth from './matchInDepth'
 
@@ -13,7 +13,7 @@ export default function defaultrequestLoggerWebApp(requestAndResponse) {
   //   logLevel = 'error'
   // Otherwise, if it is a trace, log it as info
   //else
-  if (matchInDepth(requestAndResponse, debugWriteToLogServerRequestWeAapp)) logLevel = 'info'
+  if (matchInDepth(requestAndResponse, debugWriteToLogServerRequestWebApp)) logLevel = 'info'
 
   if (logLevel) log.log(logLevel, 'Render on server request', requestAndResponse)
 }
