@@ -3,6 +3,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _this=this;
 var _express=require('express');var _express2=_interopRequireDefault(_express);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _path=require('path');var _path2=_interopRequireDefault(_path);
+var _reactJss=require('react-jss');
 var _server=require('found/lib/server');
 var _server2=require('react-dom/server');var _server3=_interopRequireDefault(_server2);
 var _serializeJavascript=require('serialize-javascript');var _serializeJavascript2=_interopRequireDefault(_serializeJavascript);
@@ -54,7 +55,7 @@ assetsPath='http://'+envHost+':'+envPortWebpack+'/'+_package.version;
 {siteInformation:siteInformation,assetsPath:assetsPath});case 6:case'end':return _context.stop();}}},null,this);}
 
 
-router.use(function _callee(req,res){var fetcher,_ref,redirect,status,element,userAgent,_ref2,siteInformation,assetsPath;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:
+router.use(function _callee(req,res){var fetcher,_ref,redirect,status,element,userAgent,_ref2,siteInformation,assetsPath,sheets,rootHTML;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:
 fetcher=new _fetcher.ServerFetcher('http://localhost:'+envPort+'/graphql');_context2.next=3;return regeneratorRuntime.awrap(
 
 (0,_server.getFarceResult)({
@@ -74,14 +75,21 @@ userAgent=req.headers['user-agent'];_context2.next=13;return regeneratorRuntime.
 
 gatherLocationAndSiteInformation(req,res));case 13:_ref2=_context2.sent;siteInformation=_ref2.siteInformation;assetsPath=_ref2.assetsPath;
 
+sheets=new _reactJss.SheetsRegistry();
+
+rootHTML=_server3.default.renderToString(
+_react2.default.createElement(_reactJss.JssProvider,{registry:sheets},
+_react2.default.createElement(_Wrapper2.default,{userAgent:userAgent},
+element)));
+
+
+
+
 res.render(_path2.default.resolve(__dirname,'html.ejs'),{
 assets_path:assetsPath,
-root_html:_server3.default.renderToString(
-_react2.default.createElement(_Wrapper2.default,{userAgent:userAgent},
-element)),
-
-
-relay_payload:(0,_serializeJavascript2.default)(fetcher,{isJSON:true})});case 17:case'end':return _context2.stop();}}},null,_this);});exports.default=
+root_html:rootHTML,
+server_side_styles:sheets.toString(),
+relay_payload:(0,_serializeJavascript2.default)(fetcher,{isJSON:true})});case 19:case'end':return _context2.stop();}}},null,_this);});exports.default=
 
 
 

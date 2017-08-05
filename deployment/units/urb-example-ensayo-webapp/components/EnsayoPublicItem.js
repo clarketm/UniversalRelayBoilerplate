@@ -2,7 +2,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 
 var _Card=require('material-ui/Card');var _Card2=_interopRequireDefault(_Card);
 var _reactHelmet=require('react-helmet');var _reactHelmet2=_interopRequireDefault(_reactHelmet);
-var _htmlToReact=require('html-to-react');
+
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');var _reactRelay2=_interopRequireDefault(_reactRelay);
 
@@ -33,8 +33,8 @@ contentH2)}),
 
 
 
-_react2.default.createElement(CardText,null,
-new _htmlToReact.Parser().parse(this.props.Viewer.Ensayo.Ensayo_Content)))));
+_react2.default.createElement(_Card.CardText,null))));
+
 
 
 

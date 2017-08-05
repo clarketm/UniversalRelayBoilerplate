@@ -50,7 +50,7 @@ Ensayo_Description);
 
 };_this.
 
-_handle_handlerClose_Properties=function(){
+_handle_Close_Properties=function(){
 _this.setState({propertiesIsOpen:false});
 };_this.
 
@@ -84,7 +84,7 @@ Ensayo_Title:'',
 Ensayo_Content:'',
 Ensayo_Description:'',
 handlerUpdate:this._handle_updateHandler_Ensayo,
-handlerClose:this._handle_handlerClose_Properties,
+handlerClose:this._handle_Close_Properties,
 open:this.state.propertiesIsOpen}))));
 
 

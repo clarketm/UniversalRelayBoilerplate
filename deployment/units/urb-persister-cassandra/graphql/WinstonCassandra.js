@@ -1,4 +1,4 @@
-
+var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
 
 var util=require('util');
 var events=require('events');
@@ -20,13 +20,17 @@ function Cassandra(options){
 if(!options){
 throw new Error('Transport options is required');
 }
+
 if(!options.keyspace){
 throw new Error('You must specify the options.keyspace');
 }
-this.options=Cassandra.extend({},defaultOptions,options);
+
+this.options=_extends({},defaultOptions,options);
+
 
 this.name=this.options.name;
 this.level=this.options.level;
+
 
 this.schemaStatus=new events.EventEmitter();
 this.schemaStatus.setMaxListeners(0);
@@ -71,22 +75,6 @@ this.options.table+
 {prepare:true,consistency:this.options.consistency},
 callback);
 
-};
-
-
-
-
-
-Cassandra.extend=function(target){
-var sources=[].slice.call(arguments,1);
-sources.forEach(function(source){
-for(var prop in source){
-if(source.hasOwnProperty(prop)){
-target[prop]=source[prop];
-}
-}
-});
-return target;
 };
 
 
