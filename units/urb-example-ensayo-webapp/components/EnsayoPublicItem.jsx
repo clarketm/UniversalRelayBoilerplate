@@ -1,8 +1,8 @@
 // @flow
 
-import Card, { CardHeader } from 'material-ui/Card'
+import Card, { CardHeader, CardText } from 'material-ui/Card'
 import Helmet from 'react-helmet'
-import { Parser } from 'html-to-react'
+//import { Parser } from 'html-to-react'
 import React from 'react'
 import Relay from 'react-relay'
 
@@ -34,7 +34,7 @@ class EnsayoPublicItem extends React.Component {
             }
           />
           <CardText>
-            {new Parser().parse(this.props.Viewer.Ensayo.Ensayo_Content)}
+            {/*new Parser().parse(this.props.Viewer.Ensayo.Ensayo_Content)*/}
           </CardText>
         </Card>
       </ResponsiveContentArea>

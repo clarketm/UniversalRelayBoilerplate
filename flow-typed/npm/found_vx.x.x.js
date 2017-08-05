@@ -138,6 +138,10 @@ declare module 'found/lib/server/getFarceResult' {
   declare module.exports: any
 }
 
+declare module 'found/lib/server' {
+  declare module.exports: any
+}
+
 declare module 'found/lib/server/index' {
   declare module.exports: any
 }

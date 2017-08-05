@@ -59,7 +59,9 @@ function commit(environment, user, ToDos, ToDo_Complete, status) {
       const payload = {
         Viewer: {
           id: user.id,
+          ToDo_CompletedCount: 0,
         },
+        changedToDos: null,
       }
 
       if (ToDos && ToDos.edges) {
