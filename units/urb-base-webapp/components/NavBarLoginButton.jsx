@@ -51,12 +51,18 @@ class NavBarLoginButton extends React.Component {
 
   render() {
     const classes = this.props.classes
+    const { User_IsAnonymous, User_DisplayName } = this.props.Viewer
 
     return (
       <div>
-        <Button color="contrast" onClick={this._handle_onClick_Login}>
-          Login
-        </Button>
+        {User_IsAnonymous &&
+          <Button color="contrast" onClick={this._handle_onClick_Login}>
+            Login
+          </Button>}
+        {!User_IsAnonymous &&
+          <Button color="contrast" onClick={this._handle_onClick_Login}>
+            {User_DisplayName}
+          </Button>}
         <LoginDialog
           open={this.state.loginDialogIsOpen}
           handlerClose={this._handle_Login_Close}
@@ -72,7 +78,8 @@ export default createFragmentContainer(
   withStyles(styleSheet)(NavBarLoginButton),
   graphql`
     fragment NavBarLoginButton_Viewer on Viewer {
-      id
+      User_IsAnonymous
+      User_DisplayName
     }
   `,
 )

@@ -59,6 +59,7 @@ class NewUserScreen extends React.Component {
 
       const response = await fetch(host + '/auth/createuser', {
         method: 'POST',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },

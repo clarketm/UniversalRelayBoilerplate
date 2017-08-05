@@ -8,8 +8,8 @@ import { getFarceResult } from 'found/lib/server'
 import ReactDOMServer from 'react-dom/server'
 import serialize from 'serialize-javascript'
 
+import FetcherServer from './fetcherServer'
 import { getSiteInformation } from '../_configuration/urb-base-webapp/siteSettings'
-import { ServerFetcher } from '../urb-base-universal/fetcher'
 import { version } from '../_configuration/package'
 import { createResolver, historyMiddlewares, render, routeConfig } from './router'
 import Wrapper from './components/Wrapper'
@@ -56,7 +56,11 @@ async function gatherLocationAndSiteInformation(req: Object, res: Object) {
 }
 
 router.use(async (req, res) => {
-  const fetcher = new ServerFetcher(`http://localhost:${envPort}/graphql`)
+  const fetcher = new FetcherServer(
+    `http://localhost:${envPort}/graphql`,
+    req.cookies.UserToken1,
+    req.headers.UserToken2,
+  )
 
   const { redirect, status, element } = await getFarceResult({
     url: req.url,

@@ -4,7 +4,11 @@ import bodyParser from 'body-parser'
 import express from 'express'
 import graphQLHTTP from 'express-graphql'
 
-import { getUserByCookie, verifyUserAuthToken, serveAuthenticationFailed } from './checkCredentials'
+import {
+  getUserByUserToken1,
+  verifyUserAuthToken,
+  serveAuthenticationFailed,
+} from './checkCredentials'
 import { getSiteInformation } from '../_configuration/urb-base-webapp/siteSettings'
 import logServerRequest from './logServerRequest'
 import { getObjectManager } from './graphql/ObjectManager'
@@ -18,15 +22,19 @@ import _schemas from '../_configuration/urb-base-server/graphql/_schemas'
 // Create router for GraphQL
 const router = express()
 
-// Set up parser and logging
+// Set up parser
 router.use(bodyParser.json())
+
+// Set up logging
 router.use((req, res, next) => logServerRequest(req, res, next, requestLoggerGraphQL))
 
 async function root(req, res, next) {
   const objectManager = await getObjectManager(req, res)
   if (objectManager.siteInformation) {
     try {
-      const a_User = await getUserByCookie(objectManager, req)
+      const a_User = await getUserByUserToken1(objectManager, req)
+
+      console.log(a_User)
 
       res.codeFoundriesInjected = { user: a_User }
       await verifyUserAuthToken(a_User, req)

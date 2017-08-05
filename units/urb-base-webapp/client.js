@@ -8,14 +8,18 @@ import createInitialFarceRouter from 'found/lib/createInitialFarceRouter'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { ClientFetcher } from '../urb-base-universal/fetcher'
+import FetcherClient from './fetcherClient'
 import { createResolver, historyMiddlewares, render, routeConfig } from './router'
 import Wrapper from './components/Wrapper'
 
 //
 ;(async () => {
   // eslint-disable-next-line no-underscore-dangle
-  const fetcher = new ClientFetcher('/graphql', window.__RELAY_PAYLOADS__)
+  const fetcher = new FetcherClient(
+    '/graphql',
+    window.__RELAY_PAYLOADS__,
+    'ZZZ UserToken2 in client',
+  )
   const resolver = createResolver(fetcher)
 
   const Router = await createInitialFarceRouter({

@@ -7,8 +7,8 @@ Object.defineProperty(exports,"__esModule",{value:true});
 
 
 
-var debugWriteToLogServerRequestAuth=exports.debugWriteToLogServerRequestAuth={trace:'none'};
-var debugWriteToLogServerRequestGraphQL=exports.debugWriteToLogServerRequestGraphQL={trace:'none'};
+var debugWriteToLogServerRequestAuth=exports.debugWriteToLogServerRequestAuth={};
+var debugWriteToLogServerRequestGraphQL=exports.debugWriteToLogServerRequestGraphQL={};
 var debugWriteToLogServerRequestWebApp=exports.debugWriteToLogServerRequestWebApp={trace:'none'};
 var debugWriteToLogServerRequestPublic=exports.debugWriteToLogServerRequestPublic={trace:'none'};
 
