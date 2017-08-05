@@ -3,7 +3,7 @@
 import fs from 'fs'
 
 import AppRegistryName from '../_configuration/app/AppRegistryName'
-import getLocalIP from './getLocalIP'
+import getLocalIP from '../urb-base-server/getLocalIP'
 
 // Read environment
 require('dotenv').load()

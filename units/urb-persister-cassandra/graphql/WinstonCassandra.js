@@ -20,13 +20,17 @@ function Cassandra(options: Object) {
   if (!options) {
     throw new Error('Transport options is required')
   }
+
   if (!options.keyspace) {
     throw new Error('You must specify the options.keyspace')
   }
-  this.options = Cassandra.extend({}, defaultOptions, options)
+
+  this.options = Object.assign({}, defaultOptions, options)
+
   //winston options
   this.name = this.options.name
   this.level = this.options.level
+
   //create a queue object that will emit the event 'prepared'
   this.schemaStatus = new events.EventEmitter()
   this.schemaStatus.setMaxListeners(0)
@@ -71,22 +75,6 @@ Cassandra.prototype._insertLog = function(level, msg, meta, callback) {
     { prepare: true, consistency: this.options.consistency },
     callback,
   )
-}
-
-/**
- * Merge the contents of two or more objects together into the first object.
- * Similar to jQuery.extend
- */
-Cassandra.extend = function(target) {
-  var sources = [].slice.call(arguments, 1)
-  sources.forEach(function(source) {
-    for (var prop in source) {
-      if (source.hasOwnProperty(prop)) {
-        target[prop] = source[prop]
-      }
-    }
-  })
-  return target
 }
 
 //Define as a property of winston transports for backward compatibility
