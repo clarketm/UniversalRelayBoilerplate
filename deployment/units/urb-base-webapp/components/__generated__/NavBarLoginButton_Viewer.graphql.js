@@ -9,7 +9,8 @@
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
 export type NavBarLoginButton_Viewer = {|
-  +id: string;
+  +User_IsAnonymous: ?boolean;
+  +User_DisplayName: ?string;
 |};
 */
 
@@ -24,7 +25,14 @@ const fragment /*: ConcreteFragment*/ = {
       "kind": "ScalarField",
       "alias": null,
       "args": null,
-      "name": "id",
+      "name": "User_IsAnonymous",
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "args": null,
+      "name": "User_DisplayName",
       "storageKey": null
     }
   ],

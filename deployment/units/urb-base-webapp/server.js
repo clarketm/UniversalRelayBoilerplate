@@ -8,8 +8,8 @@ var _server=require('found/lib/server');
 var _server2=require('react-dom/server');var _server3=_interopRequireDefault(_server2);
 var _serializeJavascript=require('serialize-javascript');var _serializeJavascript2=_interopRequireDefault(_serializeJavascript);
 
+var _fetcherServer=require('./fetcherServer');var _fetcherServer2=_interopRequireDefault(_fetcherServer);
 var _siteSettings=require('../_configuration/urb-base-webapp/siteSettings');
-var _fetcher=require('../urb-base-universal/fetcher');
 var _package=require('../_configuration/package');
 var _router=require('./router');
 var _Wrapper=require('./components/Wrapper');var _Wrapper2=_interopRequireDefault(_Wrapper);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
@@ -56,7 +56,11 @@ assetsPath='http://'+envHost+':'+envPortWebpack+'/'+_package.version;
 
 
 router.use(function _callee(req,res){var fetcher,_ref,redirect,status,element,userAgent,_ref2,siteInformation,assetsPath,sheets,rootHTML;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:
-fetcher=new _fetcher.ServerFetcher('http://localhost:'+envPort+'/graphql');_context2.next=3;return regeneratorRuntime.awrap(
+fetcher=new _fetcherServer2.default('http://localhost:'+
+envPort+'/graphql',
+req.cookies.UserToken1,
+req.headers.UserToken2);_context2.next=3;return regeneratorRuntime.awrap(
+
 
 (0,_server.getFarceResult)({
 url:req.url,

@@ -50,12 +50,18 @@ _this.context.router.push('/user/new');
 };_this.state={loginDialogIsOpen:false};return _this;}_createClass(NavBarLoginButton,[{key:'render',value:function render()
 
 {
-var classes=this.props.classes;
+var classes=this.props.classes;var _props$Viewer=
+this.props.Viewer,User_IsAnonymous=_props$Viewer.User_IsAnonymous,User_DisplayName=_props$Viewer.User_DisplayName;
 
 return(
 _react2.default.createElement('div',null,
+User_IsAnonymous&&
 _react2.default.createElement(_Button2.default,{color:'contrast',onClick:this._handle_onClick_Login},'Login'),
 
+
+!User_IsAnonymous&&
+_react2.default.createElement(_Button2.default,{color:'contrast',onClick:this._handle_onClick_Login},
+User_DisplayName),
 
 _react2.default.createElement(_LoginDialog2.default,{
 open:this.state.loginDialogIsOpen,
