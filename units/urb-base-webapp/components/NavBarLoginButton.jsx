@@ -78,7 +78,6 @@ export default createFragmentContainer(
   withStyles(styleSheet)(NavBarLoginButton),
   graphql`
     fragment NavBarLoginButton_Viewer on Viewer {
-      id
       User_IsAnonymous
       User_DisplayName
     }

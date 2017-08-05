@@ -9,33 +9,36 @@ import log from './log'
 // Read environment
 require('dotenv').load()
 
-export function getUserByCookie(objectManager, req) {
-  let user_id = defaultPersister.uuidNull() // Anonymous, unless cookie is passed
-
-  // ZZZ
-  /*
-  try {
-    if (req.cookies.UserToken1)
-      if (req.cookies.UserToken1.length > 10) {
-        var decoded = jwt.decode(req.cookies.UserToken1, process.env.JWT_SECRET)
-        user_id = defaultPersister.uuidFromString(decoded.user_id)
+function get_user_id(req) {
+  const UserToken1 = req.cookies.UserToken1 || req.headers.usertoken1
+  if (UserToken1)
+    try {
+      if (UserToken1.length > 10) {
+        const decoded = jwt.decode(UserToken1, process.env.JWT_SECRET)
+        return defaultPersister.uuidFromString(decoded.user_id)
       }
-  } catch (err) {
-    return Promise.reject('💔  Could not read auth cookie. ' + err)
-  }
-  */
+    } catch (err) {
+      return Promise.reject('💔  Could not read auth cookie. ' + err)
+    }
+  return defaultPersister.uuidNull() // Anonymous, unless cookie is passed
+}
 
-  return objectManager
-    .getOneObject('User', {
-      id: user_id,
-      User_site_id: objectManager.siteInformation.site_id,
-    })
-    .then(a_User => {
-      if (a_User) {
-        objectManager.setViewerUserId(user_id)
-        return a_User
-      } else return Promise.reject('💔  User not found')
-    })
+export async function getUserByUserToken1(objectManager, req) {
+  const user_id = get_user_id(req)
+
+  const a_User = await objectManager.getOneObject('User', {
+    id: user_id,
+    User_site_id: objectManager.siteInformation.site_id,
+  })
+
+  console.log(a_User)
+
+  if (a_User) {
+    objectManager.setViewerUserId(user_id)
+    return a_User
+  } else {
+    throw '💔  User not found'
+  }
 }
 
 export function verifyUserAuthToken(a_User, req) {
