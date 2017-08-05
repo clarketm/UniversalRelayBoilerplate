@@ -38,7 +38,7 @@ export default class ObjectManager {
   request: ?Object
   response: ?Object
   User_0: User
-  siteInformation: ?Object
+  siteInformation: { site_id: string }
 
   constructor() {
     // Loaders for a single record, by entity name
@@ -58,6 +58,10 @@ export default class ObjectManager {
 
     // Anonymous user available as property, for comparisons
     this.User_0 = User_0
+
+    // Setting site information mostly to satify flow;
+    // also, in order to be able to detect errors when not set better
+    this.siteInformation = { site_id: 'site_id has not been set. Invalid site_id!' }
   }
 
   static registerEntity(entityName: string, EntityType: any, persister: any): void {
@@ -198,6 +202,7 @@ export default class ObjectManager {
     return loader.load(filter).then(result => {
       const changes = this.changes[entityName]
       if (changes) {
+        // $FlowIssue - by convention all entity objects are expected to have an id
         const change = changes[result.id]
         if (change != null) {
           if (change === deletedRecord)
@@ -241,7 +246,7 @@ export default class ObjectManager {
     }
   }
 
-  executeTriggers(arrTriggers: Array<Function>, fields: Object, oldFields: Object) {
+  executeTriggers(arrTriggers: Array<Function>, fields: Object, oldFields: ?Object) {
     const arrPromises = []
     for (let trigger of arrTriggers) {
       arrPromises.push(trigger(this, fields, oldFields))
@@ -295,20 +300,28 @@ export default class ObjectManager {
     const entityDefinition = entityDefinitions[entityName]
 
     const entity = await this.getOneObject(entityName, keyFields)
-    console.log(entity)
-    console.log(ensureFields)
 
     for (let ensuredFieldName of Object.keys(ensureFields)) {
       let isMatchingValue = false
-      if (ensuredFieldName.endsWith('site_id'))
+      if (ensuredFieldName.endsWith('site_id')) {
+        if (!entity.site_id)
+          throw new Error(
+            'ensuredFieldName = ' +
+              ensuredFieldName +
+              ', however the entity does not have field site_id',
+          )
         isMatchingValue =
           entityDefinition.Persister.uuidToString(entity.site_id) == ensureFields.site_id
-      else if (ensuredFieldName.endsWith('_id'))
+      } else if (ensuredFieldName.endsWith('_id')) {
         isMatchingValue = entityDefinition.Persister.uuidEquals(
           ensureFields[ensuredFieldName],
+          // $FlowIssue by convention the field should be present
           entity[ensuredFieldName],
         )
-      else isMatchingValue = ensureFields[ensuredFieldName] == entity[ensuredFieldName]
+      } else {
+        // $FlowIssue by convention the field should be present
+        isMatchingValue = ensureFields[ensuredFieldName] == entity[ensuredFieldName]
+      }
 
       if (!isMatchingValue)
         throw new Error(
@@ -330,7 +343,7 @@ export default class ObjectManager {
     this.invalidateLoaderCache(entityName, fields)
   }
 
-  cursorForObjectInConnection(entityName: string, arr, obj) {
+  cursorForObjectInConnection(entityName: string, arr: Array<Object>, obj: Object) {
     const entityDefinition = entityDefinitions[entityName]
 
     // IDs can be both strings and Uuid. Check that first, and convert to String
@@ -373,7 +386,7 @@ export default class ObjectManager {
 ObjectManager.registerEntity('User', User)
 
 // Get an Object Manager with site information
-export async function getObjectManager(req: Object, res: Object) {
+export async function getObjectManager(req: Object, res: Object): Promise<ObjectManager> {
   // Set site information
   const siteInformation = await getSiteInformation(req, res)
 

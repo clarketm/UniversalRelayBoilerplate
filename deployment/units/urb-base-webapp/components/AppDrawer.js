@@ -35,7 +35,8 @@ color:theme.palette.text.secondary}};});
 function renderNavItems(){
 return(
 _react2.default.createElement(_List2.default,null,
-_react2.default.createElement(_AppDrawerNavItem2.default,{key:1,openImmediately:true,title:'Hello'})));
+_react2.default.createElement(_AppDrawerNavItem2.default,{key:1,openImmediately:true,title:'To Dos',to:'/todo'}),
+_react2.default.createElement(_AppDrawerNavItem2.default,{key:2,openImmediately:true,title:'Ensayo',to:'/ensayo/edit'})));
 
 
 }
@@ -90,6 +91,8 @@ renderNavItems())));
 
 
 }
+
+
 
 AppDrawer.propTypes={
 classes:_propTypes2.default.object.isRequired,

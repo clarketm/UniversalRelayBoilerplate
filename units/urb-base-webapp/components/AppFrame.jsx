@@ -4,11 +4,13 @@ import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 import React, { Component } from 'react'
+import { createFragmentContainer, graphql } from 'react-relay'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 
 import AppDrawer from './AppDrawer'
+import NavBarLoginButton from './NavBarLoginButton'
 
 const styleSheet = createStyleSheet(theme => ({
   '@global': {
@@ -84,7 +86,7 @@ class AppFrame extends Component {
   }
 
   render() {
-    const { children, classes, width } = this.props
+    const { children, classes, width, Viewer } = this.props
 
     let drawerDocked = false
 
@@ -116,6 +118,7 @@ class AppFrame extends Component {
                 {title}
               </Typography>}
             <div className={classes.grow} />
+            <NavBarLoginButton Viewer={Viewer} />
           </Toolbar>
         </AppBar>
         <AppDrawer
@@ -130,4 +133,11 @@ class AppFrame extends Component {
   }
 }
 
-export default withStyles(styleSheet)(AppFrame)
+export default createFragmentContainer(
+  withStyles(styleSheet)(AppFrame),
+  graphql`
+    fragment AppFrame_Viewer on Viewer {
+      ...NavBarLoginButton_Viewer
+    }
+  `,
+)

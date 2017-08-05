@@ -58,8 +58,10 @@ connection.setLinkedRecords([],'edges');
 optimisticResponse:function optimisticResponse(){
 var payload={
 Viewer:{
-id:user.id}};
+id:user.id,
+ToDo_CompletedCount:0},
 
+changedToDos:null};
 
 
 if(ToDos&&ToDos.edges){

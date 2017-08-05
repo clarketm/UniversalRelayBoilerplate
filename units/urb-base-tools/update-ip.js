@@ -3,13 +3,14 @@
 import fs from 'fs'
 
 import AppRegistryName from '../_configuration/app/AppRegistryName'
-import getLocalIP from './getLocalIP'
+import getLocalIP from '../urb-base-server/getLocalIP'
 
 // Read environment
 require('dotenv').load()
 
-// Determine port currently used in .env - this will be the port set.
 const port = process.env.PORT
+if (port == null || typeof port !== 'string')
+  throw new Error('💔  update-ip requires the environment variable PORT to be set')
 
 let IPAddress = process.argv[2]
 
@@ -23,17 +24,19 @@ if (IPAddress != undefined) {
     '  jsCodeLocation = [NSURL URLWithString:@"http://' +
       IPAddress +
       ':8081/index.ios.bundle?platform=ios&dev=true"];',
+    IPAddress,
   )
   updateIPInFile(
     './units/_configuration/app/publicURL.js',
     'const publicURL',
     "const publicURL = 'http://" + IPAddress + ':' + port + "'",
+    IPAddress,
   )
-  updateIPInFile('./.env', 'PUBLIC_URL=', 'PUBLIC_URL=http://' + IPAddress + ':' + port)
-  updateIPInFile('./.env', 'HOST=', 'HOST=' + IPAddress)
+  updateIPInFile('./.env', 'PUBLIC_URL=', 'PUBLIC_URL=http://' + IPAddress + ':' + port, IPAddress)
+  updateIPInFile('./.env', 'HOST=', 'HOST=' + IPAddress, IPAddress)
 } else console.log('IP Address not specified and could not be found')
 
-function updateIPInFile(fileName, searchString, newContentOfLine) {
+function updateIPInFile(fileName, searchString, newContentOfLine, IPAddress) {
   try {
     let fileLines = fs.readFileSync(fileName, 'utf8').split('\n')
     let index = 0

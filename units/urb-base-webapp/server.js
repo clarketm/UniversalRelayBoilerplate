@@ -3,6 +3,7 @@
 import express from 'express'
 import React from 'react'
 import path from 'path'
+import { JssProvider, SheetsRegistry } from 'react-jss'
 import { getFarceResult } from 'found/lib/server'
 import ReactDOMServer from 'react-dom/server'
 import serialize from 'serialize-javascript'
@@ -74,13 +75,20 @@ router.use(async (req, res) => {
 
   const { siteInformation, assetsPath } = await gatherLocationAndSiteInformation(req, res)
 
-  res.render(path.resolve(__dirname, 'html.ejs'), {
-    assets_path: assetsPath,
-    root_html: ReactDOMServer.renderToString(
+  const sheets = new SheetsRegistry()
+
+  const rootHTML = ReactDOMServer.renderToString(
+    <JssProvider registry={sheets}>
       <Wrapper userAgent={userAgent}>
         {element}
-      </Wrapper>,
-    ),
+      </Wrapper>
+    </JssProvider>,
+  )
+
+  res.render(path.resolve(__dirname, 'html.ejs'), {
+    assets_path: assetsPath,
+    root_html: rootHTML,
+    server_side_styles: sheets.toString(),
     relay_payload: serialize(fetcher, { isJSON: true }),
   })
 })

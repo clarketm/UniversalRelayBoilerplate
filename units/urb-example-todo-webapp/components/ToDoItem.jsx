@@ -43,13 +43,13 @@ class ToDoItem extends React.Component {
     ToDoUpdateStatusMutation.commit(relay.environment, Viewer, ToDo, ToDo_Complete)
   }
 
-  _handle_handlerUpdate_Properties = ToDo_properties => {
+  _handle_Update_Properties = ToDo_properties => {
     const { relay, ToDo } = this.props
 
     ToDoUpdateRenameMutation.commit(relay.environment, ToDo, ToDo_properties.ToDo_Text)
   }
 
-  _handle_handlerClose_Properties = () => {
+  _handle_Close_Properties = () => {
     this.setState({ propertiesIsOpen: false })
   }
 
@@ -107,8 +107,8 @@ class ToDoItem extends React.Component {
         </Menu>
         <ToDoProperties
           ToDo_Text={ToDo_Text}
-          handlerUpdate={this._handle_handlerUpdate_Properties}
-          handlerClose={this._handle_handlerClose_Properties}
+          handlerUpdate={this._handle_Update_Properties}
+          handlerClose={this._handle_Close_Properties}
           open={this.state.propertiesIsOpen}
         />
       </div>

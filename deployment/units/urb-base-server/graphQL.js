@@ -26,10 +26,10 @@ function root(req,res,next){var objectManager,a_User;return regeneratorRuntime.a
 (0,_ObjectManager.getObjectManager)(req,res));case 2:objectManager=_context.sent;if(!
 objectManager.siteInformation){_context.next=17;break;}_context.prev=4;_context.next=7;return regeneratorRuntime.awrap(
 
-(0,_checkCredentials.getUserByCookie)(objectManager,req,res));case 7:a_User=_context.sent;
+(0,_checkCredentials.getUserByCookie)(objectManager,req));case 7:a_User=_context.sent;
 
 res.codeFoundriesInjected={user:a_User};_context.next=11;return regeneratorRuntime.awrap(
-(0,_checkCredentials.verifyUserAuthToken)(a_User,req,res));case 11:
+(0,_checkCredentials.verifyUserAuthToken)(a_User,req));case 11:
 
 (0,_expressGraphql2.default)(function(){
 return{

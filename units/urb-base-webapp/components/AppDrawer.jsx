@@ -35,7 +35,8 @@ const styleSheet = createStyleSheet('AppDrawer', theme => ({
 function renderNavItems() {
   return (
     <List>
-      <AppDrawerNavItem key={1} openImmediately={true} title="Hello" />
+      <AppDrawerNavItem key={1} openImmediately={true} title="To Dos" to="/todo" />
+      <AppDrawerNavItem key={2} openImmediately={true} title="Ensayo" to="/ensayo/edit" />
     </List>
   )
 }
@@ -90,6 +91,8 @@ function AppDrawer(props) {
     </Drawer>
   )
 }
+
+//
 
 AppDrawer.propTypes = {
   classes: PropTypes.object.isRequired,

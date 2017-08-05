@@ -4,11 +4,13 @@ var _AppBar=require('material-ui/AppBar');var _AppBar2=_interopRequireDefault(_A
 var _IconButton=require('material-ui/IconButton');var _IconButton2=_interopRequireDefault(_IconButton);
 var _Menu=require('material-ui-icons/Menu');var _Menu2=_interopRequireDefault(_Menu);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
+var _reactRelay=require('react-relay');
 var _styles=require('material-ui/styles');
 var _Toolbar=require('material-ui/Toolbar');var _Toolbar2=_interopRequireDefault(_Toolbar);
 var _Typography=require('material-ui/Typography');var _Typography2=_interopRequireDefault(_Typography);
 
-var _AppDrawer=require('./AppDrawer');var _AppDrawer2=_interopRequireDefault(_AppDrawer);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}
+var _AppDrawer=require('./AppDrawer');var _AppDrawer2=_interopRequireDefault(_AppDrawer);
+var _NavBarLoginButton=require('./NavBarLoginButton');var _NavBarLoginButton2=_interopRequireDefault(_NavBarLoginButton);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}
 
 var styleSheet=(0,_styles.createStyleSheet)(function(theme){return _defineProperty({
 '@global':{
@@ -84,7 +86,7 @@ _this.setState({drawerOpen:!_this.state.drawerOpen});
 };_this.state={drawerOpen:false};return _this;}_createClass(AppFrame,[{key:'render',value:function render()
 
 {var _props=
-this.props,children=_props.children,classes=_props.classes,width=_props.width;
+this.props,children=_props.children,classes=_props.classes,width=_props.width,Viewer=_props.Viewer;
 
 var drawerDocked=false;
 
@@ -115,7 +117,8 @@ title!==null&&
 _react2.default.createElement(_Typography2.default,{className:classes.title,type:'title',color:'inherit',noWrap:true},
 title),
 
-_react2.default.createElement('div',{className:classes.grow}))),
+_react2.default.createElement('div',{className:classes.grow}),
+_react2.default.createElement(_NavBarLoginButton2.default,{Viewer:Viewer}))),
 
 
 _react2.default.createElement(_AppDrawer2.default,{
@@ -130,5 +133,6 @@ children));
 }}]);return AppFrame;}(_react.Component);exports.default=
 
 
-(0,_styles.withStyles)(styleSheet)(AppFrame);
+(0,_reactRelay.createFragmentContainer)(
+(0,_styles.withStyles)(styleSheet)(AppFrame),{Viewer:function Viewer(){return require('./__generated__/AppFrame_Viewer.graphql');}});
 //# sourceMappingURL=AppFrame.js.map

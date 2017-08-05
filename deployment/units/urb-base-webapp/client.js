@@ -30,5 +30,11 @@ _reactDom2.default.render(
 _react2.default.createElement(_Wrapper2.default,null,
 _react2.default.createElement(Router,{resolver:resolver})),
 
-document.getElementById('root'));case 6:case'end':return _context.stop();}}},null,_this);})();
+document.getElementById('root'),
+function(){
+
+var ssStyles=document.getElementById('server-side-styles');
+
+ssStyles.parentNode.removeChild(ssStyles);
+});case 6:case'end':return _context.stop();}}},null,_this);})();
 //# sourceMappingURL=client.js.map

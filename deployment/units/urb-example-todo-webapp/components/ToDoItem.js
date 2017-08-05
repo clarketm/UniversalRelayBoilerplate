@@ -43,13 +43,13 @@ _this.props,relay=_this$props.relay,Viewer=_this$props.Viewer,ToDo=_this$props.T
 _ToDoUpdateStatusMutation2.default.commit(relay.environment,Viewer,ToDo,ToDo_Complete);
 };_this.
 
-_handle_handlerUpdate_Properties=function(ToDo_properties){var _this$props2=
+_handle_Update_Properties=function(ToDo_properties){var _this$props2=
 _this.props,relay=_this$props2.relay,ToDo=_this$props2.ToDo;
 
 _ToDoUpdateRenameMutation2.default.commit(relay.environment,ToDo,ToDo_properties.ToDo_Text);
 };_this.
 
-_handle_handlerClose_Properties=function(){
+_handle_Close_Properties=function(){
 _this.setState({propertiesIsOpen:false});
 };_this.
 
@@ -107,8 +107,8 @@ _react2.default.createElement(_Menu.MenuItem,{key:'delete',onClick:function onCl
 
 _react2.default.createElement(_ToDoProperties2.default,{
 ToDo_Text:ToDo_Text,
-handlerUpdate:this._handle_handlerUpdate_Properties,
-handlerClose:this._handle_handlerClose_Properties,
+handlerUpdate:this._handle_Update_Properties,
+handlerClose:this._handle_Close_Properties,
 open:this.state.propertiesIsOpen})));
 
 

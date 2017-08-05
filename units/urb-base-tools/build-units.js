@@ -3,23 +3,24 @@
 import fs from 'fs'
 import path from 'path'
 
-const currentPackageJson = JSON.parse(fs.readFileSync('./package.json'))
+const currentPackageJson = JSON.parse(fs.readFileSync('./package.json').toString())
 const packageJson = {
   dependencies: {},
   devDependencies: {},
   engines: {},
   scripts: {},
+  name: null,
+  version: null,
 }
 
 function addToPackageJson(fileName) {
-  const newPackageJson = JSON.parse(fs.readFileSync(fileName))
+  const newPackageJson = JSON.parse(fs.readFileSync(fileName).toString())
 
   if (newPackageJson.dependencies)
     Object.assign(packageJson.dependencies, newPackageJson.dependencies)
   if (newPackageJson.devDependencies)
     Object.assign(packageJson.devDependencies, newPackageJson.devDependencies)
   if (newPackageJson.engines) Object.assign(packageJson.engines, newPackageJson.engines)
-  if (newPackageJson.metadata) Object.assign(packageJson.metadata, newPackageJson.metadata)
   if (newPackageJson.scripts) Object.assign(packageJson.scripts, newPackageJson.scripts)
 }
 
@@ -65,7 +66,11 @@ function createPackageJson() {
   fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2), 'utf8')
 }
 
-function getMutations(directoryName: String, mutationsImports: Array, mutationsExports: Array) {
+function getMutations(
+  directoryName: string,
+  mutationsImports: Array<string>,
+  mutationsExports: Array<string>,
+) {
   fs.readdirSync(directoryName).filter(unitName => {
     if (fs.statSync(directoryName + unitName).isDirectory()) {
       const mutationsDir = path.resolve(directoryName, unitName, 'graphql/mutation')
@@ -117,7 +122,7 @@ function createMutations() {
   )
 }
 
-function getSchemas(schemasImports: Array) {
+function getSchemas(schemasImports: Array<string>) {
   const directoryName = 'units/'
   fs.readdirSync(directoryName).filter(unitName => {
     if (fs.statSync(directoryName + unitName).isDirectory()) {
@@ -166,9 +171,9 @@ function createSchemas() {
 }
 
 function getViewerFields(
-  directoryName: String,
-  viewerFieldsImports: Array,
-  viewerFieldsExports: Array,
+  directoryName: string,
+  viewerFieldsImports: Array<string>,
+  viewerFieldsExports: Array<string>,
 ) {
   fs.readdirSync(directoryName).filter(unitName => {
     if (fs.statSync(directoryName + unitName).isDirectory()) {
