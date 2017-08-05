@@ -31,5 +31,11 @@ import Wrapper from './components/Wrapper'
       <Router resolver={resolver} />
     </Wrapper>,
     document.getElementById('root'),
+    () => {
+      // We don't need the static css any more once we have launched our application.
+      const ssStyles = document.getElementById('server-side-styles')
+      // $FlowIssue it is guaranteed to be there
+      ssStyles.parentNode.removeChild(ssStyles)
+    },
   )
 })()
