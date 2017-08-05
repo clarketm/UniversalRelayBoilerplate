@@ -35,7 +35,7 @@ props,context));_this.
 
 
 
-_handle_handlerUpdate_Properties=function(ensayoProperties){var
+_handle_Update_Properties=function(ensayoProperties){var
 Ensayo_Title=ensayoProperties.Ensayo_Title,Ensayo_Description=ensayoProperties.Ensayo_Description,Ensayo_Content=ensayoProperties.Ensayo_Content;var _this$props=
 _this.props,relay=_this$props.relay,Ensayo=_this$props.Ensayo;
 
@@ -48,7 +48,7 @@ Ensayo_Description);
 
 };_this.
 
-_handle_handlerClose_Properties=function(){
+_handle_Close_Properties=function(){
 _this.setState({propertiesIsOpen:false});
 };_this.
 
@@ -102,8 +102,8 @@ _react2.default.createElement(_EnsayoProperties2.default,{
 Ensayo_Title:Ensayo_Title,
 Ensayo_Description:Ensayo_Description,
 Ensayo_Content:Ensayo_Content,
-handlerUpdate:this._handle_handlerUpdate_Properties,
-handlerClose:this._handle_handlerClose_Properties,
+handlerUpdate:this._handle_Update_Properties,
+handlerClose:this._handle_Close_Properties,
 open:this.state.propertiesIsOpen})));
 
 

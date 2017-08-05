@@ -3,23 +3,24 @@ var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++)
 var _fs=require('fs');var _fs2=_interopRequireDefault(_fs);
 var _path=require('path');var _path2=_interopRequireDefault(_path);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
-var currentPackageJson=JSON.parse(_fs2.default.readFileSync('./package.json'));
+var currentPackageJson=JSON.parse(_fs2.default.readFileSync('./package.json').toString());
 var packageJson={
 dependencies:{},
 devDependencies:{},
 engines:{},
-scripts:{}};
+scripts:{},
+name:null,
+version:null};
 
 
 function addToPackageJson(fileName){
-var newPackageJson=JSON.parse(_fs2.default.readFileSync(fileName));
+var newPackageJson=JSON.parse(_fs2.default.readFileSync(fileName).toString());
 
 if(newPackageJson.dependencies)
 _extends(packageJson.dependencies,newPackageJson.dependencies);
 if(newPackageJson.devDependencies)
 _extends(packageJson.devDependencies,newPackageJson.devDependencies);
 if(newPackageJson.engines)_extends(packageJson.engines,newPackageJson.engines);
-if(newPackageJson.metadata)_extends(packageJson.metadata,newPackageJson.metadata);
 if(newPackageJson.scripts)_extends(packageJson.scripts,newPackageJson.scripts);
 }
 
@@ -65,7 +66,11 @@ console.log('Written: '+_path2.default.resolve('./package.json'));
 _fs2.default.writeFileSync('./package.json',JSON.stringify(packageJson,null,2),'utf8');
 }
 
-function getMutations(directoryName,mutationsImports,mutationsExports){
+function getMutations(
+directoryName,
+mutationsImports,
+mutationsExports)
+{
 _fs2.default.readdirSync(directoryName).filter(function(unitName){
 if(_fs2.default.statSync(directoryName+unitName).isDirectory()){
 var mutationsDir=_path2.default.resolve(directoryName,unitName,'graphql/mutation');
