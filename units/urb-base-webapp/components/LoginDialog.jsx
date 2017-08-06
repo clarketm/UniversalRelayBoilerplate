@@ -51,12 +51,12 @@ class LoginDialog extends React.Component {
   }
 
   render() {
-    const classes = this.props.classes
+    const { classes, open } = this.props
     const { AccountName, AccountPassword } = this.state
 
     return (
       <div>
-        <Dialog open={this.props.open} transition={Slide} onRequestClose={this._handle_Close}>
+        <Dialog open={open} transition={Slide} onRequestClose={this._handle_Close}>
           <DialogTitle>Log In</DialogTitle>
 
           <DialogContent>
