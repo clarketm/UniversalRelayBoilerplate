@@ -8,9 +8,10 @@ import { getFarceResult } from 'found/lib/server'
 import ReactDOMServer from 'react-dom/server'
 import serialize from 'serialize-javascript'
 
-import FetcherServer from './fetcherServer'
-import { getSiteInformation } from '../_configuration/urb-base-webapp/siteSettings'
 import { version } from '../_configuration/package'
+import UserToken2ServerRendering from '../_configuration/urb-base-server/UserToken2ServerRendering'
+import { getSiteInformation } from '../_configuration/urb-base-webapp/siteSettings'
+import FetcherServer from './fetcherServer'
 import { createResolver, historyMiddlewares, render, routeConfig } from './router'
 import Wrapper from './components/Wrapper'
 
@@ -59,7 +60,7 @@ router.use(async (req, res) => {
   const fetcher = new FetcherServer(
     `http://localhost:${envPort}/graphql`,
     req.cookies.UserToken1,
-    req.headers.UserToken2,
+    UserToken2ServerRendering,
   )
 
   const { redirect, status, element } = await getFarceResult({
