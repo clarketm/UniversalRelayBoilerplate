@@ -2,7 +2,7 @@
 
 var _fs=require('fs');var _fs2=_interopRequireDefault(_fs);
 
-var _AppRegistryName=require('../_configuration/app/AppRegistryName');var _AppRegistryName2=_interopRequireDefault(_AppRegistryName);
+var _AppRegistryName=require('../_configuration/urb-base-app/AppRegistryName');var _AppRegistryName2=_interopRequireDefault(_AppRegistryName);
 var _getLocalIP=require('../urb-base-server/getLocalIP');var _getLocalIP2=_interopRequireDefault(_getLocalIP);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 
@@ -27,7 +27,7 @@ IPAddress+
 IPAddress);
 
 updateIPInFile(
-'./units/_configuration/app/publicURL.js',
+'./units/_configuration/urb-base-app/publicURL.js',
 'const publicURL',
 "const publicURL = 'http://"+IPAddress+':'+port+"'",
 IPAddress);

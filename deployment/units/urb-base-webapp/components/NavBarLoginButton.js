@@ -59,7 +59,8 @@ _this.setState({userMenuIsOpen:false});
 };_this.
 
 _handle_onClick_Logout=function(){
-_this.setState({loginDialogIsOpen:true,userMenuIsOpen:false});
+_this.setState({userMenuIsOpen:false});
+_this.context.router.push('/user/logout');
 };_this.
 
 _handle_Login_NewUser=function(){

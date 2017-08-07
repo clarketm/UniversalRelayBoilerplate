@@ -129,8 +129,8 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Can
 }},{key:'renderSuccess',value:function renderSuccess()
 
 {var
-classes=this.props.classes;var _state=
-this.state,AccountName=_state.AccountName,errorMessage=_state.errorMessage;
+classes=this.props.classes;var
+AccountName=this.state.AccountName;
 
 return(
 _react2.default.createElement(_Card2.default,{className:classes.card},
@@ -148,8 +148,8 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Con
 }},{key:'renderFailure',value:function renderFailure()
 
 {var
-classes=this.props.classes;var _state2=
-this.state,AccountName=_state2.AccountName,errorMessage=_state2.errorMessage;
+classes=this.props.classes;var _state=
+this.state,AccountName=_state.AccountName,errorMessage=_state.errorMessage;
 
 return(
 _react2.default.createElement(_Card2.default,{className:classes.card},
@@ -169,8 +169,8 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Try
 }},{key:'renderPrompt',value:function renderPrompt()
 
 {var _this3=this;var
-classes=this.props.classes;var _state3=
-this.state,AccountName=_state3.AccountName,AccountPassword=_state3.AccountPassword;
+classes=this.props.classes;var _state2=
+this.state,AccountName=_state2.AccountName,AccountPassword=_state2.AccountPassword;
 
 return(
 _react2.default.createElement(_Card2.default,{className:classes.card},
