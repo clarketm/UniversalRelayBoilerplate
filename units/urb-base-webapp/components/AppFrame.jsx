@@ -137,6 +137,7 @@ export default createFragmentContainer(
   withStyles(styleSheet)(AppFrame),
   graphql`
     fragment AppFrame_Viewer on Viewer {
+      UserToken2
       ...NavBarLoginButton_Viewer
     }
   `,

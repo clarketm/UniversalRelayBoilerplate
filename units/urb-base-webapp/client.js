@@ -18,7 +18,7 @@ import Wrapper from './components/Wrapper'
   const fetcher = new FetcherClient(
     '/graphql',
     window.__RELAY_PAYLOADS__,
-    'ZZZ UserToken2 in client',
+    window.__RELAY_PAYLOADS__[0].data.Viewer.UserToken2, // It is critical that the app frame has UserToken2 retrieved
   )
   const resolver = createResolver(fetcher)
 

@@ -34,8 +34,6 @@ async function root(req, res, next) {
     try {
       const a_User = await getUserByUserToken1(objectManager, req)
 
-      console.log(a_User)
-
       res.codeFoundriesInjected = { user: a_User }
       await verifyUserAuthToken(a_User, req)
 
