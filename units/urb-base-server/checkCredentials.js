@@ -46,7 +46,9 @@ export function verifyUserAuthToken(a_User, req) {
     const request_UserToken2 = req.get('UserToken2')
     if (
       request_UserToken2 == a_User.UserToken2 ||
-      request_UserToken2 == UserToken2ServerRendering ||
+      // A request coming from webapp will come from localhost and will bear the server's user token
+      (req.ip == '127.0.0.1' && request_UserToken2 == UserToken2ServerRendering) ||
+      // For use with GraphiQL
       process.env.USER_TOKEN_2_BYPASS_IP == req.ip
     )
       return Promise.resolve(a_User.id)

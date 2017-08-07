@@ -20,13 +20,13 @@ import _schemas_system from './graphql/model/_schemas'
 import _schemas from '../_configuration/urb-base-server/graphql/_schemas'
 
 // Create router for GraphQL
-const router = express()
+const serverGraphQL = express()
 
 // Set up parser
-router.use(bodyParser.json())
+serverGraphQL.use(bodyParser.json())
 
 // Set up logging
-router.use((req, res, next) => logServerRequest(req, res, next, requestLoggerGraphQL))
+serverGraphQL.use((req, res, next) => logServerRequest(req, res, next, requestLoggerGraphQL))
 
 async function root(req, res, next) {
   const objectManager = await getObjectManager(req, res)
@@ -50,6 +50,6 @@ async function root(req, res, next) {
     }
   }
 }
-router.use('/', root)
+serverGraphQL.use('/', root)
 
-export default router
+export default serverGraphQL

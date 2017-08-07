@@ -31,7 +31,7 @@ if (envPortWebpack == null || typeof envPortWebpack !== 'string')
   throw new Error('💔  urb-base-webapp requires the environment variable PORT_WEBPACK to be set')
 
 // Create express router
-const router = express()
+const serverWebApp = express()
 
 async function gatherLocationAndSiteInformation(req: Object, res: Object) {
   let assetsPath
@@ -56,7 +56,7 @@ async function gatherLocationAndSiteInformation(req: Object, res: Object) {
   return { siteInformation, assetsPath }
 }
 
-router.use(async (req, res) => {
+serverWebApp.use(async (req, res) => {
   const fetcher = new FetcherServer(
     `http://localhost:${envPort}/graphql`,
     req.cookies.UserToken1,
@@ -98,4 +98,4 @@ router.use(async (req, res) => {
   })
 })
 
-export default router
+export default serverWebApp

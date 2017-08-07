@@ -17,10 +17,10 @@ import { validateEmail } from '../urb-base-universal/validation'
 // Read environment
 require('dotenv').load()
 
-const auth = express()
+const serverAuth = express()
 
-auth.use(bodyParser.json())
-auth.use((req, res, next) => logServerRequest(req, res, next, requestLoggerAuth))
+serverAuth.use(bodyParser.json())
+serverAuth.use((req, res, next) => logServerRequest(req, res, next, requestLoggerAuth))
 
 //
 
@@ -64,7 +64,7 @@ async function login(req, res) {
     }
   }
 }
-auth.post('/login', login)
+serverAuth.post('/login', login)
 
 //
 
@@ -116,16 +116,16 @@ async function createuser(req, res) {
     }
   }
 }
-auth.post('/createuser', createuser)
+serverAuth.post('/createuser', createuser)
 
 //
 
-auth.post('/logout', (req, res) => {
+serverAuth.post('/logout', (req, res) => {
   res.cookie('UserToken1', '', { httpOnly: false, expires: new Date(1) })
   res.json({ success: true })
 })
 
 // Add extensions - custom configurations
-authExtensions(auth)
+authExtensions(serverAuth)
 
-export default auth
+export default serverAuth

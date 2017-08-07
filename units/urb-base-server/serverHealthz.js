@@ -4,9 +4,9 @@ import express from 'express'
 
 import defaultPersister from '../_configuration/urb-base-server/graphql/defaultPersister'
 
-const healthz = express()
+const serverHealthz = express()
 
-healthz.get('/', async (req, res, next) => {
+serverHealthz.get('/', async (req, res, next) => {
   try {
     await defaultPersister.confirmHealth()
     res.sendStatus(200)
@@ -15,4 +15,4 @@ healthz.get('/', async (req, res, next) => {
   }
 })
 
-export default healthz
+export default serverHealthz
