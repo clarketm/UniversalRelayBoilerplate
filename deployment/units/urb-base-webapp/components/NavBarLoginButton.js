@@ -1,6 +1,7 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
+var _Menu=require('material-ui/Menu');var _Menu2=_interopRequireDefault(_Menu);
 var _styles=require('material-ui/styles');
 var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
@@ -25,33 +26,52 @@ NavBarLoginButton=function(_React$Component){_inherits(NavBarLoginButton,_React$
 
 
 
+
+
 function NavBarLoginButton(props,context){_classCallCheck(this,NavBarLoginButton);var _this=_possibleConstructorReturn(this,(NavBarLoginButton.__proto__||Object.getPrototypeOf(NavBarLoginButton)).call(this,
 props,context));_this.
 
 
 
 
+
+
+
+
 _handle_onClick_Login=function(){
-_this.setState({loginDialogIsOpen:true});
+_this.setState({loginDialogIsOpen:true,userMenuIsOpen:false});
+};_this.
+
+_handle_onClick_Profile=function(){
+_this.setState({userMenuIsOpen:false});
 };_this.
 
 _handle_Login_Close=function(){
 _this.setState({loginDialogIsOpen:false});
 };_this.
 
-_handle_Login_LogIn=function(){
-_this.setState({loginDialogIsOpen:false});
+_handle_onClick_UserMenu=function(event){
+_this.setState({userMenuIsOpen:true,anchorEl:event.currentTarget});
+};_this.
+
+_handle_UserMenu_Close=function(){
+_this.setState({userMenuIsOpen:false});
+};_this.
+
+_handle_onClick_Logout=function(){
+_this.setState({loginDialogIsOpen:true,userMenuIsOpen:false});
 };_this.
 
 _handle_Login_NewUser=function(){
 _this.setState({loginDialogIsOpen:false});
 
 _this.context.router.push('/user/new');
-};_this.state={loginDialogIsOpen:false};return _this;}_createClass(NavBarLoginButton,[{key:'render',value:function render()
+};_this.state={anchorEl:undefined,loginDialogIsOpen:false,userMenuIsOpen:false};return _this;}_createClass(NavBarLoginButton,[{key:'render',value:function render()
 
 {var
 classes=this.props.classes;var _props$Viewer=
-this.props.Viewer,User_IsAnonymous=_props$Viewer.User_IsAnonymous,User_DisplayName=_props$Viewer.User_DisplayName;
+this.props.Viewer,User_IsAnonymous=_props$Viewer.User_IsAnonymous,User_DisplayName=_props$Viewer.User_DisplayName;var _state=
+this.state,loginDialogIsOpen=_state.loginDialogIsOpen,userMenuIsOpen=_state.userMenuIsOpen;
 
 return(
 _react2.default.createElement('div',null,
@@ -60,13 +80,29 @@ _react2.default.createElement(_Button2.default,{color:'contrast',onClick:this._h
 
 
 !User_IsAnonymous&&
-_react2.default.createElement(_Button2.default,{color:'contrast',onClick:this._handle_onClick_Login},
+_react2.default.createElement(_Button2.default,{color:'contrast',onClick:this._handle_onClick_UserMenu},
 User_DisplayName),
 
 _react2.default.createElement(_LoginDialog2.default,{
-open:this.state.loginDialogIsOpen,
+open:loginDialogIsOpen,
 handlerClose:this._handle_Login_Close,
-handlerNewUser:this._handle_Login_NewUser})));
+handlerNewUser:this._handle_Login_NewUser}),
+
+_react2.default.createElement(_Menu2.default,{
+id:'lock-menu',
+anchorEl:this.state.anchorEl,
+open:userMenuIsOpen,
+onRequestClose:this._handle_UserMenu_Close},
+
+_react2.default.createElement(_Menu.MenuItem,{key:'profile',onClick:this._handle_onClick_Profile},'Profile'),
+
+
+_react2.default.createElement(_Menu.MenuItem,{key:'login',onClick:this._handle_onClick_Login},'Login as a different user'),
+
+
+_react2.default.createElement(_Menu.MenuItem,{key:'logout',onClick:this._handle_onClick_Logout},'Log out'))));
+
+
 
 
 

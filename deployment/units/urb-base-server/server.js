@@ -9,14 +9,14 @@ var _cookieParser=require('cookie-parser');var _cookieParser2=_interopRequireDef
 var _expressGraphql=require('express-graphql');var _expressGraphql2=_interopRequireDefault(_expressGraphql);
 var _path=require('path');var _path2=_interopRequireDefault(_path);
 
-var _auth=require('./auth');var _auth2=_interopRequireDefault(_auth);
+var _serverAuth=require('./serverAuth');var _serverAuth2=_interopRequireDefault(_serverAuth);
 var _getLocalIP=require('./getLocalIP');var _getLocalIP2=_interopRequireDefault(_getLocalIP);
-var _graphQL=require('./graphQL');var _graphQL2=_interopRequireDefault(_graphQL);
-var _healthz=require('./healthz');var _healthz2=_interopRequireDefault(_healthz);
+var _serverGraphQL=require('./serverGraphQL');var _serverGraphQL2=_interopRequireDefault(_serverGraphQL);
+var _serverHealthz=require('./serverHealthz');var _serverHealthz2=_interopRequireDefault(_serverHealthz);
 var _log=require('./log');var _log2=_interopRequireDefault(_log);
 var _ObjectManager=require('./graphql/ObjectManager');var _ObjectManager2=_interopRequireDefault(_ObjectManager);
 var _package=require('../_configuration/package');
-var _server=require('../urb-base-webapp/server');var _server2=_interopRequireDefault(_server);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+var _serverWebApp=require('../urb-base-webapp/serverWebApp');var _serverWebApp2=_interopRequireDefault(_serverWebApp);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 
 require('dotenv').load();
@@ -45,10 +45,10 @@ local_ip:(0,_getLocalIP2.default)()});
 
 
 
-var router=(0,_express2.default)();
+var server=(0,_express2.default)();
 
 
-router.use(function(req,res,next){
+server.use(function(req,res,next){
 
 res.setHeader('Access-Control-Allow-Origin',process.env.PUBLIC_URL);
 
@@ -63,29 +63,29 @@ next();
 });
 
 
-router.set('trust proxy','loopback');
-router.set('x-powered-by',false);
-router.use((0,_compression2.default)());
-router.use((0,_cookieParser2.default)());
+server.set('trust proxy','loopback');
+server.set('x-powered-by',false);
+server.use((0,_compression2.default)());
+server.use((0,_cookieParser2.default)());
 
 
-router.use('/graphql',_graphQL2.default);
+server.use('/graphql',_serverGraphQL2.default);
 
 
-router.use('/auth',_auth2.default);
+server.use('/auth',_serverAuth2.default);
 
 
-router.use('/healthz',_healthz2.default);
+server.use('/healthz',_serverHealthz2.default);
 
 
-router.use(
+server.use(
 _express2.default.static(_path2.default.resolve(__dirname+'/../_configuration/urb-base-server/public_files/'),{
 maxAge:365*86400000}));
 
 
 
 
-router.use(_server2.default);
+server.use(_serverWebApp2.default);
 
 
 _ObjectManager2.default.initializePersisters(false,function(){
@@ -93,7 +93,7 @@ _ObjectManager2.default.initializePersisters(false,function(){
 
 if(process.env.NODE_ENV=='production'){
 
-router.listen(port,host);
+server.listen(port,host);
 }else{
 
 startDevelopmentServer(port,'127.0.0.1');
@@ -105,7 +105,7 @@ if(host!='127.0.0.1')startDevelopmentServer(port,host);
 
 function startDevelopmentServer(port,host){
 var localIPDevelopmentServer=(0,_express2.default)();
-localIPDevelopmentServer.use(router);
+localIPDevelopmentServer.use(server);
 localIPDevelopmentServer.listen(port,host);
 console.log('☄  DEVELOPMENT. Server listening on '+host);
 }

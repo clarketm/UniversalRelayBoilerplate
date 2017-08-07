@@ -9,14 +9,14 @@ import cookieParser from 'cookie-parser'
 import graphQLHTTP from 'express-graphql'
 import path from 'path'
 
-import auth from './auth' // Authentication server
+import serverAuth from './serverAuth' // Authentication server
 import getLocalIP from './getLocalIP'
-import graphql from './graphQL' // GraphQL server
-import healthz from './healthz' // Health check endpoint server
+import graphql from './serverGraphQL' // GraphQL server
+import serverHealthz from './serverHealthz' // Health check endpoint server
 import log from './log'
 import ObjectManager from './graphql/ObjectManager'
 import { name, version } from '../_configuration/package'
-import webapp from '../urb-base-webapp/server' // Isomorphic React server
+import serverWebApp from '../urb-base-webapp/serverWebApp' // Isomorphic React server
 
 // Read environment
 require('dotenv').load()
@@ -45,10 +45,10 @@ log.log('info', 'Starting application', {
 })
 
 // Main router
-const router = express()
+const server = express()
 
 // Add headers
-router.use(function(req, res, next) {
+server.use(function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', process.env.PUBLIC_URL)
   // Request methods you wish to allow
@@ -63,29 +63,29 @@ router.use(function(req, res, next) {
 })
 
 // Configure main router
-router.set('trust proxy', 'loopback')
-router.set('x-powered-by', false)
-router.use(compression())
-router.use(cookieParser())
+server.set('trust proxy', 'loopback')
+server.set('x-powered-by', false)
+server.use(compression())
+server.use(cookieParser())
 
 // GraphQL server
-router.use('/graphql', graphql)
+server.use('/graphql', graphql)
 
 // Authentication server
-router.use('/auth', auth)
+server.use('/auth', serverAuth)
 
 // Health check endpoint
-router.use('/healthz', healthz)
+server.use('/healthz', serverHealthz)
 
 // Staticpublic files server
-router.use(
+server.use(
   express.static(path.resolve(__dirname + '/../_configuration/urb-base-server/public_files/'), {
     maxAge: 365 * 86400000, // one year
   }),
 )
 
 // Application with routes
-router.use(webapp)
+server.use(serverWebApp)
 
 // Set up all persisters
 ObjectManager.initializePersisters(false, () => {
@@ -93,7 +93,7 @@ ObjectManager.initializePersisters(false, () => {
   // specified host serves
   if (process.env.NODE_ENV == 'production') {
     // Production - serve as told
-    router.listen(port, host)
+    server.listen(port, host)
   } else {
     // Development server - localhost. Always run on localhost
     startDevelopmentServer(port, '127.0.0.1')
@@ -105,7 +105,7 @@ ObjectManager.initializePersisters(false, () => {
 
 function startDevelopmentServer(port, host) {
   const localIPDevelopmentServer = express()
-  localIPDevelopmentServer.use(router)
+  localIPDevelopmentServer.use(server)
   localIPDevelopmentServer.listen(port, host)
   console.log('☄  DEVELOPMENT. Server listening on ' + host)
 }

@@ -4,6 +4,7 @@ import jwt from 'jwt-simple'
 import path from 'path'
 
 import defaultPersister from '../_configuration/urb-base-server/graphql/defaultPersister'
+import UserToken2ServerRendering from '../_configuration/urb-base-server/UserToken2ServerRendering'
 import log from './log'
 
 // Read environment
@@ -31,8 +32,6 @@ export async function getUserByUserToken1(objectManager, req) {
     User_site_id: objectManager.siteInformation.site_id,
   })
 
-  console.log(a_User)
-
   if (a_User) {
     objectManager.setViewerUserId(user_id)
     return a_User
@@ -45,7 +44,13 @@ export function verifyUserAuthToken(a_User, req) {
   if (!a_User) return Promise.reject('💔  User not found')
   else {
     const request_UserToken2 = req.get('UserToken2')
-    if (request_UserToken2 == a_User.UserToken2 || process.env.USER_TOKEN_2_BYPASS_IP == req.ip)
+    if (
+      request_UserToken2 == a_User.UserToken2 ||
+      // A request coming from webapp will come from localhost and will bear the server's user token
+      (req.ip == '127.0.0.1' && request_UserToken2 == UserToken2ServerRendering) ||
+      // For use with GraphiQL
+      process.env.USER_TOKEN_2_BYPASS_IP == req.ip
+    )
       return Promise.resolve(a_User.id)
     else
       return Promise.reject(
