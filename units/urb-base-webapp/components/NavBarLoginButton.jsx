@@ -50,7 +50,7 @@ class NavBarLoginButton extends React.Component {
   }
 
   render() {
-    const classes = this.props.classes
+    const { classes } = this.props
     const { User_IsAnonymous, User_DisplayName } = this.props.Viewer
 
     return (
@@ -66,7 +66,6 @@ class NavBarLoginButton extends React.Component {
         <LoginDialog
           open={this.state.loginDialogIsOpen}
           handlerClose={this._handle_Login_Close}
-          handlerLogIn={this._handle_Login_LogIn}
           handlerNewUser={this._handle_Login_NewUser}
         />
       </div>

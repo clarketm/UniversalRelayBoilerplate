@@ -54,8 +54,8 @@ ToDo_Text_New:event.target.value});
 
 };_this.state={ToDo_Text_New:''};return _this;}_createClass(ToDoScreen,[{key:'render',value:function render()
 
-{
-var classes=this.props.classes;
+{var
+classes=this.props.classes;
 
 return(
 _react2.default.createElement(_ResponsiveContentArea2.default,null,

@@ -55,7 +55,7 @@ class ToDoScreen extends React.Component {
   }
 
   render() {
-    const classes = this.props.classes
+    const { classes } = this.props
 
     return (
       <ResponsiveContentArea>

@@ -24,8 +24,8 @@ ResponsiveContentArea=function(_React$Component){_inherits(ResponsiveContentArea
 
 
 
-{
-var classes=this.props.classes;
+{var
+classes=this.props.classes;
 
 return(
 _react2.default.createElement('div',{className:classes.content},
