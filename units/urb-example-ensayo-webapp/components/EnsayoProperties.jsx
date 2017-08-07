@@ -81,7 +81,7 @@ export default class EnsayoProperties extends React.Component {
   }
 
   render() {
-    const classes = this.props.classes
+    const { classes } = this.props
     const { Ensayo_Title, Ensayo_Description } = this.state
 
     return (

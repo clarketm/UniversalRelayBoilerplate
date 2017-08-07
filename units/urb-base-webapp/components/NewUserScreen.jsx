@@ -111,7 +111,7 @@ class NewUserScreen extends React.Component {
   }
 
   renderCreating() {
-    const classes = this.props.classes
+    const { classes } = this.props
     const { AccountName } = this.state
 
     return (
@@ -133,7 +133,7 @@ class NewUserScreen extends React.Component {
   }
 
   renderSuccess() {
-    const classes = this.props.classes
+    const { classes } = this.props
     const { AccountName, errorMessage } = this.state
 
     return (
@@ -152,7 +152,7 @@ class NewUserScreen extends React.Component {
   }
 
   renderFailure() {
-    const classes = this.props.classes
+    const { classes } = this.props
     const { AccountName, errorMessage } = this.state
 
     return (
@@ -173,7 +173,7 @@ class NewUserScreen extends React.Component {
   }
 
   renderPrompt() {
-    const classes = this.props.classes
+    const { classes } = this.props
     const { AccountName, AccountPassword } = this.state
 
     return (

@@ -50,7 +50,7 @@ class NavBarLoginButton extends React.Component {
   }
 
   render() {
-    const classes = this.props.classes
+    const { classes } = this.props
     const { User_IsAnonymous, User_DisplayName } = this.props.Viewer
 
     return (
