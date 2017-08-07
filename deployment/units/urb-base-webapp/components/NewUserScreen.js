@@ -59,6 +59,7 @@ host=loc.protocol+'//'+loc.hostname+':'+loc.port;_context.next=7;return regenera
 
 fetch(host+'/auth/createuser',{
 method:'POST',
+credentials:'same-origin',
 headers:{
 'Content-Type':'application/json'},
 
