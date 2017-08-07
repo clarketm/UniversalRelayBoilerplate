@@ -59,7 +59,8 @@ class NavBarLoginButton extends React.Component {
   }
 
   _handle_onClick_Logout = () => {
-    this.setState({ loginDialogIsOpen: true, userMenuIsOpen: false })
+    this.setState({ userMenuIsOpen: false })
+    this.context.router.push('/user/logout')
   }
 
   _handle_Login_NewUser = () => {

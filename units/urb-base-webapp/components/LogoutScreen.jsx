@@ -18,56 +18,46 @@ const styleSheet = createStyleSheet(theme => ({
   },
 }))
 
-class NewUserScreen extends React.Component {
+class LogoutScreen extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
   }
 
   state: {
-    currentOperation: 'prompt' | 'creating' | 'success' | 'failure',
+    currentOperation: 'confirm' | 'logging out' | 'success' | 'failure',
     errorMessage: string,
-    AccountName: string,
-    AccountPassword: string,
   }
 
   constructor(props: Object, context: Object) {
     super(props, context)
 
     this.state = {
-      currentOperation: 'prompt',
+      currentOperation: 'confirm',
       errorMessage: '',
-      AccountName: '',
-      AccountPassword: '',
     }
   }
 
-  _handle_onClick_Create = async () => {
-    const { AccountName, AccountPassword } = this.state
+  _handle_onClick_Logout = async () => {
+    const { AccountName } = this.props
 
-    this.setState({
-      currentOperation: 'creating',
-      AccountPassword: '', // In order to prevent the password from being accessed later
-    })
+    this.setState({ currentOperation: 'logging out' })
 
     try {
       const loc = window.location
       const host = loc.protocol + '//' + loc.hostname + ':' + loc.port
 
-      const response = await fetch(host + '/auth/createuser', {
+      const response = await fetch(host + '/auth/logout', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          User_AccountName: AccountName,
-          User_AccountPassword: AccountPassword,
-        }),
+        body: '{}',
       })
 
       const responseData = await response.json()
 
-      console.log('CREATE USER RESPONSE')
+      console.log('LOGOUT USER RESPONSE')
       console.log(responseData)
 
       if (responseData.success) {
@@ -88,16 +78,16 @@ class NewUserScreen extends React.Component {
     }
   }
 
-  _handle_onClick_CancelCreation = () => {
+  _handle_onClick_CancelLogout = () => {
     this.setState({
       currentOperation: 'failure',
-      errorMessage: 'User creation has been canceled',
+      errorMessage: 'User log out has been canceled',
     })
   }
 
   _handle_onClick_TryAgain = () => {
     this.setState({
-      currentOperation: 'prompt',
+      currentOperation: 'confirm',
       errorMessage: '',
     })
   }
@@ -108,21 +98,14 @@ class NewUserScreen extends React.Component {
 
   renderCreating() {
     const { classes } = this.props
-    const { AccountName } = this.state
 
     return (
       <Card className={classes.card}>
         <CardHeader title="Creating user" />
-        <Typography component="p">
-          Creating user
-          <br />
-          {AccountName}
-          <br />
-          Please wait.
-        </Typography>
+        <Typography component="p">Logging out. Please wait.</Typography>
         <LinearProgress mode="query" />
         <CardActions>
-          <Button onClick={this._handle_onClick_CancelCreation}>Cancel</Button>
+          <Button onClick={this._handle_onClick_CancelLogout}>Cancel</Button>
         </CardActions>
       </Card>
     )
@@ -130,16 +113,12 @@ class NewUserScreen extends React.Component {
 
   renderSuccess() {
     const { classes } = this.props
-    const { AccountName } = this.state
+    const { errorMessage } = this.state
 
     return (
       <Card className={classes.card}>
-        <CardHeader title="Creating user" />
-        <Typography component="p">
-          Created user
-          <br />
-          {AccountName}
-        </Typography>
+        <CardHeader title="Logout" />
+        <Typography component="p">You have been logged out</Typography>
         <CardActions>
           <Button onClick={this._handle_onClick_Continue}>Continue</Button>
         </CardActions>
@@ -149,15 +128,13 @@ class NewUserScreen extends React.Component {
 
   renderFailure() {
     const { classes } = this.props
-    const { AccountName, errorMessage } = this.state
+    const { errorMessage } = this.state
 
     return (
       <Card className={classes.card}>
         <CardHeader title="Creating user" />
         <Typography component="p">
-          Failed creating user
-          <br />
-          {AccountName}
+          Failed logging out.
           <br />
           Reason: {errorMessage}
         </Typography>
@@ -170,26 +147,15 @@ class NewUserScreen extends React.Component {
 
   renderPrompt() {
     const { classes } = this.props
-    const { AccountName, AccountPassword } = this.state
 
     return (
       <Card className={classes.card}>
-        <CardHeader title="Create New User" />
-        <TextField
-          label="Account Name"
-          fullWidth={true}
-          value={AccountName}
-          onChange={event => this.setState({ AccountName: event.target.value })}
-        />
-        <TextField
-          label="Password"
-          type="password"
-          fullWidth={true}
-          value={AccountPassword}
-          onChange={event => this.setState({ AccountPassword: event.target.value })}
-        />
+        <CardHeader title="Log Out" />
+        <Typography component="p">
+          You are currently logged in. Are you sure you want to log out?
+        </Typography>
         <CardActions>
-          <Button onClick={this._handle_onClick_Create}>Create</Button>
+          <Button onClick={this._handle_onClick_Logout}>Yes, Log Out</Button>
         </CardActions>
       </Card>
     )
@@ -200,8 +166,8 @@ class NewUserScreen extends React.Component {
 
     return (
       <ResponsiveContentArea>
-        {currentOperation === 'prompt' && this.renderPrompt()}
-        {currentOperation === 'creating' && this.renderCreating()}
+        {currentOperation === 'confirm' && this.renderPrompt()}
+        {currentOperation === 'logging out' && this.renderCreating()}
         {currentOperation === 'success' && this.renderSuccess()}
         {currentOperation === 'failure' && this.renderFailure()}
       </ResponsiveContentArea>
@@ -209,4 +175,4 @@ class NewUserScreen extends React.Component {
   }
 }
 
-export default withStyles(styleSheet)(NewUserScreen)
+export default withStyles(styleSheet)(LogoutScreen)

@@ -12,6 +12,7 @@ import { Environment, Network, RecordSource, Store } from 'relay-runtime'
 import AppFrame from './components/AppFrame'
 import EnsayoList from '../urb-example-ensayo-webapp/components/EnsayoList'
 import EnsayoScreen from '../urb-example-ensayo-webapp/components/EnsayoScreen'
+import LogoutScreen from './components/LogoutScreen'
 import NewUserScreen from './components/NewUserScreen'
 import ToDoScreen from '../urb-example-todo-webapp/components/ToDoScreen'
 import ToDoList from '../urb-example-todo-webapp/components/ToDoList'
@@ -91,6 +92,7 @@ export const routeConfig = makeRouteConfig(
     </Route>
     <Route path="user">
       <Route path="new" Component={NewUserScreen} />
+      <Route path="logout" Component={LogoutScreen} />
     </Route>
   </Route>,
 )
