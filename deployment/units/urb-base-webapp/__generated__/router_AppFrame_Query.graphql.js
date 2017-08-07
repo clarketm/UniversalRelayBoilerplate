@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 08ab80e557867f34b8ad430b06e808a9
+ * @relayHash ca7ec7f60ffbf7851fb896dce15d4cdb
  */
 
 /* eslint-disable */
@@ -24,6 +24,7 @@ query router_AppFrame_Query {
 }
 
 fragment AppFrame_Viewer on Viewer {
+  UserToken2
   ...NavBarLoginButton_Viewer
 }
 
@@ -81,6 +82,13 @@ const batch /*: ConcreteBatch*/ = {
             "kind": "ScalarField",
             "alias": null,
             "args": null,
+            "name": "UserToken2",
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "args": null,
             "name": "User_IsAnonymous",
             "storageKey": null
           },
@@ -103,7 +111,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query router_AppFrame_Query {\n  Viewer {\n    ...AppFrame_Viewer\n    id\n  }\n}\n\nfragment AppFrame_Viewer on Viewer {\n  ...NavBarLoginButton_Viewer\n}\n\nfragment NavBarLoginButton_Viewer on Viewer {\n  User_IsAnonymous\n  User_DisplayName\n}\n"
+  "text": "query router_AppFrame_Query {\n  Viewer {\n    ...AppFrame_Viewer\n    id\n  }\n}\n\nfragment AppFrame_Viewer on Viewer {\n  UserToken2\n  ...NavBarLoginButton_Viewer\n}\n\nfragment NavBarLoginButton_Viewer on Viewer {\n  User_IsAnonymous\n  User_DisplayName\n}\n"
 };
 
 module.exports = batch;
