@@ -18,7 +18,7 @@ var _Wrapper=require('./components/Wrapper');var _Wrapper2=_interopRequireDefaul
 fetcher=new _fetcherClient2.default(
 '/graphql',
 window.__RELAY_PAYLOADS__,
-'ZZZ UserToken2 in client');
+window.__RELAY_PAYLOADS__[0].data.Viewer.UserToken2);
 
 resolver=(0,_router.createResolver)(fetcher);_context.next=4;return regeneratorRuntime.awrap(
 

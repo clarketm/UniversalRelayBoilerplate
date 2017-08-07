@@ -7,8 +7,8 @@
 // { "clientIP": "127.0.0.1" } - trace requests coming from localhost
 // { "user": { "User_AccountName": "jack" } } - trace requests for user account named 'jack'
 
-export var debugWriteToLogServerRequestAuth = {}
-export var debugWriteToLogServerRequestGraphQL = {}
+export var debugWriteToLogServerRequestAuth = { trace: 'none' }
+export var debugWriteToLogServerRequestGraphQL = { trace: 'none' }
 export var debugWriteToLogServerRequestWebApp = { trace: 'none' }
 export var debugWriteToLogServerRequestPublic = { trace: 'none' }
 
