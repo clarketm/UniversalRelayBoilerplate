@@ -6,9 +6,9 @@ import Card, { CardActions, CardHeader } from 'material-ui/Card'
 import { LinearProgress } from 'material-ui/Progress'
 import { createStyleSheet, withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
+import Typography from 'material-ui/Typography'
 import PropTypes from 'prop-types'
 import React from 'react'
-import Typography from 'material-ui/Typography'
 
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
@@ -19,16 +19,12 @@ const styleSheet = createStyleSheet(theme => ({
 }))
 
 class NewUserScreen extends React.Component {
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  }
-
   static propTypes = {
     classes: PropTypes.object.isRequired,
   }
 
   state: {
-    currentOperation: string,
+    currentOperation: 'prompt' | 'creating' | 'success' | 'failure',
     errorMessage: string,
     AccountName: string,
     AccountPassword: string,
@@ -107,7 +103,7 @@ class NewUserScreen extends React.Component {
   }
 
   _handle_onClick_Continue = () => {
-    this.context.router.push('/')
+    location.replace('/')
   }
 
   renderCreating() {
