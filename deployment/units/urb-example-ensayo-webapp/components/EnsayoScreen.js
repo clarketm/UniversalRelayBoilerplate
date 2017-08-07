@@ -58,8 +58,8 @@ _handle_onClick_Add=function(){
 _this.setState({propertiesIsOpen:true});
 };_this.state={propertiesIsOpen:false};return _this;}_createClass(EnsayoScreen,[{key:'render',value:function render()
 
-{
-var classes=this.props.classes;
+{var
+classes=this.props.classes;
 
 return(
 _react2.default.createElement(_ResponsiveContentArea2.default,null,

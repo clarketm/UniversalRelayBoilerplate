@@ -6,9 +6,9 @@ var _Card=require('material-ui/Card');var _Card2=_interopRequireDefault(_Card);
 var _Progress=require('material-ui/Progress');
 var _styles=require('material-ui/styles');
 var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireDefault(_TextField);
+var _Typography=require('material-ui/Typography');var _Typography2=_interopRequireDefault(_Typography);
 var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
-var _Typography=require('material-ui/Typography');var _Typography2=_interopRequireDefault(_Typography);
 
 var _ResponsiveContentArea=require('../../urb-base-webapp/components/ResponsiveContentArea');var _ResponsiveContentArea2=_interopRequireDefault(_ResponsiveContentArea);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
@@ -19,10 +19,6 @@ minWidth:275}};});var
 
 
 NewUserScreen=function(_React$Component){_inherits(NewUserScreen,_React$Component);
-
-
-
-
 
 
 
@@ -107,11 +103,11 @@ errorMessage:''});
 };_this.
 
 _handle_onClick_Continue=function(){
-_this.context.router.push('/');
+location.replace('/');
 };_this.state={currentOperation:'prompt',errorMessage:'',AccountName:'',AccountPassword:''};return _this;}_createClass(NewUserScreen,[{key:'renderCreating',value:function renderCreating()
 
-{
-var classes=this.props.classes;var
+{var
+classes=this.props.classes;var
 AccountName=this.state.AccountName;
 
 return(
@@ -132,8 +128,8 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Can
 
 }},{key:'renderSuccess',value:function renderSuccess()
 
-{
-var classes=this.props.classes;var _state=
+{var
+classes=this.props.classes;var _state=
 this.state,AccountName=_state.AccountName,errorMessage=_state.errorMessage;
 
 return(
@@ -151,8 +147,8 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Con
 
 }},{key:'renderFailure',value:function renderFailure()
 
-{
-var classes=this.props.classes;var _state2=
+{var
+classes=this.props.classes;var _state2=
 this.state,AccountName=_state2.AccountName,errorMessage=_state2.errorMessage;
 
 return(
@@ -172,8 +168,8 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Try
 
 }},{key:'renderPrompt',value:function renderPrompt()
 
-{var _this3=this;
-var classes=this.props.classes;var _state3=
+{var _this3=this;var
+classes=this.props.classes;var _state3=
 this.state,AccountName=_state3.AccountName,AccountPassword=_state3.AccountPassword;
 
 return(
@@ -210,7 +206,7 @@ currentOperation==='success'&&this.renderSuccess(),
 currentOperation==='failure'&&this.renderFailure()));
 
 
-}}]);return NewUserScreen;}(_react2.default.Component);NewUserScreen.contextTypes={router:_propTypes2.default.object.isRequired};NewUserScreen.propTypes={classes:_propTypes2.default.object.isRequired};exports.default=
+}}]);return NewUserScreen;}(_react2.default.Component);NewUserScreen.propTypes={classes:_propTypes2.default.object.isRequired};exports.default=
 
 
 (0,_styles.withStyles)(styleSheet)(NewUserScreen);
