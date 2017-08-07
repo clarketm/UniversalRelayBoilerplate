@@ -80,8 +80,8 @@ Ensayo_Description:Ensayo_Description};return _this;
 
 
 
-{var _this2=this;
-var classes=this.props.classes;var _state=
+{var _this2=this;var
+classes=this.props.classes;var _state=
 this.state,Ensayo_Title=_state.Ensayo_Title,Ensayo_Description=_state.Ensayo_Description;
 
 return(

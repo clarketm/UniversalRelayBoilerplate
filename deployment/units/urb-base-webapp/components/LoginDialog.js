@@ -2,11 +2,13 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
 var _Dialog=require('material-ui/Dialog');var _Dialog2=_interopRequireDefault(_Dialog);
+var _Progress=require('material-ui/Progress');
 var _Slide=require('material-ui/transitions/Slide');var _Slide2=_interopRequireDefault(_Slide);
 var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireDefault(_TextField);
+var _styles=require('material-ui/styles');
+var _Typography=require('material-ui/Typography');var _Typography2=_interopRequireDefault(_Typography);
 var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
-var _react=require('react');var _react2=_interopRequireDefault(_react);
-var _styles=require('material-ui/styles');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
+var _react=require('react');var _react2=_interopRequireDefault(_react);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
 var styleSheet=(0,_styles.createStyleSheet)(function(theme){return{
 grow:{
@@ -27,16 +29,19 @@ LoginDialog=function(_React$Component){_inherits(LoginDialog,_React$Component);
 
 
 
+
 function LoginDialog(props,context){_classCallCheck(this,LoginDialog);var _this=_possibleConstructorReturn(this,(LoginDialog.__proto__||Object.getPrototypeOf(LoginDialog)).call(this,
 props,context));_initialiseProps.call(_this);var _this$props=
 
 _this.props,AccountName=_this$props.AccountName,AccountPassword=_this$props.AccountPassword;
 
 _this.state={
+currentOperation:'challenge',
+errorMessage:'',
 AccountName:'',
 AccountPassword:''};return _this;
 
-}_createClass(LoginDialog,[{key:'render',value:function render()
+}_createClass(LoginDialog,[{key:'renderChallenge',value:function renderChallenge()
 
 
 
@@ -50,13 +55,69 @@ AccountPassword:''};return _this;
 
 
 
-{var _this2=this;
-var classes=this.props.classes;var _state=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{var _this2=this;var _props=
+this.props,classes=_props.classes,open=_props.open;var _state=
 this.state,AccountName=_state.AccountName,AccountPassword=_state.AccountPassword;
 
 return(
-_react2.default.createElement('div',null,
-_react2.default.createElement(_Dialog2.default,{open:this.props.open,transition:_Slide2.default,onRequestClose:this._handle_Close},
+_react2.default.createElement(_Dialog2.default,{open:open,transition:_Slide2.default,onRequestClose:this._handle_Close},
 _react2.default.createElement(_Dialog.DialogTitle,null,'Log In'),
 
 _react2.default.createElement(_Dialog.DialogContent,null,
@@ -75,19 +136,79 @@ onChange:function onChange(event){return _this2.setState({AccountPassword:event.
 
 
 _react2.default.createElement(_Dialog.DialogActions,null,
-_react2.default.createElement(_Button2.default,{color:'accent',onClick:this._handle_NewUser},'New User'),
+_react2.default.createElement(_Button2.default,{color:'accent',onClick:this._handle_onCLick_NewUser},'New User'),
 
 
 _react2.default.createElement('div',{className:classes.grow}),
 _react2.default.createElement(_Button2.default,{onClick:this._handle_Close},'Cancel'),
-_react2.default.createElement(_Button2.default,{color:'primary',onClick:this._handle_LogIn},'Log In')))));
+_react2.default.createElement(_Button2.default,{color:'primary',onClick:this._handle_onClick_LogIn},'Log In'))));
 
 
 
 
 
+}},{key:'renderInProgress',value:function renderInProgress()
 
-}}]);return LoginDialog;}(_react2.default.Component);LoginDialog.propTypes={open:_propTypes2.default.bool.isRequired,handlerClose:_propTypes2.default.func.isRequired,handlerLogIn:_propTypes2.default.func.isRequired,handlerNewUser:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_LogIn=function(){_this3.props.handlerLogIn();};this._handle_NewUser=function(){_this3.props.handlerNewUser();};};exports.default=
+{var _props2=
+this.props,classes=_props2.classes,open=_props2.open;var
+AccountName=this.state.AccountName;
+
+return(
+_react2.default.createElement(_Dialog2.default,{open:open,onRequestClose:this._handle_Close},
+_react2.default.createElement(_Dialog.DialogTitle,null,'Logging in'),
+
+_react2.default.createElement(_Dialog.DialogContent,null,
+_react2.default.createElement(_Typography2.default,{component:'p'},'Logging in as',
+
+_react2.default.createElement('br',null),
+AccountName),
+
+_react2.default.createElement(_Progress.LinearProgress,{mode:'query'})),
+
+_react2.default.createElement(_Dialog.DialogActions,null,
+_react2.default.createElement(_Button2.default,{color:'accent',onClick:this._handle_onCLick_CancelLogIn},'New User'))));
+
+
+
+
+
+}},{key:'renderFailure',value:function renderFailure()
+
+{var _props3=
+this.props,classes=_props3.classes,open=_props3.open;var _state2=
+this.state,AccountName=_state2.AccountName,errorMessage=_state2.errorMessage;
+
+return(
+_react2.default.createElement(_Dialog2.default,{open:open,onRequestClose:this._handle_Close},
+_react2.default.createElement(_Dialog.DialogTitle,null,'Log In Failed'),
+
+_react2.default.createElement(_Dialog.DialogContent,null,
+_react2.default.createElement(_Typography2.default,{component:'p'},'Failed loggin in as',
+
+_react2.default.createElement('br',null),
+AccountName,
+_react2.default.createElement('br',null),'Reason: ',
+errorMessage)),
+
+
+_react2.default.createElement(_Dialog.DialogActions,null,
+_react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_TryAgain},'Try Again'))));
+
+
+
+}},{key:'render',value:function render()
+
+{var
+currentOperation=this.state.currentOperation;
+
+return(
+_react2.default.createElement('div',null,
+currentOperation==='challenge'&&this.renderChallenge(),
+currentOperation==='in progress'&&this.renderInProgress(),
+currentOperation==='failure'&&this.renderFailure()));
+
+
+}}]);return LoginDialog;}(_react2.default.Component);LoginDialog.propTypes={open:_propTypes2.default.bool.isRequired,handlerClose:_propTypes2.default.func.isRequired,handlerNewUser:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_onClick_LogIn=function _callee(){var _state3,AccountName,AccountPassword,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_state3=_this3.state,AccountName=_state3.AccountName,AccountPassword=_state3.AccountPassword;_this3.setState({currentOperation:'in progress',AccountPassword:''});_context.prev=2;loc=window.location;host=loc.protocol+'//'+loc.hostname+':'+loc.port;_context.next=7;return regeneratorRuntime.awrap(fetch(host+'/auth/login',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({User_AccountName:AccountName,User_AccountPassword:AccountPassword})}));case 7:response=_context.sent;_context.next=10;return regeneratorRuntime.awrap(response.json());case 10:responseData=_context.sent;console.log('LOG IN RESPONSE');console.log(responseData);if(responseData.success){location.replace(location.href);}else{_this3.setState({currentOperation:'failure',errorMessage:responseData.error});}_context.next=19;break;case 16:_context.prev=16;_context.t0=_context['catch'](2);_this3.setState({currentOperation:'failure',errorMessage:'Did not receive proper response from server. Please try again. Message:'+_context.t0.message});case 19:case'end':return _context.stop();}}},null,_this3,[[2,16]]);};this._handle_onCLick_NewUser=function(){_this3.props.handlerNewUser();};this._handle_onCLick_CancelLogIn=function(){_this3.setState({currentOperation:'failure',errorMessage:'Log in has been canceled'});};this._handle_onClick_TryAgain=function(){_this3.setState({currentOperation:'challenge',errorMessage:''});};};exports.default=
 
 
 (0,_styles.withStyles)(styleSheet)(LoginDialog);
