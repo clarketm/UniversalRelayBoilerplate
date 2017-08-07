@@ -55,7 +55,7 @@ async function login(req, res) {
           // User has authenticated correctly thus we create a JWT token
           const token = jwt.encode({ user_id: a_User.id }, process.env.JWT_SECRET)
 
-          res.cookie('UserToken1', token, { httpOnly: false }) // ZZZ THIS IS CRITICAL. MUST REPLACE ALL HTTP ONLY COOKIES WITH TRUE
+          res.cookie('UserToken1', token, { httpOnly: true })
           res.json({ success: true, UserToken2: a_User.UserToken2 })
         } else res.status(401).json({ error: '💔  Incorrect password' })
       }
@@ -109,7 +109,7 @@ async function createuser(req, res) {
       const UserToken1 = jwt.encode({ user_id: a_User.id }, process.env.JWT_SECRET)
 
       // Set cookie and return
-      res.cookie('UserToken1', UserToken1, { httpOnly: false })
+      res.cookie('UserToken1', UserToken1, { httpOnly: true })
       res.json({ success: true })
     } catch (error) {
       res.status(401).json({ error: '' + error.message })
@@ -121,7 +121,7 @@ serverAuth.post('/createuser', createuser)
 //
 
 serverAuth.post('/logout', (req, res) => {
-  res.cookie('UserToken1', '', { httpOnly: false, expires: new Date(1) })
+  res.cookie('UserToken1', '', { httpOnly: true, expires: new Date(1) })
   res.json({ success: true })
 })
 
