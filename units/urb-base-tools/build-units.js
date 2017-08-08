@@ -1,44 +1,18 @@
-// @flow weak
+// @flow
 
 import fs from 'fs'
+import { graphql } from 'graphql'
 import path from 'path'
+import { promisify } from 'util'
+import { introspectionQuery, printSchema } from 'graphql/utilities'
 
-const currentPackageJson = JSON.parse(fs.readFileSync('./package.json').toString())
-const packageJson = {
-  dependencies: {},
-  devDependencies: {},
-  engines: {},
-  scripts: {},
-  name: null,
-  version: null,
-}
+import ensureFileContent from './ensureFileContent'
+import schema from '../urb-base-server/graphql/schema'
 
-function addToPackageJson(fileName) {
-  const newPackageJson = JSON.parse(fs.readFileSync(fileName).toString())
-
-  if (newPackageJson.dependencies)
-    Object.assign(packageJson.dependencies, newPackageJson.dependencies)
-  if (newPackageJson.devDependencies)
-    Object.assign(packageJson.devDependencies, newPackageJson.devDependencies)
-  if (newPackageJson.engines) Object.assign(packageJson.engines, newPackageJson.engines)
-  if (newPackageJson.scripts) Object.assign(packageJson.scripts, newPackageJson.scripts)
-}
-
-function getPackages(directoryName: string) {
-  fs.readdirSync(directoryName).filter(unitName => {
-    if (fs.statSync(directoryName + unitName).isDirectory()) {
-      const packageJsonName = path.resolve(directoryName, unitName, 'package.part.json')
-      try {
-        addToPackageJson(packageJsonName)
-      } catch (e) {
-        if (e.code === 'ENOENT') {
-          getPackages(directoryName + unitName + '/')
-          return false
-        } else throw e
-      }
-    }
-  })
-}
+const existsAsync = promisify(fs.exists)
+const readFileAsync = promisify(fs.readFile)
+const readdirAsync = promisify(fs.readdir)
+const writeFileAsync = promisify(fs.writeFile)
 
 function sortObject(object: Object) {
   var t = {}
@@ -48,63 +22,83 @@ function sortObject(object: Object) {
   return t
 }
 
-function orderPackages() {
-  packageJson.scripts = sortObject(packageJson.scripts)
-  packageJson.dependencies = sortObject(packageJson.dependencies)
-  packageJson.devDependencies = sortObject(packageJson.devDependencies)
+function orderPackages(packageAsObject) {
+  packageAsObject.scripts = sortObject(packageAsObject.scripts)
+  packageAsObject.dependencies = sortObject(packageAsObject.dependencies)
+  packageAsObject.devDependencies = sortObject(packageAsObject.devDependencies)
 }
 
-function createPackageJson() {
+async function createPackageJson(units: Array<string>) {
+  const packageJsonFileName = path.resolve('./package.json')
+  const currentPackageAsJSONString = (await readFileAsync(packageJsonFileName)).toString()
+  const currentPackageAsObject = JSON.parse(currentPackageAsJSONString)
+  const packageAsObject = {
+    dependencies: {},
+    devDependencies: {},
+    engines: {},
+    scripts: {},
+    name: null,
+    version: null,
+  }
+
   // Make sure not to overwrite version information
-  packageJson.version = currentPackageJson.version
-  packageJson.name = currentPackageJson.name
+  packageAsObject.version = currentPackageAsObject.version
+  packageAsObject.name = currentPackageAsObject.name
 
-  getPackages('units/')
-  orderPackages()
+  // Add packages to object
+  for (let unitName of units) {
+    const packageAsObjectName = path.resolve('./units', unitName, 'package.part.json')
+    if (await existsAsync(packageAsObjectName)) {
+      const packageToAddAsObject = JSON.parse((await readFileAsync(packageAsObjectName)).toString())
 
-  console.log('Written: ' + path.resolve('./package.json'))
-  fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2), 'utf8')
-}
-
-function getMutations(
-  directoryName: string,
-  mutationsImports: Array<string>,
-  mutationsExports: Array<string>,
-) {
-  fs.readdirSync(directoryName).filter(unitName => {
-    if (fs.statSync(directoryName + unitName).isDirectory()) {
-      const mutationsDir = path.resolve(directoryName, unitName, 'graphql/mutation')
-      try {
-        fs.readdirSync(mutationsDir).filter(mutationName => {
-          if (mutationName.endsWith('.js')) {
-            const mutationNameNoJs = mutationName.substring(0, mutationName.length - 3)
-            mutationsImports.push(
-              'import ' +
-                mutationNameNoJs +
-                " from '../../../" +
-                unitName +
-                '/graphql/mutation/' +
-                mutationNameNoJs +
-                "'",
-            )
-            mutationsExports.push('  ' + mutationNameNoJs + ',')
-          }
-        })
-      } catch (e) {
-        if (e.code === 'ENOENT') {
-          //getMutations(directoryName + unitName + '/', mutationsImports, mutationsExports)
-          return false
-        } else throw e
-      }
+      if (packageToAddAsObject.dependencies)
+        Object.assign(packageAsObject.dependencies, packageToAddAsObject.dependencies)
+      if (packageToAddAsObject.devDependencies)
+        Object.assign(packageAsObject.devDependencies, packageToAddAsObject.devDependencies)
+      if (packageToAddAsObject.engines)
+        Object.assign(packageAsObject.engines, packageToAddAsObject.engines)
+      if (packageToAddAsObject.scripts)
+        Object.assign(packageAsObject.scripts, packageToAddAsObject.scripts)
     }
-  })
+  }
+
+  // Make them pretty
+  orderPackages(packageAsObject)
+
+  await ensureFileContent(
+    packageJsonFileName,
+    currentPackageAsJSONString,
+    JSON.stringify(packageAsObject, null, 2),
+  )
 }
 
-function createMutations() {
+async function createMutations(units: Array<string>) {
   const mutationsImports = []
   const mutationsExports = []
 
-  getMutations('units/', mutationsImports, mutationsExports)
+  for (let unitName of units)
+    if (unitName.endsWith('-server')) {
+      const mutationsDir = path.resolve('./units', unitName, 'graphql/mutation')
+      if (await existsAsync(mutationsDir)) {
+        const mutationFileNames = await readdirAsync(mutationsDir)
+
+        mutationFileNames.filter(mutationFileName => {
+          if (mutationFileName.endsWith('.js')) {
+            const mutation = mutationFileName.substring(0, mutationFileName.length - 3)
+            mutationsImports.push(
+              'import ' +
+                mutation.replace('.', '_') +
+                " from '../../../" +
+                unitName +
+                '/graphql/mutation/' +
+                mutation +
+                "'",
+            )
+            mutationsExports.push('  ' + mutation + ',')
+          }
+        })
+      }
+    }
 
   let mutations = ['// @flow', '']
   mutations = mutations.concat(mutationsImports)
@@ -112,98 +106,73 @@ function createMutations() {
   mutations = mutations.concat(mutationsExports)
   mutations = mutations.concat(['}'])
 
-  console.log(
-    'Written: ' + path.resolve('./units/_configuration/urb-base-server/graphql/_mutations.js'),
-  )
-  fs.writeFileSync(
-    './units/_configuration/urb-base-server/graphql/_mutations.js',
+  await ensureFileContent(
+    path.resolve('./units/_configuration/urb-base-server/graphql/_mutations.js'),
+    null,
     mutations.join('\r\n'),
-    'utf8',
   )
 }
 
-function getSchemas(schemasImports: Array<string>) {
-  const directoryName = 'units/'
-  fs.readdirSync(directoryName).filter(unitName => {
-    if (fs.statSync(directoryName + unitName).isDirectory()) {
-      const schemasDir = path.resolve(directoryName, unitName, 'graphql/model')
-      try {
-        fs.readdirSync(schemasDir).filter(mutationName => {
-          if (mutationName.endsWith('.js')) {
-            const mutationNameNoJs = mutationName.substring(0, mutationName.length - 3)
+async function createSchemas(units: Array<string>) {
+  const schemasImports = []
+
+  for (let unitName of units)
+    if (unitName.endsWith('-server')) {
+      const schemasDir = path.resolve('./units', unitName, 'graphql/model')
+      if (await existsAsync(schemasDir)) {
+        const objectTypeFileNames = await readdirAsync(schemasDir)
+
+        objectTypeFileNames.filter(objectTypeFileName => {
+          if (objectTypeFileName.endsWith('.js')) {
+            const objectType = objectTypeFileName.substring(0, objectTypeFileName.length - 3)
             schemasImports.push(
               'import ' +
-                mutationNameNoJs.replace('.', '_') +
+                objectType.replace('.', '_') +
                 " from '../../../" +
                 unitName +
                 '/graphql/model/' +
-                mutationNameNoJs +
+                objectType +
                 "'",
             )
           }
         })
-      } catch (e) {
-        if (e.code === 'ENOENT') {
-          return false
-        } else throw e
       }
     }
-  })
-}
-
-function createSchemas() {
-  const schemasImports = []
-
-  getSchemas(schemasImports)
 
   let schemas = ['// @flow', '']
   schemas = schemas.concat(schemasImports)
   schemas = schemas.concat(['', 'export default true'])
 
-  console.log(
-    'Written: ' + path.resolve('./units/_configuration/urb-base-server/graphql/_schemas.js'),
-  )
-  fs.writeFileSync(
-    './units/_configuration/urb-base-server/graphql/_schemas.js',
+  await ensureFileContent(
+    path.resolve('./units/_configuration/urb-base-server/graphql/_schemas.js'),
+    null,
     schemas.join('\r\n'),
-    'utf8',
   )
 }
 
-function getViewerFields(
-  directoryName: string,
-  viewerFieldsImports: Array<string>,
-  viewerFieldsExports: Array<string>,
-) {
-  fs.readdirSync(directoryName).filter(unitName => {
-    if (fs.statSync(directoryName + unitName).isDirectory()) {
-      try {
-        const viewerFieldsImportName = unitName.replace(/-/g, '_')
-        if (fs.statSync(directoryName + unitName + '/graphql/type/_ViewerFields.js').isFile()) {
-          viewerFieldsImports.push(
-            'import ' +
-              viewerFieldsImportName +
-              " from '../../../" +
-              unitName +
-              "/graphql/type/_ViewerFields'",
-          )
-          viewerFieldsExports.push('  ...' + viewerFieldsImportName + ',')
-        }
-      } catch (e) {
-        if (e.code === 'ENOENT') {
-          //getViewerFields(directoryName + unitName + '/', viewerFieldsImports, viewerFieldsExports)
-          return false
-        } else throw e
-      }
-    }
-  })
-}
-
-function createViewerFields() {
+async function createViewerFields(units: Array<string>) {
   const viewerFieldsImports = []
   const viewerFieldsExports = []
 
-  getViewerFields('units/', viewerFieldsImports, viewerFieldsExports)
+  for (let unitName of units)
+    if (unitName.endsWith('-server')) {
+      const viewerFieldsFileName = path.resolve(
+        './units',
+        unitName,
+        'graphql/type/_ViewerFields.js',
+      )
+      if (await existsAsync(viewerFieldsFileName)) {
+        const viewerFieldsImportName = unitName.replace(/-/g, '_')
+        viewerFieldsImports.push(
+          'import ' +
+            viewerFieldsImportName +
+            " from '../../../" +
+            unitName +
+            "/graphql/type/_ViewerFields'",
+        )
+        viewerFieldsExports.push('  ...' + viewerFieldsImportName + ',')
+      }
+    }
 
   let viewerFields = ['// @flow', '']
   viewerFields = viewerFields.concat(viewerFieldsImports)
@@ -211,17 +180,87 @@ function createViewerFields() {
   viewerFields = viewerFields.concat(viewerFieldsExports)
   viewerFields = viewerFields.concat(['}'])
 
-  console.log(
-    'Written: ' + path.resolve('./units/_configuration/urb-base-server/graphql/_ViewerFields.js'),
-  )
-  fs.writeFileSync(
-    './units/_configuration/urb-base-server/graphql/_ViewerFields.js',
+  await ensureFileContent(
+    path.resolve('./units/_configuration/urb-base-server/graphql/_ViewerFields.js'),
+    null,
     viewerFields.join('\r\n'),
-    'utf8',
   )
 }
 
-createPackageJson()
-createMutations()
-createSchemas()
-createViewerFields()
+async function createRoutes(units: Array<string>) {
+  const routesImports = []
+  const routesExports = []
+
+  for (let unitName of units)
+    if (unitName.endsWith('-webapp')) {
+      const routesDir = path.resolve('./units', unitName)
+      if (await existsAsync(routesDir)) {
+        const routeFileNames = await readdirAsync(routesDir)
+
+        routeFileNames.filter(routeFileName => {
+          if (routeFileName.endsWith('.jsx') && routeFileName.startsWith('routeAppFrame')) {
+            const route = routeFileName.substring(0, routeFileName.length - 4)
+            routesImports.push('import ' + route + " from '../../" + unitName + '/' + route + "'")
+            routesExports.push('  ' + route + ',')
+          }
+        })
+      }
+    }
+
+  let routes = ['// @flow', '']
+  routes = routes.concat(routesImports)
+  routes = routes.concat(['', 'export default ['])
+  routes = routes.concat(routesExports)
+  routes = routes.concat([']'])
+
+  await ensureFileContent(
+    path.resolve('./units/_configuration/urb-base-webapp/routesAppFrame.js'),
+    null,
+    routes.join('\r\n'),
+  )
+}
+
+async function getUnits() {
+  const units = (await readdirAsync('./units/')).filter(
+    fileName => fileName != '.DS_Store' && fileName != '_configuration',
+  )
+  return units
+}
+
+async function buildGraphQLSchema() {
+  const result = await graphql(schema, introspectionQuery)
+  if (result.errors)
+    throw new Error('Failed introspecting schema: ' + JSON.stringify(result.errors, null, 2))
+
+  await ensureFileContent(
+    path.resolve('./units/_configuration/urb-base-server/graphql/schema.json'),
+    null,
+    JSON.stringify(result, null, 2),
+  )
+
+  await ensureFileContent(
+    path.resolve('./units/_configuration/urb-base-server/graphql/schema.graphql'),
+    null,
+    printSchema(schema),
+  )
+}
+
+async function main() {
+  const units = await getUnits()
+  console.log(units)
+
+  const taskPromises = [
+    createPackageJson(units),
+    createViewerFields(units),
+    createSchemas(units),
+    createMutations(units),
+    createRoutes(units),
+  ]
+
+  await Promise.all(taskPromises)
+
+  // Schema should be built after all unit files have been created
+  await buildGraphQLSchema()
+}
+
+main().then(() => console.log('Fin.'))

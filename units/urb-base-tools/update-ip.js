@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 
-import AppRegistryName from '../_configuration/app/AppRegistryName'
+import AppRegistryName from '../_configuration/urb-base-app/AppRegistryName'
 import getLocalIP from '../urb-base-server/getLocalIP'
 
 // Read environment
@@ -27,7 +27,7 @@ if (IPAddress != undefined) {
     IPAddress,
   )
   updateIPInFile(
-    './units/_configuration/app/publicURL.js',
+    './units/_configuration/urb-base-app/publicURL.js',
     'const publicURL',
     "const publicURL = 'http://" + IPAddress + ':' + port + "'",
     IPAddress,

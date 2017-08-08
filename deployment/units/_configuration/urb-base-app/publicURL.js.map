@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../units/_configuration/urb-base-app/publicURL.js"],"names":["publicURL"],"mappings":";;AAEA,GAAMA,WAAY,kDAAlB,C;;AAEeA,S","file":"publicURL.js","sourcesContent":["// @flow\n\nconst publicURL = 'http://universal-relay-boilerplate.herokuapp.com'\n\nexport default publicURL\n"]}

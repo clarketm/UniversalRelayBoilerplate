@@ -130,7 +130,7 @@ class NewUserScreen extends React.Component {
 
   renderSuccess() {
     const { classes } = this.props
-    const { AccountName, errorMessage } = this.state
+    const { AccountName } = this.state
 
     return (
       <Card className={classes.card}>

@@ -16,8 +16,7 @@ var _requestLoggers=require('../_configuration/urb-base-server/requestLoggers');
 var _schema=require('./graphql/schema');var _schema2=_interopRequireDefault(_schema);
 
 
-var _schemas2=require('./graphql/model/_schemas');var _schemas3=_interopRequireDefault(_schemas2);
-var _schemas4=require('../_configuration/urb-base-server/graphql/_schemas');var _schemas5=_interopRequireDefault(_schemas4);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+var _schemas2=require('../_configuration/urb-base-server/graphql/_schemas');var _schemas3=_interopRequireDefault(_schemas2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 
 var serverGraphQL=(0,_express2.default)();
