@@ -1,21 +1,11 @@
 // @flow
 
 import List from 'material-ui/List'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
 import EnsayoItem from './EnsayoItem'
-
-// ZZZ Is the styleshet really necessary here? Should this be a separate component anyway?
-const styleSheet = createStyleSheet(theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    background: theme.palette.background.paper,
-  },
-}))
 
 class EnsayoList extends React.Component {
   static propTypes = {
@@ -40,7 +30,7 @@ class EnsayoList extends React.Component {
 }
 
 export default createFragmentContainer(
-  withStyles(styleSheet)(EnsayoList),
+  EnsayoList,
   graphql`
     fragment EnsayoList_Viewer on Viewer {
       Ensayos(first: 2147483647) @connection(key: "EnsayoList_Ensayos") {
