@@ -12,9 +12,9 @@ import type {ConcreteBatch} from 'relay-runtime';
 export type EnsayoUpdateMutationVariables = {|
   input: {
     id: string;
-    Ensayo_Content: string;
     Ensayo_Title: string;
     Ensayo_Description: string;
+    Ensayo_Content: string;
     clientMutationId?: ?string;
   };
 |};
