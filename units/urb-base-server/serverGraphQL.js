@@ -16,7 +16,6 @@ import { requestLoggerGraphQL } from '../_configuration/urb-base-server/requestL
 import schema from './graphql/schema' // Schema for GraphQL server
 
 // Guarantee that all object registrations and schema definitions are executed
-import _schemas_system from './graphql/model/_schemas'
 import _schemas from '../_configuration/urb-base-server/graphql/_schemas'
 
 // Create router for GraphQL
