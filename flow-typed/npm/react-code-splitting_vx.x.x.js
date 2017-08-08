@@ -14,7 +14,7 @@
  */
 
 declare module 'react-code-splitting' {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 /**
@@ -23,45 +23,45 @@ declare module 'react-code-splitting' {
  * needed.
  */
 declare module 'react-code-splitting/dist/react-code-splitting.min' {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module 'react-code-splitting/example/App/Fat' {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module 'react-code-splitting/example/App/index' {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module 'react-code-splitting/example/webpack.config' {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module 'react-code-splitting/src/index' {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 declare module 'react-code-splitting/webpack.config' {
-  declare module.exports: any;
+  declare module.exports: any
 }
 
 // Filename aliases
 declare module 'react-code-splitting/dist/react-code-splitting.min.js' {
-  declare module.exports: $Exports<'react-code-splitting/dist/react-code-splitting.min'>;
+  declare module.exports: $Exports<'react-code-splitting/dist/react-code-splitting.min'>
 }
 declare module 'react-code-splitting/example/App/Fat.js' {
-  declare module.exports: $Exports<'react-code-splitting/example/App/Fat'>;
+  declare module.exports: $Exports<'react-code-splitting/example/App/Fat'>
 }
 declare module 'react-code-splitting/example/App/index.js' {
-  declare module.exports: $Exports<'react-code-splitting/example/App/index'>;
+  declare module.exports: $Exports<'react-code-splitting/example/App/index'>
 }
 declare module 'react-code-splitting/example/webpack.config.js' {
-  declare module.exports: $Exports<'react-code-splitting/example/webpack.config'>;
+  declare module.exports: $Exports<'react-code-splitting/example/webpack.config'>
 }
 declare module 'react-code-splitting/src/index.js' {
-  declare module.exports: $Exports<'react-code-splitting/src/index'>;
+  declare module.exports: $Exports<'react-code-splitting/src/index'>
 }
 declare module 'react-code-splitting/webpack.config.js' {
-  declare module.exports: $Exports<'react-code-splitting/webpack.config'>;
+  declare module.exports: $Exports<'react-code-splitting/webpack.config'>
 }
