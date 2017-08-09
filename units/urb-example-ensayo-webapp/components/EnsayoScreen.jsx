@@ -61,6 +61,8 @@ class EnsayoScreen extends React.Component {
   render() {
     const { classes } = this.props
 
+    console.log(this.props)
+
     return (
       <ResponsiveContentArea>
         <Card className={classes.card}>

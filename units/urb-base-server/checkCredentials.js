@@ -10,22 +10,36 @@ import log from './log'
 // Read environment
 require('dotenv').load()
 
-function get_user_id(req) {
+function getSessionIdFromRequest(req) {
   const UserToken1 = req.cookies.UserToken1 || req.headers.usertoken1
   if (UserToken1)
     try {
       if (UserToken1.length > 10) {
         const decoded = jwt.decode(UserToken1, process.env.JWT_SECRET)
-        return defaultPersister.uuidFromString(decoded.user_id)
+        return defaultPersister.uuidFromString(decoded.session_id)
       }
     } catch (err) {
-      return Promise.reject('💔  Could not read auth cookie. ' + err)
+      // ZZZ Log information to DB
+      throw new Error('💔  Session cookie is invalid. Please log in again.')
     }
-  return defaultPersister.uuidNull() // Anonymous, unless cookie is passed
+  return null // Anonymous, unless cookie is passed
 }
 
-export async function getUserByUserToken1(objectManager, req) {
-  const user_id = get_user_id(req)
+export async function getUserAndSessionIDByUserToken1(objectManager, req) {
+  let user_id
+
+  // Get session, and if session is present, user from session
+  const session_id = getSessionIdFromRequest(req)
+  let a_UserSession = null
+  if (session_id) {
+    a_UserSession = await objectManager.getOneObject('UserSession', {
+      id: session_id,
+      UserSession_site_id: objectManager.siteInformation.site_id,
+    })
+    user_id = a_UserSession.UserSession_User_id
+  } else {
+    user_id = defaultPersister.uuidNull()
+  }
 
   const a_User = await objectManager.getOneObject('User', {
     id: user_id,
@@ -34,7 +48,7 @@ export async function getUserByUserToken1(objectManager, req) {
 
   if (a_User) {
     objectManager.setViewerUserId(user_id)
-    return a_User
+    return { User: a_User, UserSession: a_UserSession }
   } else {
     throw '💔  User not found'
   }

@@ -5,7 +5,7 @@ import express from 'express'
 import graphQLHTTP from 'express-graphql'
 
 import {
-  getUserByUserToken1,
+  getUserAndSessionIDByUserToken1,
   verifyUserAuthToken,
   serveAuthenticationFailed,
 } from './checkCredentials'
@@ -31,7 +31,7 @@ async function root(req, res, next) {
   const objectManager = await getObjectManager(req, res)
   if (objectManager.siteInformation) {
     try {
-      const a_User = await getUserByUserToken1(objectManager, req)
+      const a_User = (await getUserAndSessionIDByUserToken1(objectManager, req)).User
 
       res.codeFoundriesInjected = { user: a_User }
       await verifyUserAuthToken(a_User, req)

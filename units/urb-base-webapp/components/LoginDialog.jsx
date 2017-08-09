@@ -26,20 +26,20 @@ class LoginDialog extends React.Component {
   state: {
     currentOperation: 'challenge' | 'in progress' | 'failure',
     errorMessage: string,
-    AccountName: string,
-    AccountPassword: string,
+    UserAccount_Identifier: string,
+    User_Secret: string,
   }
 
   constructor(props: Object, context: Object) {
     super(props, context)
 
-    const { AccountName, AccountPassword } = this.props
+    const { UserAccount_Identifier, User_Secret } = this.props
 
     this.state = {
       currentOperation: 'challenge',
       errorMessage: '',
-      AccountName: '',
-      AccountPassword: '',
+      UserAccount_Identifier: '',
+      User_Secret: '',
     }
   }
 
@@ -48,11 +48,11 @@ class LoginDialog extends React.Component {
   }
 
   _handle_onClick_LogIn = async () => {
-    const { AccountName, AccountPassword } = this.state
+    const { UserAccount_Identifier, User_Secret } = this.state
 
     this.setState({
       currentOperation: 'in progress',
-      AccountPassword: '', // In order to prevent the password from being accessed later
+      User_Secret: '', // In order to prevent the password from being accessed later
     })
 
     try {
@@ -66,8 +66,8 @@ class LoginDialog extends React.Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          User_AccountName: AccountName,
-          User_AccountPassword: AccountPassword,
+          UserAccount_Identifier: UserAccount_Identifier,
+          User_Secret: User_Secret,
         }),
       })
 
@@ -114,7 +114,7 @@ class LoginDialog extends React.Component {
 
   renderChallenge() {
     const { classes, open } = this.props
-    const { AccountName, AccountPassword } = this.state
+    const { UserAccount_Identifier, User_Secret } = this.state
 
     return (
       <Dialog open={open} transition={Slide} onRequestClose={this._handle_Close}>
@@ -124,15 +124,15 @@ class LoginDialog extends React.Component {
           <TextField
             label="Account Name"
             fullWidth={true}
-            value={AccountName}
-            onChange={event => this.setState({ AccountName: event.target.value })}
+            value={UserAccount_Identifier}
+            onChange={event => this.setState({ UserAccount_Identifier: event.target.value })}
           />
           <TextField
             label="Password"
             type="password"
             fullWidth={true}
-            value={AccountPassword}
-            onChange={event => this.setState({ AccountPassword: event.target.value })}
+            value={User_Secret}
+            onChange={event => this.setState({ User_Secret: event.target.value })}
           />
         </DialogContent>
         <DialogActions>
@@ -151,7 +151,7 @@ class LoginDialog extends React.Component {
 
   renderInProgress() {
     const { classes, open } = this.props
-    const { AccountName } = this.state
+    const { UserAccount_Identifier } = this.state
 
     return (
       <Dialog open={open} onRequestClose={this._handle_Close}>
@@ -161,7 +161,7 @@ class LoginDialog extends React.Component {
           <Typography component="p">
             Logging in as
             <br />
-            {AccountName}
+            {UserAccount_Identifier}
           </Typography>
           <LinearProgress mode="query" />
         </DialogContent>
@@ -176,7 +176,7 @@ class LoginDialog extends React.Component {
 
   renderFailure() {
     const { classes, open } = this.props
-    const { AccountName, errorMessage } = this.state
+    const { UserAccount_Identifier, errorMessage } = this.state
 
     return (
       <Dialog open={open} onRequestClose={this._handle_Close}>
@@ -186,7 +186,7 @@ class LoginDialog extends React.Component {
           <Typography component="p">
             Failed loggin in as
             <br />
-            {AccountName}
+            {UserAccount_Identifier}
             <br />
             Reason: {errorMessage}
           </Typography>

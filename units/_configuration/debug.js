@@ -5,7 +5,7 @@
 // Example for logging requests that:
 // { "trace" : "none" } - do not trace any requests
 // { "clientIP": "127.0.0.1" } - trace requests coming from localhost
-// { "user": { "User_AccountName": "jack" } } - trace requests for user account named 'jack'
+// { "user": { "User_DisplayName": "jack" } } - trace requests for user account named 'jack'
 
 export var debugWriteToLogServerRequestAuth = { trace: 'none' }
 export var debugWriteToLogServerRequestGraphQL = { trace: 'none' }

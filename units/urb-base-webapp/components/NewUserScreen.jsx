@@ -26,8 +26,8 @@ class NewUserScreen extends React.Component {
   state: {
     currentOperation: 'prompt' | 'creating' | 'success' | 'failure',
     errorMessage: string,
-    AccountName: string,
-    AccountPassword: string,
+    UserAccount_Identifier: string,
+    User_Secret: string,
   }
 
   constructor(props: Object, context: Object) {
@@ -36,17 +36,17 @@ class NewUserScreen extends React.Component {
     this.state = {
       currentOperation: 'prompt',
       errorMessage: '',
-      AccountName: '',
-      AccountPassword: '',
+      UserAccount_Identifier: '',
+      User_Secret: '',
     }
   }
 
   _handle_onClick_Create = async () => {
-    const { AccountName, AccountPassword } = this.state
+    const { UserAccount_Identifier, User_Secret } = this.state
 
     this.setState({
       currentOperation: 'creating',
-      AccountPassword: '', // In order to prevent the password from being accessed later
+      User_Secret: '', // In order to prevent the password from being accessed later
     })
 
     try {
@@ -60,8 +60,8 @@ class NewUserScreen extends React.Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          User_AccountName: AccountName,
-          User_AccountPassword: AccountPassword,
+          UserAccount_Identifier: UserAccount_Identifier,
+          User_Secret: User_Secret,
         }),
       })
 
@@ -108,7 +108,7 @@ class NewUserScreen extends React.Component {
 
   renderCreating() {
     const { classes } = this.props
-    const { AccountName } = this.state
+    const { UserAccount_Identifier } = this.state
 
     return (
       <Card className={classes.card}>
@@ -116,7 +116,7 @@ class NewUserScreen extends React.Component {
         <Typography component="p">
           Creating user
           <br />
-          {AccountName}
+          {UserAccount_Identifier}
           <br />
           Please wait.
         </Typography>
@@ -130,7 +130,7 @@ class NewUserScreen extends React.Component {
 
   renderSuccess() {
     const { classes } = this.props
-    const { AccountName } = this.state
+    const { UserAccount_Identifier } = this.state
 
     return (
       <Card className={classes.card}>
@@ -138,7 +138,7 @@ class NewUserScreen extends React.Component {
         <Typography component="p">
           Created user
           <br />
-          {AccountName}
+          {UserAccount_Identifier}
         </Typography>
         <CardActions>
           <Button onClick={this._handle_onClick_Continue}>Continue</Button>
@@ -149,7 +149,7 @@ class NewUserScreen extends React.Component {
 
   renderFailure() {
     const { classes } = this.props
-    const { AccountName, errorMessage } = this.state
+    const { UserAccount_Identifier, errorMessage } = this.state
 
     return (
       <Card className={classes.card}>
@@ -157,7 +157,7 @@ class NewUserScreen extends React.Component {
         <Typography component="p">
           Failed creating user
           <br />
-          {AccountName}
+          {UserAccount_Identifier}
           <br />
           Reason: {errorMessage}
         </Typography>
@@ -170,7 +170,7 @@ class NewUserScreen extends React.Component {
 
   renderPrompt() {
     const { classes } = this.props
-    const { AccountName, AccountPassword } = this.state
+    const { UserAccount_Identifier, User_Secret } = this.state
 
     return (
       <Card className={classes.card}>
@@ -178,15 +178,15 @@ class NewUserScreen extends React.Component {
         <TextField
           label="Account Name"
           fullWidth={true}
-          value={AccountName}
-          onChange={event => this.setState({ AccountName: event.target.value })}
+          value={UserAccount_Identifier}
+          onChange={event => this.setState({ UserAccount_Identifier: event.target.value })}
         />
         <TextField
           label="Password"
           type="password"
           fullWidth={true}
-          value={AccountPassword}
-          onChange={event => this.setState({ AccountPassword: event.target.value })}
+          value={User_Secret}
+          onChange={event => this.setState({ User_Secret: event.target.value })}
         />
         <CardActions>
           <Button onClick={this._handle_onClick_Create}>Create</Button>

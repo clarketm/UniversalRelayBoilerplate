@@ -255,6 +255,15 @@ export default class ObjectManager {
     return Promise.all(arrPromises)
   }
 
+  assignPrimaryKey(entityName: string, fields: any) {
+    const entityDefinition = entityDefinitions[entityName]
+
+    if (entityDefinition == null) console.log('Cound not find entity ' + entityName)
+
+    // Generate primary key, overwrite if already present
+    fields.id = entityDefinition.Persister.uuidRandom()
+  }
+
   async add(entityName: string, fields: any): any {
     const entityDefinition = entityDefinitions[entityName]
 
