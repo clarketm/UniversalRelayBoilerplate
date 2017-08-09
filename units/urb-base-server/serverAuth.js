@@ -28,27 +28,28 @@ serverAuth.use((req, res, next) => logServerRequest(req, res, next, requestLogge
 async function login(req, res) {
   const objectManager = await getObjectManager(req, res)
   if (objectManager.siteInformation) {
-    const User_AccountName = req.body.User_AccountName.toLowerCase()
-    const User_AccountPassword = req.body.User_AccountPassword
+    const UserAccount_Identifier = req.body.UserAccount_Identifier.toLowerCase()
+    const User_Secret = req.body.User_Secret
 
-    await delayPromise(1000) // Wait for a second to slow down a possible potential force attack
+    await delayPromise(1000) // Wait for a second to hamper a possible potential brute force attack
 
     try {
-      const arr_Users = await objectManager.getObjectList('User', {
-        User_AccountName: User_AccountName,
+      const arr_UserAccount = await objectManager.getObjectList('UserAccount', {
+        UserAccount_site_id: objectManager.siteInformation.site_id,
+        UserAccount_Identifier: UserAccount_Identifier,
       })
 
-      if (arr_Users.length == 0) {
-        res.status(401).json({ error: '💔  User not found' })
+      if (arr_UserAccount.length == 0) {
+        res.status(401).json({ error: '💔  User account not found' })
       } else {
-        const a_User = arr_Users[0]
+        const a_User = await objectManager.getOneObject('User', {
+          id: arr_UserAccount[0].UserAccount_User_id,
+        })
 
         if (
           await new Promise(resolve =>
-            bcrypt.compare(
-              User_AccountPassword,
-              a_User.User_AccountPassword,
-              (err, passwordMatch) => resolve(passwordMatch),
+            bcrypt.compare(User_Secret, a_User.User_Secret, (err, passwordMatch) =>
+              resolve(passwordMatch),
             ),
           )
         ) {
@@ -84,33 +85,32 @@ serverAuth.post('/login', login)
 async function createuser(req, res) {
   const objectManager = await getObjectManager(req, res)
   if (objectManager.siteInformation) {
-    const User_AccountName = req.body.User_AccountName.toLowerCase()
-    const User_AccountPassword = req.body.User_AccountPassword
+    const UserAccount_Identifier = req.body.UserAccount_Identifier.toLowerCase()
+    const User_Secret = req.body.User_Secret
 
     try {
-      const arr_Users = await objectManager.getObjectList('User', {
-        User_site_id: objectManager.siteInformation.site_id,
-        User_AccountName: User_AccountName,
+      const arr_UserAccount = await objectManager.getObjectList('UserAccount', {
+        UserAccount_site_id: objectManager.siteInformation.site_id,
+        UserAccount_Identifier: UserAccount_Identifier,
       })
 
-      if (arr_Users.length > 0) throw new Error('💔  User account already exists')
+      if (arr_UserAccount.length > 0) throw new Error('💔  User account already exists')
 
       const User_PasswordHash = await new Promise(resolve =>
-        bcrypt.hash(User_AccountPassword, 8, (err, hash) => resolve(hash)),
+        bcrypt.hash(User_Secret, 8, (err, hash) => resolve(hash)),
       )
 
       // If account name looks like email address, use it as email
-      const accountNameIsValidEmail = validateEmail(User_AccountName)
-      const User_Email = accountNameIsValidEmail ? User_AccountName : ''
+      const accountNameIsValidEmail = validateEmail(UserAccount_Identifier)
+      const User_Email = accountNameIsValidEmail ? UserAccount_Identifier : ''
 
       // Create the user object
       const a_User = Object.assign(getNewUser(objectManager.siteInformation.site_id), {
         User_site_id: objectManager.siteInformation.site_id,
         UserToken2:
           Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2),
-        User_AccountName: User_AccountName,
-        User_AccountPassword: User_PasswordHash,
-        User_DisplayName: User_AccountName,
+        User_Secret: User_PasswordHash,
+        User_DisplayName: UserAccount_Identifier,
         User_Email: User_Email,
       })
       objectManager.assignPrimaryKey('User', a_User)
@@ -123,10 +123,19 @@ async function createuser(req, res) {
         UserSession_Expired: false,
       }
 
+      // Create user account object
+      const a_UserAccount = {
+        UserAccount_site_id: objectManager.siteInformation.site_id, // Get previously assigned primary key
+        UserAccount_User_id: a_User.id,
+        UserAccount_Identifier: UserAccount_Identifier,
+        UserAccount_Type: 'un',
+      }
+
       // Add user and session to database
       await Promise.all([
         objectManager.add('User', a_User),
         objectManager.add('UserSession', a_UserSession),
+        objectManager.add('UserAccount', a_UserAccount),
       ])
 
       res.codeFoundriesInjected = { user: a_User }

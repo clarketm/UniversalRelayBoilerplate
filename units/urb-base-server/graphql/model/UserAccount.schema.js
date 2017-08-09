@@ -2,20 +2,20 @@
 
 import defaultPersister from '../../../_configuration/urb-base-server/graphql/defaultPersister'
 
-defaultPersister.addTableSchema('UserCredentials', {
+defaultPersister.addTableSchema('UserAccount', {
   fields: {
     id: 'uuid',
-    UserCredentials_site_id: 'uuid',
-    UserCredentials_User_id: 'uuid',
-    UserCredentials_AccountIdentifier: 'text',
-    UserCredentials_AccountSecret: 'text',
+    UserAccount_site_id: 'uuid',
+    UserAccount_User_id: 'uuid',
+    UserAccount_Identifier: 'text',
+    UserAccount_Type: 'text',
   },
 
   key: ['id'],
 
   custom_indexes: [
     {
-      on: 'UserCredentials_AccountIdentifier',
+      on: 'UserAccount_Identifier',
       using: 'org.apache.cassandra.index.sasi.SASIIndex',
       options: {},
     },

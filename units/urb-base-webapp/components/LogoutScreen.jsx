@@ -38,7 +38,7 @@ class LogoutScreen extends React.Component {
   }
 
   _handle_onClick_Logout = async () => {
-    const { AccountName } = this.props
+    const { UserAccount_Identifier } = this.props
 
     this.setState({ currentOperation: 'logging out' })
 

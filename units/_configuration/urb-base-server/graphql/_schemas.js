@@ -1,8 +1,8 @@
 // @flow
 
 import User_schemas from '../../../urb-base-server/graphql/model/User.schemas'
-import UserCredentials from '../../../urb-base-server/graphql/model/UserCredentials'
-import UserCredentials_schema from '../../../urb-base-server/graphql/model/UserCredentials.schema'
+import UserAccount from '../../../urb-base-server/graphql/model/UserAccount'
+import UserAccount_schema from '../../../urb-base-server/graphql/model/UserAccount.schema'
 import UserSession from '../../../urb-base-server/graphql/model/UserSession'
 import UserSession_schema from '../../../urb-base-server/graphql/model/UserSession.schema'
 import logs_schema from '../../../urb-base-server/graphql/model/logs.schema'
