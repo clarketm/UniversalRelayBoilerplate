@@ -33,13 +33,13 @@ LoginDialog=function(_React$Component){_inherits(LoginDialog,_React$Component);
 function LoginDialog(props,context){_classCallCheck(this,LoginDialog);var _this=_possibleConstructorReturn(this,(LoginDialog.__proto__||Object.getPrototypeOf(LoginDialog)).call(this,
 props,context));_initialiseProps.call(_this);var _this$props=
 
-_this.props,AccountName=_this$props.AccountName,AccountPassword=_this$props.AccountPassword;
+_this.props,UserAccount_Identifier=_this$props.UserAccount_Identifier,User_Secret=_this$props.User_Secret;
 
 _this.state={
 currentOperation:'challenge',
 errorMessage:'',
-AccountName:'',
-AccountPassword:''};return _this;
+UserAccount_Identifier:'',
+User_Secret:''};return _this;
 
 }_createClass(LoginDialog,[{key:'renderChallenge',value:function renderChallenge()
 
@@ -114,7 +114,7 @@ AccountPassword:''};return _this;
 
 {var _this2=this;var _props=
 this.props,classes=_props.classes,open=_props.open;var _state=
-this.state,AccountName=_state.AccountName,AccountPassword=_state.AccountPassword;
+this.state,UserAccount_Identifier=_state.UserAccount_Identifier,User_Secret=_state.User_Secret;
 
 return(
 _react2.default.createElement(_Dialog2.default,{open:open,transition:_Slide2.default,onRequestClose:this._handle_Close},
@@ -124,15 +124,15 @@ _react2.default.createElement(_Dialog.DialogContent,null,
 _react2.default.createElement(_TextField2.default,{
 label:'Account Name',
 fullWidth:true,
-value:AccountName,
-onChange:function onChange(event){return _this2.setState({AccountName:event.target.value});}}),
+value:UserAccount_Identifier,
+onChange:function onChange(event){return _this2.setState({UserAccount_Identifier:event.target.value});}}),
 
 _react2.default.createElement(_TextField2.default,{
 label:'Password',
 type:'password',
 fullWidth:true,
-value:AccountPassword,
-onChange:function onChange(event){return _this2.setState({AccountPassword:event.target.value});}})),
+value:User_Secret,
+onChange:function onChange(event){return _this2.setState({User_Secret:event.target.value});}})),
 
 
 _react2.default.createElement(_Dialog.DialogActions,null,
@@ -151,7 +151,7 @@ _react2.default.createElement(_Button2.default,{color:'primary',onClick:this._ha
 
 {var _props2=
 this.props,classes=_props2.classes,open=_props2.open;var
-AccountName=this.state.AccountName;
+UserAccount_Identifier=this.state.UserAccount_Identifier;
 
 return(
 _react2.default.createElement(_Dialog2.default,{open:open,onRequestClose:this._handle_Close},
@@ -161,7 +161,7 @@ _react2.default.createElement(_Dialog.DialogContent,null,
 _react2.default.createElement(_Typography2.default,{component:'p'},'Logging in as',
 
 _react2.default.createElement('br',null),
-AccountName),
+UserAccount_Identifier),
 
 _react2.default.createElement(_Progress.LinearProgress,{mode:'query'})),
 
@@ -176,7 +176,7 @@ _react2.default.createElement(_Button2.default,{color:'accent',onClick:this._han
 
 {var _props3=
 this.props,classes=_props3.classes,open=_props3.open;var _state2=
-this.state,AccountName=_state2.AccountName,errorMessage=_state2.errorMessage;
+this.state,UserAccount_Identifier=_state2.UserAccount_Identifier,errorMessage=_state2.errorMessage;
 
 return(
 _react2.default.createElement(_Dialog2.default,{open:open,onRequestClose:this._handle_Close},
@@ -186,7 +186,7 @@ _react2.default.createElement(_Dialog.DialogContent,null,
 _react2.default.createElement(_Typography2.default,{component:'p'},'Failed loggin in as',
 
 _react2.default.createElement('br',null),
-AccountName,
+UserAccount_Identifier,
 _react2.default.createElement('br',null),'Reason: ',
 errorMessage)),
 
@@ -208,7 +208,7 @@ currentOperation==='in progress'&&this.renderInProgress(),
 currentOperation==='failure'&&this.renderFailure()));
 
 
-}}]);return LoginDialog;}(_react2.default.Component);LoginDialog.propTypes={open:_propTypes2.default.bool.isRequired,handlerClose:_propTypes2.default.func.isRequired,handlerNewUser:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_onClick_LogIn=function _callee(){var _state3,AccountName,AccountPassword,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_state3=_this3.state,AccountName=_state3.AccountName,AccountPassword=_state3.AccountPassword;_this3.setState({currentOperation:'in progress',AccountPassword:''});_context.prev=2;loc=window.location;host=loc.protocol+'//'+loc.hostname+':'+loc.port;_context.next=7;return regeneratorRuntime.awrap(fetch(host+'/auth/login',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({User_AccountName:AccountName,User_AccountPassword:AccountPassword})}));case 7:response=_context.sent;_context.next=10;return regeneratorRuntime.awrap(response.json());case 10:responseData=_context.sent;console.log('LOG IN RESPONSE');console.log(responseData);if(responseData.success){location.replace(location.href);}else{_this3.setState({currentOperation:'failure',errorMessage:responseData.error});}_context.next=19;break;case 16:_context.prev=16;_context.t0=_context['catch'](2);_this3.setState({currentOperation:'failure',errorMessage:'Did not receive proper response from server. Please try again. Message:'+_context.t0.message});case 19:case'end':return _context.stop();}}},null,_this3,[[2,16]]);};this._handle_onCLick_NewUser=function(){_this3.props.handlerNewUser();};this._handle_onCLick_CancelLogIn=function(){_this3.setState({currentOperation:'failure',errorMessage:'Log in has been canceled'});};this._handle_onClick_TryAgain=function(){_this3.setState({currentOperation:'challenge',errorMessage:''});};};exports.default=
+}}]);return LoginDialog;}(_react2.default.Component);LoginDialog.propTypes={open:_propTypes2.default.bool.isRequired,handlerClose:_propTypes2.default.func.isRequired,handlerNewUser:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_onClick_LogIn=function _callee(){var _state3,UserAccount_Identifier,User_Secret,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_state3=_this3.state,UserAccount_Identifier=_state3.UserAccount_Identifier,User_Secret=_state3.User_Secret;_this3.setState({currentOperation:'in progress',User_Secret:''});_context.prev=2;loc=window.location;host=loc.protocol+'//'+loc.hostname+':'+loc.port;_context.next=7;return regeneratorRuntime.awrap(fetch(host+'/auth/login',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({UserAccount_Identifier:UserAccount_Identifier,User_Secret:User_Secret})}));case 7:response=_context.sent;_context.next=10;return regeneratorRuntime.awrap(response.json());case 10:responseData=_context.sent;console.log('LOG IN RESPONSE');console.log(responseData);if(responseData.success){location.replace(location.href);}else{_this3.setState({currentOperation:'failure',errorMessage:responseData.error});}_context.next=19;break;case 16:_context.prev=16;_context.t0=_context['catch'](2);_this3.setState({currentOperation:'failure',errorMessage:'Did not receive proper response from server. Please try again. Message:'+_context.t0.message});case 19:case'end':return _context.stop();}}},null,_this3,[[2,16]]);};this._handle_onCLick_NewUser=function(){_this3.props.handlerNewUser();};this._handle_onCLick_CancelLogIn=function(){_this3.setState({currentOperation:'failure',errorMessage:'Log in has been canceled'});};this._handle_onClick_TryAgain=function(){_this3.setState({currentOperation:'challenge',errorMessage:''});};};exports.default=
 
 
 (0,_styles.withStyles)(styleSheet)(LoginDialog);

@@ -2,8 +2,7 @@ Object.defineProperty(exports,"__esModule",{value:true});exports.default=getNewU
 return{
 User_site_id:User_site_id,
 UserToken2:'',
-User_AccountName:'',
-User_AccountPassword:'',
+User_Secret:'',
 User_DisplayName:'',
 User_Email:'',
 User_PhoneNumberMobile:'',
