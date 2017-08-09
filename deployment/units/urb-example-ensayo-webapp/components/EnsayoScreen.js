@@ -61,6 +61,8 @@ _this.setState({propertiesIsOpen:true});
 {var
 classes=this.props.classes;
 
+console.log(this.props);
+
 return(
 _react2.default.createElement(_ResponsiveContentArea2.default,null,
 _react2.default.createElement(_Card2.default,{className:classes.card},

@@ -37,8 +37,8 @@ props,context));_this.
 
 
 
-_handle_onClick_Logout=function _callee(){var AccountName,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:
-AccountName=_this.props.AccountName;
+_handle_onClick_Logout=function _callee(){var UserAccount_Identifier,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:
+UserAccount_Identifier=_this.props.UserAccount_Identifier;
 
 _this.setState({currentOperation:'logging out'});_context.prev=2;
 

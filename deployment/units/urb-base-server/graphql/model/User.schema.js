@@ -7,8 +7,7 @@ defaultPersister.addTableSchema('User', {
     id: 'uuid',
     User_site_id: 'uuid',
     UserToken2: 'text',
-    User_AccountName: 'text',
-    User_AccountPassword: 'text',
+    User_Secret: 'text',
     User_DisplayName: 'text',
     User_Email: 'text',
     User_PhoneNumberMobile: 'text',
@@ -16,7 +15,6 @@ defaultPersister.addTableSchema('User', {
     User_Longitude: 'double',
   },
   key: ['id'],
-  indexes: ['User_AccountName'],
 })
 
 export default true

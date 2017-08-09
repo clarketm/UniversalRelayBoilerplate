@@ -41,12 +41,12 @@ props,context));_this.
 
 
 
-_handle_onClick_Create=function _callee(){var _this$state,AccountName,AccountPassword,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_this$state=
-_this.state,AccountName=_this$state.AccountName,AccountPassword=_this$state.AccountPassword;
+_handle_onClick_Create=function _callee(){var _this$state,UserAccount_Identifier,User_Secret,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_this$state=
+_this.state,UserAccount_Identifier=_this$state.UserAccount_Identifier,User_Secret=_this$state.User_Secret;
 
 _this.setState({
 currentOperation:'creating',
-AccountPassword:''});_context.prev=2;
+User_Secret:''});_context.prev=2;
 
 
 
@@ -60,8 +60,8 @@ headers:{
 'Content-Type':'application/json'},
 
 body:JSON.stringify({
-User_AccountName:AccountName,
-User_AccountPassword:AccountPassword})}));case 7:response=_context.sent;_context.next=10;return regeneratorRuntime.awrap(
+UserAccount_Identifier:UserAccount_Identifier,
+User_Secret:User_Secret})}));case 7:response=_context.sent;_context.next=10;return regeneratorRuntime.awrap(
 
 
 
@@ -104,11 +104,11 @@ errorMessage:''});
 
 _handle_onClick_Continue=function(){
 location.replace('/');
-};_this.state={currentOperation:'prompt',errorMessage:'',AccountName:'',AccountPassword:''};return _this;}_createClass(NewUserScreen,[{key:'renderCreating',value:function renderCreating()
+};_this.state={currentOperation:'prompt',errorMessage:'',UserAccount_Identifier:'',User_Secret:''};return _this;}_createClass(NewUserScreen,[{key:'renderCreating',value:function renderCreating()
 
 {var
 classes=this.props.classes;var
-AccountName=this.state.AccountName;
+UserAccount_Identifier=this.state.UserAccount_Identifier;
 
 return(
 _react2.default.createElement(_Card2.default,{className:classes.card},
@@ -116,7 +116,7 @@ _react2.default.createElement(_Card.CardHeader,{title:'Creating user'}),
 _react2.default.createElement(_Typography2.default,{component:'p'},'Creating user',
 
 _react2.default.createElement('br',null),
-AccountName,
+UserAccount_Identifier,
 _react2.default.createElement('br',null),'Please wait.'),
 
 
@@ -130,7 +130,7 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Can
 
 {var
 classes=this.props.classes;var
-AccountName=this.state.AccountName;
+UserAccount_Identifier=this.state.UserAccount_Identifier;
 
 return(
 _react2.default.createElement(_Card2.default,{className:classes.card},
@@ -138,7 +138,7 @@ _react2.default.createElement(_Card.CardHeader,{title:'Creating user'}),
 _react2.default.createElement(_Typography2.default,{component:'p'},'Created user',
 
 _react2.default.createElement('br',null),
-AccountName),
+UserAccount_Identifier),
 
 _react2.default.createElement(_Card.CardActions,null,
 _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Continue},'Continue'))));
@@ -149,7 +149,7 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Con
 
 {var
 classes=this.props.classes;var _state=
-this.state,AccountName=_state.AccountName,errorMessage=_state.errorMessage;
+this.state,UserAccount_Identifier=_state.UserAccount_Identifier,errorMessage=_state.errorMessage;
 
 return(
 _react2.default.createElement(_Card2.default,{className:classes.card},
@@ -157,7 +157,7 @@ _react2.default.createElement(_Card.CardHeader,{title:'Creating user'}),
 _react2.default.createElement(_Typography2.default,{component:'p'},'Failed creating user',
 
 _react2.default.createElement('br',null),
-AccountName,
+UserAccount_Identifier,
 _react2.default.createElement('br',null),'Reason: ',
 errorMessage),
 
@@ -170,7 +170,7 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Try
 
 {var _this3=this;var
 classes=this.props.classes;var _state2=
-this.state,AccountName=_state2.AccountName,AccountPassword=_state2.AccountPassword;
+this.state,UserAccount_Identifier=_state2.UserAccount_Identifier,User_Secret=_state2.User_Secret;
 
 return(
 _react2.default.createElement(_Card2.default,{className:classes.card},
@@ -178,15 +178,15 @@ _react2.default.createElement(_Card.CardHeader,{title:'Create New User'}),
 _react2.default.createElement(_TextField2.default,{
 label:'Account Name',
 fullWidth:true,
-value:AccountName,
-onChange:function onChange(event){return _this3.setState({AccountName:event.target.value});}}),
+value:UserAccount_Identifier,
+onChange:function onChange(event){return _this3.setState({UserAccount_Identifier:event.target.value});}}),
 
 _react2.default.createElement(_TextField2.default,{
 label:'Password',
 type:'password',
 fullWidth:true,
-value:AccountPassword,
-onChange:function onChange(event){return _this3.setState({AccountPassword:event.target.value});}}),
+value:User_Secret,
+onChange:function onChange(event){return _this3.setState({User_Secret:event.target.value});}}),
 
 _react2.default.createElement(_Card.CardActions,null,
 _react2.default.createElement(_Button2.default,{onClick:this._handle_onClick_Create},'Create'))));
