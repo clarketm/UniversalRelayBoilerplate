@@ -44,9 +44,9 @@ _this.props,relay=_this$props.relay,Viewer=_this$props.Viewer;
 _EnsayoAddMutation2.default.commit(
 relay.environment,
 Viewer,
-Ensayo_Content,
 Ensayo_Title,
-Ensayo_Description);
+Ensayo_Description,
+Ensayo_Content);
 
 };_this.
 
@@ -59,15 +59,15 @@ _this.setState({propertiesIsOpen:true});
 };_this.state={propertiesIsOpen:false};return _this;}_createClass(EnsayoScreen,[{key:'render',value:function render()
 
 {var
-classes=this.props.classes;
-
-console.log(this.props);
+classes=this.props.classes;var
+propertiesIsOpen=this.state.propertiesIsOpen;
 
 return(
 _react2.default.createElement(_ResponsiveContentArea2.default,null,
 _react2.default.createElement(_Card2.default,{className:classes.card},
 _react2.default.createElement(_Card.CardHeader,{title:'Ensayo',subheader:'List of essays'}),
 
+_react2.default.createElement(_Card.CardContent,null,
 _react2.default.createElement('div',{className:classes.addNewButton},
 _react2.default.createElement(_Button2.default,{
 fab:true,
@@ -79,15 +79,16 @@ _react2.default.createElement(_Add2.default,null))),
 
 
 
-this.props.children,
+this.props.children),
 
+
+propertiesIsOpen&&
 _react2.default.createElement(_EnsayoProperties2.default,{
 Ensayo_Title:'',
 Ensayo_Content:'',
 Ensayo_Description:'',
 handlerUpdate:this._handle_updateHandler_Ensayo,
-handlerClose:this._handle_Close_Properties,
-open:this.state.propertiesIsOpen}))));
+handlerClose:this._handle_Close_Properties}))));
 
 
 

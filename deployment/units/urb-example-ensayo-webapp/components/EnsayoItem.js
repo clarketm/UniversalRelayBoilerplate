@@ -42,9 +42,9 @@ _this.props,relay=_this$props.relay,Ensayo=_this$props.Ensayo;
 _EnsayoUpdateMutation2.default.commit(
 relay.environment,
 Ensayo,
-Ensayo_Content,
 Ensayo_Title,
-Ensayo_Description);
+Ensayo_Description,
+Ensayo_Content);
 
 };_this.
 
@@ -73,7 +73,8 @@ _this.setState({menuIsOpen:false});
 };_this.state={anchorEl:undefined,menuIsOpen:false,propertiesIsOpen:false};return _this;}_createClass(EnsayoItem,[{key:'render',value:function render()
 
 {var _this2=this;var _props$Ensayo=
-this.props.Ensayo,Ensayo_Title=_props$Ensayo.Ensayo_Title,Ensayo_Description=_props$Ensayo.Ensayo_Description,Ensayo_Content=_props$Ensayo.Ensayo_Content;
+this.props.Ensayo,Ensayo_Title=_props$Ensayo.Ensayo_Title,Ensayo_Description=_props$Ensayo.Ensayo_Description,Ensayo_Content=_props$Ensayo.Ensayo_Content;var
+propertiesIsOpen=this.state.propertiesIsOpen;
 
 return(
 _react2.default.createElement('div',null,
@@ -98,13 +99,13 @@ _react2.default.createElement(_Menu.MenuItem,{key:'delete',onClick:function onCl
 
 
 
+propertiesIsOpen&&
 _react2.default.createElement(_EnsayoProperties2.default,{
 Ensayo_Title:Ensayo_Title,
 Ensayo_Description:Ensayo_Description,
 Ensayo_Content:Ensayo_Content,
 handlerUpdate:this._handle_Update_Properties,
-handlerClose:this._handle_Close_Properties,
-open:this.state.propertiesIsOpen})));
+handlerClose:this._handle_Close_Properties})));
 
 
 
