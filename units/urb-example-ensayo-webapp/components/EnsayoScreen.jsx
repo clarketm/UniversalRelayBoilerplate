@@ -2,7 +2,7 @@
 
 import AddIcon from 'material-ui-icons/Add'
 import Button from 'material-ui/Button'
-import Card, { CardHeader } from 'material-ui/Card'
+import Card, { CardContent, CardHeader } from 'material-ui/Card'
 import { createStyleSheet, withStyles } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -67,18 +67,20 @@ class EnsayoScreen extends React.Component {
         <Card className={classes.card}>
           <CardHeader title="Ensayo" subheader="List of essays" />
 
-          <div className={classes.addNewButton}>
-            <Button
-              fab
-              color="primary"
-              className={classes.button}
-              onClick={this._handle_onClick_Add}
-            >
-              <AddIcon />
-            </Button>
-          </div>
+          <CardContent>
+            <div className={classes.addNewButton}>
+              <Button
+                fab
+                color="primary"
+                className={classes.button}
+                onClick={this._handle_onClick_Add}
+              >
+                <AddIcon />
+              </Button>
+            </div>
 
-          {this.props.children}
+            {this.props.children}
+          </CardContent>
 
           {propertiesIsOpen &&
             <EnsayoProperties
