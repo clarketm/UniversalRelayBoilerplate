@@ -1,6 +1,6 @@
 // @flow
 
-import bcrypt from 'bcrypt'
+import bcryptjs from 'bcryptjs'
 import bodyParser from 'body-parser'
 import express from 'express'
 import jwt from 'jwt-simple'
@@ -48,7 +48,7 @@ async function login(req, res) {
 
         if (
           await new Promise(resolve =>
-            bcrypt.compare(User_Secret, a_User.User_Secret, (err, passwordMatch) =>
+            bcryptjs.compare(User_Secret, a_User.User_Secret, (err, passwordMatch) =>
               resolve(passwordMatch),
             ),
           )
@@ -97,7 +97,7 @@ async function createuser(req, res) {
       if (arr_UserAccount.length > 0) throw new Error('💔  User account already exists')
 
       const User_PasswordHash = await new Promise(resolve =>
-        bcrypt.hash(User_Secret, 8, (err, hash) => resolve(hash)),
+        bcryptjs.hash(User_Secret, 8, (err, hash) => resolve(hash)),
       )
 
       // If account name looks like email address, use it as email
