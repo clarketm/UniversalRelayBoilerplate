@@ -40,7 +40,6 @@ EnsayoProperties=function(_React$Component){_inherits(EnsayoProperties,_React$Co
 
 
 
-
 function EnsayoProperties(props,context){_classCallCheck(this,EnsayoProperties);var _this=_possibleConstructorReturn(this,(EnsayoProperties.__proto__||Object.getPrototypeOf(EnsayoProperties)).call(this,
 props,context));_initialiseProps.call(_this);var _this$props=
 
@@ -86,7 +85,7 @@ this.state,Ensayo_Title=_state.Ensayo_Title,Ensayo_Description=_state.Ensayo_Des
 
 return(
 _react2.default.createElement('div',null,
-_react2.default.createElement(_Dialog2.default,{open:this.props.open,onRequestClose:this._handle_Close},
+_react2.default.createElement(_Dialog2.default,{open:true,onRequestClose:this._handle_Close},
 _react2.default.createElement(_Dialog.DialogTitle,null,'Ensayo'),
 
 _react2.default.createElement(_Dialog.DialogContent,null,
@@ -112,5 +111,5 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_OK,color:'p
 
 
 
-}}]);return EnsayoProperties;}(_react2.default.Component);EnsayoProperties.propTypes={Ensayo_Title:_propTypes2.default.string.isRequired,Ensayo_Description:_propTypes2.default.string.isRequired,Ensayo_Content:_propTypes2.default.string.isRequired,open:_propTypes2.default.bool.isRequired,handlerUpdate:_propTypes2.default.func.isRequired,handlerClose:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_OK=function(){_this3.props.handlerUpdate({Ensayo_Title:_this3.state.Ensayo_Title,Ensayo_Description:_this3.state.Ensayo_Description,Ensayo_Content:''});_this3.props.handlerClose();};};exports.default=EnsayoProperties;
+}}]);return EnsayoProperties;}(_react2.default.Component);EnsayoProperties.propTypes={Ensayo_Title:_propTypes2.default.string.isRequired,Ensayo_Description:_propTypes2.default.string.isRequired,Ensayo_Content:_propTypes2.default.string.isRequired,handlerUpdate:_propTypes2.default.func.isRequired,handlerClose:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_OK=function(){_this3.props.handlerUpdate({Ensayo_Title:_this3.state.Ensayo_Title,Ensayo_Description:_this3.state.Ensayo_Description,Ensayo_Content:''});_this3.props.handlerClose();};};exports.default=EnsayoProperties;
 //# sourceMappingURL=EnsayoProperties.js.map
