@@ -8,10 +8,10 @@ import Route from 'found/lib/Route'
 import EnsayoPublicList from './components/EnsayoPublicList'
 import EnsayoPublicItem from './components/EnsayoPublicItem'
 
-const EnsayoList = props =>
-  <Async load={import('./components/EnsayoList')} componentProps={props} />
-const EnsayoScreen = props =>
-  <Async load={import('./components/EnsayoScreen')} componentProps={props} />
+const EnsayoInPaceEditList = props =>
+  <Async load={import('./components/EnsayoInPaceEditList')} componentProps={props} />
+const EnsayoInPaceEditScreen = props =>
+  <Async load={import('./components/EnsayoInPaceEditScreen')} componentProps={props} />
 
 export default (
   <Route key="ensayo" path="ensayo">
@@ -40,22 +40,22 @@ export default (
       />
     </Route>
     <Route
-      path="edit"
-      Component={EnsayoScreen}
+      path="in-place-edit"
+      Component={EnsayoInPaceEditScreen}
       query={graphql`
-        query routeAppFrameEnsayo_EnsayoScreen_Query {
+        query routeAppFrameEnsayo_EnsayoInPaceEditScreen_Query {
           Viewer {
-            ...EnsayoScreen_Viewer
+            ...EnsayoInPaceEditScreen_Viewer
           }
         }
       `}
     >
       <Route
-        Component={EnsayoList}
+        Component={EnsayoInPaceEditList}
         query={graphql`
-          query routeAppFrameEnsayo_EnsayoList_Query {
+          query routeAppFrameEnsayo_EnsayoInPaceEditList_Query {
             Viewer {
-              ...EnsayoList_Viewer
+              ...EnsayoInPaceEditList_Viewer
             }
           }
         `}
