@@ -19,7 +19,6 @@ type:_graphql.GraphQLBoolean,
 resolve:function resolve(obj){return _defaultPersister2.default.uuidEquals(obj.id,_defaultPersister2.default.uuidNull());}},
 
 UserToken2:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.UserToken2;}},
-User_AccountName:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_AccountName;}},
 User_DisplayName:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_DisplayName;}},
 User_Email:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_Email;}},
 User_PhoneNumberMobile:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.User_PhoneNumberMobile;}}},_ViewerFields3.default)});

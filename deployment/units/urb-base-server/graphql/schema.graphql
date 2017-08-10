@@ -184,7 +184,6 @@ type Viewer implements Node {
   id: ID!
   User_IsAnonymous: Boolean
   UserToken2: String
-  User_AccountName: String
   User_DisplayName: String
   User_Email: String
   User_PhoneNumberMobile: String
