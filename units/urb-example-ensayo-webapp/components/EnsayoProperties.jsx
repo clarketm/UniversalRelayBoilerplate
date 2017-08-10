@@ -78,6 +78,9 @@ export default class EnsayoProperties extends React.Component {
     })
 
     this.props.handlerClose()
+
+    // CLear the dialog for the next add
+    this.setState({ Ensayo_Title: '', Ensayo_Description: '' })
   }
 
   render() {
