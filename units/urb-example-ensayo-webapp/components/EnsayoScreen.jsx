@@ -44,9 +44,9 @@ class EnsayoScreen extends React.Component {
     EnsayoAddMutation.commit(
       relay.environment,
       Viewer,
-      Ensayo_Content,
       Ensayo_Title,
       Ensayo_Description,
+      Ensayo_Content,
     )
   }
 
@@ -60,8 +60,7 @@ class EnsayoScreen extends React.Component {
 
   render() {
     const { classes } = this.props
-
-    console.log(this.props)
+    const { propertiesIsOpen } = this.state
 
     return (
       <ResponsiveContentArea>
@@ -81,14 +80,14 @@ class EnsayoScreen extends React.Component {
 
           {this.props.children}
 
-          <EnsayoProperties
-            Ensayo_Title=""
-            Ensayo_Content=""
-            Ensayo_Description=""
-            handlerUpdate={this._handle_updateHandler_Ensayo}
-            handlerClose={this._handle_Close_Properties}
-            open={this.state.propertiesIsOpen}
-          />
+          {propertiesIsOpen &&
+            <EnsayoProperties
+              Ensayo_Title=""
+              Ensayo_Content=""
+              Ensayo_Description=""
+              handlerUpdate={this._handle_updateHandler_Ensayo}
+              handlerClose={this._handle_Close_Properties}
+            />}
         </Card>
       </ResponsiveContentArea>
     )

@@ -30,7 +30,6 @@ export default class EnsayoProperties extends React.Component {
     Ensayo_Title: PropTypes.string.isRequired,
     Ensayo_Description: PropTypes.string.isRequired,
     Ensayo_Content: PropTypes.string.isRequired,
-    open: PropTypes.bool.isRequired,
     handlerUpdate: PropTypes.func.isRequired,
     handlerClose: PropTypes.func.isRequired,
   }
@@ -78,9 +77,6 @@ export default class EnsayoProperties extends React.Component {
     })
 
     this.props.handlerClose()
-
-    // CLear the dialog for the next add
-    this.setState({ Ensayo_Title: '', Ensayo_Description: '' })
   }
 
   render() {
@@ -89,7 +85,7 @@ export default class EnsayoProperties extends React.Component {
 
     return (
       <div>
-        <Dialog open={this.props.open} onRequestClose={this._handle_Close}>
+        <Dialog open={true} onRequestClose={this._handle_Close}>
           <DialogTitle>Ensayo</DialogTitle>
 
           <DialogContent>
