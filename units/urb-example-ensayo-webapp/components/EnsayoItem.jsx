@@ -42,9 +42,9 @@ class EnsayoItem extends React.Component {
     EnsayoUpdateMutation.commit(
       relay.environment,
       Ensayo,
-      Ensayo_Content,
       Ensayo_Title,
       Ensayo_Description,
+      Ensayo_Content,
     )
   }
 
@@ -74,6 +74,7 @@ class EnsayoItem extends React.Component {
 
   render() {
     const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = this.props.Ensayo
+    const { propertiesIsOpen } = this.state
 
     return (
       <div>
@@ -98,14 +99,14 @@ class EnsayoItem extends React.Component {
             Delete
           </MenuItem>
         </Menu>
-        <EnsayoProperties
-          Ensayo_Title={Ensayo_Title}
-          Ensayo_Description={Ensayo_Description}
-          Ensayo_Content={Ensayo_Content}
-          handlerUpdate={this._handle_Update_Properties}
-          handlerClose={this._handle_Close_Properties}
-          open={this.state.propertiesIsOpen}
-        />
+        {propertiesIsOpen &&
+          <EnsayoProperties
+            Ensayo_Title={Ensayo_Title}
+            Ensayo_Description={Ensayo_Description}
+            Ensayo_Content={Ensayo_Content}
+            handlerUpdate={this._handle_Update_Properties}
+            handlerClose={this._handle_Close_Properties}
+          />}
       </div>
     )
   }
