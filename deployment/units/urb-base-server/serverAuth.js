@@ -1,6 +1,6 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _this=this;var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
 
-var _bcrypt=require('bcrypt');var _bcrypt2=_interopRequireDefault(_bcrypt);
+var _bcryptjs=require('bcryptjs');var _bcryptjs2=_interopRequireDefault(_bcryptjs);
 var _bodyParser=require('body-parser');var _bodyParser2=_interopRequireDefault(_bodyParser);
 var _express=require('express');var _express2=_interopRequireDefault(_express);
 var _jwtSimple=require('jwt-simple');var _jwtSimple2=_interopRequireDefault(_jwtSimple);
@@ -48,7 +48,7 @@ id:arr_UserAccount[0].UserAccount_User_id}));case 18:a_User=_context.sent;_conte
 
 
 new Promise(function(resolve){return(
-_bcrypt2.default.compare(User_Secret,a_User.User_Secret,function(err,passwordMatch){return(
+_bcryptjs2.default.compare(User_Secret,a_User.User_Secret,function(err,passwordMatch){return(
 resolve(passwordMatch));}));}));case 21:if(!_context.sent){_context.next=30;break;}
 
 
@@ -97,7 +97,7 @@ UserAccount_Identifier:UserAccount_Identifier}));case 9:arr_UserAccount=_context
 arr_UserAccount.length>0)){_context2.next=12;break;}throw new Error('💔  User account already exists');case 12:_context2.next=14;return regeneratorRuntime.awrap(
 
 new Promise(function(resolve){return(
-_bcrypt2.default.hash(User_Secret,8,function(err,hash){return resolve(hash);}));}));case 14:User_PasswordHash=_context2.sent;
+_bcryptjs2.default.hash(User_Secret,8,function(err,hash){return resolve(hash);}));}));case 14:User_PasswordHash=_context2.sent;
 
 
 
