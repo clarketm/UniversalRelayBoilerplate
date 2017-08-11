@@ -8,10 +8,10 @@ var _Route=require('found/lib/Route');var _Route2=_interopRequireDefault(_Route)
 var _EnsayoPublicList=require('./components/EnsayoPublicList');var _EnsayoPublicList2=_interopRequireDefault(_EnsayoPublicList);
 var _EnsayoPublicItem=require('./components/EnsayoPublicItem');var _EnsayoPublicItem2=_interopRequireDefault(_EnsayoPublicItem);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
-var EnsayoList=function EnsayoList(props){return(
-_react2.default.createElement(_reactCodeSplitting2.default,{load:Promise.resolve().then(function(){return require('./components/EnsayoList');}),componentProps:props}));};
-var EnsayoScreen=function EnsayoScreen(props){return(
-_react2.default.createElement(_reactCodeSplitting2.default,{load:Promise.resolve().then(function(){return require('./components/EnsayoScreen');}),componentProps:props}));};exports.default=
+var EnsayoInPaceEditList=function EnsayoInPaceEditList(props){return(
+_react2.default.createElement(_reactCodeSplitting2.default,{load:Promise.resolve().then(function(){return require('./components/EnsayoInPaceEditList');}),componentProps:props}));};
+var EnsayoInPaceEditScreen=function EnsayoInPaceEditScreen(props){return(
+_react2.default.createElement(_reactCodeSplitting2.default,{load:Promise.resolve().then(function(){return require('./components/EnsayoInPaceEditScreen');}),componentProps:props}));};exports.default=
 
 
 _react2.default.createElement(_Route2.default,{key:'ensayo',path:'ensayo'},
@@ -40,9 +40,9 @@ query:function query(){return require('./__generated__/routeAppFrameEnsayo_Ensay
 
 
 _react2.default.createElement(_Route2.default,{
-path:'edit',
-Component:EnsayoScreen,
-query:function query(){return require('./__generated__/routeAppFrameEnsayo_EnsayoScreen_Query.graphql');}},
+path:'in-place-edit',
+Component:EnsayoInPaceEditScreen,
+query:function query(){return require('./__generated__/routeAppFrameEnsayo_EnsayoInPaceEditScreen_Query.graphql');}},
 
 
 
@@ -51,6 +51,6 @@ query:function query(){return require('./__generated__/routeAppFrameEnsayo_Ensay
 
 
 _react2.default.createElement(_Route2.default,{
-Component:EnsayoList,
-query:function query(){return require('./__generated__/routeAppFrameEnsayo_EnsayoList_Query.graphql');}})));
+Component:EnsayoInPaceEditList,
+query:function query(){return require('./__generated__/routeAppFrameEnsayo_EnsayoInPaceEditList_Query.graphql');}})));
 //# sourceMappingURL=routeAppFrameEnsayo.js.map
