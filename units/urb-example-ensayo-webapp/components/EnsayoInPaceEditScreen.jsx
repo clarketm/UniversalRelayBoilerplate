@@ -19,7 +19,7 @@ const styleSheet = createStyleSheet(theme => ({
   addNewButton: { float: 'right', marginTop: -58, marginRight: 20 },
 }))
 
-class EnsayoScreen extends React.Component {
+class EnsayoInPaceEditScreen extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
@@ -97,9 +97,9 @@ class EnsayoScreen extends React.Component {
 }
 
 export default createFragmentContainer(
-  withStyles(styleSheet)(EnsayoScreen),
+  withStyles(styleSheet)(EnsayoInPaceEditScreen),
   graphql`
-    fragment EnsayoScreen_Viewer on Viewer {
+    fragment EnsayoInPaceEditScreen_Viewer on Viewer {
       id
     }
   `,

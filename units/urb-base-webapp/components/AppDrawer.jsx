@@ -36,7 +36,14 @@ function renderNavItems() {
   return (
     <List>
       <AppDrawerNavItem key={1} openImmediately={true} title="To Dos" to="/todo" />
-      <AppDrawerNavItem key={2} openImmediately={true} title="Ensayo" to="/ensayo/edit" />
+      <AppDrawerNavItem key={2} openImmediately={true} title="Ensayo edit" to="/ensayo/edit" />
+      <AppDrawerNavItem
+        key={3}
+        openImmediately={true}
+        title="Ensayo in place"
+        to="/ensayo/in-place-edit"
+      />
+      <AppDrawerNavItem key={4} openImmediately={true} title="Ensayo public" to="/ensayo" />
     </List>
   )
 }

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
-import EnsayoItem from './EnsayoItem'
+import EnsayoInPlaceItem from './EnsayoInPlaceItem'
 
-class EnsayoList extends React.Component {
+class EnsayoInPaceEditList extends React.Component {
   static propTypes = {
     Viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
@@ -21,7 +21,7 @@ class EnsayoList extends React.Component {
       <div>
         <List>
           {Ensayos.edges.map(({ node }) =>
-            <EnsayoItem key={node.id} Viewer={Viewer} Ensayo={node} />,
+            <EnsayoInPlaceItem key={node.id} Viewer={Viewer} Ensayo={node} />,
           )}
         </List>
       </div>
@@ -30,19 +30,19 @@ class EnsayoList extends React.Component {
 }
 
 export default createFragmentContainer(
-  EnsayoList,
+  EnsayoInPaceEditList,
   graphql`
-    fragment EnsayoList_Viewer on Viewer {
+    fragment EnsayoInPaceEditList_Viewer on Viewer {
       Ensayos(first: 2147483647) @connection(key: "EnsayoList_Ensayos") {
         edges {
           node {
             id
-            ...EnsayoItem_Ensayo
+            ...EnsayoInPlaceItem_Ensayo
           }
         }
       }
       id
-      ...EnsayoItem_Viewer
+      ...EnsayoInPlaceItem_Viewer
     }
   `,
 )

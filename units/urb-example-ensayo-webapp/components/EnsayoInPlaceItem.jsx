@@ -12,7 +12,7 @@ import EnsayoDeleteMutation from '../../urb-example-ensayo-client/relay/EnsayoDe
 import EnsayoProperties from './EnsayoProperties'
 import EnsayoUpdateMutation from '../../urb-example-ensayo-client/relay/EnsayoUpdateMutation'
 
-class EnsayoItem extends React.Component {
+class EnsayoInPlaceItem extends React.Component {
   static propTypes = {
     Viewer: PropTypes.object.isRequired,
     Ensayo: PropTypes.object.isRequired,
@@ -112,14 +112,14 @@ class EnsayoItem extends React.Component {
   }
 }
 
-export default createFragmentContainer(EnsayoItem, {
+export default createFragmentContainer(EnsayoInPlaceItem, {
   Viewer: graphql`
-    fragment EnsayoItem_Viewer on Viewer {
+    fragment EnsayoInPlaceItem_Viewer on Viewer {
       id
     }
   `,
   Ensayo: graphql`
-    fragment EnsayoItem_Ensayo on Ensayo {
+    fragment EnsayoInPlaceItem_Ensayo on Ensayo {
       id
       Ensayo_Title
       Ensayo_Description
