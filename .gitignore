@@ -2,11 +2,6 @@
 #
 .DS_Store
 
-# Server
-#
-.env
-public/assets
-
 # Xcode
 #
 build/
@@ -29,9 +24,11 @@ project.xcworkspace
 
 # Android/IJ
 #
+*.iml
 .idea
 .gradle
 local.properties
+build/
 
 # node.js
 #
@@ -43,3 +40,38 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+
+# Server
+#
+.env
+units/_configuration/urb-base-app/publicURL.js
+ios/main.jsbundle
+
+# Mobile bundles
+#
+android/app/src/main/assets/index.android.bundle
+android/app/src/main/assets/index.android.bundle.meta
+android/app/src/main/assets/index.android.map
+ios/main.jsbundle
+ios/main.jsbundle.meta
+/ios/main.map
+
+# Relay
+#
+units/**/__generated__/
+
+# Logs
+#
+logs
+*.log

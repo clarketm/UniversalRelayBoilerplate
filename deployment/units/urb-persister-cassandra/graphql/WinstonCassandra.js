@@ -1,0 +1,87 @@
+var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
+
+var util=require('util');
+var events=require('events');
+
+var winston=require('winston');
+var cql=require('cassandra-driver');
+
+var defaultOptions={
+
+table:'logs',
+
+partitionBy:'day',
+consistency:cql.types.consistencies.quorum,
+level:'info',
+name:'cassandra'};
+
+
+function Cassandra(options){
+if(!options){
+throw new Error('Transport options is required');
+}
+
+if(!options.keyspace){
+throw new Error('You must specify the options.keyspace');
+}
+
+this.options=_extends({},defaultOptions,options);
+
+
+this.name=this.options.name;
+this.level=this.options.level;
+
+
+this.schemaStatus=new events.EventEmitter();
+this.schemaStatus.setMaxListeners(0);
+this.client=new cql.Client(this.options);
+}
+
+util.inherits(Cassandra,winston.Transport);
+
+Cassandra.prototype.log=function(level,msg,meta,callback){
+var self=this;
+return self._insertLog(level,msg,meta,function(err){
+callback(err,!err);
+});
+};
+
+
+
+
+Cassandra.prototype.getKey=function(){
+if(this.options.partitionBy==='day'){
+return new Date().toISOString().slice(0,10);
+}else if(this.options.partitionBy==='hour'){
+return new Date().toISOString().slice(0,13);
+}
+return null;
+};
+
+
+
+
+Cassandra.prototype._insertLog=function(level,msg,meta,callback){
+var key=this.getKey();
+if(!key){
+return callback(new Error('Partition '+this.options.partitionBy+' not supported'),false);
+}
+
+return this.client.execute(
+'INSERT INTO '+
+this.options.table+
+' (key, date, level, message, meta) VALUES (?, ?, ?, ?, ?)',
+[key,new Date(),level,msg,util.inspect(meta)],
+{prepare:true,consistency:this.options.consistency},
+callback);
+
+};
+
+
+winston.transports.Cassandra=Cassandra;
+module.exports=Cassandra;
+
+
+module.exports.Cassandra=Cassandra;
+module.exports.types=cql.types;
+//# sourceMappingURL=WinstonCassandra.js.map

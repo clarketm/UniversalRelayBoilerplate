@@ -1,0 +1,9 @@
+{
+  "ignore": [
+    "**/*-app/*",
+    "android/*",
+    "deployment/*",
+    "ios/*",
+    "units/_configuration/urb-base-server/public_files/*"
+  ]
+}
