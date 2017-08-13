@@ -9,9 +9,9 @@ var _EnsayoPublicList=require('./components/EnsayoPublicList');var _EnsayoPublic
 var _EnsayoPublicItem=require('./components/EnsayoPublicItem');var _EnsayoPublicItem2=_interopRequireDefault(_EnsayoPublicItem);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 var EnsayoInPaceEditList=function EnsayoInPaceEditList(props){return(
-_react2.default.createElement(_reactCodeSplitting2.default,{load:Promise.resolve().then(function(){return require('./components/EnsayoInPaceEditList');}),componentProps:props}));};
+_react2.default.createElement(_reactCodeSplitting2.default,{load:new Promise(function(resolve){require.ensure([],function(require){resolve(require('./components/EnsayoInPaceEditList'));});}),componentProps:props}));};
 var EnsayoInPaceEditScreen=function EnsayoInPaceEditScreen(props){return(
-_react2.default.createElement(_reactCodeSplitting2.default,{load:Promise.resolve().then(function(){return require('./components/EnsayoInPaceEditScreen');}),componentProps:props}));};exports.default=
+_react2.default.createElement(_reactCodeSplitting2.default,{load:new Promise(function(resolve){require.ensure([],function(require){resolve(require('./components/EnsayoInPaceEditScreen'));});}),componentProps:props}));};exports.default=
 
 
 _react2.default.createElement(_Route2.default,{key:'ensayo',path:'ensayo'},
