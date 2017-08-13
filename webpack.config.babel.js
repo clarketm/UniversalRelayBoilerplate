@@ -48,7 +48,26 @@ const config = {
     rules: [
       {
         test: /\.js(x)?$/,
-        use: ['react-hot-loader/webpack', 'babel-loader'],
+        use: [
+          { loader: 'react-hot-loader/webpack' },
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              presets: ['react-native-stage-0'],
+              plugins: [
+                'dynamic-import-webpack',
+                'react-hot-loader/babel',
+                'transform-class-properties',
+                'syntax-dynamic-import',
+                [
+                  'relay',
+                  { schema: 'units/_configuration/urb-base-server/graphql/schema.graphql' },
+                ],
+              ],
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
       {
