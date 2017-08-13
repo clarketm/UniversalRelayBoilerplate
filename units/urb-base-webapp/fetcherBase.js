@@ -12,8 +12,6 @@ export default class FetcherBase {
     this.url = url
     this.UserToken1 = UserToken1
     this.UserToken2 = UserToken2
-
-    console.log({ debug: 'ZZZFetcherBase', UserToken1, UserToken2 })
   }
 
   async fetch(operation: { text: string }, variables: any) {
