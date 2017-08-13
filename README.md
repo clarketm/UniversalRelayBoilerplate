@@ -86,11 +86,9 @@ For the most up to date setup instructions please go to the [development setup i
 
 The setup is for OS X only. Prerequisites:
 
-* **Install [Node.js](https://nodejs.org)**.  
-* **Install [Git](https://git-scm.com/downloads)**.
-* **Make sure** that Node.js is at least version 6.0 and NPM is at least version 3.
-* **In order to speed up NPM** run `npm set progress=false`. This [speeds up NPM significantly](https://twitter.com/gavinjoyce/status/691773956144119808).
-* **Install react-native-cli** run `npm install -g react-native-cli`
+* **Install [Node.js](https://nodejs.org)** minimum version: `8.1.0`.  
+* **Install [Git](https://git-scm.com/downloads)** minimum version: `5.0.0`.  
+* **Install react-native-cli** run `npm install -g react-native-cli` for app development with React Native only.
 * **Install yarn** run `npm install -g yarn`
 
 ## Initial Project setup on local machine
