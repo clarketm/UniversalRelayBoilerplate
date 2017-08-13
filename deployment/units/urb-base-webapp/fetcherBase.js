@@ -12,8 +12,6 @@ function FetcherBase(url,UserToken1,UserToken2){_classCallCheck(this,FetcherBase
 this.url=url;
 this.UserToken1=UserToken1;
 this.UserToken2=UserToken2;
-
-console.log({debug:'ZZZFetcherBase',UserToken1:UserToken1,UserToken2:UserToken2});
 }_createClass(FetcherBase,[{key:'fetch',value:function(_fetch){function fetch(_x,_x2){return _fetch.apply(this,arguments);}fetch.toString=function(){return _fetch.toString();};return fetch;}(function _callee(
 
 operation,variables){var request,response;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:
