@@ -44,6 +44,7 @@ function renderNavItems() {
         to="/ensayo/in-place-edit"
       />
       <AppDrawerNavItem key={4} openImmediately={true} title="Ensayo public" to="/ensayo" />
+      <AppDrawerNavItem key={5} openImmediately={true} title="Inscriptio" to="/inscriptio" />
     </List>
   )
 }
