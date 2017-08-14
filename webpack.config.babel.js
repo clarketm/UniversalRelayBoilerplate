@@ -114,7 +114,6 @@ const config = {
     ifNotProd(new webpack.NamedModulesPlugin()),
 
     // In production only:
-    ifProd(new webpack.optimize.DedupePlugin()),
     ifProd(
       new webpack.optimize.UglifyJsPlugin({
         compress: {
@@ -130,8 +129,6 @@ const config = {
       }),
     ),
   ]),
-
-  devtool: process.env.NODE_ENV == 'production' ? 'source-map' : 'eval',
 }
 
 export default config
