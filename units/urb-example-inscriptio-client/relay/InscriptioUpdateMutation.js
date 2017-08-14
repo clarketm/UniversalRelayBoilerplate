@@ -15,11 +15,22 @@ const mutation = graphql`
   }
 `
 
-function commit(environment, aInscriptio, Inscriptio_LocationLat, Inscriptio_LocationLon, Inscriptio_Notes) {
+function commit(
+  environment,
+  aInscriptio,
+  Inscriptio_LocationLat,
+  Inscriptio_LocationLon,
+  Inscriptio_Notes,
+) {
   return commitMutation(environment, {
     mutation,
     variables: {
-      input: { id: aInscriptio.id, Inscriptio_LocationLat, Inscriptio_LocationLon, Inscriptio_Notes },
+      input: {
+        id: aInscriptio.id,
+        Inscriptio_LocationLat,
+        Inscriptio_LocationLon,
+        Inscriptio_Notes,
+      },
     },
 
     optimisticResponse() {

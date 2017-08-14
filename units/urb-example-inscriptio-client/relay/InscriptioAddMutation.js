@@ -33,7 +33,13 @@ function sharedUpdater(store, user, InscriptiosEdge) {
 
 let nextClientMutationId = 0
 
-function commit(environment, user, Inscriptio_LocationLat, Inscriptio_LocationLon, Inscriptio_Notes) {
+function commit(
+  environment,
+  user,
+  Inscriptio_LocationLat,
+  Inscriptio_LocationLon,
+  Inscriptio_Notes,
+) {
   const clientMutationId = nextClientMutationId++
 
   return commitMutation(environment, {
