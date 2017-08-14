@@ -8,10 +8,12 @@ require('dotenv').load()
 const version = require('./units/_configuration/package.js').version
 const host = process.env.HOST
 const port_webpack = process.env.PORT_WEBPACK
+const node_env = process.env.NODE_ENV
 
-console.log(
-  '📦  Running Webpack, process.env.NODE_ENV=' + process.env.NODE_ENV + ', version=' + version,
-)
+console.log('📦  Running Webpack, process.env.NODE_ENV=' + node_env + ', version=' + version)
+
+const publicPath =
+  node_env === 'production' ? `/assets/${version}/` : `http://${host}:${port_webpack}/${version}/`
 
 const config = {
   devServer: {
@@ -41,7 +43,7 @@ const config = {
       `deployment/units/_configuration/urb-base-server/public_files/assets/${version}`,
     ),
     filename: '[name].js',
-    publicPath: `http://${host}:${port_webpack}/${version}/`,
+    publicPath,
   },
 
   module: {
