@@ -9,7 +9,7 @@ const InscriptioScreen = props =>
   <Async load={import('./components/InscriptioScreen')} componentProps={props} />
 
 export default (
-  <Route key="ensayo" path="ensayo">
+  <Route key="inscriptio" path="inscriptio">
     <Route
       path="/"
       Component={InscriptioScreen}
