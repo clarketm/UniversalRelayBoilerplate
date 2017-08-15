@@ -5,11 +5,11 @@ import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/D
 import TextField from 'material-ui/TextField'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 
 //const RichTextEditor = typeof document !== 'undefined' ? import('react-rte') : null
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -23,9 +23,9 @@ const styleSheet = createStyleSheet(theme => ({
     display: 'inline-block',
     position: 'relative',
   },
-}))
+})
 
-export default class EnsayoProperties extends React.Component {
+class EnsayoProperties extends React.Component {
   static propTypes = {
     Ensayo_Title: PropTypes.string.isRequired,
     Ensayo_Description: PropTypes.string.isRequired,
@@ -125,3 +125,5 @@ export default class EnsayoProperties extends React.Component {
 </div>
 
 */
+
+export default withStyles(styles)(EnsayoProperties)

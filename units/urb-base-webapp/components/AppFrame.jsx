@@ -5,14 +5,14 @@ import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 import React, { Component } from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 
 import AppDrawer from './AppDrawer'
 import NavBarLoginButton from './NavBarLoginButton'
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   '@global': {
     html: {
       boxSizing: 'border-box',
@@ -66,7 +66,7 @@ const styleSheet = createStyleSheet(theme => ({
       display: 'none',
     },
   },
-}))
+})
 
 class AppFrame extends Component {
   state: { drawerOpen: boolean }
@@ -134,7 +134,7 @@ class AppFrame extends Component {
 }
 
 export default createFragmentContainer(
-  withStyles(styleSheet)(AppFrame),
+  withStyles(styles)(AppFrame),
   graphql`
     fragment AppFrame_Viewer on Viewer {
       UserToken2

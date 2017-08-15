@@ -1,18 +1,18 @@
 // @flow
 
 import Card, { CardContent, CardHeader } from 'material-ui/Card'
-import { createStyleSheet, withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   card: {
     minWidth: 275,
   },
-}))
+})
 
 class EnsayoPublicList extends React.Component {
   _handle_onClick(id) {
@@ -43,7 +43,7 @@ EnsayoPublicList.contextTypes = {
 }
 
 export default createFragmentContainer(
-  withStyles(styleSheet)(EnsayoPublicList),
+  withStyles(styles)(EnsayoPublicList),
   graphql`
     fragment EnsayoPublicList_Viewer on Viewer {
       Ensayos(first: 2147483647) @connection(key: "EnsayoPublicList_Ensayos") {
