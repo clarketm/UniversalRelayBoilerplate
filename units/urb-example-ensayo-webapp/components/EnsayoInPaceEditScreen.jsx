@@ -3,7 +3,7 @@
 import AddIcon from 'material-ui-icons/Add'
 import Button from 'material-ui/Button'
 import Card, { CardContent, CardHeader } from 'material-ui/Card'
-import { createStyleSheet, withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
@@ -12,12 +12,12 @@ import EnsayoAddMutation from '../../urb-example-ensayo-client/relay/EnsayoAddMu
 import EnsayoProperties from './EnsayoProperties'
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   card: {
     minWidth: 275,
   },
   addNewButton: { float: 'right', marginTop: -58, marginRight: 20 },
-}))
+})
 
 class EnsayoInPaceEditScreen extends React.Component {
   static propTypes = {
@@ -97,7 +97,7 @@ class EnsayoInPaceEditScreen extends React.Component {
 }
 
 export default createFragmentContainer(
-  withStyles(styleSheet)(EnsayoInPaceEditScreen),
+  withStyles(styles)(EnsayoInPaceEditScreen),
   graphql`
     fragment EnsayoInPaceEditScreen_Viewer on Viewer {
       id

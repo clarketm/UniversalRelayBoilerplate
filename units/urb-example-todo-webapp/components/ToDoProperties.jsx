@@ -5,10 +5,10 @@ import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/D
 import FormControl from 'material-ui/Form/FormControl'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet(theme => ({
   formControl: {
     margin: theme.spacing.unit,
   },
-}))
+})
 
 class ToDo_Properties extends React.Component {
   static propTypes = {
@@ -77,4 +77,4 @@ class ToDo_Properties extends React.Component {
   }
 }
 
-export default withStyles(styleSheet)(ToDo_Properties)
+export default withStyles(styles)(ToDo_Properties)

@@ -43,7 +43,8 @@ openImmediately:true,
 title:'Ensayo in place',
 to:'/ensayo/in-place-edit'}),
 
-_react2.default.createElement(_AppDrawerNavItem2.default,{key:4,openImmediately:true,title:'Ensayo public',to:'/ensayo'})));
+_react2.default.createElement(_AppDrawerNavItem2.default,{key:4,openImmediately:true,title:'Ensayo public',to:'/ensayo'}),
+_react2.default.createElement(_AppDrawerNavItem2.default,{key:5,openImmediately:true,title:'Inscriptio',to:'/inscriptio'})));
 
 
 }
