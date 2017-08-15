@@ -247,20 +247,19 @@ null,
 
 function main(){var units,taskPromises;return regeneratorRuntime.async(function main$(_context11){while(1){switch(_context11.prev=_context11.next){case 0:_context11.next=2;return regeneratorRuntime.awrap(
 getUnits());case 2:units=_context11.sent;
-console.log(units);
 
 taskPromises=[
 createPackageJson(units),
 createViewerFields(units),
 createSchemas(units),
 createMutations(units),
-createRoutes(units)];_context11.next=7;return regeneratorRuntime.awrap(
+createRoutes(units)];_context11.next=6;return regeneratorRuntime.awrap(
 
 
-Promise.all(taskPromises));case 7:_context11.next=9;return regeneratorRuntime.awrap(
+Promise.all(taskPromises));case 6:_context11.next=8;return regeneratorRuntime.awrap(
 
 
-buildGraphQLSchema());case 9:case'end':return _context11.stop();}}},null,this);}
+buildGraphQLSchema());case 8:case'end':return _context11.stop();}}},null,this);}
 
 
 main().then(function(){return console.log('Fin.');});
