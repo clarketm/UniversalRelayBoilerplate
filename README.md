@@ -26,8 +26,8 @@ Please follow [@CodeFoundries](https://twitter.com/CodeFoundries) and [our blog]
 
 We make our best to support all the features and the examples in working order. However, there are a few features that we do not have the resources to maintain and test:
 
-* Windows support. `urb-tools-windows` contains custom scripts for working on windows, but we do not actively test those as we make changes.
-* DynamoDB support. `urb-persister-dynamodb` contains the code for working with AWS DynamoDB, but we do not actively test it as we make changes.
+* Windows support. [urb-tools-windows](https://github.com/codefoundries/UniversalRelayBoilerplateExtra/tree/master/units/urb-tools-windows) contains custom scripts for working on windows, but we do not actively test those as we make changes.
+* DynamoDB support. [urb-persister-dynamodb](https://github.com/codefoundries/UniversalRelayBoilerplateExtra/tree/master/units/urb-persister-dynamodb) contains the code for working with AWS DynamoDB, but we do not actively test it as we make changes.
 * React Native. Support will be added back once the refactoring of the web part is done.
 
 Pull requests fixing any issues and enhancing the above would be highly appreciated and merged.
