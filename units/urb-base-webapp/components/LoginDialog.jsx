@@ -5,16 +5,16 @@ import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/D
 import { LinearProgress } from 'material-ui/Progress'
 import Slide from 'material-ui/transitions/Slide'
 import TextField from 'material-ui/TextField'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   grow: {
     flex: '1 1 auto',
   },
-}))
+})
 
 class LoginDialog extends React.Component {
   static propTypes = {
@@ -211,4 +211,4 @@ class LoginDialog extends React.Component {
   }
 }
 
-export default withStyles(styleSheet)(LoginDialog)
+export default withStyles(styles)(LoginDialog)

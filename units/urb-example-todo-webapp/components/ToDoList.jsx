@@ -3,7 +3,7 @@
 import Checkbox from 'material-ui/Checkbox'
 import { FormGroup, FormControlLabel } from 'material-ui/Form'
 import List from 'material-ui/List'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
@@ -12,13 +12,13 @@ import Tabs, { Tab } from 'material-ui/Tabs'
 import ToDoListUpdateMarkAllMutation from '../../urb-example-todo-client/relay/ToDoListUpdateMarkAllMutation'
 import ToDoItem from './ToDoItem'
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     background: theme.palette.background.paper,
   },
-}))
+})
 
 const contextTypes = {
   relay: PropTypes.shape({
@@ -100,7 +100,7 @@ class ToDoList extends React.Component {
 ToDoList.contextTypes = contextTypes
 
 export default createFragmentContainer(
-  withStyles(styleSheet)(ToDoList),
+  withStyles(styles)(ToDoList),
   graphql`
     fragment ToDoList_Viewer on Viewer {
       ToDos(status: $status, first: 2147483647) @connection(key: "ToDoList_ToDos") {
