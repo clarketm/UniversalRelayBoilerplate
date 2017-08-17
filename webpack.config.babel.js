@@ -100,7 +100,7 @@ const config = {
       minChunks: Infinity,
       filename: '[name].js',
     }),
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin({ filename: '[name].css', allChunks: true }),
     new webpack.DefinePlugin({
       process: {
         env: {

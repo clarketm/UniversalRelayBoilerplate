@@ -6,8 +6,8 @@ defaultPersister.addTableSchema('Translaticiarum', {
   fields: {
     id: 'uuid',
     Translaticiarum_User_id: 'uuid',
-    Translaticiarum_Stop: 'text',
-    Translaticiarum_Start: 'text',
+    Translaticiarum_Stop: 'timestamp',
+    Translaticiarum_Start: 'timestamp',
     Translaticiarum_Description: 'text',
   },
 
