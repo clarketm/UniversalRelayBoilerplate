@@ -11,21 +11,20 @@ import LoginDialog from './LoginDialog'
 
 const styles = theme => ({})
 
-class NavBarLoginButton extends React.Component {
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  }
-
-  static propTypes = {
+class NavBarLoginButton extends React.Component<
+  {
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
-  state: {
+  },
+  {
     anchorEl: ?Object,
     loginDialogIsOpen: boolean,
     userMenuIsOpen: boolean,
+  },
+> {
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
   }
 
   constructor(props: Object, context: Object) {

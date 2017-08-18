@@ -19,18 +19,17 @@ const styles = theme => ({
   addNewButton: { float: 'right', marginTop: -58, marginRight: 20 },
 })
 
-class EnsayoInPaceEditScreen extends React.Component {
-  static propTypes = {
+class EnsayoInPaceEditScreen extends React.Component<
+  {
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
-  state: {
+  },
+  {
     propertiesIsOpen: boolean,
-  }
-
+  },
+> {
   constructor(props: Object, context: Object) {
     super(props, context)
 

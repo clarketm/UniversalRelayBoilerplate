@@ -18,16 +18,16 @@ const styles = theme => ({
   },
 })
 
-class LogoutScreen extends React.Component {
-  static propTypes = {
+class LogoutScreen extends React.Component<
+  {
+    UserAccount_Identifier: string,
     classes: PropTypes.object.isRequired,
-  }
-
-  state: {
+  },
+  {
     currentOperation: 'confirm' | 'logging out' | 'success' | 'failure',
     errorMessage: string,
-  }
-
+  },
+> {
   constructor(props: Object, context: Object) {
     super(props, context)
 

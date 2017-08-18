@@ -45,6 +45,12 @@ function renderNavItems() {
       />
       <AppDrawerNavItem key={4} openImmediately={true} title="Ensayo public" to="/ensayo" />
       <AppDrawerNavItem key={5} openImmediately={true} title="Inscriptio" to="/inscriptio" />
+      <AppDrawerNavItem
+        key={6}
+        openImmediately={true}
+        title="Translaticiarum"
+        to="/translaticiarum"
+      />
     </List>
   )
 }

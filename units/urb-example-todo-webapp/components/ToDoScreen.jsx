@@ -16,18 +16,17 @@ const styles = theme => ({
   },
 })
 
-class ToDoScreen extends React.Component {
-  static propTypes = {
+class ToDoScreen extends React.Component<
+  {
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
-  state: {
+  },
+  {
     ToDo_Text_New: string,
-  }
-
+  },
+> {
   constructor(props, context) {
     super(props, context)
 
