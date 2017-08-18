@@ -20,6 +20,7 @@ const styles = theme => ({
 
 class LogoutScreen extends React.Component<
   {
+    UserAccount_Identifier: string,
     classes: PropTypes.object.isRequired,
   },
   {

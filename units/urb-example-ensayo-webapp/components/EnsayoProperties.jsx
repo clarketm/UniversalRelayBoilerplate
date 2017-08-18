@@ -27,11 +27,12 @@ const styles = theme => ({
 
 class EnsayoProperties extends React.Component<
   {
-    Ensayo_Title: PropTypes.string.isRequired,
-    Ensayo_Description: PropTypes.string.isRequired,
-    Ensayo_Content: PropTypes.string.isRequired,
+    Ensayo_Title: string,
+    Ensayo_Description: string,
+    Ensayo_Content: string,
     handlerUpdate: PropTypes.func.isRequired,
     handlerClose: PropTypes.func.isRequired,
+    classes: Object,
   },
   {
     Ensayo_Title: string,
