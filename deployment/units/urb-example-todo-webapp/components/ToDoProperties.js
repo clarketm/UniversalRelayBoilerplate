@@ -8,13 +8,13 @@ var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _styles=require('material-ui/styles');
 var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireDefault(_TextField);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
-var styleSheet=(0,_styles.createStyleSheet)(function(theme){return{
+var styles=function styles(theme){return{
 container:{
 display:'flex',
 flexWrap:'wrap'},
 
 formControl:{
-margin:theme.spacing.unit}};});var
+margin:theme.spacing.unit}};};var
 
 
 
@@ -29,16 +29,8 @@ ToDo_Properties=function(_React$Component){_inherits(ToDo_Properties,_React$Comp
 
 
 
-
 function ToDo_Properties(props,context){_classCallCheck(this,ToDo_Properties);var _this=_possibleConstructorReturn(this,(ToDo_Properties.__proto__||Object.getPrototypeOf(ToDo_Properties)).call(this,
-props,context));_initialiseProps.call(_this);var
-
-ToDo_Text=_this.props.ToDo_Text;
-
-_this.state={
-ToDo_Text:ToDo_Text};return _this;
-
-}_createClass(ToDo_Properties,[{key:'render',value:function render()
+props,context));_this.
 
 
 
@@ -47,8 +39,15 @@ ToDo_Text:ToDo_Text};return _this;
 
 
 
+_handle_Close=function(){
+_this.props.handlerClose();
+};_this.
 
+_handle_OK=function(){
+_this.props.handlerUpdate({ToDo_Text:_this.state.ToDo_Text});
 
+_this.props.handlerClose();
+};var ToDo_Text=_this.props.ToDo_Text;_this.state={ToDo_Text:ToDo_Text};return _this;}_createClass(ToDo_Properties,[{key:'render',value:function render()
 
 {var _this2=this;var
 ToDo_Text=this.state.ToDo_Text;
@@ -74,8 +73,8 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_OK,color:'p
 
 
 
-}}]);return ToDo_Properties;}(_react2.default.Component);ToDo_Properties.propTypes={ToDo_Text:_propTypes2.default.string.isRequired,open:_propTypes2.default.bool.isRequired,handlerUpdate:_propTypes2.default.func.isRequired,handlerClose:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_OK=function(){_this3.props.handlerUpdate({ToDo_Text:_this3.state.ToDo_Text});_this3.props.handlerClose();};};exports.default=
+}}]);return ToDo_Properties;}(_react2.default.Component);exports.default=
 
 
-(0,_styles.withStyles)(styleSheet)(ToDo_Properties);
+(0,_styles.withStyles)(styles)(ToDo_Properties);
 //# sourceMappingURL=ToDoProperties.js.map
