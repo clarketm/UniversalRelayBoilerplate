@@ -14,19 +14,18 @@ import ToDoDeleteMutation from '../../urb-example-todo-client/relay/ToDoDeleteMu
 import ToDoUpdateRenameMutation from '../../urb-example-todo-client/relay/ToDoUpdateRenameMutation'
 import ToDoProperties from './ToDoProperties'
 
-class ToDoItem extends React.Component {
-  static propTypes = {
+class ToDoItem extends React.Component<
+  {
     Viewer: PropTypes.object.isRequired,
     ToDo: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
-  state: {
+  },
+  {
     anchorEl: ?Object,
     menuIsOpen: boolean,
     propertiesIsOpen: boolean,
-  }
-
+  },
+> {
   constructor(props: Object, context: Object) {
     super(props, context)
 

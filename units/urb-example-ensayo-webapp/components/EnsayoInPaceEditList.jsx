@@ -7,12 +7,13 @@ import { createFragmentContainer, graphql } from 'react-relay'
 
 import EnsayoInPlaceItem from './EnsayoInPlaceItem'
 
-class EnsayoInPaceEditList extends React.Component {
-  static propTypes = {
+class EnsayoInPaceEditList extends React.Component<
+  {
     Viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
+  },
+  null,
+> {
   render() {
     const { Viewer } = this.props
     const { Ensayos } = Viewer

@@ -1,20 +1,20 @@
 // @flow
 
 import Card, { CardContent, CardHeader } from 'material-ui/Card'
-import { createStyleSheet, withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = {
   card: {
     minWidth: 275,
   },
-}))
+}
 
-class InscriptioScreen extends React.Component {
+class InscriptioScreen extends React.Component<{ classes: Object, Viewer: Object }, null> {
   _handle_onClick(id) {
     this.context.router.push('/Inscriptio/item/' + id)
   }
@@ -43,7 +43,7 @@ InscriptioScreen.contextTypes = {
 }
 
 export default createFragmentContainer(
-  withStyles(styleSheet)(InscriptioScreen),
+  withStyles(styles)(InscriptioScreen),
   graphql`
     fragment InscriptioScreen_Viewer on Viewer {
       Inscriptios(first: 2147483647) @connection(key: "InscriptioScreen_Inscriptios") {

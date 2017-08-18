@@ -10,13 +10,15 @@ var _Typography=require('material-ui/Typography');var _Typography2=_interopRequi
 var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _react=require('react');var _react2=_interopRequireDefault(_react);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
-var styleSheet=(0,_styles.createStyleSheet)(function(theme){return{
+var styles=function styles(theme){return{
 grow:{
-flex:'1 1 auto'}};});var
+flex:'1 1 auto'}};};var
 
 
 
 LoginDialog=function(_React$Component){_inherits(LoginDialog,_React$Component);
+
+
 
 
 
@@ -208,8 +210,8 @@ currentOperation==='in progress'&&this.renderInProgress(),
 currentOperation==='failure'&&this.renderFailure()));
 
 
-}}]);return LoginDialog;}(_react2.default.Component);LoginDialog.propTypes={open:_propTypes2.default.bool.isRequired,handlerClose:_propTypes2.default.func.isRequired,handlerNewUser:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_onClick_LogIn=function _callee(){var _state3,UserAccount_Identifier,User_Secret,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_state3=_this3.state,UserAccount_Identifier=_state3.UserAccount_Identifier,User_Secret=_state3.User_Secret;_this3.setState({currentOperation:'in progress',User_Secret:''});_context.prev=2;loc=window.location;host=loc.protocol+'//'+loc.hostname+':'+loc.port;_context.next=7;return regeneratorRuntime.awrap(fetch(host+'/auth/login',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({UserAccount_Identifier:UserAccount_Identifier,User_Secret:User_Secret})}));case 7:response=_context.sent;_context.next=10;return regeneratorRuntime.awrap(response.json());case 10:responseData=_context.sent;console.log('LOG IN RESPONSE');console.log(responseData);if(responseData.success){location.replace(location.href);}else{_this3.setState({currentOperation:'failure',errorMessage:responseData.error});}_context.next=19;break;case 16:_context.prev=16;_context.t0=_context['catch'](2);_this3.setState({currentOperation:'failure',errorMessage:'Did not receive proper response from server. Please try again. Message:'+_context.t0.message});case 19:case'end':return _context.stop();}}},null,_this3,[[2,16]]);};this._handle_onCLick_NewUser=function(){_this3.props.handlerNewUser();};this._handle_onCLick_CancelLogIn=function(){_this3.setState({currentOperation:'failure',errorMessage:'Log in has been canceled'});};this._handle_onClick_TryAgain=function(){_this3.setState({currentOperation:'challenge',errorMessage:''});};};exports.default=
+}}]);return LoginDialog;}(_react2.default.Component);var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_onClick_LogIn=function _callee(){var _state3,UserAccount_Identifier,User_Secret,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_state3=_this3.state,UserAccount_Identifier=_state3.UserAccount_Identifier,User_Secret=_state3.User_Secret;_this3.setState({currentOperation:'in progress',User_Secret:''});_context.prev=2;loc=window.location;host=loc.protocol+'//'+loc.hostname+':'+loc.port;_context.next=7;return regeneratorRuntime.awrap(fetch(host+'/auth/login',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({UserAccount_Identifier:UserAccount_Identifier,User_Secret:User_Secret})}));case 7:response=_context.sent;_context.next=10;return regeneratorRuntime.awrap(response.json());case 10:responseData=_context.sent;console.log('LOG IN RESPONSE');console.log(responseData);if(responseData.success){location.replace(location.href);}else{_this3.setState({currentOperation:'failure',errorMessage:responseData.error});}_context.next=19;break;case 16:_context.prev=16;_context.t0=_context['catch'](2);_this3.setState({currentOperation:'failure',errorMessage:'Did not receive proper response from server. Please try again. Message:'+_context.t0.message});case 19:case'end':return _context.stop();}}},null,_this3,[[2,16]]);};this._handle_onCLick_NewUser=function(){_this3.props.handlerNewUser();};this._handle_onCLick_CancelLogIn=function(){_this3.setState({currentOperation:'failure',errorMessage:'Log in has been canceled'});};this._handle_onClick_TryAgain=function(){_this3.setState({currentOperation:'challenge',errorMessage:''});};};exports.default=
 
 
-(0,_styles.withStyles)(styleSheet)(LoginDialog);
+(0,_styles.withStyles)(styles)(LoginDialog);
 //# sourceMappingURL=LoginDialog.js.map

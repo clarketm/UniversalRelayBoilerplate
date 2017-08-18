@@ -12,11 +12,11 @@ var _Tabs=require('material-ui/Tabs');var _Tabs2=_interopRequireDefault(_Tabs);
 var _ToDoListUpdateMarkAllMutation=require('../../urb-example-todo-client/relay/ToDoListUpdateMarkAllMutation');var _ToDoListUpdateMarkAllMutation2=_interopRequireDefault(_ToDoListUpdateMarkAllMutation);
 var _ToDoItem=require('./ToDoItem');var _ToDoItem2=_interopRequireDefault(_ToDoItem);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
-var styleSheet=(0,_styles.createStyleSheet)(function(theme){return{
+var styles=function styles(theme){return{
 root:{
 width:'100%',
 maxWidth:360,
-background:theme.palette.background.paper}};});
+background:theme.palette.background.paper}};};
 
 
 
@@ -30,6 +30,7 @@ router:_propTypes2.default.object.isRequired};var
 
 
 ToDoList=function(_React$Component){_inherits(ToDoList,_React$Component);function ToDoList(){var _ref;var _temp,_this,_ret;_classCallCheck(this,ToDoList);for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}return _ret=(_temp=(_this=_possibleConstructorReturn(this,(_ref=ToDoList.__proto__||Object.getPrototypeOf(ToDoList)).call.apply(_ref,[this].concat(args))),_this),_this.
+
 
 
 
@@ -49,17 +50,17 @@ variables.status);
 
 },_this.
 
-_handle_onChange=function(event,index){
-var url=index===2?'/todo/completed':index===1?'/todo/active':'/todo';
+_handle_onChange=function(event,tabsValue){
+var url=tabsValue===2?'/todo/completed':tabsValue===1?'/todo/active':'/todo';
 _this.context.router.push(url);
 },_temp),_possibleConstructorReturn(_this,_ret);}_createClass(ToDoList,[{key:'renderTabs',value:function renderTabs()
 
 {
 var status=this.context.relay.variables.status;
-var index=status==='active'?1:status==='completed'?2:0;
+var tabsValue=status==='active'?1:status==='completed'?2:0;
 
 return(
-_react2.default.createElement(_Tabs2.default,{index:index,onChange:this._handle_onChange},
+_react2.default.createElement(_Tabs2.default,{value:tabsValue,onChange:this._handle_onChange},
 _react2.default.createElement(_Tabs.Tab,{label:'All'}),
 _react2.default.createElement(_Tabs.Tab,{label:'Active'}),
 _react2.default.createElement(_Tabs.Tab,{label:'Completed'})));
@@ -94,11 +95,11 @@ ToDos.edges.map(function(_ref2){var node=_ref2.node;return _react2.default.creat
 
 
 
-}}]);return ToDoList;}(_react2.default.Component);ToDoList.propTypes={Viewer:_propTypes2.default.object.isRequired,relay:_propTypes2.default.object.isRequired};
+}}]);return ToDoList;}(_react2.default.Component);
 
 
 ToDoList.contextTypes=contextTypes;exports.default=
 
 (0,_reactRelay.createFragmentContainer)(
-(0,_styles.withStyles)(styleSheet)(ToDoList),{Viewer:function Viewer(){return require('./__generated__/ToDoList_Viewer.graphql');}});
+(0,_styles.withStyles)(styles)(ToDoList),{Viewer:function Viewer(){return require('./__generated__/ToDoList_Viewer.graphql');}});
 //# sourceMappingURL=ToDoList.js.map
