@@ -17,9 +17,6 @@ const styles = {
   card: {
     minWidth: 275,
   },
-  cardContent: {
-    minHeight: 200,
-  },
 }
 
 // truncate "Translaticiarum";
@@ -44,7 +41,9 @@ class TranslaticiarumScreen extends React.Component<
     this.setState({ calendarView: view })
   }
 
-  onSelectSlot = (slotInfo: { start: Date, end: Date, slots: Array<Date> }) => {}
+  _handle_onSelectSlot = (slotInfo: { start: Date, end: Date, slots: Array<Date> }) => {
+    console.log(slotInfo)
+  }
 
   render() {
     const { classes, Viewer } = this.props
@@ -72,11 +71,13 @@ class TranslaticiarumScreen extends React.Component<
         <Card className={classes.card}>
           <CardHeader title="Translaticiarum" />
 
-          <CardContent className={classes.cardContent}>
+          <CardContent>
             <BigCalendar
               events={calendarEvents}
               view={this.state.calendarView}
               onView={this._handle_onView}
+              selectable={true}
+              onSelectSlot={this._handle_onSelectSlot}
             />
           </CardContent>
         </Card>
