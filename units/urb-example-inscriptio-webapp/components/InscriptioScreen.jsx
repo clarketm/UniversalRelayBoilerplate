@@ -14,7 +14,7 @@ const styles = {
   },
 }
 
-class InscriptioScreen extends React.Component {
+class InscriptioScreen extends React.Component<{ classes: Object, Viewer: Object }, null> {
   _handle_onClick(id) {
     this.context.router.push('/Inscriptio/item/' + id)
   }

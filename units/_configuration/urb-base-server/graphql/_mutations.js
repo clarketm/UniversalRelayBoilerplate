@@ -11,6 +11,9 @@ import ToDoDelete from '../../../urb-example-todo-server/graphql/mutation/ToDoDe
 import ToDoListUpdateMarkAll from '../../../urb-example-todo-server/graphql/mutation/ToDoListUpdateMarkAll'
 import ToDoUpdateRename from '../../../urb-example-todo-server/graphql/mutation/ToDoUpdateRename'
 import ToDoUpdateStatus from '../../../urb-example-todo-server/graphql/mutation/ToDoUpdateStatus'
+import TranslaticiarumAdd from '../../../urb-example-translaticiarum-server/graphql/mutation/TranslaticiarumAdd'
+import TranslaticiarumDelete from '../../../urb-example-translaticiarum-server/graphql/mutation/TranslaticiarumDelete'
+import TranslaticiarumUpdate from '../../../urb-example-translaticiarum-server/graphql/mutation/TranslaticiarumUpdate'
 
 export default {
   EnsayoAdd,
@@ -24,4 +27,7 @@ export default {
   ToDoListUpdateMarkAll,
   ToDoUpdateRename,
   ToDoUpdateStatus,
+  TranslaticiarumAdd,
+  TranslaticiarumDelete,
+  TranslaticiarumUpdate,
 }

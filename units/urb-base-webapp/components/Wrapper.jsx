@@ -10,7 +10,7 @@ import EventListener from 'react-event-listener'
 
 import ViewportDimensions from '../scripts/ViewportDimensions'
 
-export default class Wrapper extends React.Component {
+export default class Wrapper extends React.Component<any, any> {
   muiTheme: Object
   rbContext: Object
 

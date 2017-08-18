@@ -25,21 +25,21 @@ const styles = theme => ({
   },
 })
 
-class EnsayoProperties extends React.Component {
-  static propTypes = {
-    Ensayo_Title: PropTypes.string.isRequired,
-    Ensayo_Description: PropTypes.string.isRequired,
-    Ensayo_Content: PropTypes.string.isRequired,
+class EnsayoProperties extends React.Component<
+  {
+    Ensayo_Title: string,
+    Ensayo_Description: string,
+    Ensayo_Content: string,
     handlerUpdate: PropTypes.func.isRequired,
     handlerClose: PropTypes.func.isRequired,
-  }
-
-  state: {
+    classes: Object,
+  },
+  {
     Ensayo_Title: string,
     Ensayo_Description: string,
     //    Ensayo_Content_RTE: Object,
-  }
-
+  },
+> {
   constructor(props: Object, context: Object) {
     super(props, context)
 

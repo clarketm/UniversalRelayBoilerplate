@@ -19,7 +19,7 @@ const styles = theme => ({
   },
 })
 
-class ResponsiveContentArea extends React.Component {
+class ResponsiveContentArea extends React.Component<any, any> {
   static contextTypes = {
     rbContext: PropTypes.object,
   }

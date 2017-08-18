@@ -1,5 +1,6 @@
 // @flow
 
+import Helmet from 'react-helmet'
 import express from 'express'
 import React from 'react'
 import path from 'path'
@@ -82,6 +83,8 @@ serverWebApp.use(async (req, res) => {
 
   const sheets = new SheetsRegistry()
 
+  const helmet = Helmet.rewind()
+
   const rootHTML = ReactDOMServer.renderToString(
     <JssProvider registry={sheets}>
       <Wrapper userAgent={userAgent}>
@@ -94,6 +97,7 @@ serverWebApp.use(async (req, res) => {
     assets_path: assetsPath,
     root_html: rootHTML,
     server_side_styles: sheets.toString(),
+    helmet,
     relay_payload: serialize(fetcher, { isJSON: true }),
   })
 })

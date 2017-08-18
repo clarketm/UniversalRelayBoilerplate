@@ -29,12 +29,13 @@ const contextTypes = {
   router: PropTypes.object.isRequired,
 }
 
-class ToDoList extends React.Component {
-  static propTypes = {
+class ToDoList extends React.Component<
+  {
     Viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
+  },
+  null,
+> {
   _handle_onClick_MarkAll = (event, checked) => {
     const { relay, Viewer } = this.props
     const { variables } = this.context.relay
@@ -49,17 +50,17 @@ class ToDoList extends React.Component {
     )
   }
 
-  _handle_onChange = (event, index) => {
-    const url = index === 2 ? '/todo/completed' : index === 1 ? '/todo/active' : '/todo'
+  _handle_onChange = (event, tabsValue) => {
+    const url = tabsValue === 2 ? '/todo/completed' : tabsValue === 1 ? '/todo/active' : '/todo'
     this.context.router.push(url)
   }
 
   renderTabs() {
     const status = this.context.relay.variables.status
-    const index = status === 'active' ? 1 : status === 'completed' ? 2 : 0
+    const tabsValue = status === 'active' ? 1 : status === 'completed' ? 2 : 0
 
     return (
-      <Tabs index={index} onChange={this._handle_onChange}>
+      <Tabs value={tabsValue} onChange={this._handle_onChange}>
         <Tab label="All" />
         <Tab label="Active" />
         <Tab label="Completed" />
