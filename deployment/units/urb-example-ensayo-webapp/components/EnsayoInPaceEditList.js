@@ -13,6 +13,7 @@ EnsayoInPaceEditList=function(_React$Component){_inherits(EnsayoInPaceEditList,_
 
 
 
+
 {var
 Viewer=this.props.Viewer;var
 Ensayos=Viewer.Ensayos;
@@ -26,7 +27,7 @@ _react2.default.createElement(_EnsayoInPlaceItem2.default,{key:node.id,Viewer:Vi
 
 
 
-}}]);return EnsayoInPaceEditList;}(_react2.default.Component);EnsayoInPaceEditList.propTypes={Viewer:_propTypes2.default.object.isRequired,relay:_propTypes2.default.object.isRequired};exports.default=
+}}]);return EnsayoInPaceEditList;}(_react2.default.Component);exports.default=
 
 
 (0,_reactRelay.createFragmentContainer)(
