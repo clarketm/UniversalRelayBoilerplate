@@ -68,9 +68,7 @@ const styles = theme => ({
   },
 })
 
-class AppFrame extends Component {
-  state: { drawerOpen: boolean }
-
+class AppFrame extends Component<any, { drawerOpen: boolean }> {
   constructor(props: Object, context: Object) {
     super(props, context)
 

@@ -18,18 +18,17 @@ const styles = theme => ({
   },
 })
 
-class ToDo_Properties extends React.Component {
-  static propTypes = {
-    ToDo_Text: PropTypes.string.isRequired,
-    open: PropTypes.bool.isRequired,
+class ToDo_Properties extends React.Component<
+  {
+    ToDo_Text: string,
+    open: boolean,
     handlerUpdate: PropTypes.func.isRequired,
     handlerClose: PropTypes.func.isRequired,
-  }
-
-  state: {
+  },
+  {
     ToDo_Text: string,
-  }
-
+  },
+> {
   constructor(props: Object, context: Object) {
     super(props, context)
 

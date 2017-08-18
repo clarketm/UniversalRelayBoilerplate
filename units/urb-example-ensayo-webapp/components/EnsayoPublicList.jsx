@@ -14,7 +14,7 @@ const styles = theme => ({
   },
 })
 
-class EnsayoPublicList extends React.Component {
+class EnsayoPublicList extends React.Component<any, any> {
   _handle_onClick(id) {
     this.context.router.push('/ensayo/item/' + id)
   }

@@ -17,18 +17,39 @@ const styles = {
   card: {
     minWidth: 275,
   },
+  cardContent: {
+    minHeight: 200,
+  },
 }
 
 // truncate "Translaticiarum";
-// insert into "Translaticiarum"(id, "Translaticiarum_User_id", "Translaticiarum_Description","Translaticiarum_Start", "Translaticiarum_Stop") values(0dba9aae-e84f-484a-9dc8-1a2be761c0ea, 00000000-0000-0000-0000-000000000000, 'item', '2017-09-09 10:00+0000', '2017-09-09 11:30+0000');
+// insert into "Translaticiarum"(id, "Translaticiarum_User_id", "Translaticiarum_Description","Translaticiarum_Start", "Translaticiarum_Stop") values(0dba9aae-e84f-484a-9dc8-1a2be761c0ea, 00000000-0000-0000-0000-000000000000, 'item', '2017-09-09 10:00-0700', '2017-09-09 11:30-0700');
 // select * from "Translaticiarum";
 
-class TranslaticiarumScreen extends React.Component {
+class TranslaticiarumScreen extends React.Component<
+  any,
+  {
+    calendarView: 'month' | 'week' | 'day' | 'agenda',
+  },
+> {
+  constructor(props: Object, context: Object) {
+    super(props, context)
+
+    this.state = {
+      calendarView: 'day',
+    }
+  }
+
+  _handle_onView = view => {
+    this.setState({ calendarView: view })
+  }
+
+  onSelectSlot = (slotInfo: { start: Date, end: Date, slots: Array<Date> }) => {}
+
   render() {
     const { classes, Viewer } = this.props
 
     const translaticiarumEdges = Viewer.Translaticiarums.edges
-    console.log(translaticiarumEdges)
 
     const calendarEvents = translaticiarumEdges.map(translaticiarumEdge => {
       const translaticiarum = translaticiarumEdge.node
@@ -40,6 +61,7 @@ class TranslaticiarumScreen extends React.Component {
       }
     })
 
+    console.log(this.state.calendarView)
     console.log(calendarEvents)
 
     return (
@@ -50,8 +72,12 @@ class TranslaticiarumScreen extends React.Component {
         <Card className={classes.card}>
           <CardHeader title="Translaticiarum" />
 
-          <CardContent>
-            <BigCalendar events={calendarEvents} defaultDate={new Date(2017, 9, 9)} />
+          <CardContent className={classes.cardContent}>
+            <BigCalendar
+              events={calendarEvents}
+              view={this.state.calendarView}
+              onView={this._handle_onView}
+            />
           </CardContent>
         </Card>
       </ResponsiveContentArea>

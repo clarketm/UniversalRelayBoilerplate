@@ -8,7 +8,7 @@ import { createFragmentContainer, graphql } from 'react-relay'
 
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
-class EnsayoPublicItem extends React.Component {
+class EnsayoPublicItem extends React.Component<{ Viewer: any }, {}> {
   render() {
     const { Viewer } = this.props
     // In a fairly barbaric way, limit the length of headings so that they are not considered spam

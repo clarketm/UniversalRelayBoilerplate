@@ -16,20 +16,22 @@ const styles = theme => ({
   },
 })
 
-class LoginDialog extends React.Component {
-  static propTypes = {
-    open: PropTypes.bool.isRequired,
+class LoginDialog extends React.Component<
+  {
+    UserAccount_Identifier: string,
+    User_Secret: string,
+    open: boolean,
     handlerClose: PropTypes.func.isRequired,
     handlerNewUser: PropTypes.func.isRequired,
-  }
-
-  state: {
+    classes: Object,
+  },
+  {
     currentOperation: 'challenge' | 'in progress' | 'failure',
     errorMessage: string,
     UserAccount_Identifier: string,
     User_Secret: string,
-  }
-
+  },
+> {
   constructor(props: Object, context: Object) {
     super(props, context)
 

@@ -29,12 +29,13 @@ const contextTypes = {
   router: PropTypes.object.isRequired,
 }
 
-class ToDoList extends React.Component {
-  static propTypes = {
+class ToDoList extends React.Component<
+  {
     Viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
+  },
+  null,
+> {
   _handle_onClick_MarkAll = (event, checked) => {
     const { relay, Viewer } = this.props
     const { variables } = this.context.relay

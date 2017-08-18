@@ -2,7 +2,7 @@
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 import Button from 'material-ui/Button'
 import Collapse from 'material-ui/transitions/Collapse'
 import { withStyles } from 'material-ui/styles'
@@ -45,7 +45,7 @@ const styles = theme => ({
   },
 })
 
-class AppDrawerNavItem extends Component {
+class AppDrawerNavItem extends React.Component<any, { open: boolean }> {
   static defaultProps = {
     openImmediately: false,
   }

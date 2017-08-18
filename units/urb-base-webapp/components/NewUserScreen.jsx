@@ -18,18 +18,17 @@ const styles = theme => ({
   },
 })
 
-class NewUserScreen extends React.Component {
-  static propTypes = {
+class NewUserScreen extends React.Component<
+  {
     classes: PropTypes.object.isRequired,
-  }
-
-  state: {
+  },
+  {
     currentOperation: 'prompt' | 'creating' | 'success' | 'failure',
     errorMessage: string,
     UserAccount_Identifier: string,
     User_Secret: string,
-  }
-
+  },
+> {
   constructor(props: Object, context: Object) {
     super(props, context)
 
