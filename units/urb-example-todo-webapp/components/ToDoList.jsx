@@ -60,7 +60,7 @@ class ToDoList extends React.Component<
     const index = status === 'active' ? 1 : status === 'completed' ? 2 : 0
 
     return (
-      <Tabs index={index} onChange={this._handle_onChange}>
+      <Tabs value={index} onChange={this._handle_onChange}>
         <Tab label="All" />
         <Tab label="Active" />
         <Tab label="Completed" />
