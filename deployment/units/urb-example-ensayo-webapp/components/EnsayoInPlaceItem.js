@@ -25,6 +25,7 @@ EnsayoInPlaceItem=function(_React$Component){_inherits(EnsayoInPlaceItem,_React$
 
 
 
+
 function EnsayoInPlaceItem(props,context){_classCallCheck(this,EnsayoInPlaceItem);var _this=_possibleConstructorReturn(this,(EnsayoInPlaceItem.__proto__||Object.getPrototypeOf(EnsayoInPlaceItem)).call(this,
 props,context));_this.
 

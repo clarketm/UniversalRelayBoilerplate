@@ -12,5 +12,7 @@ import Inscriptio from '../../../urb-example-inscriptio-server/graphql/model/Ins
 import Inscriptio_schema from '../../../urb-example-inscriptio-server/graphql/model/Inscriptio.schema'
 import ToDo from '../../../urb-example-todo-server/graphql/model/ToDo'
 import ToDo_schema from '../../../urb-example-todo-server/graphql/model/ToDo.schema'
+import Translaticiarum from '../../../urb-example-translaticiarum-server/graphql/model/Translaticiarum'
+import Translaticiarum_schema from '../../../urb-example-translaticiarum-server/graphql/model/Translaticiarum.schema'
 
 export default true

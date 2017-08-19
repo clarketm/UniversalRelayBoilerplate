@@ -9,7 +9,7 @@ import {
   verifyUserAuthToken,
   serveAuthenticationFailed,
 } from './checkCredentials'
-import { getSiteInformation } from '../_configuration/urb-base-webapp/siteSettings'
+import { getSiteInformation } from '../_configuration/urb-base-server/siteSettings'
 import logServerRequest from './logServerRequest'
 import { getObjectManager } from './graphql/ObjectManager'
 import { requestLoggerGraphQL } from '../_configuration/urb-base-server/requestLoggers'
