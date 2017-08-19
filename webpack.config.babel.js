@@ -64,16 +64,16 @@ const config = {
             options: {
               babelrc: false,
               presets: ['react-native-stage-0'],
-              plugins: [
+              plugins: removeEmpty([
                 'dynamic-import-webpack',
-                'react-hot-loader/babel',
+                ifNotProd('react-hot-loader/babel'),
                 'transform-class-properties',
                 'syntax-dynamic-import',
                 [
                   'relay',
                   { schema: 'units/_configuration/urb-base-server/graphql/schema.graphql' },
                 ],
-              ],
+              ]),
             },
           },
         ],
