@@ -11,7 +11,9 @@ var _Ensayo3=require('../../../urb-example-ensayo-server/graphql/model/Ensayo.sc
 var _Inscriptio=require('../../../urb-example-inscriptio-server/graphql/model/Inscriptio');var _Inscriptio2=_interopRequireDefault(_Inscriptio);
 var _Inscriptio3=require('../../../urb-example-inscriptio-server/graphql/model/Inscriptio.schema');var _Inscriptio4=_interopRequireDefault(_Inscriptio3);
 var _ToDo=require('../../../urb-example-todo-server/graphql/model/ToDo');var _ToDo2=_interopRequireDefault(_ToDo);
-var _ToDo3=require('../../../urb-example-todo-server/graphql/model/ToDo.schema');var _ToDo4=_interopRequireDefault(_ToDo3);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
+var _ToDo3=require('../../../urb-example-todo-server/graphql/model/ToDo.schema');var _ToDo4=_interopRequireDefault(_ToDo3);
+var _Translaticiarum=require('../../../urb-example-translaticiarum-server/graphql/model/Translaticiarum');var _Translaticiarum2=_interopRequireDefault(_Translaticiarum);
+var _Translaticiarum3=require('../../../urb-example-translaticiarum-server/graphql/model/Translaticiarum.schema');var _Translaticiarum4=_interopRequireDefault(_Translaticiarum3);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
 true;
 //# sourceMappingURL=_schemas.js.map

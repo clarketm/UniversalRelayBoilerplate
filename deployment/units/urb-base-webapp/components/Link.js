@@ -6,7 +6,7 @@ var _classnames=require('classnames');var _classnames2=_interopRequireDefault(_c
 var _found=require('found');
 var _styles=require('material-ui/styles');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}function _objectWithoutProperties(obj,keys){var target={};for(var i in obj){if(keys.indexOf(i)>=0)continue;if(!Object.prototype.hasOwnProperty.call(obj,i))continue;target[i]=obj[i];}return target;}
 
-var styleSheet=(0,_styles.createStyleSheet)('Link',function(theme){return{
+var styles=function styles(theme){return{
 root:{
 color:'inherit',
 textDecoration:'none',
@@ -18,7 +18,7 @@ primary:{
 color:theme.palette.primary[500]},
 
 accent:{
-color:theme.palette.accent.A400}};});
+color:theme.palette.accent.A400}};};
 
 
 
@@ -59,5 +59,5 @@ to:_propTypes2.default.string,
 variant:_propTypes2.default.oneOf(['primary','accent'])};exports.default=
 
 
-(0,_styles.withStyles)(styleSheet)(Link);
+(0,_styles.withStyles)(styles)(Link);
 //# sourceMappingURL=Link.js.map
