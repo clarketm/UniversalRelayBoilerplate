@@ -6,7 +6,7 @@ import { cursorForObjectInConnection } from 'graphql-relay'
 import UserToken2Anonymous from '../../_configuration/urb-base-server/UserToken2Anonymous'
 import defaultPersister from '../../_configuration/urb-base-server/graphql/defaultPersister'
 import getNewUser from '../../_configuration/urb-base-server/graphql/model/getNewUser'
-import { getSiteInformation } from '../../_configuration/urb-base-webapp/siteSettings'
+import { getSiteInformation } from '../../_configuration/urb-base-server/siteSettings'
 import log from '../log'
 import User from '../../_configuration/urb-base-server/graphql/model/User'
 
