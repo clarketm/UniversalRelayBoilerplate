@@ -1,6 +1,5 @@
 // @flow
 
-import Helmet from 'react-helmet'
 import Card, { CardContent, CardHeader } from 'material-ui/Card'
 import { withStyles } from 'material-ui/styles'
 import moment from 'moment'
@@ -33,7 +32,7 @@ class TranslaticiarumScreen extends React.Component<
     super(props, context)
 
     this.state = {
-      calendarView: 'day',
+      calendarView: 'week',
     }
   }
 
@@ -65,9 +64,6 @@ class TranslaticiarumScreen extends React.Component<
 
     return (
       <ResponsiveContentArea>
-        <Helmet>
-          <link rel="stylesheet" type="text/css" href="react-big-calendar.css" />
-        </Helmet>
         <Card className={classes.card}>
           <CardHeader title="Translaticiarum" />
 
