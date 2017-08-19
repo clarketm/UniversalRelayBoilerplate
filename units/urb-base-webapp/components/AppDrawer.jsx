@@ -80,7 +80,6 @@ function reduceChildRoutes(props, items, childRoute, index) {
 
 function AppDrawer(props) {
   const classes = props.classes
-  const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/'
 
   return (
     <Drawer
