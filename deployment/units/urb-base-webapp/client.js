@@ -11,7 +11,10 @@ var _reactDom=require('react-dom');var _reactDom2=_interopRequireDefault(_reactD
 
 var _fetcherClient=require('./fetcherClient');var _fetcherClient2=_interopRequireDefault(_fetcherClient);
 var _router=require('./router');
-var _Wrapper=require('./components/Wrapper');var _Wrapper2=_interopRequireDefault(_Wrapper);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+var _Wrapper=require('./components/Wrapper');var _Wrapper2=_interopRequireDefault(_Wrapper);
+
+
+require('../_configuration/urb-base-webapp/global.css');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 var render=(0,_createRender2.default)({});
 
