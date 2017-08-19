@@ -80,7 +80,6 @@ return items;
 
 function AppDrawer(props){
 var classes=props.classes;
-var GITHUB_RELEASE_BASE_URL='https://github.com/callemall/material-ui/releases/tag/';
 
 return(
 _react2.default.createElement(_Drawer2.default,{
