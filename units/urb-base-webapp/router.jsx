@@ -1,7 +1,6 @@
 // @flow
 
 import queryMiddleware from 'farce/lib/queryMiddleware'
-import createRender from 'found/lib/createRender'
 import makeRouteConfig from 'found/lib/makeRouteConfig'
 import Route from 'found/lib/Route'
 import { Resolver } from 'found-relay'
@@ -45,5 +44,3 @@ export const routeConfig = makeRouteConfig(
     </Route>
   </Route>,
 )
-
-export const render = createRender({})
