@@ -32,7 +32,7 @@ _react2.default.createElement('div',{className:classes.content},
 this.props.children));
 
 
-}}]);return ResponsiveContentArea;}(_react2.default.Component);ResponsiveContentArea.contextTypes={rbContext:_propTypes2.default.object};exports.default=
+}}]);return ResponsiveContentArea;}(_react2.default.Component);ResponsiveContentArea.contextTypes={rbCtx:_propTypes2.default.object};exports.default=
 
 
 (0,_styles.withStyles)(styles)(ResponsiveContentArea);

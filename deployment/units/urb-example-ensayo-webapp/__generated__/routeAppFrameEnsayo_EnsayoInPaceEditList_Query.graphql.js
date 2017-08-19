@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d7c64313cacf8ce69b7a37ac4cd12444
+ * @relayHash f00808c05227a90225ce5581e197319d
  */
 
 /* eslint-disable */
@@ -36,8 +36,6 @@ fragment EnsayoInPaceEditList_Viewer on Viewer {
     pageInfo {
       endCursor
       hasNextPage
-      hasPreviousPage
-      startCursor
     }
   }
   id
@@ -200,20 +198,6 @@ const batch /*: ConcreteBatch*/ = {
                     "args": null,
                     "name": "hasNextPage",
                     "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "hasPreviousPage",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "startCursor",
-                    "storageKey": null
                   }
                 ],
                 "storageKey": null
@@ -249,7 +233,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query routeAppFrameEnsayo_EnsayoInPaceEditList_Query {\n  Viewer {\n    ...EnsayoInPaceEditList_Viewer\n    id\n  }\n}\n\nfragment EnsayoInPaceEditList_Viewer on Viewer {\n  Ensayos(first: 2147483647) {\n    edges {\n      node {\n        id\n        ...EnsayoInPlaceItem_Ensayo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n  id\n  ...EnsayoInPlaceItem_Viewer\n}\n\nfragment EnsayoInPlaceItem_Ensayo on Ensayo {\n  id\n  Ensayo_Title\n  Ensayo_Description\n  Ensayo_Content\n}\n\nfragment EnsayoInPlaceItem_Viewer on Viewer {\n  id\n}\n"
+  "text": "query routeAppFrameEnsayo_EnsayoInPaceEditList_Query {\n  Viewer {\n    ...EnsayoInPaceEditList_Viewer\n    id\n  }\n}\n\nfragment EnsayoInPaceEditList_Viewer on Viewer {\n  Ensayos(first: 2147483647) {\n    edges {\n      node {\n        id\n        ...EnsayoInPlaceItem_Ensayo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  ...EnsayoInPlaceItem_Viewer\n}\n\nfragment EnsayoInPlaceItem_Ensayo on Ensayo {\n  id\n  Ensayo_Title\n  Ensayo_Description\n  Ensayo_Content\n}\n\nfragment EnsayoInPlaceItem_Viewer on Viewer {\n  id\n}\n"
 };
 
 module.exports = batch;

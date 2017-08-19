@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c460b0968c08115a5e170d1ab897e1fa
+ * @relayHash 1c3776a7a642b82376ecc7e23116108d
  */
 
 /* eslint-disable */
@@ -37,8 +37,6 @@ fragment EnsayoPublicList_Viewer on Viewer {
     pageInfo {
       endCursor
       hasNextPage
-      hasPreviousPage
-      startCursor
     }
   }
 }
@@ -181,20 +179,6 @@ const batch /*: ConcreteBatch*/ = {
                     "args": null,
                     "name": "hasNextPage",
                     "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "hasPreviousPage",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "startCursor",
-                    "storageKey": null
                   }
                 ],
                 "storageKey": null
@@ -230,7 +214,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query routeAppFrameEnsayo_EnsayoPublicList_Query {\n  Viewer {\n    ...EnsayoPublicList_Viewer\n    id\n  }\n}\n\nfragment EnsayoPublicList_Viewer on Viewer {\n  Ensayos(first: 2147483647) {\n    edges {\n      node {\n        id\n        Ensayo_Title\n        Ensayo_Description\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+  "text": "query routeAppFrameEnsayo_EnsayoPublicList_Query {\n  Viewer {\n    ...EnsayoPublicList_Viewer\n    id\n  }\n}\n\nfragment EnsayoPublicList_Viewer on Viewer {\n  Ensayos(first: 2147483647) {\n    edges {\n      node {\n        id\n        Ensayo_Title\n        Ensayo_Description\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

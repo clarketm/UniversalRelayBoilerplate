@@ -57,7 +57,7 @@ assetsPath='http://'+envHost+':'+envPortWebpack+'/'+_package.version;
 {siteInformation:siteInformation,assetsPath:assetsPath});case 6:case'end':return _context.stop();}}},null,this);}
 
 
-serverWebApp.use(function _callee(req,res){var fetcher,_ref,redirect,status,element,userAgent,_ref2,siteInformation,assetsPath,sheets,helmet,rootHTML;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:
+serverWebApp.use(function _callee(req,res){var fetcher,_ref,redirect,status,element,userAgent,_ref2,siteInformation,assetsPath,appData,sheets,helmet,rootHTML;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:
 fetcher=new _fetcherServer2.default('http://localhost:'+
 envPort+'/graphql',
 req.cookies.UserToken1,_UserToken2ServerRendering2.default);_context2.next=3;return regeneratorRuntime.awrap(
@@ -80,6 +80,7 @@ res.redirect(302,redirect.url);return _context2.abrupt('return');case 10:
 userAgent=req.headers['user-agent'];_context2.next=13;return regeneratorRuntime.awrap(
 
 gatherLocationAndSiteInformation(req,res));case 13:_ref2=_context2.sent;siteInformation=_ref2.siteInformation;assetsPath=_ref2.assetsPath;
+appData=siteInformation.configurationAsObject.appData;
 
 sheets=new _reactJss.SheetsRegistry();
 
@@ -87,7 +88,7 @@ helmet=_reactHelmet2.default.rewind();
 
 rootHTML=_server3.default.renderToString(
 _react2.default.createElement(_reactJss.JssProvider,{registry:sheets},
-_react2.default.createElement(_Wrapper2.default,{userAgent:userAgent},
+_react2.default.createElement(_Wrapper2.default,{userAgent:userAgent,appData:appData},
 element)));
 
 
@@ -98,7 +99,8 @@ assets_path:assetsPath,
 root_html:rootHTML,
 server_side_styles:sheets.toString(),
 helmet:helmet,
-relay_payload:(0,_serializeJavascript2.default)(fetcher,{isJSON:true})});case 20:case'end':return _context2.stop();}}},null,_this);});exports.default=
+appData:JSON.stringify(appData),
+relay_payload:(0,_serializeJavascript2.default)(fetcher,{isJSON:true})});case 21:case'end':return _context2.stop();}}},null,_this);});exports.default=
 
 
 
