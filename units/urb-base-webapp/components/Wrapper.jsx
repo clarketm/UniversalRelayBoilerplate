@@ -10,9 +10,6 @@ import EventListener from 'react-event-listener'
 
 import ViewportDimensions from '../scripts/ViewportDimensions'
 
-// Include global CSS used in all units. Will not be chunked
-import '../../_configuration/urb-base-webapp/global.css'
-
 export default class Wrapper extends React.Component<{ appData: Object, children: any }, any> {
   muiTheme: Object
   rbCtx: Object

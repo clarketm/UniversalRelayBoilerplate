@@ -1,3 +1,3 @@
-body {
-  background-color: lightblue;
+:global {
+  @import '../../../node_modules/react-big-calendar/lib/css/react-big-calendar.css';
 }

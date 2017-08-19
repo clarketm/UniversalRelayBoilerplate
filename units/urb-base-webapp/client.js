@@ -13,6 +13,9 @@ import FetcherClient from './fetcherClient'
 import { createResolver, historyMiddlewares, routeConfig } from './router'
 import Wrapper from './components/Wrapper'
 
+// Include global CSS used in all units. Will not be chunked
+import '../_configuration/urb-base-webapp/global.css'
+
 const render = createRender({})
 
 //
