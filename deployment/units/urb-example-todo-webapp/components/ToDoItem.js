@@ -26,7 +26,6 @@ ToDoItem=function(_React$Component){_inherits(ToDoItem,_React$Component);
 
 
 
-
 function ToDoItem(props,context){_classCallCheck(this,ToDoItem);var _this=_possibleConstructorReturn(this,(ToDoItem.__proto__||Object.getPrototypeOf(ToDoItem)).call(this,
 props,context));_this.
 
@@ -113,7 +112,7 @@ open:this.state.propertiesIsOpen})));
 
 
 
-}}]);return ToDoItem;}(_react2.default.Component);ToDoItem.propTypes={Viewer:_propTypes2.default.object.isRequired,ToDo:_propTypes2.default.object.isRequired,relay:_propTypes2.default.object.isRequired};exports.default=
+}}]);return ToDoItem;}(_react2.default.Component);exports.default=
 
 
 (0,_reactRelay.createFragmentContainer)(ToDoItem,{

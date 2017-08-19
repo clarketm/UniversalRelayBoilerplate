@@ -2,7 +2,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import List from 'material-ui/List'
 import Toolbar from 'material-ui/Toolbar'
 import Drawer from 'material-ui/Drawer'
@@ -11,7 +11,7 @@ import Divider from 'material-ui/Divider'
 
 import AppDrawerNavItem from './AppDrawerNavItem'
 
-const styleSheet = createStyleSheet('AppDrawer', theme => ({
+const styles = theme => ({
   paper: {
     width: 250,
     backgroundColor: theme.palette.background.paper,
@@ -30,7 +30,7 @@ const styleSheet = createStyleSheet('AppDrawer', theme => ({
   anchor: {
     color: theme.palette.text.secondary,
   },
-}))
+})
 
 function renderNavItems() {
   return (
@@ -44,6 +44,13 @@ function renderNavItems() {
         to="/ensayo/in-place-edit"
       />
       <AppDrawerNavItem key={4} openImmediately={true} title="Ensayo public" to="/ensayo" />
+      <AppDrawerNavItem key={5} openImmediately={true} title="Inscriptio" to="/inscriptio" />
+      <AppDrawerNavItem
+        key={6}
+        openImmediately={true}
+        title="Translaticiarum"
+        to="/translaticiarum"
+      />
     </List>
   )
 }
@@ -109,4 +116,4 @@ AppDrawer.propTypes = {
   open: PropTypes.bool.isRequired,
 }
 
-export default withStyles(styleSheet)(AppDrawer)
+export default withStyles(styles)(AppDrawer)

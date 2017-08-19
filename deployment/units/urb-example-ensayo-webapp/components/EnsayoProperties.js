@@ -9,7 +9,7 @@ var _styles=require('material-ui/styles');function _interopRequireDefault(obj){r
 
 
 
-var styleSheet=(0,_styles.createStyleSheet)(function(theme){return{
+var styles=function styles(theme){return{
 container:{
 display:'flex',
 flexWrap:'wrap'},
@@ -21,7 +21,7 @@ richTextContainer:{
 width:'100%',
 height:300,
 display:'inline-block',
-position:'relative'}};});var
+position:'relative'}};};var
 
 
 
@@ -41,20 +41,7 @@ EnsayoProperties=function(_React$Component){_inherits(EnsayoProperties,_React$Co
 
 
 function EnsayoProperties(props,context){_classCallCheck(this,EnsayoProperties);var _this=_possibleConstructorReturn(this,(EnsayoProperties.__proto__||Object.getPrototypeOf(EnsayoProperties)).call(this,
-props,context));_initialiseProps.call(_this);var _this$props=
-
-_this.props,Ensayo_Title=_this$props.Ensayo_Title,Ensayo_Description=_this$props.Ensayo_Description,Ensayo_Content=_this$props.Ensayo_Content;
-
-_this.state={
-Ensayo_Title:Ensayo_Title,
-Ensayo_Description:Ensayo_Description};return _this;
-
-
-
-
-
-
-}_createClass(EnsayoProperties,[{key:'render',value:function render()
+props,context));_this.
 
 
 
@@ -77,7 +64,20 @@ Ensayo_Description:Ensayo_Description};return _this;
 
 
 
+_handle_Close=function(){
+_this.props.handlerClose();
+};_this.
 
+_handle_OK=function(){
+_this.props.handlerUpdate({
+Ensayo_Title:_this.state.Ensayo_Title,
+Ensayo_Description:_this.state.Ensayo_Description,
+Ensayo_Content:''});
+
+
+
+_this.props.handlerClose();
+};var _this$props=_this.props,Ensayo_Title=_this$props.Ensayo_Title,Ensayo_Description=_this$props.Ensayo_Description,Ensayo_Content=_this$props.Ensayo_Content;_this.state={Ensayo_Title:Ensayo_Title,Ensayo_Description:Ensayo_Description};return _this;}_createClass(EnsayoProperties,[{key:'render',value:function render()
 
 {var _this2=this;var
 classes=this.props.classes;var _state=
@@ -111,5 +111,20 @@ _react2.default.createElement(_Button2.default,{onClick:this._handle_OK,color:'p
 
 
 
-}}]);return EnsayoProperties;}(_react2.default.Component);EnsayoProperties.propTypes={Ensayo_Title:_propTypes2.default.string.isRequired,Ensayo_Description:_propTypes2.default.string.isRequired,Ensayo_Content:_propTypes2.default.string.isRequired,handlerUpdate:_propTypes2.default.func.isRequired,handlerClose:_propTypes2.default.func.isRequired};var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_OK=function(){_this3.props.handlerUpdate({Ensayo_Title:_this3.state.Ensayo_Title,Ensayo_Description:_this3.state.Ensayo_Description,Ensayo_Content:''});_this3.props.handlerClose();};};exports.default=EnsayoProperties;
+}}]);return EnsayoProperties;}(_react2.default.Component);exports.default=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(0,_styles.withStyles)(styles)(EnsayoProperties);
 //# sourceMappingURL=EnsayoProperties.js.map

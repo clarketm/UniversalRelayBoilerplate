@@ -10,12 +10,12 @@ import EventListener from 'react-event-listener'
 
 import ViewportDimensions from '../scripts/ViewportDimensions'
 
-export default class Wrapper extends React.Component {
+export default class Wrapper extends React.Component<{ appData: Object, children: any }, any> {
   muiTheme: Object
-  rbContext: Object
+  rbCtx: Object
 
   static childContextTypes = {
-    rbContext: PropTypes.object,
+    rbCtx: PropTypes.object,
   }
 
   constructor(props: Object, context: Object) {
@@ -23,10 +23,11 @@ export default class Wrapper extends React.Component {
 
     // TODO x0100 If a property for innerWidth is provided, use it for the initial request
 
-    // Descendants can add other items to rbContext
-    this.rbContext = {}
+    // Descendants can add other items to rbCtx
+    this.rbCtx = {}
 
-    this.rbContext.viewportDimensions = new ViewportDimensions()
+    this.rbCtx.viewportDimensions = new ViewportDimensions()
+    this.rbCtx.appData = this.props.appData
 
     this.muiTheme = createMuiTheme({
       palette: createPalette({
@@ -43,12 +44,12 @@ export default class Wrapper extends React.Component {
 
   getChildContext() {
     return {
-      rbContext: this.rbContext,
+      rbCtx: this.rbCtx,
     }
   }
 
   handle_onResize = () => {
-    this.rbContext.viewportDimensions.handle_onResize()
+    this.rbCtx.viewportDimensions.handle_onResize()
   }
 
   render() {

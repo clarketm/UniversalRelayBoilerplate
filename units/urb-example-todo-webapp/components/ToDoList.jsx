@@ -3,7 +3,7 @@
 import Checkbox from 'material-ui/Checkbox'
 import { FormGroup, FormControlLabel } from 'material-ui/Form'
 import List from 'material-ui/List'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
@@ -12,13 +12,13 @@ import Tabs, { Tab } from 'material-ui/Tabs'
 import ToDoListUpdateMarkAllMutation from '../../urb-example-todo-client/relay/ToDoListUpdateMarkAllMutation'
 import ToDoItem from './ToDoItem'
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     background: theme.palette.background.paper,
   },
-}))
+})
 
 const contextTypes = {
   relay: PropTypes.shape({
@@ -29,12 +29,13 @@ const contextTypes = {
   router: PropTypes.object.isRequired,
 }
 
-class ToDoList extends React.Component {
-  static propTypes = {
+class ToDoList extends React.Component<
+  {
     Viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
+  },
+  null,
+> {
   _handle_onClick_MarkAll = (event, checked) => {
     const { relay, Viewer } = this.props
     const { variables } = this.context.relay
@@ -49,17 +50,17 @@ class ToDoList extends React.Component {
     )
   }
 
-  _handle_onChange = (event, index) => {
-    const url = index === 2 ? '/todo/completed' : index === 1 ? '/todo/active' : '/todo'
+  _handle_onChange = (event, tabsValue) => {
+    const url = tabsValue === 2 ? '/todo/completed' : tabsValue === 1 ? '/todo/active' : '/todo'
     this.context.router.push(url)
   }
 
   renderTabs() {
     const status = this.context.relay.variables.status
-    const index = status === 'active' ? 1 : status === 'completed' ? 2 : 0
+    const tabsValue = status === 'active' ? 1 : status === 'completed' ? 2 : 0
 
     return (
-      <Tabs index={index} onChange={this._handle_onChange}>
+      <Tabs value={tabsValue} onChange={this._handle_onChange}>
         <Tab label="All" />
         <Tab label="Active" />
         <Tab label="Completed" />
@@ -100,7 +101,7 @@ class ToDoList extends React.Component {
 ToDoList.contextTypes = contextTypes
 
 export default createFragmentContainer(
-  withStyles(styleSheet)(ToDoList),
+  withStyles(styles)(ToDoList),
   graphql`
     fragment ToDoList_Viewer on Viewer {
       ToDos(status: $status, first: 2147483647) @connection(key: "ToDoList_ToDos") {

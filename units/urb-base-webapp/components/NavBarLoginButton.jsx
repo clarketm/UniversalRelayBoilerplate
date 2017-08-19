@@ -2,30 +2,29 @@
 
 import Button from 'material-ui/Button'
 import Menu, { MenuItem } from 'material-ui/Menu'
-import { createStyleSheet, withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
 import LoginDialog from './LoginDialog'
 
-const styleSheet = createStyleSheet(theme => ({}))
+const styles = theme => ({})
 
-class NavBarLoginButton extends React.Component {
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  }
-
-  static propTypes = {
+class NavBarLoginButton extends React.Component<
+  {
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
-  state: {
+  },
+  {
     anchorEl: ?Object,
     loginDialogIsOpen: boolean,
     userMenuIsOpen: boolean,
+  },
+> {
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
   }
 
   constructor(props: Object, context: Object) {
@@ -111,7 +110,7 @@ class NavBarLoginButton extends React.Component {
 }
 
 export default createFragmentContainer(
-  withStyles(styleSheet)(NavBarLoginButton),
+  withStyles(styles)(NavBarLoginButton),
   graphql`
     fragment NavBarLoginButton_Viewer on Viewer {
       User_IsAnonymous

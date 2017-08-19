@@ -10,14 +10,13 @@ var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireD
 var _ResponsiveContentArea=require('../../urb-base-webapp/components/ResponsiveContentArea');var _ResponsiveContentArea2=_interopRequireDefault(_ResponsiveContentArea);
 var _ToDoAddMutation=require('../../urb-example-todo-client/relay/ToDoAddMutation');var _ToDoAddMutation2=_interopRequireDefault(_ToDoAddMutation);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
-var styleSheet=(0,_styles.createStyleSheet)(function(theme){return{
+var styles=function styles(theme){return{
 card:{
-minWidth:275}};});var
+minWidth:275}};};var
 
 
 
 ToDoScreen=function(_React$Component){_inherits(ToDoScreen,_React$Component);
-
 
 
 
@@ -38,9 +37,9 @@ props,context));_this.
 
 _handle_onKeyDown_AddToDo=function(e){
 if(e.keyCode===13){var _this$props=
-_this.props,relay=_this$props.relay,Viewer=_this$props.Viewer;
+_this.props,_relay=_this$props.relay,_Viewer=_this$props.Viewer;
 
-_ToDoAddMutation2.default.commit(relay.environment,Viewer,_this.state.ToDo_Text_New);
+_ToDoAddMutation2.default.commit(_relay.environment,_Viewer,_this.state.ToDo_Text_New);
 
 _this.setState({
 ToDo_Text_New:''});
@@ -73,9 +72,9 @@ onChange:this._handle_OnChange}))));
 
 
 
-}}]);return ToDoScreen;}(_react2.default.Component);ToDoScreen.propTypes={classes:_propTypes2.default.object.isRequired,Viewer:_propTypes2.default.object.isRequired,children:_propTypes2.default.node.isRequired,relay:_propTypes2.default.object.isRequired};exports.default=
+}}]);return ToDoScreen;}(_react2.default.Component);exports.default=
 
 
 (0,_reactRelay.createFragmentContainer)(
-(0,_styles.withStyles)(styleSheet)(ToDoScreen),{Viewer:function Viewer(){return require('./__generated__/ToDoScreen_Viewer.graphql');}});
+(0,_styles.withStyles)(styles)(ToDoScreen),{Viewer:function Viewer(){return require('./__generated__/ToDoScreen_Viewer.graphql');}});
 //# sourceMappingURL=ToDoScreen.js.map

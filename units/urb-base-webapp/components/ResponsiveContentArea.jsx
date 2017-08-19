@@ -1,11 +1,11 @@
 // @flow
 
-import { createStyleSheet, withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import spacing from 'material-ui/styles/spacing'
 
-const styleSheet = createStyleSheet('AppContent', theme => ({
+const styles = theme => ({
   content: theme.mixins.gutters({
     paddingTop: 80,
     flex: '1 1 100%',
@@ -17,11 +17,11 @@ const styleSheet = createStyleSheet('AppContent', theme => ({
       maxWidth: 900,
     },
   },
-}))
+})
 
-class ResponsiveContentArea extends React.Component {
+class ResponsiveContentArea extends React.Component<any, any> {
   static contextTypes = {
-    rbContext: PropTypes.object,
+    rbCtx: PropTypes.object,
   }
 
   render() {
@@ -35,4 +35,4 @@ class ResponsiveContentArea extends React.Component {
   }
 }
 
-export default withStyles(styleSheet)(ResponsiveContentArea)
+export default withStyles(styles)(ResponsiveContentArea)

@@ -12,17 +12,18 @@ import EnsayoDeleteMutation from '../../urb-example-ensayo-client/relay/EnsayoDe
 import EnsayoProperties from './EnsayoProperties'
 import EnsayoUpdateMutation from '../../urb-example-ensayo-client/relay/EnsayoUpdateMutation'
 
-class EnsayoInPlaceItem extends React.Component {
+class EnsayoInPlaceItem extends React.Component<
+  any,
+  {
+    anchorEl: ?Object,
+    menuIsOpen: boolean,
+    propertiesIsOpen: boolean,
+  },
+> {
   static propTypes = {
     Viewer: PropTypes.object.isRequired,
     Ensayo: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
-  state: {
-    anchorEl: ?Object,
-    menuIsOpen: boolean,
-    propertiesIsOpen: boolean,
   }
 
   constructor(props: Object, context: Object) {

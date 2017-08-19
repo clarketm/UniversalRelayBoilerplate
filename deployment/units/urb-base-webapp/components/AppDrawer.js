@@ -11,7 +11,7 @@ var _Divider=require('material-ui/Divider');var _Divider2=_interopRequireDefault
 
 var _AppDrawerNavItem=require('./AppDrawerNavItem');var _AppDrawerNavItem2=_interopRequireDefault(_AppDrawerNavItem);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
-var styleSheet=(0,_styles.createStyleSheet)('AppDrawer',function(theme){return{
+var styles=function styles(theme){return{
 paper:{
 width:250,
 backgroundColor:theme.palette.background.paper},
@@ -28,7 +28,7 @@ alignItems:'flex-start',
 justifyContent:'center'},
 
 anchor:{
-color:theme.palette.text.secondary}};});
+color:theme.palette.text.secondary}};};
 
 
 
@@ -43,7 +43,14 @@ openImmediately:true,
 title:'Ensayo in place',
 to:'/ensayo/in-place-edit'}),
 
-_react2.default.createElement(_AppDrawerNavItem2.default,{key:4,openImmediately:true,title:'Ensayo public',to:'/ensayo'})));
+_react2.default.createElement(_AppDrawerNavItem2.default,{key:4,openImmediately:true,title:'Ensayo public',to:'/ensayo'}),
+_react2.default.createElement(_AppDrawerNavItem2.default,{key:5,openImmediately:true,title:'Inscriptio',to:'/inscriptio'}),
+_react2.default.createElement(_AppDrawerNavItem2.default,{
+key:6,
+openImmediately:true,
+title:'Translaticiarum',
+to:'/translaticiarum'})));
+
 
 
 }
@@ -109,5 +116,5 @@ onRequestClose:_propTypes2.default.func.isRequired,
 open:_propTypes2.default.bool.isRequired};exports.default=
 
 
-(0,_styles.withStyles)(styleSheet)(AppDrawer);
+(0,_styles.withStyles)(styles)(AppDrawer);
 //# sourceMappingURL=AppDrawer.js.map

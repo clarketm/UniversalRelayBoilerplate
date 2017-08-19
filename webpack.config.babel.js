@@ -8,10 +8,15 @@ require('dotenv').load()
 const version = require('./units/_configuration/package.js').version
 const host = process.env.HOST
 const port_webpack = process.env.PORT_WEBPACK
+const node_env = process.env.NODE_ENV
 
-console.log(
-  '📦  Running Webpack, process.env.NODE_ENV=' + process.env.NODE_ENV + ', version=' + version,
-)
+console.log('📦  Running Webpack, process.env.NODE_ENV=' + node_env + ', version=' + version)
+
+const publicPath =
+  node_env === 'production' ? `/assets/${version}/` : `http://${host}:${port_webpack}/${version}/`
+const ifProd = plugin => (node_env === 'production' ? plugin : undefined)
+const ifNotProd = plugin => (node_env !== 'production' ? plugin : undefined)
+const removeEmpty = array => array.filter(p => !!p)
 
 const config = {
   devServer: {
@@ -24,14 +29,18 @@ const config = {
     client: ['whatwg-fetch', path.resolve('units/urb-base-webapp/client.js')],
     vendor: [
       'babel-polyfill',
+      'farce',
       'found',
       'found-relay',
+      'isomorphic-fetch',
       'material-ui',
       'prop-types',
       'react',
+      'react-code-splitting',
       'react-dom',
       'react-event-listener',
       'react-helmet',
+      'react-relay',
       'relay-runtime',
     ],
   },
@@ -41,14 +50,33 @@ const config = {
       `deployment/units/_configuration/urb-base-server/public_files/assets/${version}`,
     ),
     filename: '[name].js',
-    publicPath: `http://${host}:${port_webpack}/${version}/`,
+    publicPath,
   },
 
   module: {
     rules: [
       {
         test: /\.js(x)?$/,
-        use: ['react-hot-loader/webpack', 'babel-loader'],
+        use: [
+          { loader: 'react-hot-loader/webpack' },
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              presets: ['react-native-stage-0'],
+              plugins: [
+                'dynamic-import-webpack',
+                'react-hot-loader/babel',
+                'transform-class-properties',
+                'syntax-dynamic-import',
+                [
+                  'relay',
+                  { schema: 'units/_configuration/urb-base-server/graphql/schema.graphql' },
+                ],
+              ],
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
       {
@@ -65,16 +93,14 @@ const config = {
     extensions: ['.js', '.jsx'],
   },
 
-  plugins: [
+  plugins: removeEmpty([
     new webpack.EnvironmentPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
-      filename: 'vendor.js',
+      filename: '[name].js',
     }),
-    new ExtractTextPlugin('[name].css'),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
+    new ExtractTextPlugin({ filename: '[name].css', allChunks: true }),
     new webpack.DefinePlugin({
       process: {
         env: {
@@ -82,9 +108,27 @@ const config = {
         },
       },
     }),
-  ],
 
-  devtool: process.env.NODE_ENV == 'production' ? 'source-map' : 'eval',
+    // In development only:
+    ifNotProd(new webpack.HotModuleReplacementPlugin()),
+    ifNotProd(new webpack.NamedModulesPlugin()),
+
+    // In production only:
+    ifProd(
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          screw_ie8: true,
+          warnings: false,
+          unused: true,
+          dead_code: true,
+        },
+        output: {
+          comments: false,
+        },
+        sourceMap: false,
+      }),
+    ),
+  ]),
 }
 
 export default config

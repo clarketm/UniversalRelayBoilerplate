@@ -1,3 +1,8 @@
+# A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+# `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+# 8601 standard for representation of dates and times using the Gregorian calendar.
+scalar DateTime
+
 type Ensayo implements Node {
   # The ID of an object
   id: ID!
@@ -61,15 +66,84 @@ type EnsayoUpdatePayload {
   clientMutationId: String
 }
 
+type Inscriptio implements Node {
+  # The ID of an object
+  id: ID!
+  Inscriptio_LocationLat: String
+  Inscriptio_LocationLon: String
+  Inscriptio_Notes: String
+}
+
+input InscriptioAddInput {
+  Inscriptio_LocationLat: String!
+  Inscriptio_LocationLon: String!
+  Inscriptio_Notes: String!
+  clientMutationId: String
+}
+
+type InscriptioAddPayload {
+  InscriptiosEdge: InscriptiosEdge
+  Viewer: Viewer
+  clientMutationId: String
+}
+
+input InscriptioDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type InscriptioDeletePayload {
+  deletedId: ID
+  Viewer: Viewer
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type InscriptiosConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [InscriptiosEdge]
+}
+
+# An edge in a connection.
+type InscriptiosEdge {
+  # The item at the end of the edge
+  node: Inscriptio
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input InscriptioUpdateInput {
+  id: ID!
+  Inscriptio_LocationLat: String!
+  Inscriptio_LocationLon: String!
+  Inscriptio_Notes: String!
+  clientMutationId: String
+}
+
+type InscriptioUpdatePayload {
+  Inscriptio: Inscriptio
+  clientMutationId: String
+}
+
 type Mutation {
   EnsayoAdd(input: EnsayoAddInput!): EnsayoAddPayload
   EnsayoDelete(input: EnsayoDeleteInput!): EnsayoDeletePayload
   EnsayoUpdate(input: EnsayoUpdateInput!): EnsayoUpdatePayload
+  InscriptioAdd(input: InscriptioAddInput!): InscriptioAddPayload
+  InscriptioDelete(input: InscriptioDeleteInput!): InscriptioDeletePayload
+  InscriptioUpdate(input: InscriptioUpdateInput!): InscriptioUpdatePayload
   ToDoAdd(input: ToDoAddInput!): ToDoAddPayload
   ToDoDelete(input: ToDoDeleteInput!): ToDoDeletePayload
   ToDoListUpdateMarkAll(input: ToDoListUpdateMarkAllInput!): ToDoListUpdateMarkAllPayload
   ToDoUpdateRename(input: ToDoUpdateRenameInput!): ToDoUpdateRenamePayload
   ToDoUpdateStatus(input: ToDoUpdateStatusInput!): ToDoUpdateStatusPayload
+  TranslaticiarumAdd(input: TranslaticiarumAddInput!): TranslaticiarumAddPayload
+  TranslaticiarumDelete(input: TranslaticiarumDeleteInput!): TranslaticiarumDeletePayload
+  TranslaticiarumUpdate(input: TranslaticiarumUpdateInput!): TranslaticiarumUpdatePayload
 }
 
 # An object with a globally unique id.
@@ -179,6 +253,69 @@ type ToDoUpdateStatusPayload {
   clientMutationId: String
 }
 
+type Translaticiarum implements Node {
+  # The ID of an object
+  id: ID!
+  Translaticiarum_Start: DateTime
+  Translaticiarum_Stop: DateTime
+  Translaticiarum_Description: String
+}
+
+input TranslaticiarumAddInput {
+  Translaticiarum_Start: String!
+  Translaticiarum_Stop: String!
+  Translaticiarum_Description: String!
+  clientMutationId: String
+}
+
+type TranslaticiarumAddPayload {
+  TranslaticiarumsEdge: TranslaticiarumsEdge
+  Viewer: Viewer
+  clientMutationId: String
+}
+
+input TranslaticiarumDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type TranslaticiarumDeletePayload {
+  deletedId: ID
+  Viewer: Viewer
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type TranslaticiarumsConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [TranslaticiarumsEdge]
+}
+
+# An edge in a connection.
+type TranslaticiarumsEdge {
+  # The item at the end of the edge
+  node: Translaticiarum
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input TranslaticiarumUpdateInput {
+  id: ID!
+  Translaticiarum_Start: String!
+  Translaticiarum_Stop: String!
+  Translaticiarum_Description: String!
+  clientMutationId: String
+}
+
+type TranslaticiarumUpdatePayload {
+  Translaticiarum: Translaticiarum
+  clientMutationId: String
+}
+
 type Viewer implements Node {
   # The ID of an object
   id: ID!
@@ -189,7 +326,11 @@ type Viewer implements Node {
   User_PhoneNumberMobile: String
   Ensayos(after: String, first: Int, before: String, last: Int): EnsayosConnection
   Ensayo(id: ID): Ensayo
+  Inscriptios(after: String, first: Int, before: String, last: Int): InscriptiosConnection
+  Inscriptio(id: ID): Inscriptio
   ToDos(status: String = "any", after: String, first: Int, before: String, last: Int): ToDosConnection
   ToDo_TotalCount: Int
   ToDo_CompletedCount: Int
+  Translaticiarums(after: String, first: Int, before: String, last: Int): TranslaticiarumsConnection
+  Translaticiarum(id: ID): Translaticiarum
 }
