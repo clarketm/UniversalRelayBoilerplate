@@ -1,13 +1,22 @@
 // @flow
 
+import Async from 'react-code-splitting'
 import Button from 'material-ui/Button'
 import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { withStyles } from 'material-ui/styles'
 
-//const RichTextEditor = typeof document !== 'undefined' ? import('react-rte') : null
+// ZZZ total hack, to disable the "only one instance of babel-polyfill is allowed" error
+if (global) {
+  global._babelPolyfill = null
+} else {
+  _babelPolyfill = null
+}
+
+import RichTextEditor from 'react-rte'
+
+import { withStyles } from 'material-ui/styles'
 
 const styles = theme => ({
   container: {
@@ -25,7 +34,7 @@ const styles = theme => ({
   },
 })
 
-class EnsayoProperties extends React.Component<
+class EnsayoInPlaceEditProperties extends React.Component<
   {
     Ensayo_Title: string,
     Ensayo_Description: string,
@@ -37,7 +46,7 @@ class EnsayoProperties extends React.Component<
   {
     Ensayo_Title: string,
     Ensayo_Description: string,
-    //    Ensayo_Content_RTE: Object,
+    Ensayo_Content_RTE: Object,
   },
 > {
   constructor(props: Object, context: Object) {
@@ -48,21 +57,15 @@ class EnsayoProperties extends React.Component<
     this.state = {
       Ensayo_Title,
       Ensayo_Description,
-      /*
-      Ensayo_Content_RTE: RichTextEditor
-        ? RichTextEditor.createValueFromString(Ensayo_Content, 'html')
-        : {},
-        */
+      Ensayo_Content_RTE: RichTextEditor.createValueFromString(Ensayo_Content, 'html'),
     }
   }
 
-  /*
   _handle_OnChange_RTE_Ensayo_Content = value => {
     this.setState({
       Ensayo_Content_RTE: value,
     })
   }
-  */
 
   _handle_Close = () => {
     this.props.handlerClose()
@@ -73,7 +76,7 @@ class EnsayoProperties extends React.Component<
       Ensayo_Title: this.state.Ensayo_Title,
       Ensayo_Description: this.state.Ensayo_Description,
       Ensayo_Content: '',
-      //Ensayo_Content: this.state.Ensayo_Content_RTE.toString('html'),
+      Ensayo_Content: this.state.Ensayo_Content_RTE.toString('html'),
     })
 
     this.props.handlerClose()
@@ -101,6 +104,14 @@ class EnsayoProperties extends React.Component<
               value={Ensayo_Description}
               onChange={event => this.setState({ Ensayo_Description: event.target.value })}
             />
+            <div className={classes.richTextContainer}>
+              {RichTextEditor == null
+                ? <div />
+                : <RichTextEditor
+                    value={this.state.Ensayo_Content_RTE}
+                    onChange={this._handle_OnChange_RTE_Ensayo_Content}
+                  />}
+            </div>
           </DialogContent>
           <DialogActions>
             <Button onClick={this._handle_Close}>Cancel</Button>
@@ -114,16 +125,4 @@ class EnsayoProperties extends React.Component<
   }
 }
 
-/*
-<div className={classes.richTextContainer}>
-  {RichTextEditor == null
-    ? <div />
-    : <RichTextEditor
-        value={this.state.Ensayo_Content_RTE}
-        onChange={this._handle_OnChange_RTE_Ensayo_Content}
-      />}
-</div>
-
-*/
-
-export default withStyles(styles)(EnsayoProperties)
+export default withStyles(styles)(EnsayoInPlaceEditProperties)
