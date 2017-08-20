@@ -7,13 +7,6 @@ import TextField from 'material-ui/TextField'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-// ZZZ total hack, to disable the "only one instance of babel-polyfill is allowed" error
-if (global) {
-  global._babelPolyfill = null
-} else {
-  _babelPolyfill = null
-}
-
 import RichTextEditor from 'react-rte'
 
 import { withStyles } from 'material-ui/styles'
