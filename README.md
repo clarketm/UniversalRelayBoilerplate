@@ -26,8 +26,8 @@ Please follow [@CodeFoundries](https://twitter.com/CodeFoundries) and [our blog]
 
 We make our best to support all the features and the examples in working order. However, there are a few features that we do not have the resources to maintain and test:
 
-* Windows support. `urb-tools-windows` contains custom scripts for working on windows, but we do not actively test those as we make changes.
-* DynamoDB support. `urb-persister-dynamodb` contains the code for working with AWS DynamoDB, but we do not actively test it as we make changes.
+* Windows support. [urb-tools-windows](https://github.com/codefoundries/UniversalRelayBoilerplateExtra/tree/master/units/urb-tools-windows) contains custom scripts for working on windows, but we do not actively test those as we make changes.
+* DynamoDB support. [urb-persister-dynamodb](https://github.com/codefoundries/UniversalRelayBoilerplateExtra/tree/master/units/urb-persister-dynamodb) contains the code for working with AWS DynamoDB, but we do not actively test it as we make changes.
 * React Native. Support will be added back once the refactoring of the web part is done.
 
 Pull requests fixing any issues and enhancing the above would be highly appreciated and merged.
@@ -86,11 +86,9 @@ For the most up to date setup instructions please go to the [development setup i
 
 The setup is for OS X only. Prerequisites:
 
-* **Install [Node.js](https://nodejs.org)**.  
-* **Install [Git](https://git-scm.com/downloads)**.
-* **Make sure** that Node.js is at least version 6.0 and NPM is at least version 3.
-* **In order to speed up NPM** run `npm set progress=false`. This [speeds up NPM significantly](https://twitter.com/gavinjoyce/status/691773956144119808).
-* **Install react-native-cli** run `npm install -g react-native-cli`
+* **Install [Node.js](https://nodejs.org)** minimum version: `8.1.0`.  
+* **Install [Git](https://git-scm.com/downloads)** minimum version: `5.0.0`.  
+* **Install react-native-cli** run `npm install -g react-native-cli` for app development with React Native only.
 * **Install yarn** run `npm install -g yarn`
 
 ## Initial Project setup on local machine

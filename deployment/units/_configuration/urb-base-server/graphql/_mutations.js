@@ -1,21 +1,33 @@
-Object.defineProperty(exports,"__esModule",{value:true});
+// @flow
 
-var _EnsayoAdd=require('../../../urb-example-ensayo-server/graphql/mutation/EnsayoAdd');var _EnsayoAdd2=_interopRequireDefault(_EnsayoAdd);
-var _EnsayoDelete=require('../../../urb-example-ensayo-server/graphql/mutation/EnsayoDelete');var _EnsayoDelete2=_interopRequireDefault(_EnsayoDelete);
-var _EnsayoUpdate=require('../../../urb-example-ensayo-server/graphql/mutation/EnsayoUpdate');var _EnsayoUpdate2=_interopRequireDefault(_EnsayoUpdate);
-var _ToDoAdd=require('../../../urb-example-todo-server/graphql/mutation/ToDoAdd');var _ToDoAdd2=_interopRequireDefault(_ToDoAdd);
-var _ToDoDelete=require('../../../urb-example-todo-server/graphql/mutation/ToDoDelete');var _ToDoDelete2=_interopRequireDefault(_ToDoDelete);
-var _ToDoListUpdateMarkAll=require('../../../urb-example-todo-server/graphql/mutation/ToDoListUpdateMarkAll');var _ToDoListUpdateMarkAll2=_interopRequireDefault(_ToDoListUpdateMarkAll);
-var _ToDoUpdateRename=require('../../../urb-example-todo-server/graphql/mutation/ToDoUpdateRename');var _ToDoUpdateRename2=_interopRequireDefault(_ToDoUpdateRename);
-var _ToDoUpdateStatus=require('../../../urb-example-todo-server/graphql/mutation/ToDoUpdateStatus');var _ToDoUpdateStatus2=_interopRequireDefault(_ToDoUpdateStatus);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
+import EnsayoAdd from '../../../urb-example-ensayo-server/graphql/mutation/EnsayoAdd'
+import EnsayoDelete from '../../../urb-example-ensayo-server/graphql/mutation/EnsayoDelete'
+import EnsayoUpdate from '../../../urb-example-ensayo-server/graphql/mutation/EnsayoUpdate'
+import InscriptioAdd from '../../../urb-example-inscriptio-server/graphql/mutation/InscriptioAdd'
+import InscriptioDelete from '../../../urb-example-inscriptio-server/graphql/mutation/InscriptioDelete'
+import InscriptioUpdate from '../../../urb-example-inscriptio-server/graphql/mutation/InscriptioUpdate'
+import ToDoAdd from '../../../urb-example-todo-server/graphql/mutation/ToDoAdd'
+import ToDoDelete from '../../../urb-example-todo-server/graphql/mutation/ToDoDelete'
+import ToDoListUpdateMarkAll from '../../../urb-example-todo-server/graphql/mutation/ToDoListUpdateMarkAll'
+import ToDoUpdateRename from '../../../urb-example-todo-server/graphql/mutation/ToDoUpdateRename'
+import ToDoUpdateStatus from '../../../urb-example-todo-server/graphql/mutation/ToDoUpdateStatus'
+import TranslaticiarumAdd from '../../../urb-example-translaticiarum-server/graphql/mutation/TranslaticiarumAdd'
+import TranslaticiarumDelete from '../../../urb-example-translaticiarum-server/graphql/mutation/TranslaticiarumDelete'
+import TranslaticiarumUpdate from '../../../urb-example-translaticiarum-server/graphql/mutation/TranslaticiarumUpdate'
 
-{
-EnsayoAdd:_EnsayoAdd2.default,
-EnsayoDelete:_EnsayoDelete2.default,
-EnsayoUpdate:_EnsayoUpdate2.default,
-ToDoAdd:_ToDoAdd2.default,
-ToDoDelete:_ToDoDelete2.default,
-ToDoListUpdateMarkAll:_ToDoListUpdateMarkAll2.default,
-ToDoUpdateRename:_ToDoUpdateRename2.default,
-ToDoUpdateStatus:_ToDoUpdateStatus2.default};
-//# sourceMappingURL=_mutations.js.map
+export default {
+  EnsayoAdd,
+  EnsayoDelete,
+  EnsayoUpdate,
+  InscriptioAdd,
+  InscriptioDelete,
+  InscriptioUpdate,
+  ToDoAdd,
+  ToDoDelete,
+  ToDoListUpdateMarkAll,
+  ToDoUpdateRename,
+  ToDoUpdateStatus,
+  TranslaticiarumAdd,
+  TranslaticiarumDelete,
+  TranslaticiarumUpdate,
+}

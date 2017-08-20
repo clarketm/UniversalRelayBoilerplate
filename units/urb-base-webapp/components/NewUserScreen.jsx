@@ -4,7 +4,7 @@ import AddIcon from 'material-ui-icons/Add'
 import Button from 'material-ui/Button'
 import Card, { CardActions, CardHeader } from 'material-ui/Card'
 import { LinearProgress } from 'material-ui/Progress'
-import { createStyleSheet, withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Typography from 'material-ui/Typography'
 import PropTypes from 'prop-types'
@@ -12,24 +12,23 @@ import React from 'react'
 
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   card: {
     minWidth: 275,
   },
-}))
+})
 
-class NewUserScreen extends React.Component {
-  static propTypes = {
+class NewUserScreen extends React.Component<
+  {
     classes: PropTypes.object.isRequired,
-  }
-
-  state: {
+  },
+  {
     currentOperation: 'prompt' | 'creating' | 'success' | 'failure',
     errorMessage: string,
     UserAccount_Identifier: string,
     User_Secret: string,
-  }
-
+  },
+> {
   constructor(props: Object, context: Object) {
     super(props, context)
 
@@ -209,4 +208,4 @@ class NewUserScreen extends React.Component {
   }
 }
 
-export default withStyles(styleSheet)(NewUserScreen)
+export default withStyles(styles)(NewUserScreen)

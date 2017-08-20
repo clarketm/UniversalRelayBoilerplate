@@ -1,5 +1,13 @@
-Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
+// @flow
 
-var _ViewerFields=require('../../../urb-example-ensayo-server/graphql/type/_ViewerFields');var _ViewerFields2=_interopRequireDefault(_ViewerFields);
-var _ViewerFields3=require('../../../urb-example-todo-server/graphql/type/_ViewerFields');var _ViewerFields4=_interopRequireDefault(_ViewerFields3);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=_extends({},_ViewerFields2.default,_ViewerFields4.default);
-//# sourceMappingURL=_ViewerFields.js.map
+import urb_example_ensayo_server from '../../../urb-example-ensayo-server/graphql/type/_ViewerFields'
+import urb_example_inscriptio_server from '../../../urb-example-inscriptio-server/graphql/type/_ViewerFields'
+import urb_example_todo_server from '../../../urb-example-todo-server/graphql/type/_ViewerFields'
+import urb_example_translaticiarum_server from '../../../urb-example-translaticiarum-server/graphql/type/_ViewerFields'
+
+export default {
+  ...urb_example_ensayo_server,
+  ...urb_example_inscriptio_server,
+  ...urb_example_todo_server,
+  ...urb_example_translaticiarum_server,
+}

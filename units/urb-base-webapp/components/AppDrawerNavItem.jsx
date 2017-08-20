@@ -2,15 +2,15 @@
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 import Button from 'material-ui/Button'
 import Collapse from 'material-ui/transitions/Collapse'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import { ListItem } from 'material-ui/List'
 
 import Link from './Link'
 
-const styleSheet = createStyleSheet('AppDrawerNavItem', theme => ({
+const styles = theme => ({
   button: theme.mixins.gutters({
     borderRadius: 0,
     justifyContent: 'flex-start',
@@ -43,9 +43,9 @@ const styleSheet = createStyleSheet('AppDrawerNavItem', theme => ({
   activeButton: {
     color: theme.palette.text.primary,
   },
-}))
+})
 
-class AppDrawerNavItem extends Component {
+class AppDrawerNavItem extends React.Component<any, { open: boolean }> {
   static defaultProps = {
     openImmediately: false,
   }
@@ -106,4 +106,4 @@ AppDrawerNavItem.propTypes = {
   to: PropTypes.string,
 }
 
-export default withStyles(styleSheet)(AppDrawerNavItem)
+export default withStyles(styles)(AppDrawerNavItem)

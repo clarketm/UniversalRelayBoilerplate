@@ -518,10 +518,6 @@ declare module 'material-ui/styles/createGenerateClassName' {
   declare module.exports: any
 }
 
-declare module 'material-ui/styles/createStyleSheet' {
-  declare module.exports: any
-}
-
 declare module 'material-ui/styles/index' {
   declare module.exports: any
 }
@@ -1146,9 +1142,6 @@ declare module 'material-ui/styles/colorManipulator.js' {
 }
 declare module 'material-ui/styles/createGenerateClassName.js' {
   declare module.exports: $Exports<'material-ui/styles/createGenerateClassName'>
-}
-declare module 'material-ui/styles/createStyleSheet.js' {
-  declare module.exports: $Exports<'material-ui/styles/createStyleSheet'>
 }
 declare module 'material-ui/styles/index.js' {
   declare module.exports: $Exports<'material-ui/styles/index'>

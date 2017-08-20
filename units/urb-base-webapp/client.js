@@ -5,12 +5,18 @@ import 'babel-polyfill'
 
 import BrowserProtocol from 'farce/lib/BrowserProtocol'
 import createInitialFarceRouter from 'found/lib/createInitialFarceRouter'
+import createRender from 'found/lib/createRender'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
 import FetcherClient from './fetcherClient'
-import { createResolver, historyMiddlewares, render, routeConfig } from './router'
+import { createResolver, historyMiddlewares, routeConfig } from './router'
 import Wrapper from './components/Wrapper'
+
+// Include global CSS used in all units. Will not be chunked
+import '../_configuration/urb-base-webapp/global.css'
+
+const render = createRender({})
 
 //
 ;(async () => {
@@ -31,7 +37,8 @@ import Wrapper from './components/Wrapper'
   })
 
   ReactDOM.render(
-    <Wrapper>
+    // $FlowIssue - appData will be provided as variable by the isomorphic renderer
+    <Wrapper appData={appData}>
       <Router resolver={resolver} />
     </Wrapper>,
     document.getElementById('root'),

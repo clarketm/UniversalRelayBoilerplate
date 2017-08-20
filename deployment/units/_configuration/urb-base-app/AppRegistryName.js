@@ -1,6 +1,5 @@
-Object.defineProperty(exports,"__esModule",{value:true});
+// @flow
 
-var AppRegistryName='UniversalRelayBoilerplate';exports.default=
+const AppRegistryName = 'UniversalRelayBoilerplate'
 
-AppRegistryName;
-//# sourceMappingURL=AppRegistryName.js.map
+export default AppRegistryName

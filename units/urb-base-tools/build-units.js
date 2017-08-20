@@ -247,7 +247,6 @@ async function buildGraphQLSchema() {
 
 async function main() {
   const units = await getUnits()
-  console.log(units)
 
   const taskPromises = [
     createPackageJson(units),

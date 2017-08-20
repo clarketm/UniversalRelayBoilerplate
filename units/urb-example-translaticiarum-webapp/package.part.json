@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "graphql-iso-date": "3.2.0",
+    "moment": "2.18.1",
+    "react-big-calendar": "0.14.4"
+  }
+}

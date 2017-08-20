@@ -11,7 +11,7 @@ var _Divider=require('material-ui/Divider');var _Divider2=_interopRequireDefault
 
 var _AppDrawerNavItem=require('./AppDrawerNavItem');var _AppDrawerNavItem2=_interopRequireDefault(_AppDrawerNavItem);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
-var styleSheet=(0,_styles.createStyleSheet)('AppDrawer',function(theme){return{
+var styles=function styles(theme){return{
 paper:{
 width:250,
 backgroundColor:theme.palette.background.paper},
@@ -28,7 +28,7 @@ alignItems:'flex-start',
 justifyContent:'center'},
 
 anchor:{
-color:theme.palette.text.secondary}};});
+color:theme.palette.text.secondary}};};
 
 
 
@@ -36,7 +36,21 @@ function renderNavItems(){
 return(
 _react2.default.createElement(_List2.default,null,
 _react2.default.createElement(_AppDrawerNavItem2.default,{key:1,openImmediately:true,title:'To Dos',to:'/todo'}),
-_react2.default.createElement(_AppDrawerNavItem2.default,{key:2,openImmediately:true,title:'Ensayo',to:'/ensayo/edit'})));
+_react2.default.createElement(_AppDrawerNavItem2.default,{key:2,openImmediately:true,title:'Ensayo edit',to:'/ensayo/edit'}),
+_react2.default.createElement(_AppDrawerNavItem2.default,{
+key:3,
+openImmediately:true,
+title:'Ensayo in place',
+to:'/ensayo/in-place-edit'}),
+
+_react2.default.createElement(_AppDrawerNavItem2.default,{key:4,openImmediately:true,title:'Ensayo public',to:'/ensayo'}),
+_react2.default.createElement(_AppDrawerNavItem2.default,{key:5,openImmediately:true,title:'Inscriptio',to:'/inscriptio'}),
+_react2.default.createElement(_AppDrawerNavItem2.default,{
+key:6,
+openImmediately:true,
+title:'Translaticiarum',
+to:'/translaticiarum'})));
+
 
 
 }
@@ -66,7 +80,6 @@ return items;
 
 function AppDrawer(props){
 var classes=props.classes;
-var GITHUB_RELEASE_BASE_URL='https://github.com/callemall/material-ui/releases/tag/';
 
 return(
 _react2.default.createElement(_Drawer2.default,{
@@ -102,5 +115,5 @@ onRequestClose:_propTypes2.default.func.isRequired,
 open:_propTypes2.default.bool.isRequired};exports.default=
 
 
-(0,_styles.withStyles)(styleSheet)(AppDrawer);
+(0,_styles.withStyles)(styles)(AppDrawer);
 //# sourceMappingURL=AppDrawer.js.map

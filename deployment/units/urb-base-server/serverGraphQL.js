@@ -9,7 +9,7 @@ var _checkCredentials=require('./checkCredentials');
 
 
 
-var _siteSettings=require('../_configuration/urb-base-webapp/siteSettings');
+var _siteSettings=require('../_configuration/urb-base-server/siteSettings');
 var _logServerRequest=require('./logServerRequest');var _logServerRequest2=_interopRequireDefault(_logServerRequest);
 var _ObjectManager=require('./graphql/ObjectManager');
 var _requestLoggers=require('../_configuration/urb-base-server/requestLoggers');

@@ -47,9 +47,10 @@ props,context));_this.
 
 
 
+
 handle_onResize=function(){
-_this.rbContext.viewportDimensions.handle_onResize();
-};_this.rbContext={};_this.rbContext.viewportDimensions=new _ViewportDimensions2.default();_this.muiTheme=(0,_styles.createMuiTheme)({palette:(0,_palette2.default)({primary:_blue2.default,accent:_pink2.default,type:'light'})});return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbContext:this.rbContext};}},{key:'render',value:function render()
+_this.rbCtx.viewportDimensions.handle_onResize();
+};_this.rbCtx={};_this.rbCtx.viewportDimensions=new _ViewportDimensions2.default();_this.rbCtx.appData=_this.props.appData;_this.muiTheme=(0,_styles.createMuiTheme)({palette:(0,_palette2.default)({primary:_blue2.default,accent:_pink2.default,type:'light'})});return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbCtx:this.rbCtx};}},{key:'render',value:function render()
 
 {
 return(
@@ -59,5 +60,5 @@ this.props.children)));
 
 
 
-}}]);return Wrapper;}(_react2.default.Component);Wrapper.childContextTypes={rbContext:_propTypes2.default.object};exports.default=Wrapper;
+}}]);return Wrapper;}(_react2.default.Component);Wrapper.childContextTypes={rbCtx:_propTypes2.default.object};exports.default=Wrapper;
 //# sourceMappingURL=Wrapper.js.map

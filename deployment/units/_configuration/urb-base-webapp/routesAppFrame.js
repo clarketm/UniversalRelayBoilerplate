@@ -1,7 +1,13 @@
-Object.defineProperty(exports,"__esModule",{value:true});
+// @flow
 
-var _routeAppFrameEnsayo=require('../../urb-example-ensayo-webapp/routeAppFrameEnsayo');var _routeAppFrameEnsayo2=_interopRequireDefault(_routeAppFrameEnsayo);
-var _routeAppFrameTodo=require('../../urb-example-todo-webapp/routeAppFrameTodo');var _routeAppFrameTodo2=_interopRequireDefault(_routeAppFrameTodo);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
+import routeAppFrameEnsayo from '../../urb-example-ensayo-webapp/routeAppFrameEnsayo'
+import routeAppFrameInscriptio from '../../urb-example-inscriptio-webapp/routeAppFrameInscriptio'
+import routeAppFrameTodo from '../../urb-example-todo-webapp/routeAppFrameTodo'
+import routeAppFrameTranslaticiarum from '../../urb-example-translaticiarum-webapp/routeAppFrameTranslaticiarum'
 
-[_routeAppFrameEnsayo2.default,_routeAppFrameTodo2.default];
-//# sourceMappingURL=routesAppFrame.js.map
+export default [
+  routeAppFrameEnsayo,
+  routeAppFrameInscriptio,
+  routeAppFrameTodo,
+  routeAppFrameTranslaticiarum,
+]

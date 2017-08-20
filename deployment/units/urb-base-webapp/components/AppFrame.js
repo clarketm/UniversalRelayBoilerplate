@@ -12,7 +12,7 @@ var _Typography=require('material-ui/Typography');var _Typography2=_interopRequi
 var _AppDrawer=require('./AppDrawer');var _AppDrawer2=_interopRequireDefault(_AppDrawer);
 var _NavBarLoginButton=require('./NavBarLoginButton');var _NavBarLoginButton2=_interopRequireDefault(_NavBarLoginButton);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}
 
-var styleSheet=(0,_styles.createStyleSheet)(function(theme){return _defineProperty({
+var styles=function styles(theme){return _defineProperty({
 '@global':{
 html:{
 boxSizing:'border-box'},
@@ -63,14 +63,12 @@ appBarShift:{
 width:'calc(100% - 250px)'},
 
 navIconHide:{
-display:'none'}});});var
+display:'none'}});};var
 
 
 
 
 AppFrame=function(_Component){_inherits(AppFrame,_Component);
-
-
 function AppFrame(props,context){_classCallCheck(this,AppFrame);var _this=_possibleConstructorReturn(this,(AppFrame.__proto__||Object.getPrototypeOf(AppFrame)).call(this,
 props,context));_this.
 
@@ -134,5 +132,5 @@ children));
 
 
 (0,_reactRelay.createFragmentContainer)(
-(0,_styles.withStyles)(styleSheet)(AppFrame),{Viewer:function Viewer(){return require('./__generated__/AppFrame_Viewer.graphql');}});
+(0,_styles.withStyles)(styles)(AppFrame),{Viewer:function Viewer(){return require('./__generated__/AppFrame_Viewer.graphql');}});
 //# sourceMappingURL=AppFrame.js.map

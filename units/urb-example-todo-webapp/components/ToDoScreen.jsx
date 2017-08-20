@@ -1,7 +1,7 @@
 // @flow
 
 import Card, { CardHeader } from 'material-ui/Card'
-import { createStyleSheet, withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
@@ -10,24 +10,23 @@ import TextField from 'material-ui/TextField'
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 import ToDoAddMutation from '../../urb-example-todo-client/relay/ToDoAddMutation'
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   card: {
     minWidth: 275,
   },
-}))
+})
 
-class ToDoScreen extends React.Component {
-  static propTypes = {
+class ToDoScreen extends React.Component<
+  {
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,
     relay: PropTypes.object.isRequired,
-  }
-
-  state: {
+  },
+  {
     ToDo_Text_New: string,
-  }
-
+  },
+> {
   constructor(props, context) {
     super(props, context)
 
@@ -77,7 +76,7 @@ class ToDoScreen extends React.Component {
 }
 
 export default createFragmentContainer(
-  withStyles(styleSheet)(ToDoScreen),
+  withStyles(styles)(ToDoScreen),
   graphql`
     fragment ToDoScreen_Viewer on Viewer {
       id
