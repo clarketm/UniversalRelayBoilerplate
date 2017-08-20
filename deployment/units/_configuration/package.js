@@ -1,5 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});
+// @flow
 
-var name=exports.name='urb';
-var version=exports.version='0.1.0.29';
-//# sourceMappingURL=package.js.map
+export const name = 'urb'
+export const version = '0.1.0.29'
