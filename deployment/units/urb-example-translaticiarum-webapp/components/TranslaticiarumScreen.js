@@ -1,6 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-var _reactHelmet=require('react-helmet');var _reactHelmet2=_interopRequireDefault(_reactHelmet);
 var _Card=require('material-ui/Card');var _Card2=_interopRequireDefault(_Card);
 var _styles=require('material-ui/styles');
 var _moment=require('moment');var _moment2=_interopRequireDefault(_moment);
@@ -43,7 +42,7 @@ _this.setState({calendarView:view});
 
 _handle_onSelectSlot=function(slotInfo){
 console.log(slotInfo);
-};_this.state={calendarView:'day'};return _this;}_createClass(TranslaticiarumScreen,[{key:'render',value:function render()
+};_this.state={calendarView:'week'};return _this;}_createClass(TranslaticiarumScreen,[{key:'render',value:function render()
 
 {var _props=
 this.props,classes=_props.classes,Viewer=_props.Viewer;
@@ -65,9 +64,6 @@ console.log(calendarEvents);
 
 return(
 _react2.default.createElement(_ResponsiveContentArea2.default,null,
-_react2.default.createElement(_reactHelmet2.default,null,
-_react2.default.createElement('link',{rel:'stylesheet',type:'text/css',href:'react-big-calendar.css'})),
-
 _react2.default.createElement(_Card2.default,{className:classes.card},
 _react2.default.createElement(_Card.CardHeader,{title:'Translaticiarum'}),
 

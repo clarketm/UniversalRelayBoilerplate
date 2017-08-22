@@ -9,10 +9,10 @@ import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
 import EnsayoDeleteMutation from '../../urb-example-ensayo-client/relay/EnsayoDeleteMutation'
-import EnsayoProperties from './EnsayoProperties'
+import EnsayoInPlaceEditProperties from './EnsayoInPlaceEditProperties'
 import EnsayoUpdateMutation from '../../urb-example-ensayo-client/relay/EnsayoUpdateMutation'
 
-class EnsayoInPlaceItem extends React.Component<
+class EnsayoInPlaceEditItem extends React.Component<
   any,
   {
     anchorEl: ?Object,
@@ -36,8 +36,8 @@ class EnsayoInPlaceItem extends React.Component<
     }
   }
 
-  _handle_Update_Properties = ensayoProperties => {
-    const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = ensayoProperties
+  _handle_Update_Properties = EnsayoInPlaceEditProperties => {
+    const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = EnsayoInPlaceEditProperties
     const { relay, Ensayo } = this.props
 
     EnsayoUpdateMutation.commit(
@@ -101,7 +101,7 @@ class EnsayoInPlaceItem extends React.Component<
           </MenuItem>
         </Menu>
         {propertiesIsOpen &&
-          <EnsayoProperties
+          <EnsayoInPlaceEditProperties
             Ensayo_Title={Ensayo_Title}
             Ensayo_Description={Ensayo_Description}
             Ensayo_Content={Ensayo_Content}
@@ -113,14 +113,14 @@ class EnsayoInPlaceItem extends React.Component<
   }
 }
 
-export default createFragmentContainer(EnsayoInPlaceItem, {
+export default createFragmentContainer(EnsayoInPlaceEditItem, {
   Viewer: graphql`
-    fragment EnsayoInPlaceItem_Viewer on Viewer {
+    fragment EnsayoInPlaceEditItem_Viewer on Viewer {
       id
     }
   `,
   Ensayo: graphql`
-    fragment EnsayoInPlaceItem_Ensayo on Ensayo {
+    fragment EnsayoInPlaceEditItem_Ensayo on Ensayo {
       id
       Ensayo_Title
       Ensayo_Description
