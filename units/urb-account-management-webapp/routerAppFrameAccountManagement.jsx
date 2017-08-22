@@ -1,0 +1,18 @@
+// @flow
+
+import Async from 'react-code-splitting'
+import { graphql } from 'react-relay'
+import React from 'react'
+import Route from 'found/lib/Route'
+
+const LogoutScreen = props =>
+  <Async load={import('./components/LogoutScreen')} componentProps={props} />
+const NewUserScreen = props =>
+  <Async load={import('./components/NewUserScreen')} componentProps={props} />
+
+export default (
+  <Route path="user">
+    <Route path="new" Component={NewUserScreen} />
+    <Route path="logout" Component={LogoutScreen} />
+  </Route>
+)
