@@ -1,6 +1,5 @@
 {
-  "extends": "4catalyzer-react",
-  "env": {
-    "browser": true
+  "parser": "babel-eslint",
+  "rules": {
   }
 }
