@@ -1,0 +1,4 @@
+{
+  "extends": ["prettier", "prettier/flowtype", "prettier/react"],
+  "parser": "babel-eslint"
+}
