@@ -84,7 +84,7 @@ _this.setState({drawerOpen:!_this.state.drawerOpen});
 };_this.state={drawerOpen:false};return _this;}_createClass(AppFrame,[{key:'render',value:function render()
 
 {var _props=
-this.props,children=_props.children,classes=_props.classes,width=_props.width,Viewer=_props.Viewer;
+this.props,children=_props.children,classes=_props.classes,Viewer=_props.Viewer;
 
 var drawerDocked=false;
 
