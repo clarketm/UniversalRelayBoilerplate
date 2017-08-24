@@ -76,6 +76,7 @@ const config = {
               ]),
             },
           },
+          { loader: 'eslint-loader' },
         ],
         exclude: /node_modules/,
       },

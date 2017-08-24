@@ -10,7 +10,7 @@ import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 
 import AppDrawer from './AppDrawer'
-import NavBarLoginButton from './NavBarLoginButton'
+import NavBarLoginButton from '../../urb-account-management-webapp/components/NavBarLoginButton'
 
 const styles = theme => ({
   '@global': {

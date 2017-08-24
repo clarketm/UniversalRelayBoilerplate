@@ -73,10 +73,10 @@ export default class ViewportDimensions {
       muiSize = MEDIUM // totalWidth < 768
     else muiSize = SMALL
 
-    let navDrawerIsDocked = false
+    //    let navDrawerIsDocked = false
     let contentWidth = totalWidth
     if (muiSize === LARGE) {
-      navDrawerIsDocked = true
+      //      navDrawerIsDocked = true
       contentWidth -= 256 // TODO x0100 Make it a setting
     }
 
@@ -107,7 +107,7 @@ export default class ViewportDimensions {
 
     // Update all subscribed components
     for (let [component, dimensionsSubscribed] of this.subscribedComponents) {
-      if (component.viewportDimensionsVersion != viewportDimensionsVersion) {
+      if (component.viewportDimensionsVersion !== viewportDimensionsVersion) {
         component.viewportDimensionsVersion = viewportDimensionsVersion
 
         // Did the component subscribe to the changes that were actually made?
