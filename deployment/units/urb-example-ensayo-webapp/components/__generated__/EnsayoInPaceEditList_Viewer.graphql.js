@@ -71,7 +71,7 @@ const fragment /*: ConcreteFragment*/ = {
                 },
                 {
                   "kind": "FragmentSpread",
-                  "name": "EnsayoInPlaceItem_Ensayo",
+                  "name": "EnsayoInPlaceEditItem_Ensayo",
                   "args": null
                 },
                 {
@@ -131,7 +131,7 @@ const fragment /*: ConcreteFragment*/ = {
     },
     {
       "kind": "FragmentSpread",
-      "name": "EnsayoInPlaceItem_Viewer",
+      "name": "EnsayoInPlaceEditItem_Viewer",
       "args": null
     }
   ],

@@ -37,8 +37,7 @@ const render = createRender({})
   })
 
   ReactDOM.render(
-    // $FlowIssue - appData will be provided as variable by the isomorphic renderer
-    <Wrapper appData={appData}>
+    <Wrapper appData={window.appData}>
       <Router resolver={resolver} />
     </Wrapper>,
     document.getElementById('root'),

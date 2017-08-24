@@ -44,8 +44,8 @@ props,context));_this.
 
 isUnmounted=false;_this.state={center:{lat:34.0522,lng:-118.243},markers:[]};return _this;}_createClass(InscriptioScreen,[{key:'render',value:function render()
 
-{var _props=
-this.props,classes=_props.classes,Viewer=_props.Viewer;
+{var
+classes=this.props.classes;
 console.log(this.context.rbCtx.appData);
 
 var googleMapURL=
@@ -53,10 +53,6 @@ var googleMapURL=
 this.context.rbCtx.appData.api.googleMapsJavascriptAPI;
 
 console.log(googleMapURL);
-
-var markers=[];
-
-var xxx=this;
 
 return(
 _react2.default.createElement(_ResponsiveContentArea2.default,null,

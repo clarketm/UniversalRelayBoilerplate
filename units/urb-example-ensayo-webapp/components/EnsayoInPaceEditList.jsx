@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
-import EnsayoInPlaceItem from './EnsayoInPlaceItem'
+import EnsayoInPlaceEditItem from './EnsayoInPlaceEditItem'
 
 class EnsayoInPaceEditList extends React.Component<
   {
@@ -22,7 +22,7 @@ class EnsayoInPaceEditList extends React.Component<
       <div>
         <List>
           {Ensayos.edges.map(({ node }) =>
-            <EnsayoInPlaceItem key={node.id} Viewer={Viewer} Ensayo={node} />,
+            <EnsayoInPlaceEditItem key={node.id} Viewer={Viewer} Ensayo={node} />,
           )}
         </List>
       </div>
@@ -38,12 +38,12 @@ export default createFragmentContainer(
         edges {
           node {
             id
-            ...EnsayoInPlaceItem_Ensayo
+            ...EnsayoInPlaceEditItem_Ensayo
           }
         }
       }
       id
-      ...EnsayoInPlaceItem_Viewer
+      ...EnsayoInPlaceEditItem_Viewer
     }
   `,
 )

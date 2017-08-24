@@ -10,8 +10,6 @@ import { Environment, Network, RecordSource, Store } from 'relay-runtime'
 
 import routesAppFrame from '../_configuration/urb-base-webapp/routesAppFrame'
 import AppFrame from './components/AppFrame'
-import LogoutScreen from './components/LogoutScreen'
-import NewUserScreen from './components/NewUserScreen'
 
 export const historyMiddlewares = [queryMiddleware]
 
@@ -37,10 +35,5 @@ export const routeConfig = makeRouteConfig(
     `}
   >
     {routesAppFrame}
-
-    <Route path="user">
-      <Route path="new" Component={NewUserScreen} />
-      <Route path="logout" Component={LogoutScreen} />
-    </Route>
   </Route>,
 )

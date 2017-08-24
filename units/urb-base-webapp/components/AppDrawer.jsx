@@ -55,29 +55,6 @@ function renderNavItems() {
   )
 }
 
-function reduceChildRoutes(props, items, childRoute, index) {
-  if (childRoute.nav) {
-    if (childRoute.childRoutes && childRoute.childRoutes.length) {
-      const openImmediately = props.routes.indexOf(childRoute) !== -1 || false
-      items.push(
-        <AppDrawerNavItem key={index} openImmediately={openImmediately} title={childRoute.title}>
-          {renderNavItems()}
-        </AppDrawerNavItem>,
-      )
-    } else {
-      items.push(
-        <AppDrawerNavItem
-          key={index}
-          title={childRoute.title}
-          to={childRoute.path}
-          onClick={props.onRequestClose}
-        />,
-      )
-    }
-  }
-  return items
-}
-
 function AppDrawer(props) {
   const classes = props.classes
 

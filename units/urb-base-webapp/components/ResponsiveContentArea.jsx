@@ -3,7 +3,6 @@
 import { withStyles } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
-import spacing from 'material-ui/styles/spacing'
 
 const styles = theme => ({
   content: theme.mixins.gutters({

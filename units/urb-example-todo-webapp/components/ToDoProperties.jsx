@@ -2,7 +2,6 @@
 
 import Button from 'material-ui/Button'
 import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog'
-import FormControl from 'material-ui/Form/FormControl'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { withStyles } from 'material-ui/styles'
@@ -12,9 +11,6 @@ const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: theme.spacing.unit,
   },
 })
 

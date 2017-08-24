@@ -10,7 +10,7 @@ import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 
 import AppDrawer from './AppDrawer'
-import NavBarLoginButton from './NavBarLoginButton'
+import NavBarLoginButton from '../../urb-account-management-webapp/components/NavBarLoginButton'
 
 const styles = theme => ({
   '@global': {
@@ -84,7 +84,7 @@ class AppFrame extends Component<any, { drawerOpen: boolean }> {
   }
 
   render() {
-    const { children, classes, width, Viewer } = this.props
+    const { children, classes, Viewer } = this.props
 
     let drawerDocked = false
 

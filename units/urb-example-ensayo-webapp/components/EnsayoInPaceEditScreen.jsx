@@ -9,7 +9,7 @@ import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
 import EnsayoAddMutation from '../../urb-example-ensayo-client/relay/EnsayoAddMutation'
-import EnsayoProperties from './EnsayoProperties'
+import EnsayoInPlaceEditProperties from './EnsayoInPlaceEditProperties'
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
 const styles = theme => ({
@@ -36,8 +36,8 @@ class EnsayoInPaceEditScreen extends React.Component<
     this.state = { propertiesIsOpen: false }
   }
 
-  _handle_updateHandler_Ensayo = ensayoProperties => {
-    const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = ensayoProperties
+  _handle_updateHandler_Ensayo = EnsayoInPlaceEditProperties => {
+    const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = EnsayoInPlaceEditProperties
     const { relay, Viewer } = this.props
 
     EnsayoAddMutation.commit(
@@ -82,7 +82,7 @@ class EnsayoInPaceEditScreen extends React.Component<
           </CardContent>
 
           {propertiesIsOpen &&
-            <EnsayoProperties
+            <EnsayoInPlaceEditProperties
               Ensayo_Title=""
               Ensayo_Content=""
               Ensayo_Description=""
