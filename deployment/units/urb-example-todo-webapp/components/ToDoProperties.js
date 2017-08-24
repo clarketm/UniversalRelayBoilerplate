@@ -2,7 +2,6 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
 var _Dialog=require('material-ui/Dialog');var _Dialog2=_interopRequireDefault(_Dialog);
-var _FormControl=require('material-ui/Form/FormControl');var _FormControl2=_interopRequireDefault(_FormControl);
 var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _styles=require('material-ui/styles');
@@ -11,10 +10,7 @@ var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireD
 var styles=function styles(theme){return{
 container:{
 display:'flex',
-flexWrap:'wrap'},
-
-formControl:{
-margin:theme.spacing.unit}};};var
+flexWrap:'wrap'}};};var
 
 
 

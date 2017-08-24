@@ -32,89 +32,84 @@ LoginDialog=function(_React$Component){_inherits(LoginDialog,_React$Component);
 
 
 
-function LoginDialog(props,context){_classCallCheck(this,LoginDialog);var _this=_possibleConstructorReturn(this,(LoginDialog.__proto__||Object.getPrototypeOf(LoginDialog)).call(this,
-props,context));_initialiseProps.call(_this);var _this$props=
+function LoginDialog(props,context){var _this2=this;_classCallCheck(this,LoginDialog);var _this=_possibleConstructorReturn(this,(LoginDialog.__proto__||Object.getPrototypeOf(LoginDialog)).call(this,
+props,context));_this.
 
-_this.props,UserAccount_Identifier=_this$props.UserAccount_Identifier,User_Secret=_this$props.User_Secret;
 
-_this.state={
+
+
+
+
+
+
+
+_handle_Close=function(){
+_this.props.handlerClose();
+};_this.
+
+_handle_onClick_LogIn=function _callee(){var _this$state,UserAccount_Identifier,User_Secret,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_this$state=
+_this.state,UserAccount_Identifier=_this$state.UserAccount_Identifier,User_Secret=_this$state.User_Secret;
+
+_this.setState({
+currentOperation:'in progress',
+User_Secret:''});_context.prev=2;
+
+
+
+loc=window.location;
+host=loc.protocol+'//'+loc.hostname+':'+loc.port;_context.next=7;return regeneratorRuntime.awrap(
+
+fetch(host+'/auth/login',{
+method:'POST',
+credentials:'same-origin',
+headers:{
+'Content-Type':'application/json'},
+
+body:JSON.stringify({
+UserAccount_Identifier:UserAccount_Identifier,
+User_Secret:User_Secret})}));case 7:response=_context.sent;_context.next=10;return regeneratorRuntime.awrap(
+
+
+
+response.json());case 10:responseData=_context.sent;
+
+if(responseData.success){
+
+window.location.replace(window.location.href,'');
+}else{
+
+_this.setState({currentOperation:'failure',errorMessage:responseData.error});
+}_context.next=17;break;case 14:_context.prev=14;_context.t0=_context['catch'](2);
+
+
+
+_this.setState({
+currentOperation:'failure',
+errorMessage:
+'Did not receive proper response from server. Please try again. Message:'+_context.t0.message});case 17:case'end':return _context.stop();}}},null,_this2,[[2,14]]);};_this.
+
+
+
+
+_handle_onCLick_NewUser=function(){
+_this.props.handlerNewUser();
+};_this.
+
+_handle_onCLick_CancelLogIn=function(){
+_this.setState({
+currentOperation:'failure',
+errorMessage:'Log in has been canceled'});
+
+};_this.
+
+_handle_onClick_TryAgain=function(){
+_this.setState({
 currentOperation:'challenge',
-errorMessage:'',
-UserAccount_Identifier:'',
-User_Secret:''};return _this;
+errorMessage:''});
 
-}_createClass(LoginDialog,[{key:'renderChallenge',value:function renderChallenge()
+};_this.state={currentOperation:'challenge',errorMessage:'',UserAccount_Identifier:'',User_Secret:''};return _this;}_createClass(LoginDialog,[{key:'renderChallenge',value:function renderChallenge()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{var _this2=this;var _props=
+{var _this3=this;var _props=
 this.props,classes=_props.classes,open=_props.open;var _state=
 this.state,UserAccount_Identifier=_state.UserAccount_Identifier,User_Secret=_state.User_Secret;
 
@@ -127,14 +122,14 @@ _react2.default.createElement(_TextField2.default,{
 label:'Account Name',
 fullWidth:true,
 value:UserAccount_Identifier,
-onChange:function onChange(event){return _this2.setState({UserAccount_Identifier:event.target.value});}}),
+onChange:function onChange(event){return _this3.setState({UserAccount_Identifier:event.target.value});}}),
 
 _react2.default.createElement(_TextField2.default,{
 label:'Password',
 type:'password',
 fullWidth:true,
 value:User_Secret,
-onChange:function onChange(event){return _this2.setState({User_Secret:event.target.value});}})),
+onChange:function onChange(event){return _this3.setState({User_Secret:event.target.value});}})),
 
 
 _react2.default.createElement(_Dialog.DialogActions,null,
@@ -151,8 +146,8 @@ _react2.default.createElement(_Button2.default,{color:'primary',onClick:this._ha
 
 }},{key:'renderInProgress',value:function renderInProgress()
 
-{var _props2=
-this.props,classes=_props2.classes,open=_props2.open;var
+{var
+open=this.props.open;var
 UserAccount_Identifier=this.state.UserAccount_Identifier;
 
 return(
@@ -176,8 +171,8 @@ _react2.default.createElement(_Button2.default,{color:'accent',onClick:this._han
 
 }},{key:'renderFailure',value:function renderFailure()
 
-{var _props3=
-this.props,classes=_props3.classes,open=_props3.open;var _state2=
+{var
+open=this.props.open;var _state2=
 this.state,UserAccount_Identifier=_state2.UserAccount_Identifier,errorMessage=_state2.errorMessage;
 
 return(
@@ -210,7 +205,7 @@ currentOperation==='in progress'&&this.renderInProgress(),
 currentOperation==='failure'&&this.renderFailure()));
 
 
-}}]);return LoginDialog;}(_react2.default.Component);var _initialiseProps=function _initialiseProps(){var _this3=this;this._handle_Close=function(){_this3.props.handlerClose();};this._handle_onClick_LogIn=function _callee(){var _state3,UserAccount_Identifier,User_Secret,loc,host,response,responseData;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_state3=_this3.state,UserAccount_Identifier=_state3.UserAccount_Identifier,User_Secret=_state3.User_Secret;_this3.setState({currentOperation:'in progress',User_Secret:''});_context.prev=2;loc=window.location;host=loc.protocol+'//'+loc.hostname+':'+loc.port;_context.next=7;return regeneratorRuntime.awrap(fetch(host+'/auth/login',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({UserAccount_Identifier:UserAccount_Identifier,User_Secret:User_Secret})}));case 7:response=_context.sent;_context.next=10;return regeneratorRuntime.awrap(response.json());case 10:responseData=_context.sent;console.log('LOG IN RESPONSE');console.log(responseData);if(responseData.success){location.replace(location.href);}else{_this3.setState({currentOperation:'failure',errorMessage:responseData.error});}_context.next=19;break;case 16:_context.prev=16;_context.t0=_context['catch'](2);_this3.setState({currentOperation:'failure',errorMessage:'Did not receive proper response from server. Please try again. Message:'+_context.t0.message});case 19:case'end':return _context.stop();}}},null,_this3,[[2,16]]);};this._handle_onCLick_NewUser=function(){_this3.props.handlerNewUser();};this._handle_onCLick_CancelLogIn=function(){_this3.setState({currentOperation:'failure',errorMessage:'Log in has been canceled'});};this._handle_onClick_TryAgain=function(){_this3.setState({currentOperation:'challenge',errorMessage:''});};};exports.default=
+}}]);return LoginDialog;}(_react2.default.Component);exports.default=
 
 
 (0,_styles.withStyles)(styles)(LoginDialog);

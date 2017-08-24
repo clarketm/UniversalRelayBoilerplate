@@ -26,7 +26,6 @@ NavBarLoginButton=function(_React$Component){_inherits(NavBarLoginButton,_React$
 
 
 
-
 function NavBarLoginButton(props,context){_classCallCheck(this,NavBarLoginButton);var _this=_possibleConstructorReturn(this,(NavBarLoginButton.__proto__||Object.getPrototypeOf(NavBarLoginButton)).call(this,
 props,context));_this.
 
@@ -68,8 +67,7 @@ _this.setState({loginDialogIsOpen:false});
 _this.context.router.push('/user/new');
 };_this.state={anchorEl:undefined,loginDialogIsOpen:false,userMenuIsOpen:false};return _this;}_createClass(NavBarLoginButton,[{key:'render',value:function render()
 
-{var
-classes=this.props.classes;var _props$Viewer=
+{var _props$Viewer=
 this.props.Viewer,User_IsAnonymous=_props$Viewer.User_IsAnonymous,User_DisplayName=_props$Viewer.User_DisplayName;var _state=
 this.state,loginDialogIsOpen=_state.loginDialogIsOpen,userMenuIsOpen=_state.userMenuIsOpen;
 

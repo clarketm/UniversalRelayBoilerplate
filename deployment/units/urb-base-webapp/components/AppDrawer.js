@@ -55,29 +55,6 @@ to:'/translaticiarum'})));
 
 }
 
-function reduceChildRoutes(props,items,childRoute,index){
-if(childRoute.nav){
-if(childRoute.childRoutes&&childRoute.childRoutes.length){
-var openImmediately=props.routes.indexOf(childRoute)!==-1||false;
-items.push(
-_react2.default.createElement(_AppDrawerNavItem2.default,{key:index,openImmediately:openImmediately,title:childRoute.title},
-renderNavItems()));
-
-
-}else{
-items.push(
-_react2.default.createElement(_AppDrawerNavItem2.default,{
-key:index,
-title:childRoute.title,
-to:childRoute.path,
-onClick:props.onRequestClose}));
-
-
-}
-}
-return items;
-}
-
 function AppDrawer(props){
 var classes=props.classes;
 
