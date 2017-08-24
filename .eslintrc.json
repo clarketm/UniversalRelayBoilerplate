@@ -1,4 +1,5 @@
 {
-  "extends": ["prettier", "prettier/flowtype", "prettier/react"],
-  "parser": "babel-eslint"
+  "extends": ["react-app", "prettier", "prettier/flowtype", "prettier/react"],
+  "parser": "babel-eslint",
+  "rules": { "jsx-a11y/href-no-hash": "off" }
 }

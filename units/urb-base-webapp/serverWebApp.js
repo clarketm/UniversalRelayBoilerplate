@@ -51,8 +51,6 @@ async function gatherLocationAndSiteInformation(req: Object, res: Object) {
             `/assets-site/${version}.${siteInformation.configurationAsObject.version}`
     } else {
       // When in development, always go to webpack over http
-      const host = process.env.HOST
-      const port_webpack = process.env.PORT_WEBPACK
       assetsPath = `http://${envHost}:${envPortWebpack}/${version}`
     }
   } // If siteInformation was null, an error response has already been given
