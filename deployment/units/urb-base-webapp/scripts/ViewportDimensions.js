@@ -73,10 +73,10 @@ if(totalWidth>=768)
 muiSize=MEDIUM;else
 muiSize=SMALL;
 
-var navDrawerIsDocked=false;
+
 var contentWidth=totalWidth;
 if(muiSize===LARGE){
-navDrawerIsDocked=true;
+
 contentWidth-=256;
 }
 
@@ -107,7 +107,7 @@ var viewportDimensionsVersion=++_this.viewportDimensionsVersion;
 
 
 for(var _iterator=_this.subscribedComponents,_isArray=Array.isArray(_iterator),_i=0,_iterator=_isArray?_iterator:_iterator[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();;){var _ref3;if(_isArray){if(_i>=_iterator.length)break;_ref3=_iterator[_i++];}else{_i=_iterator.next();if(_i.done)break;_ref3=_i.value;}var _ref=_ref3;var _ref2=_slicedToArray(_ref,2);var component=_ref2[0];var dimensionsSubscribed=_ref2[1];
-if(component.viewportDimensionsVersion!=viewportDimensionsVersion){
+if(component.viewportDimensionsVersion!==viewportDimensionsVersion){
 component.viewportDimensionsVersion=viewportDimensionsVersion;
 
 

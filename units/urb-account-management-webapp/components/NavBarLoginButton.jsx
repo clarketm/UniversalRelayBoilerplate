@@ -13,7 +13,6 @@ const styles = theme => ({})
 
 class NavBarLoginButton extends React.Component<
   {
-    classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
   },
@@ -69,7 +68,6 @@ class NavBarLoginButton extends React.Component<
   }
 
   render() {
-    const { classes } = this.props
     const { User_IsAnonymous, User_DisplayName } = this.props.Viewer
     const { loginDialogIsOpen, userMenuIsOpen } = this.state
 

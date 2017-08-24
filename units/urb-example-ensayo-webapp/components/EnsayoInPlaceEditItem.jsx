@@ -1,9 +1,7 @@
 // @flow
 
-import IconButton from 'material-ui/IconButton'
-import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List'
+import { ListItem, ListItemText } from 'material-ui/List'
 import Menu, { MenuItem } from 'material-ui/Menu'
-import { MoreVert } from 'material-ui-icons'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'

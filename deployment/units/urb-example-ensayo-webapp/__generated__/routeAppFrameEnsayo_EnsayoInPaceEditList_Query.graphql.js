@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f00808c05227a90225ce5581e197319d
+ * @relayHash 113d1cda1a6cff2165e89b9728795616
  */
 
 /* eslint-disable */
@@ -28,7 +28,7 @@ fragment EnsayoInPaceEditList_Viewer on Viewer {
     edges {
       node {
         id
-        ...EnsayoInPlaceItem_Ensayo
+        ...EnsayoInPlaceEditItem_Ensayo
         __typename
       }
       cursor
@@ -39,17 +39,17 @@ fragment EnsayoInPaceEditList_Viewer on Viewer {
     }
   }
   id
-  ...EnsayoInPlaceItem_Viewer
+  ...EnsayoInPlaceEditItem_Viewer
 }
 
-fragment EnsayoInPlaceItem_Ensayo on Ensayo {
+fragment EnsayoInPlaceEditItem_Ensayo on Ensayo {
   id
   Ensayo_Title
   Ensayo_Description
   Ensayo_Content
 }
 
-fragment EnsayoInPlaceItem_Viewer on Viewer {
+fragment EnsayoInPlaceEditItem_Viewer on Viewer {
   id
 }
 */
@@ -233,7 +233,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query routeAppFrameEnsayo_EnsayoInPaceEditList_Query {\n  Viewer {\n    ...EnsayoInPaceEditList_Viewer\n    id\n  }\n}\n\nfragment EnsayoInPaceEditList_Viewer on Viewer {\n  Ensayos(first: 2147483647) {\n    edges {\n      node {\n        id\n        ...EnsayoInPlaceItem_Ensayo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  ...EnsayoInPlaceItem_Viewer\n}\n\nfragment EnsayoInPlaceItem_Ensayo on Ensayo {\n  id\n  Ensayo_Title\n  Ensayo_Description\n  Ensayo_Content\n}\n\nfragment EnsayoInPlaceItem_Viewer on Viewer {\n  id\n}\n"
+  "text": "query routeAppFrameEnsayo_EnsayoInPaceEditList_Query {\n  Viewer {\n    ...EnsayoInPaceEditList_Viewer\n    id\n  }\n}\n\nfragment EnsayoInPaceEditList_Viewer on Viewer {\n  Ensayos(first: 2147483647) {\n    edges {\n      node {\n        id\n        ...EnsayoInPlaceEditItem_Ensayo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  ...EnsayoInPlaceEditItem_Viewer\n}\n\nfragment EnsayoInPlaceEditItem_Ensayo on Ensayo {\n  id\n  Ensayo_Title\n  Ensayo_Description\n  Ensayo_Content\n}\n\nfragment EnsayoInPlaceEditItem_Viewer on Viewer {\n  id\n}\n"
 };
 
 module.exports = batch;

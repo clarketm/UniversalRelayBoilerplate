@@ -1,6 +1,7 @@
-// @flow
+Object.defineProperty(exports,"__esModule",{value:true});
 
-import Persister from '../../../urb-persister-cassandra/graphql/PersisterCassandra'
+var _PersisterCassandra=require('../../../urb-persister-cassandra/graphql/PersisterCassandra');var _PersisterCassandra2=_interopRequireDefault(_PersisterCassandra);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
-const defaultPersister = new Persister()
-export default defaultPersister
+var defaultPersister=new _PersisterCassandra2.default();exports.default=
+defaultPersister;
+//# sourceMappingURL=defaultPersister.js.map

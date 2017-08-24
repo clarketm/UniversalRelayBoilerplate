@@ -84,7 +84,7 @@ class AppFrame extends Component<any, { drawerOpen: boolean }> {
   }
 
   render() {
-    const { children, classes, width, Viewer } = this.props
+    const { children, classes, Viewer } = this.props
 
     let drawerDocked = false
 

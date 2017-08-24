@@ -45,7 +45,7 @@ class InscriptioScreen extends React.Component<{ classes: Object, Viewer: Object
   isUnmounted = false
 
   render() {
-    const { classes, Viewer } = this.props
+    const { classes } = this.props
     console.log(this.context.rbCtx.appData)
 
     const googleMapURL =
@@ -53,10 +53,6 @@ class InscriptioScreen extends React.Component<{ classes: Object, Viewer: Object
       this.context.rbCtx.appData.api.googleMapsJavascriptAPI
 
     console.log(googleMapURL)
-
-    const markers = []
-
-    const xxx = this
 
     return (
       <ResponsiveContentArea>

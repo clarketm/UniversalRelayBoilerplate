@@ -9,7 +9,7 @@ var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');
 
 var _EnsayoAddMutation=require('../../urb-example-ensayo-client/relay/EnsayoAddMutation');var _EnsayoAddMutation2=_interopRequireDefault(_EnsayoAddMutation);
-var _EnsayoProperties=require('./EnsayoProperties');var _EnsayoProperties2=_interopRequireDefault(_EnsayoProperties);
+var _EnsayoInPlaceEditProperties=require('./EnsayoInPlaceEditProperties');var _EnsayoInPlaceEditProperties2=_interopRequireDefault(_EnsayoInPlaceEditProperties);
 var _ResponsiveContentArea=require('../../urb-base-webapp/components/ResponsiveContentArea');var _ResponsiveContentArea2=_interopRequireDefault(_ResponsiveContentArea);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
 var styles=function styles(theme){return{
@@ -36,8 +36,8 @@ props,context));_this.
 
 
 
-_handle_updateHandler_Ensayo=function(ensayoProperties){var
-Ensayo_Title=ensayoProperties.Ensayo_Title,Ensayo_Description=ensayoProperties.Ensayo_Description,Ensayo_Content=ensayoProperties.Ensayo_Content;var _this$props=
+_handle_updateHandler_Ensayo=function(EnsayoInPlaceEditProperties){var
+Ensayo_Title=EnsayoInPlaceEditProperties.Ensayo_Title,Ensayo_Description=EnsayoInPlaceEditProperties.Ensayo_Description,Ensayo_Content=EnsayoInPlaceEditProperties.Ensayo_Content;var _this$props=
 _this.props,relay=_this$props.relay,Viewer=_this$props.Viewer;
 
 _EnsayoAddMutation2.default.commit(
@@ -82,7 +82,7 @@ this.props.children),
 
 
 propertiesIsOpen&&
-_react2.default.createElement(_EnsayoProperties2.default,{
+_react2.default.createElement(_EnsayoInPlaceEditProperties2.default,{
 Ensayo_Title:'',
 Ensayo_Content:'',
 Ensayo_Description:'',
