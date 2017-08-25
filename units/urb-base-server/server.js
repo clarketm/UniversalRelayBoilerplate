@@ -6,7 +6,6 @@ import 'babel-polyfill'
 import express from 'express'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
-import graphQLHTTP from 'express-graphql'
 import path from 'path'
 
 import serverAuth from './serverAuth' // Authentication server
@@ -91,7 +90,7 @@ server.use(serverWebApp)
 ObjectManager.initializePersisters(false, () => {
   // Serve - work differently in development and production. In production only the
   // specified host serves
-  if (process.env.NODE_ENV == 'production') {
+  if (process.env.NODE_ENV === 'production') {
     // Production - serve as told
     server.listen(port, host)
   } else {
@@ -99,7 +98,7 @@ ObjectManager.initializePersisters(false, () => {
     startDevelopmentServer(port, '127.0.0.1')
 
     // Development server - on a specific IP, if different from localhost
-    if (host != '127.0.0.1') startDevelopmentServer(port, host)
+    if (host !== '127.0.0.1') startDevelopmentServer(port, host)
   }
 })
 

@@ -14,9 +14,9 @@ if (port == null || typeof port !== 'string')
 
 let IPAddress = process.argv[2]
 
-if (IPAddress == undefined) IPAddress = getLocalIP()
+if (IPAddress === undefined) IPAddress = getLocalIP()
 
-if (IPAddress != undefined) {
+if (IPAddress !== undefined) {
   console.log('IP Address:' + IPAddress)
   updateIPInFile(
     './ios/' + AppRegistryName + '/AppDelegate.m',
@@ -43,7 +43,7 @@ function updateIPInFile(fileName, searchString, newContentOfLine, IPAddress) {
 
     while (index < fileLines.length) {
       if (fileLines[index].indexOf(searchString) > -1) {
-        if (fileLines[index] == newContentOfLine)
+        if (fileLines[index] === newContentOfLine)
           console.log('[' + fileName + '] is already up to date')
         else {
           fileLines[index] = newContentOfLine

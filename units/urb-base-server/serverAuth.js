@@ -39,7 +39,7 @@ async function login(req, res) {
         UserAccount_Identifier: UserAccount_Identifier,
       })
 
-      if (arr_UserAccount.length == 0) {
+      if (arr_UserAccount.length === 0) {
         res.status(401).json({ error: '💔  User account not found' })
       } else {
         const a_User = await objectManager.getOneObject('User', {

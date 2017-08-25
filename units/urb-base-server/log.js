@@ -11,7 +11,7 @@ require('dotenv').load()
 const transports = []
 
 // Add console when in development mode.
-if (process.env.NODE_ENV == 'development') transports.push(new winston.transports.Console())
+if (process.env.NODE_ENV === 'development') transports.push(new winston.transports.Console())
 
 // If persister specified logger, use it
 const defaultPersisterLogger = defaultPersister.createLogger()

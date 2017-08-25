@@ -14,7 +14,7 @@ export default async function ensureFileContent(
   // If the current file content is not provided, get it
   if (currentFileContent == null) currentFileContent = (await readFileAsync(fileName)).toString()
 
-  if (currentFileContent != newFileContent) {
+  if (currentFileContent !== newFileContent) {
     console.log('✍️  written:  ' + fileName)
     await writeFileAsync(fileName, newFileContent, 'utf8')
   } else {

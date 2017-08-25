@@ -12,7 +12,6 @@ import schema from '../urb-base-server/graphql/schema'
 const existsAsync = promisify(fs.exists)
 const readFileAsync = promisify(fs.readFile)
 const readdirAsync = promisify(fs.readdir)
-const writeFileAsync = promisify(fs.writeFile)
 
 function sortObject(object: Object) {
   var t = {}
@@ -82,7 +81,7 @@ async function createMutations(units: Array<string>) {
       if (await existsAsync(mutationsDir)) {
         const mutationFileNames = await readdirAsync(mutationsDir)
 
-        mutationFileNames.filter(mutationFileName => {
+        for (let mutationFileName of mutationFileNames) {
           if (mutationFileName.endsWith('.js')) {
             const mutation = mutationFileName.substring(0, mutationFileName.length - 3)
             mutationsImports.push(
@@ -96,7 +95,7 @@ async function createMutations(units: Array<string>) {
             )
             mutationsExports.push('  ' + mutation + ',')
           }
-        })
+        }
       }
     }
 
@@ -122,20 +121,14 @@ async function createSchemas(units: Array<string>) {
       if (await existsAsync(schemasDir)) {
         const objectTypeFileNames = await readdirAsync(schemasDir)
 
-        objectTypeFileNames.filter(objectTypeFileName => {
+        for (let objectTypeFileName of objectTypeFileNames) {
           if (objectTypeFileName.endsWith('.js')) {
             const objectType = objectTypeFileName.substring(0, objectTypeFileName.length - 3)
             schemasImports.push(
-              'import ' +
-                objectType.replace('.', '_') +
-                " from '../../../" +
-                unitName +
-                '/graphql/model/' +
-                objectType +
-                "'",
+              "import '../../../" + unitName + '/graphql/model/' + objectType + "'",
             )
           }
-        })
+        }
       }
     }
 
@@ -197,13 +190,13 @@ async function createRoutes(units: Array<string>) {
       if (await existsAsync(routesDir)) {
         const routeFileNames = await readdirAsync(routesDir)
 
-        routeFileNames.filter(routeFileName => {
+        for (let routeFileName of routeFileNames) {
           if (routeFileName.endsWith('.jsx') && routeFileName.startsWith('routeAppFrame')) {
             const route = routeFileName.substring(0, routeFileName.length - 4)
             routesImports.push('import ' + route + " from '../../" + unitName + '/' + route + "'")
             routesExports.push('  ' + route + ',')
           }
-        })
+        }
       }
     }
 
@@ -222,7 +215,7 @@ async function createRoutes(units: Array<string>) {
 
 async function getUnits() {
   const units = (await readdirAsync('./units/')).filter(
-    fileName => fileName != '.DS_Store' && fileName != '_configuration',
+    fileName => fileName !== '.DS_Store' && fileName !== '_configuration',
   )
   return units
 }

@@ -77,7 +77,7 @@ serverWebApp.use(async (req, res) => {
       UserToken2ServerRendering,
     )
 
-    const { redirect, status, element } = await getFarceResult({
+    const { redirect, element } = await getFarceResult({
       url: req.url,
       historyMiddlewares,
       routeConfig,

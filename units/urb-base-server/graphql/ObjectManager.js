@@ -192,8 +192,8 @@ export default class ObjectManager {
   getOneObject(entityName: string, filter: Object) {
     // TODO x2000 Provide try catch with logging here!
     // Special hack for anonymous users
-    if (entityName == 'User')
-      if (filter.id == defaultPersister.uuidNullAsString()) return Promise.resolve(User_0)
+    if (entityName === 'User')
+      if (filter.id === defaultPersister.uuidNullAsString()) return Promise.resolve(User_0)
 
     // For all non-user, non 0 ids, load from data loader per protocol
     const loaderIdentifier = Object.keys(filter).sort().join(',')
@@ -273,7 +273,7 @@ export default class ObjectManager {
     if (!fields.id) fields.id = entityDefinition.Persister.uuidRandom()
 
     // If this is a user ID
-    if (entityName == 'User') this.setViewerUserId(fields.id.toString())
+    if (entityName === 'User') this.setViewerUserId(fields.id.toString())
 
     this.recordChange(entityName, fields, false)
     await this.executeTriggers(entityDefinition.TriggersForAdd, fields)
@@ -320,7 +320,7 @@ export default class ObjectManager {
               ', however the entity does not have field site_id',
           )
         isMatchingValue =
-          entityDefinition.Persister.uuidToString(entity.site_id) == ensureFields.site_id
+          entityDefinition.Persister.uuidToString(entity.site_id) === ensureFields.site_id
       } else if (ensuredFieldName.endsWith('_id')) {
         isMatchingValue = entityDefinition.Persister.uuidEquals(
           ensureFields[ensuredFieldName],
@@ -329,7 +329,7 @@ export default class ObjectManager {
         )
       } else {
         // $FlowIssue by convention the field should be present
-        isMatchingValue = ensureFields[ensuredFieldName] == entity[ensuredFieldName]
+        isMatchingValue = ensureFields[ensuredFieldName] === entity[ensuredFieldName]
       }
 
       if (!isMatchingValue)
@@ -363,7 +363,7 @@ export default class ObjectManager {
     for (let ix = 0; ix < arr.length; ix++) {
       const arr_element_id = entityDefinition.Persister.uuidToString(arr[ix].id)
 
-      if (arr_element_id == obj_id) {
+      if (arr_element_id === obj_id) {
         arr[ix] = obj
         break
       }

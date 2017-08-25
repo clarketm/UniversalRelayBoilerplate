@@ -50,7 +50,7 @@ export async function getUserAndSessionIDByUserToken1(objectManager, req) {
     objectManager.setViewerUserId(user_id)
     return { User: a_User, UserSession: a_UserSession }
   } else {
-    throw '💔  User not found'
+    throw new Error('💔  User not found')
   }
 }
 
@@ -59,11 +59,11 @@ export function verifyUserAuthToken(a_User, req) {
   else {
     const request_UserToken2 = req.get('UserToken2')
     if (
-      request_UserToken2 == a_User.UserToken2 ||
+      request_UserToken2 === a_User.UserToken2 ||
       // A request coming from webapp will come from localhost and will bear the server's user token
-      (req.ip == '127.0.0.1' && request_UserToken2 == UserToken2ServerRendering) ||
+      (req.ip === '127.0.0.1' && request_UserToken2 === UserToken2ServerRendering) ||
       // For use with GraphiQL
-      process.env.USER_TOKEN_2_BYPASS_IP == req.ip
+      process.env.USER_TOKEN_2_BYPASS_IP === req.ip
     )
       return Promise.resolve(a_User.id)
     else

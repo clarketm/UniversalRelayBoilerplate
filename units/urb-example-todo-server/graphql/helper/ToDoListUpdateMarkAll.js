@@ -5,7 +5,7 @@ export default async function ToDoListUpdateMarkAll(objectManager, ToDo_Complete
     ToDo_User_id: objectManager.getViewerUserId(),
   })
 
-  const arr_filtered = arr.filter(a_ToDo => a_ToDo.ToDo_Complete != ToDo_CompleteNew)
+  const arr_filtered = arr.filter(a_ToDo => a_ToDo.ToDo_Complete !== ToDo_CompleteNew)
 
   const arrPromiseToUpdate = arr_filtered.map(a_ToDo =>
     objectManager.update('ToDo', {

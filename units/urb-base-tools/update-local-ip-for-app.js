@@ -5,7 +5,7 @@ const fs = require('fs')
 
 let IPAddress = process.argv[2]
 
-if (IPAddress == undefined) {
+if (IPAddress === undefined) {
   // Find out IP address
   const interfaces = os.networkInterfaces()
   const addresses = []
@@ -21,7 +21,7 @@ if (IPAddress == undefined) {
   if (addresses.length >= 0) IPAddress = addresses[0]
 }
 
-if (IPAddress != undefined) {
+if (IPAddress !== undefined) {
   console.log('IP Address:' + IPAddress)
   updateIPInFile(
     './ios/UniversalRelayBoilerplate/AppDelegate.m',
@@ -44,7 +44,7 @@ function updateIPInFile(fileName, searchString, newContentOfLine) {
 
   while (index < fileLines.length) {
     if (fileLines[index].indexOf(searchString) > -1) {
-      if (fileLines[index] == newContentOfLine)
+      if (fileLines[index] === newContentOfLine)
         console.log('[' + fileName + '] is already up to date')
       else {
         fileLines[index] = newContentOfLine

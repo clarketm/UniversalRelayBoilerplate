@@ -1,9 +1,9 @@
 import fs from 'fs'
 
+import { version } from '../_configuration/package.js'
+
 // Read environment
 require('dotenv').load()
-
-import { version } from '../_configuration/package.js'
 
 console.log('Current version in package.json: ' + process.env.npm_package_version)
 console.log('Current version in package.js:   ' + version)
@@ -24,7 +24,7 @@ let index = 0
 
 while (index < fileLines.length) {
   if (fileLines[index].indexOf(searchString) > -1) {
-    if (fileLines[index] == newContentOfLine)
+    if (fileLines[index] === newContentOfLine)
       console.log('[' + fileName + '] is already up to date')
     else {
       fileLines[index] = newContentOfLine
