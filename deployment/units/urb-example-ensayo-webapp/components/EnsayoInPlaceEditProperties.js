@@ -1,6 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-var _reactCodeSplitting=require('react-code-splitting');var _reactCodeSplitting2=_interopRequireDefault(_reactCodeSplitting);
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
 var _Dialog=require('material-ui/Dialog');var _Dialog2=_interopRequireDefault(_Dialog);
 var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireDefault(_TextField);
@@ -68,7 +67,6 @@ _handle_OK=function(){
 _this.props.handlerUpdate({
 Ensayo_Title:_this.state.Ensayo_Title,
 Ensayo_Description:_this.state.Ensayo_Description,
-Ensayo_Content:'',
 Ensayo_Content:_this.state.Ensayo_Content_RTE.toString('html')});
 
 
