@@ -155,8 +155,9 @@ async function createuser( req, res ) {
 
       res.codeFoundriesInjected = { user: a_User }
 
-      // User has been created thus we create a JWT token. $FlowIssue - id will be filled in by ObjectManager.add
+      // User has been created thus we create a JWT token.
       const UserToken1 = jwt.encode(
+        // $FlowIssue - id will be filled in by ObjectManager.add
         { session_id: a_UserSession.id },
         process.env.JWT_SECRET
       )
