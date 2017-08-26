@@ -5,6 +5,8 @@ import bodyParser from 'body-parser'
 import express from 'express'
 import jwt from 'jwt-simple'
 
+import log from './log'
+
 import authExtensions from '../_configuration/urb-base-server/authExtensions'
 import delayPromise from '../urb-base-universal/delayPromise'
 import getNewUser from '../_configuration/urb-base-server/graphql/model/getNewUser'
@@ -70,8 +72,9 @@ async function login( req, res ) {
 
           res.codeFoundriesInjected = { user: a_User }
 
-          // User has authenticated correctly thus we create a JWT token ith the session. $FlowIssue - id will be filled in by ObjectManager.add
+          // User has authenticated correctly thus we create a JWT token ith the session.
           const UserToken1 = jwt.encode(
+            // $FlowIssue - id will be filled in by ObjectManager.add
             { session_id: a_UserSession.id },
             process.env.JWT_SECRET
           )

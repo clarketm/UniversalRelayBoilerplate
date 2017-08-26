@@ -371,8 +371,8 @@ export default class ObjectManager {
           entity[ensuredFieldName]
         )
       } else {
-        // $FlowIssue by convention the field should be present
         isMatchingValue =
+          // $FlowIssue by convention the field should be present
           ensureFields[ensuredFieldName] === entity[ensuredFieldName]
       }
 
