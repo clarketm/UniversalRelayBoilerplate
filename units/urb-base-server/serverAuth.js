@@ -8,12 +8,12 @@ import jwt from 'jwt-simple'
 import authExtensions from '../_configuration/urb-base-server/authExtensions'
 import delayPromise from '../urb-base-universal/delayPromise'
 import getNewUser from '../_configuration/urb-base-server/graphql/model/getNewUser'
+import { validateEmail } from '../urb-base-universal/validation'
+import { requestLoggerAuth } from '../_configuration/urb-base-server/requestLoggers'
+
 import { getUserAndSessionIDByUserToken1 } from './checkCredentials'
 import logServerRequest from './logServerRequest'
 import { getObjectManager } from './graphql/ObjectManager'
-import { requestLoggerAuth } from '../_configuration/urb-base-server/requestLoggers'
-
-import { validateEmail } from '../urb-base-universal/validation'
 
 // Read environment
 require( 'dotenv' ).load()

@@ -1,10 +1,12 @@
 // @flow weak
 
-import jwt from 'jwt-simple'
 import path from 'path'
+
+import jwt from 'jwt-simple'
 
 import defaultPersister from '../_configuration/urb-base-server/graphql/defaultPersister'
 import UserToken2ServerRendering from '../_configuration/urb-base-server/UserToken2ServerRendering'
+
 import log from './log'
 
 // Read environment
