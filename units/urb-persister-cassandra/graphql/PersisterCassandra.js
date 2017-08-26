@@ -1,26 +1,26 @@
 // @flow
 
-import CassandraDriver from "cassandra-driver"
-import ExpressCassandra from "express-cassandra"
+import CassandraDriver from 'cassandra-driver'
+import ExpressCassandra from 'express-cassandra'
 
-import CassandraOptions from "./CassandraOptions"
-import WinstonCassandra from "./WinstonCassandra"
+import CassandraOptions from './CassandraOptions'
+import WinstonCassandra from './WinstonCassandra'
 
 const Uuid = CassandraDriver.types.Uuid
-const Uuid_Null_String = "00000000-0000-0000-0000-000000000000"
+const Uuid_Null_String = '00000000-0000-0000-0000-000000000000'
 const Uuid_Null = Uuid.fromString( Uuid_Null_String )
 
 const ExpressCassandraClient = ExpressCassandra.createClient({
   clientOptions: CassandraOptions, // Options are pre-set in a separate part of the application, they are correct
   ormOptions: {
     defaultReplicationStrategy: {
-      class: "SimpleStrategy",
-      replication_factor: 1
+      class: 'SimpleStrategy',
+      replication_factor: 1,
     },
-    migration: "alter",
+    migration: 'alter',
     disableTTYConfirmation: true,
-    createKeyspace: true
-  }
+    createKeyspace: true,
+  },
 })
 
 export default class PersisterCassandra {
@@ -45,7 +45,7 @@ export default class PersisterCassandra {
             filter,
             {
               raw: true,
-              allow_filtering: true
+              allow_filtering: true,
             },
             ( err, entity ) => {
               if ( err ) reject( err )
@@ -76,7 +76,7 @@ export default class PersisterCassandra {
             filter,
             {
               raw: true,
-              allow_filtering: true
+              allow_filtering: true,
             },
             ( err, arrEntities ) => {
               if ( err ) reject( err )
@@ -99,7 +99,7 @@ export default class PersisterCassandra {
       ExpressCassandraClient.instance[entityName]._properties.schema.fields
     for ( let fieldName in fields ) {
       const fieldType = schemaFields[fieldName]
-      if ( fieldType === "uuid" ) {
+      if ( fieldType === 'uuid' ) {
         const fieldValue = fields[fieldName]
         if ( !( fieldValue instanceof Uuid ) )
           fields[fieldName] = Uuid.fromString( fieldValue )
@@ -169,7 +169,7 @@ export default class PersisterCassandra {
     if ( this.tableSchemas ) this.tableSchemas.set( tableName, tableSchema )
     else {
       console.error(
-        "💔 Attempting to add table schemas after express-cassandra client connect."
+        '💔 Attempting to add table schemas after express-cassandra client connect.'
       )
       process.exit( 1 )
     }
@@ -182,7 +182,7 @@ export default class PersisterCassandra {
           if ( err ) reject( err )
           else
             client.execute(
-              "select release_version from system.local;",
+              'select release_version from system.local;',
               ( err, result ) => {
                 if ( err ) reject( err )
                 else resolve()
@@ -200,9 +200,9 @@ export default class PersisterCassandra {
 
     ExpressCassandraClient.connect( err => {
       if ( err ) {
-        console.log( "💔 Could not connect to Cassandra: " + err.message )
+        console.log( '💔 Could not connect to Cassandra: ' + err.message )
         setTimeout( () => process.exit( 1 ), 5000 ) // Exit the process. A process manager like pm2 would re-start
-      } else if ( !enrolledTables ) console.log( "💔 Table schemas missing!" )
+      } else if ( !enrolledTables ) console.log( '💔 Table schemas missing!' )
       else {
         const arrSchemas = []
         for ( let tableName of enrolledTables.keys() )
@@ -231,19 +231,19 @@ export default class PersisterCassandra {
       ExpressCassandraClient.loadSchema( tableName, tableSchema, err => {
         if ( err ) {
           console.log(
-            "💔 Initializing Cassandra persister - error while creating " +
+            '💔 Initializing Cassandra persister - error while creating ' +
               tableName +
-              "!"
+              '!'
           )
           console.error( err.message )
           process.exit( 1 )
         } else {
           if ( runAsPartOfSetupDatabase )
             console.log(
-              "🛢 Table " +
+              '🛢 Table ' +
                 ExpressCassandraClient.modelInstance[tableName]._properties
                   .name +
-                " ready."
+                ' ready.'
             )
 
           this.loadOneTableSchemaFromArray(

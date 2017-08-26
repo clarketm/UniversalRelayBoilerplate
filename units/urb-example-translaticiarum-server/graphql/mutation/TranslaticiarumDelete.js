@@ -1,30 +1,30 @@
 // @flow weak
 
-import { fromGlobalId, mutationWithClientMutationId } from "graphql-relay"
-import { GraphQLID, GraphQLNonNull } from "graphql"
+import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
+import { GraphQLID, GraphQLNonNull } from 'graphql'
 
-import ViewerType from "../../../../units/urb-base-server/graphql/type/ViewerType"
+import ViewerType from '../../../../units/urb-base-server/graphql/type/ViewerType'
 
 export default mutationWithClientMutationId({
-  name: "TranslaticiarumDelete",
+  name: 'TranslaticiarumDelete',
 
   inputFields: {
-    id: { type: new GraphQLNonNull( GraphQLID ) }
+    id: { type: new GraphQLNonNull( GraphQLID ) },
   },
 
   outputFields: {
     deletedId: {
       type: GraphQLID,
-      resolve: ({ id }) => id
+      resolve: ({ id }) => id,
     },
 
     Viewer: {
       type: ViewerType,
       resolve: ( parent, args, context, { rootValue: objectManager }) =>
-        objectManager.getOneObject( "User", {
-          id: objectManager.getViewerUserId()
-        })
-    }
+        objectManager.getOneObject( 'User', {
+          id: objectManager.getViewerUserId(),
+        }),
+    },
   },
 
   mutateAndGetPayload: async(
@@ -34,8 +34,8 @@ export default mutationWithClientMutationId({
   ) => {
     const local_id = fromGlobalId( id ).id
 
-    await objectManager.remove( "Translaticiarum", { id: local_id })
+    await objectManager.remove( 'Translaticiarum', { id: local_id })
 
     return { id }
-  }
+  },
 })

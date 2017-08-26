@@ -1,10 +1,10 @@
 // @flow weak
 
-import { fromGlobalId } from "graphql-relay"
-import { GraphQLID, GraphQLNonNull, GraphQLObjectType } from "graphql"
+import { fromGlobalId } from 'graphql-relay'
+import { GraphQLID, GraphQLNonNull, GraphQLObjectType } from 'graphql'
 
-import ViewerType from "./ViewerType"
-import NodeInterface from "../NodeInterface"
+import ViewerType from './ViewerType'
+import NodeInterface from '../NodeInterface'
 
 function resolveNodeField( source, args, context, { rootValue: objectManager }) {
   // the node field will receive a globally
@@ -14,26 +14,26 @@ function resolveNodeField( source, args, context, { rootValue: objectManager }) 
 
   // map the local type and id into the
   // actual data for the record
-  if ( type === "Viewer" ) return objectManager.getOneObject( "User", { id: id })
+  if ( type === 'Viewer' ) return objectManager.getOneObject( 'User', { id: id })
   else return objectManager.getOneObject( type, { id: id })
 }
 
 export default new GraphQLObjectType({
-  name: "Query",
+  name: 'Query',
   fields: () => ({
     node: {
       type: NodeInterface,
       args: {
-        id: { type: new GraphQLNonNull( GraphQLID ) }
+        id: { type: new GraphQLNonNull( GraphQLID ) },
       },
-      resolve: resolveNodeField
+      resolve: resolveNodeField,
     },
     Viewer: {
       type: ViewerType,
       resolve: ( parent, args, context, { rootValue: objectManager }) =>
-        objectManager.getOneObject( "User", {
-          id: objectManager.getViewerUserId()
-        })
-    }
-  })
+        objectManager.getOneObject( 'User', {
+          id: objectManager.getViewerUserId(),
+        }),
+    },
+  }),
 })

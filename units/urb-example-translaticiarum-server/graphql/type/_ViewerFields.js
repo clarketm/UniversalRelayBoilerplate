@@ -1,14 +1,14 @@
 // @flow weak
 
-import { GraphQLID } from "graphql"
+import { GraphQLID } from 'graphql'
 import {
   fromGlobalId,
   connectionArgs,
-  connectionFromArray
-} from "graphql-relay"
+  connectionFromArray,
+} from 'graphql-relay'
 
-import TranslaticiarumsConnection from "./TranslaticiarumsConnection"
-import TranslaticiarumType from "./TranslaticiarumType"
+import TranslaticiarumsConnection from './TranslaticiarumsConnection'
+import TranslaticiarumType from './TranslaticiarumType'
 
 export default {
   Translaticiarums: {
@@ -22,12 +22,12 @@ export default {
       context,
       { rootValue: objectManager }
     ) => {
-      const arr = await objectManager.getObjectList( "Translaticiarum", {
-        Translaticiarum_User_id: objectManager.getViewerUserId()
+      const arr = await objectManager.getObjectList( 'Translaticiarum', {
+        Translaticiarum_User_id: objectManager.getViewerUserId(),
       })
 
       return connectionFromArray( arr, args )
-    }
+    },
   },
 
   Translaticiarum: {
@@ -36,6 +36,6 @@ export default {
     args: { ...{ id: { type: GraphQLID } } },
 
     resolve: ( parent, { id }, context, { rootValue: objectManager }) =>
-      objectManager.getOneObject( "Translaticiarum", { id: fromGlobalId( id ).id })
-  }
+      objectManager.getOneObject( 'Translaticiarum', { id: fromGlobalId( id ).id }),
+  },
 }

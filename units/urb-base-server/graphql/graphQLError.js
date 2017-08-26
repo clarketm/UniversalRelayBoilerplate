@@ -1,9 +1,9 @@
 // This is a modified version of: https://github.com/kadirahq/graphql-errors/blob/master/lib/index.js
 
 //import uuid from 'uuid';
-import { GraphQLObjectType, GraphQLSchema } from "graphql"
+import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 
-import log from "../log"
+import log from '../log'
 
 // Mark field/type/schema
 export const Processed = Symbol()
@@ -15,10 +15,10 @@ export const IsUserError = Symbol()
 export class UserError extends Error {
   constructor( ...args ) {
     super( ...args )
-    this.name = "Error"
+    this.name = 'Error'
     this.message = args[0]
     this[IsUserError] = true
-    Error.captureStackTrace( this, "Error" )
+    Error.captureStackTrace( this, 'Error' )
   }
 }
 
@@ -30,10 +30,10 @@ export let defaultHandler = function( err ) {
   // TODO: x1000 Consider having a unique ID for the errors, most probably move it to the log though, so that all modules can use it
   // const errId = uuid.v4();
   // err.message = `${err.message}: ${errId}`;
-  log.log( "error", "Resolve function failed", {
-    error: ( err && err.stack ) || err
+  log.log( 'error', 'Resolve function failed', {
+    error: ( err && err.stack ) || err,
   })
-  err.message = `Internal Error`
+  err.message = 'Internal Error'
   return err
 }
 

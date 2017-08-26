@@ -1,6 +1,6 @@
 // @flow
 
-import ObjectManager from "../../../../units/urb-base-server/graphql/ObjectManager"
+import ObjectManager from '../../../../units/urb-base-server/graphql/ObjectManager'
 
 // Class used by GraphQL Server
 export default class Inscriptio {
@@ -25,4 +25,4 @@ export default class Inscriptio {
   }
 }
 
-ObjectManager.registerEntity( "Inscriptio", Inscriptio )
+ObjectManager.registerEntity( 'Inscriptio', Inscriptio )

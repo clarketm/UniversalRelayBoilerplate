@@ -1,7 +1,7 @@
 // @flow weak
 
-import { commitMutation, graphql } from "react-relay"
-import { ConnectionHandler } from "relay-runtime"
+import { commitMutation, graphql } from 'react-relay'
+import { ConnectionHandler } from 'relay-runtime'
 
 const mutation = graphql`
   mutation TranslaticiarumAddMutation($input: TranslaticiarumAddInput!) {
@@ -27,7 +27,7 @@ function sharedUpdater( store, user, TranslaticiarumsEdge ) {
 
   const connection = ConnectionHandler.getConnection(
     userProxy,
-    "TranslaticiarumList_Translaticiarums"
+    'TranslaticiarumList_Translaticiarums'
   )
   if ( connection ) {
     ConnectionHandler.insertEdgeAfter( connection, TranslaticiarumsEdge )
@@ -52,38 +52,38 @@ function commit(
         Translaticiarum_Start,
         Translaticiarum_Stop,
         Translaticiarum_Description,
-        clientMutationId
-      }
+        clientMutationId,
+      },
     },
 
     updater( store ) {
-      const payload = store.getRootField( "TranslaticiarumAdd" )
+      const payload = store.getRootField( 'TranslaticiarumAdd' )
       sharedUpdater(
         store,
         user,
-        payload.getLinkedRecord( "TranslaticiarumsEdge" )
+        payload.getLinkedRecord( 'TranslaticiarumsEdge' )
       )
     },
 
     optimisticUpdater( store ) {
       const id = `client:TranslaticiarumAdd:Translaticiarum:${clientMutationId}`
-      const aTranslaticiarum = store.create( id, "Translaticiarum" )
-      aTranslaticiarum.setValue( Translaticiarum_Start, "Translaticiarum_Start" )
-      aTranslaticiarum.setValue( Translaticiarum_Stop, "Translaticiarum_Stop" )
+      const aTranslaticiarum = store.create( id, 'Translaticiarum' )
+      aTranslaticiarum.setValue( Translaticiarum_Start, 'Translaticiarum_Start' )
+      aTranslaticiarum.setValue( Translaticiarum_Stop, 'Translaticiarum_Stop' )
       aTranslaticiarum.setValue(
         Translaticiarum_Description,
-        "Translaticiarum_Description"
+        'Translaticiarum_Description'
       )
-      aTranslaticiarum.setValue( id, "id" )
+      aTranslaticiarum.setValue( id, 'id' )
 
       const TranslaticiarumsEdge = store.create(
         `client:TranslaticiarumAdd:TranslaticiarumsEdge:${clientMutationId}`,
-        "TranslaticiarumsEdge"
+        'TranslaticiarumsEdge'
       )
-      TranslaticiarumsEdge.setLinkedRecord( aTranslaticiarum, "node" )
+      TranslaticiarumsEdge.setLinkedRecord( aTranslaticiarum, 'node' )
 
       sharedUpdater( store, user, TranslaticiarumsEdge )
-    }
+    },
   })
 }
 

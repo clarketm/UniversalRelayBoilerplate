@@ -1,6 +1,6 @@
 // @flow
 
-import ObjectManager from "../../../../units/urb-base-server/graphql/ObjectManager"
+import ObjectManager from '../../../../units/urb-base-server/graphql/ObjectManager'
 
 export default class ToDo {
   id: string
@@ -21,4 +21,4 @@ export default class ToDo {
   }
 }
 
-ObjectManager.registerEntity( "ToDo", ToDo )
+ObjectManager.registerEntity( 'ToDo', ToDo )

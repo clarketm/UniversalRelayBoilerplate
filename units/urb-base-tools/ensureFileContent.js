@@ -1,7 +1,7 @@
 // @flow
 
-import fs from "fs"
-import { promisify } from "util"
+import fs from 'fs'
+import { promisify } from 'util'
 
 const readFileAsync = promisify( fs.readFile )
 const writeFileAsync = promisify( fs.writeFile )
@@ -16,9 +16,9 @@ export default async function ensureFileContent(
     currentFileContent = ( await readFileAsync( fileName ) ).toString()
 
   if ( currentFileContent !== newFileContent ) {
-    console.log( "✍️  written:  " + fileName )
-    await writeFileAsync( fileName, newFileContent, "utf8" )
+    console.log( '✍️  written:  ' + fileName )
+    await writeFileAsync( fileName, newFileContent, 'utf8' )
   } else {
-    console.log( "📎  skipped:  " + fileName )
+    console.log( '📎  skipped:  ' + fileName )
   }
 }

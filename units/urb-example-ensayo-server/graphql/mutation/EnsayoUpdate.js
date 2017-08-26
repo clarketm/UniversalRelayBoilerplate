@@ -1,18 +1,18 @@
 // @flow weak
 
-import { fromGlobalId, mutationWithClientMutationId } from "graphql-relay"
-import { GraphQLString, GraphQLID, GraphQLNonNull } from "graphql"
+import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
+import { GraphQLString, GraphQLID, GraphQLNonNull } from 'graphql'
 
-import EnsayoType from "../type/EnsayoType"
+import EnsayoType from '../type/EnsayoType'
 
 export default mutationWithClientMutationId({
-  name: "EnsayoUpdate",
+  name: 'EnsayoUpdate',
 
   inputFields: {
     id: { type: new GraphQLNonNull( GraphQLID ) },
     Ensayo_Title: { type: new GraphQLNonNull( GraphQLString ) },
     Ensayo_Description: { type: new GraphQLNonNull( GraphQLString ) },
-    Ensayo_Content: { type: new GraphQLNonNull( GraphQLString ) }
+    Ensayo_Content: { type: new GraphQLNonNull( GraphQLString ) },
   },
 
   outputFields: {
@@ -23,8 +23,8 @@ export default mutationWithClientMutationId({
         { ...args },
         context,
         { rootValue: objectManager }
-      ) => objectManager.getOneObject( "Ensayo", { id: local_id })
-    }
+      ) => objectManager.getOneObject( 'Ensayo', { id: local_id }),
+    },
   },
 
   mutateAndGetPayload: async(
@@ -34,13 +34,13 @@ export default mutationWithClientMutationId({
   ) => {
     const local_id = fromGlobalId( id ).id
 
-    await objectManager.update( "Ensayo", {
+    await objectManager.update( 'Ensayo', {
       id: local_id,
       Ensayo_Title,
       Ensayo_Description,
-      Ensayo_Content
+      Ensayo_Content,
     })
 
     return { local_id }
-  }
+  },
 })

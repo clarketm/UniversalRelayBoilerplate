@@ -1,6 +1,6 @@
 // @flow
 
-import ObjectManager from "../../../../units/urb-base-server/graphql/ObjectManager"
+import ObjectManager from '../../../../units/urb-base-server/graphql/ObjectManager'
 
 // Class used by GraphQL Server
 export default class UserSession {
@@ -25,4 +25,4 @@ export default class UserSession {
   }
 }
 
-ObjectManager.registerEntity( "UserSession", UserSession )
+ObjectManager.registerEntity( 'UserSession', UserSession )

@@ -1,8 +1,8 @@
 // @flow weak
 
-import { debugWriteToLogServerRequestPublic } from "../_configuration/debug"
-import log from "./log"
-import matchInDepth from "./matchInDepth"
+import { debugWriteToLogServerRequestPublic } from '../_configuration/debug'
+import log from './log'
+import matchInDepth from './matchInDepth'
 
 export default function defaultrequestLoggerPublic( requestAndResponse ) {
   let logLevel = null
@@ -14,7 +14,7 @@ export default function defaultrequestLoggerPublic( requestAndResponse ) {
   // Otherwise, if it is a trace, log it as info
   //else
   if ( matchInDepth( requestAndResponse, debugWriteToLogServerRequestPublic ) )
-    logLevel = "info"
+    logLevel = 'info'
 
-  if ( logLevel ) log.log( logLevel, "Public request", requestAndResponse )
+  if ( logLevel ) log.log( logLevel, 'Public request', requestAndResponse )
 }

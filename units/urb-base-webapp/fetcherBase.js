@@ -1,6 +1,6 @@
 // @flow
 
-import "isomorphic-fetch"
+import 'isomorphic-fetch'
 
 export default class FetcherBase {
   url: string
@@ -16,13 +16,13 @@ export default class FetcherBase {
 
   async fetch( operation: { text: string }, variables: any ) {
     const request = {
-      method: "POST",
-      credentials: "same-origin",
+      method: 'POST',
+      credentials: 'same-origin',
       headers: {
-        "Content-Type": "application/json",
-        UserToken2: this.UserToken2
+        'Content-Type': 'application/json',
+        UserToken2: this.UserToken2,
       },
-      body: JSON.stringify({ query: operation.text, variables })
+      body: JSON.stringify({ query: operation.text, variables }),
     }
 
     // $FlowIssue we can add the cookie, will be used on server

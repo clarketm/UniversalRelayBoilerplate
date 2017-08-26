@@ -1,14 +1,14 @@
 // @flow weak
 
-import { GraphQLID } from "graphql"
+import { GraphQLID } from 'graphql'
 import {
   fromGlobalId,
   connectionArgs,
-  connectionFromArray
-} from "graphql-relay"
+  connectionFromArray,
+} from 'graphql-relay'
 
-import InscriptiosConnection from "./InscriptiosConnection"
-import InscriptioType from "./InscriptioType"
+import InscriptiosConnection from './InscriptiosConnection'
+import InscriptioType from './InscriptioType'
 
 export default {
   Inscriptios: {
@@ -22,12 +22,12 @@ export default {
       context,
       { rootValue: objectManager }
     ) => {
-      const arr = await objectManager.getObjectList( "Inscriptio", {
-        Inscriptio_User_id: objectManager.getViewerUserId()
+      const arr = await objectManager.getObjectList( 'Inscriptio', {
+        Inscriptio_User_id: objectManager.getViewerUserId(),
       })
 
       return connectionFromArray( arr, args )
-    }
+    },
   },
 
   Inscriptio: {
@@ -36,6 +36,6 @@ export default {
     args: { ...{ id: { type: GraphQLID } } },
 
     resolve: ( parent, { id }, context, { rootValue: objectManager }) =>
-      objectManager.getOneObject( "Inscriptio", { id: fromGlobalId( id ).id })
-  }
+      objectManager.getOneObject( 'Inscriptio', { id: fromGlobalId( id ).id }),
+  },
 }

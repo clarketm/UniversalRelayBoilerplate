@@ -1,21 +1,21 @@
 // @flow
 
-import bodyParser from "body-parser"
-import express from "express"
-import graphQLHTTP from "express-graphql"
+import bodyParser from 'body-parser'
+import express from 'express'
+import graphQLHTTP from 'express-graphql'
 
 import {
   getUserAndSessionIDByUserToken1,
   verifyUserAuthToken,
-  serveAuthenticationFailed
-} from "./checkCredentials"
-import logServerRequest from "./logServerRequest"
-import { getObjectManager } from "./graphql/ObjectManager"
-import { requestLoggerGraphQL } from "../_configuration/urb-base-server/requestLoggers"
-import schema from "./graphql/schema" // Schema for GraphQL server
+  serveAuthenticationFailed,
+} from './checkCredentials'
+import logServerRequest from './logServerRequest'
+import { getObjectManager } from './graphql/ObjectManager'
+import { requestLoggerGraphQL } from '../_configuration/urb-base-server/requestLoggers'
+import schema from './graphql/schema' // Schema for GraphQL server
 
 // Guarantee that all object registrations and schema definitions are executed
-import "../_configuration/urb-base-server/graphql/_schemas"
+import '../_configuration/urb-base-server/graphql/_schemas'
 
 // Create router for GraphQL
 const serverGraphQL = express()
@@ -43,7 +43,7 @@ async function root( req, res, next ) {
           schema: schema,
           rootValue: objectManager,
           pretty: true,
-          graphiql: true
+          graphiql: true,
         }
       })( req, res, next )
     } catch ( err ) {
@@ -51,6 +51,6 @@ async function root( req, res, next ) {
     }
   }
 }
-serverGraphQL.use( "/", root )
+serverGraphQL.use( '/', root )
 
 export default serverGraphQL

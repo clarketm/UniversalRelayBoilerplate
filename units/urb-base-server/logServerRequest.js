@@ -15,15 +15,15 @@ export default function logServerRequest( req, res, next, loggingFunction ) {
   res.end = function( chunk ) {
     if ( chunk ) chunksRes.push( new Buffer( chunk ) )
 
-    var responseBody = Buffer.concat( chunksRes ).toString( "utf8" )
+    var responseBody = Buffer.concat( chunksRes ).toString( 'utf8' )
 
     // Determine client ID - either placed in the headers by Nginx, or the IP the request is coming from
-    const clientIP = req.headers["x-real-ip"] || req.connection.remoteAddress
+    const clientIP = req.headers['x-real-ip'] || req.connection.remoteAddress
 
     let user
     if ( res.codeFoundriesInjected && res.codeFoundriesInjected.user )
       user = res.codeFoundriesInjected.user
-    else user = "not determined"
+    else user = 'not determined'
 
     const requestAndResponse = {
       headers: req.headers,
@@ -31,7 +31,7 @@ export default function logServerRequest( req, res, next, loggingFunction ) {
       user: user,
       query: req.body,
       response: responseBody,
-      clientIP
+      clientIP,
     }
 
     loggingFunction( requestAndResponse )

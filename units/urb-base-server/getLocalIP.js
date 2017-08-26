@@ -1,6 +1,6 @@
 // @flow
 
-import os from "os"
+import os from 'os'
 
 export default function() {
   const interfaces = os.networkInterfaces()
@@ -10,7 +10,7 @@ export default function() {
     for ( let k2 in interfaces[k]) {
       // $FlowIssue it will be there
       const address = interfaces[k][k2]
-      if ( address.family === "IPv4" && !address.internal ) return address.address
+      if ( address.family === 'IPv4' && !address.internal ) return address.address
     }
   }
 }

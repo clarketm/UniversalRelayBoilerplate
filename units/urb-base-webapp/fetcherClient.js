@@ -1,6 +1,6 @@
 // @flow
 
-import FetcherBase from "./fetcherBase"
+import FetcherBase from './fetcherBase'
 
 export default class FetcherClient extends FetcherBase {
   constructor( url: string, payloads: any, UserToken2: string ) {

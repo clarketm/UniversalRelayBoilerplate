@@ -1,7 +1,7 @@
 // @flow weak
 
-import { commitMutation, graphql } from "react-relay"
-import { ConnectionHandler } from "relay-runtime"
+import { commitMutation, graphql } from 'react-relay'
+import { ConnectionHandler } from 'relay-runtime'
 
 const mutation = graphql`
   mutation EnsayoDeleteMutation($input: EnsayoDeleteInput!) {
@@ -16,7 +16,7 @@ function sharedUpdater( store, user, deletedId ) {
 
   const connection = ConnectionHandler.getConnection(
     userProxy,
-    "EnsayoList_Ensayos"
+    'EnsayoList_Ensayos'
   )
   if ( connection ) {
     ConnectionHandler.deleteNode( connection, deletedId )
@@ -27,17 +27,17 @@ function commit( environment, user, aEnsayo ) {
   return commitMutation( environment, {
     mutation,
     variables: {
-      input: { id: aEnsayo.id }
+      input: { id: aEnsayo.id },
     },
 
     updater( store ) {
-      const payload = store.getRootField( "EnsayoDelete" )
-      sharedUpdater( store, user, payload.getValue( "deletedId" ) )
+      const payload = store.getRootField( 'EnsayoDelete' )
+      sharedUpdater( store, user, payload.getValue( 'deletedId' ) )
     },
 
     optimisticUpdater( store ) {
       sharedUpdater( store, user, aEnsayo.id )
-    }
+    },
   })
 }
 

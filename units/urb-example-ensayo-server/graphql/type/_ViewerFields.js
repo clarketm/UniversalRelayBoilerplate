@@ -1,14 +1,14 @@
 // @flow weak
 
-import { GraphQLID } from "graphql"
+import { GraphQLID } from 'graphql'
 import {
   fromGlobalId,
   connectionArgs,
-  connectionFromArray
-} from "graphql-relay"
+  connectionFromArray,
+} from 'graphql-relay'
 
-import EnsayosConnection from "./EnsayosConnection"
-import EnsayoType from "./EnsayoType"
+import EnsayosConnection from './EnsayosConnection'
+import EnsayoType from './EnsayoType'
 
 export default {
   Ensayos: {
@@ -22,12 +22,12 @@ export default {
       context,
       { rootValue: objectManager }
     ) => {
-      const arr = await objectManager.getObjectList( "Ensayo", {
-        Ensayo_User_id: objectManager.getViewerUserId()
+      const arr = await objectManager.getObjectList( 'Ensayo', {
+        Ensayo_User_id: objectManager.getViewerUserId(),
       })
 
       return connectionFromArray( arr, args )
-    }
+    },
   },
 
   Ensayo: {
@@ -36,6 +36,6 @@ export default {
     args: { ...{ id: { type: GraphQLID } } },
 
     resolve: ( parent, { id }, context, { rootValue: objectManager }) =>
-      objectManager.getOneObject( "Ensayo", { id: fromGlobalId( id ).id })
-  }
+      objectManager.getOneObject( 'Ensayo', { id: fromGlobalId( id ).id }),
+  },
 }

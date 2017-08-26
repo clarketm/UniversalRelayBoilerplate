@@ -1,7 +1,7 @@
 // @flow weak
 
-import { commitMutation, graphql } from "react-relay"
-import { ConnectionHandler } from "relay-runtime"
+import { commitMutation, graphql } from 'react-relay'
+import { ConnectionHandler } from 'relay-runtime'
 
 const mutation = graphql`
   mutation ToDoListUpdateMarkAllMutation(
@@ -35,37 +35,37 @@ function commit( environment, user, ToDos, ToDo_Complete, status ) {
     mutation,
     variables: {
       input: { ToDo_Complete },
-      status
+      status,
     },
 
     updater( store ) {
       const userProxy = store.get( user.id )
       const connection = ConnectionHandler.getConnection(
         userProxy,
-        "ToDoList_ToDos",
+        'ToDoList_ToDos',
         { status }
       )
       const ToDosEdges = store
-        .getRootField( "ToDoListUpdateMarkAll" )
-        .getLinkedRecord( "Viewer" )
-        .getLinkedRecord( "ToDos", { status })
-        .getLinkedRecords( "edges" )
-      connection.setLinkedRecords( ToDosEdges, "edges" )
+        .getRootField( 'ToDoListUpdateMarkAll' )
+        .getLinkedRecord( 'Viewer' )
+        .getLinkedRecord( 'ToDos', { status })
+        .getLinkedRecords( 'edges' )
+      connection.setLinkedRecords( ToDosEdges, 'edges' )
     },
 
     optimisticUpdater( store ) {
       const userProxy = store.get( user.id )
       const connection = ConnectionHandler.getConnection(
         userProxy,
-        "ToDoList_ToDos",
+        'ToDoList_ToDos',
         { status }
       )
 
       if (
-        ( ToDo_Complete && status === "active" ) ||
-        ( !ToDo_Complete && status === "completed" )
+        ( ToDo_Complete && status === 'active' ) ||
+        ( !ToDo_Complete && status === 'completed' )
       ) {
-        connection.setLinkedRecords([], "edges" )
+        connection.setLinkedRecords([], 'edges' )
       }
     },
 
@@ -73,9 +73,9 @@ function commit( environment, user, ToDos, ToDo_Complete, status ) {
       const payload = {
         Viewer: {
           id: user.id,
-          ToDo_CompletedCount: 0
+          ToDo_CompletedCount: 0,
         },
-        changedToDos: null
+        changedToDos: null,
       }
 
       if ( ToDos && ToDos.edges ) {
@@ -93,9 +93,9 @@ function commit( environment, user, ToDos, ToDo_Complete, status ) {
       }
 
       return {
-        ToDoListUpdateMarkAll: payload
+        ToDoListUpdateMarkAll: payload,
       }
-    }
+    },
   })
 }
 

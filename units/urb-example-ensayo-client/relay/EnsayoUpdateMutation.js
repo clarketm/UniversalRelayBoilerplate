@@ -1,6 +1,6 @@
 // @flow weak
 
-import { commitMutation, graphql } from "react-relay"
+import { commitMutation, graphql } from 'react-relay'
 
 const mutation = graphql`
   mutation EnsayoUpdateMutation($input: EnsayoUpdateInput!) {
@@ -29,8 +29,8 @@ function commit(
         id: aEnsayo.id,
         Ensayo_Title,
         Ensayo_Description,
-        Ensayo_Content
-      }
+        Ensayo_Content,
+      },
     },
 
     optimisticResponse() {
@@ -40,11 +40,11 @@ function commit(
             id: aEnsayo.id,
             Ensayo_Title,
             Ensayo_Description,
-            Ensayo_Content
-          }
-        }
+            Ensayo_Content,
+          },
+        },
       }
-    }
+    },
   })
 }
 

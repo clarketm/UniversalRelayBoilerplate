@@ -17,7 +17,7 @@ export default class ViewportDimensions {
       muiSize: 0,
       totalWidth: 0,
       totalHeight: 0,
-      contentWidth: 0
+      contentWidth: 0,
     }
   }
 
@@ -55,7 +55,7 @@ export default class ViewportDimensions {
     let dimensionValue = this.viewportDimensions[dimensionName]
     if ( dimensionValue == null )
       throw new Error(
-        "Could not find viewport dimension named " + dimensionName
+        'Could not find viewport dimension named ' + dimensionName
       )
 
     return dimensionValue

@@ -1,6 +1,6 @@
 // @flow
 
-import FetcherBase from "./fetcherBase"
+import FetcherBase from './fetcherBase'
 
 export default class FetcherServer extends FetcherBase {
   payloads: Array<any>

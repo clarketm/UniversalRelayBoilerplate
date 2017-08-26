@@ -1,21 +1,21 @@
 // @flow
 
-import DataLoader from "dataloader"
-import { cursorForObjectInConnection } from "graphql-relay"
+import DataLoader from 'dataloader'
+import { cursorForObjectInConnection } from 'graphql-relay'
 
-import UserToken2Anonymous from "../../_configuration/urb-base-server/UserToken2Anonymous"
-import defaultPersister from "../../_configuration/urb-base-server/graphql/defaultPersister"
-import getNewUser from "../../_configuration/urb-base-server/graphql/model/getNewUser"
-import { getSiteInformation } from "../../_configuration/urb-base-server/siteSettings"
-import log from "../log"
-import User from "../../_configuration/urb-base-server/graphql/model/User"
+import UserToken2Anonymous from '../../_configuration/urb-base-server/UserToken2Anonymous'
+import defaultPersister from '../../_configuration/urb-base-server/graphql/defaultPersister'
+import getNewUser from '../../_configuration/urb-base-server/graphql/model/getNewUser'
+import { getSiteInformation } from '../../_configuration/urb-base-server/siteSettings'
+import log from '../log'
+import User from '../../_configuration/urb-base-server/graphql/model/User'
 
 // Anonymous user
 const User_0 = new User(
-  Object.assign( getNewUser( "00000000-0000-0000-0000-000000000000" ), {
+  Object.assign( getNewUser( '00000000-0000-0000-0000-000000000000' ), {
     id: defaultPersister.uuidNull(),
     UserToken2: UserToken2Anonymous,
-    User_DisplayName: "Anonymous"
+    User_DisplayName: 'Anonymous',
   })
 )
 
@@ -27,7 +27,7 @@ const setPersisters = new Set()
 
 // Value for a change indicating that the record is deleted
 const deletedRecord = {
-  deleted: true
+  deleted: true,
 }
 
 export default class ObjectManager {
@@ -62,7 +62,7 @@ export default class ObjectManager {
     // Setting site information mostly to satify flow;
     // also, in order to be able to detect errors when not set better
     this.siteInformation = {
-      site_id: "site_id has not been set. Invalid site_id!"
+      site_id: 'site_id has not been set. Invalid site_id!',
     }
   }
 
@@ -72,7 +72,7 @@ export default class ObjectManager {
     persister: any
   ): void {
     if ( entityName in entityDefinitions )
-      throw new Error( "Entity already registered: " + entityName )
+      throw new Error( 'Entity already registered: ' + entityName )
 
     // In order to be able to access the name as a static property of the type
     EntityType.entityName = entityName
@@ -90,7 +90,7 @@ export default class ObjectManager {
       TriggersForAdd: [],
       TriggersForUpdate: [],
       TriggersForRemove: [],
-      TriggersForUpdateShouldRetrieveCurrentRecord: false
+      TriggersForUpdateShouldRetrieveCurrentRecord: false,
     }
   }
 
@@ -163,21 +163,21 @@ export default class ObjectManager {
 
   getViewerUserId(): string {
     if ( this.Viewer_User_id == null )
-      throw new Error( "Object Manager: viewer user id has not been set" )
+      throw new Error( 'Object Manager: viewer user id has not been set' )
 
     return this.Viewer_User_id
   }
 
   getRequest(): any {
     if ( this.request == null )
-      throw new Error( "Object Manager: request has not been set" )
+      throw new Error( 'Object Manager: request has not been set' )
 
     return this.request
   }
 
   getLoader( entityName: string, fieldName: string, multipleResults: boolean ) {
     if ( !( entityName in entityDefinitions ) )
-      throw new Error( "Can not find entity type named " + entityName )
+      throw new Error( 'Can not find entity type named ' + entityName )
 
     const entityDefinition = entityDefinitions[entityName]
     const entityType = entityDefinition.EntityType
@@ -213,12 +213,12 @@ export default class ObjectManager {
   getOneObject( entityName: string, filter: Object ) {
     // TODO x2000 Provide try catch with logging here!
     // Special hack for anonymous users
-    if ( entityName === "User" )
+    if ( entityName === 'User' )
       if ( filter.id === defaultPersister.uuidNullAsString() )
         return Promise.resolve( User_0 )
 
     // For all non-user, non 0 ids, load from data loader per protocol
-    const loaderIdentifier = Object.keys( filter ).sort().join( "," )
+    const loaderIdentifier = Object.keys( filter ).sort().join( ',' )
     const loader = this.getLoader( entityName, loaderIdentifier, false )
 
     return loader.load( filter ).then( result => {
@@ -238,7 +238,7 @@ export default class ObjectManager {
 
   getObjectList( entityName: string, filter: Object ) {
     // TODO x2000 Provide try catch with logging here!
-    const loaderIdentifier = Object.keys( filter ).sort().join( "," )
+    const loaderIdentifier = Object.keys( filter ).sort().join( ',' )
     const loader = this.getLoader( entityName, loaderIdentifier, true )
 
     return loader.load( filter ).then( arrResults => {
@@ -263,7 +263,7 @@ export default class ObjectManager {
 
     const loadersSingle = this.getLoadersSingle( entityName )
     for ( let loaderFieldName in loadersSingle ) {
-      if ( loaderFieldName === "id" )
+      if ( loaderFieldName === 'id' )
         loadersSingle[loaderFieldName].clear( fields.id )
       else delete loadersSingle[loaderFieldName]
     }
@@ -286,7 +286,7 @@ export default class ObjectManager {
     const entityDefinition = entityDefinitions[entityName]
 
     if ( entityDefinition == null )
-      console.log( "Cound not find entity " + entityName )
+      console.log( 'Cound not find entity ' + entityName )
 
     // Generate primary key, overwrite if already present
     fields.id = entityDefinition.Persister.uuidRandom()
@@ -296,13 +296,13 @@ export default class ObjectManager {
     const entityDefinition = entityDefinitions[entityName]
 
     if ( entityDefinition == null )
-      console.log( "Cound not find entity " + entityName )
+      console.log( 'Cound not find entity ' + entityName )
 
     // Generate primary key, if not already present
     if ( !fields.id ) fields.id = entityDefinition.Persister.uuidRandom()
 
     // If this is a user ID
-    if ( entityName === "User" ) this.setViewerUserId( fields.id.toString() )
+    if ( entityName === 'User' ) this.setViewerUserId( fields.id.toString() )
 
     this.recordChange( entityName, fields, false )
     await this.executeTriggers( entityDefinition.TriggersForAdd, fields )
@@ -322,12 +322,12 @@ export default class ObjectManager {
     const entityDefinition = entityDefinitions[entityName]
 
     if ( entityDefinition == null )
-      console.log( "💔  XXX Cound not find entity" + entityName ) // Should that be recorded somewhere? Could be another
+      console.log( '💔  XXX Cound not find entity' + entityName ) // Should that be recorded somewhere? Could be another
 
     let oldFields = null
     if ( entityDefinition.TriggersForUpdateShouldRetrieveCurrentRecord ) {
       oldFields = this.getOneObject( entityName, {
-        id: fields.id
+        id: fields.id,
       })
     }
 
@@ -354,17 +354,17 @@ export default class ObjectManager {
 
     for ( let ensuredFieldName of Object.keys( ensureFields ) ) {
       let isMatchingValue = false
-      if ( ensuredFieldName.endsWith( "site_id" ) ) {
+      if ( ensuredFieldName.endsWith( 'site_id' ) ) {
         if ( !entity.site_id )
           throw new Error(
-            "ensuredFieldName = " +
+            'ensuredFieldName = ' +
               ensuredFieldName +
-              ", however the entity does not have field site_id"
+              ', however the entity does not have field site_id'
           )
         isMatchingValue =
           entityDefinition.Persister.uuidToString( entity.site_id ) ===
           ensureFields.site_id
-      } else if ( ensuredFieldName.endsWith( "_id" ) ) {
+      } else if ( ensuredFieldName.endsWith( '_id' ) ) {
         isMatchingValue = entityDefinition.Persister.uuidEquals(
           ensureFields[ensuredFieldName],
           // $FlowIssue by convention the field should be present
@@ -378,9 +378,9 @@ export default class ObjectManager {
 
       if ( !isMatchingValue )
         throw new Error(
-          "💔  Field value can not be ensured for field " +
+          '💔  Field value can not be ensured for field ' +
             ensuredFieldName +
-            " of " +
+            ' of ' +
             entityName
         )
     }
@@ -423,12 +423,12 @@ export default class ObjectManager {
     let cursor = cursorForObjectInConnection( arr, obj )
     if ( cursor == null )
       log.log(
-        "error",
-        "💔  Could not create cursor for object in connection for " +
+        'error',
+        '💔  Could not create cursor for object in connection for ' +
           entityName,
         {
           obj,
-          arr
+          arr,
         }
       )
 
@@ -439,19 +439,19 @@ export default class ObjectManager {
     runAsPartOfSetupDatabase: boolean,
     cb: Function
   ): void {
-    console.log( "🚀 Initializing persisters - start ..." )
+    console.log( '🚀 Initializing persisters - start ...' )
 
     // TODO x8000 This should be re-done to work properly with more than one persister
     for ( let persister of setPersisters )
       persister.initialize( runAsPartOfSetupDatabase, () => {
-        console.log( "🏆 Initializing persisters - success." )
+        console.log( '🏆 Initializing persisters - success.' )
         cb()
       })
   }
 }
 
 // Register the user
-ObjectManager.registerEntity( "User", User )
+ObjectManager.registerEntity( 'User', User )
 
 // Get an Object Manager with site information
 export async function getObjectManager(

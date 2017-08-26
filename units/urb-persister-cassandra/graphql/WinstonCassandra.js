@@ -1,28 +1,28 @@
 // @flow
 
-var util = require( "util" )
-var events = require( "events" )
+var util = require( 'util' )
+var events = require( 'events' )
 
-var winston = require( "winston" )
-var cql = require( "cassandra-driver" )
+var winston = require( 'winston' )
+var cql = require( 'cassandra-driver' )
 
 var defaultOptions = {
   //column family to store the logs
-  table: "logs",
+  table: 'logs',
   //determines if the partition key is changed per day or hour
-  partitionBy: "day",
+  partitionBy: 'day',
   consistency: cql.types.consistencies.quorum,
-  level: "info",
-  name: "cassandra"
+  level: 'info',
+  name: 'cassandra',
 }
 
 function Cassandra( options: Object ) {
   if ( !options ) {
-    throw new Error( "Transport options is required" )
+    throw new Error( 'Transport options is required' )
   }
 
   if ( !options.keyspace ) {
-    throw new Error( "You must specify the options.keyspace" )
+    throw new Error( 'You must specify the options.keyspace' )
   }
 
   this.options = Object.assign({}, defaultOptions, options )
@@ -50,9 +50,9 @@ Cassandra.prototype.log = function( level, msg, meta, callback ) {
  * Gets the log partition key
  */
 Cassandra.prototype.getKey = function() {
-  if ( this.options.partitionBy === "day" ) {
+  if ( this.options.partitionBy === 'day' ) {
     return new Date().toISOString().slice( 0, 10 )
-  } else if ( this.options.partitionBy === "hour" ) {
+  } else if ( this.options.partitionBy === 'hour' ) {
     return new Date().toISOString().slice( 0, 13 )
   }
   return null
@@ -65,15 +65,15 @@ Cassandra.prototype._insertLog = function( level, msg, meta, callback ) {
   var key = this.getKey()
   if ( !key ) {
     return callback(
-      new Error( "Partition " + this.options.partitionBy + " not supported" ),
+      new Error( 'Partition ' + this.options.partitionBy + ' not supported' ),
       false
     )
   }
   //execute as a prepared query as it would be executed multiple times
   return this.client.execute(
-    "INSERT INTO " +
+    'INSERT INTO ' +
       this.options.table +
-      " (key, date, level, message, meta) VALUES (?, ?, ?, ?, ?)",
+      ' (key, date, level, message, meta) VALUES (?, ?, ?, ?, ?)',
     [ key, new Date(), level, msg, util.inspect( meta ) ],
     { prepare: true, consistency: this.options.consistency },
     callback

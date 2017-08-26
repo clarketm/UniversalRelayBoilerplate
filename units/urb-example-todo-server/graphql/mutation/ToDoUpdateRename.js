@@ -1,16 +1,16 @@
 // @flow weak
 
-import { fromGlobalId, mutationWithClientMutationId } from "graphql-relay"
-import { GraphQLString, GraphQLID, GraphQLNonNull } from "graphql"
+import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
+import { GraphQLString, GraphQLID, GraphQLNonNull } from 'graphql'
 
-import ToDoType from "../type/ToDoType"
+import ToDoType from '../type/ToDoType'
 
 export default mutationWithClientMutationId({
-  name: "ToDoUpdateRename",
+  name: 'ToDoUpdateRename',
 
   inputFields: {
     id: { type: new GraphQLNonNull( GraphQLID ) },
-    ToDo_Text: { type: new GraphQLNonNull( GraphQLString ) }
+    ToDo_Text: { type: new GraphQLNonNull( GraphQLString ) },
   },
 
   outputFields: {
@@ -21,8 +21,8 @@ export default mutationWithClientMutationId({
         { ...args },
         context,
         { rootValue: objectManager }
-      ) => objectManager.getOneObject( "ToDo", { id: local_id })
-    }
+      ) => objectManager.getOneObject( 'ToDo', { id: local_id }),
+    },
   },
 
   mutateAndGetPayload: async(
@@ -32,11 +32,11 @@ export default mutationWithClientMutationId({
   ) => {
     const local_id = fromGlobalId( id ).id
 
-    await objectManager.update( "ToDo", {
+    await objectManager.update( 'ToDo', {
       id: local_id,
-      ToDo_Text
+      ToDo_Text,
     })
 
     return { local_id }
-  }
+  },
 })

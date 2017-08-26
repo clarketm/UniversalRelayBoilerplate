@@ -1,13 +1,13 @@
 // @flow
 
-import fs from "fs"
-import { graphql } from "graphql"
-import path from "path"
-import { promisify } from "util"
-import { introspectionQuery, printSchema } from "graphql/utilities"
+import fs from 'fs'
+import { graphql } from 'graphql'
+import path from 'path'
+import { promisify } from 'util'
+import { introspectionQuery, printSchema } from 'graphql/utilities'
 
-import ensureFileContent from "./ensureFileContent"
-import schema from "../urb-base-server/graphql/schema"
+import ensureFileContent from './ensureFileContent'
+import schema from '../urb-base-server/graphql/schema'
 
 const existsAsync = promisify( fs.exists )
 const readFileAsync = promisify( fs.readFile )
@@ -28,7 +28,7 @@ function orderPackages( packageAsObject ) {
 }
 
 async function createPackageJson( units: Array<string> ) {
-  const packageJsonFileName = path.resolve( "./package.json" )
+  const packageJsonFileName = path.resolve( './package.json' )
   const currentPackageAsJSONString = ( await readFileAsync(
     packageJsonFileName
   ) ).toString()
@@ -38,9 +38,9 @@ async function createPackageJson( units: Array<string> ) {
     devDependencies: {},
     engines: {},
     name: null,
-    "lint-staged": {},
+    'lint-staged': {},
     scripts: {},
-    version: null
+    version: null,
   }
 
   // Make sure not to overwrite version information
@@ -50,9 +50,9 @@ async function createPackageJson( units: Array<string> ) {
   // Add packages to object
   for ( let unitName of units ) {
     const packageAsObjectName = path.resolve(
-      "./units",
+      './units',
       unitName,
-      "package.part.json"
+      'package.part.json'
     )
     if ( await existsAsync( packageAsObjectName ) ) {
       const packageToAddAsObject = JSON.parse(
@@ -71,10 +71,10 @@ async function createPackageJson( units: Array<string> ) {
         )
       if ( packageToAddAsObject.engines )
         Object.assign( packageAsObject.engines, packageToAddAsObject.engines )
-      if ( packageToAddAsObject["lint-staged"])
+      if ( packageToAddAsObject['lint-staged'])
         Object.assign(
-          packageAsObject["lint-staged"],
-          packageToAddAsObject["lint-staged"]
+          packageAsObject['lint-staged'],
+          packageToAddAsObject['lint-staged']
         )
       if ( packageToAddAsObject.scripts )
         Object.assign( packageAsObject.scripts, packageToAddAsObject.scripts )
@@ -96,44 +96,44 @@ async function createMutations( units: Array<string> ) {
   const mutationsExports = []
 
   for ( let unitName of units )
-    if ( unitName.endsWith( "-server" ) ) {
-      const mutationsDir = path.resolve( "./units", unitName, "graphql/mutation" )
+    if ( unitName.endsWith( '-server' ) ) {
+      const mutationsDir = path.resolve( './units', unitName, 'graphql/mutation' )
       if ( await existsAsync( mutationsDir ) ) {
         const mutationFileNames = await readdirAsync( mutationsDir )
 
         for ( let mutationFileName of mutationFileNames ) {
-          if ( mutationFileName.endsWith( ".js" ) ) {
+          if ( mutationFileName.endsWith( '.js' ) ) {
             const mutation = mutationFileName.substring(
               0,
               mutationFileName.length - 3
             )
             mutationsImports.push(
-              "import " +
-                mutation.replace( ".", "_" ) +
-                " from '../../../" +
+              'import ' +
+                mutation.replace( '.', '_' ) +
+                ' from \'../../../' +
                 unitName +
-                "/graphql/mutation/" +
+                '/graphql/mutation/' +
                 mutation +
-                "'"
+                '\''
             )
-            mutationsExports.push( "  " + mutation + "," )
+            mutationsExports.push( '  ' + mutation + ',' )
           }
         }
       }
     }
 
-  let mutations = [ "// @flow", "" ]
+  let mutations = [ '// @flow', '' ]
   mutations = mutations.concat( mutationsImports )
-  mutations = mutations.concat([ "", "export default {" ])
+  mutations = mutations.concat([ '', 'export default {' ])
   mutations = mutations.concat( mutationsExports )
-  mutations = mutations.concat([ "}" ])
+  mutations = mutations.concat([ '}' ])
 
   await ensureFileContent(
     path.resolve(
-      "./units/_configuration/urb-base-server/graphql/_mutations.js"
+      './units/_configuration/urb-base-server/graphql/_mutations.js'
     ),
     null,
-    mutations.join( "\r\n" )
+    mutations.join( '\r\n' )
   )
 }
 
@@ -141,37 +141,37 @@ async function createSchemas( units: Array<string> ) {
   const schemasImports = []
 
   for ( let unitName of units )
-    if ( unitName.endsWith( "-server" ) ) {
-      const schemasDir = path.resolve( "./units", unitName, "graphql/model" )
+    if ( unitName.endsWith( '-server' ) ) {
+      const schemasDir = path.resolve( './units', unitName, 'graphql/model' )
       if ( await existsAsync( schemasDir ) ) {
         const objectTypeFileNames = await readdirAsync( schemasDir )
 
         for ( let objectTypeFileName of objectTypeFileNames ) {
-          if ( objectTypeFileName.endsWith( ".js" ) ) {
+          if ( objectTypeFileName.endsWith( '.js' ) ) {
             const objectType = objectTypeFileName.substring(
               0,
               objectTypeFileName.length - 3
             )
             schemasImports.push(
-              "import '../../../" +
+              'import \'../../../' +
                 unitName +
-                "/graphql/model/" +
+                '/graphql/model/' +
                 objectType +
-                "'"
+                '\''
             )
           }
         }
       }
     }
 
-  let schemas = [ "// @flow", "" ]
+  let schemas = [ '// @flow', '' ]
   schemas = schemas.concat( schemasImports )
-  schemas = schemas.concat([ "", "export default true" ])
+  schemas = schemas.concat([ '', 'export default true' ])
 
   await ensureFileContent(
-    path.resolve( "./units/_configuration/urb-base-server/graphql/_schemas.js" ),
+    path.resolve( './units/_configuration/urb-base-server/graphql/_schemas.js' ),
     null,
-    schemas.join( "\r\n" )
+    schemas.join( '\r\n' )
   )
 }
 
@@ -180,37 +180,37 @@ async function createViewerFields( units: Array<string> ) {
   const viewerFieldsExports = []
 
   for ( let unitName of units )
-    if ( unitName.endsWith( "-server" ) ) {
+    if ( unitName.endsWith( '-server' ) ) {
       const viewerFieldsFileName = path.resolve(
-        "./units",
+        './units',
         unitName,
-        "graphql/type/_ViewerFields.js"
+        'graphql/type/_ViewerFields.js'
       )
       if ( await existsAsync( viewerFieldsFileName ) ) {
-        const viewerFieldsImportName = unitName.replace( /-/g, "_" )
+        const viewerFieldsImportName = unitName.replace( /-/g, '_' )
         viewerFieldsImports.push(
-          "import " +
+          'import ' +
             viewerFieldsImportName +
-            " from '../../../" +
+            ' from \'../../../' +
             unitName +
-            "/graphql/type/_ViewerFields'"
+            '/graphql/type/_ViewerFields\''
         )
-        viewerFieldsExports.push( "  ..." + viewerFieldsImportName + "," )
+        viewerFieldsExports.push( '  ...' + viewerFieldsImportName + ',' )
       }
     }
 
-  let viewerFields = [ "// @flow", "" ]
+  let viewerFields = [ '// @flow', '' ]
   viewerFields = viewerFields.concat( viewerFieldsImports )
-  viewerFields = viewerFields.concat([ "", "export default {" ])
+  viewerFields = viewerFields.concat([ '', 'export default {' ])
   viewerFields = viewerFields.concat( viewerFieldsExports )
-  viewerFields = viewerFields.concat([ "}" ])
+  viewerFields = viewerFields.concat([ '}' ])
 
   await ensureFileContent(
     path.resolve(
-      "./units/_configuration/urb-base-server/graphql/_ViewerFields.js"
+      './units/_configuration/urb-base-server/graphql/_ViewerFields.js'
     ),
     null,
-    viewerFields.join( "\r\n" )
+    viewerFields.join( '\r\n' )
   )
 }
 
@@ -219,42 +219,42 @@ async function createRoutes( units: Array<string> ) {
   const routesExports = []
 
   for ( let unitName of units )
-    if ( unitName.endsWith( "-webapp" ) ) {
-      const routesDir = path.resolve( "./units", unitName )
+    if ( unitName.endsWith( '-webapp' ) ) {
+      const routesDir = path.resolve( './units', unitName )
       if ( await existsAsync( routesDir ) ) {
         const routeFileNames = await readdirAsync( routesDir )
 
         for ( let routeFileName of routeFileNames ) {
           if (
-            routeFileName.endsWith( ".jsx" ) &&
-            routeFileName.startsWith( "routeAppFrame" )
+            routeFileName.endsWith( '.jsx' ) &&
+            routeFileName.startsWith( 'routeAppFrame' )
           ) {
             const route = routeFileName.substring( 0, routeFileName.length - 4 )
             routesImports.push(
-              "import " + route + " from '../../" + unitName + "/" + route + "'"
+              'import ' + route + ' from \'../../' + unitName + '/' + route + '\''
             )
-            routesExports.push( "  " + route + "," )
+            routesExports.push( '  ' + route + ',' )
           }
         }
       }
     }
 
-  let routes = [ "// @flow", "" ]
+  let routes = [ '// @flow', '' ]
   routes = routes.concat( routesImports )
-  routes = routes.concat([ "", "export default [" ])
+  routes = routes.concat([ '', 'export default [' ])
   routes = routes.concat( routesExports )
-  routes = routes.concat([ "]" ])
+  routes = routes.concat([ ']' ])
 
   await ensureFileContent(
-    path.resolve( "./units/_configuration/urb-base-webapp/routesAppFrame.js" ),
+    path.resolve( './units/_configuration/urb-base-webapp/routesAppFrame.js' ),
     null,
-    routes.join( "\r\n" )
+    routes.join( '\r\n' )
   )
 }
 
 async function getUnits() {
-  const units = ( await readdirAsync( "./units/" ) ).filter(
-    fileName => fileName !== ".DS_Store" && fileName !== "_configuration"
+  const units = ( await readdirAsync( './units/' ) ).filter(
+    fileName => fileName !== '.DS_Store' && fileName !== '_configuration'
   )
   return units
 }
@@ -263,18 +263,18 @@ async function buildGraphQLSchema() {
   const result = await graphql( schema, introspectionQuery )
   if ( result.errors )
     throw new Error(
-      "Failed introspecting schema: " + JSON.stringify( result.errors, null, 2 )
+      'Failed introspecting schema: ' + JSON.stringify( result.errors, null, 2 )
     )
 
   await ensureFileContent(
-    path.resolve( "./units/_configuration/urb-base-server/graphql/schema.json" ),
+    path.resolve( './units/_configuration/urb-base-server/graphql/schema.json' ),
     null,
     JSON.stringify( result, null, 2 )
   )
 
   await ensureFileContent(
     path.resolve(
-      "./units/_configuration/urb-base-server/graphql/schema.graphql"
+      './units/_configuration/urb-base-server/graphql/schema.graphql'
     ),
     null,
     printSchema( schema )
@@ -289,7 +289,7 @@ async function main() {
     createViewerFields( units ),
     createSchemas( units ),
     createMutations( units ),
-    createRoutes( units )
+    createRoutes( units ),
   ]
 
   await Promise.all( taskPromises )
@@ -298,4 +298,4 @@ async function main() {
   await buildGraphQLSchema()
 }
 
-main().then( () => console.log( "Fin." ) )
+main().then( () => console.log( 'Fin.' ) )
