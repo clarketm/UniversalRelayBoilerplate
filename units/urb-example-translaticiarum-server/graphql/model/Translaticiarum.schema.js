@@ -8,7 +8,7 @@ defaultPersister.addTableSchema( "Translaticiarum", {
     Translaticiarum_User_id: "uuid",
     Translaticiarum_Stop: "timestamp",
     Translaticiarum_Start: "timestamp",
-    Translaticiarum_Description: "text"
+    Translaticiarum_Description: "text",
   },
 
   key: [ "id" ],
@@ -17,9 +17,9 @@ defaultPersister.addTableSchema( "Translaticiarum", {
     {
       on: "Translaticiarum_User_id",
       using: "org.apache.cassandra.index.sasi.SASIIndex",
-      options: {}
-    }
-  ]
+      options: {},
+    },
+  ],
 })
 
 export default true
