@@ -1,11 +1,11 @@
 
 
-var _fs=require('fs');var _fs2=_interopRequireDefault(_fs);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+var fs=require('fs');
 
 var fileName='node_modules/react-rte/dist/react-rte.js';
 
 try{
-var fileLines=_fs2.default.readFileSync(fileName,'utf8').split('\n');
+var fileLines=fs.readFileSync(fileName,'utf8').split('\n');
 
 for(var index=0;index<fileLines.length;index++){
 if(
@@ -22,7 +22,7 @@ fileLines[index]='';
 }
 }
 
-_fs2.default.writeFileSync(fileName,fileLines.join('\n'));
+fs.writeFileSync(fileName,fileLines.join('\n'));
 console.log('['+fileName+'] has  been updated');
 }catch(err){
 console.error('['+fileName+'] has not been been updated because '+err);
