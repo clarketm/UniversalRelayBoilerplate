@@ -1,19 +1,19 @@
 Object.defineProperty(exports,"__esModule",{value:true});
 
-var _User=require('../../../urb-base-server/graphql/model/User.schemas');var _User2=_interopRequireDefault(_User);
-var _UserAccount=require('../../../urb-base-server/graphql/model/UserAccount');var _UserAccount2=_interopRequireDefault(_UserAccount);
-var _UserAccount3=require('../../../urb-base-server/graphql/model/UserAccount.schema');var _UserAccount4=_interopRequireDefault(_UserAccount3);
-var _UserSession=require('../../../urb-base-server/graphql/model/UserSession');var _UserSession2=_interopRequireDefault(_UserSession);
-var _UserSession3=require('../../../urb-base-server/graphql/model/UserSession.schema');var _UserSession4=_interopRequireDefault(_UserSession3);
-var _logs=require('../../../urb-base-server/graphql/model/logs.schema');var _logs2=_interopRequireDefault(_logs);
-var _Ensayo=require('../../../urb-example-ensayo-server/graphql/model/Ensayo');var _Ensayo2=_interopRequireDefault(_Ensayo);
-var _Ensayo3=require('../../../urb-example-ensayo-server/graphql/model/Ensayo.schema');var _Ensayo4=_interopRequireDefault(_Ensayo3);
-var _Inscriptio=require('../../../urb-example-inscriptio-server/graphql/model/Inscriptio');var _Inscriptio2=_interopRequireDefault(_Inscriptio);
-var _Inscriptio3=require('../../../urb-example-inscriptio-server/graphql/model/Inscriptio.schema');var _Inscriptio4=_interopRequireDefault(_Inscriptio3);
-var _ToDo=require('../../../urb-example-todo-server/graphql/model/ToDo');var _ToDo2=_interopRequireDefault(_ToDo);
-var _ToDo3=require('../../../urb-example-todo-server/graphql/model/ToDo.schema');var _ToDo4=_interopRequireDefault(_ToDo3);
-var _Translaticiarum=require('../../../urb-example-translaticiarum-server/graphql/model/Translaticiarum');var _Translaticiarum2=_interopRequireDefault(_Translaticiarum);
-var _Translaticiarum3=require('../../../urb-example-translaticiarum-server/graphql/model/Translaticiarum.schema');var _Translaticiarum4=_interopRequireDefault(_Translaticiarum3);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
+require('../../../urb-base-server/graphql/model/User.schemas');
+require('../../../urb-base-server/graphql/model/UserAccount');
+require('../../../urb-base-server/graphql/model/UserAccount.schema');
+require('../../../urb-base-server/graphql/model/UserSession');
+require('../../../urb-base-server/graphql/model/UserSession.schema');
+require('../../../urb-base-server/graphql/model/logs.schema');
+require('../../../urb-example-ensayo-server/graphql/model/Ensayo');
+require('../../../urb-example-ensayo-server/graphql/model/Ensayo.schema');
+require('../../../urb-example-inscriptio-server/graphql/model/Inscriptio');
+require('../../../urb-example-inscriptio-server/graphql/model/Inscriptio.schema');
+require('../../../urb-example-todo-server/graphql/model/ToDo');
+require('../../../urb-example-todo-server/graphql/model/ToDo.schema');
+require('../../../urb-example-translaticiarum-server/graphql/model/Translaticiarum');
+require('../../../urb-example-translaticiarum-server/graphql/model/Translaticiarum.schema');exports.default=
 
 true;
 //# sourceMappingURL=_schemas.js.map

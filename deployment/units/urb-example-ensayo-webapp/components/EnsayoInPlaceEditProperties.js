@@ -2,12 +2,14 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
 var _Dialog=require('material-ui/Dialog');var _Dialog2=_interopRequireDefault(_Dialog);
+
+
+
+
 var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireDefault(_TextField);
 var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
-
 var _reactRte=require('react-rte');var _reactRte2=_interopRequireDefault(_reactRte);
-
 var _styles=require('material-ui/styles');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
 var styles=function styles(theme){return{
@@ -53,6 +55,9 @@ props,context));_this.
 
 
 
+
+
+
 _handle_OnChange_RTE_Ensayo_Content=function(value){
 _this.setState({
 Ensayo_Content_RTE:value});
@@ -87,13 +92,15 @@ _react2.default.createElement(_TextField2.default,{
 label:'Title',
 fullWidth:true,
 value:Ensayo_Title,
-onChange:function onChange(event){return _this2.setState({Ensayo_Title:event.target.value});}}),
+onChange:function onChange(event){return(
+_this2.setState({Ensayo_Title:event.target.value}));}}),
 
 _react2.default.createElement(_TextField2.default,{
 label:'Description',
 fullWidth:true,
 value:Ensayo_Description,
-onChange:function onChange(event){return _this2.setState({Ensayo_Description:event.target.value});}}),
+onChange:function onChange(event){return(
+_this2.setState({Ensayo_Description:event.target.value}));}}),
 
 _react2.default.createElement('div',{className:classes.richTextContainer},
 _reactRte2.default==null?

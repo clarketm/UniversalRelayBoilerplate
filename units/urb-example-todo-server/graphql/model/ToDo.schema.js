@@ -2,7 +2,7 @@
 
 import defaultPersister from '../../../_configuration/urb-base-server/graphql/defaultPersister'
 
-defaultPersister.addTableSchema('ToDo', {
+defaultPersister.addTableSchema( 'ToDo', {
   fields: {
     id: 'uuid',
     ToDo_User_id: 'uuid',
@@ -10,7 +10,7 @@ defaultPersister.addTableSchema('ToDo', {
     ToDo_Complete: 'boolean',
   },
 
-  key: ['id'],
+  key: [ 'id' ],
 
   custom_indexes: [
     {

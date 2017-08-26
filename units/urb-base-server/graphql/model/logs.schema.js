@@ -2,7 +2,7 @@
 
 import defaultPersister from '../../../_configuration/urb-base-server/graphql/defaultPersister'
 
-defaultPersister.addTableSchema('logs', {
+defaultPersister.addTableSchema( 'logs', {
   fields: {
     key: 'text',
     date: 'timestamp',
@@ -10,7 +10,7 @@ defaultPersister.addTableSchema('logs', {
     message: 'text',
     meta: 'text',
   },
-  key: ['key', 'date'],
+  key: [ 'key', 'date' ],
 })
 
 export default true

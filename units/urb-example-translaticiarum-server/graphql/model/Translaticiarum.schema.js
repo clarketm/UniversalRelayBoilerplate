@@ -2,7 +2,7 @@
 
 import defaultPersister from '../../../_configuration/urb-base-server/graphql/defaultPersister'
 
-defaultPersister.addTableSchema('Translaticiarum', {
+defaultPersister.addTableSchema( 'Translaticiarum', {
   fields: {
     id: 'uuid',
     Translaticiarum_User_id: 'uuid',
@@ -11,7 +11,7 @@ defaultPersister.addTableSchema('Translaticiarum', {
     Translaticiarum_Description: 'text',
   },
 
-  key: ['id'],
+  key: [ 'id' ],
 
   custom_indexes: [
     {

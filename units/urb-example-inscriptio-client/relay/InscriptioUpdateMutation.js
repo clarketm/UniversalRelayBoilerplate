@@ -20,9 +20,9 @@ function commit(
   aInscriptio,
   Inscriptio_LocationLat,
   Inscriptio_LocationLon,
-  Inscriptio_Notes,
+  Inscriptio_Notes
 ) {
-  return commitMutation(environment, {
+  return commitMutation( environment, {
     mutation,
     variables: {
       input: {

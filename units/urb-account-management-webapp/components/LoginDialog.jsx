@@ -1,7 +1,11 @@
 // @flow
 
 import Button from 'material-ui/Button'
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog'
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from 'material-ui/Dialog'
 import { LinearProgress } from 'material-ui/Progress'
 import Slide from 'material-ui/transitions/Slide'
 import TextField from 'material-ui/TextField'
@@ -23,17 +27,17 @@ class LoginDialog extends React.Component<
     open: boolean,
     handlerClose: PropTypes.func.isRequired,
     handlerNewUser: PropTypes.func.isRequired,
-    classes: Object,
+    classes: Object
   },
   {
     currentOperation: 'challenge' | 'in progress' | 'failure',
     errorMessage: string,
     UserAccount_Identifier: string,
-    User_Secret: string,
-  },
+    User_Secret: string
+  }
 > {
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     this.state = {
       currentOperation: 'challenge',
@@ -47,7 +51,7 @@ class LoginDialog extends React.Component<
     this.props.handlerClose()
   }
 
-  _handle_onClick_LogIn = async () => {
+  _handle_onClick_LogIn = async() => {
     const { UserAccount_Identifier, User_Secret } = this.state
 
     this.setState({
@@ -59,7 +63,7 @@ class LoginDialog extends React.Component<
       const loc = window.location
       const host = loc.protocol + '//' + loc.hostname + ':' + loc.port
 
-      const response = await fetch(host + '/auth/login', {
+      const response = await fetch( host + '/auth/login', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
@@ -73,20 +77,24 @@ class LoginDialog extends React.Component<
 
       const responseData = await response.json()
 
-      if (responseData.success) {
+      if ( responseData.success ) {
         // In case of success, realod the application from server
-        window.location.replace(window.location.href, '')
+        window.location.replace( window.location.href, '' )
       } else {
         // In case of error, tell user what the error is
-        this.setState({ currentOperation: 'failure', errorMessage: responseData.error }) // ZZZ Does server really send the reason for the failed login?
+        this.setState({
+          currentOperation: 'failure',
+          errorMessage: responseData.error,
+        }) // ZZZ Does server really send the reason for the failed login?
       }
-    } catch (err) {
+    } catch ( err ) {
       // In case response could not be received properly, tell the user
       // In case of error, tell user what the error is
       this.setState({
         currentOperation: 'failure',
         errorMessage:
-          'Did not receive proper response from server. Please try again. Message:' + err.message,
+          'Did not receive proper response from server. Please try again. Message:' +
+          err.message,
       })
     }
   }
@@ -114,7 +122,11 @@ class LoginDialog extends React.Component<
     const { UserAccount_Identifier, User_Secret } = this.state
 
     return (
-      <Dialog open={open} transition={Slide} onRequestClose={this._handle_Close}>
+      <Dialog
+        open={open}
+        transition={Slide}
+        onRequestClose={this._handle_Close}
+      >
         <DialogTitle>Log In</DialogTitle>
 
         <DialogContent>
@@ -122,14 +134,16 @@ class LoginDialog extends React.Component<
             label="Account Name"
             fullWidth={true}
             value={UserAccount_Identifier}
-            onChange={event => this.setState({ UserAccount_Identifier: event.target.value })}
+            onChange={event =>
+              this.setState({ UserAccount_Identifier: event.target.value })}
           />
           <TextField
             label="Password"
             type="password"
             fullWidth={true}
             value={User_Secret}
-            onChange={event => this.setState({ User_Secret: event.target.value })}
+            onChange={event =>
+              this.setState({ User_Secret: event.target.value })}
           />
         </DialogContent>
         <DialogActions>
@@ -208,4 +222,4 @@ class LoginDialog extends React.Component<
   }
 }
 
-export default withStyles(styles)(LoginDialog)
+export default withStyles( styles )( LoginDialog )

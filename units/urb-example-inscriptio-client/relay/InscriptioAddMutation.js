@@ -22,12 +22,15 @@ const mutation = graphql`
   }
 `
 
-function sharedUpdater(store, user, InscriptiosEdge) {
-  const userProxy = store.get(user.id)
+function sharedUpdater( store, user, InscriptiosEdge ) {
+  const userProxy = store.get( user.id )
 
-  const connection = ConnectionHandler.getConnection(userProxy, 'InscriptioList_Inscriptios')
-  if (connection) {
-    ConnectionHandler.insertEdgeAfter(connection, InscriptiosEdge)
+  const connection = ConnectionHandler.getConnection(
+    userProxy,
+    'InscriptioList_Inscriptios'
+  )
+  if ( connection ) {
+    ConnectionHandler.insertEdgeAfter( connection, InscriptiosEdge )
   }
 }
 
@@ -38,36 +41,41 @@ function commit(
   user,
   Inscriptio_LocationLat,
   Inscriptio_LocationLon,
-  Inscriptio_Notes,
+  Inscriptio_Notes
 ) {
   const clientMutationId = nextClientMutationId++
 
-  return commitMutation(environment, {
+  return commitMutation( environment, {
     mutation,
     variables: {
-      input: { Inscriptio_LocationLat, Inscriptio_LocationLon, Inscriptio_Notes, clientMutationId },
+      input: {
+        Inscriptio_LocationLat,
+        Inscriptio_LocationLon,
+        Inscriptio_Notes,
+        clientMutationId,
+      },
     },
 
-    updater(store) {
-      const payload = store.getRootField('InscriptioAdd')
-      sharedUpdater(store, user, payload.getLinkedRecord('InscriptiosEdge'))
+    updater( store ) {
+      const payload = store.getRootField( 'InscriptioAdd' )
+      sharedUpdater( store, user, payload.getLinkedRecord( 'InscriptiosEdge' ) )
     },
 
-    optimisticUpdater(store) {
+    optimisticUpdater( store ) {
       const id = `client:InscriptioAdd:Inscriptio:${clientMutationId}`
-      const aInscriptio = store.create(id, 'Inscriptio')
-      aInscriptio.setValue(Inscriptio_LocationLat, 'Inscriptio_LocationLat')
-      aInscriptio.setValue(Inscriptio_LocationLon, 'Inscriptio_LocationLon')
-      aInscriptio.setValue(Inscriptio_Notes, 'Inscriptio_Notes')
-      aInscriptio.setValue(id, 'id')
+      const aInscriptio = store.create( id, 'Inscriptio' )
+      aInscriptio.setValue( Inscriptio_LocationLat, 'Inscriptio_LocationLat' )
+      aInscriptio.setValue( Inscriptio_LocationLon, 'Inscriptio_LocationLon' )
+      aInscriptio.setValue( Inscriptio_Notes, 'Inscriptio_Notes' )
+      aInscriptio.setValue( id, 'id' )
 
       const InscriptiosEdge = store.create(
         `client:InscriptioAdd:InscriptiosEdge:${clientMutationId}`,
-        'InscriptiosEdge',
+        'InscriptiosEdge'
       )
-      InscriptiosEdge.setLinkedRecord(aInscriptio, 'node')
+      InscriptiosEdge.setLinkedRecord( aInscriptio, 'node' )
 
-      sharedUpdater(store, user, InscriptiosEdge)
+      sharedUpdater( store, user, InscriptiosEdge )
     },
   })
 }

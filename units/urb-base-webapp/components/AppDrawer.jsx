@@ -35,16 +35,36 @@ const styles = theme => ({
 function renderNavItems() {
   return (
     <List>
-      <AppDrawerNavItem key={1} openImmediately={true} title="To Dos" to="/todo" />
-      <AppDrawerNavItem key={2} openImmediately={true} title="Ensayo edit" to="/ensayo/edit" />
+      <AppDrawerNavItem
+        key={1}
+        openImmediately={true}
+        title="To Dos"
+        to="/todo"
+      />
+      <AppDrawerNavItem
+        key={2}
+        openImmediately={true}
+        title="Ensayo edit"
+        to="/ensayo/edit"
+      />
       <AppDrawerNavItem
         key={3}
         openImmediately={true}
         title="Ensayo in place"
         to="/ensayo/in-place-edit"
       />
-      <AppDrawerNavItem key={4} openImmediately={true} title="Ensayo public" to="/ensayo" />
-      <AppDrawerNavItem key={5} openImmediately={true} title="Inscriptio" to="/inscriptio" />
+      <AppDrawerNavItem
+        key={4}
+        openImmediately={true}
+        title="Ensayo public"
+        to="/ensayo"
+      />
+      <AppDrawerNavItem
+        key={5}
+        openImmediately={true}
+        title="Inscriptio"
+        to="/inscriptio"
+      />
       <AppDrawerNavItem
         key={6}
         openImmediately={true}
@@ -55,7 +75,7 @@ function renderNavItems() {
   )
 }
 
-function AppDrawer(props) {
+function AppDrawer( props ) {
   const classes = props.classes
 
   return (
@@ -92,4 +112,4 @@ AppDrawer.propTypes = {
   open: PropTypes.bool.isRequired,
 }
 
-export default withStyles(styles)(AppDrawer)
+export default withStyles( styles )( AppDrawer )

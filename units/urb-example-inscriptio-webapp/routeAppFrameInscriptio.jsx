@@ -6,7 +6,10 @@ import React from 'react'
 import Route from 'found/lib/Route'
 
 const InscriptioScreen = props =>
-  <Async load={import('./components/InscriptioScreen')} componentProps={props} />
+  <Async
+    load={import( './components/InscriptioScreen' )}
+    componentProps={props}
+  />
 
 export default (
   <Route key="inscriptio" path="inscriptio">

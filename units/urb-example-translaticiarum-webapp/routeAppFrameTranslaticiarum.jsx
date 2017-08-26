@@ -6,7 +6,10 @@ import React from 'react'
 import Route from 'found/lib/Route'
 
 const TranslaticiarumScreen = props =>
-  <Async load={import('./components/TranslaticiarumScreen')} componentProps={props} />
+  <Async
+    load={import( './components/TranslaticiarumScreen' )}
+    componentProps={props}
+  />
 
 export default (
   <Route key="translaticiarum" path="translaticiarum">

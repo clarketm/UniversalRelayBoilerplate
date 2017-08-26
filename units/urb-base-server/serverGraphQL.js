@@ -4,51 +4,54 @@ import bodyParser from 'body-parser'
 import express from 'express'
 import graphQLHTTP from 'express-graphql'
 
+import { requestLoggerGraphQL } from '../_configuration/urb-base-server/requestLoggers'
+
 import {
   getUserAndSessionIDByUserToken1,
   verifyUserAuthToken,
   serveAuthenticationFailed,
 } from './checkCredentials'
-import { getSiteInformation } from '../_configuration/urb-base-server/siteSettings'
 import logServerRequest from './logServerRequest'
 import { getObjectManager } from './graphql/ObjectManager'
-import { requestLoggerGraphQL } from '../_configuration/urb-base-server/requestLoggers'
 import schema from './graphql/schema' // Schema for GraphQL server
 
 // Guarantee that all object registrations and schema definitions are executed
-import _schemas from '../_configuration/urb-base-server/graphql/_schemas'
+import '../_configuration/urb-base-server/graphql/_schemas'
 
 // Create router for GraphQL
 const serverGraphQL = express()
 
 // Set up parser
-serverGraphQL.use(bodyParser.json())
+serverGraphQL.use( bodyParser.json() )
 
 // Set up logging
-serverGraphQL.use((req, res, next) => logServerRequest(req, res, next, requestLoggerGraphQL))
+serverGraphQL.use( ( req, res, next ) =>
+  logServerRequest( req, res, next, requestLoggerGraphQL )
+)
 
-async function root(req, res, next) {
-  const objectManager = await getObjectManager(req, res)
-  if (objectManager.siteInformation) {
+async function root( req, res, next ) {
+  const objectManager = await getObjectManager( req, res )
+  if ( objectManager.siteInformation ) {
     try {
-      const a_User = (await getUserAndSessionIDByUserToken1(objectManager, req)).User
+      const a_User = ( await getUserAndSessionIDByUserToken1( objectManager, req ) )
+        .User
 
       res.codeFoundriesInjected = { user: a_User }
-      await verifyUserAuthToken(a_User, req)
+      await verifyUserAuthToken( a_User, req )
 
-      graphQLHTTP(() => {
+      graphQLHTTP( () => {
         return {
           schema: schema,
           rootValue: objectManager,
           pretty: true,
           graphiql: true,
         }
-      })(req, res, next)
-    } catch (err) {
-      serveAuthenticationFailed(req, res, err, true)
+      })( req, res, next )
+    } catch ( err ) {
+      serveAuthenticationFailed( req, res, err, true )
     }
   }
 }
-serverGraphQL.use('/', root)
+serverGraphQL.use( '/', root )
 
 export default serverGraphQL

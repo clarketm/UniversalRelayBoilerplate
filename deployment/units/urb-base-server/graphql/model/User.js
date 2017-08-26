@@ -13,7 +13,7 @@ export default class User {
   User_Longitude: number
   //
 
-  constructor(fields: {
+  constructor( fields: {
     id: string,
     User_site_id: string,
     UserToken2: string,
@@ -22,7 +22,7 @@ export default class User {
     User_Email: string,
     User_PhoneNumberMobile: string,
     User_Latitude: number,
-    User_Longitude: number,
+    User_Longitude: number
   }) {
     this.id = fields.id
     this.User_site_id = fields.User_site_id

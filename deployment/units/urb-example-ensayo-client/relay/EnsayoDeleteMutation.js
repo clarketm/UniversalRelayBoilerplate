@@ -14,7 +14,10 @@ var mutation=function mutation(){return require('./__generated__/EnsayoDeleteMut
 function sharedUpdater(store,user,deletedId){
 var userProxy=store.get(user.id);
 
-var connection=_relayRuntime.ConnectionHandler.getConnection(userProxy,'EnsayoList_Ensayos');
+var connection=_relayRuntime.ConnectionHandler.getConnection(
+userProxy,
+'EnsayoList_Ensayos');
+
 if(connection){
 _relayRuntime.ConnectionHandler.deleteNode(connection,deletedId);
 }

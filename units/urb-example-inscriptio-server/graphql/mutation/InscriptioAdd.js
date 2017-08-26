@@ -10,23 +10,34 @@ export default mutationWithClientMutationId({
   name: 'InscriptioAdd',
 
   inputFields: {
-    Inscriptio_LocationLat: { type: new GraphQLNonNull(GraphQLString) },
-    Inscriptio_LocationLon: { type: new GraphQLNonNull(GraphQLString) },
-    Inscriptio_Notes: { type: new GraphQLNonNull(GraphQLString) },
+    Inscriptio_LocationLat: { type: new GraphQLNonNull( GraphQLString ) },
+    Inscriptio_LocationLon: { type: new GraphQLNonNull( GraphQLString ) },
+    Inscriptio_Notes: { type: new GraphQLNonNull( GraphQLString ) },
   },
 
   outputFields: {
     InscriptiosEdge: {
       type: InscriptiosConnection.edgeType,
-      resolve: async ({ local_id }, { ...args }, context, { rootValue: objectManager }) => {
-        const an_Object = await objectManager.getOneObject('Inscriptio', { id: local_id })
+      resolve: async(
+        { local_id },
+        { ...args },
+        context,
+        { rootValue: objectManager }
+      ) => {
+        const an_Object = await objectManager.getOneObject( 'Inscriptio', {
+          id: local_id,
+        })
 
-        const arr = await objectManager.getObjectList('Inscriptio', {
+        const arr = await objectManager.getObjectList( 'Inscriptio', {
           Inscriptio_User_id: objectManager.getViewerUserId(),
         })
 
         return {
-          cursor: objectManager.cursorForObjectInConnection('Inscriptio', arr, an_Object),
+          cursor: objectManager.cursorForObjectInConnection(
+            'Inscriptio',
+            arr,
+            an_Object
+          ),
           node: an_Object,
         }
       },
@@ -34,17 +45,19 @@ export default mutationWithClientMutationId({
 
     Viewer: {
       type: ViewerType,
-      resolve: (parent, args, context, { rootValue: objectManager }) =>
-        objectManager.getOneObject('User', { id: objectManager.getViewerUserId() }),
+      resolve: ( parent, args, context, { rootValue: objectManager }) =>
+        objectManager.getOneObject( 'User', {
+          id: objectManager.getViewerUserId(),
+        }),
     },
   },
 
-  mutateAndGetPayload: async (
+  mutateAndGetPayload: async(
     { Inscriptio_LocationLat, Inscriptio_LocationLon, Inscriptio_Notes },
     context,
-    { rootValue: objectManager },
+    { rootValue: objectManager }
   ) => {
-    const local_id = await objectManager.add('Inscriptio', {
+    const local_id = await objectManager.add( 'Inscriptio', {
       Inscriptio_User_id: objectManager.getViewerUserId(),
       Inscriptio_LocationLat,
       Inscriptio_LocationLon,

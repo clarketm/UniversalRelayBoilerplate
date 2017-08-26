@@ -10,13 +10,15 @@ require('dotenv').load();
 
 var port=process.env.PORT;
 if(port==null||typeof port!=='string')
-throw new Error('💔  update-ip requires the environment variable PORT to be set');
+throw new Error(
+'💔  update-ip requires the environment variable PORT to be set');
+
 
 var IPAddress=process.argv[2];
 
-if(IPAddress==undefined)IPAddress=(0,_getLocalIP2.default)();
+if(IPAddress===undefined)IPAddress=(0,_getLocalIP2.default)();
 
-if(IPAddress!=undefined){
+if(IPAddress!==undefined){
 console.log('IP Address:'+IPAddress);
 updateIPInFile(
 './ios/'+_AppRegistryName2.default+'/AppDelegate.m',
@@ -29,10 +31,15 @@ IPAddress);
 updateIPInFile(
 './units/_configuration/urb-base-app/publicURL.js',
 'const publicURL',
-"const publicURL = 'http://"+IPAddress+':'+port+"'",
+'const publicURL = \'http://'+IPAddress+':'+port+'\'',
 IPAddress);
 
-updateIPInFile('./.env','PUBLIC_URL=','PUBLIC_URL=http://'+IPAddress+':'+port,IPAddress);
+updateIPInFile(
+'./.env',
+'PUBLIC_URL=',
+'PUBLIC_URL=http://'+IPAddress+':'+port,
+IPAddress);
+
 updateIPInFile('./.env','HOST=','HOST='+IPAddress,IPAddress);
 }else console.log('IP Address not specified and could not be found');
 
@@ -43,13 +50,15 @@ var index=0;
 
 while(index<fileLines.length){
 if(fileLines[index].indexOf(searchString)>-1){
-if(fileLines[index]==newContentOfLine)
+if(fileLines[index]===newContentOfLine)
 console.log('['+fileName+'] is already up to date');else
 {
 fileLines[index]=newContentOfLine;
 _fs2.default.writeFileSync(fileName,fileLines.join('\n'));
 
-console.log('['+fileName+'] has been updated with local IP '+IPAddress);
+console.log(
+'['+fileName+'] has been updated with local IP '+IPAddress);
+
 }
 break;
 }else{
@@ -57,7 +66,12 @@ index++;
 }
 }
 }catch(err){
-console.log('['+fileName+'] has not been been updated with local IP because '+err);
+console.log(
+'['+
+fileName+
+'] has not been been updated with local IP because '+
+err);
+
 }
 }
 //# sourceMappingURL=update-ip.js.map

@@ -7,16 +7,17 @@ import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
 import EnsayoDeleteMutation from '../../urb-example-ensayo-client/relay/EnsayoDeleteMutation'
-import EnsayoInPlaceEditProperties from './EnsayoInPlaceEditProperties'
 import EnsayoUpdateMutation from '../../urb-example-ensayo-client/relay/EnsayoUpdateMutation'
+
+import EnsayoInPlaceEditProperties from './EnsayoInPlaceEditProperties'
 
 class EnsayoInPlaceEditItem extends React.Component<
   any,
   {
     anchorEl: ?Object,
     menuIsOpen: boolean,
-    propertiesIsOpen: boolean,
-  },
+    propertiesIsOpen: boolean
+  }
 > {
   static propTypes = {
     Viewer: PropTypes.object.isRequired,
@@ -24,8 +25,8 @@ class EnsayoInPlaceEditItem extends React.Component<
     relay: PropTypes.object.isRequired,
   }
 
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     this.state = {
       anchorEl: undefined,
@@ -35,7 +36,11 @@ class EnsayoInPlaceEditItem extends React.Component<
   }
 
   _handle_Update_Properties = EnsayoInPlaceEditProperties => {
-    const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = EnsayoInPlaceEditProperties
+    const {
+      Ensayo_Title,
+      Ensayo_Description,
+      Ensayo_Content,
+    } = EnsayoInPlaceEditProperties
     const { relay, Ensayo } = this.props
 
     EnsayoUpdateMutation.commit(
@@ -43,7 +48,7 @@ class EnsayoInPlaceEditItem extends React.Component<
       Ensayo,
       Ensayo_Title,
       Ensayo_Description,
-      Ensayo_Content,
+      Ensayo_Content
     )
   }
 
@@ -64,7 +69,7 @@ class EnsayoInPlaceEditItem extends React.Component<
 
     const { relay, Viewer, Ensayo } = this.props
 
-    EnsayoDeleteMutation.commit(relay.environment, Viewer, Ensayo)
+    EnsayoDeleteMutation.commit( relay.environment, Viewer, Ensayo )
   }
 
   handleRequestClose = () => {
@@ -72,7 +77,11 @@ class EnsayoInPlaceEditItem extends React.Component<
   }
 
   render() {
-    const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = this.props.Ensayo
+    const {
+      Ensayo_Title,
+      Ensayo_Description,
+      Ensayo_Content,
+    } = this.props.Ensayo
     const { propertiesIsOpen } = this.state
 
     return (
@@ -91,10 +100,16 @@ class EnsayoInPlaceEditItem extends React.Component<
           open={this.state.menuIsOpen}
           onRequestClose={this.handleRequestClose}
         >
-          <MenuItem key="edit" onClick={event => this._handle_Menu_onClick_Edit(event)}>
+          <MenuItem
+            key="edit"
+            onClick={event => this._handle_Menu_onClick_Edit( event )}
+          >
             Edit
           </MenuItem>
-          <MenuItem key="delete" onClick={event => this._handle_Menu_onClick_Delete(event)}>
+          <MenuItem
+            key="delete"
+            onClick={event => this._handle_Menu_onClick_Delete( event )}
+          >
             Delete
           </MenuItem>
         </Menu>
@@ -111,7 +126,7 @@ class EnsayoInPlaceEditItem extends React.Component<
   }
 }
 
-export default createFragmentContainer(EnsayoInPlaceEditItem, {
+export default createFragmentContainer( EnsayoInPlaceEditItem, {
   Viewer: graphql`
     fragment EnsayoInPlaceEditItem_Viewer on Viewer {
       id

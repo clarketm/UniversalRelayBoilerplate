@@ -19,7 +19,9 @@ return(
 _react2.default.createElement(_ResponsiveContentArea2.default,null,
 _react2.default.createElement(_reactHelmet2.default,{
 title:Viewer.Ensayo.Ensayo_Title,
-meta:[{name:'description',content:Viewer.Ensayo.Ensayo_Description}]}),
+meta:[
+{name:'description',content:Viewer.Ensayo.Ensayo_Description}]}),
+
 
 _react2.default.createElement(_Card2.default,null,
 _react2.default.createElement(_Card.CardHeader,{

@@ -23,7 +23,11 @@ function sharedUpdater(store,user,proxyToDo){
 
 var userProxy=store.get(user.id);
 var status=proxyToDo.getValue('complete')?'active':'completed';
-var connection=_relayRuntime.ConnectionHandler.getConnection(userProxy,'ToDoList_ToDos',{status:status});
+var connection=_relayRuntime.ConnectionHandler.getConnection(
+userProxy,
+'ToDoList_ToDos',
+{status:status});
+
 if(connection){
 _relayRuntime.ConnectionHandler.deleteNode(connection,proxyToDo.getValue('id'));
 }
@@ -49,7 +53,10 @@ sharedUpdater(store,user,proxyToDo);
 var userProxy=store.get(user.id);
 var ToDo_CompletedCount=userProxy.getValue('ToDo_CompletedCount');
 if(ToDo_CompletedCount!=null){
-userProxy.setValue(ToDo_CompletedCount+(ToDo_Complete?1:-1),'ToDo_CompletedCount');
+userProxy.setValue(
+ToDo_CompletedCount+(ToDo_Complete?1:-1),
+'ToDo_CompletedCount');
+
 }
 }});
 

@@ -2,7 +2,11 @@
 
 import Checkbox from 'material-ui/Checkbox'
 import IconButton from 'material-ui/IconButton'
-import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List'
+import {
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+} from 'material-ui/List'
 import Menu, { MenuItem } from 'material-ui/Menu'
 import { MoreVert } from 'material-ui-icons'
 import PropTypes from 'prop-types'
@@ -12,22 +16,23 @@ import { createFragmentContainer, graphql } from 'react-relay'
 import ToDoUpdateStatusMutation from '../../urb-example-todo-client/relay/ToDoUpdateStatusMutation'
 import ToDoDeleteMutation from '../../urb-example-todo-client/relay/ToDoDeleteMutation'
 import ToDoUpdateRenameMutation from '../../urb-example-todo-client/relay/ToDoUpdateRenameMutation'
+
 import ToDoProperties from './ToDoProperties'
 
 class ToDoItem extends React.Component<
   {
     Viewer: PropTypes.object.isRequired,
     ToDo: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired,
+    relay: PropTypes.object.isRequired
   },
   {
     anchorEl: ?Object,
     menuIsOpen: boolean,
-    propertiesIsOpen: boolean,
-  },
+    propertiesIsOpen: boolean
+  }
 > {
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     this.state = {
       anchorEl: undefined,
@@ -36,16 +41,25 @@ class ToDoItem extends React.Component<
     }
   }
 
-  _handle_onClickCheckbox = (event, ToDo_Complete) => {
+  _handle_onClickCheckbox = ( event, ToDo_Complete ) => {
     const { relay, Viewer, ToDo } = this.props
 
-    ToDoUpdateStatusMutation.commit(relay.environment, Viewer, ToDo, ToDo_Complete)
+    ToDoUpdateStatusMutation.commit(
+      relay.environment,
+      Viewer,
+      ToDo,
+      ToDo_Complete
+    )
   }
 
   _handle_Update_Properties = ToDo_properties => {
     const { relay, ToDo } = this.props
 
-    ToDoUpdateRenameMutation.commit(relay.environment, ToDo, ToDo_properties.ToDo_Text)
+    ToDoUpdateRenameMutation.commit(
+      relay.environment,
+      ToDo,
+      ToDo_properties.ToDo_Text
+    )
   }
 
   _handle_Close_Properties = () => {
@@ -65,7 +79,7 @@ class ToDoItem extends React.Component<
 
     const { relay, Viewer, ToDo } = this.props
 
-    ToDoDeleteMutation.commit(relay.environment, Viewer, ToDo)
+    ToDoDeleteMutation.commit( relay.environment, Viewer, ToDo )
   }
 
   handleRequestClose = () => {
@@ -81,7 +95,7 @@ class ToDoItem extends React.Component<
           button
           aria-haspopup="true"
           aria-controls="lock-menu"
-          onClick={event => this._handle_onClickCheckbox(event, !ToDo_Complete)}
+          onClick={event => this._handle_onClickCheckbox( event, !ToDo_Complete )}
         >
           <Checkbox checked={ToDo_Complete} />
           <ListItemText primary={ToDo_Text} />
@@ -97,10 +111,16 @@ class ToDoItem extends React.Component<
           open={this.state.menuIsOpen}
           onRequestClose={this.handleRequestClose}
         >
-          <MenuItem key="edit" onClick={event => this._handle_Menu_onClick_Edit(event)}>
+          <MenuItem
+            key="edit"
+            onClick={event => this._handle_Menu_onClick_Edit( event )}
+          >
             Edit
           </MenuItem>
-          <MenuItem key="delete" onClick={event => this._handle_Menu_onClick_Delete(event)}>
+          <MenuItem
+            key="delete"
+            onClick={event => this._handle_Menu_onClick_Delete( event )}
+          >
             Delete
           </MenuItem>
         </Menu>
@@ -115,7 +135,7 @@ class ToDoItem extends React.Component<
   }
 }
 
-export default createFragmentContainer(ToDoItem, {
+export default createFragmentContainer( ToDoItem, {
   Viewer: graphql`
     fragment ToDoItem_Viewer on Viewer {
       id

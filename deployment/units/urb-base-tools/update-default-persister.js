@@ -10,19 +10,21 @@ memory:'../../../urb-persister-memory/graphql/PersisterMemory'};
 
 
 function updateDefaultPersister(fileName){
-var defaultPersister=['// @flow','',
-
-
-'import Persister from \''+fileName+'\'','','','const defaultPersister = new Persister( )','export default defaultPersister'];
-
-
-
-
+var defaultPersister=[
+'// @flow',
+'',
+'import Persister from \''+fileName+'\'',
+'',
+'',
+'const defaultPersister = new Persister( )',
+'export default defaultPersister'];
 
 
 console.log(
 'Written: '+
-_path2.default.resolve('./units/_configuration/urb-base-server/graphql/defaultPersister.js'));
+_path2.default.resolve(
+'./units/_configuration/urb-base-server/graphql/defaultPersister.js'));
+
 
 _fs2.default.writeFileSync(
 './units/_configuration/urb-base-server/graphql/defaultPersister.js',
@@ -36,7 +38,9 @@ var persisterFileName=supportedPersisters[persisterName];
 
 if(persisterFileName!=null)updateDefaultPersister(persisterFileName);else
 {
-console.error('Error: Default persister not specified. Specify default persister, for instance:');
+console.error(
+'Error: Default persister not specified. Specify default persister, for instance:');
+
 console.error('  npm run update-default-persister -- memory');
 console.error('Valid options are:');
 for(var name in supportedPersisters){console.error('  '+name);}

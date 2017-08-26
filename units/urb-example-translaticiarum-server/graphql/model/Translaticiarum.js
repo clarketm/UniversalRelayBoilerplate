@@ -10,12 +10,12 @@ export default class Translaticiarum {
   Translaticiarum_Stop: string
   Translaticiarum_Description: string
 
-  constructor(fields: {
+  constructor( fields: {
     id: string,
     Translaticiarum_User_id: string,
     Translaticiarum_Start: string,
     Translaticiarum_Stop: string,
-    Translaticiarum_Description: string,
+    Translaticiarum_Description: string
   }) {
     this.id = fields.id
     this.Translaticiarum_User_id = fields.Translaticiarum_User_id
@@ -25,4 +25,4 @@ export default class Translaticiarum {
   }
 }
 
-ObjectManager.registerEntity('Translaticiarum', Translaticiarum)
+ObjectManager.registerEntity( 'Translaticiarum', Translaticiarum )

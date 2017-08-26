@@ -10,7 +10,7 @@ import { createFragmentContainer, graphql } from 'react-relay'
 
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
-BigCalendar.momentLocalizer(moment)
+BigCalendar.momentLocalizer( moment )
 
 const styles = {
   card: {
@@ -25,11 +25,11 @@ const styles = {
 class TranslaticiarumScreen extends React.Component<
   any,
   {
-    calendarView: 'month' | 'week' | 'day' | 'agenda',
-  },
+    calendarView: 'month' | 'week' | 'day' | 'agenda'
+  }
 > {
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     this.state = {
       calendarView: 'week',
@@ -40,8 +40,12 @@ class TranslaticiarumScreen extends React.Component<
     this.setState({ calendarView: view })
   }
 
-  _handle_onSelectSlot = (slotInfo: { start: Date, end: Date, slots: Array<Date> }) => {
-    console.log(slotInfo)
+  _handle_onSelectSlot = ( slotInfo: {
+    start: Date,
+    end: Date,
+    slots: Array<Date>
+  }) => {
+    console.log( slotInfo )
   }
 
   render() {
@@ -49,18 +53,18 @@ class TranslaticiarumScreen extends React.Component<
 
     const translaticiarumEdges = Viewer.Translaticiarums.edges
 
-    const calendarEvents = translaticiarumEdges.map(translaticiarumEdge => {
+    const calendarEvents = translaticiarumEdges.map( translaticiarumEdge => {
       const translaticiarum = translaticiarumEdge.node
 
       return {
         title: translaticiarum.Translaticiarum_Description,
-        start: moment(translaticiarum.Translaticiarum_Start).toDate(),
-        end: moment(translaticiarum.Translaticiarum_Stop).toDate(),
+        start: moment( translaticiarum.Translaticiarum_Start ).toDate(),
+        end: moment( translaticiarum.Translaticiarum_Stop ).toDate(),
       }
     })
 
-    console.log(this.state.calendarView)
-    console.log(calendarEvents)
+    console.log( this.state.calendarView )
+    console.log( calendarEvents )
 
     return (
       <ResponsiveContentArea>
@@ -87,7 +91,7 @@ TranslaticiarumScreen.contextTypes = {
 }
 
 export default createFragmentContainer(
-  withStyles(styles)(TranslaticiarumScreen),
+  withStyles( styles )( TranslaticiarumScreen ),
   graphql`
     fragment TranslaticiarumScreen_Viewer on Viewer {
       Translaticiarums(first: 2147483647)
@@ -102,5 +106,5 @@ export default createFragmentContainer(
         }
       }
     }
-  `,
+  `
 )

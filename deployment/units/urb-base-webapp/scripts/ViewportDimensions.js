@@ -59,6 +59,8 @@ function ViewportDimensions(){var _this=this;_classCallCheck(this,ViewportDimens
 
 
 
+
+
 removeComponent=function(component){
 _this.subscribedComponents.delete(component);
 };this.

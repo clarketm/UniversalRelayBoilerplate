@@ -20,9 +20,9 @@ function commit(
   aTranslaticiarum,
   Translaticiarum_Start,
   Translaticiarum_Stop,
-  Translaticiarum_Description,
+  Translaticiarum_Description
 ) {
-  return commitMutation(environment, {
+  return commitMutation( environment, {
     mutation,
     variables: {
       input: {

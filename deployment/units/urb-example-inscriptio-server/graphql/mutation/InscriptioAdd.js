@@ -18,15 +18,26 @@ Inscriptio_Notes:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLString)}},
 outputFields:{
 InscriptiosEdge:{
 type:_InscriptiosConnection2.default.edgeType,
-resolve:function resolve(_ref,_ref2,context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var objectManager=_ref3.rootValue;var an_Object,arr;return regeneratorRuntime.async(function resolve$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.next=2;return regeneratorRuntime.awrap(
-objectManager.getOneObject('Inscriptio',{id:local_id}));case 2:an_Object=_context.sent;_context.next=5;return regeneratorRuntime.awrap(
+resolve:function resolve(_ref,_ref2,
+
+
+context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var
+objectManager=_ref3.rootValue;var an_Object,arr;return regeneratorRuntime.async(function resolve$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.next=2;return regeneratorRuntime.awrap(
+
+objectManager.getOneObject('Inscriptio',{
+id:local_id}));case 2:an_Object=_context.sent;_context.next=5;return regeneratorRuntime.awrap(
+
 
 objectManager.getObjectList('Inscriptio',{
 Inscriptio_User_id:objectManager.getViewerUserId()}));case 5:arr=_context.sent;return _context.abrupt('return',
 
 
 {
-cursor:objectManager.cursorForObjectInConnection('Inscriptio',arr,an_Object),
+cursor:objectManager.cursorForObjectInConnection(
+'Inscriptio',
+arr,
+an_Object),
+
 node:an_Object});case 7:case'end':return _context.stop();}}},null,_this);}},
 
 
@@ -35,7 +46,9 @@ node:an_Object});case 7:case'end':return _context.stop();}}},null,_this);}},
 Viewer:{
 type:_ViewerType2.default,
 resolve:function resolve(parent,args,context,_ref4){var objectManager=_ref4.rootValue;return(
-objectManager.getOneObject('User',{id:objectManager.getViewerUserId()}));}}},
+objectManager.getOneObject('User',{
+id:objectManager.getViewerUserId()}));}}},
+
 
 
 

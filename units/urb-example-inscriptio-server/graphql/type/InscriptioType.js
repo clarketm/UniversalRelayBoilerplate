@@ -9,14 +9,23 @@ import NodeInterface from '../../../../units/urb-base-server/graphql/NodeInterfa
 export default new GraphQLObjectType({
   name: 'Inscriptio',
 
-  interfaces: [NodeInterface],
+  interfaces: [ NodeInterface ],
 
   isTypeOf: object => object instanceof Inscriptio,
 
   fields: {
-    id: globalIdField('Inscriptio'),
-    Inscriptio_LocationLat: { type: GraphQLString, resolve: obj => obj.Inscriptio_LocationLat },
-    Inscriptio_LocationLon: { type: GraphQLString, resolve: obj => obj.Inscriptio_LocationLon },
-    Inscriptio_Notes: { type: GraphQLString, resolve: obj => obj.Inscriptio_Notes },
+    id: globalIdField( 'Inscriptio' ),
+    Inscriptio_LocationLat: {
+      type: GraphQLString,
+      resolve: obj => obj.Inscriptio_LocationLat,
+    },
+    Inscriptio_LocationLon: {
+      type: GraphQLString,
+      resolve: obj => obj.Inscriptio_LocationLon,
+    },
+    Inscriptio_Notes: {
+      type: GraphQLString,
+      resolve: obj => obj.Inscriptio_Notes,
+    },
   },
 })

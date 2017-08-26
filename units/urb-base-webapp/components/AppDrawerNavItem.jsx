@@ -16,7 +16,7 @@ const styles = theme => ({
     justifyContent: 'flex-start',
     textTransform: 'none',
     width: '100%',
-    transition: theme.transitions.create('background-color', {
+    transition: theme.transitions.create( 'background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     '&:hover': {
@@ -55,7 +55,7 @@ class AppDrawerNavItem extends React.Component<any, { open: boolean }> {
   }
 
   componentWillMount() {
-    if (this.props.openImmediately) {
+    if ( this.props.openImmediately ) {
       this.setState({ open: true })
     }
   }
@@ -67,13 +67,13 @@ class AppDrawerNavItem extends React.Component<any, { open: boolean }> {
   render() {
     const { children, classes, title, to } = this.props
 
-    if (to) {
+    if ( to ) {
       return (
         <ListItem className={classes.navLink} disableGutters>
           <Button
             component={Link}
             to={to}
-            className={classNames(classes.button, classes.navLinkButton)}
+            className={classNames( classes.button, classes.navLinkButton )}
             activeClassName={classes.activeButton}
             disableRipple
             onClick={this.props.onClick}
@@ -106,4 +106,4 @@ AppDrawerNavItem.propTypes = {
   to: PropTypes.string,
 }
 
-export default withStyles(styles)(AppDrawerNavItem)
+export default withStyles( styles )( AppDrawerNavItem )

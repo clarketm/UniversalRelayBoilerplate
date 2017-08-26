@@ -1,11 +1,16 @@
 Object.defineProperty(exports,"__esModule",{value:true});exports.default=
 
-function ToDoListUpdateMarkAll(objectManager,ToDo_CompleteNew){var arr,arr_filtered,arrPromiseToUpdate,arr_local_ids_Changed_ToDos;return regeneratorRuntime.async(function ToDoListUpdateMarkAll$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.next=2;return regeneratorRuntime.awrap(
+function ToDoListUpdateMarkAll(
+objectManager,
+ToDo_CompleteNew){var arr,arr_filtered,arrPromiseToUpdate,arr_local_ids_Changed_ToDos;return regeneratorRuntime.async(function ToDoListUpdateMarkAll$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.next=2;return regeneratorRuntime.awrap(
+
 objectManager.getObjectList('ToDo',{
 ToDo_User_id:objectManager.getViewerUserId()}));case 2:arr=_context.sent;
 
 
-arr_filtered=arr.filter(function(a_ToDo){return a_ToDo.ToDo_Complete!=ToDo_CompleteNew;});
+arr_filtered=arr.filter(
+function(a_ToDo){return a_ToDo.ToDo_Complete!==ToDo_CompleteNew;});
+
 
 arrPromiseToUpdate=arr_filtered.map(function(a_ToDo){return(
 objectManager.update('ToDo',{

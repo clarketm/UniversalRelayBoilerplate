@@ -19,14 +19,14 @@ import '../_configuration/urb-base-webapp/global.css'
 const render = createRender({})
 
 //
-;(async () => {
+;( async() => {
   // eslint-disable-next-line no-underscore-dangle
   const fetcher = new FetcherClient(
     '/graphql',
     window.__RELAY_PAYLOADS__,
-    window.__RELAY_PAYLOADS__[0].data.Viewer.UserToken2, // It is critical that the app frame has UserToken2 retrieved
+    window.__RELAY_PAYLOADS__[0].data.Viewer.UserToken2 // It is critical that the app frame has UserToken2 retrieved
   )
-  const resolver = createResolver(fetcher)
+  const resolver = createResolver( fetcher )
 
   const Router = await createInitialFarceRouter({
     historyProtocol: new BrowserProtocol(),
@@ -40,12 +40,12 @@ const render = createRender({})
     <Wrapper appData={window.appData}>
       <Router resolver={resolver} />
     </Wrapper>,
-    document.getElementById('root'),
+    document.getElementById( 'root' ),
     () => {
       // We don't need the static css any more once we have launched our application.
-      const ssStyles = document.getElementById('server-side-styles')
+      const ssStyles = document.getElementById( 'server-side-styles' )
       // $FlowIssue it is guaranteed to be there
-      ssStyles.parentNode.removeChild(ssStyles)
-    },
+      ssStyles.parentNode.removeChild( ssStyles )
+    }
   )
 })()
