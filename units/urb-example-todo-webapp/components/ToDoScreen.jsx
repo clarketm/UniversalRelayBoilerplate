@@ -21,14 +21,14 @@ class ToDoScreen extends React.Component<
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,
-    relay: PropTypes.object.isRequired,
+    relay: PropTypes.object.isRequired
   },
   {
-    ToDo_Text_New: string,
-  },
+    ToDo_Text_New: string
+  }
 > {
-  constructor(props, context) {
-    super(props, context)
+  constructor( props, context ) {
+    super( props, context )
 
     this.state = {
       ToDo_Text_New: '',
@@ -36,10 +36,14 @@ class ToDoScreen extends React.Component<
   }
 
   _handle_onKeyDown_AddToDo = e => {
-    if (e.keyCode === 13) {
+    if ( e.keyCode === 13 ) {
       const { relay, Viewer } = this.props
 
-      ToDoAddMutation.commit(relay.environment, Viewer, this.state.ToDo_Text_New)
+      ToDoAddMutation.commit(
+        relay.environment,
+        Viewer,
+        this.state.ToDo_Text_New
+      )
 
       this.setState({
         ToDo_Text_New: '',
@@ -76,10 +80,10 @@ class ToDoScreen extends React.Component<
 }
 
 export default createFragmentContainer(
-  withStyles(styles)(ToDoScreen),
+  withStyles( styles )( ToDoScreen ),
   graphql`
     fragment ToDoScreen_Viewer on Viewer {
       id
     }
-  `,
+  `
 )

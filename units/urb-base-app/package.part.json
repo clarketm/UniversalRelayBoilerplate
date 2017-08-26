@@ -1,23 +1,24 @@
 {
-  "scripts": {
-    "build-bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/",
-    "build-bundle-android-dev": "react-native bundle --platform android --dev true --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/",
-    "build-bundle-ios": "react-native bundle --platform ios --dev false --entry-file index.ios.js --bundle-output ios/main.jsbundle --sourcemap-output ios/main.map",
-    "build-bundle-ios-dev": "react-native bundle --platform ios --dev true --entry-file index.ios.js --bundle-output ios/main.jsbundle --sourcemap-output ios/main.map",
-    "dev-app": "./node_modules/.bin/concurrently --kill-others \"npm run dev-relay\" \"npm run dev-webpack\" \"npm run dev-server\" \"npm run start\" ",
-    "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache"
-  },
   "dependencies": {
     "react-native": "0.47.2",
     "react-native-device-info": "0.11.0",
     "react-native-keychain": "2.0.0-rc"
   },
   "devDependencies": {
-    "react-native-drawer": "2.4.0",
+    "react-native-drawer": "2.5.0",
     "react-native-elements": "0.16.0",
     "react-native-listitem": "1.0.5",
     "react-native-modalbox": "1.4.2",
     "react-native-vector-icons": "4.3.0",
-    "react-native-router-flux": "4.0.0-beta.18"
+    "react-native-router-flux": "4.0.0-beta.19"
+  },
+  "scripts": {
+    "build-bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/",
+    "build-bundle-android-dev": "react-native bundle --platform android --dev true --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/",
+    "build-bundle-ios": "react-native bundle --platform ios --dev false --entry-file index.ios.js --bundle-output ios/main.jsbundle --sourcemap-output ios/main.map",
+    "build-bundle-ios-dev": "react-native bundle --platform ios --dev true --entry-file index.ios.js --bundle-output ios/main.jsbundle --sourcemap-output ios/main.map",
+    "dev-app": "./node_modules/.bin/concurrently --kill-others \"npm run dev-relay\" \"npm run dev-webpack\" \"npm run dev-server\" \"npm run start\" ",
+    "dev-reset": "sudo chmod -R a+w * && rm -rf ~/Library/Developer/Xcode/DerivedData/* && rm -f ./ios/main.* && rm -f ./android/app/src/main/assets/index.android.*",
+    "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache"
   }
 }

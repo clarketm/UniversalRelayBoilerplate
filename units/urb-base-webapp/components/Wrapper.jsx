@@ -10,7 +10,10 @@ import EventListener from 'react-event-listener'
 
 import ViewportDimensions from '../scripts/ViewportDimensions'
 
-export default class Wrapper extends React.Component<{ appData: Object, children: any }, any> {
+export default class Wrapper extends React.Component<
+  { appData: Object, children: any },
+  any
+> {
   muiTheme: Object
   rbCtx: Object
 
@@ -18,8 +21,8 @@ export default class Wrapper extends React.Component<{ appData: Object, children
     rbCtx: PropTypes.object,
   }
 
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     // TODO x0100 If a property for innerWidth is provided, use it for the initial request
 

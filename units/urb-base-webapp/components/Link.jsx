@@ -22,14 +22,21 @@ const styles = theme => ({
   },
 })
 
-function Link(props) {
-  const { component: ComponentProp, classes, className, variant, to, ...other } = props
+function Link( props ) {
+  const {
+    component: ComponentProp,
+    classes,
+    className,
+    variant,
+    to,
+    ...other
+  } = props
 
   let Component
 
-  if (ComponentProp) {
+  if ( ComponentProp ) {
     Component = ComponentProp
-  } else if (to) {
+  } else if ( to ) {
     Component = LinkRouter
   } else {
     Component = 'a'
@@ -44,7 +51,7 @@ function Link(props) {
           [classes.primary]: variant === 'primary',
           [classes.accent]: variant === 'accent',
         },
-        className,
+        className
       )}
       {...other}
     />
@@ -54,9 +61,9 @@ function Link(props) {
 Link.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
   to: PropTypes.string,
-  variant: PropTypes.oneOf(['primary', 'accent']),
+  variant: PropTypes.oneOf([ 'primary', 'accent' ]),
 }
 
-export default withStyles(styles)(Link)
+export default withStyles( styles )( Link )

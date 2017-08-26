@@ -1,23 +1,25 @@
 // @flow
 
+import path from 'path'
+
 import createRender from 'found/lib/createRender'
 import { getFarceResult } from 'found/lib/server'
 import express from 'express'
 import Helmet from 'react-helmet'
 import React from 'react'
-import path from 'path'
 import { JssProvider, SheetsRegistry } from 'react-jss'
 import ReactDOMServer from 'react-dom/server'
 import serialize from 'serialize-javascript'
 
+import ErrorComponent from '../_configuration/urb-base-webapp/ErrorComponent'
+import { getSiteInformation } from '../_configuration/urb-base-server/siteSettings'
+import log from '../urb-base-server/log'
+import { version } from '../_configuration/package'
+import UserToken2ServerRendering from '../_configuration/urb-base-server/UserToken2ServerRendering'
+
 import FetcherServer from './fetcherServer'
 import { createResolver, historyMiddlewares, routeConfig } from './router'
 import Wrapper from './components/Wrapper'
-import { version } from '../_configuration/package'
-import UserToken2ServerRendering from '../_configuration/urb-base-server/UserToken2ServerRendering'
-import log from '../urb-base-server/log'
-import { getSiteInformation } from '../_configuration/urb-base-server/siteSettings'
-import ErrorComponent from '../_configuration/urb-base-webapp/ErrorComponent'
 
 // Read environment
 require( 'dotenv' ).load()

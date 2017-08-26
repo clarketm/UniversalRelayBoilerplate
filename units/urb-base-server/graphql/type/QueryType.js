@@ -3,8 +3,9 @@
 import { fromGlobalId } from 'graphql-relay'
 import { GraphQLID, GraphQLNonNull, GraphQLObjectType } from 'graphql'
 
-import ViewerType from './ViewerType'
 import NodeInterface from '../NodeInterface'
+
+import ViewerType from './ViewerType'
 
 function resolveNodeField( source, args, context, { rootValue: objectManager }) {
   // the node field will receive a globally

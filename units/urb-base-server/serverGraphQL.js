@@ -4,6 +4,8 @@ import bodyParser from 'body-parser'
 import express from 'express'
 import graphQLHTTP from 'express-graphql'
 
+import { requestLoggerGraphQL } from '../_configuration/urb-base-server/requestLoggers'
+
 import {
   getUserAndSessionIDByUserToken1,
   verifyUserAuthToken,
@@ -11,7 +13,6 @@ import {
 } from './checkCredentials'
 import logServerRequest from './logServerRequest'
 import { getObjectManager } from './graphql/ObjectManager'
-import { requestLoggerGraphQL } from '../_configuration/urb-base-server/requestLoggers'
 import schema from './graphql/schema' // Schema for GraphQL server
 
 // Guarantee that all object registrations and schema definitions are executed

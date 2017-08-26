@@ -1,13 +1,15 @@
 // @flow
 
 import fs from 'fs'
-import { graphql } from 'graphql'
 import path from 'path'
 import { promisify } from 'util'
+
+import { graphql } from 'graphql'
 import { introspectionQuery, printSchema } from 'graphql/utilities'
 
-import ensureFileContent from './ensureFileContent'
 import schema from '../urb-base-server/graphql/schema'
+
+import ensureFileContent from './ensureFileContent'
 
 const existsAsync = promisify( fs.exists )
 const readFileAsync = promisify( fs.readFile )
@@ -25,6 +27,23 @@ function orderPackages( packageAsObject ) {
   packageAsObject.scripts = sortObject( packageAsObject.scripts )
   packageAsObject.dependencies = sortObject( packageAsObject.dependencies )
   packageAsObject.devDependencies = sortObject( packageAsObject.devDependencies )
+}
+
+function mergeScripts( scripts1, scripts2 ) {
+  const scripts = Object.assign({}, scripts1 )
+
+  for ( let scriptName in scripts2 ) {
+    const script = scripts[scriptName]
+    const script2 = scripts2[scriptName]
+
+    if ( script && script2 ) {
+      scripts[scriptName] = script + ' && ' + script2
+    } else if ( script2 ) {
+      scripts[scriptName] = script2
+    }
+  }
+
+  return scripts
 }
 
 async function createPackageJson( units: Array<string> ) {
@@ -77,7 +96,10 @@ async function createPackageJson( units: Array<string> ) {
           packageToAddAsObject['lint-staged']
         )
       if ( packageToAddAsObject.scripts )
-        Object.assign( packageAsObject.scripts, packageToAddAsObject.scripts )
+        packageAsObject.scripts = mergeScripts(
+          packageAsObject.scripts,
+          packageToAddAsObject.scripts
+        )
     }
   }
 

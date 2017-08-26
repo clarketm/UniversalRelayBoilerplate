@@ -1,10 +1,12 @@
 // @flow weak
 
-import jwt from 'jwt-simple'
 import path from 'path'
+
+import jwt from 'jwt-simple'
 
 import defaultPersister from '../_configuration/urb-base-server/graphql/defaultPersister'
 import UserToken2ServerRendering from '../_configuration/urb-base-server/UserToken2ServerRendering'
+
 import log from './log'
 
 // Read environment
@@ -50,7 +52,7 @@ export async function getUserAndSessionIDByUserToken1( objectManager, req ) {
     objectManager.setViewerUserId( user_id )
     return { User: a_User, UserSession: a_UserSession }
   } else {
-    throw new Error( '💔  User not found' )
+    throw new Error( '💔  User ' + JSON.stringify( user_id ) + ' not found' )
   }
 }
 
@@ -82,7 +84,7 @@ const httpError403FileName = path.resolve(
   '../_configuration/urb-base-server/httpError/403.html'
 )
 
-export function serveAuthenticationFailed( req, res, error, respondWithJSON ) {
+export function serveAuthenticationFailed( req, res, err, respondWithJSON ) {
   // Collect information about the request
   var ip = req.headers['x-real-ip'] || req.connection.remoteAddress
 
@@ -93,7 +95,11 @@ export function serveAuthenticationFailed( req, res, error, respondWithJSON ) {
     query: req.body,
   }
 
-  log.log( 'warn', 'Checking credentials failed', { error, requestDetails })
+  log.log( 'warn', 'Checking credentials failed', {
+    errorMessage: err.message,
+    errorStack: err.stack,
+    requestDetails,
+  })
 
   // Expire cookie. This is the only way to 'delete' a cookie
   res.cookie( 'UserToken1', '', { httpOnly: true, expires: new Date( 1 ) })

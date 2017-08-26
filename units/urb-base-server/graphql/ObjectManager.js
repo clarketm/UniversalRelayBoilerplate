@@ -214,7 +214,7 @@ export default class ObjectManager {
     // TODO x2000 Provide try catch with logging here!
     // Special hack for anonymous users
     if ( entityName === 'User' )
-      if ( filter.id === defaultPersister.uuidNullAsString() )
+      if ( filter.id == defaultPersister.uuidNullAsString() )
         return Promise.resolve( User_0 )
 
     // For all non-user, non 0 ids, load from data loader per protocol
@@ -371,8 +371,8 @@ export default class ObjectManager {
           entity[ensuredFieldName]
         )
       } else {
-        // $FlowIssue by convention the field should be present
         isMatchingValue =
+          // $FlowIssue by convention the field should be present
           ensureFields[ensuredFieldName] === entity[ensuredFieldName]
       }
 

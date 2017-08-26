@@ -1,10 +1,10 @@
 // @flow
 
-var util = require( 'util' )
-var events = require( 'events' )
+import util from 'util'
+import events from 'events'
 
-var winston = require( 'winston' )
-var cql = require( 'cassandra-driver' )
+import winston from 'winston'
+import cql from 'cassandra-driver'
 
 var defaultOptions = {
   //column family to store the logs

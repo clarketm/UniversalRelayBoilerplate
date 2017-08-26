@@ -1,13 +1,15 @@
 // @flow
 
 import Button from 'material-ui/Button'
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog'
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
 import PropTypes from 'prop-types'
 import React from 'react'
-
 import RichTextEditor from 'react-rte'
-
 import { withStyles } from 'material-ui/styles'
 
 const styles = theme => ({
@@ -33,23 +35,26 @@ class EnsayoInPlaceEditProperties extends React.Component<
     Ensayo_Content: string,
     handlerUpdate: PropTypes.func.isRequired,
     handlerClose: PropTypes.func.isRequired,
-    classes: Object,
+    classes: Object
   },
   {
     Ensayo_Title: string,
     Ensayo_Description: string,
-    Ensayo_Content_RTE: Object,
-  },
+    Ensayo_Content_RTE: Object
+  }
 > {
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = this.props
 
     this.state = {
       Ensayo_Title,
       Ensayo_Description,
-      Ensayo_Content_RTE: RichTextEditor.createValueFromString(Ensayo_Content, 'html'),
+      Ensayo_Content_RTE: RichTextEditor.createValueFromString(
+        Ensayo_Content,
+        'html'
+      ),
     }
   }
 
@@ -67,7 +72,7 @@ class EnsayoInPlaceEditProperties extends React.Component<
     this.props.handlerUpdate({
       Ensayo_Title: this.state.Ensayo_Title,
       Ensayo_Description: this.state.Ensayo_Description,
-      Ensayo_Content: this.state.Ensayo_Content_RTE.toString('html'),
+      Ensayo_Content: this.state.Ensayo_Content_RTE.toString( 'html' ),
     })
 
     this.props.handlerClose()
@@ -87,13 +92,15 @@ class EnsayoInPlaceEditProperties extends React.Component<
               label="Title"
               fullWidth={true}
               value={Ensayo_Title}
-              onChange={event => this.setState({ Ensayo_Title: event.target.value })}
+              onChange={event =>
+                this.setState({ Ensayo_Title: event.target.value })}
             />
             <TextField
               label="Description"
               fullWidth={true}
               value={Ensayo_Description}
-              onChange={event => this.setState({ Ensayo_Description: event.target.value })}
+              onChange={event =>
+                this.setState({ Ensayo_Description: event.target.value })}
             />
             <div className={classes.richTextContainer}>
               {RichTextEditor == null
@@ -116,4 +123,4 @@ class EnsayoInPlaceEditProperties extends React.Component<
   }
 }
 
-export default withStyles(styles)(EnsayoInPlaceEditProperties)
+export default withStyles( styles )( EnsayoInPlaceEditProperties )

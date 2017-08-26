@@ -14,20 +14,20 @@ const styles = theme => ({})
 class NavBarLoginButton extends React.Component<
   {
     Viewer: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired,
+    relay: PropTypes.object.isRequired
   },
   {
     anchorEl: ?Object,
     loginDialogIsOpen: boolean,
-    userMenuIsOpen: boolean,
-  },
+    userMenuIsOpen: boolean
+  }
 > {
   static contextTypes = {
     router: PropTypes.object.isRequired,
   }
 
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     this.state = {
       anchorEl: undefined,
@@ -58,13 +58,13 @@ class NavBarLoginButton extends React.Component<
 
   _handle_onClick_Logout = () => {
     this.setState({ userMenuIsOpen: false })
-    this.context.router.push('/user/logout')
+    this.context.router.push( '/user/logout' )
   }
 
   _handle_Login_NewUser = () => {
     this.setState({ loginDialogIsOpen: false })
 
-    this.context.router.push('/user/new')
+    this.context.router.push( '/user/new' )
   }
 
   render() {
@@ -108,11 +108,11 @@ class NavBarLoginButton extends React.Component<
 }
 
 export default createFragmentContainer(
-  withStyles(styles)(NavBarLoginButton),
+  withStyles( styles )( NavBarLoginButton ),
   graphql`
     fragment NavBarLoginButton_Viewer on Viewer {
       User_IsAnonymous
       User_DisplayName
     }
-  `,
+  `
 )

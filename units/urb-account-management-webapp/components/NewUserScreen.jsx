@@ -1,6 +1,5 @@
 // @flow
 
-import AddIcon from 'material-ui-icons/Add'
 import Button from 'material-ui/Button'
 import Card, { CardActions, CardHeader } from 'material-ui/Card'
 import { LinearProgress } from 'material-ui/Progress'
@@ -20,17 +19,17 @@ const styles = theme => ({
 
 class NewUserScreen extends React.Component<
   {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
   },
   {
     currentOperation: 'prompt' | 'creating' | 'success' | 'failure',
     errorMessage: string,
     UserAccount_Identifier: string,
-    User_Secret: string,
-  },
+    User_Secret: string
+  }
 > {
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     this.state = {
       currentOperation: 'prompt',
@@ -40,7 +39,7 @@ class NewUserScreen extends React.Component<
     }
   }
 
-  _handle_onClick_Create = async () => {
+  _handle_onClick_Create = async() => {
     const { UserAccount_Identifier, User_Secret } = this.state
 
     this.setState({
@@ -52,7 +51,7 @@ class NewUserScreen extends React.Component<
       const loc = window.location
       const host = loc.protocol + '//' + loc.hostname + ':' + loc.port
 
-      const response = await fetch(host + '/auth/createuser', {
+      const response = await fetch( host + '/auth/createuser', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
@@ -66,23 +65,27 @@ class NewUserScreen extends React.Component<
 
       const responseData = await response.json()
 
-      console.log('CREATE USER RESPONSE')
-      console.log(responseData)
+      console.log( 'CREATE USER RESPONSE' )
+      console.log( responseData )
 
-      if (responseData.success) {
+      if ( responseData.success ) {
         // In case of success, notify user
         this.setState({ currentOperation: 'success' })
       } else {
         // In case of error, tell user what the error is
-        this.setState({ currentOperation: 'failure', errorMessage: responseData.error })
+        this.setState({
+          currentOperation: 'failure',
+          errorMessage: responseData.error,
+        })
       }
-    } catch (err) {
+    } catch ( err ) {
       // In case response could not be received properly, tell the user
       // In case of error, tell user what the error is
       this.setState({
         currentOperation: 'failure',
         errorMessage:
-          'Did not receive proper response from server. Please try again. Message:' + err.message,
+          'Did not receive proper response from server. Please try again. Message:' +
+          err.message,
       })
     }
   }
@@ -102,7 +105,7 @@ class NewUserScreen extends React.Component<
   }
 
   _handle_onClick_Continue = () => {
-    location.replace('/')
+    window.location.replace( '/' )
   }
 
   renderCreating() {
@@ -178,7 +181,8 @@ class NewUserScreen extends React.Component<
           label="Account Name"
           fullWidth={true}
           value={UserAccount_Identifier}
-          onChange={event => this.setState({ UserAccount_Identifier: event.target.value })}
+          onChange={event =>
+            this.setState({ UserAccount_Identifier: event.target.value })}
         />
         <TextField
           label="Password"
@@ -208,4 +212,4 @@ class NewUserScreen extends React.Component<
   }
 }
 
-export default withStyles(styles)(NewUserScreen)
+export default withStyles( styles )( NewUserScreen )

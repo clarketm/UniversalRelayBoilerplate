@@ -1,11 +1,9 @@
 // @flow
 
-import AddIcon from 'material-ui-icons/Add'
 import Button from 'material-ui/Button'
 import Card, { CardActions, CardHeader } from 'material-ui/Card'
 import { LinearProgress } from 'material-ui/Progress'
 import { withStyles } from 'material-ui/styles'
-import TextField from 'material-ui/TextField'
 import Typography from 'material-ui/Typography'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -20,16 +18,15 @@ const styles = theme => ({
 
 class LogoutScreen extends React.Component<
   {
-    UserAccount_Identifier: string,
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
   },
   {
     currentOperation: 'confirm' | 'logging out' | 'success' | 'failure',
-    errorMessage: string,
-  },
+    errorMessage: string
+  }
 > {
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     this.state = {
       currentOperation: 'confirm',
@@ -37,16 +34,14 @@ class LogoutScreen extends React.Component<
     }
   }
 
-  _handle_onClick_Logout = async () => {
-    const { UserAccount_Identifier } = this.props
-
+  _handle_onClick_Logout = async() => {
     this.setState({ currentOperation: 'logging out' })
 
     try {
       const loc = window.location
       const host = loc.protocol + '//' + loc.hostname + ':' + loc.port
 
-      const response = await fetch(host + '/auth/logout', {
+      const response = await fetch( host + '/auth/logout', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
@@ -57,23 +52,27 @@ class LogoutScreen extends React.Component<
 
       const responseData = await response.json()
 
-      console.log('LOGOUT USER RESPONSE')
-      console.log(responseData)
+      console.log( 'LOGOUT USER RESPONSE' )
+      console.log( responseData )
 
-      if (responseData.success) {
+      if ( responseData.success ) {
         // In case of success, notify user
         this.setState({ currentOperation: 'success' })
       } else {
         // In case of error, tell user what the error is
-        this.setState({ currentOperation: 'failure', errorMessage: responseData.error })
+        this.setState({
+          currentOperation: 'failure',
+          errorMessage: responseData.error,
+        })
       }
-    } catch (err) {
+    } catch ( err ) {
       // In case response could not be received properly, tell the user
       // In case of error, tell user what the error is
       this.setState({
         currentOperation: 'failure',
         errorMessage:
-          'Did not receive proper response from server. Please try again. Message:' + err.message,
+          'Did not receive proper response from server. Please try again. Message:' +
+          err.message,
       })
     }
   }
@@ -93,7 +92,7 @@ class LogoutScreen extends React.Component<
   }
 
   _handle_onClick_Continue = () => {
-    location.replace('/')
+    window.location.replace( '/' )
   }
 
   renderCreating() {
@@ -113,7 +112,6 @@ class LogoutScreen extends React.Component<
 
   renderSuccess() {
     const { classes } = this.props
-    const { errorMessage } = this.state
 
     return (
       <Card className={classes.card}>
@@ -175,4 +173,4 @@ class LogoutScreen extends React.Component<
   }
 }
 
-export default withStyles(styles)(LogoutScreen)
+export default withStyles( styles )( LogoutScreen )

@@ -12,14 +12,16 @@ class EnsayoPublicItem extends React.Component<{ Viewer: any }, {}> {
   render() {
     const { Viewer } = this.props
     // In a fairly barbaric way, limit the length of headings so that they are not considered spam
-    let contentH1 = Viewer.Ensayo.Ensayo_Title.substring(0, 100)
-    let contentH2 = Viewer.Ensayo.Ensayo_Description.substring(0, 100)
+    let contentH1 = Viewer.Ensayo.Ensayo_Title.substring( 0, 100 )
+    let contentH2 = Viewer.Ensayo.Ensayo_Description.substring( 0, 100 )
 
     return (
       <ResponsiveContentArea>
         <Helmet
           title={Viewer.Ensayo.Ensayo_Title}
-          meta={[{ name: 'description', content: Viewer.Ensayo.Ensayo_Description }]}
+          meta={[
+            { name: 'description', content: Viewer.Ensayo.Ensayo_Description },
+          ]}
         />
         <Card>
           <CardHeader
@@ -35,7 +37,7 @@ class EnsayoPublicItem extends React.Component<{ Viewer: any }, {}> {
             }
           />
           <CardContent>
-            {new Parser().parse(Viewer.Ensayo.Ensayo_Content)}
+            {new Parser().parse( Viewer.Ensayo.Ensayo_Content )}
           </CardContent>
         </Card>
       </ResponsiveContentArea>
@@ -53,5 +55,5 @@ export default createFragmentContainer(
         Ensayo_Content
       }
     }
-  `,
+  `
 )

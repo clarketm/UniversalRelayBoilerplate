@@ -8,12 +8,12 @@ import jwt from 'jwt-simple'
 import authExtensions from '../_configuration/urb-base-server/authExtensions'
 import delayPromise from '../urb-base-universal/delayPromise'
 import getNewUser from '../_configuration/urb-base-server/graphql/model/getNewUser'
+import { validateEmail } from '../urb-base-universal/validation'
+import { requestLoggerAuth } from '../_configuration/urb-base-server/requestLoggers'
+
 import { getUserAndSessionIDByUserToken1 } from './checkCredentials'
 import logServerRequest from './logServerRequest'
 import { getObjectManager } from './graphql/ObjectManager'
-import { requestLoggerAuth } from '../_configuration/urb-base-server/requestLoggers'
-
-import { validateEmail } from '../urb-base-universal/validation'
 
 // Read environment
 require( 'dotenv' ).load()
@@ -70,8 +70,9 @@ async function login( req, res ) {
 
           res.codeFoundriesInjected = { user: a_User }
 
-          // User has authenticated correctly thus we create a JWT token ith the session. $FlowIssue - id will be filled in by ObjectManager.add
+          // User has authenticated correctly thus we create a JWT token ith the session.
           const UserToken1 = jwt.encode(
+            // $FlowIssue - id will be filled in by ObjectManager.add
             { session_id: a_UserSession.id },
             process.env.JWT_SECRET
           )
@@ -152,8 +153,9 @@ async function createuser( req, res ) {
 
       res.codeFoundriesInjected = { user: a_User }
 
-      // User has been created thus we create a JWT token. $FlowIssue - id will be filled in by ObjectManager.add
+      // User has been created thus we create a JWT token.
       const UserToken1 = jwt.encode(
+        // $FlowIssue - id will be filled in by ObjectManager.add
         { session_id: a_UserSession.id },
         process.env.JWT_SECRET
       )

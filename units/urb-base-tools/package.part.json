@@ -1,0 +1,19 @@
+{
+  "engines": {
+    "node": "^8.3.0",
+    "npm": "^5.0.0"
+  },
+  "lint-staged": {
+    "units/**/*.js": ["eslint --fix", "prettier-eslint --write", "git add"],
+    "units/**/*.jsx": ["eslint --fix", "prettier-eslint --write", "git add"],
+    "units/**/*.json": ["prettier-eslint --write", "git add"]
+  },
+  "scripts": {
+    "build-bump-version": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-bump-version.js",
+    "build-units": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-units.js",
+    "precommit": "lint-staged",
+    "update-ip": "./node_modules/.bin/babel-node ./units/urb-base-tools/update-ip.js",
+    "setup-local": "cp ./units/_configuration/default.env ./.env && cp ./units/_configuration/urb-base-app/default.publicURL.js ./units/_configuration/urb-base-app/publicURL.js && npm run update-ip && react-native link",
+    "setup-local-cut-version": "cp ./units/_configuration/default.env ./.env && cp ./units/_configuration/urb-base-app/default.publicURL.js ./units/_configuration/urb-base-app/publicURL.js"
+  }
+}
