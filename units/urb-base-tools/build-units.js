@@ -29,6 +29,23 @@ function orderPackages( packageAsObject ) {
   packageAsObject.devDependencies = sortObject( packageAsObject.devDependencies )
 }
 
+function mergeScripts( scripts1, scripts2 ) {
+  const scripts = Object.assign({}, scripts1 )
+
+  for ( let scriptName in scripts2 ) {
+    const script = scripts[scriptName]
+    const script2 = scripts2[scriptName]
+
+    if ( script && script2 ) {
+      scripts[scriptName] = script + ' && ' + script2
+    } else if ( script2 ) {
+      scripts[scriptName] = script2
+    }
+  }
+
+  return scripts
+}
+
 async function createPackageJson( units: Array<string> ) {
   const packageJsonFileName = path.resolve( './package.json' )
   const currentPackageAsJSONString = ( await readFileAsync(
@@ -79,7 +96,10 @@ async function createPackageJson( units: Array<string> ) {
           packageToAddAsObject['lint-staged']
         )
       if ( packageToAddAsObject.scripts )
-        Object.assign( packageAsObject.scripts, packageToAddAsObject.scripts )
+        packageAsObject.scripts = mergeScripts(
+          packageAsObject.scripts,
+          packageToAddAsObject.scripts
+        )
     }
   }
 
