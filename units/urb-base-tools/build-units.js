@@ -1,13 +1,15 @@
 // @flow
 
 import fs from 'fs'
-import { graphql } from 'graphql'
 import path from 'path'
 import { promisify } from 'util'
+
+import { graphql } from 'graphql'
 import { introspectionQuery, printSchema } from 'graphql/utilities'
 
-import ensureFileContent from './ensureFileContent'
 import schema from '../urb-base-server/graphql/schema'
+
+import ensureFileContent from './ensureFileContent'
 
 const existsAsync = promisify( fs.exists )
 const readFileAsync = promisify( fs.readFile )

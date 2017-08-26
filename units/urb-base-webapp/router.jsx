@@ -9,17 +9,18 @@ import { graphql } from 'react-relay'
 import { Environment, Network, RecordSource, Store } from 'relay-runtime'
 
 import routesAppFrame from '../_configuration/urb-base-webapp/routesAppFrame'
+
 import AppFrame from './components/AppFrame'
 
-export const historyMiddlewares = [queryMiddleware]
+export const historyMiddlewares = [ queryMiddleware ]
 
-export function createResolver(fetcher: any) {
+export function createResolver( fetcher: any ) {
   const environment = new Environment({
-    network: Network.create((...args) => fetcher.fetch(...args)),
-    store: new Store(new RecordSource()),
+    network: Network.create( ( ...args ) => fetcher.fetch( ...args ) ),
+    store: new Store( new RecordSource() ),
   })
 
-  return new Resolver(environment)
+  return new Resolver( environment )
 }
 
 export const routeConfig = makeRouteConfig(
@@ -35,5 +36,5 @@ export const routeConfig = makeRouteConfig(
     `}
   >
     {routesAppFrame}
-  </Route>,
+  </Route>
 )

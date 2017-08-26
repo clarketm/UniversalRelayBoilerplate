@@ -9,8 +9,9 @@ import { withStyles } from 'material-ui/styles'
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 
-import AppDrawer from './AppDrawer'
 import NavBarLoginButton from '../../urb-account-management-webapp/components/NavBarLoginButton'
+
+import AppDrawer from './AppDrawer'
 
 const styles = theme => ({
   '@global': {
@@ -49,13 +50,13 @@ const styles = theme => ({
     flex: '0 1 auto',
   },
   appBar: {
-    transition: theme.transitions.create('width'),
+    transition: theme.transitions.create( 'width' ),
   },
   // appBarHome: {
   //   backgroundColor: 'transparent',
   //   boxShadow: 'none',
   // },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up( 'lg' )]: {
     drawer: {
       width: '250px',
     },
@@ -69,8 +70,8 @@ const styles = theme => ({
 })
 
 class AppFrame extends Component<any, { drawerOpen: boolean }> {
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     this.state = { drawerOpen: false }
   }
@@ -91,7 +92,7 @@ class AppFrame extends Component<any, { drawerOpen: boolean }> {
     let appBarClassName = classes.appBar
     let navIconClassName = classes.icon
 
-    if (drawerDocked) {
+    if ( drawerDocked ) {
       navIconClassName += ` ${classes.navIconHide}`
       appBarClassName += ` ${classes.appBarShift}`
     } else {
@@ -112,7 +113,12 @@ class AppFrame extends Component<any, { drawerOpen: boolean }> {
               <MenuIcon />
             </IconButton>
             {title !== null &&
-              <Typography className={classes.title} type="title" color="inherit" noWrap>
+              <Typography
+                className={classes.title}
+                type="title"
+                color="inherit"
+                noWrap
+              >
                 {title}
               </Typography>}
             <div className={classes.grow} />
@@ -132,11 +138,11 @@ class AppFrame extends Component<any, { drawerOpen: boolean }> {
 }
 
 export default createFragmentContainer(
-  withStyles(styles)(AppFrame),
+  withStyles( styles )( AppFrame ),
   graphql`
     fragment AppFrame_Viewer on Viewer {
       UserToken2
       ...NavBarLoginButton_Viewer
     }
-  `,
+  `
 )
