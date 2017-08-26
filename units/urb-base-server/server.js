@@ -3,10 +3,14 @@
 // In order to use ES7 async/await
 import 'babel-polyfill'
 
+import path from 'path'
+
 import express from 'express'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
-import path from 'path'
+
+import { name, version } from '../_configuration/package'
+import serverWebApp from '../urb-base-webapp/serverWebApp' // Isomorphic React server
 
 import serverAuth from './serverAuth' // Authentication server
 import getLocalIP from './getLocalIP'
@@ -14,8 +18,8 @@ import graphql from './serverGraphQL' // GraphQL server
 import serverHealthz from './serverHealthz' // Health check endpoint server
 import log from './log'
 import ObjectManager from './graphql/ObjectManager'
-import { name, version } from '../_configuration/package'
-import serverWebApp from '../urb-base-webapp/serverWebApp' // Isomorphic React server
+
+//
 
 // Read environment
 require( 'dotenv' ).load()
