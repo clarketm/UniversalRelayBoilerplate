@@ -9,8 +9,9 @@ import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
 import EnsayoAddMutation from '../../urb-example-ensayo-client/relay/EnsayoAddMutation'
-import EnsayoInPlaceEditProperties from './EnsayoInPlaceEditProperties'
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
+
+import EnsayoInPlaceEditProperties from './EnsayoInPlaceEditProperties'
 
 const styles = theme => ({
   card: {
@@ -24,20 +25,24 @@ class EnsayoInPaceEditScreen extends React.Component<
     classes: PropTypes.object.isRequired,
     Viewer: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,
-    relay: PropTypes.object.isRequired,
+    relay: PropTypes.object.isRequired
   },
   {
-    propertiesIsOpen: boolean,
-  },
+    propertiesIsOpen: boolean
+  }
 > {
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     this.state = { propertiesIsOpen: false }
   }
 
   _handle_updateHandler_Ensayo = EnsayoInPlaceEditProperties => {
-    const { Ensayo_Title, Ensayo_Description, Ensayo_Content } = EnsayoInPlaceEditProperties
+    const {
+      Ensayo_Title,
+      Ensayo_Description,
+      Ensayo_Content,
+    } = EnsayoInPlaceEditProperties
     const { relay, Viewer } = this.props
 
     EnsayoAddMutation.commit(
@@ -45,7 +50,7 @@ class EnsayoInPaceEditScreen extends React.Component<
       Viewer,
       Ensayo_Title,
       Ensayo_Description,
-      Ensayo_Content,
+      Ensayo_Content
     )
   }
 
@@ -96,10 +101,10 @@ class EnsayoInPaceEditScreen extends React.Component<
 }
 
 export default createFragmentContainer(
-  withStyles(styles)(EnsayoInPaceEditScreen),
+  withStyles( styles )( EnsayoInPaceEditScreen ),
   graphql`
     fragment EnsayoInPaceEditScreen_Viewer on Viewer {
       id
     }
-  `,
+  `
 )

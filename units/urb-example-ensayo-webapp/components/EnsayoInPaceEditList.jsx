@@ -10,9 +10,9 @@ import EnsayoInPlaceEditItem from './EnsayoInPlaceEditItem'
 class EnsayoInPaceEditList extends React.Component<
   {
     Viewer: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired,
+    relay: PropTypes.object.isRequired
   },
-  null,
+  null
 > {
   render() {
     const { Viewer } = this.props
@@ -21,8 +21,12 @@ class EnsayoInPaceEditList extends React.Component<
     return (
       <div>
         <List>
-          {Ensayos.edges.map(({ node }) =>
-            <EnsayoInPlaceEditItem key={node.id} Viewer={Viewer} Ensayo={node} />,
+          {Ensayos.edges.map( ({ node }) =>
+            <EnsayoInPlaceEditItem
+              key={node.id}
+              Viewer={Viewer}
+              Ensayo={node}
+            />
           )}
         </List>
       </div>
@@ -45,5 +49,5 @@ export default createFragmentContainer(
       id
       ...EnsayoInPlaceEditItem_Viewer
     }
-  `,
+  `
 )

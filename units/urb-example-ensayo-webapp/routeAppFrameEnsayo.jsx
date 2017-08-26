@@ -9,9 +9,15 @@ import EnsayoPublicList from './components/EnsayoPublicList'
 import EnsayoPublicItem from './components/EnsayoPublicItem'
 
 const EnsayoInPaceEditList = props =>
-  <Async load={import('./components/EnsayoInPaceEditList')} componentProps={props} />
+  <Async
+    load={import( './components/EnsayoInPaceEditList' )}
+    componentProps={props}
+  />
 const EnsayoInPaceEditScreen = props =>
-  <Async load={import('./components/EnsayoInPaceEditScreen')} componentProps={props} />
+  <Async
+    load={import( './components/EnsayoInPaceEditScreen' )}
+    componentProps={props}
+  />
 
 export default (
   <Route key="ensayo" path="ensayo">

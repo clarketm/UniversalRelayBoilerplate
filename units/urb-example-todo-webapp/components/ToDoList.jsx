@@ -10,6 +10,7 @@ import { createFragmentContainer, graphql } from 'react-relay'
 import Tabs, { Tab } from 'material-ui/Tabs'
 
 import ToDoListUpdateMarkAllMutation from '../../urb-example-todo-client/relay/ToDoListUpdateMarkAllMutation'
+
 import ToDoItem from './ToDoItem'
 
 const styles = theme => ({
@@ -32,11 +33,11 @@ const contextTypes = {
 class ToDoList extends React.Component<
   {
     Viewer: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired,
+    relay: PropTypes.object.isRequired
   },
-  null,
+  null
 > {
-  _handle_onClick_MarkAll = (event, checked) => {
+  _handle_onClick_MarkAll = ( event, checked ) => {
     const { relay, Viewer } = this.props
     const { variables } = this.context.relay
     const ToDo_Complete = checked
@@ -46,13 +47,16 @@ class ToDoList extends React.Component<
       Viewer,
       Viewer.ToDos,
       ToDo_Complete,
-      variables.status,
+      variables.status
     )
   }
 
-  _handle_onChange = (event, tabsValue) => {
-    const url = tabsValue === 2 ? '/todo/completed' : tabsValue === 1 ? '/todo/active' : '/todo'
-    this.context.router.push(url)
+  _handle_onChange = ( event, tabsValue ) => {
+    const url =
+      tabsValue === 2
+        ? '/todo/completed'
+        : tabsValue === 1 ? '/todo/active' : '/todo'
+    this.context.router.push( url )
   }
 
   renderTabs() {
@@ -72,7 +76,7 @@ class ToDoList extends React.Component<
     const { Viewer } = this.props
     const { ToDos, ToDo_TotalCount, ToDo_CompletedCount } = Viewer
 
-    if (!ToDo_TotalCount) {
+    if ( !ToDo_TotalCount ) {
       return null
     }
 
@@ -91,7 +95,9 @@ class ToDoList extends React.Component<
           />
         </FormGroup>
         <List>
-          {ToDos.edges.map(({ node }) => <ToDoItem key={node.id} Viewer={Viewer} ToDo={node} />)}
+          {ToDos.edges.map( ({ node }) =>
+            <ToDoItem key={node.id} Viewer={Viewer} ToDo={node} />
+          )}
         </List>
       </div>
     )
@@ -101,10 +107,11 @@ class ToDoList extends React.Component<
 ToDoList.contextTypes = contextTypes
 
 export default createFragmentContainer(
-  withStyles(styles)(ToDoList),
+  withStyles( styles )( ToDoList ),
   graphql`
     fragment ToDoList_Viewer on Viewer {
-      ToDos(status: $status, first: 2147483647) @connection(key: "ToDoList_ToDos") {
+      ToDos(status: $status, first: 2147483647)
+        @connection(key: "ToDoList_ToDos") {
         edges {
           node {
             id
@@ -118,5 +125,5 @@ export default createFragmentContainer(
       ToDo_CompletedCount
       ...ToDoItem_Viewer
     }
-  `,
+  `
 )

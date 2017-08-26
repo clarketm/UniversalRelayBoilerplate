@@ -1,7 +1,11 @@
 // @flow
 
 import Button from 'material-ui/Button'
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog'
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from 'material-ui/Dialog'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { withStyles } from 'material-ui/styles'
@@ -19,14 +23,14 @@ class ToDo_Properties extends React.Component<
     ToDo_Text: string,
     open: boolean,
     handlerUpdate: PropTypes.func.isRequired,
-    handlerClose: PropTypes.func.isRequired,
+    handlerClose: PropTypes.func.isRequired
   },
   {
-    ToDo_Text: string,
-  },
+    ToDo_Text: string
+  }
 > {
-  constructor(props: Object, context: Object) {
-    super(props, context)
+  constructor( props: Object, context: Object ) {
+    super( props, context )
 
     const { ToDo_Text } = this.props
 
@@ -57,7 +61,8 @@ class ToDo_Properties extends React.Component<
               label="To Do"
               fullWidth={true}
               value={ToDo_Text}
-              onChange={event => this.setState({ ToDo_Text: event.target.value })}
+              onChange={event =>
+                this.setState({ ToDo_Text: event.target.value })}
             />
           </DialogContent>
           <DialogActions>
@@ -72,4 +77,4 @@ class ToDo_Properties extends React.Component<
   }
 }
 
-export default withStyles(styles)(ToDo_Properties)
+export default withStyles( styles )( ToDo_Properties )
