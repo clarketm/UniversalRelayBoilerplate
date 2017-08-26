@@ -101,8 +101,8 @@
   },
   "name": "UniversalRelayBoilerplate",
   "lint-staged": {
-    "units/**/*.js": ["prettier-eslint --write", "git add"],
-    "units/**/*.jsx": ["prettier-eslint --write", "git add"],
+    "units/**/*.js": ["eslint", "prettier-eslint --write", "git add"],
+    "units/**/*.jsx": ["eslint", "prettier-eslint --write", "git add"],
     "units/**/*.json": ["prettier-eslint --write", "git add"]
   },
   "scripts": {

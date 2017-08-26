@@ -5,12 +5,6 @@ import bodyParser from 'body-parser'
 import express from 'express'
 import jwt from 'jwt-simple'
 
-// ZZZ ESLINT SHOULD FIRE UP HERE SAY THAT IMPORT IS UNUSED
-import log from './log'
-
-//
-//
-
 import authExtensions from '../_configuration/urb-base-server/authExtensions'
 import delayPromise from '../urb-base-universal/delayPromise'
 import getNewUser from '../_configuration/urb-base-server/graphql/model/getNewUser'

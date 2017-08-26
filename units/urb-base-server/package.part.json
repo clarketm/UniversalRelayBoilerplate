@@ -83,7 +83,9 @@
     "npm": "^5.0.0"
   },
   "lint-staged": {
-    "units/**/*.js*": ["eslint", "prettier-eslint --write", "git add"]
+    "units/**/*.js": ["eslint", "prettier-eslint --write", "git add"],
+    "units/**/*.jsx": ["eslint", "prettier-eslint --write", "git add"],
+    "units/**/*.json": ["prettier-eslint --write", "git add"]
   },
   "scripts": {
     "build-bump-version": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-bump-version.js",
