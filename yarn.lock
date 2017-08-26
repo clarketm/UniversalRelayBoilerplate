@@ -4747,9 +4747,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-4.0.3.tgz#1ce55591bc2c83a781a90b69a0a0c8aa0fc6370b"
+lint-staged@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-4.0.4.tgz#9ca6968b30dfbfe81365b7a763cd4f4992896553"
   dependencies:
     app-root-path "^2.0.0"
     cosmiconfig "^1.1.0"
@@ -6360,9 +6360,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier-eslint-cli@4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/prettier-eslint-cli/-/prettier-eslint-cli-4.1.1.tgz#b2630e31ac3b3379ecf02c130f5b219c04a0bc3c"
+prettier-eslint-cli@4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/prettier-eslint-cli/-/prettier-eslint-cli-4.2.1.tgz#7a36dd4c8e2243f077f30c266ea6c90c616a09e8"
   dependencies:
     arrify "^1.0.1"
     babel-runtime "^6.23.0"
@@ -6370,6 +6370,7 @@ prettier-eslint-cli@4.1.1:
     camelcase-keys "^4.1.0"
     chalk "^1.1.3"
     common-tags "^1.4.0"
+    eslint "^3.19.0"
     find-up "^2.1.0"
     get-stdin "^5.0.1"
     glob "^7.1.1"
@@ -6748,9 +6749,9 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
-react-native-drawer@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-drawer/-/react-native-drawer-2.4.0.tgz#e12aceb26bf95795b7d062838feaac94c7700c04"
+react-native-drawer@2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-drawer/-/react-native-drawer-2.5.0.tgz#022cba5c0516126a9fc9cce3185cb46c644b51c4"
   dependencies:
     prop-types "^15.5.8"
     tween-functions "^1.0.1"
@@ -6781,9 +6782,9 @@ react-native-modalbox@1.4.2:
     create-react-class "^15.6.0"
     prop-types "^15.5.10"
 
-react-native-router-flux@4.0.0-beta.18:
-  version "4.0.0-beta.18"
-  resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-4.0.0-beta.18.tgz#c234889b6f950999a566865aba519ec5f8c9e788"
+react-native-router-flux@4.0.0-beta.19:
+  version "4.0.0-beta.19"
+  resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-4.0.0-beta.19.tgz#cf7a0cbde42e7317939e2b15f663ff832c2b6da6"
   dependencies:
     lodash.isequal "^4.5.0"
     mobx "^3.1.16"
