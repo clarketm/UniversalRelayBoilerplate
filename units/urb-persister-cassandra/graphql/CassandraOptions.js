@@ -7,9 +7,10 @@ require('dotenv').load()
 
 const CassandraOptions = {
   // Assume localhost if not defined
-  contactPoints: process.env.CASSANDRA_CONNECTION_POINTS != null
-    ? process.env.CASSANDRA_CONNECTION_POINTS.split(',')
-    : ['localhost'],
+  contactPoints:
+    process.env.CASSANDRA_CONNECTION_POINTS != null
+      ? process.env.CASSANDRA_CONNECTION_POINTS.split(',')
+      : ['localhost'],
   keyspace: process.env.CASSANDRA_KEYSPACE,
   authProvider: null,
 }
