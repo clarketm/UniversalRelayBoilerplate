@@ -4,7 +4,10 @@ import { commitMutation, graphql } from 'react-relay'
 import { ConnectionHandler } from 'relay-runtime'
 
 const mutation = graphql`
-  mutation ToDoListUpdateMarkAllMutation($input: ToDoListUpdateMarkAllInput!, $status: String!) {
+  mutation ToDoListUpdateMarkAllMutation(
+    $input: ToDoListUpdateMarkAllInput!
+    $status: String!
+  ) {
     ToDoListUpdateMarkAll(input: $input) {
       Viewer {
         ToDos(status: $status) {
@@ -27,31 +30,42 @@ const mutation = graphql`
   }
 `
 
-function commit(environment, user, ToDos, ToDo_Complete, status) {
-  return commitMutation(environment, {
+function commit( environment, user, ToDos, ToDo_Complete, status ) {
+  return commitMutation( environment, {
     mutation,
     variables: {
       input: { ToDo_Complete },
       status,
     },
 
-    updater(store) {
-      const userProxy = store.get(user.id)
-      const connection = ConnectionHandler.getConnection(userProxy, 'ToDoList_ToDos', { status })
+    updater( store ) {
+      const userProxy = store.get( user.id )
+      const connection = ConnectionHandler.getConnection(
+        userProxy,
+        'ToDoList_ToDos',
+        { status }
+      )
       const ToDosEdges = store
-        .getRootField('ToDoListUpdateMarkAll')
-        .getLinkedRecord('Viewer')
-        .getLinkedRecord('ToDos', { status })
-        .getLinkedRecords('edges')
-      connection.setLinkedRecords(ToDosEdges, 'edges')
+        .getRootField( 'ToDoListUpdateMarkAll' )
+        .getLinkedRecord( 'Viewer' )
+        .getLinkedRecord( 'ToDos', { status })
+        .getLinkedRecords( 'edges' )
+      connection.setLinkedRecords( ToDosEdges, 'edges' )
     },
 
-    optimisticUpdater(store) {
-      const userProxy = store.get(user.id)
-      const connection = ConnectionHandler.getConnection(userProxy, 'ToDoList_ToDos', { status })
+    optimisticUpdater( store ) {
+      const userProxy = store.get( user.id )
+      const connection = ConnectionHandler.getConnection(
+        userProxy,
+        'ToDoList_ToDos',
+        { status }
+      )
 
-      if ((ToDo_Complete && status === 'active') || (!ToDo_Complete && status === 'completed')) {
-        connection.setLinkedRecords([], 'edges')
+      if (
+        ( ToDo_Complete && status === 'active' ) ||
+        ( !ToDo_Complete && status === 'completed' )
+      ) {
+        connection.setLinkedRecords([], 'edges' )
       }
     },
 
@@ -64,14 +78,14 @@ function commit(environment, user, ToDos, ToDo_Complete, status) {
         changedToDos: null,
       }
 
-      if (ToDos && ToDos.edges) {
+      if ( ToDos && ToDos.edges ) {
         payload.changedToDos = ToDos.edges
-          .filter(({ node }) => node.ToDo_Complete !== ToDo_Complete)
-          .map(({ node }) => ({ id: node.id, ToDo_Complete }))
+          .filter( ({ node }) => node.ToDo_Complete !== ToDo_Complete )
+          .map( ({ node }) => ({ id: node.id, ToDo_Complete }) )
       }
 
-      if (ToDo_Complete) {
-        if (user.ToDo_TotalCount != null) {
+      if ( ToDo_Complete ) {
+        if ( user.ToDo_TotalCount != null ) {
           payload.Viewer.ToDo_CompletedCount = user.ToDo_TotalCount
         }
       } else {

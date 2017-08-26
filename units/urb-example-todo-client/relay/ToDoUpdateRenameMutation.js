@@ -13,8 +13,8 @@ const mutation = graphql`
   }
 `
 
-function commit(environment, aToDo, ToDo_Text) {
-  return commitMutation(environment, {
+function commit( environment, aToDo, ToDo_Text ) {
+  return commitMutation( environment, {
     mutation,
     variables: {
       input: { id: aToDo.id, ToDo_Text },

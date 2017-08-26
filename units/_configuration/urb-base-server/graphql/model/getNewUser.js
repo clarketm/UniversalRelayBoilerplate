@@ -1,4 +1,4 @@
-export default function getNewUser(User_site_id) {
+export default function getNewUser( User_site_id ) {
   return {
     User_site_id,
     UserToken2: '',

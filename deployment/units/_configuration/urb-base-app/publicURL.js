@@ -1,5 +1,6 @@
-// @flow
+Object.defineProperty(exports,"__esModule",{value:true});
 
-const publicURL = 'http://172.31.99.247:26005'
+var publicURL='http://universal-relay-boilerplate.herokuapp.com';exports.default=
 
-export default publicURL
+publicURL;
+//# sourceMappingURL=publicURL.js.map

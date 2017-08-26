@@ -10,12 +10,12 @@ export default class UserSession {
   UserSession_Start: Date
   UserSession_Expired: boolean
 
-  constructor(fields: {
+  constructor( fields: {
     id: string,
     UserSession_site_id: string,
     UserSession_User_id: string,
     UserSession_Start: Date,
-    UserSession_Expired: boolean,
+    UserSession_Expired: boolean
   }) {
     this.id = fields.id
     this.UserSession_site_id = fields.UserSession_site_id
@@ -25,4 +25,4 @@ export default class UserSession {
   }
 }
 
-ObjectManager.registerEntity('UserSession', UserSession)
+ObjectManager.registerEntity( 'UserSession', UserSession )

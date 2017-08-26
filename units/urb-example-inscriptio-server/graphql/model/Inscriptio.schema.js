@@ -2,7 +2,7 @@
 
 import defaultPersister from '../../../_configuration/urb-base-server/graphql/defaultPersister'
 
-defaultPersister.addTableSchema('Inscriptio', {
+defaultPersister.addTableSchema( 'Inscriptio', {
   fields: {
     id: 'uuid',
     Inscriptio_User_id: 'uuid',
@@ -11,7 +11,7 @@ defaultPersister.addTableSchema('Inscriptio', {
     Inscriptio_Notes: 'text',
   },
 
-  key: ['id'],
+  key: [ 'id' ],
 
   custom_indexes: [
     {

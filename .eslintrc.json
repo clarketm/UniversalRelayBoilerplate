@@ -1,5 +1,13 @@
 {
   "extends": ["react-app", "prettier", "prettier/flowtype", "prettier/react"],
   "parser": "babel-eslint",
-  "rules": { "jsx-a11y/href-no-hash": "off" }
+  "rules": {
+    "array-bracket-spacing": [2, "always"],
+    "comma-dangle": [2, "always-multiline"],
+    "jsx-a11y/href-no-hash": "off",
+    "semi": [2, "never"],
+    "quotes": [2, "single"],
+    "space-in-parens": [2, "always", { "exceptions": ["[]", "{}"] }],
+    "space-before-function-paren": [2, "never"]
+  }
 }

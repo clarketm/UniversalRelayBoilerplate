@@ -9,28 +9,32 @@ export default mutationWithClientMutationId({
   name: 'InscriptioUpdate',
 
   inputFields: {
-    id: { type: new GraphQLNonNull(GraphQLID) },
-    Inscriptio_LocationLat: { type: new GraphQLNonNull(GraphQLString) },
-    Inscriptio_LocationLon: { type: new GraphQLNonNull(GraphQLString) },
-    Inscriptio_Notes: { type: new GraphQLNonNull(GraphQLString) },
+    id: { type: new GraphQLNonNull( GraphQLID ) },
+    Inscriptio_LocationLat: { type: new GraphQLNonNull( GraphQLString ) },
+    Inscriptio_LocationLon: { type: new GraphQLNonNull( GraphQLString ) },
+    Inscriptio_Notes: { type: new GraphQLNonNull( GraphQLString ) },
   },
 
   outputFields: {
     Inscriptio: {
       type: InscriptioType,
-      resolve: ({ local_id }, { ...args }, context, { rootValue: objectManager }) =>
-        objectManager.getOneObject('Inscriptio', { id: local_id }),
+      resolve: (
+        { local_id },
+        { ...args },
+        context,
+        { rootValue: objectManager }
+      ) => objectManager.getOneObject( 'Inscriptio', { id: local_id }),
     },
   },
 
-  mutateAndGetPayload: async (
+  mutateAndGetPayload: async(
     { id, Inscriptio_LocationLat, Inscriptio_LocationLon, Inscriptio_Notes },
     context,
-    { rootValue: objectManager },
+    { rootValue: objectManager }
   ) => {
-    const local_id = fromGlobalId(id).id
+    const local_id = fromGlobalId( id ).id
 
-    await objectManager.update('Inscriptio', {
+    await objectManager.update( 'Inscriptio', {
       id: local_id,
       Inscriptio_LocationLat,
       Inscriptio_LocationLon,

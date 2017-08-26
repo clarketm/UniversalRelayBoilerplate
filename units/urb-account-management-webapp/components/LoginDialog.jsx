@@ -35,8 +35,6 @@ class LoginDialog extends React.Component<
   constructor(props: Object, context: Object) {
     super(props, context)
 
-    const { UserAccount_Identifier, User_Secret } = this.props
-
     this.state = {
       currentOperation: 'challenge',
       errorMessage: '',
@@ -75,12 +73,9 @@ class LoginDialog extends React.Component<
 
       const responseData = await response.json()
 
-      console.log('LOG IN RESPONSE')
-      console.log(responseData)
-
       if (responseData.success) {
         // In case of success, realod the application from server
-        location.replace(location.href)
+        window.location.replace(window.location.href, '')
       } else {
         // In case of error, tell user what the error is
         this.setState({ currentOperation: 'failure', errorMessage: responseData.error }) // ZZZ Does server really send the reason for the failed login?
@@ -152,7 +147,7 @@ class LoginDialog extends React.Component<
   }
 
   renderInProgress() {
-    const { classes, open } = this.props
+    const { open } = this.props
     const { UserAccount_Identifier } = this.state
 
     return (
@@ -177,7 +172,7 @@ class LoginDialog extends React.Component<
   }
 
   renderFailure() {
-    const { classes, open } = this.props
+    const { open } = this.props
     const { UserAccount_Identifier, errorMessage } = this.state
 
     return (

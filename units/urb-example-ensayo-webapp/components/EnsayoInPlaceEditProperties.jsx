@@ -1,6 +1,5 @@
 // @flow
 
-import Async from 'react-code-splitting'
 import Button from 'material-ui/Button'
 import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
@@ -68,7 +67,6 @@ class EnsayoInPlaceEditProperties extends React.Component<
     this.props.handlerUpdate({
       Ensayo_Title: this.state.Ensayo_Title,
       Ensayo_Description: this.state.Ensayo_Description,
-      Ensayo_Content: '',
       Ensayo_Content: this.state.Ensayo_Content_RTE.toString('html'),
     })
 

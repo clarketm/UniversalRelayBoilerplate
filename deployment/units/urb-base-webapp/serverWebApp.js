@@ -37,7 +37,7 @@ throw new Error('💔  urb-base-webapp requires the environment variable PORT_WE
 
 var serverWebApp=(0,_express2.default)();
 
-function gatherLocationAndSiteInformation(req,res){var assetsPath,siteInformation,host,port_webpack;return regeneratorRuntime.async(function gatherLocationAndSiteInformation$(_context){while(1){switch(_context.prev=_context.next){case 0:
+function gatherLocationAndSiteInformation(req,res){var assetsPath,siteInformation;return regeneratorRuntime.async(function gatherLocationAndSiteInformation$(_context){while(1){switch(_context.prev=_context.next){case 0:
 assetsPath=void 0;_context.next=3;return regeneratorRuntime.awrap(
 
 (0,_siteSettings.getSiteInformation)(req,res));case 3:siteInformation=_context.sent;
@@ -51,8 +51,6 @@ siteInformation.isSiteBuilderDisabled||siteInformation.inEditingMode?'/assets/'+
 siteInformation.configurationAsObject.version;
 }else{
 
-host=process.env.HOST;
-port_webpack=process.env.PORT_WEBPACK;
 assetsPath='http://'+envHost+':'+envPortWebpack+'/'+_package.version;
 }
 }return _context.abrupt('return',

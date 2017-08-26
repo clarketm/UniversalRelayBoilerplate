@@ -2,7 +2,7 @@
 
 import defaultPersister from '../../../_configuration/urb-base-server/graphql/defaultPersister'
 
-defaultPersister.addTableSchema('UserSession', {
+defaultPersister.addTableSchema( 'UserSession', {
   fields: {
     id: 'uuid',
     UserSession_site_id: 'uuid',
@@ -11,7 +11,7 @@ defaultPersister.addTableSchema('UserSession', {
     UserSession_Expired: 'boolean',
   },
 
-  key: ['id'],
+  key: [ 'id' ],
 
   custom_indexes: [
     {

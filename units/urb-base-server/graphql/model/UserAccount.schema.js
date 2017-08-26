@@ -2,7 +2,7 @@
 
 import defaultPersister from '../../../_configuration/urb-base-server/graphql/defaultPersister'
 
-defaultPersister.addTableSchema('UserAccount', {
+defaultPersister.addTableSchema( 'UserAccount', {
   fields: {
     id: 'uuid',
     UserAccount_site_id: 'uuid',
@@ -11,7 +11,7 @@ defaultPersister.addTableSchema('UserAccount', {
     UserAccount_Type: 'text',
   },
 
-  key: ['id'],
+  key: [ 'id' ],
 
   custom_indexes: [
     {

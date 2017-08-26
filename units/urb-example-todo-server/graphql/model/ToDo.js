@@ -8,11 +8,11 @@ export default class ToDo {
   ToDo_Text: string
   ToDo_Complete: boolean
 
-  constructor(fields: {
+  constructor( fields: {
     id: string,
     ToDo_User_id: string,
     ToDo_Text: string,
-    ToDo_Complete: boolean,
+    ToDo_Complete: boolean
   }) {
     this.id = fields.id
     this.ToDo_User_id = fields.ToDo_User_id
@@ -21,4 +21,4 @@ export default class ToDo {
   }
 }
 
-ObjectManager.registerEntity('ToDo', ToDo)
+ObjectManager.registerEntity( 'ToDo', ToDo )

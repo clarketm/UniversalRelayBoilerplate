@@ -1,5 +1,6 @@
-// @flow
+Object.defineProperty(exports,"__esModule",{value:true});exports.default=
 
-export default function(auth: Object) {
-  // Here [auth] is the auth router. If you need to attach additional routes to it, do it below
-}
+function(auth){
+
+};
+//# sourceMappingURL=authExtensions.js.map

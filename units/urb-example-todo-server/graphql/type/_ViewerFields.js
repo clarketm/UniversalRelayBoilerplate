@@ -17,14 +17,23 @@ export default {
       ...connectionArgs,
     },
 
-    resolve: async (obj, { status, ...args }, context, { rootValue: objectManager }) => {
-      const arr = await objectManager.getObjectList('ToDo', {
+    resolve: async(
+      obj,
+      { status, ...args },
+      context,
+      { rootValue: objectManager }
+    ) => {
+      const arr = await objectManager.getObjectList( 'ToDo', {
         ToDo_User_id: objectManager.getViewerUserId(),
       })
 
       return connectionFromArray(
-        arr.filter(a_ToDo => status === 'any' || a_ToDo.ToDo_Complete === (status === 'completed')),
-        args,
+        arr.filter(
+          a_ToDo =>
+            status === 'any' ||
+            a_ToDo.ToDo_Complete === ( status === 'completed' )
+        ),
+        args
       )
     },
   },
@@ -32,8 +41,13 @@ export default {
   ToDo_TotalCount: {
     type: GraphQLInt,
 
-    resolve: async (obj, { ...args }, context, { rootValue: objectManager }) => {
-      const arr = await objectManager.getObjectList('ToDo', {
+    resolve: async(
+      obj,
+      { ...args },
+      context,
+      { rootValue: objectManager }
+    ) => {
+      const arr = await objectManager.getObjectList( 'ToDo', {
         ToDo_User_id: objectManager.getViewerUserId(),
       })
 
@@ -44,12 +58,17 @@ export default {
   ToDo_CompletedCount: {
     type: GraphQLInt,
 
-    resolve: async (obj, { ...args }, context, { rootValue: objectManager }) => {
-      const arr = await objectManager.getObjectList('ToDo', {
+    resolve: async(
+      obj,
+      { ...args },
+      context,
+      { rootValue: objectManager }
+    ) => {
+      const arr = await objectManager.getObjectList( 'ToDo', {
         ToDo_User_id: objectManager.getViewerUserId(),
       })
 
-      return arr.filter(a_ToDo => a_ToDo.ToDo_Complete).length
+      return arr.filter( a_ToDo => a_ToDo.ToDo_Complete ).length
     },
   },
 }

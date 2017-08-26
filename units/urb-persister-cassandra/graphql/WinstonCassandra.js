@@ -1,10 +1,10 @@
 // @flow
 
-var util = require('util')
-var events = require('events')
+var util = require( 'util' )
+var events = require( 'events' )
 
-var winston = require('winston')
-var cql = require('cassandra-driver')
+var winston = require( 'winston' )
+var cql = require( 'cassandra-driver' )
 
 var defaultOptions = {
   //column family to store the logs
@@ -16,16 +16,16 @@ var defaultOptions = {
   name: 'cassandra',
 }
 
-function Cassandra(options: Object) {
-  if (!options) {
-    throw new Error('Transport options is required')
+function Cassandra( options: Object ) {
+  if ( !options ) {
+    throw new Error( 'Transport options is required' )
   }
 
-  if (!options.keyspace) {
-    throw new Error('You must specify the options.keyspace')
+  if ( !options.keyspace ) {
+    throw new Error( 'You must specify the options.keyspace' )
   }
 
-  this.options = Object.assign({}, defaultOptions, options)
+  this.options = Object.assign({}, defaultOptions, options )
 
   //winston options
   this.name = this.options.name
@@ -33,16 +33,16 @@ function Cassandra(options: Object) {
 
   //create a queue object that will emit the event 'prepared'
   this.schemaStatus = new events.EventEmitter()
-  this.schemaStatus.setMaxListeners(0)
-  this.client = new cql.Client(this.options)
+  this.schemaStatus.setMaxListeners( 0 )
+  this.client = new cql.Client( this.options )
 }
 
-util.inherits(Cassandra, winston.Transport)
+util.inherits( Cassandra, winston.Transport )
 
-Cassandra.prototype.log = function(level, msg, meta, callback) {
+Cassandra.prototype.log = function( level, msg, meta, callback ) {
   var self = this
-  return self._insertLog(level, msg, meta, function(err) {
-    callback(err, !err)
+  return self._insertLog( level, msg, meta, function( err ) {
+    callback( err, !err )
   })
 }
 
@@ -50,10 +50,10 @@ Cassandra.prototype.log = function(level, msg, meta, callback) {
  * Gets the log partition key
  */
 Cassandra.prototype.getKey = function() {
-  if (this.options.partitionBy === 'day') {
-    return new Date().toISOString().slice(0, 10)
-  } else if (this.options.partitionBy === 'hour') {
-    return new Date().toISOString().slice(0, 13)
+  if ( this.options.partitionBy === 'day' ) {
+    return new Date().toISOString().slice( 0, 10 )
+  } else if ( this.options.partitionBy === 'hour' ) {
+    return new Date().toISOString().slice( 0, 13 )
   }
   return null
 }
@@ -61,19 +61,22 @@ Cassandra.prototype.getKey = function() {
 /**
  * Inserts the log in the db
  */
-Cassandra.prototype._insertLog = function(level, msg, meta, callback) {
+Cassandra.prototype._insertLog = function( level, msg, meta, callback ) {
   var key = this.getKey()
-  if (!key) {
-    return callback(new Error('Partition ' + this.options.partitionBy + ' not supported'), false)
+  if ( !key ) {
+    return callback(
+      new Error( 'Partition ' + this.options.partitionBy + ' not supported' ),
+      false
+    )
   }
   //execute as a prepared query as it would be executed multiple times
   return this.client.execute(
     'INSERT INTO ' +
       this.options.table +
       ' (key, date, level, message, meta) VALUES (?, ?, ?, ?, ?)',
-    [key, new Date(), level, msg, util.inspect(meta)],
+    [ key, new Date(), level, msg, util.inspect( meta ) ],
     { prepare: true, consistency: this.options.consistency },
-    callback,
+    callback
   )
 }
 

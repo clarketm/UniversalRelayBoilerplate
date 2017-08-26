@@ -10,14 +10,20 @@ import NodeInterface from '../../../../units/urb-base-server/graphql/NodeInterfa
 export default new GraphQLObjectType({
   name: 'Translaticiarum',
 
-  interfaces: [NodeInterface],
+  interfaces: [ NodeInterface ],
 
   isTypeOf: object => object instanceof Translaticiarum,
 
   fields: {
-    id: globalIdField('Translaticiarum'),
-    Translaticiarum_Start: { type: GraphQLDateTime, resolve: obj => obj.Translaticiarum_Start },
-    Translaticiarum_Stop: { type: GraphQLDateTime, resolve: obj => obj.Translaticiarum_Stop },
+    id: globalIdField( 'Translaticiarum' ),
+    Translaticiarum_Start: {
+      type: GraphQLDateTime,
+      resolve: obj => obj.Translaticiarum_Start,
+    },
+    Translaticiarum_Stop: {
+      type: GraphQLDateTime,
+      resolve: obj => obj.Translaticiarum_Stop,
+    },
     Translaticiarum_Description: {
       type: GraphQLString,
       resolve: obj => obj.Translaticiarum_Description,

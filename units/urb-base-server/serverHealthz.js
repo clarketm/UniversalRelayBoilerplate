@@ -6,12 +6,12 @@ import defaultPersister from '../_configuration/urb-base-server/graphql/defaultP
 
 const serverHealthz = express()
 
-serverHealthz.get('/', async (req, res, next) => {
+serverHealthz.get( '/', async( req, res, next ) => {
   try {
     await defaultPersister.confirmHealth()
-    res.sendStatus(200)
-  } catch (err) {
-    next(new Error('💔 DB is unreachable'))
+    res.sendStatus( 200 )
+  } catch ( err ) {
+    next( new Error( '💔 DB is unreachable' ) )
   }
 })
 
