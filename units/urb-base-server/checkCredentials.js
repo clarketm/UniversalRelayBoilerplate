@@ -88,8 +88,6 @@ export function serveAuthenticationFailed( req, res, err, respondWithJSON ) {
   // Collect information about the request
   var ip = req.headers['x-real-ip'] || req.connection.remoteAddress
 
-  console.log( err )
-
   const requestDetails = {
     headers: req.headers,
     cookies: req.cookies,
