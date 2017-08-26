@@ -35,16 +35,36 @@ color:theme.palette.text.secondary}};};
 function renderNavItems(){
 return(
 _react2.default.createElement(_List2.default,null,
-_react2.default.createElement(_AppDrawerNavItem2.default,{key:1,openImmediately:true,title:'To Dos',to:'/todo'}),
-_react2.default.createElement(_AppDrawerNavItem2.default,{key:2,openImmediately:true,title:'Ensayo edit',to:'/ensayo/edit'}),
+_react2.default.createElement(_AppDrawerNavItem2.default,{
+key:1,
+openImmediately:true,
+title:'To Dos',
+to:'/todo'}),
+
+_react2.default.createElement(_AppDrawerNavItem2.default,{
+key:2,
+openImmediately:true,
+title:'Ensayo edit',
+to:'/ensayo/edit'}),
+
 _react2.default.createElement(_AppDrawerNavItem2.default,{
 key:3,
 openImmediately:true,
 title:'Ensayo in place',
 to:'/ensayo/in-place-edit'}),
 
-_react2.default.createElement(_AppDrawerNavItem2.default,{key:4,openImmediately:true,title:'Ensayo public',to:'/ensayo'}),
-_react2.default.createElement(_AppDrawerNavItem2.default,{key:5,openImmediately:true,title:'Inscriptio',to:'/inscriptio'}),
+_react2.default.createElement(_AppDrawerNavItem2.default,{
+key:4,
+openImmediately:true,
+title:'Ensayo public',
+to:'/ensayo'}),
+
+_react2.default.createElement(_AppDrawerNavItem2.default,{
+key:5,
+openImmediately:true,
+title:'Inscriptio',
+to:'/inscriptio'}),
+
 _react2.default.createElement(_AppDrawerNavItem2.default,{
 key:6,
 openImmediately:true,

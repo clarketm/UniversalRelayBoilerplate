@@ -17,18 +17,28 @@ ToDo_Complete:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLBoolean)}},
 outputFields:{
 ToDo:{
 type:_ToDoType2.default,
-resolve:function resolve(_ref,_ref2,context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var objectManager=_ref3.rootValue;return(
+resolve:function resolve(_ref,_ref2,
+
+
+context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var
+objectManager=_ref3.rootValue;return(
 objectManager.getOneObject('ToDo',{id:local_id}));}},
 
 
 Viewer:{
 type:_ViewerType2.default,
 resolve:function resolve(parent,args,context,_ref4){var objectManager=_ref4.rootValue;return(
-objectManager.getOneObject('User',{id:objectManager.getViewerUserId()}));}}},
+objectManager.getOneObject('User',{
+id:objectManager.getViewerUserId()}));}}},
 
 
 
-mutateAndGetPayload:function mutateAndGetPayload(_ref5,context,_ref6){var id=_ref5.id,ToDo_Complete=_ref5.ToDo_Complete;var objectManager=_ref6.rootValue;var local_id;return regeneratorRuntime.async(function mutateAndGetPayload$(_context){while(1){switch(_context.prev=_context.next){case 0:
+
+mutateAndGetPayload:function mutateAndGetPayload(_ref5,
+
+context,_ref6){var id=_ref5.id,ToDo_Complete=_ref5.ToDo_Complete;var
+objectManager=_ref6.rootValue;var local_id;return regeneratorRuntime.async(function mutateAndGetPayload$(_context){while(1){switch(_context.prev=_context.next){case 0:
+
 local_id=(0,_graphqlRelay.fromGlobalId)(id).id;_context.next=3;return regeneratorRuntime.awrap(
 
 objectManager.update('ToDo',{

@@ -23,7 +23,14 @@ color:theme.palette.accent.A400}};};
 
 
 function Link(props){var _classNames;var
-ComponentProp=props.component,classes=props.classes,className=props.className,variant=props.variant,to=props.to,other=_objectWithoutProperties(props,['component','classes','className','variant','to']);
+
+ComponentProp=
+
+
+
+
+
+props.component,classes=props.classes,className=props.className,variant=props.variant,to=props.to,other=_objectWithoutProperties(props,['component','classes','className','variant','to']);
 
 var Component=void 0;
 

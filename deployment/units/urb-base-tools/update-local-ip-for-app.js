@@ -5,7 +5,7 @@ var fs=require('fs');
 
 var IPAddress=process.argv[2];
 
-if(IPAddress==undefined){
+if(IPAddress===undefined){
 
 var interfaces=os.networkInterfaces();
 var addresses=[];
@@ -14,14 +14,15 @@ for(var k in interfaces){
 for(var k2 in interfaces[k]){
 
 var address=interfaces[k][k2];
-if(address.family==='IPv4'&&!address.internal)addresses.push(address.address);
+if(address.family==='IPv4'&&!address.internal)
+addresses.push(address.address);
 }
 }
 
 if(addresses.length>=0)IPAddress=addresses[0];
 }
 
-if(IPAddress!=undefined){
+if(IPAddress!==undefined){
 console.log('IP Address:'+IPAddress);
 updateIPInFile(
 './ios/UniversalRelayBoilerplate/AppDelegate.m',
@@ -44,13 +45,15 @@ var index=0;
 
 while(index<fileLines.length){
 if(fileLines[index].indexOf(searchString)>-1){
-if(fileLines[index]==newContentOfLine)
+if(fileLines[index]===newContentOfLine)
 console.log('['+fileName+'] is already up to date');else
 {
 fileLines[index]=newContentOfLine;
 fs.writeFileSync(fileName,fileLines.join('\n'));
 
-console.log('['+fileName+'] has been updated with local IP '+IPAddress);
+console.log(
+'['+fileName+'] has been updated with local IP '+IPAddress);
+
 }
 break;
 }else index++;

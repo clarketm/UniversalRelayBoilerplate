@@ -2,7 +2,7 @@
 
 import defaultPersister from '../defaultPersister'
 
-defaultPersister.addTableSchema('User', {
+defaultPersister.addTableSchema( 'User', {
   fields: {
     id: 'uuid',
     User_site_id: 'uuid',
@@ -14,7 +14,7 @@ defaultPersister.addTableSchema('User', {
     User_Latitude: 'double',
     User_Longitude: 'double',
   },
-  key: ['id'],
+  key: [ 'id' ],
 })
 
 export default true

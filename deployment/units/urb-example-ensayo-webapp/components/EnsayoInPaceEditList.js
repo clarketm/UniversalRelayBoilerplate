@@ -22,7 +22,11 @@ return(
 _react2.default.createElement('div',null,
 _react2.default.createElement(_List2.default,null,
 Ensayos.edges.map(function(_ref){var node=_ref.node;return(
-_react2.default.createElement(_EnsayoInPlaceEditItem2.default,{key:node.id,Viewer:Viewer,Ensayo:node}));}))));
+_react2.default.createElement(_EnsayoInPlaceEditItem2.default,{
+key:node.id,
+Viewer:Viewer,
+Ensayo:node}));}))));
+
 
 
 

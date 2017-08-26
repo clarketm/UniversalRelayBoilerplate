@@ -18,7 +18,11 @@ Ensayo_Content:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLString)}},
 outputFields:{
 Ensayo:{
 type:_EnsayoType2.default,
-resolve:function resolve(_ref,_ref2,context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var objectManager=_ref3.rootValue;return(
+resolve:function resolve(_ref,_ref2,
+
+
+context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var
+objectManager=_ref3.rootValue;return(
 objectManager.getOneObject('Ensayo',{id:local_id}));}}},
 
 

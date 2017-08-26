@@ -15,11 +15,22 @@ var mutation=function mutation(){return require('./__generated__/EnsayoUpdateMut
 
 
 
-function commit(environment,aEnsayo,Ensayo_Title,Ensayo_Description,Ensayo_Content){
+function commit(
+environment,
+aEnsayo,
+Ensayo_Title,
+Ensayo_Description,
+Ensayo_Content)
+{
 return(0,_reactRelay.commitMutation)(environment,{
 mutation:mutation,
 variables:{
-input:{id:aEnsayo.id,Ensayo_Title:Ensayo_Title,Ensayo_Description:Ensayo_Description,Ensayo_Content:Ensayo_Content}},
+input:{
+id:aEnsayo.id,
+Ensayo_Title:Ensayo_Title,
+Ensayo_Description:Ensayo_Description,
+Ensayo_Content:Ensayo_Content}},
+
 
 
 optimisticResponse:function optimisticResponse(){

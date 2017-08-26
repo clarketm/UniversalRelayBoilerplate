@@ -13,7 +13,7 @@ if(typeOfValue!==typeOfCondition)return false;
 if(typeOfCondition==='object'){
 if(!matchInDepth(payloadValue,conditionValue))return false;
 }else{
-if(payloadValue!=conditionValue)return false;
+if(payloadValue!==conditionValue)return false;
 }
 }
 

@@ -25,7 +25,10 @@ var mutation=function mutation(){return require('./__generated__/InscriptioAddMu
 function sharedUpdater(store,user,InscriptiosEdge){
 var userProxy=store.get(user.id);
 
-var connection=_relayRuntime.ConnectionHandler.getConnection(userProxy,'InscriptioList_Inscriptios');
+var connection=_relayRuntime.ConnectionHandler.getConnection(
+userProxy,
+'InscriptioList_Inscriptios');
+
 if(connection){
 _relayRuntime.ConnectionHandler.insertEdgeAfter(connection,InscriptiosEdge);
 }
@@ -45,7 +48,12 @@ var clientMutationId=nextClientMutationId++;
 return(0,_reactRelay.commitMutation)(environment,{
 mutation:mutation,
 variables:{
-input:{Inscriptio_LocationLat:Inscriptio_LocationLat,Inscriptio_LocationLon:Inscriptio_LocationLon,Inscriptio_Notes:Inscriptio_Notes,clientMutationId:clientMutationId}},
+input:{
+Inscriptio_LocationLat:Inscriptio_LocationLat,
+Inscriptio_LocationLon:Inscriptio_LocationLon,
+Inscriptio_Notes:Inscriptio_Notes,
+clientMutationId:clientMutationId}},
+
 
 
 updater:function updater(store){

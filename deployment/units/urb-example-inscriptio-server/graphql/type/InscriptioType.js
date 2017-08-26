@@ -15,7 +15,15 @@ isTypeOf:function isTypeOf(object){return object instanceof _Inscriptio2.default
 
 fields:{
 id:(0,_graphqlRelay.globalIdField)('Inscriptio'),
-Inscriptio_LocationLat:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.Inscriptio_LocationLat;}},
-Inscriptio_LocationLon:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.Inscriptio_LocationLon;}},
-Inscriptio_Notes:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.Inscriptio_Notes;}}}});
+Inscriptio_LocationLat:{
+type:_graphql.GraphQLString,
+resolve:function resolve(obj){return obj.Inscriptio_LocationLat;}},
+
+Inscriptio_LocationLon:{
+type:_graphql.GraphQLString,
+resolve:function resolve(obj){return obj.Inscriptio_LocationLon;}},
+
+Inscriptio_Notes:{
+type:_graphql.GraphQLString,
+resolve:function resolve(obj){return obj.Inscriptio_Notes;}}}});
 //# sourceMappingURL=InscriptioType.js.map

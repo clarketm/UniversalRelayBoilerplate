@@ -18,7 +18,11 @@ var mutation=function mutation(){return require('./__generated__/ToDoDeleteMutat
 function sharedUpdater(store,user,deletedId){
 var userProxy=store.get(user.id);
 ['any','active','completed'].forEach(function(status){
-var connection=_relayRuntime.ConnectionHandler.getConnection(userProxy,'ToDoList_ToDos',{status:status});
+var connection=_relayRuntime.ConnectionHandler.getConnection(
+userProxy,
+'ToDoList_ToDos',
+{status:status});
+
 if(connection){
 _relayRuntime.ConnectionHandler.deleteNode(connection,deletedId);
 }

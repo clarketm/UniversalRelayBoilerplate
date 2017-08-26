@@ -21,11 +21,17 @@ resolve:function resolve(_ref){var id=_ref.id;return id;}},
 Viewer:{
 type:_ViewerType2.default,
 resolve:function resolve(parent,args,context,_ref2){var objectManager=_ref2.rootValue;return(
-objectManager.getOneObject('User',{id:objectManager.getViewerUserId()}));}}},
+objectManager.getOneObject('User',{
+id:objectManager.getViewerUserId()}));}}},
 
 
 
-mutateAndGetPayload:function mutateAndGetPayload(_ref3,context,_ref4){var id=_ref3.id;var objectManager=_ref4.rootValue;var local_id;return regeneratorRuntime.async(function mutateAndGetPayload$(_context){while(1){switch(_context.prev=_context.next){case 0:
+
+mutateAndGetPayload:function mutateAndGetPayload(_ref3,
+
+context,_ref4){var id=_ref3.id;var
+objectManager=_ref4.rootValue;var local_id;return regeneratorRuntime.async(function mutateAndGetPayload$(_context){while(1){switch(_context.prev=_context.next){case 0:
+
 local_id=(0,_graphqlRelay.fromGlobalId)(id).id;_context.next=3;return regeneratorRuntime.awrap(
 
 objectManager.remove('ToDo',{id:local_id}));case 3:return _context.abrupt('return',

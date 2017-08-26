@@ -7,7 +7,8 @@ require('dotenv').load();
 
 var CassandraOptions={
 
-contactPoints:process.env.CASSANDRA_CONNECTION_POINTS!=null?
+contactPoints:
+process.env.CASSANDRA_CONNECTION_POINTS!=null?
 process.env.CASSANDRA_CONNECTION_POINTS.split(','):
 ['localhost'],
 keyspace:process.env.CASSANDRA_KEYSPACE,
@@ -15,7 +16,8 @@ authProvider:null};
 
 
 if(process.env.CASSANDRA_USER){
-CassandraOptions.authProvider=new _cassandraDriver2.default.auth.PlainTextAuthProvider(
+CassandraOptions.authProvider=new _cassandraDriver2.default.auth.
+PlainTextAuthProvider(
 process.env.CASSANDRA_USER,
 process.env.CASSANDRA_PASSWORD);
 

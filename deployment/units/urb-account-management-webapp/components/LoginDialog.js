@@ -2,6 +2,10 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
 var _Dialog=require('material-ui/Dialog');var _Dialog2=_interopRequireDefault(_Dialog);
+
+
+
+
 var _Progress=require('material-ui/Progress');
 var _Slide=require('material-ui/transitions/Slide');var _Slide2=_interopRequireDefault(_Slide);
 var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireDefault(_TextField);
@@ -78,7 +82,10 @@ if(responseData.success){
 window.location.replace(window.location.href,'');
 }else{
 
-_this.setState({currentOperation:'failure',errorMessage:responseData.error});
+_this.setState({
+currentOperation:'failure',
+errorMessage:responseData.error});
+
 }_context.next=17;break;case 14:_context.prev=14;_context.t0=_context['catch'](2);
 
 
@@ -86,7 +93,8 @@ _this.setState({currentOperation:'failure',errorMessage:responseData.error});
 _this.setState({
 currentOperation:'failure',
 errorMessage:
-'Did not receive proper response from server. Please try again. Message:'+_context.t0.message});case 17:case'end':return _context.stop();}}},null,_this2,[[2,14]]);};_this.
+'Did not receive proper response from server. Please try again. Message:'+
+_context.t0.message});case 17:case'end':return _context.stop();}}},null,_this2,[[2,14]]);};_this.
 
 
 
@@ -114,7 +122,11 @@ this.props,classes=_props.classes,open=_props.open;var _state=
 this.state,UserAccount_Identifier=_state.UserAccount_Identifier,User_Secret=_state.User_Secret;
 
 return(
-_react2.default.createElement(_Dialog2.default,{open:open,transition:_Slide2.default,onRequestClose:this._handle_Close},
+_react2.default.createElement(_Dialog2.default,{
+open:open,
+transition:_Slide2.default,
+onRequestClose:this._handle_Close},
+
 _react2.default.createElement(_Dialog.DialogTitle,null,'Log In'),
 
 _react2.default.createElement(_Dialog.DialogContent,null,
@@ -122,14 +134,16 @@ _react2.default.createElement(_TextField2.default,{
 label:'Account Name',
 fullWidth:true,
 value:UserAccount_Identifier,
-onChange:function onChange(event){return _this3.setState({UserAccount_Identifier:event.target.value});}}),
+onChange:function onChange(event){return(
+_this3.setState({UserAccount_Identifier:event.target.value}));}}),
 
 _react2.default.createElement(_TextField2.default,{
 label:'Password',
 type:'password',
 fullWidth:true,
 value:User_Secret,
-onChange:function onChange(event){return _this3.setState({User_Secret:event.target.value});}})),
+onChange:function onChange(event){return(
+_this3.setState({User_Secret:event.target.value}));}})),
 
 
 _react2.default.createElement(_Dialog.DialogActions,null,

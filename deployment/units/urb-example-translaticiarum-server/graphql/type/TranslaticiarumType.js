@@ -16,8 +16,14 @@ isTypeOf:function isTypeOf(object){return object instanceof _Translaticiarum2.de
 
 fields:{
 id:(0,_graphqlRelay.globalIdField)('Translaticiarum'),
-Translaticiarum_Start:{type:_graphqlIsoDate.GraphQLDateTime,resolve:function resolve(obj){return obj.Translaticiarum_Start;}},
-Translaticiarum_Stop:{type:_graphqlIsoDate.GraphQLDateTime,resolve:function resolve(obj){return obj.Translaticiarum_Stop;}},
+Translaticiarum_Start:{
+type:_graphqlIsoDate.GraphQLDateTime,
+resolve:function resolve(obj){return obj.Translaticiarum_Start;}},
+
+Translaticiarum_Stop:{
+type:_graphqlIsoDate.GraphQLDateTime,
+resolve:function resolve(obj){return obj.Translaticiarum_Stop;}},
+
 Translaticiarum_Description:{
 type:_graphql.GraphQLString,
 resolve:function resolve(obj){return obj.Translaticiarum_Description;}}}});

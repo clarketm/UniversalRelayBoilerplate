@@ -2,6 +2,10 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
 var _Dialog=require('material-ui/Dialog');var _Dialog2=_interopRequireDefault(_Dialog);
+
+
+
+
 var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _styles=require('material-ui/styles');
@@ -57,7 +61,8 @@ _react2.default.createElement(_TextField2.default,{
 label:'To Do',
 fullWidth:true,
 value:ToDo_Text,
-onChange:function onChange(event){return _this2.setState({ToDo_Text:event.target.value});}})),
+onChange:function onChange(event){return(
+_this2.setState({ToDo_Text:event.target.value}));}})),
 
 
 _react2.default.createElement(_Dialog.DialogActions,null,

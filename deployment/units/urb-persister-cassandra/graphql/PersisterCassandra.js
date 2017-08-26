@@ -30,7 +30,11 @@ function PersisterCassandra(){_classCallCheck(this,PersisterCassandra);
 this.tableSchemas=new Map();
 }_createClass(PersisterCassandra,[{key:'getOneObject',value:function getOneObject(
 
-entityName,ObjectType,filters){var _this=this;
+
+entityName,
+ObjectType,
+filters)
+{var _this=this;
 var resultPromises=[];var _loop=function _loop(
 
 filter){
@@ -57,7 +61,11 @@ resolve(null);
 return Promise.all(resultPromises);
 }},{key:'getObjectList',value:function getObjectList(
 
-entityName,ObjectType,filters){var _this2=this;
+
+entityName,
+ObjectType,
+filters)
+{var _this2=this;
 var resultPromises=[];var _loop2=function _loop2(
 
 filter){
@@ -74,7 +82,8 @@ function(err,arrEntities){
 if(err)reject(err);else
 {
 var arrRetObj=[];
-for(var _iterator3=arrEntities,_isArray3=Array.isArray(_iterator3),_i3=0,_iterator3=_isArray3?_iterator3:_iterator3[typeof Symbol==='function'?Symbol.iterator:'@@iterator']();;){var _ref3;if(_isArray3){if(_i3>=_iterator3.length)break;_ref3=_iterator3[_i3++];}else{_i3=_iterator3.next();if(_i3.done)break;_ref3=_i3.value;}var entity=_ref3;arrRetObj.push(new ObjectType(entity));}
+for(var _iterator3=arrEntities,_isArray3=Array.isArray(_iterator3),_i3=0,_iterator3=_isArray3?_iterator3:_iterator3[typeof Symbol==='function'?Symbol.iterator:'@@iterator']();;){var _ref3;if(_isArray3){if(_i3>=_iterator3.length)break;_ref3=_iterator3[_i3++];}else{_i3=_iterator3.next();if(_i3.done)break;_ref3=_i3.value;}var entity=_ref3;
+arrRetObj.push(new ObjectType(entity));}
 resolve(arrRetObj);
 }
 });
@@ -86,12 +95,14 @@ return Promise.all(resultPromises);
 }},{key:'updateUuidsInFields',value:function updateUuidsInFields(
 
 entityName,fields){
-var schemaFields=ExpressCassandraClient.instance[entityName]._properties.schema.fields;
+var schemaFields=
+ExpressCassandraClient.instance[entityName]._properties.schema.fields;
 for(var fieldName in fields){
 var fieldType=schemaFields[fieldName];
 if(fieldType==='uuid'){
 var fieldValue=fields[fieldName];
-if(!(fieldValue instanceof Uuid))fields[fieldName]=Uuid.fromString(fieldValue);
+if(!(fieldValue instanceof Uuid))
+fields[fieldName]=Uuid.fromString(fieldValue);
 }
 }
 }},{key:'add',value:function add(
@@ -157,21 +168,28 @@ return id1.equals(id2);
 tableName,tableSchema){
 if(this.tableSchemas)this.tableSchemas.set(tableName,tableSchema);else
 {
-console.error('💔 Attempting to add table schemas after express-cassandra client connect.');
+console.error(
+'💔 Attempting to add table schemas after express-cassandra client connect.');
+
 process.exit(1);
 }
 }},{key:'confirmHealth',value:function confirmHealth()
 
 {
 return new Promise(function(resolve,reject){
-ExpressCassandraClient.modelInstance.User.get_cql_client(function(err,client){
+ExpressCassandraClient.modelInstance.User.get_cql_client(
+function(err,client){
 if(err)reject(err);else
 
-client.execute('select release_version from system.local;',function(err,result){
+client.execute(
+'select release_version from system.local;',
+function(err,result){
 if(err)reject(err);else
 resolve();
 });
+
 });
+
 });
 }},{key:'initialize',value:function initialize(
 
@@ -190,7 +208,11 @@ var arrSchemas=[];
 for(var _iterator4=enrolledTables.keys(),_isArray4=Array.isArray(_iterator4),_i4=0,_iterator4=_isArray4?_iterator4:_iterator4[typeof Symbol==='function'?Symbol.iterator:'@@iterator']();;){var _ref4;if(_isArray4){if(_i4>=_iterator4.length)break;_ref4=_iterator4[_i4++];}else{_i4=_iterator4.next();if(_i4.done)break;_ref4=_i4.value;}var tableName=_ref4;
 arrSchemas.push([tableName,enrolledTables.get(tableName)]);}
 
-_this3.loadOneTableSchemaFromArray(arrSchemas,runAsPartOfSetupDatabase,cb);
+_this3.loadOneTableSchemaFromArray(
+arrSchemas,
+runAsPartOfSetupDatabase,
+cb);
+
 }
 });
 }},{key:'loadOneTableSchemaFromArray',value:function loadOneTableSchemaFromArray(
@@ -209,7 +231,9 @@ arrSchemas.splice(0,1);
 ExpressCassandraClient.loadSchema(tableName,tableSchema,function(err){
 if(err){
 console.log(
-'💔 Initializing Cassandra persister - error while creating '+tableName+'!');
+'💔 Initializing Cassandra persister - error while creating '+
+tableName+
+'!');
 
 console.error(err.message);
 process.exit(1);
@@ -217,11 +241,16 @@ process.exit(1);
 if(runAsPartOfSetupDatabase)
 console.log(
 '🛢 Table '+
-ExpressCassandraClient.modelInstance[tableName]._properties.name+
+ExpressCassandraClient.modelInstance[tableName]._properties.
+name+
 ' ready.');
 
 
-_this4.loadOneTableSchemaFromArray(arrSchemas,runAsPartOfSetupDatabase,cb);
+_this4.loadOneTableSchemaFromArray(
+arrSchemas,
+runAsPartOfSetupDatabase,
+cb);
+
 return;
 }
 });
