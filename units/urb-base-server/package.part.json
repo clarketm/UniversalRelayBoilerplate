@@ -27,7 +27,7 @@
     "react": "15.6.1",
     "react-code-splitting": "1.2.0",
     "react-dom": "15.6.1",
-    "react-event-listener": "0.4.5",
+    "react-event-listener": "0.5.0",
     "react-jss": "7.1.0",
     "react-helmet": "5.1.3",
     "react-relay": "1.2.0",
@@ -79,21 +79,10 @@
     "webpack-dev-server": "2.7.1",
     "whatwg-fetch": "2.0.3"
   },
-  "engines": {
-    "node": "^8.3.0",
-    "npm": "^5.0.0"
-  },
-  "lint-staged": {
-    "units/**/*.js": ["eslint --fix", "prettier-eslint --write", "git add"],
-    "units/**/*.jsx": ["eslint --fix", "prettier-eslint --write", "git add"],
-    "units/**/*.json": ["prettier-eslint --write", "git add"]
-  },
   "scripts": {
-    "build-bump-version": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-bump-version.js",
     "build-deployment": "npm run build-relay && npm run build-server && npm run build-webpack",
     "build-relay": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-units.js && ./node_modules/.bin/relay-compiler --src ./units/ --extensions=js --schema units/_configuration/urb-base-server/graphql/schema.graphql && ./node_modules/.bin/relay-compiler --src ./units/ --extensions=jsx --schema units/_configuration/urb-base-server/graphql/schema.graphql",
     "build-server": "export NODE_ENV=production && rm -rf deployment/* && cp -r ./units/_configuration ./deployment/units && ./node_modules/.bin/babel -s true --retain-lines -d ./deployment/units/ ./units && rsync -avm --include='*.ejs' -f 'hide,! */' units ./deployment/ && rsync -avm --include='*.graphql.js' -f 'hide,! */' units ./deployment/ && cp ./package.json ./deployment && cp ./yarn.lock ./deployment",
-    "build-units": "./node_modules/.bin/babel-node ./units/urb-base-tools/build-units.js",
     "build-webpack": "export NODE_ENV=production && rm -rf deployment/units/_configuration/urb-base-server/public_files/assets/* &&  ./node_modules/.bin/webpack -p --output-filename client.js",
     "dev": "./node_modules/.bin/concurrently --kill-others \"npm run dev-relay\" \"npm run dev-webpack\" \"npm run dev-server\" ",
     "dev-reset": "sudo chmod -R a+w * && watchman watch-del-all && rm -rf ~/Library/Developer/Xcode/DerivedData/* && rm -rf $TMPDIR/react-* && rm -rf ~/.node-gyp && rm -f ./ios/main.* && rm -f ./android/app/src/main/assets/index.android.* && (cd units && find . -type d -name '__generated__' | xargs rm -r)",
@@ -101,11 +90,7 @@
     "dev-server": "export NODE_ENV=development && ./node_modules/.bin/nodemon --delay 5 -e js,jsx --exec ./node_modules/.bin/babel-node -- ./units/urb-base-server/server.js",
     "dev-webpack": "./node_modules/.bin/webpack-dev-server --hot --inline --no-info --colors",
     "dev-relay": "./node_modules/.bin/relay-compiler --src ./units/ --extensions=jsx --schema units/_configuration/urb-base-server/graphql/schema.graphql --watch",
-    "precommit": "lint-staged",
-    "setup-local": "cp ./units/_configuration/default.env ./.env && cp ./units/_configuration/urb-base-app/default.publicURL.js ./units/_configuration/urb-base-app/publicURL.js && npm run update-ip && react-native link",
-    "setup-local-cut-version": "cp ./units/_configuration/default.env ./.env && cp ./units/_configuration/urb-base-app/default.publicURL.js ./units/_configuration/urb-base-app/publicURL.js",
     "setup-database": "./node_modules/.bin/babel-node ./units/urb-base-tools/setup-database.js",
-    "update-default-persister": "./node_modules/.bin/babel-node ./units/urb-base-tools/update-default-persister.js",
-    "update-ip": "./node_modules/.bin/babel-node ./units/urb-base-tools/update-ip.js"
+    "update-default-persister": "./node_modules/.bin/babel-node ./units/urb-base-tools/update-default-persister.js"
   }
 }
