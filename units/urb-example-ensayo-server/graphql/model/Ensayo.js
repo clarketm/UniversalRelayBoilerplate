@@ -1,6 +1,6 @@
 // @flow
 
-import ObjectManager from '../../../../units/urb-base-server/graphql/ObjectManager'
+import ObjectManager from "../../../../units/urb-base-server/graphql/ObjectManager"
 
 // Class used by GraphQL Server
 export default class Ensayo {
@@ -10,12 +10,12 @@ export default class Ensayo {
   Ensayo_Description: string
   Ensayo_Content: string
 
-  constructor(fields: {
+  constructor( fields: {
     id: string,
     Ensayo_User_id: string,
     Ensayo_Title: string,
     Ensayo_Description: string,
-    Ensayo_Content: string,
+    Ensayo_Content: string
   }) {
     this.id = fields.id
     this.Ensayo_User_id = fields.Ensayo_User_id
@@ -25,4 +25,4 @@ export default class Ensayo {
   }
 }
 
-ObjectManager.registerEntity('Ensayo', Ensayo)
+ObjectManager.registerEntity( "Ensayo", Ensayo )

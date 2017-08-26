@@ -1,10 +1,10 @@
 // @flow weak
 
-import { debugWriteToLogServerRequestPublic } from '../_configuration/debug'
-import log from './log'
-import matchInDepth from './matchInDepth'
+import { debugWriteToLogServerRequestPublic } from "../_configuration/debug"
+import log from "./log"
+import matchInDepth from "./matchInDepth"
 
-export default function defaultrequestLoggerPublic(requestAndResponse) {
+export default function defaultrequestLoggerPublic( requestAndResponse ) {
   let logLevel = null
 
   // TODO: What errors for Auth should be logged? definitily not 401.
@@ -13,7 +13,8 @@ export default function defaultrequestLoggerPublic(requestAndResponse) {
   //   logLevel = 'error'
   // Otherwise, if it is a trace, log it as info
   //else
-  if (matchInDepth(requestAndResponse, debugWriteToLogServerRequestPublic)) logLevel = 'info'
+  if ( matchInDepth( requestAndResponse, debugWriteToLogServerRequestPublic ) )
+    logLevel = "info"
 
-  if (logLevel) log.log(logLevel, 'Public request', requestAndResponse)
+  if ( logLevel ) log.log( logLevel, "Public request", requestAndResponse )
 }

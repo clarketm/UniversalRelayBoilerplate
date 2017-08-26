@@ -1,6 +1,6 @@
 // @flow weak
 
-import { commitMutation, graphql } from 'react-relay'
+import { commitMutation, graphql } from "react-relay"
 
 const mutation = graphql`
   mutation EnsayoUpdateMutation($input: EnsayoUpdateInput!) {
@@ -15,11 +15,22 @@ const mutation = graphql`
   }
 `
 
-function commit(environment, aEnsayo, Ensayo_Title, Ensayo_Description, Ensayo_Content) {
-  return commitMutation(environment, {
+function commit(
+  environment,
+  aEnsayo,
+  Ensayo_Title,
+  Ensayo_Description,
+  Ensayo_Content
+) {
+  return commitMutation( environment, {
     mutation,
     variables: {
-      input: { id: aEnsayo.id, Ensayo_Title, Ensayo_Description, Ensayo_Content },
+      input: {
+        id: aEnsayo.id,
+        Ensayo_Title,
+        Ensayo_Description,
+        Ensayo_Content
+      }
     },
 
     optimisticResponse() {
@@ -29,11 +40,11 @@ function commit(environment, aEnsayo, Ensayo_Title, Ensayo_Description, Ensayo_C
             id: aEnsayo.id,
             Ensayo_Title,
             Ensayo_Description,
-            Ensayo_Content,
-          },
-        },
+            Ensayo_Content
+          }
+        }
       }
-    },
+    }
   })
 }
 

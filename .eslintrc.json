@@ -2,7 +2,9 @@
   "extends": ["react-app", "prettier", "prettier/flowtype", "prettier/react"],
   "parser": "babel-eslint",
   "rules": {
+    "array-bracket-spacing": [2, "always"],
     "jsx-a11y/href-no-hash": "off",
+    "semi": [2, "never"],
     "space-in-parens": [2, "always", { "exceptions": ["[]", "{}"] }],
     "space-before-function-paren": [2, "never"]
   }

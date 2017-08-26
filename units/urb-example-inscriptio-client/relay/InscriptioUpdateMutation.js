@@ -1,6 +1,6 @@
 // @flow weak
 
-import { commitMutation, graphql } from 'react-relay'
+import { commitMutation, graphql } from "react-relay"
 
 const mutation = graphql`
   mutation InscriptioUpdateMutation($input: InscriptioUpdateInput!) {
@@ -20,17 +20,17 @@ function commit(
   aInscriptio,
   Inscriptio_LocationLat,
   Inscriptio_LocationLon,
-  Inscriptio_Notes,
+  Inscriptio_Notes
 ) {
-  return commitMutation(environment, {
+  return commitMutation( environment, {
     mutation,
     variables: {
       input: {
         id: aInscriptio.id,
         Inscriptio_LocationLat,
         Inscriptio_LocationLon,
-        Inscriptio_Notes,
-      },
+        Inscriptio_Notes
+      }
     },
 
     optimisticResponse() {
@@ -40,11 +40,11 @@ function commit(
             id: aInscriptio.id,
             Inscriptio_LocationLat,
             Inscriptio_LocationLon,
-            Inscriptio_Notes,
-          },
-        },
+            Inscriptio_Notes
+          }
+        }
       }
-    },
+    }
   })
 }
 
