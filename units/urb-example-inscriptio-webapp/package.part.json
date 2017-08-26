@@ -3,6 +3,6 @@
     "react-google-maps": "7.2.0"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/babel-node ./units/urb-example-inscriptio-webapp/fix-react-rte.js"
+    "postinstall": "node ./units/urb-example-inscriptio-webapp/fix-react-rte.js"
   }
 }

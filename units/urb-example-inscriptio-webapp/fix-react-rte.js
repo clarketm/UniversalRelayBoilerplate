@@ -1,6 +1,6 @@
 // @flow
 
-import fs from 'fs'
+const fs = require( 'fs' )
 
 const fileName = 'node_modules/react-rte/dist/react-rte.js'
 
