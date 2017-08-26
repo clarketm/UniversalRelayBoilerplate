@@ -6,6 +6,7 @@
     "comma-dangle": [2, "always-multiline"],
     "jsx-a11y/href-no-hash": "off",
     "max-len": "off",
+    "no-unused-vars": "error",
     "semi": [2, "never"],
     "quotes": [2, "single"],
     "space-in-parens": [2, "always", { "exceptions": ["[]", "{}"] }],
