@@ -58,7 +58,11 @@ clientMutationId:clientMutationId}},
 
 updater:function updater(store){
 var payload=store.getRootField('TranslaticiarumAdd');
-sharedUpdater(store,user,payload.getLinkedRecord('TranslaticiarumsEdge'));
+sharedUpdater(
+store,
+user,
+payload.getLinkedRecord('TranslaticiarumsEdge'));
+
 },
 
 optimisticUpdater:function optimisticUpdater(store){
@@ -66,7 +70,10 @@ var id='client:TranslaticiarumAdd:Translaticiarum:'+clientMutationId;
 var aTranslaticiarum=store.create(id,'Translaticiarum');
 aTranslaticiarum.setValue(Translaticiarum_Start,'Translaticiarum_Start');
 aTranslaticiarum.setValue(Translaticiarum_Stop,'Translaticiarum_Stop');
-aTranslaticiarum.setValue(Translaticiarum_Description,'Translaticiarum_Description');
+aTranslaticiarum.setValue(
+Translaticiarum_Description,
+'Translaticiarum_Description');
+
 aTranslaticiarum.setValue(id,'id');
 
 var TranslaticiarumsEdge=store.create('client:TranslaticiarumAdd:TranslaticiarumsEdge:'+

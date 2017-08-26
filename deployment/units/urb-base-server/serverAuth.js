@@ -8,12 +8,12 @@ var _jwtSimple=require('jwt-simple');var _jwtSimple2=_interopRequireDefault(_jwt
 var _authExtensions=require('../_configuration/urb-base-server/authExtensions');var _authExtensions2=_interopRequireDefault(_authExtensions);
 var _delayPromise=require('../urb-base-universal/delayPromise');var _delayPromise2=_interopRequireDefault(_delayPromise);
 var _getNewUser=require('../_configuration/urb-base-server/graphql/model/getNewUser');var _getNewUser2=_interopRequireDefault(_getNewUser);
-var _checkCredentials=require('./checkCredentials');
-var _logServerRequest=require('./logServerRequest');var _logServerRequest2=_interopRequireDefault(_logServerRequest);
-var _ObjectManager=require('./graphql/ObjectManager');
+var _validation=require('../urb-base-universal/validation');
 var _requestLoggers=require('../_configuration/urb-base-server/requestLoggers');
 
-var _validation=require('../urb-base-universal/validation');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+var _checkCredentials=require('./checkCredentials');
+var _logServerRequest=require('./logServerRequest');var _logServerRequest2=_interopRequireDefault(_logServerRequest);
+var _ObjectManager=require('./graphql/ObjectManager');function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 
 require('dotenv').load();
@@ -21,7 +21,9 @@ require('dotenv').load();
 var serverAuth=(0,_express2.default)();
 
 serverAuth.use(_bodyParser2.default.json());
-serverAuth.use(function(req,res,next){return(0,_logServerRequest2.default)(req,res,next,_requestLoggers.requestLoggerAuth);});
+serverAuth.use(function(req,res,next){return(
+(0,_logServerRequest2.default)(req,res,next,_requestLoggers.requestLoggerAuth));});
+
 
 
 
@@ -39,7 +41,7 @@ UserAccount_site_id:objectManager.siteInformation.site_id,
 UserAccount_Identifier:UserAccount_Identifier}));case 11:arr_UserAccount=_context.sent;if(!(
 
 
-arr_UserAccount.length==0)){_context.next=16;break;}
+arr_UserAccount.length===0)){_context.next=16;break;}
 res.status(401).json({error:'💔  User account not found'});_context.next=31;break;case 16:_context.next=18;return regeneratorRuntime.awrap(
 
 objectManager.getOneObject('User',{
@@ -48,8 +50,10 @@ id:arr_UserAccount[0].UserAccount_User_id}));case 18:a_User=_context.sent;_conte
 
 
 new Promise(function(resolve){return(
-_bcryptjs2.default.compare(User_Secret,a_User.User_Secret,function(err,passwordMatch){return(
-resolve(passwordMatch));}));}));case 21:if(!_context.sent){_context.next=30;break;}
+_bcryptjs2.default.compare(
+User_Secret,
+a_User.User_Secret,
+function(err,passwordMatch){return resolve(passwordMatch);}));}));case 21:if(!_context.sent){_context.next=30;break;}
 
 
 
@@ -67,7 +71,11 @@ objectManager.add('UserSession',a_UserSession);
 res.codeFoundriesInjected={user:a_User};
 
 
-UserToken1=_jwtSimple2.default.encode({session_id:a_UserSession.id},process.env.JWT_SECRET);
+UserToken1=_jwtSimple2.default.encode(
+
+{session_id:a_UserSession.id},
+process.env.JWT_SECRET);
+
 
 res.cookie('UserToken1',UserToken1,{httpOnly:true});
 res.json({success:true,UserToken2:a_User.UserToken2});_context.next=31;break;case 30:
@@ -94,7 +102,8 @@ UserAccount_site_id:objectManager.siteInformation.site_id,
 UserAccount_Identifier:UserAccount_Identifier}));case 9:arr_UserAccount=_context2.sent;if(!(
 
 
-arr_UserAccount.length>0)){_context2.next=12;break;}throw new Error('💔  User account already exists');case 12:_context2.next=14;return regeneratorRuntime.awrap(
+arr_UserAccount.length>0)){_context2.next=12;break;}throw(
+new Error('💔  User account already exists'));case 12:_context2.next=14;return regeneratorRuntime.awrap(
 
 new Promise(function(resolve){return(
 _bcryptjs2.default.hash(User_Secret,8,function(err,hash){return resolve(hash);}));}));case 14:User_PasswordHash=_context2.sent;
@@ -105,13 +114,17 @@ accountNameIsValidEmail=(0,_validation.validateEmail)(UserAccount_Identifier);
 User_Email=accountNameIsValidEmail?UserAccount_Identifier:'';
 
 
-a_User=_extends((0,_getNewUser2.default)(objectManager.siteInformation.site_id),{
+a_User=_extends(
+(0,_getNewUser2.default)(objectManager.siteInformation.site_id),
+{
 User_site_id:objectManager.siteInformation.site_id,
 UserToken2:
-Math.random().toString(36).substring(2)+Math.random().toString(36).substring(2),
+Math.random().toString(36).substring(2)+
+Math.random().toString(36).substring(2),
 User_Secret:User_PasswordHash,
 User_DisplayName:UserAccount_Identifier,
 User_Email:User_Email});
+
 
 objectManager.assignPrimaryKey('User',a_User);
 
@@ -141,7 +154,11 @@ objectManager.add('UserAccount',a_UserAccount)]));case 23:
 res.codeFoundriesInjected={user:a_User};
 
 
-UserToken1=_jwtSimple2.default.encode({session_id:a_UserSession.id},process.env.JWT_SECRET);
+UserToken1=_jwtSimple2.default.encode(
+
+{session_id:a_UserSession.id},
+process.env.JWT_SECRET);
+
 
 
 res.cookie('UserToken1',UserToken1,{httpOnly:true});
@@ -157,7 +174,10 @@ serverAuth.post('/createuser',createuser);
 
 serverAuth.post('/logout',function _callee(req,res){var objectManager,UserSession;return regeneratorRuntime.async(function _callee$(_context3){while(1){switch(_context3.prev=_context3.next){case 0:_context3.next=2;return regeneratorRuntime.awrap(
 (0,_ObjectManager.getObjectManager)(req,res));case 2:objectManager=_context3.sent;_context3.next=5;return regeneratorRuntime.awrap(
-(0,_checkCredentials.getUserAndSessionIDByUserToken1)(objectManager,req));case 5:UserSession=_context3.sent.UserSession;_context3.next=8;return regeneratorRuntime.awrap(
+(0,_checkCredentials.getUserAndSessionIDByUserToken1)(
+objectManager,
+req));case 5:UserSession=_context3.sent.
+UserSession;_context3.next=8;return regeneratorRuntime.awrap(
 
 objectManager.remove('UserSession',{id:UserSession.id}));case 8:
 

@@ -39,7 +39,11 @@ _handle_onKeyDown_AddToDo=function(e){
 if(e.keyCode===13){var _this$props=
 _this.props,_relay=_this$props.relay,_Viewer=_this$props.Viewer;
 
-_ToDoAddMutation2.default.commit(_relay.environment,_Viewer,_this.state.ToDo_Text_New);
+_ToDoAddMutation2.default.commit(
+_relay.environment,
+_Viewer,
+_this.state.ToDo_Text_New);
+
 
 _this.setState({
 ToDo_Text_New:''});

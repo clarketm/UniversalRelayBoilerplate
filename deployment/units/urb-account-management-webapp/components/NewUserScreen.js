@@ -1,6 +1,5 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
 
-var _Add=require('material-ui-icons/Add');var _Add2=_interopRequireDefault(_Add);
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
 var _Card=require('material-ui/Card');var _Card2=_interopRequireDefault(_Card);
 var _Progress=require('material-ui/Progress');
@@ -74,7 +73,10 @@ if(responseData.success){
 _this.setState({currentOperation:'success'});
 }else{
 
-_this.setState({currentOperation:'failure',errorMessage:responseData.error});
+_this.setState({
+currentOperation:'failure',
+errorMessage:responseData.error});
+
 }_context.next=19;break;case 16:_context.prev=16;_context.t0=_context['catch'](2);
 
 
@@ -82,7 +84,8 @@ _this.setState({currentOperation:'failure',errorMessage:responseData.error});
 _this.setState({
 currentOperation:'failure',
 errorMessage:
-'Did not receive proper response from server. Please try again. Message:'+_context.t0.message});case 19:case'end':return _context.stop();}}},null,_this2,[[2,16]]);};_this.
+'Did not receive proper response from server. Please try again. Message:'+
+_context.t0.message});case 19:case'end':return _context.stop();}}},null,_this2,[[2,16]]);};_this.
 
 
 
@@ -102,7 +105,7 @@ errorMessage:''});
 };_this.
 
 _handle_onClick_Continue=function(){
-location.replace('/');
+window.location.replace('/');
 };_this.state={currentOperation:'prompt',errorMessage:'',UserAccount_Identifier:'',User_Secret:''};return _this;}_createClass(NewUserScreen,[{key:'renderCreating',value:function renderCreating()
 
 {var
@@ -178,7 +181,8 @@ _react2.default.createElement(_TextField2.default,{
 label:'Account Name',
 fullWidth:true,
 value:UserAccount_Identifier,
-onChange:function onChange(event){return _this3.setState({UserAccount_Identifier:event.target.value});}}),
+onChange:function onChange(event){return(
+_this3.setState({UserAccount_Identifier:event.target.value}));}}),
 
 _react2.default.createElement(_TextField2.default,{
 label:'Password',

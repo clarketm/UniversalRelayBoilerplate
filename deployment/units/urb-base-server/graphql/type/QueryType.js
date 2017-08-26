@@ -3,8 +3,9 @@ Object.defineProperty(exports,"__esModule",{value:true});
 var _graphqlRelay=require('graphql-relay');
 var _graphql=require('graphql');
 
-var _ViewerType=require('./ViewerType');var _ViewerType2=_interopRequireDefault(_ViewerType);
-var _NodeInterface=require('../NodeInterface');var _NodeInterface2=_interopRequireDefault(_NodeInterface);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+var _NodeInterface=require('../NodeInterface');var _NodeInterface2=_interopRequireDefault(_NodeInterface);
+
+var _ViewerType=require('./ViewerType');var _ViewerType2=_interopRequireDefault(_ViewerType);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 function resolveNodeField(source,args,context,_ref){var objectManager=_ref.rootValue;var _fromGlobalId=
 
@@ -31,5 +32,6 @@ resolve:resolveNodeField},
 Viewer:{
 type:_ViewerType2.default,
 resolve:function resolve(parent,args,context,_ref2){var objectManager=_ref2.rootValue;return(
-objectManager.getOneObject('User',{id:objectManager.getViewerUserId()}));}}};}});
+objectManager.getOneObject('User',{
+id:objectManager.getViewerUserId()}));}}};}});
 //# sourceMappingURL=QueryType.js.map

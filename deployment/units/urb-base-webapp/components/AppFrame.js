@@ -9,8 +9,9 @@ var _styles=require('material-ui/styles');
 var _Toolbar=require('material-ui/Toolbar');var _Toolbar2=_interopRequireDefault(_Toolbar);
 var _Typography=require('material-ui/Typography');var _Typography2=_interopRequireDefault(_Typography);
 
-var _AppDrawer=require('./AppDrawer');var _AppDrawer2=_interopRequireDefault(_AppDrawer);
-var _NavBarLoginButton=require('../../urb-account-management-webapp/components/NavBarLoginButton');var _NavBarLoginButton2=_interopRequireDefault(_NavBarLoginButton);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}
+var _NavBarLoginButton=require('../../urb-account-management-webapp/components/NavBarLoginButton');var _NavBarLoginButton2=_interopRequireDefault(_NavBarLoginButton);
+
+var _AppDrawer=require('./AppDrawer');var _AppDrawer2=_interopRequireDefault(_AppDrawer);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}
 
 var styles=function styles(theme){return _defineProperty({
 '@global':{
@@ -112,7 +113,12 @@ className:navIconClassName},
 _react2.default.createElement(_Menu2.default,null)),
 
 title!==null&&
-_react2.default.createElement(_Typography2.default,{className:classes.title,type:'title',color:'inherit',noWrap:true},
+_react2.default.createElement(_Typography2.default,{
+className:classes.title,
+type:'title',
+color:'inherit',
+noWrap:true},
+
 title),
 
 _react2.default.createElement('div',{className:classes.grow}),

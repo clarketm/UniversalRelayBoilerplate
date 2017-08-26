@@ -25,7 +25,10 @@ var mutation=function mutation(){return require('./__generated__/EnsayoAddMutati
 function sharedUpdater(store,user,EnsayosEdge){
 var userProxy=store.get(user.id);
 
-var connection=_relayRuntime.ConnectionHandler.getConnection(userProxy,'EnsayoList_Ensayos');
+var connection=_relayRuntime.ConnectionHandler.getConnection(
+userProxy,
+'EnsayoList_Ensayos');
+
 if(connection){
 _relayRuntime.ConnectionHandler.insertEdgeAfter(connection,EnsayosEdge);
 }
@@ -33,13 +36,24 @@ _relayRuntime.ConnectionHandler.insertEdgeAfter(connection,EnsayosEdge);
 
 var nextClientMutationId=0;
 
-function commit(environment,user,Ensayo_Title,Ensayo_Description,Ensayo_Content){
+function commit(
+environment,
+user,
+Ensayo_Title,
+Ensayo_Description,
+Ensayo_Content)
+{
 var clientMutationId=nextClientMutationId++;
 
 return(0,_reactRelay.commitMutation)(environment,{
 mutation:mutation,
 variables:{
-input:{Ensayo_Title:Ensayo_Title,Ensayo_Description:Ensayo_Description,Ensayo_Content:Ensayo_Content,clientMutationId:clientMutationId}},
+input:{
+Ensayo_Title:Ensayo_Title,
+Ensayo_Description:Ensayo_Description,
+Ensayo_Content:Ensayo_Content,
+clientMutationId:clientMutationId}},
+
 
 
 updater:function updater(store){

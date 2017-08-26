@@ -25,7 +25,11 @@ var mutation=function mutation(){return require('./__generated__/ToDoAddMutation
 function sharedUpdater(store,user,ToDosEdge){
 var userProxy=store.get(user.id);
 ['any','active'].forEach(function(status){
-var connection=_relayRuntime.ConnectionHandler.getConnection(userProxy,'ToDoList_ToDos',{status:status});
+var connection=_relayRuntime.ConnectionHandler.getConnection(
+userProxy,
+'ToDoList_ToDos',
+{status:status});
+
 if(connection){
 _relayRuntime.ConnectionHandler.insertEdgeAfter(connection,ToDosEdge);
 }
@@ -54,7 +58,10 @@ var aToDo=store.create(id,'ToDo');
 aToDo.setValue(ToDo_Text,'ToDo_Text');
 aToDo.setValue(id,'id');
 
-var ToDosEdge=store.create('client:ToDoAdd:ToDosEdge:'+clientMutationId,'ToDosEdge');
+var ToDosEdge=store.create('client:ToDoAdd:ToDosEdge:'+
+clientMutationId,
+'ToDosEdge');
+
 ToDosEdge.setLinkedRecord(aToDo,'node');
 
 sharedUpdater(store,user,ToDosEdge);

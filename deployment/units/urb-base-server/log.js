@@ -11,7 +11,8 @@ require('dotenv').load();
 var transports=[];
 
 
-if(process.env.NODE_ENV=='development')transports.push(new _winston2.default.transports.Console());
+if(process.env.NODE_ENV==='development')
+transports.push(new _winston2.default.transports.Console());
 
 
 var defaultPersisterLogger=_defaultPersister2.default.createLogger();

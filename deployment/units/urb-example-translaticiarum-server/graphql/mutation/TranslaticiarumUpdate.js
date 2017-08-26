@@ -18,12 +18,21 @@ Translaticiarum_Description:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLSt
 outputFields:{
 Translaticiarum:{
 type:_TranslaticiarumType2.default,
-resolve:function resolve(_ref,_ref2,context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var objectManager=_ref3.rootValue;return(
+resolve:function resolve(_ref,_ref2,
+
+
+context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var
+objectManager=_ref3.rootValue;return(
 objectManager.getOneObject('Translaticiarum',{id:local_id}));}}},
 
 
 
 mutateAndGetPayload:function mutateAndGetPayload(_ref4,
+
+
+
+
+
 
 context,_ref5){var id=_ref4.id,Translaticiarum_Start=_ref4.Translaticiarum_Start,Translaticiarum_Stop=_ref4.Translaticiarum_Stop,Translaticiarum_Description=_ref4.Translaticiarum_Description;var
 objectManager=_ref5.rootValue;var local_id;return regeneratorRuntime.async(function mutateAndGetPayload$(_context){while(1){switch(_context.prev=_context.next){case 0:

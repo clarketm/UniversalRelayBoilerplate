@@ -40,7 +40,11 @@ _handle_onView=function(view){
 _this.setState({calendarView:view});
 };_this.
 
-_handle_onSelectSlot=function(slotInfo){
+_handle_onSelectSlot=function(slotInfo)
+
+
+
+{
 console.log(slotInfo);
 };_this.state={calendarView:'week'};return _this;}_createClass(TranslaticiarumScreen,[{key:'render',value:function render()
 

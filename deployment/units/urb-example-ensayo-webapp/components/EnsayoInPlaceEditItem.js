@@ -7,8 +7,9 @@ var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');
 
 var _EnsayoDeleteMutation=require('../../urb-example-ensayo-client/relay/EnsayoDeleteMutation');var _EnsayoDeleteMutation2=_interopRequireDefault(_EnsayoDeleteMutation);
-var _EnsayoInPlaceEditProperties=require('./EnsayoInPlaceEditProperties');var _EnsayoInPlaceEditProperties2=_interopRequireDefault(_EnsayoInPlaceEditProperties);
-var _EnsayoUpdateMutation=require('../../urb-example-ensayo-client/relay/EnsayoUpdateMutation');var _EnsayoUpdateMutation2=_interopRequireDefault(_EnsayoUpdateMutation);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
+var _EnsayoUpdateMutation=require('../../urb-example-ensayo-client/relay/EnsayoUpdateMutation');var _EnsayoUpdateMutation2=_interopRequireDefault(_EnsayoUpdateMutation);
+
+var _EnsayoInPlaceEditProperties=require('./EnsayoInPlaceEditProperties');var _EnsayoInPlaceEditProperties2=_interopRequireDefault(_EnsayoInPlaceEditProperties);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
 EnsayoInPlaceEditItem=function(_React$Component){_inherits(EnsayoInPlaceEditItem,_React$Component);
 
@@ -35,7 +36,11 @@ props,context));_this.
 
 
 _handle_Update_Properties=function(EnsayoInPlaceEditProperties){var
-Ensayo_Title=EnsayoInPlaceEditProperties.Ensayo_Title,Ensayo_Description=EnsayoInPlaceEditProperties.Ensayo_Description,Ensayo_Content=EnsayoInPlaceEditProperties.Ensayo_Content;var _this$props=
+
+Ensayo_Title=
+
+
+EnsayoInPlaceEditProperties.Ensayo_Title,Ensayo_Description=EnsayoInPlaceEditProperties.Ensayo_Description,Ensayo_Content=EnsayoInPlaceEditProperties.Ensayo_Content;var _this$props=
 _this.props,relay=_this$props.relay,Ensayo=_this$props.Ensayo;
 
 _EnsayoUpdateMutation2.default.commit(
@@ -72,6 +77,10 @@ _this.setState({menuIsOpen:false});
 };_this.state={anchorEl:undefined,menuIsOpen:false,propertiesIsOpen:false};return _this;}_createClass(EnsayoInPlaceEditItem,[{key:'render',value:function render()
 
 {var _this2=this;var _props$Ensayo=
+
+
+
+
 this.props.Ensayo,Ensayo_Title=_props$Ensayo.Ensayo_Title,Ensayo_Description=_props$Ensayo.Ensayo_Description,Ensayo_Content=_props$Ensayo.Ensayo_Content;var
 propertiesIsOpen=this.state.propertiesIsOpen;
 
@@ -91,10 +100,16 @@ anchorEl:this.state.anchorEl,
 open:this.state.menuIsOpen,
 onRequestClose:this.handleRequestClose},
 
-_react2.default.createElement(_Menu.MenuItem,{key:'edit',onClick:function onClick(event){return _this2._handle_Menu_onClick_Edit(event);}},'Edit'),
+_react2.default.createElement(_Menu.MenuItem,{
+key:'edit',
+onClick:function onClick(event){return _this2._handle_Menu_onClick_Edit(event);}},'Edit'),
 
 
-_react2.default.createElement(_Menu.MenuItem,{key:'delete',onClick:function onClick(event){return _this2._handle_Menu_onClick_Delete(event);}},'Delete')),
+
+_react2.default.createElement(_Menu.MenuItem,{
+key:'delete',
+onClick:function onClick(event){return _this2._handle_Menu_onClick_Delete(event);}},'Delete')),
+
 
 
 

@@ -16,12 +16,20 @@ ToDo_Text:{type:new _graphql.GraphQLNonNull(_graphql.GraphQLString)}},
 outputFields:{
 ToDo:{
 type:_ToDoType2.default,
-resolve:function resolve(_ref,_ref2,context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var objectManager=_ref3.rootValue;return(
+resolve:function resolve(_ref,_ref2,
+
+
+context,_ref3){var local_id=_ref.local_id;var args=_objectWithoutProperties(_ref2,[]);var
+objectManager=_ref3.rootValue;return(
 objectManager.getOneObject('ToDo',{id:local_id}));}}},
 
 
 
-mutateAndGetPayload:function mutateAndGetPayload(_ref4,context,_ref5){var id=_ref4.id,ToDo_Text=_ref4.ToDo_Text;var objectManager=_ref5.rootValue;var local_id;return regeneratorRuntime.async(function mutateAndGetPayload$(_context){while(1){switch(_context.prev=_context.next){case 0:
+mutateAndGetPayload:function mutateAndGetPayload(_ref4,
+
+context,_ref5){var id=_ref4.id,ToDo_Text=_ref4.ToDo_Text;var
+objectManager=_ref5.rootValue;var local_id;return regeneratorRuntime.async(function mutateAndGetPayload$(_context){while(1){switch(_context.prev=_context.next){case 0:
+
 local_id=(0,_graphqlRelay.fromGlobalId)(id).id;_context.next=3;return regeneratorRuntime.awrap(
 
 objectManager.update('ToDo',{

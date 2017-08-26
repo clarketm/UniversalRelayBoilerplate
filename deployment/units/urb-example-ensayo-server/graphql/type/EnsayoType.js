@@ -16,6 +16,9 @@ isTypeOf:function isTypeOf(object){return object instanceof _Ensayo2.default;},
 fields:{
 id:(0,_graphqlRelay.globalIdField)('Ensayo'),
 Ensayo_Title:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.Ensayo_Title;}},
-Ensayo_Description:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.Ensayo_Description;}},
+Ensayo_Description:{
+type:_graphql.GraphQLString,
+resolve:function resolve(obj){return obj.Ensayo_Description;}},
+
 Ensayo_Content:{type:_graphql.GraphQLString,resolve:function resolve(obj){return obj.Ensayo_Content;}}}});
 //# sourceMappingURL=EnsayoType.js.map

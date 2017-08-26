@@ -3,6 +3,10 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 var _Checkbox=require('material-ui/Checkbox');var _Checkbox2=_interopRequireDefault(_Checkbox);
 var _IconButton=require('material-ui/IconButton');var _IconButton2=_interopRequireDefault(_IconButton);
 var _List=require('material-ui/List');
+
+
+
+
 var _Menu=require('material-ui/Menu');var _Menu2=_interopRequireDefault(_Menu);
 var _materialUiIcons=require('material-ui-icons');
 var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
@@ -12,6 +16,7 @@ var _reactRelay=require('react-relay');
 var _ToDoUpdateStatusMutation=require('../../urb-example-todo-client/relay/ToDoUpdateStatusMutation');var _ToDoUpdateStatusMutation2=_interopRequireDefault(_ToDoUpdateStatusMutation);
 var _ToDoDeleteMutation=require('../../urb-example-todo-client/relay/ToDoDeleteMutation');var _ToDoDeleteMutation2=_interopRequireDefault(_ToDoDeleteMutation);
 var _ToDoUpdateRenameMutation=require('../../urb-example-todo-client/relay/ToDoUpdateRenameMutation');var _ToDoUpdateRenameMutation2=_interopRequireDefault(_ToDoUpdateRenameMutation);
+
 var _ToDoProperties=require('./ToDoProperties');var _ToDoProperties2=_interopRequireDefault(_ToDoProperties);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
 ToDoItem=function(_React$Component){_inherits(ToDoItem,_React$Component);
@@ -39,13 +44,22 @@ props,context));_this.
 _handle_onClickCheckbox=function(event,ToDo_Complete){var _this$props=
 _this.props,relay=_this$props.relay,Viewer=_this$props.Viewer,ToDo=_this$props.ToDo;
 
-_ToDoUpdateStatusMutation2.default.commit(relay.environment,Viewer,ToDo,ToDo_Complete);
+_ToDoUpdateStatusMutation2.default.commit(
+relay.environment,
+Viewer,
+ToDo,
+ToDo_Complete);
+
 };_this.
 
 _handle_Update_Properties=function(ToDo_properties){var _this$props2=
 _this.props,relay=_this$props2.relay,ToDo=_this$props2.ToDo;
 
-_ToDoUpdateRenameMutation2.default.commit(relay.environment,ToDo,ToDo_properties.ToDo_Text);
+_ToDoUpdateRenameMutation2.default.commit(
+relay.environment,
+ToDo,
+ToDo_properties.ToDo_Text);
+
 };_this.
 
 _handle_Close_Properties=function(){
@@ -97,10 +111,16 @@ anchorEl:this.state.anchorEl,
 open:this.state.menuIsOpen,
 onRequestClose:this.handleRequestClose},
 
-_react2.default.createElement(_Menu.MenuItem,{key:'edit',onClick:function onClick(event){return _this2._handle_Menu_onClick_Edit(event);}},'Edit'),
+_react2.default.createElement(_Menu.MenuItem,{
+key:'edit',
+onClick:function onClick(event){return _this2._handle_Menu_onClick_Edit(event);}},'Edit'),
 
 
-_react2.default.createElement(_Menu.MenuItem,{key:'delete',onClick:function onClick(event){return _this2._handle_Menu_onClick_Delete(event);}},'Delete')),
+
+_react2.default.createElement(_Menu.MenuItem,{
+key:'delete',
+onClick:function onClick(event){return _this2._handle_Menu_onClick_Delete(event);}},'Delete')),
+
 
 
 
