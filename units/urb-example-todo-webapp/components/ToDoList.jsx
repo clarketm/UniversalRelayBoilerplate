@@ -4,7 +4,6 @@ import Checkbox from 'material-ui/Checkbox'
 import { FormGroup, FormControlLabel } from 'material-ui/Form'
 import List from 'material-ui/List'
 import { withStyles } from 'material-ui/styles'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 import Tabs, { Tab } from 'material-ui/Tabs'
@@ -21,19 +20,10 @@ const styles = theme => ({
   },
 })
 
-const contextTypes = {
-  relay: PropTypes.shape({
-    variables: PropTypes.shape({
-      status: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-  router: PropTypes.object.isRequired,
-}
-
 class ToDoList extends React.Component<
   {
-    Viewer: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired
+    Viewer: Object,
+    relay: Object
   },
   null
 > {
@@ -104,7 +94,10 @@ class ToDoList extends React.Component<
   }
 }
 
-ToDoList.contextTypes = contextTypes
+ToDoList.contextTypes = {
+  relay: Object,
+  router: Object,
+}
 
 export default createFragmentContainer(
   withStyles( styles )( ToDoList ),

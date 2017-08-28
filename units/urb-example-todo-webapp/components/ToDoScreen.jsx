@@ -2,7 +2,6 @@
 
 import Card, { CardHeader } from 'material-ui/Card'
 import { withStyles } from 'material-ui/styles'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 import TextField from 'material-ui/TextField'
@@ -18,10 +17,10 @@ const styles = theme => ({
 
 class ToDoScreen extends React.Component<
   {
-    classes: PropTypes.object.isRequired,
-    Viewer: PropTypes.object.isRequired,
-    children: PropTypes.node.isRequired,
-    relay: PropTypes.object.isRequired
+    classes: Object,
+    Viewer: Object,
+    children: Object,
+    relay: Object
   },
   {
     ToDo_Text_New: string

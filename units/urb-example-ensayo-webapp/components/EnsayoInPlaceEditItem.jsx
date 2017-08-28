@@ -2,7 +2,6 @@
 
 import { ListItem, ListItemText } from 'material-ui/List'
 import Menu, { MenuItem } from 'material-ui/Menu'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
@@ -20,9 +19,9 @@ class EnsayoInPlaceEditItem extends React.Component<
   }
 > {
   static propTypes = {
-    Viewer: PropTypes.object.isRequired,
-    Ensayo: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired,
+    Viewer: Object,
+    Ensayo: Object,
+    relay: Object,
   }
 
   constructor( props: Object, context: Object ) {

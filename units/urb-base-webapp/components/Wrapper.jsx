@@ -5,7 +5,6 @@ import createPalette from 'material-ui/styles/palette'
 import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles'
 import React from 'react'
 import pink from 'material-ui/colors/pink'
-import PropTypes from 'prop-types'
 import EventListener from 'react-event-listener'
 
 import ViewportDimensions from '../scripts/ViewportDimensions'
@@ -18,7 +17,7 @@ export default class Wrapper extends React.Component<
   rbCtx: Object
 
   static childContextTypes = {
-    rbCtx: PropTypes.object,
+    rbCtx: Object,
   }
 
   constructor( props: Object, context: Object ) {

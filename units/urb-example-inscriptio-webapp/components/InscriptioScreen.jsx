@@ -2,7 +2,6 @@
 
 import Card, { CardContent, CardHeader } from 'material-ui/Card'
 import { withStyles } from 'material-ui/styles'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 import withScriptjs from 'react-google-maps/lib/async/withScriptjs'
@@ -32,7 +31,7 @@ class InscriptioScreen extends React.Component<
   Object
 > {
   static contextTypes = {
-    rbCtx: PropTypes.object,
+    rbCtx: Object,
   }
 
   constructor( props: Object, context: Object ) {

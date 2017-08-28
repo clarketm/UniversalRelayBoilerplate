@@ -6,7 +6,6 @@ import { LinearProgress } from 'material-ui/Progress'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import Typography from 'material-ui/Typography'
-import PropTypes from 'prop-types'
 import React from 'react'
 
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
@@ -19,7 +18,7 @@ const styles = theme => ({
 
 class NewUserScreen extends React.Component<
   {
-    classes: PropTypes.object.isRequired
+    classes: Object
   },
   {
     currentOperation: 'prompt' | 'creating' | 'success' | 'failure',

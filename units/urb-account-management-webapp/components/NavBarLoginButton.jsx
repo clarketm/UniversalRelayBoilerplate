@@ -3,7 +3,6 @@
 import Button from 'material-ui/Button'
 import Menu, { MenuItem } from 'material-ui/Menu'
 import { withStyles } from 'material-ui/styles'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
@@ -13,8 +12,8 @@ const styles = theme => ({})
 
 class NavBarLoginButton extends React.Component<
   {
-    Viewer: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired
+    Viewer: Object,
+    relay: Object
   },
   {
     anchorEl: ?Object,
@@ -23,7 +22,7 @@ class NavBarLoginButton extends React.Component<
   }
 > {
   static contextTypes = {
-    router: PropTypes.object.isRequired,
+    router: Object,
   }
 
   constructor( props: Object, context: Object ) {

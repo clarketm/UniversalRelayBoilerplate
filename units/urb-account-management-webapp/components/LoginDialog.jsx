@@ -11,7 +11,6 @@ import Slide from 'material-ui/transitions/Slide'
 import TextField from 'material-ui/TextField'
 import { withStyles } from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
-import PropTypes from 'prop-types'
 import React from 'react'
 
 const styles = theme => ({
@@ -25,8 +24,8 @@ class LoginDialog extends React.Component<
     UserAccount_Identifier: string,
     User_Secret: string,
     open: boolean,
-    handlerClose: PropTypes.func.isRequired,
-    handlerNewUser: PropTypes.func.isRequired,
+    handlerClose: Function,
+    handlerNewUser: Function,
     classes: Object
   },
   {
