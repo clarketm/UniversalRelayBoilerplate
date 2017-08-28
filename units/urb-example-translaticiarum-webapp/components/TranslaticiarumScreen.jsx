@@ -3,6 +3,7 @@
 import Card, { CardContent, CardHeader } from 'material-ui/Card'
 import { withStyles } from 'material-ui/styles'
 import moment from 'moment'
+import PropTypes from 'prop-types'
 import React from 'react'
 import BigCalendar from 'react-big-calendar'
 import { createFragmentContainer, graphql } from 'react-relay'
@@ -27,6 +28,10 @@ class TranslaticiarumScreen extends React.Component<
     calendarView: 'month' | 'week' | 'day' | 'agenda'
   }
 > {
+  static contextTypes = {
+    router: PropTypes.object,
+  }
+
   constructor( props: Object, context: Object ) {
     super( props, context )
 
@@ -83,10 +88,6 @@ class TranslaticiarumScreen extends React.Component<
       </ResponsiveContentArea>
     )
   }
-}
-
-TranslaticiarumScreen.contextTypes = {
-  router: Object,
 }
 
 export default createFragmentContainer(

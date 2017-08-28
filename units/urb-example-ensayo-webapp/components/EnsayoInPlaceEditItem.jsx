@@ -11,19 +11,17 @@ import EnsayoUpdateMutation from '../../urb-example-ensayo-client/relay/EnsayoUp
 import EnsayoInPlaceEditProperties from './EnsayoInPlaceEditProperties'
 
 class EnsayoInPlaceEditItem extends React.Component<
-  any,
+  {
+    Viewer: Object,
+    Ensayo: Object,
+    relay: Object
+  },
   {
     anchorEl: ?Object,
     menuIsOpen: boolean,
     propertiesIsOpen: boolean
   }
 > {
-  static propTypes = {
-    Viewer: Object,
-    Ensayo: Object,
-    relay: Object,
-  }
-
   constructor( props: Object, context: Object ) {
     super( props, context )
 

@@ -1,6 +1,7 @@
 // @flow
 
 import { withStyles } from 'material-ui/styles'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 const styles = theme => ({
@@ -19,7 +20,7 @@ const styles = theme => ({
 
 class ResponsiveContentArea extends React.Component<any, any> {
   static contextTypes = {
-    rbCtx: Object,
+    rbCtx: PropTypes.object,
   }
 
   render() {

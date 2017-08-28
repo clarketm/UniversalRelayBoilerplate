@@ -2,6 +2,7 @@
 
 import Card, { CardContent, CardHeader } from 'material-ui/Card'
 import { withStyles } from 'material-ui/styles'
+import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
@@ -14,6 +15,10 @@ const styles = theme => ({
 })
 
 class EnsayoPublicList extends React.Component<any, any> {
+  static contextTypes = {
+    router: PropTypes.object,
+  }
+
   _handle_onClick( id ) {
     this.context.router.push( '/ensayo/item/' + id )
   }
@@ -35,10 +40,6 @@ class EnsayoPublicList extends React.Component<any, any> {
       </ResponsiveContentArea>
     )
   }
-}
-
-EnsayoPublicList.contextTypes = {
-  router: Object,
 }
 
 export default createFragmentContainer(
