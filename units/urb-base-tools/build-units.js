@@ -4,11 +4,6 @@ import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
 
-import { graphql } from 'graphql'
-import { introspectionQuery, printSchema } from 'graphql/utilities'
-
-import schema from '../urb-base-server/graphql/schema'
-
 import ensureFileContent from './ensureFileContent'
 
 const existsAsync = promisify( fs.exists )
@@ -281,28 +276,6 @@ async function getUnits() {
   return units
 }
 
-async function buildGraphQLSchema() {
-  const result = await graphql( schema, introspectionQuery )
-  if ( result.errors )
-    throw new Error(
-      'Failed introspecting schema: ' + JSON.stringify( result.errors, null, 2 )
-    )
-
-  await ensureFileContent(
-    path.resolve( './units/_configuration/urb-base-server/graphql/schema.json' ),
-    null,
-    JSON.stringify( result, null, 2 )
-  )
-
-  await ensureFileContent(
-    path.resolve(
-      './units/_configuration/urb-base-server/graphql/schema.graphql'
-    ),
-    null,
-    printSchema( schema )
-  )
-}
-
 async function main() {
   const units = await getUnits()
 
@@ -315,9 +288,6 @@ async function main() {
   ]
 
   await Promise.all( taskPromises )
-
-  // Schema should be built after all unit files have been created
-  await buildGraphQLSchema()
 }
 
 main().then( () => console.log( 'Fin.' ) )
