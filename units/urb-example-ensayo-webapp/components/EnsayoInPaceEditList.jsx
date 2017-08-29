@@ -1,7 +1,6 @@
 // @flow
 
 import List from 'material-ui/List'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
@@ -9,8 +8,8 @@ import EnsayoInPlaceEditItem from './EnsayoInPlaceEditItem'
 
 class EnsayoInPaceEditList extends React.Component<
   {
-    Viewer: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired
+    Viewer: Object,
+    relay: Object
   },
   null
 > {

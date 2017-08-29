@@ -1,7 +1,6 @@
 // @flow
 
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
 import React from 'react'
 import Button from 'material-ui/Button'
 import Collapse from 'material-ui/transitions/Collapse'
@@ -45,7 +44,17 @@ const styles = theme => ({
   },
 })
 
-class AppDrawerNavItem extends React.Component<any, { open: boolean }> {
+class AppDrawerNavItem extends React.Component<
+  {
+    children: Object,
+    classes: Object,
+    onClick: Function,
+    openImmediately: boolean,
+    title: string,
+    to: string
+  },
+  { open: boolean }
+> {
   static defaultProps = {
     openImmediately: false,
   }
@@ -95,15 +104,6 @@ class AppDrawerNavItem extends React.Component<any, { open: boolean }> {
       </ListItem>
     )
   }
-}
-
-AppDrawerNavItem.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
-  onClick: PropTypes.func,
-  openImmediately: PropTypes.bool,
-  title: PropTypes.string.isRequired,
-  to: PropTypes.string,
 }
 
 export default withStyles( styles )( AppDrawerNavItem )

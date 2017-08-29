@@ -3,9 +3,9 @@
 import blue from 'material-ui/colors/blue'
 import createPalette from 'material-ui/styles/palette'
 import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles'
+import PropTypes from 'prop-types'
 import React from 'react'
 import pink from 'material-ui/colors/pink'
-import PropTypes from 'prop-types'
 import EventListener from 'react-event-listener'
 
 import ViewportDimensions from '../scripts/ViewportDimensions'

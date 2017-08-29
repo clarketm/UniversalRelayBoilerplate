@@ -7,7 +7,6 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
-import PropTypes from 'prop-types'
 import React from 'react'
 import RichTextEditor from 'react-rte'
 import { withStyles } from 'material-ui/styles'
@@ -33,8 +32,8 @@ class EnsayoInPlaceEditProperties extends React.Component<
     Ensayo_Title: string,
     Ensayo_Description: string,
     Ensayo_Content: string,
-    handlerUpdate: PropTypes.func.isRequired,
-    handlerClose: PropTypes.func.isRequired,
+    handlerUpdate: Function,
+    handlerClose: Function,
     classes: Object
   },
   {

@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import List from 'material-ui/List'
 import Toolbar from 'material-ui/Toolbar'
@@ -75,41 +74,39 @@ function renderNavItems() {
   )
 }
 
-function AppDrawer( props ) {
-  const classes = props.classes
+class AppDrawer extends React.Component<{
+  classes: Object,
+  className: string,
+  docked: boolean,
+  onRequestClose: Function,
+  open: boolean
+}> {
+  render() {
+    const classes = this.props.classes
 
-  return (
-    <Drawer
-      className={props.className}
-      classes={{
-        paper: classes.paper,
-      }}
-      open={props.open}
-      onRequestClose={props.onRequestClose}
-      docked={props.docked}
-      keepMounted
-    >
-      <div className={classes.nav}>
-        <Toolbar className={classes.toolbar}>
-          <Typography type="title" gutterBottom color="inherit">
-            Material-UI
-          </Typography>
-          <Divider absolute />
-        </Toolbar>
-        {renderNavItems()}
-      </div>
-    </Drawer>
-  )
-}
-
-//
-
-AppDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  docked: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
+    return (
+      <Drawer
+        className={this.props.className}
+        classes={{
+          paper: classes.paper,
+        }}
+        open={this.props.open}
+        onRequestClose={this.props.onRequestClose}
+        docked={this.props.docked}
+        keepMounted
+      >
+        <div className={classes.nav}>
+          <Toolbar className={classes.toolbar}>
+            <Typography type="title" gutterBottom color="inherit">
+              Material-UI
+            </Typography>
+            <Divider absolute />
+          </Toolbar>
+          {renderNavItems()}
+        </div>
+      </Drawer>
+    )
+  }
 }
 
 export default withStyles( styles )( AppDrawer )

@@ -6,7 +6,6 @@ import Dialog, {
   DialogContent,
   DialogTitle,
 } from 'material-ui/Dialog'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
@@ -22,8 +21,8 @@ class ToDo_Properties extends React.Component<
   {
     ToDo_Text: string,
     open: boolean,
-    handlerUpdate: PropTypes.func.isRequired,
-    handlerClose: PropTypes.func.isRequired
+    handlerUpdate: Function,
+    handlerClose: Function
   },
   {
     ToDo_Text: string
