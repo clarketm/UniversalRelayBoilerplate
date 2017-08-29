@@ -21,22 +21,18 @@ const styles = theme => ({
   },
 })
 
-const contextTypes = {
-  relay: PropTypes.shape({
-    variables: PropTypes.shape({
-      status: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-  router: PropTypes.object.isRequired,
-}
-
 class ToDoList extends React.Component<
   {
-    Viewer: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired
+    Viewer: Object,
+    relay: Object
   },
   null
 > {
+  static contextTypes = {
+    relay: PropTypes.object,
+    router: PropTypes.object,
+  }
+
   _handle_onClick_MarkAll = ( event, checked ) => {
     const { relay, Viewer } = this.props
     const { variables } = this.context.relay
@@ -103,8 +99,6 @@ class ToDoList extends React.Component<
     )
   }
 }
-
-ToDoList.contextTypes = contextTypes
 
 export default createFragmentContainer(
   withStyles( styles )( ToDoList ),

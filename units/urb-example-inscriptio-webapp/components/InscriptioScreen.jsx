@@ -51,7 +51,6 @@ class InscriptioScreen extends React.Component<
 
   render() {
     const { classes } = this.props
-    console.log( this.context.rbCtx.appData )
 
     const googleMapURL =
       'https://maps.googleapis.com/maps/api/js?v=3.28&libraries=places,geometry&key=' +

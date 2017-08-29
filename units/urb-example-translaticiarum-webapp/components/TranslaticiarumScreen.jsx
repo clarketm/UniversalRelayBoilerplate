@@ -28,6 +28,10 @@ class TranslaticiarumScreen extends React.Component<
     calendarView: 'month' | 'week' | 'day' | 'agenda'
   }
 > {
+  static contextTypes = {
+    router: PropTypes.object,
+  }
+
   constructor( props: Object, context: Object ) {
     super( props, context )
 
@@ -84,10 +88,6 @@ class TranslaticiarumScreen extends React.Component<
       </ResponsiveContentArea>
     )
   }
-}
-
-TranslaticiarumScreen.contextTypes = {
-  router: PropTypes.object.isRequired,
 }
 
 export default createFragmentContainer(

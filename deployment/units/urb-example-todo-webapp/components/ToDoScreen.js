@@ -2,7 +2,6 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 
 var _Card=require('material-ui/Card');var _Card2=_interopRequireDefault(_Card);
 var _styles=require('material-ui/styles');
-var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');
 var _TextField=require('material-ui/TextField');var _TextField2=_interopRequireDefault(_TextField);

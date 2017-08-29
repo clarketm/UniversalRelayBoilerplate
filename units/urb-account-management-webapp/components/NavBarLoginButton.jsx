@@ -13,8 +13,8 @@ const styles = theme => ({})
 
 class NavBarLoginButton extends React.Component<
   {
-    Viewer: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired
+    Viewer: Object,
+    relay: Object
   },
   {
     anchorEl: ?Object,
@@ -23,7 +23,7 @@ class NavBarLoginButton extends React.Component<
   }
 > {
   static contextTypes = {
-    router: PropTypes.object.isRequired,
+    router: PropTypes.object,
   }
 
   constructor( props: Object, context: Object ) {

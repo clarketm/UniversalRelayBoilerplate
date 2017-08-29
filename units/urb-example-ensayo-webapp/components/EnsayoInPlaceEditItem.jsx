@@ -2,7 +2,6 @@
 
 import { ListItem, ListItemText } from 'material-ui/List'
 import Menu, { MenuItem } from 'material-ui/Menu'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
@@ -12,19 +11,17 @@ import EnsayoUpdateMutation from '../../urb-example-ensayo-client/relay/EnsayoUp
 import EnsayoInPlaceEditProperties from './EnsayoInPlaceEditProperties'
 
 class EnsayoInPlaceEditItem extends React.Component<
-  any,
+  {
+    Viewer: Object,
+    Ensayo: Object,
+    relay: Object
+  },
   {
     anchorEl: ?Object,
     menuIsOpen: boolean,
     propertiesIsOpen: boolean
   }
 > {
-  static propTypes = {
-    Viewer: PropTypes.object.isRequired,
-    Ensayo: PropTypes.object.isRequired,
-    relay: PropTypes.object.isRequired,
-  }
-
   constructor( props: Object, context: Object ) {
     super( props, context )
 

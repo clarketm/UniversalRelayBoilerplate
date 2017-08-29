@@ -4,7 +4,6 @@ import AddIcon from 'material-ui-icons/Add'
 import Button from 'material-ui/Button'
 import Card, { CardContent, CardHeader } from 'material-ui/Card'
 import { withStyles } from 'material-ui/styles'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
@@ -22,10 +21,10 @@ const styles = theme => ({
 
 class EnsayoInPaceEditScreen extends React.Component<
   {
-    classes: PropTypes.object.isRequired,
-    Viewer: PropTypes.object.isRequired,
-    children: PropTypes.node.isRequired,
-    relay: PropTypes.object.isRequired
+    classes: Object,
+    Viewer: Object,
+    children: Object,
+    relay: Object
   },
   {
     propertiesIsOpen: boolean

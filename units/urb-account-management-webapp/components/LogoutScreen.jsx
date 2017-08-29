@@ -5,7 +5,6 @@ import Card, { CardActions, CardHeader } from 'material-ui/Card'
 import { LinearProgress } from 'material-ui/Progress'
 import { withStyles } from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
-import PropTypes from 'prop-types'
 import React from 'react'
 
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
@@ -18,7 +17,7 @@ const styles = theme => ({
 
 class LogoutScreen extends React.Component<
   {
-    classes: PropTypes.object.isRequired
+    classes: Object
   },
   {
     currentOperation: 'confirm' | 'logging out' | 'success' | 'failure',

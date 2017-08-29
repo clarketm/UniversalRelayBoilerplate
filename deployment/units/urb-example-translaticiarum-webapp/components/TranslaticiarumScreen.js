@@ -28,6 +28,10 @@ TranslaticiarumScreen=function(_React$Component){_inherits(TranslaticiarumScreen
 
 
 
+
+
+
+
 function TranslaticiarumScreen(props,context){_classCallCheck(this,TranslaticiarumScreen);var _this=_possibleConstructorReturn(this,(TranslaticiarumScreen.__proto__||Object.getPrototypeOf(TranslaticiarumScreen)).call(this,
 props,context));_this.
 
@@ -83,11 +87,7 @@ onSelectSlot:this._handle_onSelectSlot})))));
 
 
 
-}}]);return TranslaticiarumScreen;}(_react2.default.Component);
-
-
-TranslaticiarumScreen.contextTypes={
-router:_propTypes2.default.object.isRequired};exports.default=
+}}]);return TranslaticiarumScreen;}(_react2.default.Component);TranslaticiarumScreen.contextTypes={router:_propTypes2.default.object};exports.default=
 
 
 (0,_reactRelay.createFragmentContainer)(

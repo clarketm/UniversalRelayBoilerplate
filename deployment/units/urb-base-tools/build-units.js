@@ -4,11 +4,6 @@ var _fs=require('fs');var _fs2=_interopRequireDefault(_fs);
 var _path=require('path');var _path2=_interopRequireDefault(_path);
 var _util=require('util');
 
-var _graphql=require('graphql');
-var _utilities=require('graphql/utilities');
-
-var _schema=require('../urb-base-server/graphql/schema');var _schema2=_interopRequireDefault(_schema);
-
 var _ensureFileContent=require('./ensureFileContent');var _ensureFileContent2=_interopRequireDefault(_ensureFileContent);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 var existsAsync=(0,_util.promisify)(_fs2.default.exists);
@@ -281,43 +276,18 @@ function(fileName){return fileName!=='.DS_Store'&&fileName!=='_configuration';};
 units);case 5:case'end':return _context6.stop();}}},null,this);}
 
 
-function buildGraphQLSchema(){var result;return regeneratorRuntime.async(function buildGraphQLSchema$(_context7){while(1){switch(_context7.prev=_context7.next){case 0:_context7.next=2;return regeneratorRuntime.awrap(
-(0,_graphql.graphql)(_schema2.default,_utilities.introspectionQuery));case 2:result=_context7.sent;if(!
-result.errors){_context7.next=5;break;}throw(
-new Error(
-'Failed introspecting schema: '+JSON.stringify(result.errors,null,2)));case 5:_context7.next=7;return regeneratorRuntime.awrap(
-
-
-(0,_ensureFileContent2.default)(
-_path2.default.resolve('./units/_configuration/urb-base-server/graphql/schema.json'),
-null,
-JSON.stringify(result,null,2)));case 7:_context7.next=9;return regeneratorRuntime.awrap(
-
-
-(0,_ensureFileContent2.default)(
-_path2.default.resolve(
-'./units/_configuration/urb-base-server/graphql/schema.graphql'),
-
-null,
-(0,_utilities.printSchema)(_schema2.default)));case 9:case'end':return _context7.stop();}}},null,this);}
-
-
-
-function main(){var units,taskPromises;return regeneratorRuntime.async(function main$(_context8){while(1){switch(_context8.prev=_context8.next){case 0:_context8.next=2;return regeneratorRuntime.awrap(
-getUnits());case 2:units=_context8.sent;
+function main(){var units,taskPromises;return regeneratorRuntime.async(function main$(_context7){while(1){switch(_context7.prev=_context7.next){case 0:_context7.next=2;return regeneratorRuntime.awrap(
+getUnits());case 2:units=_context7.sent;
 
 taskPromises=[
 createPackageJson(units),
 createViewerFields(units),
 createSchemas(units),
 createMutations(units),
-createRoutes(units)];_context8.next=6;return regeneratorRuntime.awrap(
+createRoutes(units)];_context7.next=6;return regeneratorRuntime.awrap(
 
 
-Promise.all(taskPromises));case 6:_context8.next=8;return regeneratorRuntime.awrap(
-
-
-buildGraphQLSchema());case 8:case'end':return _context8.stop();}}},null,this);}
+Promise.all(taskPromises));case 6:case'end':return _context7.stop();}}},null,this);}
 
 
 main().then(function(){return console.log('Fin.');});
