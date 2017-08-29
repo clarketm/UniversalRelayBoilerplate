@@ -9,7 +9,6 @@ var _List=require('material-ui/List');
 
 var _Menu=require('material-ui/Menu');var _Menu2=_interopRequireDefault(_Menu);
 var _materialUiIcons=require('material-ui-icons');
-var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');
 

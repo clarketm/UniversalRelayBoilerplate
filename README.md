@@ -159,7 +159,14 @@ Instructions for other databases will be added as support for those is added.
 
 We keep the information about the Universal Relay Boilerplate and Rebar updated on our website:
 
-## Additional Information About the Boilerplate
+## Architecture and Developer Resources
+
+* [Unit Structure](http://codefoundries.com/developer/rebar-architecture/unit-structure.html).
+
+
+## Older Resources
+
+These mostly apply to URB classic. Will be removed once updated versions are created.
 
 * [Environment Variables Configuration](http://codefoundries.com/developer/rebar/configuration-environment-variables.html).
 * [Customizing Material-UI Look and Feel](http://codefoundries.com/developer/rebar/configuration-material-ui.html).

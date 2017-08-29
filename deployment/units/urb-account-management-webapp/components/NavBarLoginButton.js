@@ -104,7 +104,7 @@ _react2.default.createElement(_Menu.MenuItem,{key:'logout',onClick:this._handle_
 
 
 
-}}]);return NavBarLoginButton;}(_react2.default.Component);NavBarLoginButton.contextTypes={router:_propTypes2.default.object.isRequired};exports.default=
+}}]);return NavBarLoginButton;}(_react2.default.Component);NavBarLoginButton.contextTypes={router:_propTypes2.default.object};exports.default=
 
 
 (0,_reactRelay.createFragmentContainer)(
