@@ -51,7 +51,6 @@ isUnmounted=false;_this.state={center:{lat:34.0522,lng:-118.243},markers:[]};ret
 
 {var
 classes=this.props.classes;
-console.log(this.context.rbCtx.appData);
 
 var googleMapURL=
 'https://maps.googleapis.com/maps/api/js?v=3.28&libraries=places,geometry&key='+

@@ -4,7 +4,6 @@ var _Add=require('material-ui-icons/Add');var _Add2=_interopRequireDefault(_Add)
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
 var _Card=require('material-ui/Card');var _Card2=_interopRequireDefault(_Card);
 var _styles=require('material-ui/styles');
-var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactRelay=require('react-relay');
 

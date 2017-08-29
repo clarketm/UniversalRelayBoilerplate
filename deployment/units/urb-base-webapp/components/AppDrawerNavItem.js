@@ -1,7 +1,6 @@
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
 
 var _classnames=require('classnames');var _classnames2=_interopRequireDefault(_classnames);
-var _propTypes=require('prop-types');var _propTypes2=_interopRequireDefault(_propTypes);
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _Button=require('material-ui/Button');var _Button2=_interopRequireDefault(_Button);
 var _Collapse=require('material-ui/transitions/Collapse');var _Collapse2=_interopRequireDefault(_Collapse);
@@ -50,6 +49,16 @@ AppDrawerNavItem=function(_React$Component){_inherits(AppDrawerNavItem,_React$Co
 
 
 
+
+
+
+
+
+
+
+
+
+
 state={
 open:false},_this.
 
@@ -94,16 +103,7 @@ children)));
 
 
 
-}}]);return AppDrawerNavItem;}(_react2.default.Component);AppDrawerNavItem.defaultProps={openImmediately:false};
-
-
-AppDrawerNavItem.propTypes={
-children:_propTypes2.default.node,
-classes:_propTypes2.default.object.isRequired,
-onClick:_propTypes2.default.func,
-openImmediately:_propTypes2.default.bool,
-title:_propTypes2.default.string.isRequired,
-to:_propTypes2.default.string};exports.default=
+}}]);return AppDrawerNavItem;}(_react2.default.Component);AppDrawerNavItem.defaultProps={openImmediately:false};exports.default=
 
 
 (0,_styles.withStyles)(styles)(AppDrawerNavItem);

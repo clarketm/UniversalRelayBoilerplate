@@ -17,20 +17,16 @@ var styles=function styles(theme){return{
 root:{
 width:'100%',
 maxWidth:360,
-background:theme.palette.background.paper}};};
+background:theme.palette.background.paper}};};var
 
-
-
-var contextTypes={
-relay:_propTypes2.default.shape({
-variables:_propTypes2.default.shape({
-status:_propTypes2.default.string.isRequired}).
-isRequired}).
-isRequired,
-router:_propTypes2.default.object.isRequired};var
 
 
 ToDoList=function(_React$Component){_inherits(ToDoList,_React$Component);function ToDoList(){var _ref;var _temp,_this,_ret;_classCallCheck(this,ToDoList);for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}return _ret=(_temp=(_this=_possibleConstructorReturn(this,(_ref=ToDoList.__proto__||Object.getPrototypeOf(ToDoList)).call.apply(_ref,[this].concat(args))),_this),_this.
+
+
+
+
+
 
 
 
@@ -101,10 +97,8 @@ _react2.default.createElement(_ToDoItem2.default,{key:node.id,Viewer:Viewer,ToDo
 
 
 
-}}]);return ToDoList;}(_react2.default.Component);
+}}]);return ToDoList;}(_react2.default.Component);ToDoList.contextTypes={relay:_propTypes2.default.object,router:_propTypes2.default.object};exports.default=
 
-
-ToDoList.contextTypes=contextTypes;exports.default=
 
 (0,_reactRelay.createFragmentContainer)(
 (0,_styles.withStyles)(styles)(ToDoList),{Viewer:function Viewer(){return require('./__generated__/ToDoList_Viewer.graphql');}});

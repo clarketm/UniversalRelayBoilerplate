@@ -15,6 +15,10 @@ minWidth:275}};};var
 
 
 EnsayoPublicList=function(_React$Component){_inherits(EnsayoPublicList,_React$Component);function EnsayoPublicList(){_classCallCheck(this,EnsayoPublicList);return _possibleConstructorReturn(this,(EnsayoPublicList.__proto__||Object.getPrototypeOf(EnsayoPublicList)).apply(this,arguments));}_createClass(EnsayoPublicList,[{key:'_handle_onClick',value:function _handle_onClick(
+
+
+
+
 id){
 this.context.router.push('/ensayo/item/'+id);
 }},{key:'render',value:function render()
@@ -35,11 +39,7 @@ edge.node.Ensayo_Description)));})));
 
 
 
-}}]);return EnsayoPublicList;}(_react2.default.Component);
-
-
-EnsayoPublicList.contextTypes={
-router:_propTypes2.default.object.isRequired};exports.default=
+}}]);return EnsayoPublicList;}(_react2.default.Component);EnsayoPublicList.contextTypes={router:_propTypes2.default.object};exports.default=
 
 
 (0,_reactRelay.createFragmentContainer)(
