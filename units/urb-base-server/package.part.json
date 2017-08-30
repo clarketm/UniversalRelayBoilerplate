@@ -20,7 +20,7 @@
     "graphql-relay": "0.5.2",
     "jwt-simple": "0.5.1",
     "isomorphic-fetch": "2.2.1",
-    "material-ui-icons": "1.0.0-beta.6",
+    "material-ui-icons": "1.0.0-beta.5",
     "material-ui": "1.0.0-beta.6",
     "node-fetch": "1.7.2",
     "prop-types": "15.5.10",
