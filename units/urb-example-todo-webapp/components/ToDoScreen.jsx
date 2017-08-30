@@ -18,7 +18,7 @@ const styles = theme => ({
 class ToDoScreen extends React.Component<
   {
     classes: Object,
-    Viewer: Object,
+    Viewer: {},
     children: Object,
     relay: Object
   },
