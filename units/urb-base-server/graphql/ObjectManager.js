@@ -210,7 +210,7 @@ export default class ObjectManager {
     return loader
   }
 
-  getOneObject( entityName: string, filter: Object ) {
+  getOneObject( entityName: string, filter: Object ): Promise<User> {
     // TODO x2000 Provide try catch with logging here!
     // Special hack for anonymous users
     if ( entityName === 'User' )
@@ -218,7 +218,9 @@ export default class ObjectManager {
         return Promise.resolve( User_0 )
 
     // For all non-user, non 0 ids, load from data loader per protocol
-    const loaderIdentifier = Object.keys( filter ).sort().join( ',' )
+    const loaderIdentifier = Object.keys( filter )
+      .sort()
+      .join( ',' )
     const loader = this.getLoader( entityName, loaderIdentifier, false )
 
     return loader.load( filter ).then( result => {
@@ -238,7 +240,9 @@ export default class ObjectManager {
 
   getObjectList( entityName: string, filter: Object ) {
     // TODO x2000 Provide try catch with logging here!
-    const loaderIdentifier = Object.keys( filter ).sort().join( ',' )
+    const loaderIdentifier = Object.keys( filter )
+      .sort()
+      .join( ',' )
     const loader = this.getLoader( entityName, loaderIdentifier, true )
 
     return loader.load( filter ).then( arrResults => {
