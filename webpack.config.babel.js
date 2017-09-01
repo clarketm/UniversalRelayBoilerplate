@@ -1,22 +1,30 @@
 import path from 'path'
+
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 // Read environment
-require('dotenv').load()
+require( 'dotenv' ).load()
 
-const version = require('./units/_configuration/package.js').version
+const version = require( './units/_configuration/package.js' ).version
 const host = process.env.HOST
 const port_webpack = process.env.PORT_WEBPACK
 const node_env = process.env.NODE_ENV
 
-console.log('📦  Running Webpack, process.env.NODE_ENV=' + node_env + ', version=' + version)
+console.log(
+  '📦  Running Webpack, process.env.NODE_ENV=' +
+    node_env +
+    ', version=' +
+    version
+)
 
 const publicPath =
-  node_env === 'production' ? `/assets/${version}/` : `http://${host}:${port_webpack}/${version}/`
-const ifProd = plugin => (node_env === 'production' ? plugin : undefined)
-const ifNotProd = plugin => (node_env !== 'production' ? plugin : undefined)
-const removeEmpty = array => array.filter(p => !!p)
+  node_env === 'production'
+    ? `/assets/${version}/`
+    : `http://${host}:${port_webpack}/${version}/`
+const ifProd = plugin => ( node_env === 'production' ? plugin : undefined )
+const ifNotProd = plugin => ( node_env !== 'production' ? plugin : undefined )
+const removeEmpty = array => array.filter( p => !!p )
 
 const config = {
   devServer: {
@@ -26,7 +34,7 @@ const config = {
   },
 
   entry: {
-    client: ['whatwg-fetch', path.resolve('units/urb-base-webapp/client.js')],
+    client: [ 'whatwg-fetch', path.resolve( 'units/urb-base-webapp/client.js' ) ],
     vendor: [
       'babel-polyfill',
       'farce',
@@ -47,7 +55,7 @@ const config = {
 
   output: {
     path: path.resolve(
-      `deployment/units/_configuration/urb-base-server/public_files/assets/${version}`,
+      `deployment/units/_configuration/urb-base-server/public_files/assets/${version}`
     ),
     filename: '[name].js',
     publicPath,
@@ -63,15 +71,32 @@ const config = {
             loader: 'babel-loader',
             options: {
               babelrc: false,
-              presets: ['react-native-stage-0'],
+              presets: [ 'react-native-stage-0' ],
               plugins: removeEmpty([
                 'dynamic-import-webpack',
-                ifNotProd('react-hot-loader/babel'),
+                ifProd( 'react-hot-loader/babel' ),
                 'transform-class-properties',
+                [
+                  'transform-react-remove-prop-types',
+                  {
+                    mode: 'wrap',
+                    plugins: [
+                      [
+                        'babel-plugin-flow-react-proptypes',
+                        { omitRuntimeTypeExport: true },
+                      ],
+                      'babel-plugin-transform-flow-strip-types',
+                    ],
+                  },
+                ],
+                ifNotProd( 'flow-react-proptypes' ),
                 'syntax-dynamic-import',
                 [
                   'relay',
-                  { schema: 'units/_configuration/urb-base-server/graphql/schema.graphql' },
+                  {
+                    schema:
+                      'units/_configuration/urb-base-server/graphql/schema.graphql',
+                  },
                 ],
               ]),
             },
@@ -91,7 +116,7 @@ const config = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: [ '.js', '.jsx' ],
   },
 
   plugins: removeEmpty([
@@ -105,14 +130,14 @@ const config = {
     new webpack.DefinePlugin({
       process: {
         env: {
-          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+          NODE_ENV: JSON.stringify( process.env.NODE_ENV ),
         },
       },
     }),
 
     // In development only:
-    ifNotProd(new webpack.HotModuleReplacementPlugin()),
-    ifNotProd(new webpack.NamedModulesPlugin()),
+    ifNotProd( new webpack.HotModuleReplacementPlugin() ),
+    ifNotProd( new webpack.NamedModulesPlugin() ),
 
     // In production only:
     ifProd(
@@ -127,7 +152,7 @@ const config = {
           comments: false,
         },
         sourceMap: false,
-      }),
+      })
     ),
   ]),
 }
