@@ -2,13 +2,12 @@
 
 import React from 'react'
 import { withStyles } from 'material-ui/styles'
-import List from 'material-ui/List'
 import Toolbar from 'material-ui/Toolbar'
 import Drawer from 'material-ui/Drawer'
 import Typography from 'material-ui/Typography'
 import Divider from 'material-ui/Divider'
 
-import AppDrawerNavItem from './AppDrawerNavItem'
+import AppDrawerNavItems from '../../_configuration/urb-appdrawer-webapp/AppDrawerNavItems'
 
 const styles = theme => ({
   paper: {
@@ -30,49 +29,6 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
   },
 })
-
-function renderNavItems() {
-  return (
-    <List>
-      <AppDrawerNavItem
-        key={1}
-        openImmediately={true}
-        title="To Dos"
-        to="/todo"
-      />
-      <AppDrawerNavItem
-        key={2}
-        openImmediately={true}
-        title="Ensayo edit"
-        to="/Ensayo/edit"
-      />
-      <AppDrawerNavItem
-        key={3}
-        openImmediately={true}
-        title="Ensayo in place"
-        to="/Ensayo/in-place-edit"
-      />
-      <AppDrawerNavItem
-        key={4}
-        openImmediately={true}
-        title="Ensayo public"
-        to="/Ensayo"
-      />
-      <AppDrawerNavItem
-        key={5}
-        openImmediately={true}
-        title="Inscriptio"
-        to="/inscriptio"
-      />
-      <AppDrawerNavItem
-        key={6}
-        openImmediately={true}
-        title="Translaticiarum"
-        to="/translaticiarum"
-      />
-    </List>
-  )
-}
 
 class AppDrawer extends React.Component<{
   classes: Object,
@@ -102,7 +58,8 @@ class AppDrawer extends React.Component<{
             </Typography>
             <Divider absolute />
           </Toolbar>
-          {renderNavItems()}
+
+          <AppDrawerNavItems />
         </div>
       </Drawer>
     )
