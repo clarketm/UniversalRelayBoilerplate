@@ -124,10 +124,10 @@ handlerClose:this._handle_Close_Properties})));
 
 
 (0,_reactRelay.createFragmentContainer)(EnsayoInPlaceEditItem,{
-Viewer:function(){return require('./__generated__/EnsayoInPlaceEditItem_Viewer.graphql');},
+Viewer:function Viewer(){return require('./__generated__/EnsayoInPlaceEditItem_Viewer.graphql');},
 
 
 
 
-Ensayo:function(){return require('./__generated__/EnsayoInPlaceEditItem_Ensayo.graphql');}});
+Ensayo:function Ensayo(){return require('./__generated__/EnsayoInPlaceEditItem_Ensayo.graphql');}});
 //# sourceMappingURL=EnsayoInPlaceEditItem.js.map

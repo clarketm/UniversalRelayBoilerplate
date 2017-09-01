@@ -135,10 +135,10 @@ open:this.state.propertiesIsOpen})));
 
 
 (0,_reactRelay.createFragmentContainer)(ToDoItem,{
-Viewer:function(){return require('./__generated__/ToDoItem_Viewer.graphql');},
+Viewer:function Viewer(){return require('./__generated__/ToDoItem_Viewer.graphql');},
 
 
 
 
-ToDo:function(){return require('./__generated__/ToDoItem_ToDo.graphql');}});
+ToDo:function ToDo(){return require('./__generated__/ToDoItem_ToDo.graphql');}});
 //# sourceMappingURL=ToDoItem.js.map
