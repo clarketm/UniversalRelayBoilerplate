@@ -44,19 +44,19 @@ function renderNavItems() {
         key={2}
         openImmediately={true}
         title="Ensayo edit"
-        to="/ensayo/edit"
+        to="/Ensayo/edit"
       />
       <AppDrawerNavItem
         key={3}
         openImmediately={true}
         title="Ensayo in place"
-        to="/ensayo/in-place-edit"
+        to="/Ensayo/in-place-edit"
       />
       <AppDrawerNavItem
         key={4}
         openImmediately={true}
         title="Ensayo public"
-        to="/ensayo"
+        to="/Ensayo"
       />
       <AppDrawerNavItem
         key={5}
@@ -98,7 +98,7 @@ class AppDrawer extends React.Component<{
         <div className={classes.nav}>
           <Toolbar className={classes.toolbar}>
             <Typography type="title" gutterBottom color="inherit">
-              Material-UI
+              Rebar ZZZ
             </Typography>
             <Divider absolute />
           </Toolbar>

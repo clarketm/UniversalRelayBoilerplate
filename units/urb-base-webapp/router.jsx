@@ -9,8 +9,7 @@ import { graphql } from 'react-relay'
 import { Environment, Network, RecordSource, Store } from 'relay-runtime'
 
 import routesAppFrame from '../_configuration/urb-base-webapp/routesAppFrame'
-
-import AppFrame from './components/AppFrame'
+import AppFrame from '../_configuration/urb-base-webapp/AppFrame'
 
 export const historyMiddlewares = [ queryMiddleware ]
 

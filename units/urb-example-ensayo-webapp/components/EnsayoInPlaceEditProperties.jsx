@@ -16,9 +16,6 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  formControl: {
-    margin: theme.spacing.unit,
-  },
   richTextContainer: {
     width: '100%',
     height: 300,
@@ -68,13 +65,15 @@ class EnsayoInPlaceEditProperties extends React.Component<
   }
 
   _handle_OK = () => {
-    this.props.handlerUpdate({
+    const { handlerClose, handlerUpdate } = this.props
+
+    handlerUpdate({
       Ensayo_Title: this.state.Ensayo_Title,
       Ensayo_Description: this.state.Ensayo_Description,
       Ensayo_Content: this.state.Ensayo_Content_RTE.toString( 'html' ),
     })
 
-    this.props.handlerClose()
+    handlerClose()
   }
 
   render() {
@@ -102,14 +101,17 @@ class EnsayoInPlaceEditProperties extends React.Component<
                 this.setState({ Ensayo_Description: event.target.value })}
             />
             <div className={classes.richTextContainer}>
-              {RichTextEditor == null
-                ? <div />
-                : <RichTextEditor
-                    value={this.state.Ensayo_Content_RTE}
-                    onChange={this._handle_OnChange_RTE_Ensayo_Content}
-                  />}
+              {RichTextEditor == null ? (
+                <div />
+              ) : (
+                <RichTextEditor
+                  value={this.state.Ensayo_Content_RTE}
+                  onChange={this._handle_OnChange_RTE_Ensayo_Content}
+                />
+              )}
             </div>
           </DialogContent>
+
           <DialogActions>
             <Button onClick={this._handle_Close}>Cancel</Button>
             <Button onClick={this._handle_OK} color="primary">

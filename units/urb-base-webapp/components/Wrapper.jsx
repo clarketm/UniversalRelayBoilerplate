@@ -9,6 +9,7 @@ import pink from 'material-ui/colors/pink'
 import EventListener from 'react-event-listener'
 
 import ViewportDimensions from '../scripts/ViewportDimensions'
+import getWrapperRbCtx from '../../_configuration/urb-base-webapp/getWrapperRbCtx'
 
 export default class Wrapper extends React.Component<
   { appData: Object, children: any },
@@ -26,8 +27,8 @@ export default class Wrapper extends React.Component<
 
     // TODO x0100 If a property for innerWidth is provided, use it for the initial request
 
-    // Descendants can add other items to rbCtx
-    this.rbCtx = {}
+    // Descendants can add other items to rbCtx through getWrapperRbCtx
+    this.rbCtx = getWrapperRbCtx()
 
     this.rbCtx.viewportDimensions = new ViewportDimensions()
     this.rbCtx.appData = this.props.appData

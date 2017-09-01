@@ -112,7 +112,7 @@ class AppFrame extends Component<any, { drawerOpen: boolean }> {
             >
               <MenuIcon />
             </IconButton>
-            {title !== null &&
+            {title !== null && (
               <Typography
                 className={classes.title}
                 type="title"
@@ -120,7 +120,8 @@ class AppFrame extends Component<any, { drawerOpen: boolean }> {
                 noWrap
               >
                 {title}
-              </Typography>}
+              </Typography>
+            )}
             <div className={classes.grow} />
             <NavBarLoginButton Viewer={Viewer} />
           </Toolbar>
