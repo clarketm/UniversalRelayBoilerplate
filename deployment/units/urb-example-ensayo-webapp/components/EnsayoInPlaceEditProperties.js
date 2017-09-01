@@ -16,9 +16,6 @@ container:{
 display:'flex',
 flexWrap:'wrap'},
 
-formControl:{
-margin:theme.spacing.unit},
-
 richTextContainer:{
 width:'100%',
 height:300,
@@ -67,15 +64,17 @@ _handle_Close=function(){
 _this.props.handlerClose();
 };_this.
 
-_handle_OK=function(){
-_this.props.handlerUpdate({
+_handle_OK=function(){var _this$props=
+_this.props,handlerClose=_this$props.handlerClose,handlerUpdate=_this$props.handlerUpdate;
+
+handlerUpdate({
 Ensayo_Title:_this.state.Ensayo_Title,
 Ensayo_Description:_this.state.Ensayo_Description,
 Ensayo_Content:_this.state.Ensayo_Content_RTE.toString('html')});
 
 
-_this.props.handlerClose();
-};var _this$props=_this.props,Ensayo_Title=_this$props.Ensayo_Title,Ensayo_Description=_this$props.Ensayo_Description,Ensayo_Content=_this$props.Ensayo_Content;_this.state={Ensayo_Title:Ensayo_Title,Ensayo_Description:Ensayo_Description,Ensayo_Content_RTE:_reactRte2.default.createValueFromString(Ensayo_Content,'html')};return _this;}_createClass(EnsayoInPlaceEditProperties,[{key:'render',value:function render()
+handlerClose();
+};var _this$props2=_this.props,Ensayo_Title=_this$props2.Ensayo_Title,Ensayo_Description=_this$props2.Ensayo_Description,Ensayo_Content=_this$props2.Ensayo_Content;_this.state={Ensayo_Title:Ensayo_Title,Ensayo_Description:Ensayo_Description,Ensayo_Content_RTE:_reactRte2.default.createValueFromString(Ensayo_Content,'html')};return _this;}_createClass(EnsayoInPlaceEditProperties,[{key:'render',value:function render()
 
 {var _this2=this;var
 classes=this.props.classes;var _state=
@@ -104,9 +103,12 @@ _this2.setState({Ensayo_Description:event.target.value}));}}),
 _react2.default.createElement('div',{className:classes.richTextContainer},
 _reactRte2.default==null?
 _react2.default.createElement('div',null):
+
 _react2.default.createElement(_reactRte2.default,{
 value:this.state.Ensayo_Content_RTE,
 onChange:this._handle_OnChange_RTE_Ensayo_Content}))),
+
+
 
 
 
