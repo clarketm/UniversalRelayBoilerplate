@@ -1,15 +1,13 @@
 // @flow
 
-import blue from 'material-ui/colors/blue'
 import PropTypes from 'prop-types'
 import React from 'react'
-import pink from 'material-ui/colors/pink'
 import EventListener from 'react-event-listener'
-import createMuiTheme from 'material-ui/styles/createMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import ViewportDimensions from '../scripts/ViewportDimensions'
 import getWrapperRbCtx from '../../_configuration/urb-base-webapp/getWrapperRbCtx'
+import createMUITheme from '../../_configuration/urb-base-webapp/createMUITheme'
+import ViewportDimensions from '../scripts/ViewportDimensions'
 
 export default class Wrapper extends React.Component<
   { appData: Object, children: any },
@@ -33,13 +31,7 @@ export default class Wrapper extends React.Component<
     this.rbCtx.viewportDimensions = new ViewportDimensions()
     this.rbCtx.appData = this.props.appData
 
-    this.muiTheme = createMuiTheme({
-      palette: {
-        primary: blue,
-        secondary: pink,
-        type: 'light',
-      },
-    })
+    this.muiTheme = createMUITheme( this.rbCtx )
   }
 
   componentDidMount() {
