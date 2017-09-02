@@ -110,14 +110,15 @@ class EnsayoInPlaceEditItem extends React.Component<
             Delete
           </MenuItem>
         </Menu>
-        {propertiesIsOpen &&
+        {propertiesIsOpen && (
           <EnsayoInPlaceEditProperties
             Ensayo_Title={Ensayo_Title}
             Ensayo_Description={Ensayo_Description}
             Ensayo_Content={Ensayo_Content}
             handlerUpdate={this._handle_Update_Properties}
             handlerClose={this._handle_Close_Properties}
-          />}
+          />
+        )}
       </div>
     )
   }

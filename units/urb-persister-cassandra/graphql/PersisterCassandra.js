@@ -65,7 +65,7 @@ export default class PersisterCassandra {
     entityName: string,
     ObjectType: any,
     filters: Array<any>
-  ): Promise<Array<Object>> {
+  ): Promise<Array<any>> {
     const resultPromises = []
 
     for ( let filter of filters )
@@ -107,7 +107,7 @@ export default class PersisterCassandra {
     }
   }
 
-  add( entityName: string, fields: any ): Promise<> {
+  add( entityName: string, fields: any ): Promise<any> {
     this.updateUuidsInFields( entityName, fields )
 
     return new Promise( ( resolve, reject ) => {
@@ -119,12 +119,12 @@ export default class PersisterCassandra {
     })
   }
 
-  update( entityName: string, fields: any ): Promise<> {
+  update( entityName: string, fields: any ): Promise<null> {
     // TODO x2000 Optimize this with update, possibly. Maybe it's not so bad to read first after all
     return this.add( entityName, fields )
   }
 
-  remove( entityName: string, fields: any ): Promise<> {
+  remove( entityName: string, fields: any ): Promise<any> {
     this.updateUuidsInFields( entityName, fields )
 
     return new Promise( ( resolve, reject ) => {
@@ -175,7 +175,7 @@ export default class PersisterCassandra {
     }
   }
 
-  confirmHealth(): Promise<> {
+  confirmHealth(): Promise<any> {
     return new Promise( ( resolve, reject ) => {
       ExpressCassandraClient.modelInstance.User.get_cql_client(
         ( err, client ) => {

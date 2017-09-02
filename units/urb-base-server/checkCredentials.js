@@ -21,7 +21,11 @@ function getSessionIdFromRequest( req ) {
         return defaultPersister.uuidFromString( decoded.session_id )
       }
     } catch ( err ) {
-      // ZZZ Log information to DB
+      log.log( 'warn', 'Session cookie is invalid.', {
+        errorMessage: err.message,
+        errorStack: err.stack,
+        UserToken1,
+      })
       throw new Error( '💔  Session cookie is invalid. Please log in again.' )
     }
   return null // Anonymous, unless cookie is passed
