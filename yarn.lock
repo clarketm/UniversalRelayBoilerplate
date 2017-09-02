@@ -5775,9 +5775,9 @@ material-ui-icons@1.0.0-beta.5:
   dependencies:
     recompose "^0.24.0"
 
-material-ui@1.0.0-beta.6:
-  version "1.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.6.tgz#b2ecc9779fc5e951cfbd68a44c01afee418ebdf5"
+material-ui@1.0.0-beta.7:
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.7.tgz#37e9d471e5ebaac4d20723159f83294a814a80b5"
   dependencies:
     babel-runtime "^6.26.0"
     brcast "^3.0.1"
@@ -5789,9 +5789,9 @@ material-ui@1.0.0-beta.6:
     jss-preset-default "^3.0.0"
     keycode "^2.1.9"
     lodash "^4.17.4"
-    next "^3.0.3"
+    next "^3.2.0"
     prop-types "^15.5.10"
-    react-event-listener "^0.4.5"
+    react-event-listener "^0.5.0"
     react-jss "^7.1.0"
     react-scrollbar-size "^2.0.0"
     react-transition-group "^2.2.0"
@@ -6202,7 +6202,7 @@ nested-error-stacks@^1.0.0:
   dependencies:
     inherits "~2.0.1"
 
-next@^3.0.3:
+next@^3.2.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/next/-/next-3.2.1.tgz#6d694823ac6e74e9be4553117144a6402220490f"
   dependencies:
@@ -7448,7 +7448,7 @@ react-dom@15.6.1, react-dom@^15.6.1:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
-react-event-listener@0.5.0:
+react-event-listener@0.5.0, react-event-listener@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.5.0.tgz#d82105135573e187e3d900d18150a5882304b8d1"
   dependencies:

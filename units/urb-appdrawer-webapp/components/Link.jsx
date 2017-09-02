@@ -16,8 +16,8 @@ const styles = theme => ({
   primary: {
     color: theme.palette.primary[500],
   },
-  accent: {
-    color: theme.palette.accent.A400,
+  secondary: {
+    color: theme.palette.secondary.A400,
   },
 })
 
@@ -26,7 +26,7 @@ class Link extends React.Component<{
   className: string,
   component: string | Function,
   to: string,
-  variant: 'primary' | 'accent'
+  variant: 'primary' | 'secondary'
 }> {
   render( props ) {
     const {
@@ -55,7 +55,7 @@ class Link extends React.Component<{
           classes.root,
           {
             [classes.primary]: variant === 'primary',
-            [classes.accent]: variant === 'accent',
+            [classes.secondary]: variant === 'secondary',
           },
           className
         )}

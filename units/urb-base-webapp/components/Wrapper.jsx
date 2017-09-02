@@ -1,12 +1,12 @@
 // @flow
 
 import blue from 'material-ui/colors/blue'
-import createPalette from 'material-ui/styles/palette'
-import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import pink from 'material-ui/colors/pink'
 import EventListener from 'react-event-listener'
+import createMuiTheme from 'material-ui/styles/createMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import ViewportDimensions from '../scripts/ViewportDimensions'
 import getWrapperRbCtx from '../../_configuration/urb-base-webapp/getWrapperRbCtx'
@@ -34,11 +34,11 @@ export default class Wrapper extends React.Component<
     this.rbCtx.appData = this.props.appData
 
     this.muiTheme = createMuiTheme({
-      palette: createPalette({
+      palette: {
         primary: blue,
-        accent: pink,
+        secondary: pink,
         type: 'light',
-      }),
+      },
     })
   }
 

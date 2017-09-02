@@ -48,7 +48,7 @@ class AppDrawer extends React.Component<{
         }}
         open={this.props.open}
         onRequestClose={this.props.onRequestClose}
-        docked={this.props.docked}
+        type={this.props.docked ? 'permanent' : 'persistent'}
         keepMounted
       >
         <div className={classes.nav}>
