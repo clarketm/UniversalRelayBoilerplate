@@ -7,6 +7,10 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { createFragmentContainer, graphql } from 'react-relay'
 
+import {
+  registerAuthenticationRequiredCallback,
+  unregisterAuthenticationRequiredCallback,
+} from './RequiresAuthentication'
 import LoginDialog from './LoginDialog'
 
 const styles = theme => ({})
@@ -34,6 +38,15 @@ class NavBarLoginButton extends React.Component<
       loginDialogIsOpen: false,
       userMenuIsOpen: false,
     }
+  }
+
+  // Handle popping open the login dialog if authentication is required
+  componentWillMount() {
+    registerAuthenticationRequiredCallback( this._handle_onClick_Login )
+  }
+
+  componentWillUnmount() {
+    unregisterAuthenticationRequiredCallback()
   }
 
   _handle_onClick_Login = () => {
@@ -73,14 +86,16 @@ class NavBarLoginButton extends React.Component<
 
     return (
       <div>
-        {User_IsAnonymous &&
+        {User_IsAnonymous && (
           <Button color="contrast" onClick={this._handle_onClick_Login}>
             Login
-          </Button>}
-        {!User_IsAnonymous &&
+          </Button>
+        )}
+        {!User_IsAnonymous && (
           <Button color="contrast" onClick={this._handle_onClick_UserMenu}>
             {User_DisplayName}
-          </Button>}
+          </Button>
+        )}
         <LoginDialog
           open={loginDialogIsOpen}
           handlerClose={this._handle_Login_Close}

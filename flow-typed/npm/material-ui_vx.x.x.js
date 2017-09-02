@@ -118,6 +118,10 @@ declare module 'material-ui/Chip/index' {
   declare module.exports: any
 }
 
+declare module 'material-ui/colors' {
+  declare module.exports: any
+}
+
 declare module 'material-ui/colors/amber' {
   declare module.exports: any
 }
@@ -801,10 +805,14 @@ declare module 'material-ui/Badge/index.js' {
   declare module.exports: $Exports<'material-ui/Badge/index'>
 }
 declare module 'material-ui/BottomNavigation/BottomNavigation.js' {
-  declare module.exports: $Exports<'material-ui/BottomNavigation/BottomNavigation'>
+  declare module.exports: $Exports<
+    'material-ui/BottomNavigation/BottomNavigation'
+  >
 }
 declare module 'material-ui/BottomNavigation/BottomNavigationButton.js' {
-  declare module.exports: $Exports<'material-ui/BottomNavigation/BottomNavigationButton'>
+  declare module.exports: $Exports<
+    'material-ui/BottomNavigation/BottomNavigationButton'
+  >
 }
 declare module 'material-ui/BottomNavigation/index.js' {
   declare module.exports: $Exports<'material-ui/BottomNavigation/index'>
@@ -931,7 +939,9 @@ declare module 'material-ui/Dialog/index.js' {
   declare module.exports: $Exports<'material-ui/Dialog/index'>
 }
 declare module 'material-ui/Dialog/withResponsiveFullScreen.js' {
-  declare module.exports: $Exports<'material-ui/Dialog/withResponsiveFullScreen'>
+  declare module.exports: $Exports<
+    'material-ui/Dialog/withResponsiveFullScreen'
+  >
 }
 declare module 'material-ui/Divider/Divider.js' {
   declare module.exports: $Exports<'material-ui/Divider/Divider'>
@@ -1189,13 +1199,17 @@ declare module 'material-ui/svg-icons/cancel.js' {
   declare module.exports: $Exports<'material-ui/svg-icons/cancel'>
 }
 declare module 'material-ui/svg-icons/check-box-outline-blank.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/check-box-outline-blank'>
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/check-box-outline-blank'
+  >
 }
 declare module 'material-ui/svg-icons/check-box.js' {
   declare module.exports: $Exports<'material-ui/svg-icons/check-box'>
 }
 declare module 'material-ui/svg-icons/indeterminate-check-box.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/indeterminate-check-box'>
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/indeterminate-check-box'
+  >
 }
 declare module 'material-ui/svg-icons/keyboard-arrow-left.js' {
   declare module.exports: $Exports<'material-ui/svg-icons/keyboard-arrow-left'>
@@ -1207,7 +1221,9 @@ declare module 'material-ui/svg-icons/radio-button-checked.js' {
   declare module.exports: $Exports<'material-ui/svg-icons/radio-button-checked'>
 }
 declare module 'material-ui/svg-icons/radio-button-unchecked.js' {
-  declare module.exports: $Exports<'material-ui/svg-icons/radio-button-unchecked'>
+  declare module.exports: $Exports<
+    'material-ui/svg-icons/radio-button-unchecked'
+  >
 }
 declare module 'material-ui/SvgIcon/index.js' {
   declare module.exports: $Exports<'material-ui/SvgIcon/index'>

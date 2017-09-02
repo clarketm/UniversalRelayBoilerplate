@@ -10,37 +10,43 @@ export default class AppDrawernavItems extends React.Component<{}> {
     return (
       <List>
         <AppDrawerNavItem
-          key={1}
+          key="/force-login"
+          openImmediately={true}
+          title="Force Login"
+          to="/force-login"
+        />
+        <AppDrawerNavItem
+          key="/todo"
           openImmediately={true}
           title="To Dos"
           to="/todo"
         />
         <AppDrawerNavItem
-          key={2}
+          key="/Ensayo/edit"
           openImmediately={true}
           title="Ensayo edit"
           to="/Ensayo/edit"
         />
         <AppDrawerNavItem
-          key={3}
+          key="/ensayo/in-place-edit"
           openImmediately={true}
           title="Ensayo in place"
-          to="/Ensayo/in-place-edit"
+          to="/ensayo/in-place-edit"
         />
         <AppDrawerNavItem
-          key={4}
+          key="/ensayo"
           openImmediately={true}
           title="Ensayo public"
-          to="/Ensayo"
+          to="/ensayo"
         />
         <AppDrawerNavItem
-          key={5}
+          key="/inscriptio"
           openImmediately={true}
           title="Inscriptio"
           to="/inscriptio"
         />
         <AppDrawerNavItem
-          key={6}
+          key="/translaticiarum"
           openImmediately={true}
           title="Translaticiarum"
           to="/translaticiarum"

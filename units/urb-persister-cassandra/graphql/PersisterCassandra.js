@@ -107,7 +107,7 @@ export default class PersisterCassandra {
     }
   }
 
-  add( entityName: string, fields: any ): Promise<null> {
+  add( entityName: string, fields: any ): Promise<any> {
     this.updateUuidsInFields( entityName, fields )
 
     return new Promise( ( resolve, reject ) => {
@@ -124,7 +124,7 @@ export default class PersisterCassandra {
     return this.add( entityName, fields )
   }
 
-  remove( entityName: string, fields: any ): Promise<null> {
+  remove( entityName: string, fields: any ): Promise<any> {
     this.updateUuidsInFields( entityName, fields )
 
     return new Promise( ( resolve, reject ) => {
@@ -175,7 +175,7 @@ export default class PersisterCassandra {
     }
   }
 
-  confirmHealth(): Promise<null> {
+  confirmHealth(): Promise<any> {
     return new Promise( ( resolve, reject ) => {
       ExpressCassandraClient.modelInstance.User.get_cql_client(
         ( err, client ) => {
