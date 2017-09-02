@@ -16,8 +16,8 @@ textDecoration:'underline'}},
 primary:{
 color:theme.palette.primary[500]},
 
-accent:{
-color:theme.palette.accent.A400}};};var
+secondary:{
+color:theme.palette.secondary.A400}};};var
 
 
 
@@ -55,7 +55,7 @@ className:(0,_classnames2.default)(
 classes.root,(_classNames={},_defineProperty(_classNames,
 
 classes.primary,variant==='primary'),_defineProperty(_classNames,
-classes.accent,variant==='accent'),_classNames),
+classes.secondary,variant==='secondary'),_classNames),
 
 className)},
 

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../units/_configuration/urb-appdrawer-webapp/AppDrawerNavItems.jsx"],"names":[],"mappings":";;AAEA,qF","file":"AppDrawerNavItems.js","sourcesContent":["// @flow\n\nimport AppDrawerNavItems from '../../urb-demo-webapp/components/AppDrawerNavItems'\n\nexport default AppDrawerNavItems\n"]}
