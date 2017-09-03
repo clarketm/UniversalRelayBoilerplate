@@ -124,7 +124,7 @@ export default class PersisterCassandra {
     return this.add( entityName, fields )
   }
 
-  remove( entityName: string, fields: any ): Promise<any> {
+  remove( entityName: string, fields: any ): Promise<null> {
     this.updateUuidsInFields( entityName, fields )
 
     return new Promise( ( resolve, reject ) => {

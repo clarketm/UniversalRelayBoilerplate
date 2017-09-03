@@ -11,17 +11,10 @@ const host = process.env.HOST
 const port_webpack = process.env.PORT_WEBPACK
 const node_env = process.env.NODE_ENV
 
-console.log(
-  '📦  Running Webpack, process.env.NODE_ENV=' +
-    node_env +
-    ', version=' +
-    version
-)
+console.log( '📦  Running Webpack, process.env.NODE_ENV=' + node_env + ', version=' + version )
 
 const publicPath =
-  node_env === 'production'
-    ? `/assets/${version}/`
-    : `http://${host}:${port_webpack}/${version}/`
+  node_env === 'production' ? `/assets/${version}/` : `http://${host}:${port_webpack}/${version}/`
 const ifProd = plugin => ( node_env === 'production' ? plugin : undefined )
 const ifNotProd = plugin => ( node_env !== 'production' ? plugin : undefined )
 const removeEmpty = array => array.filter( p => !!p )
@@ -81,10 +74,7 @@ const config = {
                   {
                     mode: 'wrap',
                     plugins: [
-                      [
-                        'babel-plugin-flow-react-proptypes',
-                        { omitRuntimeTypeExport: true },
-                      ],
+                      [ 'babel-plugin-flow-react-proptypes', { omitRuntimeTypeExport: true } ],
                       'babel-plugin-transform-flow-strip-types',
                     ],
                   },
@@ -94,8 +84,7 @@ const config = {
                 [
                   'relay',
                   {
-                    schema:
-                      'units/_configuration/urb-base-server/graphql/schema.graphql',
+                    schema: 'units/_configuration/urb-base-server/graphql/schema.graphql',
                   },
                 ],
               ]),
@@ -156,5 +145,7 @@ const config = {
     ),
   ]),
 }
+
+if ( node_env !== 'production' ) config.devtool = 'source-map'
 
 export default config

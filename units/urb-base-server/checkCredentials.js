@@ -12,7 +12,7 @@ import log from './log'
 // Read environment
 require( 'dotenv' ).load()
 
-function getSessionIdFromRequest( req ) {
+function getSessionIdFromRequest( req: Object ): ?string {
   const UserToken1 = req.cookies.UserToken1 || req.headers.usertoken1
   if ( UserToken1 )
     try {
@@ -21,31 +21,25 @@ function getSessionIdFromRequest( req ) {
         return defaultPersister.uuidFromString( decoded.session_id )
       }
     } catch ( err ) {
-      log.log( 'warn', 'Session cookie is invalid.', {
-        errorMessage: err.message,
-        errorStack: err.stack,
-        UserToken1,
-      })
-      throw new Error( '💔  Session cookie is invalid. Please log in again.' )
+      // Do nothing. This most probably means an expired session, or
+      // new session secret. Either way the user is consindered not logged in
     }
   return null // Anonymous, unless cookie is passed
 }
 
 export async function getUserAndSessionIDByUserToken1( objectManager, req ) {
-  let user_id
-
   // Get session, and if session is present, user from session
   const session_id = getSessionIdFromRequest( req )
   let a_UserSession = null
-  if ( session_id ) {
+  if ( session_id )
     a_UserSession = await objectManager.getOneObject( 'UserSession', {
       id: session_id,
       UserSession_site_id: objectManager.siteInformation.site_id,
     })
-    user_id = a_UserSession.UserSession_User_id
-  } else {
-    user_id = defaultPersister.uuidNull()
-  }
+
+  const user_id = a_UserSession
+    ? a_UserSession.UserSession_User_id
+    : defaultPersister.uuidNull()
 
   const a_User = await objectManager.getOneObject( 'User', {
     id: user_id,
