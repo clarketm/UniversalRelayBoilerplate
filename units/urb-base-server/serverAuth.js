@@ -119,8 +119,12 @@ async function createuser( req, res ) {
         {
           User_site_id: objectManager.siteInformation.site_id,
           UserToken2:
-            Math.random().toString( 36 ).substring( 2 ) +
-            Math.random().toString( 36 ).substring( 2 ),
+            Math.random()
+              .toString( 36 )
+              .substring( 2 ) +
+            Math.random()
+              .toString( 36 )
+              .substring( 2 ),
           User_Secret: User_PasswordHash,
           User_DisplayName: UserAccount_Identifier,
           User_Email: User_Email,

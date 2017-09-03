@@ -177,7 +177,7 @@ class LoginDialog extends React.Component<
         </DialogContent>
         <DialogActions>
           <Button color="accent" onClick={this._handle_onCLick_CancelLogIn}>
-            New User
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>
