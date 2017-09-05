@@ -176,7 +176,7 @@ UserAccount_Identifier),
 _react2.default.createElement(_Progress.LinearProgress,{mode:'query'})),
 
 _react2.default.createElement(_Dialog.DialogActions,null,
-_react2.default.createElement(_Button2.default,{color:'accent',onClick:this._handle_onCLick_CancelLogIn},'New User'))));
+_react2.default.createElement(_Button2.default,{color:'accent',onClick:this._handle_onCLick_CancelLogIn},'Cancel'))));
 
 
 

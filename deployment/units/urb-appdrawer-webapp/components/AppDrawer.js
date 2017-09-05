@@ -48,8 +48,7 @@ paper:classes.paper},
 
 open:this.props.open,
 onRequestClose:this.props.onRequestClose,
-type:this.props.docked?'permanent':'persistent',
-keepMounted:true},
+type:this.props.docked?'permanent':'persistent'},
 
 _react2.default.createElement('div',{className:classes.nav},
 _react2.default.createElement(_Toolbar2.default,{className:classes.toolbar},
