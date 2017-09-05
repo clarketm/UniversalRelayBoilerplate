@@ -1,7 +1,5 @@
 // @flow
 
-import uuid from 'node-uuid'
-
 const Uuid_Null = '00000000-0000-0000-0000-000000000000'
 
 export default class PersisterElasticSearch {
@@ -113,7 +111,7 @@ export default class PersisterElasticSearch {
   }
 
   uuidRandom(): string {
-    return uuid.v1()
+    return ''
   }
 
   uuidNull() {

@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "elasticsearch": "13.3.1",
-    "node-uuid": "1.4.8"
+    "elasticsearch": "13.3.1"
   }
 }
