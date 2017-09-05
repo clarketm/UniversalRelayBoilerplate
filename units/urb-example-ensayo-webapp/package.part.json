@@ -1,6 +1,6 @@
 {
   "dependencies": {
     "html-to-react": "1.2.11",
-    "react-rte": "0.14.1"
+    "react-rte": "0.14.2"
   }
 }
