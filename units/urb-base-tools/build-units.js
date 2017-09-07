@@ -152,8 +152,6 @@ async function createMutations( units: Array<string> ) {
   mutations = mutations.concat( mutationsExports )
   mutations = mutations.concat([ '}' ])
 
-  console.log( prettierRC )
-
   await ensureFileContent(
     path.resolve(
       './units/_configuration/urb-base-server/graphql/_mutations.js'
