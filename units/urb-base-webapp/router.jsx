@@ -8,8 +8,9 @@ import React from 'react'
 import { graphql } from 'react-relay'
 import { Environment, Network, RecordSource, Store } from 'relay-runtime'
 
-import routesAppFrame from '../_configuration/urb-base-webapp/routesAppFrame'
 import AppFrame from '../_configuration/urb-base-webapp/AppFrame'
+import routesAppFrame from '../_configuration/urb-base-webapp/routesAppFrame'
+import routesRoot from '../_configuration/urb-base-webapp/routesRoot'
 
 export const historyMiddlewares = [ queryMiddleware ]
 
@@ -23,17 +24,20 @@ export function createResolver( fetcher: any ) {
 }
 
 export const routeConfig = makeRouteConfig(
-  <Route
-    path="/"
-    Component={AppFrame}
-    query={graphql`
-      query router_AppFrame_Query {
-        Viewer {
-          ...AppFrame_Viewer
+  <Route path="/">
+    <Route
+      path="/"
+      Component={AppFrame}
+      query={graphql`
+        query router_AppFrame_Query {
+          Viewer {
+            ...AppFrame_Viewer
+          }
         }
-      }
-    `}
-  >
-    {routesAppFrame}
+      `}
+    >
+      {routesAppFrame}
+    </Route>
+    {routesRoot.length > 0 && routesRoot}
   </Route>
 )

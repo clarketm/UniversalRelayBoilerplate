@@ -239,8 +239,10 @@ async function createViewerFields( units: Array<string> ) {
 }
 
 async function createRoutes( units: Array<string> ) {
-  const routesImports = []
-  const routesExports = []
+  const routesAppFrameImports = []
+  const routesRootImports = []
+  const routesAppFrameExports = []
+  const routesRootExports = []
 
   for ( let unitName of units )
     if ( unitName.endsWith( '-webapp' ) ) {
@@ -249,30 +251,65 @@ async function createRoutes( units: Array<string> ) {
         const routeFileNames = await readdirAsync( routesDir )
 
         for ( let routeFileName of routeFileNames ) {
-          if (
-            routeFileName.endsWith( '.jsx' ) &&
-            routeFileName.startsWith( 'routeAppFrame' )
-          ) {
-            const route = routeFileName.substring( 0, routeFileName.length - 4 )
-            routesImports.push(
-              'import ' + route + ' from \'../../' + unitName + '/' + route + '\''
-            )
-            routesExports.push( '  ' + route + ',' )
-          }
+          if ( routeFileName.endsWith( '.jsx' ) )
+            if ( routeFileName.startsWith( 'routeAppFrame' ) ) {
+              const route = routeFileName.substring( 0, routeFileName.length - 4 )
+              routesAppFrameImports.push(
+                'import ' +
+                  route +
+                  ' from \'../../' +
+                  unitName +
+                  '/' +
+                  route +
+                  '\''
+              )
+              routesAppFrameExports.push( '  ' + route + ',' )
+            } else if ( routeFileName.startsWith( 'routeRoot' ) ) {
+              const route = routeFileName.substring( 0, routeFileName.length - 4 )
+              routesRootImports.push(
+                'import ' +
+                  route +
+                  ' from \'../../' +
+                  unitName +
+                  '/' +
+                  route +
+                  '\''
+              )
+              routesRootExports.push( '  ' + route + ',' )
+            }
         }
       }
     }
 
-  let routes = [ '// @flow', '' ]
-  routes = routes.concat( routesImports )
-  routes = routes.concat([ '', 'export default [' ])
-  routes = routes.concat( routesExports )
-  routes = routes.concat([ ']' ])
+  await Promise.all([
+    createRouteFile(
+      path.resolve( './units/_configuration/urb-base-webapp/routesAppFrame.js' ),
+      routesAppFrameImports,
+      routesAppFrameExports
+    ),
+    createRouteFile(
+      path.resolve( './units/_configuration/urb-base-webapp/routesRoot.js' ),
+      routesRootImports,
+      routesRootExports
+    ),
+  ])
+}
+
+async function createRouteFile(
+  fileName: string,
+  imports: Array<string>,
+  exports: Array<string>
+) {
+  let routesAppFrame = [ '// @flow', '' ]
+  routesAppFrame = routesAppFrame.concat( imports )
+  routesAppFrame = routesAppFrame.concat([ '', 'export default [' ])
+  routesAppFrame = routesAppFrame.concat( exports )
+  routesAppFrame = routesAppFrame.concat([ ']' ])
 
   await ensureFileContent(
-    path.resolve( './units/_configuration/urb-base-webapp/routesAppFrame.js' ),
+    fileName,
     null,
-    prettier.format( routes.join( '\r\n' ), prettierRC )
+    prettier.format( routesAppFrame.join( '\r\n' ), prettierRC )
   )
 }
 
