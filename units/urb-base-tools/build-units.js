@@ -4,6 +4,11 @@ import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
 
+import prettier from 'prettier'
+
+// $FlowIssue Not sure why it gives an error. The file does exist
+import prettierRC from '../../.prettierrc.json'
+
 import ensureFileContent from './ensureFileContent'
 
 const existsAsync = promisify( fs.exists )
@@ -12,9 +17,11 @@ const readdirAsync = promisify( fs.readdir )
 
 function sortObject( object: Object ) {
   var t = {}
-  Object.keys( object ).sort().forEach( function( k ) {
-    t[k] = object[k]
-  })
+  Object.keys( object )
+    .sort()
+    .forEach( function( k ) {
+      t[k] = object[k]
+    })
   return t
 }
 
@@ -145,12 +152,14 @@ async function createMutations( units: Array<string> ) {
   mutations = mutations.concat( mutationsExports )
   mutations = mutations.concat([ '}' ])
 
+  console.log( prettierRC )
+
   await ensureFileContent(
     path.resolve(
       './units/_configuration/urb-base-server/graphql/_mutations.js'
     ),
     null,
-    mutations.join( '\r\n' )
+    prettier.format( mutations.join( '\r\n' ), prettierRC )
   )
 }
 
@@ -188,7 +197,7 @@ async function createSchemas( units: Array<string> ) {
   await ensureFileContent(
     path.resolve( './units/_configuration/urb-base-server/graphql/_schemas.js' ),
     null,
-    schemas.join( '\r\n' )
+    prettier.format( schemas.join( '\r\n' ), prettierRC )
   )
 }
 
@@ -227,7 +236,7 @@ async function createViewerFields( units: Array<string> ) {
       './units/_configuration/urb-base-server/graphql/_ViewerFields.js'
     ),
     null,
-    viewerFields.join( '\r\n' )
+    prettier.format( viewerFields.join( '\r\n' ), prettierRC )
   )
 }
 
@@ -265,7 +274,7 @@ async function createRoutes( units: Array<string> ) {
   await ensureFileContent(
     path.resolve( './units/_configuration/urb-base-webapp/routesAppFrame.js' ),
     null,
-    routes.join( '\r\n' )
+    prettier.format( routes.join( '\r\n' ), prettierRC )
   )
 }
 
