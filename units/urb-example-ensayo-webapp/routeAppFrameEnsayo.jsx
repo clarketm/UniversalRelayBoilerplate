@@ -5,19 +5,30 @@ import { graphql } from 'react-relay'
 import React from 'react'
 import Route from 'found/lib/Route'
 
-import EnsayoPublicList from './components/EnsayoPublicList'
-import EnsayoPublicItem from './components/EnsayoPublicItem'
-
-const EnsayoInPaceEditList = props =>
+const EnsayoInPaceEditList = props => (
   <Async
     load={import( './components/EnsayoInPaceEditList' )}
     componentProps={props}
   />
-const EnsayoInPaceEditScreen = props =>
+)
+const EnsayoInPaceEditScreen = props => (
   <Async
     load={import( './components/EnsayoInPaceEditScreen' )}
     componentProps={props}
   />
+)
+const EnsayoPublicList = props => (
+  <Async
+    load={import( './components/EnsayoPublicList' )}
+    componentProps={props}
+  />
+)
+const EnsayoPublicItem = props => (
+  <Async
+    load={import( './components/EnsayoPublicItem' )}
+    componentProps={props}
+  />
+)
 
 export default (
   <Route key="ensayo" path="ensayo">
