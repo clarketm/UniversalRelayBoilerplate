@@ -78,7 +78,7 @@ return _react2.default.createElement(_ErrorComponent2.default,{httpStatus:error.
 }});
 
 
-serverWebApp.use(function _callee(req,res){var fetcher,_ref,redirect,element,userAgent,_ref2,siteInformation,assetsPath,appData,sheets,helmet,rootHTML;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:_context2.prev=0;
+serverWebApp.use(function _callee(req,res){var fetcher,_ref,redirect,element,userAgent,_ref2,siteInformation,assetsPath,configuration,sheets,helmet,rootHTML;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:_context2.prev=0;
 
 fetcher=new _fetcherServer2.default('http://localhost:'+
 envPort+'/graphql',
@@ -105,7 +105,7 @@ userAgent=req.headers['user-agent'];_context2.next=13;return regeneratorRuntime.
 
 
 gatherLocationAndSiteInformation(req,res));case 13:_ref2=_context2.sent;siteInformation=_ref2.siteInformation;assetsPath=_ref2.assetsPath;
-appData=siteInformation.configurationAsObject.appData;
+configuration=siteInformation.configurationAsObject;
 
 sheets=new _reactJss.SheetsRegistry();
 
@@ -113,7 +113,7 @@ helmet=_reactHelmet2.default.rewind();
 
 rootHTML=_server3.default.renderToString(
 _react2.default.createElement(_reactJss.JssProvider,{registry:sheets},
-_react2.default.createElement(_Wrapper2.default,{userAgent:userAgent,appData:appData},
+_react2.default.createElement(_Wrapper2.default,{userAgent:userAgent,configuration:configuration},
 element)));
 
 
@@ -124,7 +124,7 @@ assets_path:assetsPath,
 root_html:rootHTML,
 server_side_styles:sheets.toString(),
 helmet:helmet,
-appData:JSON.stringify(appData),
+appData:JSON.stringify(configuration.appData),
 relay_payload:(0,_serializeJavascript2.default)(fetcher,{isJSON:true})});_context2.next=27;break;case 23:_context2.prev=23;_context2.t0=_context2['catch'](0);
 
 

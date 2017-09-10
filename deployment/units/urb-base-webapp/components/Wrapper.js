@@ -46,7 +46,7 @@ props,context));_this.
 
 handle_onResize=function(){
 _this.rbCtx.viewportDimensions.handle_onResize();
-};_this.rbCtx=(0,_getWrapperRbCtx2.default)();_this.rbCtx.viewportDimensions=new _ViewportDimensions2.default();_this.rbCtx.appData=_this.props.appData;_this.muiTheme=(0,_createMUITheme2.default)(_this.rbCtx);return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbCtx:this.rbCtx};}},{key:'render',value:function render()
+};_this.rbCtx=(0,_getWrapperRbCtx2.default)(props.configuration);_this.rbCtx.viewportDimensions=new _ViewportDimensions2.default();_this.rbCtx.appData=props.configuration.appData;_this.muiTheme=(0,_createMUITheme2.default)(_this.rbCtx);return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbCtx:this.rbCtx};}},{key:'render',value:function render()
 
 {
 return(
