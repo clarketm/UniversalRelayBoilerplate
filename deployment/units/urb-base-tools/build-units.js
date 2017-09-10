@@ -4,6 +4,11 @@ var _fs=require('fs');var _fs2=_interopRequireDefault(_fs);
 var _path=require('path');var _path2=_interopRequireDefault(_path);
 var _util=require('util');
 
+var _prettier=require('prettier');var _prettier2=_interopRequireDefault(_prettier);
+
+
+var _prettierrc=require('../../.prettierrc.json');var _prettierrc2=_interopRequireDefault(_prettierrc);
+
 var _ensureFileContent=require('./ensureFileContent');var _ensureFileContent2=_interopRequireDefault(_ensureFileContent);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 var existsAsync=(0,_util.promisify)(_fs2.default.exists);
@@ -12,7 +17,9 @@ var readdirAsync=(0,_util.promisify)(_fs2.default.readdir);
 
 function sortObject(object){
 var t={};
-Object.keys(object).sort().forEach(function(k){
+Object.keys(object).
+sort().
+forEach(function(k){
 t[k]=object[k];
 });
 return t;
@@ -150,7 +157,7 @@ _path2.default.resolve(
 './units/_configuration/urb-base-server/graphql/_mutations.js'),
 
 null,
-mutations.join('\r\n')));case 46:case'end':return _context2.stop();}}},null,this);}
+_prettier2.default.format(mutations.join('\r\n'),_prettierrc2.default)));case 46:case'end':return _context2.stop();}}},null,this);}
 
 
 
@@ -188,7 +195,7 @@ schemas=schemas.concat(['','export default true']);_context3.next=43;return rege
 (0,_ensureFileContent2.default)(
 _path2.default.resolve('./units/_configuration/urb-base-server/graphql/_schemas.js'),
 null,
-schemas.join('\r\n')));case 43:case'end':return _context3.stop();}}},null,this);}
+_prettier2.default.format(schemas.join('\r\n'),_prettierrc2.default)));case 43:case'end':return _context3.stop();}}},null,this);}
 
 
 
@@ -227,67 +234,104 @@ _path2.default.resolve(
 './units/_configuration/urb-base-server/graphql/_ViewerFields.js'),
 
 null,
-viewerFields.join('\r\n')));case 31:case'end':return _context4.stop();}}},null,this);}
+_prettier2.default.format(viewerFields.join('\r\n'),_prettierrc2.default)));case 31:case'end':return _context4.stop();}}},null,this);}
 
 
 
-function createRoutes(units){var routesImports,routesExports,_iterator7,_isArray7,_i7,_ref7,unitName,routesDir,routeFileNames,_iterator8,_isArray8,_i8,_ref8,routeFileName,route,routes;return regeneratorRuntime.async(function createRoutes$(_context5){while(1){switch(_context5.prev=_context5.next){case 0:
-routesImports=[];
-routesExports=[];_iterator7=
+function createRoutes(units){var routesAppFrameImports,routesRootImports,routesAppFrameExports,routesRootExports,_iterator7,_isArray7,_i7,_ref7,unitName,routesDir,routeFileNames,_iterator8,_isArray8,_i8,_ref8,routeFileName,route,_route;return regeneratorRuntime.async(function createRoutes$(_context5){while(1){switch(_context5.prev=_context5.next){case 0:
+routesAppFrameImports=[];
+routesRootImports=[];
+routesAppFrameExports=[];
+routesRootExports=[];_iterator7=
 
-units,_isArray7=Array.isArray(_iterator7),_i7=0,_iterator7=_isArray7?_iterator7:_iterator7[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();case 3:if(!_isArray7){_context5.next=9;break;}if(!(_i7>=_iterator7.length)){_context5.next=6;break;}return _context5.abrupt('break',39);case 6:_ref7=_iterator7[_i7++];_context5.next=13;break;case 9:_i7=_iterator7.next();if(!_i7.done){_context5.next=12;break;}return _context5.abrupt('break',39);case 12:_ref7=_i7.value;case 13:unitName=_ref7;if(!
-unitName.endsWith('-webapp')){_context5.next=37;break;}
-routesDir=_path2.default.resolve('./units',unitName);_context5.next=18;return regeneratorRuntime.awrap(
-existsAsync(routesDir));case 18:if(!_context5.sent){_context5.next=37;break;}_context5.next=21;return regeneratorRuntime.awrap(
-readdirAsync(routesDir));case 21:routeFileNames=_context5.sent;_iterator8=
+units,_isArray7=Array.isArray(_iterator7),_i7=0,_iterator7=_isArray7?_iterator7:_iterator7[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();case 5:if(!_isArray7){_context5.next=11;break;}if(!(_i7>=_iterator7.length)){_context5.next=8;break;}return _context5.abrupt('break',41);case 8:_ref7=_iterator7[_i7++];_context5.next=15;break;case 11:_i7=_iterator7.next();if(!_i7.done){_context5.next=14;break;}return _context5.abrupt('break',41);case 14:_ref7=_i7.value;case 15:unitName=_ref7;if(!
+unitName.endsWith('-webapp')){_context5.next=39;break;}
+routesDir=_path2.default.resolve('./units',unitName);_context5.next=20;return regeneratorRuntime.awrap(
+existsAsync(routesDir));case 20:if(!_context5.sent){_context5.next=39;break;}_context5.next=23;return regeneratorRuntime.awrap(
+readdirAsync(routesDir));case 23:routeFileNames=_context5.sent;_iterator8=
 
-routeFileNames,_isArray8=Array.isArray(_iterator8),_i8=0,_iterator8=_isArray8?_iterator8:_iterator8[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();case 23:if(!_isArray8){_context5.next=29;break;}if(!(_i8>=_iterator8.length)){_context5.next=26;break;}return _context5.abrupt('break',37);case 26:_ref8=_iterator8[_i8++];_context5.next=33;break;case 29:_i8=_iterator8.next();if(!_i8.done){_context5.next=32;break;}return _context5.abrupt('break',37);case 32:_ref8=_i8.value;case 33:routeFileName=_ref8;
-if(
-routeFileName.endsWith('.jsx')&&
-routeFileName.startsWith('routeAppFrame'))
-{
+routeFileNames,_isArray8=Array.isArray(_iterator8),_i8=0,_iterator8=_isArray8?_iterator8:_iterator8[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();case 25:if(!_isArray8){_context5.next=31;break;}if(!(_i8>=_iterator8.length)){_context5.next=28;break;}return _context5.abrupt('break',39);case 28:_ref8=_iterator8[_i8++];_context5.next=35;break;case 31:_i8=_iterator8.next();if(!_i8.done){_context5.next=34;break;}return _context5.abrupt('break',39);case 34:_ref8=_i8.value;case 35:routeFileName=_ref8;
+if(routeFileName.endsWith('.jsx'))
+if(routeFileName.startsWith('routeAppFrame')){
 route=routeFileName.substring(0,routeFileName.length-4);
-routesImports.push(
-'import '+route+' from \'../../'+unitName+'/'+route+'\'');
+routesAppFrameImports.push(
+'import '+
+route+
+' from \'../../'+
+unitName+
+'/'+
+route+
+'\'');
 
-routesExports.push('  '+route+',');
-}case 35:_context5.next=23;break;case 37:_context5.next=3;break;case 39:
+routesAppFrameExports.push('  '+route+',');
+}else if(routeFileName.startsWith('routeRoot')){
+_route=routeFileName.substring(0,routeFileName.length-4);
+routesRootImports.push(
+'import '+
+_route+
+' from \'../../'+
+unitName+
+'/'+
+_route+
+'\'');
+
+routesRootExports.push('  '+_route+',');
+}case 37:_context5.next=25;break;case 39:_context5.next=5;break;case 41:_context5.next=43;return regeneratorRuntime.awrap(
 
 
 
 
-routes=['// @flow',''];
-routes=routes.concat(routesImports);
-routes=routes.concat(['','export default [']);
-routes=routes.concat(routesExports);
-routes=routes.concat([']']);_context5.next=46;return regeneratorRuntime.awrap(
+Promise.all([
+createRouteFile(
+_path2.default.resolve('./units/_configuration/urb-base-webapp/routesAppFrame.js'),
+routesAppFrameImports,
+routesAppFrameExports),
+
+createRouteFile(
+_path2.default.resolve('./units/_configuration/urb-base-webapp/routesRoot.js'),
+routesRootImports,
+routesRootExports)]));case 43:case'end':return _context5.stop();}}},null,this);}
+
+
+
+
+function createRouteFile(
+fileName,
+imports,
+exports){var routesAppFrame;return regeneratorRuntime.async(function createRouteFile$(_context6){while(1){switch(_context6.prev=_context6.next){case 0:
+
+routesAppFrame=['// @flow',''];
+routesAppFrame=routesAppFrame.concat(imports);
+routesAppFrame=routesAppFrame.concat(['','export default [']);
+routesAppFrame=routesAppFrame.concat(exports);
+routesAppFrame=routesAppFrame.concat([']']);_context6.next=7;return regeneratorRuntime.awrap(
 
 (0,_ensureFileContent2.default)(
-_path2.default.resolve('./units/_configuration/urb-base-webapp/routesAppFrame.js'),
+fileName,
 null,
-routes.join('\r\n')));case 46:case'end':return _context5.stop();}}},null,this);}
+_prettier2.default.format(routesAppFrame.join('\r\n'),_prettierrc2.default)));case 7:case'end':return _context6.stop();}}},null,this);}
 
 
 
-function getUnits(){var units;return regeneratorRuntime.async(function getUnits$(_context6){while(1){switch(_context6.prev=_context6.next){case 0:_context6.next=2;return regeneratorRuntime.awrap(
-readdirAsync('./units/'));case 2:_context6.t0=
-function(fileName){return fileName!=='.DS_Store'&&fileName!=='_configuration';};units=_context6.sent.filter(_context6.t0);return _context6.abrupt('return',
+function getUnits(){var units;return regeneratorRuntime.async(function getUnits$(_context7){while(1){switch(_context7.prev=_context7.next){case 0:_context7.next=2;return regeneratorRuntime.awrap(
+readdirAsync('./units/'));case 2:_context7.t0=
+function(fileName){return fileName!=='.DS_Store'&&fileName!=='_configuration';};units=_context7.sent.filter(_context7.t0);return _context7.abrupt('return',
 
-units);case 5:case'end':return _context6.stop();}}},null,this);}
+units);case 5:case'end':return _context7.stop();}}},null,this);}
 
 
-function main(){var units,taskPromises;return regeneratorRuntime.async(function main$(_context7){while(1){switch(_context7.prev=_context7.next){case 0:_context7.next=2;return regeneratorRuntime.awrap(
-getUnits());case 2:units=_context7.sent;
+function main(){var units,taskPromises;return regeneratorRuntime.async(function main$(_context8){while(1){switch(_context8.prev=_context8.next){case 0:_context8.next=2;return regeneratorRuntime.awrap(
+getUnits());case 2:units=_context8.sent;
 
 taskPromises=[
 createPackageJson(units),
 createViewerFields(units),
 createSchemas(units),
 createMutations(units),
-createRoutes(units)];_context7.next=6;return regeneratorRuntime.awrap(
+createRoutes(units)];_context8.next=6;return regeneratorRuntime.awrap(
 
 
-Promise.all(taskPromises));case 6:case'end':return _context7.stop();}}},null,this);}
+Promise.all(taskPromises));case 6:case'end':return _context8.stop();}}},null,this);}
 
 
 main().then(function(){return console.log('Fin.');});
