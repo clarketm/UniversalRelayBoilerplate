@@ -105,7 +105,7 @@ serverWebApp.use( async( req, res ) => {
       siteInformation,
       assetsPath,
     } = await gatherLocationAndSiteInformation( req, res )
-    const appData = siteInformation.configurationAsObject.appData
+    const configuration = siteInformation.configurationAsObject
 
     const sheets = new SheetsRegistry()
 
@@ -113,7 +113,7 @@ serverWebApp.use( async( req, res ) => {
 
     const rootHTML = ReactDOMServer.renderToString(
       <JssProvider registry={sheets}>
-        <Wrapper userAgent={userAgent} appData={appData}>
+        <Wrapper userAgent={userAgent} configuration={configuration}>
           {element}
         </Wrapper>
       </JssProvider>
@@ -124,7 +124,7 @@ serverWebApp.use( async( req, res ) => {
       root_html: rootHTML,
       server_side_styles: sheets.toString(),
       helmet,
-      appData: JSON.stringify( appData ),
+      appData: JSON.stringify( configuration.appData ),
       relay_payload: serialize( fetcher, { isJSON: true }),
     })
   } catch ( err ) {

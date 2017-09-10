@@ -37,7 +37,7 @@ const render = createRender({})
   })
 
   ReactDOM.render(
-    <Wrapper appData={window.appData}>
+    <Wrapper configuration={{ appData: window.appData }}>
       <Router resolver={resolver} />
     </Wrapper>,
     document.getElementById( 'root' ),

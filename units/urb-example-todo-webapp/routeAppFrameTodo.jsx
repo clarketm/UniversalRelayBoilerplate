@@ -1,11 +1,17 @@
 // @flow
 
+import Async from 'react-code-splitting'
 import { graphql } from 'react-relay'
 import React from 'react'
 import Route from 'found/lib/Route'
 
-import ToDoScreen from './components/ToDoScreen'
-import ToDoList from './components/ToDoList'
+const ToDoList = props => (
+  <Async load={import( './components/ToDoList' )} componentProps={props} />
+)
+
+const ToDoScreen = props => (
+  <Async load={import( './components/ToDoScreen' )} componentProps={props} />
+)
 
 const ToDoListQuery = graphql`
   query routeAppFrameTodo_ToDoList_Query($status: String!) {

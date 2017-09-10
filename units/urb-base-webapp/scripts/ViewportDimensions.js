@@ -1,9 +1,5 @@
 // @flow
 
-export const SMALL = 1
-export const MEDIUM = 2
-export const LARGE = 3
-
 export default class ViewportDimensions {
   subscribedComponents: Map<Object, Object>
   viewportDimensionsVersion: number
@@ -14,10 +10,8 @@ export default class ViewportDimensions {
 
     this.viewportDimensionsVersion = 1
     this.viewportDimensions = {
-      muiSize: 0,
       totalWidth: 0,
       totalHeight: 0,
-      contentWidth: 0,
     }
   }
 
@@ -69,26 +63,8 @@ export default class ViewportDimensions {
     const totalWidth = window.innerWidth
     const totalHeight = window.innerHeight
 
-    let muiSize
-    if ( totalWidth >= 992 ) muiSize = LARGE
-    else if ( totalWidth >= 768 )
-      muiSize = MEDIUM // totalWidth < 768
-    else muiSize = SMALL
-
-    //    let navDrawerIsDocked = false
-    let contentWidth = totalWidth
-    if ( muiSize === LARGE ) {
-      //      navDrawerIsDocked = true
-      contentWidth -= 256 // TODO x0100 Make it a setting
-    }
-
     // Record what changes were made to only notify the necessary components
     const changesMade = {}
-
-    if ( muiSize !== this.viewportDimensions.muiSize ) {
-      changesMade.muiSize = true
-      this.viewportDimensions.muiSize = muiSize
-    }
 
     if ( totalWidth !== this.viewportDimensions.totalWidth ) {
       changesMade.totalWidth = true
@@ -100,12 +76,10 @@ export default class ViewportDimensions {
       this.viewportDimensions.totalHeight = totalHeight
     }
 
-    if ( contentWidth !== this.viewportDimensions.contentWidth ) {
-      changesMade.contentWidth = true
-      this.viewportDimensions.contentWidth = contentWidth
-    }
-
+    // Insrease the version of the dimensions to track what has been set to be updated already
     const viewportDimensionsVersion = ++this.viewportDimensionsVersion
+
+    const componentsToUpdate = []
 
     // Update all subscribed components
     for ( let [ component, dimensionsSubscribed ] of this.subscribedComponents ) {
@@ -121,8 +95,20 @@ export default class ViewportDimensions {
           }
 
         // Re-render component if it subscribed to any of the changes
-        if ( mustUpdate ) component.forceUpdate()
+        if ( mustUpdate ) componentsToUpdate.push( component )
       }
     }
+
+    // Delayed force update
+    if ( window && window.setTimeout )
+      window.setTimeout( function() {
+        for ( let component of componentsToUpdate )
+          try {
+            component.forceUpdate()
+          } catch ( err ) {
+            // ZZZ not sure why it fails maybe some of them do not exist?
+            // This did not use to happen in the old boilerplate
+          }
+      })
   }
 }

@@ -10,7 +10,7 @@ import createMUITheme from '../../_configuration/urb-base-webapp/createMUITheme'
 import ViewportDimensions from '../scripts/ViewportDimensions'
 
 export default class Wrapper extends React.Component<
-  { appData: Object, children: any },
+  { configuration: Object, children: any },
   any
 > {
   muiTheme: Object
@@ -26,10 +26,10 @@ export default class Wrapper extends React.Component<
     // TODO x0100 If a property for innerWidth is provided, use it for the initial request
 
     // Descendants can add other items to rbCtx through getWrapperRbCtx
-    this.rbCtx = getWrapperRbCtx()
+    this.rbCtx = getWrapperRbCtx( props.configuration )
 
     this.rbCtx.viewportDimensions = new ViewportDimensions()
-    this.rbCtx.appData = this.props.appData
+    this.rbCtx.appData = props.configuration.appData
 
     this.muiTheme = createMUITheme( this.rbCtx )
   }

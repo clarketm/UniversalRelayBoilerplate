@@ -4,6 +4,11 @@ import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
 
+import prettier from 'prettier'
+
+// $FlowIssue Not sure why it gives an error. The file does exist
+import prettierRC from '../../.prettierrc.json'
+
 import ensureFileContent from './ensureFileContent'
 
 const existsAsync = promisify( fs.exists )
@@ -12,9 +17,11 @@ const readdirAsync = promisify( fs.readdir )
 
 function sortObject( object: Object ) {
   var t = {}
-  Object.keys( object ).sort().forEach( function( k ) {
-    t[k] = object[k]
-  })
+  Object.keys( object )
+    .sort()
+    .forEach( function( k ) {
+      t[k] = object[k]
+    })
   return t
 }
 
@@ -150,7 +157,7 @@ async function createMutations( units: Array<string> ) {
       './units/_configuration/urb-base-server/graphql/_mutations.js'
     ),
     null,
-    mutations.join( '\r\n' )
+    prettier.format( mutations.join( '\r\n' ), prettierRC )
   )
 }
 
@@ -188,7 +195,7 @@ async function createSchemas( units: Array<string> ) {
   await ensureFileContent(
     path.resolve( './units/_configuration/urb-base-server/graphql/_schemas.js' ),
     null,
-    schemas.join( '\r\n' )
+    prettier.format( schemas.join( '\r\n' ), prettierRC )
   )
 }
 
@@ -227,13 +234,15 @@ async function createViewerFields( units: Array<string> ) {
       './units/_configuration/urb-base-server/graphql/_ViewerFields.js'
     ),
     null,
-    viewerFields.join( '\r\n' )
+    prettier.format( viewerFields.join( '\r\n' ), prettierRC )
   )
 }
 
 async function createRoutes( units: Array<string> ) {
-  const routesImports = []
-  const routesExports = []
+  const routesAppFrameImports = []
+  const routesRootImports = []
+  const routesAppFrameExports = []
+  const routesRootExports = []
 
   for ( let unitName of units )
     if ( unitName.endsWith( '-webapp' ) ) {
@@ -242,30 +251,65 @@ async function createRoutes( units: Array<string> ) {
         const routeFileNames = await readdirAsync( routesDir )
 
         for ( let routeFileName of routeFileNames ) {
-          if (
-            routeFileName.endsWith( '.jsx' ) &&
-            routeFileName.startsWith( 'routeAppFrame' )
-          ) {
-            const route = routeFileName.substring( 0, routeFileName.length - 4 )
-            routesImports.push(
-              'import ' + route + ' from \'../../' + unitName + '/' + route + '\''
-            )
-            routesExports.push( '  ' + route + ',' )
-          }
+          if ( routeFileName.endsWith( '.jsx' ) )
+            if ( routeFileName.startsWith( 'routeAppFrame' ) ) {
+              const route = routeFileName.substring( 0, routeFileName.length - 4 )
+              routesAppFrameImports.push(
+                'import ' +
+                  route +
+                  ' from \'../../' +
+                  unitName +
+                  '/' +
+                  route +
+                  '\''
+              )
+              routesAppFrameExports.push( '  ' + route + ',' )
+            } else if ( routeFileName.startsWith( 'routeRoot' ) ) {
+              const route = routeFileName.substring( 0, routeFileName.length - 4 )
+              routesRootImports.push(
+                'import ' +
+                  route +
+                  ' from \'../../' +
+                  unitName +
+                  '/' +
+                  route +
+                  '\''
+              )
+              routesRootExports.push( '  ' + route + ',' )
+            }
         }
       }
     }
 
-  let routes = [ '// @flow', '' ]
-  routes = routes.concat( routesImports )
-  routes = routes.concat([ '', 'export default [' ])
-  routes = routes.concat( routesExports )
-  routes = routes.concat([ ']' ])
+  await Promise.all([
+    createRouteFile(
+      path.resolve( './units/_configuration/urb-base-webapp/routesAppFrame.js' ),
+      routesAppFrameImports,
+      routesAppFrameExports
+    ),
+    createRouteFile(
+      path.resolve( './units/_configuration/urb-base-webapp/routesRoot.js' ),
+      routesRootImports,
+      routesRootExports
+    ),
+  ])
+}
+
+async function createRouteFile(
+  fileName: string,
+  imports: Array<string>,
+  exports: Array<string>
+) {
+  let routesAppFrame = [ '// @flow', '' ]
+  routesAppFrame = routesAppFrame.concat( imports )
+  routesAppFrame = routesAppFrame.concat([ '', 'export default [' ])
+  routesAppFrame = routesAppFrame.concat( exports )
+  routesAppFrame = routesAppFrame.concat([ ']' ])
 
   await ensureFileContent(
-    path.resolve( './units/_configuration/urb-base-webapp/routesAppFrame.js' ),
+    fileName,
     null,
-    routes.join( '\r\n' )
+    prettier.format( routesAppFrame.join( '\r\n' ), prettierRC )
   )
 }
 
