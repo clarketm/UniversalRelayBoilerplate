@@ -1,5 +1,5 @@
 // @flow
 
-export default function(): Object {
+export default function( configuration: ?Object ): Object {
   return {}
 }
