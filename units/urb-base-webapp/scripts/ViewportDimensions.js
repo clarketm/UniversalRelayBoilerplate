@@ -79,8 +79,6 @@ export default class ViewportDimensions {
     // Insrease the version of the dimensions to track what has been set to be updated already
     const viewportDimensionsVersion = ++this.viewportDimensionsVersion
 
-    const componentsToUpdate = []
-
     // Update all subscribed components
     for ( let [ component, dimensionsSubscribed ] of this.subscribedComponents ) {
       if ( component.viewportDimensionsVersion !== viewportDimensionsVersion ) {
@@ -95,20 +93,8 @@ export default class ViewportDimensions {
           }
 
         // Re-render component if it subscribed to any of the changes
-        if ( mustUpdate ) componentsToUpdate.push( component )
+        if ( mustUpdate ) component._handle_ViewportDimensionChange()
       }
     }
-
-    // Delayed force update
-    if ( window && window.setTimeout )
-      window.setTimeout( function() {
-        for ( let component of componentsToUpdate )
-          try {
-            component.forceUpdate()
-          } catch ( err ) {
-            // ZZZ not sure why it fails maybe some of them do not exist?
-            // This did not use to happen in the old boilerplate
-          }
-      })
   }
 }
