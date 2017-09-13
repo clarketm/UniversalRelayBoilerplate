@@ -27,11 +27,11 @@ class ViewportDimensionsScreen extends React.Component<{
   Viewer: Object
 }> {
   render() {
-    const { classes } = this.props
+    const { classes, totalHeight, totalWidth } = this.props
 
     const data = [
-      { name: 'totalWidth', value: this.props.totalWidth },
-      { name: 'totalHeight', value: this.props.totalHeight },
+      { name: 'totalWidth', value: totalWidth },
+      { name: 'totalHeight', value: totalHeight },
     ]
 
     return (
