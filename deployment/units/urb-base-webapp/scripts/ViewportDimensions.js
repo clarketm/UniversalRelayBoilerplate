@@ -79,8 +79,6 @@ _this.viewportDimensions.totalHeight=totalHeight;
 
 var viewportDimensionsVersion=++_this.viewportDimensionsVersion;
 
-var componentsToUpdate=[];
-
 
 for(var _iterator=_this.subscribedComponents,_isArray=Array.isArray(_iterator),_i=0,_iterator=_isArray?_iterator:_iterator[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();;){var _ref3;if(_isArray){if(_i>=_iterator.length)break;_ref3=_iterator[_i++];}else{_i=_iterator.next();if(_i.done)break;_ref3=_i.value;}var _ref=_ref3;var _ref2=_slicedToArray(_ref,2);var component=_ref2[0];var dimensionsSubscribed=_ref2[1];
 if(component.viewportDimensionsVersion!==viewportDimensionsVersion){
@@ -95,20 +93,8 @@ break;
 }}
 
 
-if(mustUpdate)componentsToUpdate.push(component);
+if(mustUpdate)component._handle_ViewportDimensionChange();
 }
 }
-
-
-if(window&&window.setTimeout)
-window.setTimeout(function(){
-for(var _iterator2=componentsToUpdate,_isArray2=Array.isArray(_iterator2),_i2=0,_iterator2=_isArray2?_iterator2:_iterator2[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();;){var _ref4;if(_isArray2){if(_i2>=_iterator2.length)break;_ref4=_iterator2[_i2++];}else{_i2=_iterator2.next();if(_i2.done)break;_ref4=_i2.value;}var _component=_ref4;
-try{
-_component.forceUpdate();
-}catch(err){
-
-
-}}
-});
 };this.subscribedComponents=new Map();this.viewportDimensionsVersion=1;this.viewportDimensions={totalWidth:0,totalHeight:0};}_createClass(ViewportDimensions,[{key:'get',value:function get(component,dimensionName){component.viewportDimensionsVersion=this.viewportDimensionsVersion;var subscriptionInfo=this.subscribedComponents.get(component);if(subscriptionInfo==null){subscriptionInfo={};this.subscribedComponents.set(component,subscriptionInfo);var self=this;if(component.componentWillUnmount){var currentFunction=component.componentWillUnmount.bind(component);component.componentWillUnmount=function(){self.removeComponent(component);currentFunction();};}else component.componentWillUnmount=function(){self.removeComponent(component);};}subscriptionInfo[dimensionName]=true;var dimensionValue=this.viewportDimensions[dimensionName];if(dimensionValue==null)throw new Error('Could not find viewport dimension named '+dimensionName);return dimensionValue;}}]);return ViewportDimensions;}();exports.default=ViewportDimensions;
 //# sourceMappingURL=ViewportDimensions.js.map
