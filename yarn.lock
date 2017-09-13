@@ -1928,7 +1928,7 @@ caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
 
-cassandra-driver@3.2.2, cassandra-driver@^3.2.0:
+cassandra-driver@3.2.2, cassandra-driver@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/cassandra-driver/-/cassandra-driver-3.2.2.tgz#bcbae15169141df08b4e32d477fa58b99eac5040"
   dependencies:
@@ -2966,12 +2966,6 @@ draft-js@>=0.10.0:
     immutable "~3.7.4"
     object-assign "^4.1.0"
 
-dse-driver@~1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/dse-driver/-/dse-driver-1.2.0.tgz#a9c5d2957371e2691aac3e535d4a8c75ff8a1be3"
-  dependencies:
-    cassandra-driver "^3.2.0"
-
 duplexer2@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/duplexer2/-/duplexer2-0.0.2.tgz#c614dcf67e2fb14995a91711e5a617e8a60a31db"
@@ -3503,21 +3497,22 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-express-cassandra@1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/express-cassandra/-/express-cassandra-1.9.1.tgz#f008f0eb51839e3c43c346e100afc7f227016b14"
+express-cassandra@1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/express-cassandra/-/express-cassandra-1.10.0.tgz#c1f6234ca9dbfa23e858369053fe914507995b53"
   dependencies:
     async "^1.0.0"
     bluebird "^3.4.6"
+    cassandra-driver "^3.2.2"
     chai "^3.5.0"
     check-types "^1.4.0"
     debug "^2.2.0"
     deep-diff "^0.3.4"
-    dse-driver "~1.2.0"
     lodash "^4.14.2"
     object-hash "1.1.4"
     readdirp "^2.1.0"
     readline-sync "^1.4.4"
+    try-require "^1.2.1"
 
 express-graphql@0.6.11:
   version "0.6.11"
@@ -5216,9 +5211,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-4.1.2.tgz#d49caa518032eba51a45a5ce9a13d8641c0cf0c0"
+lint-staged@4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-4.1.3.tgz#07c592e4b8dee914450a183c761187dc53d079e2"
   dependencies:
     app-root-path "^2.0.0"
     chalk "^2.1.0"
@@ -5228,6 +5223,7 @@ lint-staged@4.1.2:
     jest-validate "^20.0.3"
     listr "^0.12.0"
     lodash "^4.17.4"
+    log-symbols "^2.0.0"
     minimatch "^3.0.0"
     npm-which "^3.0.1"
     p-map "^1.1.1"
@@ -5520,6 +5516,12 @@ log-symbols@^1.0.2:
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-1.0.2.tgz#376ff7b58ea3086a0f09facc74617eca501e1a18"
   dependencies:
     chalk "^1.0.0"
+
+log-symbols@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-2.0.0.tgz#595e63be4d5c8cbf294a9e09e0d5629f5913fc0c"
+  dependencies:
+    chalk "^2.0.1"
 
 log-update@^1.0.2:
   version "1.0.2"
@@ -6022,7 +6024,14 @@ node-fetch@1.6.3:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-fetch@1.7.2, node-fetch@^1.0.1, node-fetch@^1.3.3:
+node-fetch@1.7.3:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
+  dependencies:
+    encoding "^0.1.11"
+    is-stream "^1.0.1"
+
+node-fetch@^1.0.1, node-fetch@^1.3.3:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.2.tgz#c54e9aac57e432875233525f3c891c4159ffefd7"
   dependencies:
@@ -6896,7 +6905,23 @@ prettier-eslint-cli@4.3.0:
     rxjs "^5.3.0"
     yargs "8.0.2"
 
-prettier-eslint@7.1.0, prettier-eslint@^7.0.0:
+prettier-eslint@8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/prettier-eslint/-/prettier-eslint-8.0.0.tgz#966e966810a7ad5a390416ed3f610d4e5ee7f2b3"
+  dependencies:
+    common-tags "^1.4.0"
+    dlv "^1.1.0"
+    eslint "^4.5.0"
+    indent-string "^3.2.0"
+    lodash.merge "^4.6.0"
+    loglevel-colored-level-prefix "^1.0.0"
+    prettier "^1.6.0"
+    pretty-format "^20.0.3"
+    require-relative "^0.8.7"
+    typescript "^2.4.2"
+    typescript-eslint-parser "^7.0.0"
+
+prettier-eslint@^7.0.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/prettier-eslint/-/prettier-eslint-7.1.0.tgz#cba3925f90a14498bd1ebb5464c3bbba00659868"
   dependencies:
@@ -8907,6 +8932,10 @@ trim-newlines@^1.0.0:
 trim-right@^1.0.0, trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
+
+try-require@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/try-require/-/try-require-1.2.1.tgz#34489a2cac0c09c1cc10ed91ba011594d4333be2"
 
 try-resolve@^1.0.0:
   version "1.0.1"

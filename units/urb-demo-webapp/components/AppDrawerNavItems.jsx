@@ -51,6 +51,12 @@ export default class AppDrawernavItems extends React.Component<{}> {
           title="Translaticiarum"
           to="/translaticiarum"
         />
+        <AppDrawerNavItem
+          key="/viewport-dimensions"
+          openImmediately={true}
+          title="Viewport Dimensions"
+          to="/viewport-dimensions"
+        />
       </List>
     )
   }

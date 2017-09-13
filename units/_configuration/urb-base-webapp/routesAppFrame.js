@@ -6,6 +6,7 @@ import routeAppFrameForceLogin from '../../urb-example-force-login-webapp/routeA
 import routeAppFrameInscriptio from '../../urb-example-inscriptio-webapp/routeAppFrameInscriptio'
 import routeAppFrameTodo from '../../urb-example-todo-webapp/routeAppFrameTodo'
 import routeAppFrameTranslaticiarum from '../../urb-example-translaticiarum-webapp/routeAppFrameTranslaticiarum'
+import routeAppFrameViewportDimensions from '../../urb-example-viewport-dimensions-webapp/routeAppFrameViewportDimensions'
 
 export default [
   routeAppFrameAccountManagement,
@@ -14,4 +15,5 @@ export default [
   routeAppFrameInscriptio,
   routeAppFrameTodo,
   routeAppFrameTranslaticiarum,
+  routeAppFrameViewportDimensions,
 ]

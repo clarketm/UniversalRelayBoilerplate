@@ -49,7 +49,13 @@ _react2.default.createElement(_AppDrawerNavItem2.default,{
 key:'/translaticiarum',
 openImmediately:true,
 title:'Translaticiarum',
-to:'/translaticiarum'})));
+to:'/translaticiarum'}),
+
+_react2.default.createElement(_AppDrawerNavItem2.default,{
+key:'/viewport-dimensions',
+openImmediately:true,
+title:'Viewport Dimensions',
+to:'/viewport-dimensions'})));
 
 
 
