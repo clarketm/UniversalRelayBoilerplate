@@ -9,6 +9,8 @@ import createRender from 'found/lib/createRender'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import getGraphQLServerURL from '../_configuration/urb-base-webapp/getGraphQLServerURL'
+
 import FetcherClient from './fetcherClient'
 import { createResolver, historyMiddlewares, routeConfig } from './router'
 import Wrapper from './components/Wrapper'
@@ -22,7 +24,7 @@ const render = createRender({})
 ;( async() => {
   // eslint-disable-next-line no-underscore-dangle
   const fetcher = new FetcherClient(
-    '/graphql',
+    getGraphQLServerURL(),
     window.__RELAY_PAYLOADS__,
     window.__RELAY_PAYLOADS__[0].data.Viewer.UserToken2 // It is critical that the app frame has UserToken2 retrieved
   )
@@ -37,7 +39,7 @@ const render = createRender({})
   })
 
   ReactDOM.render(
-    <Wrapper configuration={{ appData: window.appData }}>
+    <Wrapper configuration={{ appData: window.__appData__ }}>
       <Router resolver={resolver} />
     </Wrapper>,
     document.getElementById( 'root' ),
