@@ -10,15 +10,13 @@
   <%- server_side_styles %>
 </style>
 <script>
-  var appData = <%- appData %>
+  window.__appData__ = <%- appData %>
+  window.__RELAY_PAYLOADS__ = <%- relay_payload %>
 </script>
 
 </head><body>
 
 <div id="root"><%- root_html %></div>
-<script>
-  window.__RELAY_PAYLOADS__ = <%- relay_payload %>
-</script>
 <script src="<%- assets_path %>/vendor.js"></script>
 <script src="<%- assets_path %>/client.js"></script>
 

@@ -11,6 +11,7 @@ var _checkCredentials=require('./checkCredentials');
 
 
 
+var _log=require('./log');var _log2=_interopRequireDefault(_log);
 var _logServerRequest=require('./logServerRequest');var _logServerRequest2=_interopRequireDefault(_logServerRequest);
 var _ObjectManager=require('./graphql/ObjectManager');
 var _schema=require('./graphql/schema');var _schema2=_interopRequireDefault(_schema);
@@ -29,15 +30,18 @@ serverGraphQL.use(function(req,res,next){return(
 (0,_logServerRequest2.default)(req,res,next,_requestLoggers.requestLoggerGraphQL));});
 
 
-function root(req,res,next){var objectManager,a_User;return regeneratorRuntime.async(function root$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.next=2;return regeneratorRuntime.awrap(
-(0,_ObjectManager.getObjectManager)(req,res));case 2:objectManager=_context.sent;if(!
-objectManager.siteInformation){_context.next=17;break;}_context.prev=4;_context.next=7;return regeneratorRuntime.awrap(
+function root(req,res,next){var objectManager,a_User;return regeneratorRuntime.async(function root$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.prev=0;_context.next=3;return regeneratorRuntime.awrap(
 
-(0,_checkCredentials.getUserAndSessionIDByUserToken1)(objectManager,req));case 7:a_User=_context.sent.
+(0,_ObjectManager.getObjectManager)(req,res));case 3:objectManager=_context.sent;if(!
+objectManager.siteInformation){_context.next=18;break;}_context.prev=5;_context.next=8;return regeneratorRuntime.awrap(
+
+(0,_checkCredentials.getUserAndSessionIDByUserToken1)(
+objectManager,
+req));case 8:a_User=_context.sent.
 User;
 
-res.codeFoundriesInjected={user:a_User};_context.next=11;return regeneratorRuntime.awrap(
-(0,_checkCredentials.verifyUserAuthToken)(a_User,req));case 11:
+res.codeFoundriesInjected={user:a_User};_context.next=12;return regeneratorRuntime.awrap(
+(0,_checkCredentials.verifyUserAuthToken)(a_User,req));case 12:
 
 (0,_expressGraphql2.default)(function(){
 return{
@@ -46,9 +50,19 @@ rootValue:objectManager,
 pretty:true,
 graphiql:true};
 
-})(req,res,next);_context.next=17;break;case 14:_context.prev=14;_context.t0=_context['catch'](4);
+})(req,res,next);_context.next=18;break;case 15:_context.prev=15;_context.t0=_context['catch'](5);
 
-(0,_checkCredentials.serveAuthenticationFailed)(req,res,_context.t0,true);case 17:case'end':return _context.stop();}}},null,this,[[4,14]]);}
+(0,_checkCredentials.serveAuthenticationFailed)(req,res,_context.t0,true);case 18:_context.next=24;break;case 20:_context.prev=20;_context.t1=_context['catch'](0);
+
+
+
+_log2.default.log('error','Error: GraphQL',_context.t1);
+res.
+status(500).
+send(
+JSON.stringify({
+error:'An error has occurred while running GraphQL query'}));case 24:case'end':return _context.stop();}}},null,this,[[0,20],[5,15]]);}
+
 
 
 

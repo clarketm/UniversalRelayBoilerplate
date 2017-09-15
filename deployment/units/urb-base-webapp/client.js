@@ -9,6 +9,8 @@ var _createRender=require('found/lib/createRender');var _createRender2=_interopR
 var _react=require('react');var _react2=_interopRequireDefault(_react);
 var _reactDom=require('react-dom');var _reactDom2=_interopRequireDefault(_reactDom);
 
+var _getGraphQLServerURL=require('../_configuration/urb-base-webapp/getGraphQLServerURL');var _getGraphQLServerURL2=_interopRequireDefault(_getGraphQLServerURL);
+
 var _fetcherClient=require('./fetcherClient');var _fetcherClient2=_interopRequireDefault(_fetcherClient);
 var _router=require('./router');
 var _Wrapper=require('./components/Wrapper');var _Wrapper2=_interopRequireDefault(_Wrapper);
@@ -22,7 +24,7 @@ var render=(0,_createRender2.default)({});
 (function _callee(){var fetcher,resolver,Router;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:
 
 fetcher=new _fetcherClient2.default(
-'/graphql',
+(0,_getGraphQLServerURL2.default)(),
 window.__RELAY_PAYLOADS__,
 window.__RELAY_PAYLOADS__[0].data.Viewer.UserToken2);
 
@@ -37,7 +39,7 @@ render:render}));case 4:Router=_context.sent;
 
 
 _reactDom2.default.render(
-_react2.default.createElement(_Wrapper2.default,{configuration:{appData:window.appData}},
+_react2.default.createElement(_Wrapper2.default,{configuration:{appData:window.__appData__}},
 _react2.default.createElement(Router,{resolver:resolver})),
 
 document.getElementById('root'),

@@ -58,8 +58,8 @@ const config = {
     rules: [
       {
         test: /\.js(x)?$/,
-        use: [
-          { loader: 'react-hot-loader/webpack' },
+        use: removeEmpty([
+          ifNotProd({ loader: 'react-hot-loader/webpack' }),
           {
             loader: 'babel-loader',
             options: {
@@ -67,7 +67,7 @@ const config = {
               presets: [ 'react-native-stage-0' ],
               plugins: removeEmpty([
                 'dynamic-import-webpack',
-                ifProd( 'react-hot-loader/babel' ),
+                ifNotProd( 'react-hot-loader/babel' ),
                 'transform-class-properties',
                 [
                   'transform-react-remove-prop-types',
@@ -90,8 +90,8 @@ const config = {
               ]),
             },
           },
-          { loader: 'eslint-loader' },
-        ],
+          ifNotProd({ loader: 'eslint-loader' }),
+        ]),
         exclude: /node_modules/,
       },
       {

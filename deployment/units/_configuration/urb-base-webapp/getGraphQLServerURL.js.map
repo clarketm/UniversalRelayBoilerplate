@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../units/_configuration/urb-base-webapp/getGraphQLServerURL.js"],"names":[],"mappings":";;AAEe,iBAAM,UAAN,E","file":"getGraphQLServerURL.js","sourcesContent":["// @flow\n\nexport default () => '/graphql'\n"]}
