@@ -10,8 +10,16 @@ console.log(
 )
 console.log( 'Current version in package.js:   ' + version )
 
-let versionBuildNumber = version.split( '.' )[3]
-if ( versionBuildNumber == null ) versionBuildNumber = 1
+const arrVersion = version.split( '.' )
+let versionBuildNumber = arrVersion[3]
+
+if ( versionBuildNumber == null ) versionBuildNumber = -1
+
+if (
+  process.env.npm_package_version !=
+  arrVersion[0] + '.' + arrVersion[1] + '.' + arrVersion[2]
+)
+  versionBuildNumber = -1
 
 // Increment build
 versionBuildNumber++
