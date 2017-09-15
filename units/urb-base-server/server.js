@@ -10,7 +10,8 @@ import compression from 'compression'
 import cookieParser from 'cookie-parser'
 
 import { name, version } from '../_configuration/package'
-import serverWebApp from '../urb-base-webapp/serverWebApp' // Isomorphic React server
+import serverWebApp from '../urb-base-webapp/serverWebApp'
+import serverExtensions from '../_configuration/urb-base-server/serverExtensions'
 
 import serverAuth from './serverAuth' // Authentication server
 import getLocalIP from './getLocalIP'
@@ -98,6 +99,9 @@ server.use(
     }
   )
 )
+
+// Add extensions - custom routes
+serverExtensions( server )
 
 // Application with routes
 server.use( serverWebApp )

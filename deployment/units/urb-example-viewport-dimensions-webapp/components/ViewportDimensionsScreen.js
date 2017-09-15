@@ -26,12 +26,12 @@ ViewportDimensionsScreen=function(_React$Component){_inherits(ViewportDimensions
 
 
 
-{var
-classes=this.props.classes;
+{var _props=
+this.props,classes=_props.classes,totalHeight=_props.totalHeight,totalWidth=_props.totalWidth;
 
 var data=[
-{name:'totalWidth',value:this.props.totalWidth},
-{name:'totalHeight',value:this.props.totalHeight}];
+{name:'totalWidth',value:totalWidth},
+{name:'totalHeight',value:totalHeight}];
 
 
 return(

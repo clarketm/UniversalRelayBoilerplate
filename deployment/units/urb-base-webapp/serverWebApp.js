@@ -12,6 +12,7 @@ var _server2=require('react-dom/server');var _server3=_interopRequireDefault(_se
 var _serializeJavascript=require('serialize-javascript');var _serializeJavascript2=_interopRequireDefault(_serializeJavascript);
 
 var _ErrorComponent=require('../_configuration/urb-base-webapp/ErrorComponent');var _ErrorComponent2=_interopRequireDefault(_ErrorComponent);
+var _getGraphQLLocalServerURL=require('../_configuration/urb-base-server/getGraphQLLocalServerURL');var _getGraphQLLocalServerURL2=_interopRequireDefault(_getGraphQLLocalServerURL);
 var _siteSettings=require('../_configuration/urb-base-server/siteSettings');
 var _log=require('../urb-base-server/log');var _log2=_interopRequireDefault(_log);
 var _package=require('../_configuration/package');
@@ -49,7 +50,7 @@ function gatherLocationAndSiteInformation(req,res){var assetsPath,siteInformatio
 assetsPath=void 0;_context.next=3;return regeneratorRuntime.awrap(
 
 (0,_siteSettings.getSiteInformation)(req,res));case 3:siteInformation=_context.sent;
-if(siteInformation){
+
 if(process.env.NODE_ENV==='production'){
 assetsPath=
 siteInformation.isSiteBuilderDisabled||siteInformation.inEditingMode?'/assets/'+_package.version:'/assets-site/'+_package.version+'.'+
@@ -61,7 +62,6 @@ version;
 }else{
 
 assetsPath='http://'+envHost+':'+envPortWebpack+'/'+_package.version;
-}
 }return _context.abrupt('return',
 
 {siteInformation:siteInformation,assetsPath:assetsPath});case 6:case'end':return _context.stop();}}},null,this);}
@@ -78,11 +78,16 @@ return _react2.default.createElement(_ErrorComponent2.default,{httpStatus:error.
 }});
 
 
-serverWebApp.use(function _callee(req,res){var fetcher,_ref,redirect,element,userAgent,_ref2,siteInformation,assetsPath,configuration,sheets,helmet,rootHTML;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:_context2.prev=0;
+serverWebApp.use(function _callee(req,res){var _ref,siteInformation,assetsPath,fetcher,_ref2,redirect,element,userAgent,configuration,sheets,helmet,rootHTML;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:_context2.prev=0;_context2.next=3;return regeneratorRuntime.awrap(
 
-fetcher=new _fetcherServer2.default('http://localhost:'+
-envPort+'/graphql',
-req.cookies.UserToken1,_UserToken2ServerRendering2.default);_context2.next=4;return regeneratorRuntime.awrap(
+
+
+
+gatherLocationAndSiteInformation(req,res));case 3:_ref=_context2.sent;siteInformation=_ref.siteInformation;assetsPath=_ref.assetsPath;
+
+fetcher=new _fetcherServer2.default(
+'http://localhost:'+envPort+(0,_getGraphQLLocalServerURL2.default)(siteInformation),
+req.cookies.UserToken1,_UserToken2ServerRendering2.default);_context2.next=9;return regeneratorRuntime.awrap(
 
 
 
@@ -91,24 +96,19 @@ url:req.url,
 historyMiddlewares:_router.historyMiddlewares,
 routeConfig:_router.routeConfig,
 resolver:(0,_router.createResolver)(fetcher),
-render:render}));case 4:_ref=_context2.sent;redirect=_ref.redirect;element=_ref.element;if(!
+render:render}));case 9:_ref2=_context2.sent;redirect=_ref2.redirect;element=_ref2.element;if(!
 
 
-redirect){_context2.next=10;break;}
-res.redirect(302,redirect.url);return _context2.abrupt('return');case 10:
-
-
-
-userAgent=req.headers['user-agent'];_context2.next=13;return regeneratorRuntime.awrap(
+redirect){_context2.next=15;break;}
+res.redirect(302,redirect.url);return _context2.abrupt('return');case 15:
 
 
 
+userAgent=req.headers['user-agent'];
 
-gatherLocationAndSiteInformation(req,res));case 13:_ref2=_context2.sent;siteInformation=_ref2.siteInformation;assetsPath=_ref2.assetsPath;
 configuration=siteInformation.configurationAsObject;
 
 sheets=new _reactJss.SheetsRegistry();
-
 helmet=_reactHelmet2.default.rewind();
 
 rootHTML=_server3.default.renderToString(

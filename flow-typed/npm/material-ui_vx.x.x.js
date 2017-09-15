@@ -634,6 +634,10 @@ declare module 'material-ui/Switch/Switch' {
   declare module.exports: any
 }
 
+declare module 'material-ui/Table' {
+  declare module.exports: any
+}
+
 declare module 'material-ui/Table/index' {
   declare module.exports: any
 }

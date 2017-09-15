@@ -11,6 +11,7 @@ import {
   verifyUserAuthToken,
   serveAuthenticationFailed,
 } from './checkCredentials'
+import log from './log'
 import logServerRequest from './logServerRequest'
 import { getObjectManager } from './graphql/ObjectManager'
 import schema from './graphql/schema' // Schema for GraphQL server
@@ -30,26 +31,37 @@ serverGraphQL.use( ( req, res, next ) =>
 )
 
 async function root( req, res, next ) {
-  const objectManager = await getObjectManager( req, res )
-  if ( objectManager.siteInformation ) {
-    try {
-      const a_User = ( await getUserAndSessionIDByUserToken1( objectManager, req ) )
-        .User
+  try {
+    const objectManager = await getObjectManager( req, res )
+    if ( objectManager.siteInformation ) {
+      try {
+        const a_User = ( await getUserAndSessionIDByUserToken1(
+          objectManager,
+          req
+        ) ).User
 
-      res.codeFoundriesInjected = { user: a_User }
-      await verifyUserAuthToken( a_User, req )
+        res.codeFoundriesInjected = { user: a_User }
+        await verifyUserAuthToken( a_User, req )
 
-      graphQLHTTP( () => {
-        return {
-          schema: schema,
-          rootValue: objectManager,
-          pretty: true,
-          graphiql: true,
-        }
-      })( req, res, next )
-    } catch ( err ) {
-      serveAuthenticationFailed( req, res, err, true )
+        graphQLHTTP( () => {
+          return {
+            schema: schema,
+            rootValue: objectManager,
+            pretty: true,
+            graphiql: true,
+          }
+        })( req, res, next )
+      } catch ( err ) {
+        serveAuthenticationFailed( req, res, err, true )
+      }
     }
+  } catch ( err ) {
+    log.log( 'error', 'Error: GraphQL', err )
+    res.status( 500 ).send(
+      JSON.stringify({
+        error: 'An error has occurred while running GraphQL query',
+      })
+    )
   }
 }
 serverGraphQL.use( '/', root )

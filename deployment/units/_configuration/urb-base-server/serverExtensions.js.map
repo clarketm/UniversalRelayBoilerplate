@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../units/_configuration/urb-base-server/serverExtensions.js"],"names":["serverExtensions","router"],"mappings":";;AAEwBA,gB,CAAT,QAASA,iBAAT,CAA2BC,MAA3B,CAA4C,CAAE","file":"serverExtensions.js","sourcesContent":["// @flow\n\nexport default function serverExtensions( router: Object ) {}\n"]}

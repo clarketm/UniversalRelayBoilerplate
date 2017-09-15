@@ -10,8 +10,16 @@ console.log(
 
 console.log('Current version in package.js:   '+_package.version);
 
-var versionBuildNumber=_package.version.split('.')[3];
-if(versionBuildNumber==null)versionBuildNumber=1;
+var arrVersion=_package.version.split('.');
+var versionBuildNumber=arrVersion[3];
+
+if(versionBuildNumber==null)versionBuildNumber=-1;
+
+if(
+process.env.npm_package_version!=
+arrVersion[0]+'.'+arrVersion[1]+'.'+arrVersion[2])
+
+versionBuildNumber=-1;
 
 
 versionBuildNumber++;

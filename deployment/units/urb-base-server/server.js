@@ -11,6 +11,7 @@ var _cookieParser=require('cookie-parser');var _cookieParser2=_interopRequireDef
 
 var _package=require('../_configuration/package');
 var _serverWebApp=require('../urb-base-webapp/serverWebApp');var _serverWebApp2=_interopRequireDefault(_serverWebApp);
+var _serverExtensions=require('../_configuration/urb-base-server/serverExtensions');var _serverExtensions2=_interopRequireDefault(_serverExtensions);
 
 var _serverAuth=require('./serverAuth');var _serverAuth2=_interopRequireDefault(_serverAuth);
 var _getLocalIP=require('./getLocalIP');var _getLocalIP2=_interopRequireDefault(_getLocalIP);
@@ -98,6 +99,9 @@ maxAge:365*86400000}));
 
 
 
+
+
+(0,_serverExtensions2.default)(server);
 
 
 server.use(_serverWebApp2.default);

@@ -12,6 +12,7 @@ import ReactDOMServer from 'react-dom/server'
 import serialize from 'serialize-javascript'
 
 import ErrorComponent from '../_configuration/urb-base-webapp/ErrorComponent'
+import getGraphQLLocalServerURL from '../_configuration/urb-base-server/getGraphQLLocalServerURL'
 import { getSiteInformation } from '../_configuration/urb-base-server/siteSettings'
 import log from '../urb-base-server/log'
 import { version } from '../_configuration/package'
@@ -49,20 +50,19 @@ async function gatherLocationAndSiteInformation( req: Object, res: Object ) {
   let assetsPath
 
   const siteInformation = await getSiteInformation( req, res )
-  if ( siteInformation ) {
-    if ( process.env.NODE_ENV === 'production' ) {
-      assetsPath =
-        siteInformation.isSiteBuilderDisabled || siteInformation.inEditingMode
-          ? // When editing in production, use the assets with the configuration readign code intact (built when cutting a site version)
-            `/assets/${version}`
-          : // When in production mode, serve the assets compiled by factory's publisher
-            `/assets-site/${version}.${siteInformation.configurationAsObject
-              .version}`
-    } else {
-      // When in development, always go to webpack over http
-      assetsPath = `http://${envHost}:${envPortWebpack}/${version}`
-    }
-  } // If siteInformation was null, an error response has already been given
+
+  if ( process.env.NODE_ENV === 'production' ) {
+    assetsPath =
+      siteInformation.isSiteBuilderDisabled || siteInformation.inEditingMode
+        ? // When editing in production, use the assets with the configuration readign code intact (built when cutting a site version)
+          `/assets/${version}`
+        : // When in production mode, serve the assets compiled by factory's publisher
+          `/assets-site/${version}.${siteInformation.configurationAsObject
+            .version}`
+  } else {
+    // When in development, always go to webpack over http
+    assetsPath = `http://${envHost}:${envPortWebpack}/${version}`
+  }
 
   return { siteInformation, assetsPath }
 }
@@ -80,8 +80,13 @@ const render = createRender({
 
 serverWebApp.use( async( req, res ) => {
   try {
+    const {
+      siteInformation,
+      assetsPath,
+    } = await gatherLocationAndSiteInformation( req, res )
+
     const fetcher = new FetcherServer(
-      `http://localhost:${envPort}/graphql`,
+      `http://localhost:${envPort}` + getGraphQLLocalServerURL( siteInformation ),
       req.cookies.UserToken1,
       UserToken2ServerRendering
     )
@@ -101,14 +106,9 @@ serverWebApp.use( async( req, res ) => {
 
     const userAgent = req.headers['user-agent']
 
-    const {
-      siteInformation,
-      assetsPath,
-    } = await gatherLocationAndSiteInformation( req, res )
     const configuration = siteInformation.configurationAsObject
 
     const sheets = new SheetsRegistry()
-
     const helmet = Helmet.rewind()
 
     const rootHTML = ReactDOMServer.renderToString(
