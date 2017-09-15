@@ -57,9 +57,7 @@ graphiql:true};
 
 
 _log2.default.log('error','Error: GraphQL',_context.t1);
-res.
-status(500).
-send(
+res.status(500).send(
 JSON.stringify({
 error:'An error has occurred while running GraphQL query'}));case 24:case'end':return _context.stop();}}},null,this,[[0,20],[5,15]]);}
 
