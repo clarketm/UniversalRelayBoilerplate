@@ -157,5 +157,5 @@
     "update-default-persister": "./node_modules/.bin/babel-node ./units/urb-base-tools/update-default-persister.js",
     "update-ip": "./node_modules/.bin/babel-node ./units/urb-base-tools/update-ip.js"
   },
-  "version": "0.2.3"
+  "version": "0.3.0"
 }
