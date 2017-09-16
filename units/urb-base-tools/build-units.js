@@ -7,7 +7,7 @@ import { promisify } from 'util'
 import prettier from 'prettier'
 
 // $FlowIssue Not sure why it gives an error. The file does exist
-import prettierRC from '../../.prettierrc.json'
+import packageJSON from '../../package.json'
 
 import ensureFileContent from './ensureFileContent'
 
@@ -50,16 +50,15 @@ function mergeScripts( scripts1, scripts2 ) {
 
 async function createPackageJson( units: Array<string> ) {
   const packageJsonFileName = path.resolve( './package.json' )
-  const currentPackageAsJSONString = ( await readFileAsync(
-    packageJsonFileName
-  ) ).toString()
+  const currentPackageAsJSONString = ( await readFileAsync( packageJsonFileName ) ).toString()
   const currentPackageAsObject = JSON.parse( currentPackageAsJSONString )
   const packageAsObject = {
     dependencies: {},
     devDependencies: {},
     engines: {},
-    name: null,
     'lint-staged': {},
+    name: null,
+    prettier: {},
     scripts: {},
     version: null,
   }
@@ -70,37 +69,24 @@ async function createPackageJson( units: Array<string> ) {
 
   // Add packages to object
   for ( let unitName of units ) {
-    const packageAsObjectName = path.resolve(
-      './units',
-      unitName,
-      'package.part.json'
-    )
+    const packageAsObjectName = path.resolve( './units', unitName, 'package.part.json' )
     if ( await existsAsync( packageAsObjectName ) ) {
-      const packageToAddAsObject = JSON.parse(
-        ( await readFileAsync( packageAsObjectName ) ).toString()
-      )
+      const packageToAddAsObject = JSON.parse( ( await readFileAsync( packageAsObjectName ) ).toString() )
 
       if ( packageToAddAsObject.dependencies )
-        Object.assign(
-          packageAsObject.dependencies,
-          packageToAddAsObject.dependencies
-        )
+        Object.assign( packageAsObject.dependencies, packageToAddAsObject.dependencies )
       if ( packageToAddAsObject.devDependencies )
-        Object.assign(
-          packageAsObject.devDependencies,
-          packageToAddAsObject.devDependencies
-        )
+        Object.assign( packageAsObject.devDependencies, packageToAddAsObject.devDependencies )
       if ( packageToAddAsObject.engines )
         Object.assign( packageAsObject.engines, packageToAddAsObject.engines )
       if ( packageToAddAsObject['lint-staged'])
-        Object.assign(
-          packageAsObject['lint-staged'],
-          packageToAddAsObject['lint-staged']
-        )
+        Object.assign( packageAsObject['lint-staged'], packageToAddAsObject['lint-staged'])
+      if ( packageToAddAsObject.prettier )
+        Object.assign( packageAsObject.prettier, packageToAddAsObject.prettier )
       if ( packageToAddAsObject.scripts )
         packageAsObject.scripts = mergeScripts(
           packageAsObject.scripts,
-          packageToAddAsObject.scripts
+          packageToAddAsObject.scripts,
         )
     }
   }
@@ -111,7 +97,7 @@ async function createPackageJson( units: Array<string> ) {
   await ensureFileContent(
     packageJsonFileName,
     currentPackageAsJSONString,
-    JSON.stringify( packageAsObject, null, 2 )
+    JSON.stringify( packageAsObject, null, 2 ),
   )
 }
 
@@ -127,10 +113,7 @@ async function createMutations( units: Array<string> ) {
 
         for ( let mutationFileName of mutationFileNames ) {
           if ( mutationFileName.endsWith( '.js' ) ) {
-            const mutation = mutationFileName.substring(
-              0,
-              mutationFileName.length - 3
-            )
+            const mutation = mutationFileName.substring( 0, mutationFileName.length - 3 )
             mutationsImports.push(
               'import ' +
                 mutation.replace( '.', '_' ) +
@@ -138,7 +121,7 @@ async function createMutations( units: Array<string> ) {
                 unitName +
                 '/graphql/mutation/' +
                 mutation +
-                '\''
+                '\'',
             )
             mutationsExports.push( '  ' + mutation + ',' )
           }
@@ -153,11 +136,9 @@ async function createMutations( units: Array<string> ) {
   mutations = mutations.concat([ '}' ])
 
   await ensureFileContent(
-    path.resolve(
-      './units/_configuration/urb-base-server/graphql/_mutations.js'
-    ),
+    path.resolve( './units/_configuration/urb-base-server/graphql/_mutations.js' ),
     null,
-    prettier.format( mutations.join( '\r\n' ), prettierRC )
+    prettier.format( mutations.join( '\r\n' ), packageJSON.prettier ),
   )
 }
 
@@ -172,16 +153,9 @@ async function createSchemas( units: Array<string> ) {
 
         for ( let objectTypeFileName of objectTypeFileNames ) {
           if ( objectTypeFileName.endsWith( '.js' ) ) {
-            const objectType = objectTypeFileName.substring(
-              0,
-              objectTypeFileName.length - 3
-            )
+            const objectType = objectTypeFileName.substring( 0, objectTypeFileName.length - 3 )
             schemasImports.push(
-              'import \'../../../' +
-                unitName +
-                '/graphql/model/' +
-                objectType +
-                '\''
+              'import \'../../../' + unitName + '/graphql/model/' + objectType + '\'',
             )
           }
         }
@@ -195,7 +169,7 @@ async function createSchemas( units: Array<string> ) {
   await ensureFileContent(
     path.resolve( './units/_configuration/urb-base-server/graphql/_schemas.js' ),
     null,
-    prettier.format( schemas.join( '\r\n' ), prettierRC )
+    prettier.format( schemas.join( '\r\n' ), packageJSON.prettier ),
   )
 }
 
@@ -208,7 +182,7 @@ async function createViewerFields( units: Array<string> ) {
       const viewerFieldsFileName = path.resolve(
         './units',
         unitName,
-        'graphql/type/_ViewerFields.js'
+        'graphql/type/_ViewerFields.js',
       )
       if ( await existsAsync( viewerFieldsFileName ) ) {
         const viewerFieldsImportName = unitName.replace( /-/g, '_' )
@@ -217,7 +191,7 @@ async function createViewerFields( units: Array<string> ) {
             viewerFieldsImportName +
             ' from \'../../../' +
             unitName +
-            '/graphql/type/_ViewerFields\''
+            '/graphql/type/_ViewerFields\'',
         )
         viewerFieldsExports.push( '  ...' + viewerFieldsImportName + ',' )
       }
@@ -230,11 +204,9 @@ async function createViewerFields( units: Array<string> ) {
   viewerFields = viewerFields.concat([ '}' ])
 
   await ensureFileContent(
-    path.resolve(
-      './units/_configuration/urb-base-server/graphql/_ViewerFields.js'
-    ),
+    path.resolve( './units/_configuration/urb-base-server/graphql/_ViewerFields.js' ),
     null,
-    prettier.format( viewerFields.join( '\r\n' ), prettierRC )
+    prettier.format( viewerFields.join( '\r\n' ), packageJSON.prettier ),
   )
 }
 
@@ -255,25 +227,13 @@ async function createRoutes( units: Array<string> ) {
             if ( routeFileName.startsWith( 'routeAppFrame' ) ) {
               const route = routeFileName.substring( 0, routeFileName.length - 4 )
               routesAppFrameImports.push(
-                'import ' +
-                  route +
-                  ' from \'../../' +
-                  unitName +
-                  '/' +
-                  route +
-                  '\''
+                'import ' + route + ' from \'../../' + unitName + '/' + route + '\'',
               )
               routesAppFrameExports.push( '  ' + route + ',' )
             } else if ( routeFileName.startsWith( 'routeRoot' ) ) {
               const route = routeFileName.substring( 0, routeFileName.length - 4 )
               routesRootImports.push(
-                'import ' +
-                  route +
-                  ' from \'../../' +
-                  unitName +
-                  '/' +
-                  route +
-                  '\''
+                'import ' + route + ' from \'../../' + unitName + '/' + route + '\'',
               )
               routesRootExports.push( '  ' + route + ',' )
             }
@@ -285,21 +245,17 @@ async function createRoutes( units: Array<string> ) {
     createRouteFile(
       path.resolve( './units/_configuration/urb-base-webapp/routesAppFrame.js' ),
       routesAppFrameImports,
-      routesAppFrameExports
+      routesAppFrameExports,
     ),
     createRouteFile(
       path.resolve( './units/_configuration/urb-base-webapp/routesRoot.js' ),
       routesRootImports,
-      routesRootExports
+      routesRootExports,
     ),
   ])
 }
 
-async function createRouteFile(
-  fileName: string,
-  imports: Array<string>,
-  exports: Array<string>
-) {
+async function createRouteFile( fileName: string, imports: Array<string>, exports: Array<string> ) {
   let routesAppFrame = [ '// @flow', '' ]
   routesAppFrame = routesAppFrame.concat( imports )
   routesAppFrame = routesAppFrame.concat([ '', 'export default [' ])
@@ -309,13 +265,13 @@ async function createRouteFile(
   await ensureFileContent(
     fileName,
     null,
-    prettier.format( routesAppFrame.join( '\r\n' ), prettierRC )
+    prettier.format( routesAppFrame.join( '\r\n' ), packageJSON.prettier ),
   )
 }
 
 async function getUnits() {
   const units = ( await readdirAsync( './units/' ) ).filter(
-    fileName => fileName !== '.DS_Store' && fileName !== '_configuration'
+    fileName => fileName !== '.DS_Store' && fileName !== '_configuration',
   )
   return units
 }
