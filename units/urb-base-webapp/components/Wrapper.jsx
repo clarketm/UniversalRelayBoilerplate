@@ -26,7 +26,7 @@ export default class Wrapper extends React.Component<
     // TODO x0100 If a property for innerWidth is provided, use it for the initial request
 
     // Descendants can add other items to rbCtx through getWrapperRbCtx
-    this.rbCtx = getWrapperRbCtx( props.configuration )
+    this.rbCtx = getWrapperRbCtx( props.siteConfiguration )
 
     this.rbCtx.viewportDimensions = new ViewportDimensions()
     this.rbCtx.siteConfiguration = props.siteConfiguration

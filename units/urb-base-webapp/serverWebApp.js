@@ -82,7 +82,7 @@ serverWebApp.use( async( req, res ) => {
     const { siteConfiguration } = siteInformation
     const siteConfigurationSubset = {
       webapp: siteConfiguration.webapp,
-      builderClient: siteConfiguration.builderClient,
+      builder: siteConfiguration.builder,
     }
     const sheets = new SheetsRegistry()
     const helmet = Helmet.rewind()
