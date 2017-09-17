@@ -31,7 +31,7 @@ export default class Wrapper extends React.Component<
     this.rbCtx.viewportDimensions = new ViewportDimensions()
     this.rbCtx.siteConfiguration = props.siteConfiguration
 
-    this.muiTheme = createMUITheme( this.rbCtx )
+    this.muiTheme = createMUITheme( this )
   }
 
   componentDidMount() {
