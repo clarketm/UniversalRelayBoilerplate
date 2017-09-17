@@ -7,7 +7,7 @@ var _util=require('util');
 var _prettier=require('prettier');var _prettier2=_interopRequireDefault(_prettier);
 
 
-var _prettierrc=require('../../.prettierrc.json');var _prettierrc2=_interopRequireDefault(_prettierrc);
+var _package=require('../../package.json');var _package2=_interopRequireDefault(_package);
 
 var _ensureFileContent=require('./ensureFileContent');var _ensureFileContent2=_interopRequireDefault(_ensureFileContent);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
@@ -50,16 +50,15 @@ return scripts;
 
 function createPackageJson(units){var packageJsonFileName,currentPackageAsJSONString,currentPackageAsObject,packageAsObject,_iterator,_isArray,_i,_ref,unitName,packageAsObjectName,packageToAddAsObject;return regeneratorRuntime.async(function createPackageJson$(_context){while(1){switch(_context.prev=_context.next){case 0:
 packageJsonFileName=_path2.default.resolve('./package.json');_context.next=3;return regeneratorRuntime.awrap(
-readFileAsync(
-packageJsonFileName));case 3:currentPackageAsJSONString=_context.sent.
-toString();
+readFileAsync(packageJsonFileName));case 3:currentPackageAsJSONString=_context.sent.toString();
 currentPackageAsObject=JSON.parse(currentPackageAsJSONString);
 packageAsObject={
 dependencies:{},
 devDependencies:{},
 engines:{},
-name:null,
 'lint-staged':{},
+name:null,
+prettier:{},
 scripts:{},
 version:null};
 
@@ -69,49 +68,36 @@ packageAsObject.version=currentPackageAsObject.version;
 packageAsObject.name=currentPackageAsObject.name;_iterator=
 
 
-units,_isArray=Array.isArray(_iterator),_i=0,_iterator=_isArray?_iterator:_iterator[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();case 9:if(!_isArray){_context.next=15;break;}if(!(_i>=_iterator.length)){_context.next=12;break;}return _context.abrupt('break',36);case 12:_ref=_iterator[_i++];_context.next=19;break;case 15:_i=_iterator.next();if(!_i.done){_context.next=18;break;}return _context.abrupt('break',36);case 18:_ref=_i.value;case 19:unitName=_ref;
-packageAsObjectName=_path2.default.resolve(
-'./units',
-unitName,
-'package.part.json');_context.next=23;return regeneratorRuntime.awrap(
-
-existsAsync(packageAsObjectName));case 23:if(!_context.sent){_context.next=34;break;}_context.t0=
-JSON;_context.next=27;return regeneratorRuntime.awrap(
-readFileAsync(packageAsObjectName));case 27:_context.t1=_context.sent.toString();packageToAddAsObject=_context.t0.parse.call(_context.t0,_context.t1);
-
+units,_isArray=Array.isArray(_iterator),_i=0,_iterator=_isArray?_iterator:_iterator[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();case 9:if(!_isArray){_context.next=15;break;}if(!(_i>=_iterator.length)){_context.next=12;break;}return _context.abrupt('break',37);case 12:_ref=_iterator[_i++];_context.next=19;break;case 15:_i=_iterator.next();if(!_i.done){_context.next=18;break;}return _context.abrupt('break',37);case 18:_ref=_i.value;case 19:unitName=_ref;
+packageAsObjectName=_path2.default.resolve('./units',unitName,'package.part.json');_context.next=23;return regeneratorRuntime.awrap(
+existsAsync(packageAsObjectName));case 23:if(!_context.sent){_context.next=35;break;}_context.t0=
+JSON;_context.next=27;return regeneratorRuntime.awrap(readFileAsync(packageAsObjectName));case 27:_context.t1=_context.sent.toString();packageToAddAsObject=_context.t0.parse.call(_context.t0,_context.t1);
 
 if(packageToAddAsObject.dependencies)
-_extends(
-packageAsObject.dependencies,
-packageToAddAsObject.dependencies);
-
+_extends(packageAsObject.dependencies,packageToAddAsObject.dependencies);
 if(packageToAddAsObject.devDependencies)
-_extends(
-packageAsObject.devDependencies,
-packageToAddAsObject.devDependencies);
-
+_extends(packageAsObject.devDependencies,packageToAddAsObject.devDependencies);
 if(packageToAddAsObject.engines)
 _extends(packageAsObject.engines,packageToAddAsObject.engines);
 if(packageToAddAsObject['lint-staged'])
-_extends(
-packageAsObject['lint-staged'],
-packageToAddAsObject['lint-staged']);
-
+_extends(packageAsObject['lint-staged'],packageToAddAsObject['lint-staged']);
+if(packageToAddAsObject.prettier)
+_extends(packageAsObject.prettier,packageToAddAsObject.prettier);
 if(packageToAddAsObject.scripts)
 packageAsObject.scripts=mergeScripts(
 packageAsObject.scripts,
-packageToAddAsObject.scripts);case 34:_context.next=9;break;case 36:
+packageToAddAsObject.scripts);case 35:_context.next=9;break;case 37:
 
 
 
 
 
-orderPackages(packageAsObject);_context.next=39;return regeneratorRuntime.awrap(
+orderPackages(packageAsObject);_context.next=40;return regeneratorRuntime.awrap(
 
 (0,_ensureFileContent2.default)(
 packageJsonFileName,
 currentPackageAsJSONString,
-JSON.stringify(packageAsObject,null,2)));case 39:case'end':return _context.stop();}}},null,this);}
+JSON.stringify(packageAsObject,null,2)));case 40:case'end':return _context.stop();}}},null,this);}
 
 
 
@@ -127,10 +113,7 @@ readdirAsync(mutationsDir));case 21:mutationFileNames=_context2.sent;_iterator3=
 
 mutationFileNames,_isArray3=Array.isArray(_iterator3),_i3=0,_iterator3=_isArray3?_iterator3:_iterator3[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();case 23:if(!_isArray3){_context2.next=29;break;}if(!(_i3>=_iterator3.length)){_context2.next=26;break;}return _context2.abrupt('break',37);case 26:_ref3=_iterator3[_i3++];_context2.next=33;break;case 29:_i3=_iterator3.next();if(!_i3.done){_context2.next=32;break;}return _context2.abrupt('break',37);case 32:_ref3=_i3.value;case 33:mutationFileName=_ref3;
 if(mutationFileName.endsWith('.js')){
-mutation=mutationFileName.substring(
-0,
-mutationFileName.length-3);
-
+mutation=mutationFileName.substring(0,mutationFileName.length-3);
 mutationsImports.push(
 'import '+
 mutation.replace('.','_')+
@@ -153,11 +136,9 @@ mutations=mutations.concat(mutationsExports);
 mutations=mutations.concat(['}']);_context2.next=46;return regeneratorRuntime.awrap(
 
 (0,_ensureFileContent2.default)(
-_path2.default.resolve(
-'./units/_configuration/urb-base-server/graphql/_mutations.js'),
-
+_path2.default.resolve('./units/_configuration/urb-base-server/graphql/_mutations.js'),
 null,
-_prettier2.default.format(mutations.join('\r\n'),_prettierrc2.default)));case 46:case'end':return _context2.stop();}}},null,this);}
+_prettier2.default.format(mutations.join('\r\n'),_package2.default.prettier)));case 46:case'end':return _context2.stop();}}},null,this);}
 
 
 
@@ -172,16 +153,9 @@ readdirAsync(schemasDir));case 20:objectTypeFileNames=_context3.sent;_iterator5=
 
 objectTypeFileNames,_isArray5=Array.isArray(_iterator5),_i5=0,_iterator5=_isArray5?_iterator5:_iterator5[typeof Symbol==='function'?typeof Symbol==='function'?Symbol.iterator:'@@iterator':'@@iterator']();case 22:if(!_isArray5){_context3.next=28;break;}if(!(_i5>=_iterator5.length)){_context3.next=25;break;}return _context3.abrupt('break',36);case 25:_ref5=_iterator5[_i5++];_context3.next=32;break;case 28:_i5=_iterator5.next();if(!_i5.done){_context3.next=31;break;}return _context3.abrupt('break',36);case 31:_ref5=_i5.value;case 32:objectTypeFileName=_ref5;
 if(objectTypeFileName.endsWith('.js')){
-objectType=objectTypeFileName.substring(
-0,
-objectTypeFileName.length-3);
-
+objectType=objectTypeFileName.substring(0,objectTypeFileName.length-3);
 schemasImports.push(
-'import \'../../../'+
-unitName+
-'/graphql/model/'+
-objectType+
-'\'');
+'import \'../../../'+unitName+'/graphql/model/'+objectType+'\'');
 
 }case 34:_context3.next=22;break;case 36:_context3.next=2;break;case 38:
 
@@ -195,7 +169,7 @@ schemas=schemas.concat(['','export default true']);_context3.next=43;return rege
 (0,_ensureFileContent2.default)(
 _path2.default.resolve('./units/_configuration/urb-base-server/graphql/_schemas.js'),
 null,
-_prettier2.default.format(schemas.join('\r\n'),_prettierrc2.default)));case 43:case'end':return _context3.stop();}}},null,this);}
+_prettier2.default.format(schemas.join('\r\n'),_package2.default.prettier)));case 43:case'end':return _context3.stop();}}},null,this);}
 
 
 
@@ -230,11 +204,9 @@ viewerFields=viewerFields.concat(viewerFieldsExports);
 viewerFields=viewerFields.concat(['}']);_context4.next=31;return regeneratorRuntime.awrap(
 
 (0,_ensureFileContent2.default)(
-_path2.default.resolve(
-'./units/_configuration/urb-base-server/graphql/_ViewerFields.js'),
-
+_path2.default.resolve('./units/_configuration/urb-base-server/graphql/_ViewerFields.js'),
 null,
-_prettier2.default.format(viewerFields.join('\r\n'),_prettierrc2.default)));case 31:case'end':return _context4.stop();}}},null,this);}
+_prettier2.default.format(viewerFields.join('\r\n'),_package2.default.prettier)));case 31:case'end':return _context4.stop();}}},null,this);}
 
 
 
@@ -255,25 +227,13 @@ if(routeFileName.endsWith('.jsx'))
 if(routeFileName.startsWith('routeAppFrame')){
 route=routeFileName.substring(0,routeFileName.length-4);
 routesAppFrameImports.push(
-'import '+
-route+
-' from \'../../'+
-unitName+
-'/'+
-route+
-'\'');
+'import '+route+' from \'../../'+unitName+'/'+route+'\'');
 
 routesAppFrameExports.push('  '+route+',');
 }else if(routeFileName.startsWith('routeRoot')){
 _route=routeFileName.substring(0,routeFileName.length-4);
 routesRootImports.push(
-'import '+
-_route+
-' from \'../../'+
-unitName+
-'/'+
-_route+
-'\'');
+'import '+_route+' from \'../../'+unitName+'/'+_route+'\'');
 
 routesRootExports.push('  '+_route+',');
 }case 37:_context5.next=25;break;case 39:_context5.next=5;break;case 41:_context5.next=43;return regeneratorRuntime.awrap(
@@ -295,11 +255,7 @@ routesRootExports)]));case 43:case'end':return _context5.stop();}}},null,this);}
 
 
 
-function createRouteFile(
-fileName,
-imports,
-exports){var routesAppFrame;return regeneratorRuntime.async(function createRouteFile$(_context6){while(1){switch(_context6.prev=_context6.next){case 0:
-
+function createRouteFile(fileName,imports,exports){var routesAppFrame;return regeneratorRuntime.async(function createRouteFile$(_context6){while(1){switch(_context6.prev=_context6.next){case 0:
 routesAppFrame=['// @flow',''];
 routesAppFrame=routesAppFrame.concat(imports);
 routesAppFrame=routesAppFrame.concat(['','export default [']);
@@ -309,7 +265,7 @@ routesAppFrame=routesAppFrame.concat([']']);_context6.next=7;return regeneratorR
 (0,_ensureFileContent2.default)(
 fileName,
 null,
-_prettier2.default.format(routesAppFrame.join('\r\n'),_prettierrc2.default)));case 7:case'end':return _context6.stop();}}},null,this);}
+_prettier2.default.format(routesAppFrame.join('\r\n'),_package2.default.prettier)));case 7:case'end':return _context6.stop();}}},null,this);}
 
 
 

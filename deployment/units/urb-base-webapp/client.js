@@ -39,7 +39,7 @@ render:render}));case 4:Router=_context.sent;
 
 
 _reactDom2.default.render(
-_react2.default.createElement(_Wrapper2.default,{configuration:{appData:window.__appData__}},
+_react2.default.createElement(_Wrapper2.default,{siteConfiguration:window.__siteConfiguration__},
 _react2.default.createElement(Router,{resolver:resolver})),
 
 document.getElementById('root'),
