@@ -11,22 +11,16 @@ var _ensureFileContent=require('../urb-base-tools/ensureFileContent');var _ensur
 function main(){var result,taskPromises;return regeneratorRuntime.async(function main$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.next=2;return regeneratorRuntime.awrap(
 (0,_graphql.graphql)(_schema2.default,_utilities.introspectionQuery));case 2:result=_context.sent;if(!
 result.errors){_context.next=5;break;}throw(
-new Error(
-'Failed introspecting schema: '+JSON.stringify(result.errors,null,2)));case 5:
-
+new Error('Failed introspecting schema: '+JSON.stringify(result.errors,null,2)));case 5:
 
 taskPromises=[
 (0,_ensureFileContent2.default)(
-_path2.default.resolve(
-'./units/_configuration/urb-base-server/graphql/schema.json'),
-
+_path2.default.resolve('./units/_configuration/urb-base-server/graphql/schema.json'),
 null,
 JSON.stringify(result,null,2)),
 
 (0,_ensureFileContent2.default)(
-_path2.default.resolve(
-'./units/_configuration/urb-base-server/graphql/schema.graphql'),
-
+_path2.default.resolve('./units/_configuration/urb-base-server/graphql/schema.graphql'),
 null,
 (0,_utilities.printSchema)(_schema2.default))];_context.next=8;return regeneratorRuntime.awrap(
 

@@ -46,14 +46,12 @@ props,context));_this.
 
 handle_onResize=function(){
 _this.rbCtx.viewportDimensions.handle_onResize();
-};_this.rbCtx=(0,_getWrapperRbCtx2.default)(props.configuration);_this.rbCtx.viewportDimensions=new _ViewportDimensions2.default();_this.rbCtx.appData=props.configuration.appData;_this.muiTheme=(0,_createMUITheme2.default)(_this.rbCtx);return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbCtx:this.rbCtx};}},{key:'render',value:function render()
+};_this.rbCtx=(0,_getWrapperRbCtx2.default)(props.siteConfiguration);_this.rbCtx.viewportDimensions=new _ViewportDimensions2.default();_this.rbCtx.siteConfiguration=props.siteConfiguration;_this.muiTheme=(0,_createMUITheme2.default)(_this.rbCtx);return _this;}_createClass(Wrapper,[{key:'componentDidMount',value:function componentDidMount(){this.handle_onResize();}},{key:'getChildContext',value:function getChildContext(){return{rbCtx:this.rbCtx};}},{key:'render',value:function render()
 
 {
 return(
 _react2.default.createElement(_reactEventListener2.default,{target:'window',onResize:this.handle_onResize},
-_react2.default.createElement(_MuiThemeProvider2.default,{theme:this.muiTheme},
-this.props.children)));
-
+_react2.default.createElement(_MuiThemeProvider2.default,{theme:this.muiTheme},this.props.children)));
 
 
 }}]);return Wrapper;}(_react2.default.Component);Wrapper.childContextTypes={rbCtx:_propTypes2.default.object};exports.default=Wrapper;
