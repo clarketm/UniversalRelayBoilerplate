@@ -27,68 +27,44 @@ require('dotenv').load();
 
 var envHost=process.env.HOST;
 if(envHost==null||typeof envHost!=='string')
-throw new Error(
-'💔  urb-base-webapp requires the environment variable HOST to be set');
-
-
+throw new Error('💔  urb-base-webapp requires the environment variable HOST to be set');
 var envPort=process.env.PORT;
 if(envPort==null||typeof envPort!=='string')
-throw new Error(
-'💔  urb-base-webapp requires the environment variable PORT to be set');
-
-
+throw new Error('💔  urb-base-webapp requires the environment variable PORT to be set');
 var envPortWebpack=process.env.PORT_WEBPACK;
 if(envPortWebpack==null||typeof envPortWebpack!=='string')
-throw new Error(
-'💔  urb-base-webapp requires the environment variable PORT_WEBPACK to be set');
-
-
-
+throw new Error('💔  urb-base-webapp requires the environment variable PORT_WEBPACK to be set');
 var serverWebApp=(0,_express2.default)();
-
 function gatherLocationAndSiteInformation(req,res){var assetsPath,siteInformation;return regeneratorRuntime.async(function gatherLocationAndSiteInformation$(_context){while(1){switch(_context.prev=_context.next){case 0:
 assetsPath=void 0;_context.next=3;return regeneratorRuntime.awrap(
-
 (0,_siteSettings.getSiteInformation)(req,res));case 3:siteInformation=_context.sent;
-
 if(process.env.NODE_ENV==='production'){
 assetsPath=
 siteInformation.isSiteBuilderDisabled||siteInformation.inEditingMode?'/assets/'+_package.version:'/assets-site/'+_package.version+'.'+
 
 
 
-siteInformation.configurationAsObject.
-version;
+siteInformation.siteConfiguration.version;
 }else{
 
 assetsPath='http://'+envHost+':'+envPortWebpack+'/'+_package.version;
 }return _context.abrupt('return',
-
 {siteInformation:siteInformation,assetsPath:assetsPath});case 6:case'end':return _context.stop();}}},null,this);}
-
 
 var render=(0,_createRender2.default)({
 renderError:function renderError(obj){var
 error=obj.error;
-
 if(error.status!==404)
 _log2.default.log('error','Error: Render on server createRender renderError',obj);
-
 return _react2.default.createElement(_ErrorComponent2.default,{httpStatus:error.status});
 }});
 
-
-serverWebApp.use(function _callee(req,res){var _ref,siteInformation,assetsPath,fetcher,_ref2,redirect,element,userAgent,configuration,sheets,helmet,rootHTML;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:_context2.prev=0;_context2.next=3;return regeneratorRuntime.awrap(
-
-
-
+serverWebApp.use(function _callee(req,res){var _ref,siteInformation,assetsPath,fetcher,_ref2,redirect,element,userAgent,siteConfiguration,siteConfigurationSubset,sheets,helmet,rootHTML;return regeneratorRuntime.async(function _callee$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:_context2.prev=0;_context2.next=3;return regeneratorRuntime.awrap(
 
 gatherLocationAndSiteInformation(req,res));case 3:_ref=_context2.sent;siteInformation=_ref.siteInformation;assetsPath=_ref.assetsPath;
-
 fetcher=new _fetcherServer2.default(
 'http://localhost:'+envPort+(0,_getGraphQLLocalServerURL2.default)(siteInformation),
 req.cookies.UserToken1,_UserToken2ServerRendering2.default);_context2.next=9;return regeneratorRuntime.awrap(
-
 
 
 (0,_server.getFarceResult)({
@@ -98,24 +74,22 @@ routeConfig:_router.routeConfig,
 resolver:(0,_router.createResolver)(fetcher),
 render:render}));case 9:_ref2=_context2.sent;redirect=_ref2.redirect;element=_ref2.element;if(!
 
-
 redirect){_context2.next=15;break;}
 res.redirect(302,redirect.url);return _context2.abrupt('return');case 15:
 
 
-
 userAgent=req.headers['user-agent'];
-
-configuration=siteInformation.configurationAsObject;
+siteConfiguration=siteInformation.siteConfiguration;
+siteConfigurationSubset={
+webapp:siteConfiguration.webapp,
+builder:siteConfiguration.builder};
 
 sheets=new _reactJss.SheetsRegistry();
 helmet=_reactHelmet2.default.rewind();
-
 rootHTML=_server3.default.renderToString(
 _react2.default.createElement(_reactJss.JssProvider,{registry:sheets},
-_react2.default.createElement(_Wrapper2.default,{userAgent:userAgent,configuration:configuration},
+_react2.default.createElement(_Wrapper2.default,{userAgent:userAgent,siteConfiguration:siteConfigurationSubset},
 element)));
-
 
 
 
@@ -124,15 +98,12 @@ assets_path:assetsPath,
 root_html:rootHTML,
 server_side_styles:sheets.toString(),
 helmet:helmet,
-appData:JSON.stringify(configuration.appData),
-relay_payload:(0,_serializeJavascript2.default)(fetcher,{isJSON:true})});_context2.next=27;break;case 23:_context2.prev=23;_context2.t0=_context2['catch'](0);
+siteConfiguration:JSON.stringify(siteConfigurationSubset),
+relay_payload:(0,_serializeJavascript2.default)(fetcher,{isJSON:true})});_context2.next=28;break;case 24:_context2.prev=24;_context2.t0=_context2['catch'](0);
 
 
 _log2.default.log('error','Error: Render on server request',_context2.t0);
-res.
-status(500).
-send(_server3.default.renderToString(_react2.default.createElement(_ErrorComponent2.default,{httpStatus:500})));case 27:case'end':return _context2.stop();}}},null,_this,[[0,23]]);});exports.default=
-
+res.status(500).send(_server3.default.renderToString(_react2.default.createElement(_ErrorComponent2.default,{httpStatus:500})));case 28:case'end':return _context2.stop();}}},null,_this,[[0,24]]);});exports.default=
 
 
 serverWebApp;

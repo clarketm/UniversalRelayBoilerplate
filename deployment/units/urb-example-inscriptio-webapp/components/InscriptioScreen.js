@@ -13,9 +13,7 @@ var _ResponsiveContentArea=require('../../urb-base-webapp/components/ResponsiveC
 var MapComponent=(0,_withScriptjs2.default)(
 (0,_reactGoogleMaps.withGoogleMap)(function(props){return(
 _react2.default.createElement(_reactGoogleMaps.GoogleMap,{defaultZoom:props.defaultZoom,center:props.center},
-props.markers.map(function(marker,index){return(
-_react2.default.createElement(_reactGoogleMaps.Marker,{key:index,position:marker.position}));})));}));
-
+props.markers.map(function(marker,index){return _react2.default.createElement(_reactGoogleMaps.Marker,{key:index,position:marker.position});})));}));
 
 
 
@@ -28,9 +26,6 @@ minHeight:400}};var
 
 
 InscriptioScreen=function(_React$Component){_inherits(InscriptioScreen,_React$Component);
-
-
-
 
 
 
@@ -54,7 +49,7 @@ classes=this.props.classes;
 
 var googleMapURL=
 'https://maps.googleapis.com/maps/api/js?v=3.28&libraries=places,geometry&key='+
-this.context.rbCtx.appData.api.googleMapsJavascriptAPI;
+this.context.rbCtx.siteConfiguration.webapp.api.googleMapsJavascriptAPI;
 
 console.log(googleMapURL);
 

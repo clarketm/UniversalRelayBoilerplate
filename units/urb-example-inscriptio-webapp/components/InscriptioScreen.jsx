@@ -11,13 +11,11 @@ import { createFragmentContainer, graphql } from 'react-relay'
 import ResponsiveContentArea from '../../urb-base-webapp/components/ResponsiveContentArea'
 
 const MapComponent = withScriptjs(
-  withGoogleMap( props =>
+  withGoogleMap( props => (
     <GoogleMap defaultZoom={props.defaultZoom} center={props.center}>
-      {props.markers.map( ( marker, index ) =>
-        <Marker key={index} position={marker.position} />
-      )}
+      {props.markers.map( ( marker, index ) => <Marker key={index} position={marker.position} /> )}
     </GoogleMap>
-  )
+  ) ),
 )
 
 const styles = {
@@ -27,10 +25,7 @@ const styles = {
   },
 }
 
-class InscriptioScreen extends React.Component<
-  { classes: Object, Viewer: Object },
-  Object
-> {
+class InscriptioScreen extends React.Component<{ classes: Object, Viewer: Object }, Object> {
   static contextTypes = {
     rbCtx: PropTypes.object,
   }
@@ -54,7 +49,7 @@ class InscriptioScreen extends React.Component<
 
     const googleMapURL =
       'https://maps.googleapis.com/maps/api/js?v=3.28&libraries=places,geometry&key=' +
-      this.context.rbCtx.appData.api.googleMapsJavascriptAPI
+      this.context.rbCtx.siteConfiguration.webapp.api.googleMapsJavascriptAPI
 
     console.log( googleMapURL )
 
@@ -84,8 +79,7 @@ export default createFragmentContainer(
   withStyles( styles )( InscriptioScreen ),
   graphql`
     fragment InscriptioScreen_Viewer on Viewer {
-      Inscriptios(first: 2147483647)
-        @connection(key: "InscriptioScreen_Inscriptios") {
+      Inscriptios(first: 2147483647) @connection(key: "InscriptioScreen_Inscriptios") {
         edges {
           node {
             id
@@ -95,5 +89,5 @@ export default createFragmentContainer(
         }
       }
     }
-  `
+  `,
 )

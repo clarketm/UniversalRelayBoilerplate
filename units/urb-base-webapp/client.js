@@ -26,7 +26,7 @@ const render = createRender({})
   const fetcher = new FetcherClient(
     getGraphQLServerURL(),
     window.__RELAY_PAYLOADS__,
-    window.__RELAY_PAYLOADS__[0].data.Viewer.UserToken2 // It is critical that the app frame has UserToken2 retrieved
+    window.__RELAY_PAYLOADS__[0].data.Viewer.UserToken2, // It is critical that the app frame has UserToken2 retrieved
   )
   const resolver = createResolver( fetcher )
 
@@ -39,7 +39,7 @@ const render = createRender({})
   })
 
   ReactDOM.render(
-    <Wrapper configuration={{ appData: window.__appData__ }}>
+    <Wrapper siteConfiguration={window.__siteConfiguration__}>
       <Router resolver={resolver} />
     </Wrapper>,
     document.getElementById( 'root' ),
@@ -48,6 +48,6 @@ const render = createRender({})
       const ssStyles = document.getElementById( 'server-side-styles' )
       // $FlowIssue it is guaranteed to be there
       ssStyles.parentNode.removeChild( ssStyles )
-    }
+    },
   )
 })()
