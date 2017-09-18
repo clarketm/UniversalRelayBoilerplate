@@ -18,6 +18,6 @@ const siteInformation = {
     builderClient: {},
   },
 }
-export function getSiteInformation( req: Object, res: Object ) {
+export async function getSiteInformation( req: Object, res: Object ): Object {
   return siteInformation
 }
