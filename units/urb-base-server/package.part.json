@@ -21,7 +21,7 @@
     "jwt-simple": "0.5.1",
     "isomorphic-fetch": "2.2.1",
     "material-ui-icons": "1.0.0-beta.10",
-    "material-ui": "1.0.0-beta.10",
+    "material-ui": "1.0.0-beta.11",
     "node-fetch": "1.7.3",
     "prop-types": "15.5.10",
     "react": "15.6.1",
