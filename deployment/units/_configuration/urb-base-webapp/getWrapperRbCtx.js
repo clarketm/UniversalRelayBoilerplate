@@ -1,6 +1,6 @@
-Object.defineProperty(exports,"__esModule",{value:true});exports.default=
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default =
 
-function(configuration){
-return{};
+function (configuration) {
+  return {};
 };
 //# sourceMappingURL=getWrapperRbCtx.js.map

@@ -1,44 +1,44 @@
-Object.defineProperty(exports,"__esModule",{value:true});exports.default=
+'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.default =
 
 
-logServerRequest;function logServerRequest(req,res,next,loggingFunction){
-var oldWriteRes=res.write;
-var oldEndRes=res.end;
+logServerRequest; //  weak
+// Function to log requests
+function logServerRequest(req, res, next, loggingFunction) {const oldWriteRes = res.write;const oldEndRes = res.end;
 
-var chunksRes=[];
+  const chunksRes = [];
 
-res.write=function(chunk){
-chunksRes.push(new Buffer(chunk));
-oldWriteRes.apply(res,arguments);
-};
+  res.write = function (chunk) {
+    chunksRes.push(new Buffer(chunk));
+    oldWriteRes.apply(res, arguments);
+  };
 
-res.end=function(chunk){
-if(chunk)chunksRes.push(new Buffer(chunk));
+  res.end = function (chunk) {
+    if (chunk) chunksRes.push(new Buffer(chunk));
 
-var responseBody=Buffer.concat(chunksRes).toString('utf8');
+    var responseBody = Buffer.concat(chunksRes).toString('utf8');
+
+    // Determine client ID - either placed in the headers by Nginx, or the IP the request is coming from
+    const clientIP = req.headers['x-real-ip'] || req.connection.remoteAddress;
+
+    let user;
+    if (res.codeFoundriesInjected && res.codeFoundriesInjected.user)
+    user = res.codeFoundriesInjected.user;else
+    user = 'not determined';
+
+    const requestAndResponse = {
+      headers: req.headers,
+      cookies: req.cookies,
+      user: user,
+      query: req.body,
+      response: responseBody,
+      clientIP };
 
 
-var clientIP=req.headers['x-real-ip']||req.connection.remoteAddress;
+    loggingFunction(requestAndResponse);
 
-var user=void 0;
-if(res.codeFoundriesInjected&&res.codeFoundriesInjected.user)
-user=res.codeFoundriesInjected.user;else
-user='not determined';
+    oldEndRes.apply(res, arguments);
+  };
 
-var requestAndResponse={
-headers:req.headers,
-cookies:req.cookies,
-user:user,
-query:req.body,
-response:responseBody,
-clientIP:clientIP};
-
-
-loggingFunction(requestAndResponse);
-
-oldEndRes.apply(res,arguments);
-};
-
-next();
+  next();
 }
 //# sourceMappingURL=logServerRequest.js.map

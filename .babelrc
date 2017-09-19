@@ -1,10 +1,24 @@
 {
-  "presets": ["react-native-stage-0"],
+  "presets": [
+    "flow",
+    "react",
+    ["env", {
+      "targets": {
+        "node": "8.3"
+      }
+    }]
+  ],
   "plugins": [
+    ["relay", { "schema": "units/_configuration/urb-base-server/graphql/schema.graphql" }],
     "dynamic-import-node",
     "react-hot-loader/babel",
     "transform-class-properties",
     "syntax-dynamic-import",
-    ["relay", { "schema": "units/_configuration/urb-base-server/graphql/schema.graphql" }]
+    ["transform-object-rest-spread",
+        {
+          "useBuiltIns": true
+        }
+      ],
+    "transform-flow-strip-types"
   ]
 }
