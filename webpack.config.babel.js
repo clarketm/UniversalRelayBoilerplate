@@ -10,22 +10,25 @@ const version = require( './units/_configuration/package.js' ).version
 const host = process.env.HOST
 const port_webpack = process.env.PORT_WEBPACK
 const node_env = process.env.NODE_ENV
-
-console.log( '📦  Running Webpack, process.env.NODE_ENV=' + node_env + ', version=' + version )
+const sassets_configuration_version = process.env.CFSB_SASSETS_CONFIGURATION_VERSION
 
 const publicPath =
-  node_env === 'production' ? `/assets/${version}/` : `http://${host}:${port_webpack}/${version}/`
+  sassets_configuration_version
+    ? `/sassets/${version}.${sassets_configuration_version}/`
+    : node_env === 'production'
+      ? `/assets/${version}/`
+      : `http://${host}:${port_webpack}/${version}/`
+
+console.log( '📦  webpack ' + JSON.stringify({ node_env, version, sassets_configuration_version, publicPath }) )
 const ifProd = plugin => ( node_env === 'production' ? plugin : undefined )
 const ifNotProd = plugin => ( node_env !== 'production' ? plugin : undefined )
 const removeEmpty = array => array.filter( p => !!p )
-
 const config = {
   devServer: {
     host,
     port: port_webpack,
     headers: { 'Access-Control-Allow-Origin': '*' },
   },
-
   entry: {
     client: [ 'whatwg-fetch', path.resolve( 'units/urb-base-webapp/client.js' ) ],
     vendor: [
@@ -45,15 +48,13 @@ const config = {
       'relay-runtime',
     ],
   },
-
   output: {
     path: path.resolve(
-      `deployment/units/_configuration/urb-base-server/public_files/assets/${version}`
+      `deployment/units/_configuration/urb-base-server/public_files/assets/${version}`,
     ),
     filename: '[name].js',
     publicPath,
   },
-
   module: {
     rules: [
       {
@@ -103,11 +104,9 @@ const config = {
       },
     ],
   },
-
   resolve: {
     extensions: [ '.js', '.jsx' ],
   },
-
   plugins: removeEmpty([
     new webpack.EnvironmentPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -123,11 +122,9 @@ const config = {
         },
       },
     }),
-
     // In development only:
     ifNotProd( new webpack.HotModuleReplacementPlugin() ),
     ifNotProd( new webpack.NamedModulesPlugin() ),
-
     // In production only:
     ifProd(
       new webpack.optimize.UglifyJsPlugin({
@@ -141,11 +138,9 @@ const config = {
           comments: false,
         },
         sourceMap: false,
-      })
+      }),
     ),
   ]),
 }
-
 if ( node_env !== 'production' ) config.devtool = 'source-map'
-
 export default config

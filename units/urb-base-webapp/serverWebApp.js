@@ -44,7 +44,7 @@ async function gatherLocationAndSiteInformation( req: Object, res: Object ) {
         ? // When editing in production, use the assets with the configuration readign code intact (built when cutting a site version)
           `/assets/${version}`
         : // When in production mode, serve the assets compiled by factory's publisher
-          `/assets-site/${version}.${siteInformation.siteConfiguration.version}`
+          `/sassets/${version}.${siteInformation.siteConfiguration.version}`
   } else {
     // When in development, always go to webpack over http
     assetsPath = `http://${envHost}:${envPortWebpack}/${version}`
