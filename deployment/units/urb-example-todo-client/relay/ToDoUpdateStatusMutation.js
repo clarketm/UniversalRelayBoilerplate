@@ -1,11 +1,9 @@
-Object.defineProperty(exports,"__esModule",{value:true});
+'use strict';Object.defineProperty(exports, "__esModule", { value: true });
 
-var _reactRelay=require('react-relay');
-var _relayRuntime=require('relay-runtime');
+var _reactRelay = require('react-relay');
+var _relayRuntime = require('relay-runtime'); //  weak
 
-var mutation=function mutation(){return require('./__generated__/ToDoUpdateStatusMutation.graphql');};
-
-
+const mutation = function () {return require('./__generated__/ToDoUpdateStatusMutation.graphql');};
 
 
 
@@ -18,49 +16,51 @@ var mutation=function mutation(){return require('./__generated__/ToDoUpdateStatu
 
 
 
-function sharedUpdater(store,user,proxyToDo){
 
 
-var userProxy=store.get(user.id);
-var status=proxyToDo.getValue('complete')?'active':'completed';
-var connection=_relayRuntime.ConnectionHandler.getConnection(
-userProxy,
-'ToDoList_ToDos',
-{status:status});
+function sharedUpdater(store, user, proxyToDo) {
+  // In principle this could add to the active connection, but such an
+  // interaction is not possible from the front end.
+  const userProxy = store.get(user.id);
+  const status = proxyToDo.getValue('complete') ? 'active' : 'completed';
+  const connection = _relayRuntime.ConnectionHandler.getConnection(
+  userProxy,
+  'ToDoList_ToDos',
+  { status });
 
-if(connection){
-_relayRuntime.ConnectionHandler.deleteNode(connection,proxyToDo.getValue('id'));
+  if (connection) {
+    _relayRuntime.ConnectionHandler.deleteNode(connection, proxyToDo.getValue('id'));
+  }
 }
-}
 
-function commit(environment,user,aToDo,ToDo_Complete){
-return(0,_reactRelay.commitMutation)(environment,{
-mutation:mutation,
-variables:{
-input:{id:aToDo.id,ToDo_Complete:ToDo_Complete}},
+function commit(environment, user, aToDo, ToDo_Complete) {
+  return (0, _reactRelay.commitMutation)(environment, {
+    mutation,
+    variables: {
+      input: { id: aToDo.id, ToDo_Complete } },
 
 
-updater:function updater(store){
-var payload=store.getRootField('ToDoUpdateStatus');
-sharedUpdater(store,user,payload.getLinkedRecord('ToDo'));
-},
+    updater(store) {
+      const payload = store.getRootField('ToDoUpdateStatus');
+      sharedUpdater(store, user, payload.getLinkedRecord('ToDo'));
+    },
 
-optimisticUpdater:function optimisticUpdater(store){
-var proxyToDo=store.get(aToDo.id);
-proxyToDo.setValue(ToDo_Complete,'complete');
-sharedUpdater(store,user,proxyToDo);
+    optimisticUpdater(store) {
+      const proxyToDo = store.get(aToDo.id);
+      proxyToDo.setValue(ToDo_Complete, 'complete');
+      sharedUpdater(store, user, proxyToDo);
 
-var userProxy=store.get(user.id);
-var ToDo_CompletedCount=userProxy.getValue('ToDo_CompletedCount');
-if(ToDo_CompletedCount!=null){
-userProxy.setValue(
-ToDo_CompletedCount+(ToDo_Complete?1:-1),
-'ToDo_CompletedCount');
+      const userProxy = store.get(user.id);
+      const ToDo_CompletedCount = userProxy.getValue('ToDo_CompletedCount');
+      if (ToDo_CompletedCount != null) {
+        userProxy.setValue(
+        ToDo_CompletedCount + (ToDo_Complete ? 1 : -1),
+        'ToDo_CompletedCount');
 
-}
-}});
+      }
+    } });
 
-}exports.default=
+}exports.default =
 
-{commit:commit};
+{ commit };
 //# sourceMappingURL=ToDoUpdateStatusMutation.js.map

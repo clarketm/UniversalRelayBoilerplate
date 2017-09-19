@@ -1,11 +1,9 @@
-Object.defineProperty(exports,"__esModule",{value:true});
+'use strict';Object.defineProperty(exports, "__esModule", { value: true });
 
-var _reactRelay=require('react-relay');
-var _relayRuntime=require('relay-runtime');
+var _reactRelay = require('react-relay');
+var _relayRuntime = require('relay-runtime'); //  weak
 
-var mutation=function mutation(){return require('./__generated__/TranslaticiarumAddMutation.graphql');};
-
-
+const mutation = function () {return require('./__generated__/TranslaticiarumAddMutation.graphql');};
 
 
 
@@ -22,19 +20,21 @@ var mutation=function mutation(){return require('./__generated__/Translaticiarum
 
 
 
-function sharedUpdater(store,user,TranslaticiarumsEdge){
-var userProxy=store.get(user.id);
 
-var connection=_relayRuntime.ConnectionHandler.getConnection(
-userProxy,
-'TranslaticiarumList_Translaticiarums');
 
-if(connection){
-_relayRuntime.ConnectionHandler.insertEdgeAfter(connection,TranslaticiarumsEdge);
+function sharedUpdater(store, user, TranslaticiarumsEdge) {
+  const userProxy = store.get(user.id);
+
+  const connection = _relayRuntime.ConnectionHandler.getConnection(
+  userProxy,
+  'TranslaticiarumList_Translaticiarums');
+
+  if (connection) {
+    _relayRuntime.ConnectionHandler.insertEdgeAfter(connection, TranslaticiarumsEdge);
+  }
 }
-}
 
-var nextClientMutationId=0;
+let nextClientMutationId = 0;
 
 function commit(
 environment,
@@ -43,49 +43,49 @@ Translaticiarum_Start,
 Translaticiarum_Stop,
 Translaticiarum_Description)
 {
-var clientMutationId=nextClientMutationId++;
+  const clientMutationId = nextClientMutationId++;
 
-return(0,_reactRelay.commitMutation)(environment,{
-mutation:mutation,
-variables:{
-input:{
-Translaticiarum_Start:Translaticiarum_Start,
-Translaticiarum_Stop:Translaticiarum_Stop,
-Translaticiarum_Description:Translaticiarum_Description,
-clientMutationId:clientMutationId}},
+  return (0, _reactRelay.commitMutation)(environment, {
+    mutation,
+    variables: {
+      input: {
+        Translaticiarum_Start,
+        Translaticiarum_Stop,
+        Translaticiarum_Description,
+        clientMutationId } },
 
 
 
-updater:function updater(store){
-var payload=store.getRootField('TranslaticiarumAdd');
-sharedUpdater(
-store,
-user,
-payload.getLinkedRecord('TranslaticiarumsEdge'));
+    updater(store) {
+      const payload = store.getRootField('TranslaticiarumAdd');
+      sharedUpdater(
+      store,
+      user,
+      payload.getLinkedRecord('TranslaticiarumsEdge'));
 
-},
+    },
 
-optimisticUpdater:function optimisticUpdater(store){
-var id='client:TranslaticiarumAdd:Translaticiarum:'+clientMutationId;
-var aTranslaticiarum=store.create(id,'Translaticiarum');
-aTranslaticiarum.setValue(Translaticiarum_Start,'Translaticiarum_Start');
-aTranslaticiarum.setValue(Translaticiarum_Stop,'Translaticiarum_Stop');
-aTranslaticiarum.setValue(
-Translaticiarum_Description,
-'Translaticiarum_Description');
+    optimisticUpdater(store) {
+      const id = `client:TranslaticiarumAdd:Translaticiarum:${clientMutationId}`;
+      const aTranslaticiarum = store.create(id, 'Translaticiarum');
+      aTranslaticiarum.setValue(Translaticiarum_Start, 'Translaticiarum_Start');
+      aTranslaticiarum.setValue(Translaticiarum_Stop, 'Translaticiarum_Stop');
+      aTranslaticiarum.setValue(
+      Translaticiarum_Description,
+      'Translaticiarum_Description');
 
-aTranslaticiarum.setValue(id,'id');
+      aTranslaticiarum.setValue(id, 'id');
 
-var TranslaticiarumsEdge=store.create('client:TranslaticiarumAdd:TranslaticiarumsEdge:'+
-clientMutationId,
-'TranslaticiarumsEdge');
+      const TranslaticiarumsEdge = store.create(
+      `client:TranslaticiarumAdd:TranslaticiarumsEdge:${clientMutationId}`,
+      'TranslaticiarumsEdge');
 
-TranslaticiarumsEdge.setLinkedRecord(aTranslaticiarum,'node');
+      TranslaticiarumsEdge.setLinkedRecord(aTranslaticiarum, 'node');
 
-sharedUpdater(store,user,TranslaticiarumsEdge);
-}});
+      sharedUpdater(store, user, TranslaticiarumsEdge);
+    } });
 
-}exports.default=
+}exports.default =
 
-{commit:commit};
+{ commit };
 //# sourceMappingURL=TranslaticiarumAddMutation.js.map

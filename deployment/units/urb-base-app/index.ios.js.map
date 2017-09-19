@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"index.ios.js","sourcesContent":[]}
+{"version":3,"sources":["../../../units/urb-base-app/index.ios.js"],"names":[],"mappings":";;AAEA;;AAEA;AACA;;AAEA","file":"index.ios.js","sourcesContent":["// @flow\n\n//import React, { AppRegistry } from 'react-native'\n\n//import ApplicationMain from './units/urb-base-app/components/ApplicationMain'\n//import AppRegistryName from '../_configuration/urb-base-app/AppRegistryName'\n\n//AppRegistry.registerComponent(AppRegistryName, () => ApplicationMain)\n"]}

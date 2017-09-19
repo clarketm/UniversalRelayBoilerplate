@@ -1,4 +1,4 @@
-Object.defineProperty(exports,"__esModule",{value:true});exports.default=
+'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.default =
 
-function(){return'/graphql';};
+() => '/graphql';
 //# sourceMappingURL=getGraphQLServerURL.js.map

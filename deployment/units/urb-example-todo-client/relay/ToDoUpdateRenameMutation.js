@@ -1,10 +1,8 @@
-Object.defineProperty(exports,"__esModule",{value:true});
+'use strict';Object.defineProperty(exports, "__esModule", { value: true });
 
-var _reactRelay=require('react-relay');
+var _reactRelay = require('react-relay');
 
-var mutation=function mutation(){return require('./__generated__/ToDoUpdateRenameMutation.graphql');};
-
-
+const mutation = function () {return require('./__generated__/ToDoUpdateRenameMutation.graphql');}; //  weak
 
 
 
@@ -13,25 +11,27 @@ var mutation=function mutation(){return require('./__generated__/ToDoUpdateRenam
 
 
 
-function commit(environment,aToDo,ToDo_Text){
-return(0,_reactRelay.commitMutation)(environment,{
-mutation:mutation,
-variables:{
-input:{id:aToDo.id,ToDo_Text:ToDo_Text}},
 
 
-optimisticResponse:function optimisticResponse(){
-return{
-ToDoUpdateRename:{
-ToDo:{
-id:aToDo.id,
-ToDo_Text:ToDo_Text}}};
+function commit(environment, aToDo, ToDo_Text) {
+  return (0, _reactRelay.commitMutation)(environment, {
+    mutation,
+    variables: {
+      input: { id: aToDo.id, ToDo_Text } },
+
+
+    optimisticResponse() {
+      return {
+        ToDoUpdateRename: {
+          ToDo: {
+            id: aToDo.id,
+            ToDo_Text } } };
 
 
 
-}});
+    } });
 
-}exports.default=
+}exports.default =
 
-{commit:commit};
+{ commit };
 //# sourceMappingURL=ToDoUpdateRenameMutation.js.map

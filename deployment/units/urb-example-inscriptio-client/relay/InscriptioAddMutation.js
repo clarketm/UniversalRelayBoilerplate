@@ -1,11 +1,9 @@
-Object.defineProperty(exports,"__esModule",{value:true});
+'use strict';Object.defineProperty(exports, "__esModule", { value: true });
 
-var _reactRelay=require('react-relay');
-var _relayRuntime=require('relay-runtime');
+var _reactRelay = require('react-relay');
+var _relayRuntime = require('relay-runtime'); //  weak
 
-var mutation=function mutation(){return require('./__generated__/InscriptioAddMutation.graphql');};
-
-
+const mutation = function () {return require('./__generated__/InscriptioAddMutation.graphql');};
 
 
 
@@ -22,19 +20,21 @@ var mutation=function mutation(){return require('./__generated__/InscriptioAddMu
 
 
 
-function sharedUpdater(store,user,InscriptiosEdge){
-var userProxy=store.get(user.id);
 
-var connection=_relayRuntime.ConnectionHandler.getConnection(
-userProxy,
-'InscriptioList_Inscriptios');
 
-if(connection){
-_relayRuntime.ConnectionHandler.insertEdgeAfter(connection,InscriptiosEdge);
+function sharedUpdater(store, user, InscriptiosEdge) {
+  const userProxy = store.get(user.id);
+
+  const connection = _relayRuntime.ConnectionHandler.getConnection(
+  userProxy,
+  'InscriptioList_Inscriptios');
+
+  if (connection) {
+    _relayRuntime.ConnectionHandler.insertEdgeAfter(connection, InscriptiosEdge);
+  }
 }
-}
 
-var nextClientMutationId=0;
+let nextClientMutationId = 0;
 
 function commit(
 environment,
@@ -43,42 +43,42 @@ Inscriptio_LocationLat,
 Inscriptio_LocationLon,
 Inscriptio_Notes)
 {
-var clientMutationId=nextClientMutationId++;
+  const clientMutationId = nextClientMutationId++;
 
-return(0,_reactRelay.commitMutation)(environment,{
-mutation:mutation,
-variables:{
-input:{
-Inscriptio_LocationLat:Inscriptio_LocationLat,
-Inscriptio_LocationLon:Inscriptio_LocationLon,
-Inscriptio_Notes:Inscriptio_Notes,
-clientMutationId:clientMutationId}},
+  return (0, _reactRelay.commitMutation)(environment, {
+    mutation,
+    variables: {
+      input: {
+        Inscriptio_LocationLat,
+        Inscriptio_LocationLon,
+        Inscriptio_Notes,
+        clientMutationId } },
 
 
 
-updater:function updater(store){
-var payload=store.getRootField('InscriptioAdd');
-sharedUpdater(store,user,payload.getLinkedRecord('InscriptiosEdge'));
-},
+    updater(store) {
+      const payload = store.getRootField('InscriptioAdd');
+      sharedUpdater(store, user, payload.getLinkedRecord('InscriptiosEdge'));
+    },
 
-optimisticUpdater:function optimisticUpdater(store){
-var id='client:InscriptioAdd:Inscriptio:'+clientMutationId;
-var aInscriptio=store.create(id,'Inscriptio');
-aInscriptio.setValue(Inscriptio_LocationLat,'Inscriptio_LocationLat');
-aInscriptio.setValue(Inscriptio_LocationLon,'Inscriptio_LocationLon');
-aInscriptio.setValue(Inscriptio_Notes,'Inscriptio_Notes');
-aInscriptio.setValue(id,'id');
+    optimisticUpdater(store) {
+      const id = `client:InscriptioAdd:Inscriptio:${clientMutationId}`;
+      const aInscriptio = store.create(id, 'Inscriptio');
+      aInscriptio.setValue(Inscriptio_LocationLat, 'Inscriptio_LocationLat');
+      aInscriptio.setValue(Inscriptio_LocationLon, 'Inscriptio_LocationLon');
+      aInscriptio.setValue(Inscriptio_Notes, 'Inscriptio_Notes');
+      aInscriptio.setValue(id, 'id');
 
-var InscriptiosEdge=store.create('client:InscriptioAdd:InscriptiosEdge:'+
-clientMutationId,
-'InscriptiosEdge');
+      const InscriptiosEdge = store.create(
+      `client:InscriptioAdd:InscriptiosEdge:${clientMutationId}`,
+      'InscriptiosEdge');
 
-InscriptiosEdge.setLinkedRecord(aInscriptio,'node');
+      InscriptiosEdge.setLinkedRecord(aInscriptio, 'node');
 
-sharedUpdater(store,user,InscriptiosEdge);
-}});
+      sharedUpdater(store, user, InscriptiosEdge);
+    } });
 
-}exports.default=
+}exports.default =
 
-{commit:commit};
+{ commit };
 //# sourceMappingURL=InscriptioAddMutation.js.map
