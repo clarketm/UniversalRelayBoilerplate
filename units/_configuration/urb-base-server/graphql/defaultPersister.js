@@ -1,6 +1,7 @@
 // @flow
 
-import Persister from '../../../urb-persister-cassandra/graphql/PersisterCassandra'
+import Persister from '../../../urb-persister-memory/graphql/PersisterMemory'
 
-const defaultPersister = new Persister()
+
+const defaultPersister = new Persister( )
 export default defaultPersister
